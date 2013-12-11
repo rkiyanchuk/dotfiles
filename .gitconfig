@@ -1,0 +1,30 @@
+[user]
+	name = Ruslan Kiianchuk
+	email = rkiyanchuk@mirantis.com
+
+[alias]
+    br = branch
+    cm = commit
+    co = checkout
+    dstat = diff --stat
+    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
+    mt = mergetool
+    st = status
+
+[apply]
+    whitespace = warn
+
+[core]
+    editor = vim
+
+[gitreview]
+	username = rkiianchuk
+
+[help]
+    autocorrect = 1
+
+[mergetool]
+    keepBackup = false
+
+[credential]
+    helper = cache --timeout=3600
