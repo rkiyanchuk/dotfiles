@@ -1,0 +1,116 @@
+# Copyright 2012 Zoresvit (c) <zoresvit@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# This Makefile is designed to compile latex documents using latex or pdflatex.
+# So far it supports bibliography processing via bibtex (.bib file or a simlink 
+# should be located in the same directory from where `make` is called). The 
+# recompilation is done automatically until all references are resolved (.log 
+# file checked for corresponding warnings). Bash and Make syntax is very ugly
+# but this solution is the most straightforward and portable AFAIK.
+# Executing `make tarball` creates an archive that contains tex sources, bibtex
+# database files, custom styles and graphics (in graphics folder). For my own
+# comfort the Makefile is set up to copy my custom styles into the tarball if
+# any of them is used in tex document (check is done by grepping the .tex file).
+# This Makefile is designed to suit my own needs, but I hope it may be useful 
+# for somebody else. If you make any improvements to this Makefile I would
+# appreciate notifying me of those changes -- it's very likely they will be
+# useful for me as well.
+
+TARGET=document.tex
+NAME=$(basename $(TARGET))
+# latex output filetype (pdf or dvi)
+OUTPUT=pdf
+# directory for latex auxiliary and temporary files
+AUXDIR=textemp
+# parameters for tex program
+PARAMS=-output-directory=$(AUXDIR) -output-format=$(OUTPUT) \
+		 -file-line-error -interaction=nonstopmode
+TEX=pdflatex $(PARAMS)
+# directories and files to exclude from compressing into tar
+EXCLUDE=--exclude=$(AUXDIR)
+
+$(TARGET) : 
+	@mkdir -p $(AUXDIR)
+# check for bibliography file and execute bibtex if needed
+	@if [ -f *.bib ]; \
+	then  \
+		echo "processing bibliography..."; \
+		$(TEX) $@; bibtex $(AUXDIR)/$*; $(TEX) $@; $(TEX) $@; \
+	else \
+		$(TEX) $@; \
+		echo "no bibliography found."; \
+	fi
+ifneq (,$(findstring dvi,$(OUTPUT)))
+	@echo "converting dvi to pdf..."
+	@dvips $(AUXDIR)/$*.dvi -o $(AUXDIR)/$*.ps
+	@ps2pdf $(AUXDIR)/$*.ps
+else
+	@mv $(AUXDIR)/$*.pdf ./
+endif
+
+clean :
+	rm -rf $(AUXDIR)
+
+cleanall :
+	rm -rf $(AUXDIR) *.pdf *.ps *.dvi *.tar.gz
+
+# Compress documents for sharing.
+# Includes tex sources, styles, bibliography and pdf putput)
+tarball:
+# This peace of code is not portable. It is intended to include my 
+# customized styles in the tarball, so the receiver is able to compile
+# sources right away. Erase the `ifeq` conditions or modify it to suit your 
+# own latex setup.
+ifneq (,$(findstring zoresvit,$(USER)))
+	@if grep "{zcv}" *.tex > /dev/null; \
+	then \
+		echo "copying zcv.sty..."; \
+		cp ~/texmf/tex/zcv.sty ./ ; \
+	fi
+	@if grep "{zslides}" *.tex > /dev/null; \
+	then \
+		echo "copying zslides.sty..."; \
+		cp ~/texmf/tex/beamerthemezslides.sty ./ ; \
+	fi
+endif
+
+	tar -czvf $(NAME).tar.gz $(EXCLUDE) \
+		--wildcards *.tex *.pdf *.sty *.bib graphics --ignore-failed-read
+
+# clean up copied custom stiles
+ifneq (,$(findstring zoresvit,$(USER)))
+	@echo "erasing copied style dependencies..."
+	@rm -f zcv.sty
+	@rm -f beamerthemezslides.sty
+endif
+
+help :
+	@echo "NAME"
+	@echo "\ttexMakefile - Makefile for compiling LaTeX sources"
+	@echo "SYNOPSIS"
+	@echo "\tmake [ -f Makefile ] [ options ] ... TARGET=source.tex"
+	@echo "OPTIONS"
+	@echo "\tclean"
+	@echo "\t    Remove directory with latex temporary files."
+	@echo "\tcleanall"
+	@echo "\t    Remove directory with latex temporary files and and also"
+	@echo "\t    *.pdf *.ps *.dvi *.tar.gz files in current directory"
+	@echo "\ttarball"
+	@echo "\t    Create archive with all files needed for latex sources"
+	@echo "\t    compilation. May be set up for copying custom styles for other"
+	@echo "\t    person to successfully compile the sources."
+	@echo "AUTHORS"
+	@echo "\tThis Makefile was created by the co-operative efforts of"
+	@echo "\tZoresvit  <zoresvit@gmail.com> and Frol <frolvlad@gmail.com>"
