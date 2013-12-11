@@ -1,6 +1,5 @@
 README.md skip
 LICENSE skip
 
-.xmonad
-.vim
-.purple
+.config recurse
+.ssh recurse
