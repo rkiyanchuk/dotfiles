@@ -302,10 +302,7 @@ Bundle 'drmingdrmer/xptemplate'
 " File browser.
 Bundle 'scrooloose/nerdtree'
 " Gitk for vim.
-Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
-" Run interpreter inside buffer.
-Bundle 'skwp/vim-conque'
 " Show project structure.
 Bundle 'majutsushi/tagbar'
 " C/C++ autocompletion using clang.
