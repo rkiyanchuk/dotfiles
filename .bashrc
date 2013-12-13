@@ -121,4 +121,6 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" 
 export LESS=" -R " 
 
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+
 . $HOME/.bashrc.load
