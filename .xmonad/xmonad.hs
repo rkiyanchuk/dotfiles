@@ -160,8 +160,8 @@ myManagementHooks = [
 myKeyBindings =
   [
     ((myModMask, xK_b), sendMessage ToggleStruts)
-    , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorShrink)
-    , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorExpand)
+    , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorShrink)
+    , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-12'")
