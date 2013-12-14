@@ -1,8 +1,21 @@
-# include what you want
+# add this to the .bashrc: . $HOME/.bashrc.load
 
 export PATH=$PATH:$HOME/bin
 
-# add this to the .bashrc: . $HOME/.bashrc.load
 
-####
-# put any bash customizations in here
+# virtualenvwrapper 
+export WORKON_HOME=$HOME/.virtualenvs 
+export PROJECT_HOME=$HOME/devel 
+source /usr/local/bin/virtualenvwrapper.sh 
+ 
+# Make gvim global menu work in Unity. 
+#function gvim () { (/usr/bin/gvim -f "$@" &) } 
+ 
+# Store date and time in bash history. 
+export HISTTIMEFORMAT="%d/%m/%y %T " 
+ 
+# Syntax highlighting for less. Install source-highlight first. 
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" 
+export LESS=" -R " 
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
