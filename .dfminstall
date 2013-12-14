@@ -1,6 +1,4 @@
 README.md skip
 LICENSE skip
 bootstrap.sh skip
-
-.config recurse
-.ssh recurse
+debs skip
