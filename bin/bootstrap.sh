@@ -56,6 +56,7 @@ sudo apt-get -f install
 sudo apt-get -y install flashplugin-nonfree ttf-mscorefonts-installer
 
 # Clean up unneeded packages
+sudo apt-get -f install
 sudo apt-get autoremove
 
 
