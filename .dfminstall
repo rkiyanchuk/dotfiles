@@ -2,3 +2,5 @@ README.md skip
 LICENSE skip
 bootstrap.sh skip
 debs skip
+
+.purple recurse
