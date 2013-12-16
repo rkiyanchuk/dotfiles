@@ -3,7 +3,7 @@
 # Basic desktop components
 sudo apt-get -y install xserver-xorg xinit slim xmonad alsa xxkb \
                         libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar \
-                        xcompmgr nitrogen stalonetray moreutils synapse 
+                        xcompmgr nitrogen stalonetray moreutils synapse ntp
 
 # Pulseaudio controls
 sudo apt-get -y install paman pavucontrol 
