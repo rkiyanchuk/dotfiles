@@ -136,7 +136,7 @@ defaultLayouts = smartBorders(avoidStruts(
 -- chatLayout = avoidStruts()
 
 
-chatLayout = renamed [Replace "Chat"] $ avoidStruts $ withIM (0.25) (Title "Buddy List") $ reflectHoriz $ withIM (0.25) isSkype (Grid) where isSkype = (Title "zoresvit - Skype™")
+chatLayout = renamed [Replace "Chat"] $ avoidStruts $ withIM (0.2) (Title "Buddy List") $ reflectHoriz $ withIM (0.2) isSkype (Grid) where isSkype = (Title "zoresvit - Skype™")
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
