@@ -1,17 +1,23 @@
-! Solarized color scheme for the X Window System
-! ==============================================
+! Solarized colorscheme for Xresources
+! ====================================
 
-! Common
-#define S_yellow    #b58900
-#define S_orange    #cb4b16
-#define S_red       #dc322f
-#define S_magenta   #d33682
-#define S_violet    #6c71c4
-#define S_blue      #268bd2
-#define S_cyan      #2aa198
-#define S_green     #859900
+! Options to choose default background between light/dark:
+! - Define the choice in ``.Xresources`` by hardcoding
+!   #define SOLARIZED_LIGHT
+!   or
+!   #define SOLARIZED_DARK
+! - Define the symbol when loading ``.Xresources`` with ``xrdb``:
+!   $ xrdb -DSOLARIZED_LIGHT -merge ~/.Xresources
 
-! Dark
+#if !defined(SOLARIZED_LIGHT) && !defined(SOLARIZED_DARK)
+#define SOLARIZED_DARK
+#elif defined(SOLARIZED_LIGHT) && defined(SOLARIZED_DARK)
+#undef SOLARIZED_LIGHT
+#endif
+
+
+! Define Solarized colors
+! -----------------------
 #define S_base03    #002b36
 #define S_base02    #073642
 #define S_base01    #586e75
@@ -21,41 +27,63 @@
 #define S_base2     #eee8d5
 #define S_base3     #fdf6e3
 
-! Light
-! #define S_base03  #fdf6e3
-! #define S_base02  #eee8d5
-! #define S_base01  #93a1a1
-! #define S_base00  #839496
-! #define S_base0   #657b83
-! #define S_base1   #586e75
-! #define S_base2   #073642
-! #define S_base3   #002b36
+#define S_yellow    #b58900
+#define S_orange    #cb4b16
+#define S_red       #dc322f
+#define S_magenta   #d33682
+#define S_violet    #6c71c4
+#define S_blue      #268bd2
+#define S_cyan      #2aa198
+#define S_green     #859900
 
-*background:                S_base03
-*foreground:                S_base0
-*fading:                    40
-*fadeColor:                 S_base03
-*cursorColor:               S_base1
-*pointerColorBackground:    S_base01
-*pointerColorForeground:    S_base1
+#ifdef SOLARIZED_LIGHT
+#define S_emph      S_base01
+#define S_primary   S_base00
+#define S_secondary S_base1
+#define S_bgrnd_hi  S_base2
+#define S_bgrnd     S_base3
+#endif
+#ifdef SOLARIZED_DARK
+#define S_emph      S_base1
+#define S_primary   S_base0
+#define S_secondary S_base01
+#define S_bgrnd_hi  S_base02
+#define S_bgrnd     S_base03
+#endif
 
-*color0:            S_base02
-*color1:            S_red
-*color2:            S_green
-*color3:            S_yellow
-*color4:            S_blue
-*color5:            S_magenta
-*color6:            S_cyan
-*color7:            S_base2
-*color8:            S_base03
-*color9:            S_orange
-*color10:           S_base01
-*color11:           S_base00
-*color12:           S_blue
-*color13:           S_violet
-*color14:           S_base1
-*color15:           S_base3
 
+! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+! red dark/light
+*color1:                S_red
+*color9:                S_orange
+! green dark/light
+*color2:                S_green
+*color10:               S_base01
+! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+! blue dark/light
+*color4:                S_blue
+*color12:               S_blue
+! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+! white dark/light
+*color7:                S_base2
+*color15:               S_base3
+
+
+! General Xresource settings
+! ==========================
+
+#define FONT_REGULAR xft:Liberation Mono:style=Regular
+#define FONT_BOLD xft:Liberation Mono:style=Bold
+#define FONT_ITALIC xft:Liberation Mono:style=Italic
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias: true
@@ -64,22 +92,64 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 
+*vt100.foreground:          S_primary
+*vt100.background:          S_bgrnd
+*cursorColor:               S_emph
+*pointerColorForeground:    S_emph
+*pointerColorBackground:    S_secondary
+*fading:                    40
+*fadeColor:                 S_bgrnd
+
+
 ! URxvt
 ! =====
 
-URxvt*foreground:   S_base0
-URxvt*background:   S_base03
-URxvt*saveLines:    65535
-URxvt.scrollBar:    false
-
-URxvt.colorIT:      S_orange
-URxvt.colorBD:      S_green
-URxvt.colorUL:      S_blue
-
-URxvt.font:xft:Liberation Mono:size=12:antialias=true:hinting=true
+URxvt*foreground: S_primary
+URxvt*background: S_bgrnd
+URxvt*font: FONT_REGULAR
+URxvt*boldFont: FONT_BOLD
+URxvt*italicFont: FONT_ITALIC
+URxvt.colorIT: S_magenta
+URxvt.colorBD: S_green
+URxvt.colorUL: S_blue
+URxvt*saveLines: 65535
+URxvt.scrollBar: false
 
 URxvt.url-select.autocopy:  true
-URxvt.url-select.launcher:  chromium
+URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
 
-urxvt*urlLauncher: chromium
+urxvt*urlLauncher: firefox
+
+
+! Xscreensaver
+! ============
+
+xscreensaver.captureStderr: false
+!font settings
+xscreensaver.Dialog.headingFont: FONT_REGULAR
+xscreensaver.Dialog.bodyFont:    FONT_REGULAR
+xscreensaver.Dialog.labelFont:   FONT_REGULAR
+xscreensaver.Dialog.unameFont:   FONT_REGULAR
+xscreensaver.Dialog.buttonFont:  FONT_REGULAR
+xscreensaver.Dialog.dateFont:    FONT_REGULAR
+xscreensaver.passwd.passwdFont:  FONT_REGULAR
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground: S_primary
+xscreensaver.Dialog.background: S_bgrnd
+xscreensaver.Dialog.topShadowColor: S_bgrnd
+xscreensaver.Dialog.bottomShadowColor: S_bgrnd
+xscreensaver.Dialog.Button.foreground: S_primary
+xscreensaver.Dialog.Button.background: S_bgrnd_hi
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground: S_primary
+xscreensaver.Dialog.text.background: S_bgrnd_hi
+xscreensaver.Dialog.internalBorderWidth: 24
+xscreensaver.Dialog.borderWidth: 0
+xscreensaver.Dialog.shadowThickness: 1
+xscreensaver*logo.width: 1
+xscreensaver*logo.height: 1
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground: S_red
+xscreensaver.passwd.thermometer.background: S_blue
+xscreensaver.passwd.thermometer.width: 4
