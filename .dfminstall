@@ -4,3 +4,4 @@ bootstrap.sh skip
 debs skip
 
 .purple recurse
+.pip recurse
