@@ -301,8 +301,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'drmingdrmer/xptemplate'
 " File browser.
 Bundle 'scrooloose/nerdtree'
-" Gitk for vim.
+" Gitk for vim (depends on fugitive).
 Bundle 'gregsexton/gitv'
+Bundle 'tpope/vim-fugitive'
 " Show project structure.
 Bundle 'majutsushi/tagbar'
 " C/C++ autocompletion using clang.
