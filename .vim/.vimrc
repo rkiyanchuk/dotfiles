@@ -301,8 +301,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'drmingdrmer/xptemplate'
 " File browser.
 Bundle 'scrooloose/nerdtree'
-" Gitk for vim.
+" Gitk for vim (depends on fugitive).
 Bundle 'gregsexton/gitv'
+Bundle 'tpope/vim-fugitive'
 " Show project structure.
 Bundle 'majutsushi/tagbar'
 " C/C++ autocompletion using clang.
@@ -310,12 +311,9 @@ Bundle 'Rip-Rip/clang_complete'
 " Surround text with tags.
 Bundle 'tpope/vim-surround'
 " Intuitive fuzzy files opening.
-" Installation: (see README for details):
-"     sudo apt-get install ruby1.8-dev ruby
-"     cd ~/.vim/bundle/Command-T/ruby/command-t
-"     ruby extconf.rb
-"     make
-Bundle 'wincent/Command-T'
+" Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
+
 " Plugins for Python development.
 Bundle 'davidhalter/jedi-vim'
 Bundle 'nvie/vim-flake8'
@@ -342,6 +340,11 @@ if has('unix')
     let g:clang_periodic_quickfix=0
     autocmd Filetype c,cpp,cxx,h,hxx autocmd BufWritePre <buffer> :call g:ClangUpdateQuickFix()
 endif
+
+" CtrlP
+" -----
+
+let g:ctrlp_map = '<C-p>'
 
 " NERDTree
 " --------
