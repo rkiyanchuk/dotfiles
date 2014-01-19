@@ -34,6 +34,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
+import Control.Monad
 import Data.Ratio ((%))
 
 
@@ -150,13 +151,14 @@ myManagementHooks = [
   resource =? "stalonetray" --> doIgnore
   , resource =? "XXkb" --> doIgnore
   , className =? "rdesktop" --> doFloat
-  , (className =? "Firefox") --> doF (W.shift "ζ")
-  , (className =? "Chromium-browser") --> doF (W.shift "ζ")
+  , (className =? "Firefox") --> focusShift "ζ"
+  , (className =? "Chromium-browser") --> focusShift "ζ"
   , (className =? "Empathy") --> doF (W.shift "η")
   , (className =? "Pidgin") --> doF (W.shift "η")
   , (className =? "Skype") --> doF (W.shift "η")
   ]
-
+  where
+    focusShift = doF . liftM2 (.) W.greedyView W.shift
 
 myKeyBindings =
   [
