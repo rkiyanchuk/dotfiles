@@ -15,6 +15,7 @@
 -}
 
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Grid
 import XMonad.Layout.ResizableTile
@@ -165,6 +166,14 @@ myKeyBindings =
     ((myModMask, xK_b), sendMessage ToggleStruts)
     , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorShrink)
     , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
+    -- Shift to previous workspace
+    , ((myModMask, xK_Left), prevWS)
+    -- Shift to next workspace
+    , ((myModMask, xK_Right), nextWS)
+    -- Shift window to previous workspace
+    , ((myModMask .|. shiftMask, xK_Left), shiftToPrev)
+    -- Shift window to next workspace
+    , ((myModMask .|. shiftMask, xK_Right), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-12'")
