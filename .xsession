@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
-# Based on David Brewer's XMonad configuration: 
+# Based on David Brewer's XMonad configuration:
 # https://github.com/davidbrewer/xmonad-ubuntu-conf
- 
 
-# Identify the home of our gtkrc file, important for setting styles of 
+
+# Identify the home of our gtkrc file, important for setting styles of
 # gtk-based applications
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -23,7 +23,7 @@ xcompmgr -n &
 # Screen configuration
 # ====================
 
-# We handle our screen configuration using xrandr. You are likely to want to 
+# We handle our screen configuration using xrandr. You are likely to want to
 # edit this section to match the specific demands of your setup. The below
 # setup is for a Lenovo W520 laptop that sometimes has an external monitor
 # hooked up via either VGA or DVI, positioned to the left of the laptop.
@@ -31,7 +31,7 @@ xcompmgr -n &
 # Note that you can run xrandr at the command line to get a list of your
 # connected screens and find out what names you should use to refer to them.
 
-# Activate primary screen 
+# Activate primary screen
 xrandr --output VGA1 --auto --primary
 
 # If we find that a screen is connected via VGA, activate it and position it
@@ -76,5 +76,11 @@ xsetroot -cursor_name left_ptr
 
 # Start USB automount daemon
 udiskie &
+
+# Turn off PC speaker bell
+xset -b
+
+# Start notification daemon
+/usr/lib/notify-osd/notify-osd &
 
 exec xmonad
