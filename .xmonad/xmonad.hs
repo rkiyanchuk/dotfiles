@@ -178,9 +178,9 @@ myKeyBindings =
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-12'")
-    , ((0, 0x1008FF12), spawn "amixer -q -c 1 set Headphone toggle")
-    , ((0, 0x1008FF11), spawn "amixer -q -c 1 set Headphone 10%-")
-    , ((0, 0x1008FF13), spawn "amixer -q -c 1 set Headphone 10%+")
+    , ((myModMask .|. controlMask, xK_m), spawn "amixer -q -c 0 set Master toggle")
+    , ((myModMask .|. controlMask, xK_Down), spawn "amixer -q -c 0 set Master 10%-")
+    , ((myModMask .|. controlMask, xK_Up), spawn "amixer -q -c 0 set Master 10%+")
   ]
 
 
