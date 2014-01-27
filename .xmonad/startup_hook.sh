@@ -39,11 +39,6 @@ if [ -z "$(pgrep xxkb)" ] ; then
     xxkb &
 fi
 
-# XXkb keyboard indicator.
-if [ -z "$(pgrep urxvt)" ] ; then
-    urxvt &
-fi
-
 # On login, we unlock the ssh keychain so we're not prompted for 
 # passphrases later. We pipe /dev/null to ssh-add to make it realize 
 # it's not running in a terminal. Otherwise, it won't launch the prompt.
