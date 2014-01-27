@@ -14,8 +14,6 @@ sudo apt-get -y install fonts-liberation  qt4-qtconfig shiki-brave-theme \
 
 # Helpers for better user-experience
 
-# Automount USB devices.
-sudo pip install udiskie
 
 # Configuration specific dependencies
 sudo apt-get -y install mercurial libxft-dev libxft2
@@ -24,6 +22,9 @@ sudo apt-get -y install mercurial libxft-dev libxft2
 
 # Python
 sudo apt-get -y install python3-all python2.7-dev python3-dev python-pip
+
+# Automount USB devices.
+sudo pip install udiskie
 
 # Python global dependencies
 sudo pip install virtualenvwrapper
@@ -42,13 +43,13 @@ sudo apt-get -y install network-manager network-manager-openvpn \
                         network-manager-gnome
 
 # Desktop software
-sudo apt-get -y install keepassx goldendict pidgin
+sudo apt-get -y install keepassx goldendict pidgin iceweasel
 
 # Multimedia
-sudo apt-get -y install vlc x264
+sudo apt-get -y install vlc x264 libnotify-bin notify-osd
 
 # Install contrib packages
-sed -i 's/wheezy main$/wheezy main contrib/' /etc/apt/sources.list
+sed -i 's/wheezy main$/wheezy main contrib non-free/' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -f install
 sudo apt-get -y install flashplugin-nonfree ttf-mscorefonts-installer
