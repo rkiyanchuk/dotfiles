@@ -152,6 +152,7 @@ myManagementHooks = [
   resource =? "stalonetray" --> doIgnore
   , resource =? "XXkb" --> doIgnore
   , className =? "rdesktop" --> doFloat
+  , (className =? "Iceweasel") --> focusShift "ζ"
   , (className =? "Firefox") --> focusShift "ζ"
   , (className =? "Chromium-browser") --> focusShift "ζ"
   , (className =? "Empathy") --> doF (W.shift "η")
