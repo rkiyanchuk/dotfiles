@@ -9,7 +9,7 @@ sudo apt-get -y install xserver-xorg xinit slim xmonad alsa xxkb \
 sudo apt-get -y install paman pavucontrol
 
 # Improve GUI
-sudo apt-get -y install fonts-liberation  qt4-qtconfig shiki-brave-theme \
+sudo apt-get -y install fonts-liberation fonts-linuxlibertine qt4-qtconfig shiki-brave-theme \
                         dmz-cursor-theme
 
 # Helpers for better user-experience
