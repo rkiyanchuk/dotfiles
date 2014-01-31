@@ -1,11 +1,25 @@
 #!/usr/bin/env bash
 
+USE_SSD=true
+SYS_DISK=sda
+
 # Add 386 architecture dependencies
 dpkg --add-architecture i386
 aptitude update
 aptitude -y -f install
 
 # Upgrade system to latest state
+aptitude -y safe-upgrade
+
+# Customizations for SSD
+if [ $USE_SSD == true ]; then
+    aptitude -y install sysfsutils
+    echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
+
+
+
+
+# Update the kernel manually
 
 
 ##############################################################################
