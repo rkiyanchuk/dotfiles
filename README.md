@@ -19,3 +19,10 @@ sudo aptitude install git
 ```
 git clone http://github.com/zoresvit/dotfiles
 ```
+
+Update kernel manually
+
+1. Qtconfig set fonts.
+3. Create SSH keys:
+       $ ssh-keygen -t rsa -C "rkiyanchuk@mirantis.com"
+       $ ssh-add
