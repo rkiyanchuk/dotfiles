@@ -19,11 +19,16 @@ aptitude -y safe-upgrade
 if [ $USE_SSD == true ]; then
     echo "Optimize SSD performance..." | tee ${LOG_FILE}
     aptitude -y install sysfsutils
+    
+    # Switch to `deadline` scheduler suitable for SSD.
+    if ! grep -q "/var/spool" ${SYSFS_CONF}; then
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
         echo "block/$SYS_DISK/queue/scheduler = deadline" >> ${SYSFS_CONF}
     else
         echo "WARNING: failed to set IO scheduler." >> ${LOG_FILE}
     fi
+
+    # Tweak kernel parameters.
     if [ -f ${SYSCTL_LOCAL_CONF} ]; then
         sed -i '/^vm.swappiness/c\vm.swappiness=0' ${SYSCTL_LOCAL_CONF}
         sed -i '/^vm.vfs_cache_pressure/c\vm.vfs_cache_pressure=50' ${SYSCTL_LOCAL_CONF}
@@ -32,8 +37,14 @@ if [ $USE_SSD == true ]; then
         echo "vm.swappiness=0" >> ${SYSCTL_LOCAL_CONF}
         echo "vm.vfs_cache_pressure=50" >> ${SYSCTL_LOCAL_CONF}
     fi
-    echo "tmpfs /var/spool tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
-    echo "tmpfs /var/tmp tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+
+    # Mount var directories to tmpfs to keep them in RAM.
+    if ! grep -q "/var/spool" /etc/fstab; then
+        echo "tmpfs /var/spool tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+    fi
+    if ! grep -q "/var/tmp" /etc/fstab; then
+        echo "tmpfs /var/tmp tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+    fi
 fi
 
 
