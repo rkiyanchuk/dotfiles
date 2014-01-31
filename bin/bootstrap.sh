@@ -15,6 +15,7 @@ aptitude -y safe-upgrade
 if [ $USE_SSD == true ]; then
     aptitude -y install sysfsutils
     echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
+fi
 
 
 
