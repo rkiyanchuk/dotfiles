@@ -14,7 +14,19 @@ aptitude -y safe-upgrade
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
     aptitude -y install sysfsutils
-    echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
+    if ! grep -q "scheduler.*=.*deadline"; then
+        echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
+    else
+        echo "WARNING: failed to set IO scheduler." >> ~/bootstrap.log
+    fi
+    if [ -f /etc/sysctl.d/local.conf ]; then
+        sed -i '/^vm.swappiness/c\vm.swappiness=0' /etc/sysctl.d/local.conf
+        sed -i '/^vm.vfs_cache_pressure/c\vm.vfs_cache_pressure=50' /etc/sysctl.d/local.conf
+    else
+        touch /etc/sysctl.d/local.conf
+        echo "vm.swappiness=0" >> /etc/sysctl.d/local.conf
+        echo "vm.vfs_cache_pressure=0" >> /etc/sysctl.d/local.conf
+    fi
 fi
 
 
