@@ -3,6 +3,10 @@
 USE_SSD=true
 SYS_DISK=sda
 
+LOG_FILE=~/bootstrap.log
+SYSFS_CONF=/etc/sysfs.conf
+SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
+
 # Add 386 architecture dependencies
 dpkg --add-architecture i386
 aptitude update
@@ -13,23 +17,22 @@ aptitude -y safe-upgrade
 
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
+    echo "Optimize SSD performance..." | tee ${LOG_FILE}
     aptitude -y install sysfsutils
-    if [ ! grep -q "scheduler.*=.*deadline" ]; then
-        echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
+    if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
+        echo "block/$SYS_DISK/queue/scheduler = deadline" >> ${SYSFS_CONF}
     else
-        echo "WARNING: failed to set IO scheduler." >> ~/bootstrap.log
+        echo "WARNING: failed to set IO scheduler." >> ${LOG_FILE}
     fi
-    if [ -f /etc/sysctl.d/local.conf ]; then
-        sed -i '/^vm.swappiness/c\vm.swappiness=0' /etc/sysctl.d/local.conf
-        sed -i '/^vm.vfs_cache_pressure/c\vm.vfs_cache_pressure=50' /etc/sysctl.d/local.conf
+    if [ -f ${SYSCTL_LOCAL_CONF} ]; then
+        sed -i '/^vm.swappiness/c\vm.swappiness=0' ${SYSCTL_LOCAL_CONF}
+        sed -i '/^vm.vfs_cache_pressure/c\vm.vfs_cache_pressure=50' ${SYSCTL_LOCAL_CONF}
     else
-        touch /etc/sysctl.d/local.conf
-        echo "vm.swappiness=0" >> /etc/sysctl.d/local.conf
-        echo "vm.vfs_cache_pressure=0" >> /etc/sysctl.d/local.conf
+        touch ${SYSCTL_LOCAL_CONF}
+        echo "vm.swappiness=0" >> ${SYSCTL_LOCAL_CONF}
+        echo "vm.vfs_cache_pressure=0" >> ${SYSCTL_LOCAL_CONF}
     fi
 fi
-
-
 
 
 # Update the kernel manually
