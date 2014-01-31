@@ -21,7 +21,6 @@ if [ $USE_SSD == true ]; then
     aptitude -y install sysfsutils
     
     # Switch to `deadline` scheduler suitable for SSD.
-    if ! grep -q "/var/spool" ${SYSFS_CONF}; then
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
         echo "block/$SYS_DISK/queue/scheduler = deadline" >> ${SYSFS_CONF}
     else
