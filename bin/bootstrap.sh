@@ -3,15 +3,14 @@
 USE_SSD=true
 SYS_DISK=sda
 
-LOG_FILE=~/bootstrap.log
 SYSFS_CONF=/etc/sysfs.conf
 SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
 
 
-echo "Include contrib and non-free packages" | tee ${LOG_FILE}
+echo "Include contrib and non-free packages"
 sed -i 's/jessie main$/jessie main contrib non-free/' /etc/apt/sources.list
 
-echo "Add 386 architecture dependencies" | tee ${LOG_FILE}
+echo "Add 386 architecture dependencies"
 dpkg --add-architecture i386
 aptitude update
 aptitude -y -f install
@@ -20,14 +19,14 @@ aptitude -y safe-upgrade
 
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
-    echo "Optimize SSD performance..." | tee ${LOG_FILE}
+    echo "Optimize SSD performance..."
     aptitude -y install sysfsutils
 
     # Switch to `deadline` scheduler suitable for SSD.
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
         echo "block/$SYS_DISK/queue/scheduler = deadline" >> ${SYSFS_CONF}
     else
-        echo "WARNING: failed to set IO scheduler." >> ${LOG_FILE}
+        echo "WARNING: failed to set IO scheduler."
     fi
 
     # Tweak kernel parameters.
@@ -50,7 +49,7 @@ if [ $USE_SSD == true ]; then
 fi
 
 
-echo "Install packages..." | tee ${LOG_FILE}
+echo "Install packages..."
 
 # Core system graphics components
 aptitude -y install ntp
