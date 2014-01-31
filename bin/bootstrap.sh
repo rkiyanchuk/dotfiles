@@ -30,7 +30,7 @@ if [ $USE_SSD == true ]; then
     else
         touch ${SYSCTL_LOCAL_CONF}
         echo "vm.swappiness=0" >> ${SYSCTL_LOCAL_CONF}
-        echo "vm.vfs_cache_pressure=0" >> ${SYSCTL_LOCAL_CONF}
+        echo "vm.vfs_cache_pressure=50" >> ${SYSCTL_LOCAL_CONF}
     fi
 fi
 
