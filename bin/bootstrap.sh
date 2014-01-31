@@ -32,6 +32,8 @@ if [ $USE_SSD == true ]; then
         echo "vm.swappiness=0" >> ${SYSCTL_LOCAL_CONF}
         echo "vm.vfs_cache_pressure=50" >> ${SYSCTL_LOCAL_CONF}
     fi
+    echo "tmpfs /var/spool tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+    echo "tmpfs /var/tmp tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
 fi
 
 
