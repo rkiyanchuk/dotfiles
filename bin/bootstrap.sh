@@ -39,10 +39,10 @@ if [ $USE_SSD == true ]; then
 
     # Mount var directories to tmpfs to keep them in RAM.
     if ! grep -q "/var/spool" /etc/fstab; then
-        echo "tmpfs /var/spool tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+        echo "tmpfs /var/spool  tmpfs   defaults,noatime,mode=1777 0 0" >> /etc/fstab
     fi
     if ! grep -q "/var/tmp" /etc/fstab; then
-        echo "tmpfs /var/tmp tmpfs defaults,noatime,mode=1777 0 0" >> /etc/fstab
+        echo "tmpfs /var/tmp    tmpfs   defaults,noatime,mode=1777 0 0" >> /etc/fstab
     fi
 fi
 
