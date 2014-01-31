@@ -14,7 +14,7 @@ aptitude -y safe-upgrade
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
     aptitude -y install sysfsutils
-    if ! grep -q "scheduler.*=.*deadline"; then
+    if [ ! grep -q "scheduler.*=.*deadline" ]; then
         echo "block/$SYS_DISK/queue/scheduler = deadline" >> /etc/sysfs.conf
     else
         echo "WARNING: failed to set IO scheduler." >> ~/bootstrap.log
