@@ -3,6 +3,7 @@ dotfiles
 
 User resource configuration.
 
+If you have SSD, enable `relatime` mount options when partitioning the drive.
 
 How to
 ======
