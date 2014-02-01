@@ -54,12 +54,14 @@ aptitude -y install ntp
 aptitude -y install xserver-xorg xinit slim
 aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install xcompmgr  # for transparency support
+aptitude -y install icc-profiles sampleicc-tools
 
 # Sound
 aptitude -y install alsa paman pavucontrol
 
 # Utils for better user experience
-aptitude -y install xxkb nitrogen stalonetray moreutils
+aptitude -y install xxkb nitrogen stalonetray 
+aptitude -y install suckless-tools xbacklight moreutils
 aptitude -y install qt4-qtconfig shiki-brave-theme dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
 
@@ -77,6 +79,7 @@ aptitude -y install openssh-client openssh-server
 aptitude -y install python-pip python3-all python2.7-dev python3-dev
 pip install udiskie  # automount usb devices
 pip install virtualenvwrapper
+aptitude -y install python-notify  # dependency for udiskie
 
 # Multimedia
 aptitude -y install goldendict vlc x264

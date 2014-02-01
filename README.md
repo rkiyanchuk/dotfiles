@@ -26,3 +26,8 @@ Update kernel manually
 3. Create SSH keys:
        $ ssh-keygen -t rsa -C "rkiyanchuk@mirantis.com"
        $ ssh-add
+
+Optional steps:
+
+aptitude install -y firmware-linux
+aptitude install -y firmware-iwlwifi  # for Intel wireless cards
