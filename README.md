@@ -32,3 +32,17 @@ Optional steps:
 aptitude install -y firmware-linux
 aptitude install -y firmware-iwlwifi  # system76: for Intel wireless cards
 aptitude install -y firmware-realtek  # system76: for ethernet
+
+
+Controls concept
+================
+
+`Mod` key is the standard modifier key (like Windows key on PCs or Command on
+Macs). Every key binding that contains the key is for controling the window
+manager of system settings.
+
+Modifiers like `Control` or `Alt` without the `Mod` key must affect only the
+currently focused app and perform adjustments to that app only.
+
+`Control` and `Alt` modifiers *with* the `Mod` key are used as alternatives for
+controlling the system to avoid collisions.
