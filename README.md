@@ -46,3 +46,15 @@ currently focused app and perform adjustments to that app only.
 
 `Control` and `Alt` modifiers *with* the `Mod` key are used as alternatives for
 controlling the system to avoid collisions.
+
+
+Troubleshooting
+===============
+
+Problem
+-------
+
+When applications trigger `gksu` for password prompt, it always fails
+complaining that the password is wrong.
+
+Start `gksu-properties` and switch Authentication mode from `su` to `sudo`.
