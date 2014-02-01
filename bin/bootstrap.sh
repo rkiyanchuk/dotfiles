@@ -8,7 +8,7 @@ SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
 
 
 echo "Include contrib and non-free packages"
-sed -i 's/jessie main$/jessie main contrib non-free/' /etc/apt/sources.list
+sed -i 's/wheezy main$/wheezy main contrib non-free/' /etc/apt/sources.list
 
 echo "Add 386 architecture dependencies"
 dpkg --add-architecture i386
