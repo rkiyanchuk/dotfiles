@@ -14,7 +14,7 @@
 # it use the second card.
 
 highlight="#2aa198"
-str=`amixer -c 0 sget Master,0`
+str=`amixer -c 1 sget Master,0`
 str1=${str#Simple*[}
 v1="<fc=${highlight}>${str1%%]*]} </fc>"
 il=`expr index "$str1" [`
