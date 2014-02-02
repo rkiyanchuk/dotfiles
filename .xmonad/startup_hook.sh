@@ -22,17 +22,17 @@ if [ -z "$(pgrep nm-applet)" ] ; then
 fi
 
 # Applet for managing print jobs from the tray.
-if [ -z "$(pgrep system-config-printer-applet)" ] ; then
-    system-config-printer-applet &
-fi
+#if [ -z "$(pgrep system-config-printer-applet)" ] ; then
+#     system-config-printer-applet &
+#fi
 
 # Application launcher
 # ====================
 
 # Dropbox client.
-if [ -z "$(pgrep dropbox)" ] ; then
-    dropbox start &
-fi
+#if [ -z "$(pgrep dropbox)" ] ; then
+#    dropbox start &
+#fi
 
 # XXkb keyboard indicator.
 if [ -z "$(pgrep xxkb)" ] ; then
