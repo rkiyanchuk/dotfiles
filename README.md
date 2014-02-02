@@ -30,8 +30,8 @@ Update kernel manually
 Optional steps:
 
 aptitude install -y firmware-linux
-aptitude install -y firmware-iwlwifi  # system76: for Intel wireless cards
 aptitude install -y firmware-realtek  # system76: for ethernet
+aptitude install -y firmware-iwlwifi  # system76: for Intel wireless cards
 
 
 Controls concept

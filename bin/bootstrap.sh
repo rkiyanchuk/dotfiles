@@ -38,11 +38,8 @@ if [ $USE_SSD == true ]; then
     fi
 
     # Mount var directories to tmpfs to keep them in RAM.
-    if ! grep -q "/var/spool" /etc/fstab; then
-        echo "tmpfs /var/spool  tmpfs   defaults,noatime,mode=1777 0 0" >> /etc/fstab
-    fi
     if ! grep -q "/var/tmp" /etc/fstab; then
-        echo "tmpfs /var/tmp    tmpfs   defaults,noatime,mode=1777 0 0" >> /etc/fstab
+        echo "tmpfs /var/tmp    tmpfs   defaults,relatime,mode=1777 0 0" >> /etc/fstab
     fi
 fi
 
@@ -62,12 +59,16 @@ aptitude -y install alsa paman pavucontrol
 # Utils for better user experience
 aptitude -y install xxkb nitrogen stalonetray 
 aptitude -y install suckless-tools xbacklight moreutils
-aptitude -y install qt4-qtconfig shiki-brave-theme dmz-cursor-theme
+aptitude -y install qt4-qtconfig gtk2-engines dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
 
 # Network utils
 aptitude -y install x11vnc traceroute
+
 aptitude -y install network-manager network-manager-gnome network-manager-openvpn
+# Let network manager to manage ifupdown
+sed -i '/^managed=false/c\managed=true' /etc/NetworkNanager/NetworkManager.conf
+
 aptitude -y install pidgin iceweasel
 
 # Preferred packages
