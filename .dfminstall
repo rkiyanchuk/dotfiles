@@ -1,7 +1,5 @@
 README.md skip
 LICENSE skip
-bootstrap.sh skip
-debs skip
+bootstraps skip
 
-.purple recurse
 .pip recurse
