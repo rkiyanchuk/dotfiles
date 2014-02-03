@@ -15,7 +15,7 @@ set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 set t_vb=
 
 if has('unix')
-    set guifont=Liberation\ Mono\ 12
+    set guifont=Liberation\ Mono\ 14
     set guioptions=ca  " Get rid of toolbars and menues
 endif
 
