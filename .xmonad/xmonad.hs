@@ -178,9 +178,13 @@ myKeyBindings =
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-12'")
+    -- Volume control
     , ((myModMask .|. controlMask, xK_m), spawn "amixer -D pulse set Master 1+ toggle")
     , ((myModMask .|. controlMask, xK_Down), spawn "amixer -q -c 1 set Master 10%-")
     , ((myModMask .|. controlMask, xK_Up), spawn "amixer -q -c 1 set Master 10%+")
+    -- Brightness control
+    , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 10")
+    , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 10")
   ]
 
 
