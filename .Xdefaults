@@ -81,9 +81,9 @@
 ! General Xresource settings
 ! ==========================
 
-#define FONT_REGULAR xft:Liberation Mono:style=Regular
-#define FONT_BOLD xft:Liberation Mono:style=Bold
-#define FONT_ITALIC xft:Liberation Mono:style=Italic
+#define FONT_REGULAR xft:Liberation Mono:style=Regular:size=13
+#define FONT_BOLD xft:Liberation Mono:style=Bold:size=13
+#define FONT_ITALIC xft:Liberation Mono:style=Italic:size=13
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias: true
