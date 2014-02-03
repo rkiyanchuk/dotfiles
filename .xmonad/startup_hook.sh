@@ -29,10 +29,10 @@ fi
 # Application launcher
 # ====================
 
-# Dropbox client.
-#if [ -z "$(pgrep dropbox)" ] ; then
-#    dropbox start &
-#fi
+ Dropbox client.
+if [ -z "$(pgrep dropbox)" ] ; then
+    dropbox start &
+fi
 
 # XXkb keyboard indicator.
 if [ -z "$(pgrep xxkb)" ] ; then
