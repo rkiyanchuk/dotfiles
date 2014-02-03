@@ -90,8 +90,8 @@ pip install udiskie  # automount usb devices
 # ===========================
 
 # Network utils
-aptitude -y install x11vnc traceroute nmap
-aptitude -y install openssh-client openssh-server
+aptitude -y install x11vnc traceroute nmap synergy
+aptitude -y install openssh-client openssh-server ssh-askpass
 aptitude -y install pidgin iceweasel
 
 # Misc CLI utils
@@ -104,5 +104,5 @@ aptitude -y install python3-all python2.7-dev python3-dev
 pip install virtualenvwrapper
 
 # Multimedia
-aptitude -y install goldendict vlc x264 feh
+aptitude -y install goldendict vlc x264 feh geeqie
 aptitude -y install flashplugin-nonfree ttf-mscorefonts-installer
