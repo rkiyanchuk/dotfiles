@@ -1,0 +1,161 @@
+# Solarized Light GTK Theme
+
+# The Solarized colours
+#color["base03"]  = "#002b36"
+#color["base02"]  = "#073642"
+#color["base01"]  = "#586e75"
+#color["base00"]  = "#657b83"
+#color["base0"]   = "#839496"
+#color["base1"]   = "#93a1a1"
+#color["base2"]   = "#eee8d5"
+#color["base3"]   = "#fdf6e3"
+#color["yellow"]  = "#b58900"
+#color["orange"]  = "#cb4b16"
+#color["red"]     = "#dc322f"
+#color["magenta"] = "#d33682"
+#color["violet"]  = "#6c71c4"
+#color["blue"]    = "#268bd2"
+#color["cyan"]    = "#2aa198"
+#color["green"]   = "#859900"
+
+gtk_color_scheme = "base03:#002b36\nbase02:#073642\nbase01:#586e75\nbase00:#657b83\nbase0:#839496\nbase1:#93a1a1\nbase2:#eee8d5\nbase3:#fdf6e3\nyellow:#b58900\norange:#cb4b16\nred:#dc322f\nmagenta:#d33682\nviolet:#6c71c4\nblue:#268bd2\ncyan:#2aa198\ngreen:#859900"
+
+gtk-icon-sizes = "panel=16,16:gtk-button=16,16" # Icon sizes
+gtk-button-images = 0 # Disables icons in buttons
+gtk-toolbar-style = 1 # Enables text in toolbar
+gtk-auto-mnemonics = 1 # Disables lines under menu items
+
+style "light" {
+
+  # Set the colour scheme (the only difference from Numix)
+  fg[NORMAL] = @base0
+  fg[PRELIGHT] = @base0
+  fg[SELECTED] = @base03
+  fg[ACTIVE] = @base0
+  fg[INSENSITIVE] = @base01
+
+  bg[NORMAL] = @base02
+  bg[PRELIGHT] = @base02
+  bg[SELECTED] = @base0
+  bg[ACTIVE] = mix (0.5, @base02, @base01)
+  bg[INSENSITIVE] = @base02
+
+  text[NORMAL] = @base0
+  text[PRELIGHT] = @base0
+  text[SELECTED] = @base03
+  text[ACTIVE] = @base03
+  text[INSENSITIVE] = @base01
+
+  base[NORMAL] = @base03
+  base[PRELIGHT] = @base03
+  base[SELECTED] = @base0
+  base[ACTIVE] = @base0
+  base[INSENSITIVE] = @base03
+
+  GtkWidget::link-color = @blue
+  GtkWidget::visited-link-color = @magenta
+
+  xthickness = 2
+  ythickness = 2
+
+  engine "murrine" {
+    focusstyle = 0
+    glazestyle = 0
+    glowstyle = 0
+
+    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
+    highlight_shade = 1.0
+
+    lightborder_shade = 1.0
+    lightborderstyle = 0
+
+    reliefstyle = 0
+    roundness = 0
+
+    listviewheaderstyle = 0
+    listviewstyle = 0
+    menubaritemstyle = 0
+    menuitemstyle = 0
+    menustyle = 0
+    progressbarstyle = 0
+    comboboxstyle = 0
+    scrollbarstyle = 0
+    sliderstyle = 0
+    stepperstyle = 1
+    toolbarstyle = 0
+  }
+}
+class "GtkWidget" style "light"
+
+style "thick" = "light" {
+  xthickness = 5
+  ythickness = 5
+}
+style "half-thick" = "light" {
+  xthickness = 3
+  ythickness = 3
+}
+
+# Make entries and most buttons thick
+widget_class "*<GtkEntry>" style "thick"
+widget_class "*<GtkButton>" style "thick"
+widget_class "*<GtkNotebook>" style "half-thick"
+
+# Then make panel buttons thin again
+widget_class "*Panel*GtkToggleButton" style "light"
+widget_class "*Panel*GtkButton" style "light"
+widget "*Panel*Button*" style "light"
+widget_class "*LauncherPlugin*" style "light"
+widget_class "*ActionsPlugin*" style "light"
+
+# And then specifically task buttons thick
+widget "*Xfce*Panel*Task*Button*" style "thick"
+
+# Tweak up the scrollbars
+style "scrollbar" = "light" {
+  bg[NORMAL] = @base01
+  bg[PRELIGHT] = @base01
+  bg[ACTIVE] = mix (0.5, @base01, @base0)
+  bg[INSENSITIVE] = @base01
+
+  # These change which direction buttons appear on the scrollbar
+  GtkScrollbar::has-backward-stepper = 0
+  GtkScrollbar::has-secondary-forward-stepper = 0
+  GtkScrollbar::has-secondary-backward-stepper = 0
+  GtkScrollbar::has-forward-stepper = 0
+
+  GtkScrollbar::activate-slider = 1
+  GtkScrollbar::min-slider-length = 100
+  GtkScrollbar::slider-width = 10
+  GtkScrollbar::trough-border = 2
+
+  engine "murrine" {
+    colorize_scrollbar = FALSE
+  }
+}
+widget_class "*<GtkScrollbar>" style "scrollbar"
+
+# Tweak up the progress bars
+style "progress-over" = "light" {
+  # Fix colour of text when overlapping filled part
+  fg[PRELIGHT] = @base03
+
+  GtkProgressBar::min-horizontal-bar-height = 14
+  GtkProgressBar::min-vertical-bar-width = 14
+}
+widget_class "*<GtkProgress>" style "progress-over"
+widget_class "*<GtkProgressBar>" style "progress-over"
+
+# Tweak up the menus
+style "menu-selected" = "light" {
+  # Fix to the text colour of current menu item
+  fg[PRELIGHT] = @base03
+}
+widget_class "*<GtkMenuItem>*" style "menu-selected"
+
+# Tweak up combo box entries
+style "combo-selected" = "light" {
+  # Fix to the text colour of current selection item
+  text[PRELIGHT] = @base03
+}
+widget "*.gtk-combobox-popup-menu.*" style "combo-selected"
