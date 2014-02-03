@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 
+# This script is designed to bootstrap Debian Wheezy base system to fully
+# functional desktop environment under XMonad window manager. Functionality
+# equivalent to desktop environments like Gnome or KDE is implemented with 
+# existing CLI tools and shortcuts.
+
+
+# CONFIGURATION
+# =============
+
 USE_SSD=true
 SYS_DISK=sda
 
 SYSFS_CONF=/etc/sysfs.conf
 SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
-
 
 echo "Include contrib and non-free packages"
 sed -i 's/wheezy main$/wheezy main contrib non-free/' /etc/apt/sources.list
@@ -13,9 +21,9 @@ sed -i 's/wheezy main$/wheezy main contrib non-free/' /etc/apt/sources.list
 echo "Add 386 architecture dependencies"
 dpkg --add-architecture i386
 aptitude update
-aptitude  -f install
+aptitude -f install
 # Upgrade system to latest state
-aptitude  safe-upgrade
+aptitude safe-upgrade
 
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
@@ -44,46 +52,57 @@ if [ $USE_SSD == true ]; then
 fi
 
 
+# CORE GUI COMPONENTS
+# ===================
+
 echo "Install packages..."
 
 # Core system graphics components
-aptitude  install ntp
-aptitude  install xserver-xorg xserver-xorg-input-synaptics xinit slim
-aptitude  install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
-aptitude  install xcompmgr  # for transparency support
-aptitude  install icc-profiles sampleicc-tools
+aptitude -y install ntp
+aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
+aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
+aptitude -y install xcompmgr  # for transparency support
+aptitude -y install icc-profiles sampleicc-tools  # Color profiles
 
 # Sound
-aptitude  install alsa paman pavucontrol
+aptitude -y install alsa pulseaudio paman pavucontrol
 
-# Utils for better user experience
-aptitude  install xxkb nitrogen stalonetray 
-aptitude  install suckless-tools xbacklight moreutils
-aptitude  install qt4-qtconfig gtk2-engines dmz-cursor-theme
-aptitude  install libxft2 libxft-dev
+# Destktop GUI and usability
+aptitude -y install xxkb nitrogen stalonetray
+aptitude -y install suckless-tools moreutils xbacklight
+aptitude -y install qt4-qtconfig gtk2-engines dmz-cursor-theme
+aptitude -y install libxft2 libxft-dev
+aptitude -y install libnotify-bin notify-osd
+aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
+aptitude -y install rxvt-unicode scrot 
+aptitude -y install fonts-liberation fonts-linuxlibertine
+
+aptitude -y install network-manager network-manager-gnome network-manager-openvpn
+# Let network manager to control ifupdown (ethernet connections)
+sed -i '/^managed=false/c\managed=true' /etc/NetworkManager/NetworkManager.conf
+
+aptitude -y install python-pip
+aptitude -y install python-notify  # dependency for udiskie
+pip install udiskie  # automount usb devices
+
+
+# OPTIONAL PREFERRED PACKAGES
+# ===========================
 
 # Network utils
-aptitude  install x11vnc traceroute
+aptitude -y install x11vnc traceroute nmap
+aptitude -y install openssh-client openssh-server
+aptitude -y install pidgin iceweasel
 
-aptitude  install network-manager network-manager-gnome network-manager-openvpn
-# Let network manager to manage ifupdown
-sed -i '/^managed=false/c\managed=true' /etc/NetworkNanager/NetworkManager.conf
+# Misc CLI utils
+aptitude -y install tree htop tmux mc vifm xclip
+aptitude -y install exuberant-ctags source-highlight checkinstall
+aptitude -y install mercurial git
 
-aptitude  install pidgin iceweasel
-
-# Preferred packages
-aptitude  install mercurial git
-aptitude  install tree htop tmux mc vifm rxvt-unicode scrot xclip
-aptitude  install exuberant-ctags source-highlight checkinstall
-aptitude  install openssh-client openssh-server
-
-aptitude  install python-pip python3-all python2.7-dev python3-dev
-pip install udiskie  # automount usb devices
+# Python
+aptitude -y install python3-all python2.7-dev python3-dev
 pip install virtualenvwrapper
-aptitude  install python-notify  # dependency for udiskie
 
 # Multimedia
-aptitude  install goldendict vlc x264
-aptitude  install libnotify-bin notify-osd
-aptitude  install fonts-liberation fonts-linuxlibertine
-aptitude  install flashplugin-nonfree ttf-mscorefonts-installer
+aptitude -y install goldendict vlc x264
+aptitude -y install flashplugin-nonfree ttf-mscorefonts-installer
