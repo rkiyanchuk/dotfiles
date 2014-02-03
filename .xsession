@@ -83,4 +83,7 @@ xset -b
 # Start notification daemon
 /usr/lib/notify-osd/notify-osd &
 
+# Start synaptic daemon for keyboard monitoring
+syndaemon -i 0.5 -K -d
+
 exec xmonad
