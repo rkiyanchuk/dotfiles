@@ -78,8 +78,6 @@ aptitude -y install rxvt-unicode scrot
 aptitude -y install fonts-liberation fonts-linuxlibertine
 
 aptitude -y install network-manager network-manager-gnome network-manager-openvpn
-# Let network manager to control ifupdown (ethernet connections)
-sed -i '/^managed=false/c\managed=true' /etc/NetworkManager/NetworkManager.conf
 
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
