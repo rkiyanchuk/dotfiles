@@ -70,7 +70,7 @@ aptitude -y install alsa pulseaudio paman pavucontrol
 # Destktop GUI and usability
 aptitude -y install xxkb nitrogen stalonetray
 aptitude -y install suckless-tools moreutils xbacklight
-aptitude -y install qt4-qtconfig gtk2-engines dmz-cursor-theme
+aptitude -y install qt4-qtconfig gtk2-engines gtk2-engines-murrine dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
 aptitude -y install libnotify-bin notify-osd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
