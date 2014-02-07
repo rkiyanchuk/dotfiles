@@ -57,4 +57,18 @@ Problem
 When applications trigger `gksu` for password prompt, it always fails
 complaining that the password is wrong.
 
-Start `gksu-properties` and switch Authentication mode from `su` to `sudo`.
+Start `gksu-properties` and switch Authentication mode from `su` to `sudo` and
+grab mode from `enable` to `force enable`.
+
+
+
+
+
+
+
+
+
+
+
+
+
