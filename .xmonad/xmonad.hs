@@ -145,7 +145,7 @@ chatLayout = renamed [Replace "Chat"]
     isSkype = (Title "zoresvit - Skype™")
     isPidgin = (Title "Buddy List")
 
-fullLayout = renamed [Replace "F"] $ avoidStruts $ (Full)
+fullLayout = renamed [Replace "F"] $ avoidStruts $ noBorders $ (Full)
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
@@ -193,8 +193,8 @@ myKeyBindings =
     , ((0, 0x1008ff13), spawn "amixer -q -c 1 set Master 10%+")
     , ((0, 0x1008ff11), spawn "amixer -q -c 1 set Master 10%-")
     -- Brightness control
-    , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 10")
-    , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 10")
+    , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
+    , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
     , ((0, 0x1008ff02), spawn "xbacklight -inc 10")
     , ((0, 0x1008ff03), spawn "xbacklight -dec 10")
     , ((myModMask, xK_Print), spawn "scrot")
