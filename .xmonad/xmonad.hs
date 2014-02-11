@@ -138,13 +138,20 @@ defaultLayouts = smartBorders(avoidStruts(
 -- chatLayout = avoidStruts()
 
 
-chatLayout = renamed [Replace "Chat"] $ avoidStruts $ withIM (0.2) (Title "Buddy List") $ reflectHoriz $ withIM (0.2) isSkype (Grid) where isSkype = (Title "zoresvit - Skype™")
+chatLayout = renamed [Replace "Chat"] 
+  $ avoidStruts $ withIM (0.2) isPidgin 
+  $ reflectHoriz $ withIM (0.2) isSkype (Grid) 
+  where 
+    isSkype = (Title "zoresvit - Skype™")
+    isPidgin = (Title "Buddy List")
+
+fullLayout = renamed [Replace "F"] $ avoidStruts $ (Full)
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "η" chatLayout $ defaultLayouts
-
-
+myLayouts = onWorkspace "η" chatLayout 
+  $ onWorkspace "ζ" fullLayout 
+  $ defaultLayouts
 
 
 myManagementHooks :: [ManageHook]
