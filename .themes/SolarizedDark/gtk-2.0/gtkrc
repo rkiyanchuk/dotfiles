@@ -48,7 +48,7 @@ style "light" {
 
   base[NORMAL] = @base03
   base[PRELIGHT] = @base03
-  base[SELECTED] = @base0
+  base[SELECTED] = @base02
   base[ACTIVE] = @base0
   base[INSENSITIVE] = @base03
 
