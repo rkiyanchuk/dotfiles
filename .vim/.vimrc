@@ -138,7 +138,7 @@ nmap <silent> <leader>ep :cp<CR>
 nmap <leader>s :set spell!<CR>
 " Fix spelling by choosing first match from suggestions.
 imap <silent> <leader>sf <ESC>1z=ea 
-nmap <silent> <leader>sf <ESC>1z=ea
+nmap <silent> <leader>sf <ESC>1z=e
 " Map the placeholder <+ +> navigation
 nnoremap <silent> <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
 inoremap <silent> <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
