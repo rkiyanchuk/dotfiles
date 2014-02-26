@@ -162,9 +162,8 @@ myManagementHooks = [
   , (className =? "Iceweasel") --> focusShift "ζ"
   , (className =? "Firefox") --> focusShift "ζ"
   , (className =? "Chromium-browser") --> focusShift "ζ"
-  , (className =? "Empathy") --> doF (W.shift "η")
-  , (className =? "Pidgin") --> doF (W.shift "η")
-  , (className =? "Skype") --> doF (W.shift "η")
+  , (className =? "Pidgin") --> focusShift "η"
+  , (className =? "Skype") --> focusShift "η"
   ]
   where
     focusShift = doF . liftM2 (.) W.greedyView W.shift
