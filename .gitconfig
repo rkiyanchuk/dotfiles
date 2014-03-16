@@ -18,6 +18,9 @@
 [core]
     editor = vim
 
+[diff]
+    gui = meld
+
 [gitreview]
 	username = rkiianchuk
 
