@@ -86,6 +86,6 @@ xset -b
 # Start synaptic daemon for keyboard monitoring
 syndaemon -i 0.5 -K -d
 
-xscreensaver -no-splash &
+gnome-screensaver &
 
 exec xmonad

@@ -26,7 +26,7 @@ done
 
 case "$1" in
     hibernate|suspend)
-        su $USER -c "/usr/bin/xscreensaver-command -lock" &
+        su $USER -c "/usr/bin/gnome-screensaver-command -l" &
     ;;
     thaw|resume)
     ;;
