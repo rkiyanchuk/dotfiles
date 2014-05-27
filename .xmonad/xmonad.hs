@@ -150,7 +150,7 @@ fullLayout = renamed [Replace "F"] $ avoidStruts $ noBorders $ (Full)
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
 myLayouts = onWorkspace "η" chatLayout 
-  $ onWorkspace "ζ" fullLayout 
+--  $ onWorkspace "ζ" fullLayout 
   $ defaultLayouts
 
 
