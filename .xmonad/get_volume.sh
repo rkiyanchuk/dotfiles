@@ -20,14 +20,14 @@ v1="<fc=${highlight}>${str1%%]*]}</fc>"
 il=`expr index "$str1" [`
 o="off"
 mutel=''
-if [ ${str1:$il:3} == $o ]; then mutel='M'; fi
+if [[ ${str1:$il:3} == $o ]]; then mutel='M'; fi
 s=${str1:0:1}
 str2=${str1#${str1:0:1}*[}
 str1=$str2
 str2=${str1#${str1:0:1}*[}
 ir=`expr index "$str2" [`
 muter=''
-if [ ${str2:0:3} = $o ]; then muter='<fc=#dc322f>[M]</fc>'; fi
+if [[ ${str2:0:3} = $o ]]; then muter='<fc=#dc322f>[M]</fc>'; fi
 v2=${str2%\]}
 v=${v1}\ $muter
 echo $v

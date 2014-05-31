@@ -72,7 +72,6 @@ Config {
     Run Battery [
       "-t", "<acstatus>: <fc=#d33682><left>% </fc>",
       "--",
-      "-c", "charge_full",
       "-O", "AC",
       "-o", "Bat",
       "-h", "green",
@@ -82,7 +81,7 @@ Config {
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
     -- in Debian and derivatives like Ubuntu.
-    Run Com "~/.xmonad/get_volume.sh" [] "myvolume" 10,
+    Run Com "/home/zoresvit/.xmonad/get_volume.sh" [] "myvolume" 10,
 
 
     -- This line tells xmobar to read input from stdin. That's how we
