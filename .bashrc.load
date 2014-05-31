@@ -30,6 +30,9 @@ esac
 
 export PATH=$PATH:$HOME/bin
 
+# Tell Java that XMonad is non-reparenting WM
+_JAVA_AWT_WM_NONREPARENTING=1 
+
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
