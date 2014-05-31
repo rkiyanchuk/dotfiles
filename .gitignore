@@ -1,11 +1,9 @@
-private/*
-
 # Vim
 # ===
-.vim/bundle/*
-.vim/backups/*
-.vim/swap/*
-.vim/session.vim
+bundle/
+backups/
+swap/
+session.vim
 
 # XMonad
 # ======
