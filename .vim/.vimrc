@@ -324,6 +324,8 @@ Bundle 'nvie/vim-pyunit'
 Bundle 'klen/python-mode'
 " Enhanced statusline
 Bundle 'bling/vim-airline'
+" Jinja & HTML syntax
+Bundle 'Glench/Vim-Jinja2-Syntax'
 
 " Turn on filetype recognition, load filetype specific plugins and indents.
 filetype plugin indent on
