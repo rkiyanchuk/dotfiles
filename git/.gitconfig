@@ -10,7 +10,6 @@
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
     mt = mergetool
     st = status
-    p4 = !~/opt/git-p4.py
 
 [apply]
     whitespace = warn
@@ -32,5 +31,6 @@
 
 [credential]
     helper = cache --timeout=43200
+
 [push]
 	default = simple
