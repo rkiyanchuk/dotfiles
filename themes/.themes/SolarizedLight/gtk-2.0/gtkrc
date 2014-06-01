@@ -1,161 +1,275 @@
-# Solarized Light GTK Theme
+# SolarizedLight, based on Solarizetheme, based on Murrina333
+# Solarized by Ethan Schoonver http://ethanschoonover.com/solarized
+# ~/usr/share/themes/SolarizedLight/gtk-2.0/gtkrc
 
-# The Solarized colours
-#color["base03"]  = "#002b36"
-#color["base02"]  = "#073642"
-#color["base01"]  = "#586e75"
-#color["base00"]  = "#657b83"
-#color["base0"]   = "#839496"
-#color["base1"]   = "#93a1a1"
-#color["base2"]   = "#eee8d5"
-#color["base3"]   = "#fdf6e3"
-#color["yellow"]  = "#b58900"
-#color["orange"]  = "#cb4b16"
-#color["red"]     = "#dc322f"
-#color["magenta"] = "#d33682"
-#color["violet"]  = "#6c71c4"
-#color["blue"]    = "#268bd2"
-#color["cyan"]    = "#2aa198"
-#color["green"]   = "#859900"
+#gtk-icon-theme-name = "GNOME"
+gtk-theme-name = "SolarizedLight"
 
-gtk_color_scheme = "base03:#002b36\nbase02:#073642\nbase01:#586e75\nbase00:#657b83\nbase0:#839496\nbase1:#93a1a1\nbase2:#eee8d5\nbase3:#fdf6e3\nyellow:#b58900\norange:#cb4b16\nred:#dc322f\nmagenta:#d33682\nviolet:#6c71c4\nblue:#268bd2\ncyan:#2aa198\ngreen:#859900"
+gtk_color_scheme = "fg_color:#002b36\nbg_color:#fdf6e3\nbase_color:#eee8d5\ntext_color:#002b36\nselected_bg_color:#93a1a1\nselected_fg_color:#002b36"
 
-gtk-icon-sizes = "panel=16,16:gtk-button=16,16" # Icon sizes
-gtk-button-images = 0 # Disables icons in buttons
-gtk-toolbar-style = 1 # Enables text in toolbar
-gtk-auto-mnemonics = 1 # Disables lines under menu items
+gtk-button-images = 1
+gtk-icon-sizes = "gtk-button=8,8" # This makes button icons smaller.
+#gtk-icon-sizes = "panel-menu=16,16:panel=16,16:gtk-button=16,16:gtk-large-toolbar=16,16"
+gtk-menu-images = 1
+style "theme-default"
+{
+  GtkButton      ::default_border    = { 0, 0, 0, 0 }
+  GtkRange       ::trough_border     = 0
+    GtkPaned       ::handle_size       = 6
+    GtkRange       ::slider_width      = 16
+    GtkRange       ::stepper_size      = 0
 
-style "light" {
+    GtkScrollbar   ::min_slider_length = 30
+    GtkCheckButton ::indicator_size    = 10
+    GtkRadioButton ::indicator_size    = 10
+    GtkMenuBar     ::internal-padding  = 0
+    GtkTreeView    ::expander_size     = 14
+    GtkExpander    ::expander_size     = 16
+    GtkScale       ::slider-length     = 16
 
-  # Set the colour scheme (the only difference from Numix)
-  fg[NORMAL] = @base00
-  fg[PRELIGHT] = @base00
-  fg[SELECTED] = @base3
-  fg[ACTIVE] = @base00
-  fg[INSENSITIVE] = @base1
 
-  bg[NORMAL] = @base2
-  bg[PRELIGHT] = @base2
-  bg[SELECTED] = @base00
-  bg[ACTIVE] = mix (0.5, @base2, @base1)
-  bg[INSENSITIVE] = @base2
 
-  text[NORMAL] = @base00
-  text[PRELIGHT] = @base00
-  text[SELECTED] = @base3
-  text[ACTIVE] = @base3
-  text[INSENSITIVE] = @base1
+    xthickness = 1
+    ythickness = 1
 
-  base[NORMAL] = @base3
-  base[PRELIGHT] = @base3
-  base[SELECTED] = @base2
-  base[ACTIVE] = @base00
-  base[INSENSITIVE] = @base3
+    fg[NORMAL]        = @fg_color 
+    fg[PRELIGHT]      = @selected_fg_color
+    fg[SELECTED]      = @selected_fg_color
+    fg[ACTIVE]        = darker (@fg_color)
+    fg[INSENSITIVE]   = @fg_color
 
-  GtkWidget::link-color = @blue
-  GtkWidget::visited-link-color = @magenta
+    bg[NORMAL]        = @bg_color
+    bg[PRELIGHT]      = @selected_bg_color
+    bg[SELECTED]      = @selected_bg_color
+    bg[INSENSITIVE]   = @bg_color 
+    bg[ACTIVE]        = @bg_color
 
+    base[NORMAL]      =  @base_color
+    base[ACTIVE]      =  shade (0.7,@base_color)
+    base[PRELIGHT]    =  @base_color
+    base[SELECTED]    =  @selected_bg_color
+    base[INSENSITIVE] =  shade (1.025,@bg_color)
+
+    text[NORMAL]      =  @text_color
+    text[ACTIVE]        =  @text_color
+    text[PRELIGHT]    =  @text_color
+    text[SELECTED]    =  darker (@selected_fg_color)
+    text[INSENSITIVE] =  @fg_color
+
+    engine "murrine" 
+    {
+      menuitemstyle   = 2
+        scrollbarstyle    = 0
+        contrast      = 1.0
+        menustyle       = 0
+        glazestyle      = 0
+        menubarstyle    = 0
+        menubaritemstyle  = 0
+        menuitemstyle     = 0
+        listviewheaderstyle = 0
+        listviewstyle     = 1
+        roundness       = 0
+        animation       = TRUE
+    }
+}
+
+
+style "theme-wide" = "theme-default"
+{
   xthickness = 2
-  ythickness = 2
-
-  engine "murrine" {
-    focusstyle = 0
-    glazestyle = 0
-    glowstyle = 0
-
-    gradient_shades = { 1.0, 1.0, 1.0, 1.0 }
-    highlight_shade = 1.0
-
-    lightborder_shade = 1.0
-    lightborderstyle = 0
-
-    reliefstyle = 0
-    roundness = 0
-
-    listviewheaderstyle = 0
-    listviewstyle = 0
-    menubaritemstyle = 0
-    menuitemstyle = 0
-    menustyle = 0
-    progressbarstyle = 0
-    comboboxstyle = 0
-    scrollbarstyle = 0
-    sliderstyle = 0
-    stepperstyle = 1
-    toolbarstyle = 0
-  }
+    ythickness = 2
 }
-class "GtkWidget" style "light"
 
-style "thick" = "light" {
-  xthickness = 5
-  ythickness = 5
+style "theme-wider" = "theme-default"
+{
+  xthickness = 2
+    ythickness = 2
 }
-style "half-thick" = "light" {
-  xthickness = 3
+
+style "theme-entry" = "theme-wider"
+{
+  bg[SELECTED]      = @selected_bg_color
+}
+
+style "theme-button" = "theme-wider"
+{
+  xthickness    = 0
+    ythickness    = 0
+#bg[NORMAL]      = @bg_color
+#bg[INSENSITIVE] = @bg_color
+#bg[PRELIGHT]     = @bg_color
+#bg[ACTIVE]   = @bg_color
+    text[PRELIGHT]  = @selected_fg_color 
+
+}
+
+
+style "theme-notebook" = "theme-wide"
+{
+#bg[NORMAL]      = @bg_color
+#bg[INSENSITIVE] = @bg_color
+  bg[SELECTED]    = @selected_bg_color
+}
+
+style "theme-tasklist" = "theme-default"
+{
+  xthickness = 4
+    ythickness = 2
+}
+
+style "theme-menu" = "theme-default"
+{
+  xthickness = 2
+    ythickness = 2
+    bg[NORMAL] = @bg_color
+}
+
+style "theme-menu-item" = "theme-default"
+{
   ythickness = 3
+    fg[NORMAL]    = @fg_color 
+    fg[PRELIGHT]    = @selected_fg_color
+    fg[INSENSITIVE] = @selected_fg_color
+    bg[SELECTED]      = @selected_bg_color
 }
 
-# Make entries and most buttons thick
-widget_class "*<GtkEntry>" style "thick"
-widget_class "*<GtkButton>" style "thick"
-widget_class "*<GtkNotebook>" style "half-thick"
 
-# Then make panel buttons thin again
-widget_class "*Panel*GtkToggleButton" style "light"
-widget_class "*Panel*GtkButton" style "light"
-widget "*Panel*Button*" style "light"
-widget_class "*LauncherPlugin*" style "light"
-widget_class "*ActionsPlugin*" style "light"
+style "theme-menubar" = "theme-default"
+{
+  bg[NORMAL] = @bg_color
+}
 
-# And then specifically task buttons thick
-widget "*Xfce*Panel*Task*Button*" style "thick"
+style "theme-menubar-item"
+{
+  ythickness    = 2
+    fg[PRELIGHT]  = @selected_fg_color
+}
 
-# Tweak up the scrollbars
-style "scrollbar" = "light" {
-  bg[NORMAL] = @base1
-  bg[PRELIGHT] = @base1
-  bg[ACTIVE] = mix (0.5, @base1, @base0)
-  bg[INSENSITIVE] = @base1
+style "theme-tree" = "theme-default"
+{
+  xthickness = 2
+    ythickness = 2
+# bg[NORMAL] = @selected_fg_color
+}
 
-  # These change which direction buttons appear on the scrollbar
-  GtkScrollbar::has-backward-stepper = 0
-  GtkScrollbar::has-secondary-forward-stepper = 0
-  GtkScrollbar::has-secondary-backward-stepper = 0
-  GtkScrollbar::has-forward-stepper = 0
+style "theme-frame-title" = "theme-default"
+{
 
-  GtkScrollbar::activate-slider = 1
-  GtkScrollbar::min-slider-length = 100
-  GtkScrollbar::slider-width = 10
-  GtkScrollbar::trough-border = 2
+  fg[NORMAL] = @fg_color
+}
 
-  engine "murrine" {
-    colorize_scrollbar = FALSE
+style "theme-tooltips" = "theme-default"
+{
+  xthickness = 2
+    ythickness = 2
+    bg[NORMAL] = @bg_color
+}
+
+style "theme-progressbar" = "theme-wide"
+{
+  xthickness  = 2
+    ythickness  = 2
+#fg[PRELIGHT]  = "#ff0000" # @bg_color
+    bg[NORMAL]    = @bg_color # outline of progressbar
+    bg[SELECTED]      = @selected_bg_color # progressbar color
+}
+
+style "theme-scrollbar" = "theme-default"
+{
+
+}
+
+style "theme-combo" = "theme-button"
+{
+#
+}
+
+style "metacity-frame"
+{
+  bg[SELECTED]      = @selected_bg_color
+    fg[SELECTED]  = @selected_fg_color
+}
+
+class "MetaFrames"  style "metacity-frame"
+class "GtkWindow" style "metacity-frame"
+
+
+style "inactivetext2"
+{
+  engine "mist"
+  {
+#
   }
 }
-widget_class "*<GtkScrollbar>" style "scrollbar"
 
-# Tweak up the progress bars
-style "progress-over" = "light" {
-  # Fix colour of text when overlapping filled part
-  fg[PRELIGHT] = @base3
+widget_class "*.<GtkMenuItem>.*" style "inactivetext2"
 
-  GtkProgressBar::min-horizontal-bar-height = 14
-  GtkProgressBar::min-vertical-bar-width = 14
+style "panel"
+{
+  xthickness   = 2
+    ythickness   = 2
+    bg[NORMAL]   = @bg_color
+    fg[NORMAL]   = @fg_color 
+    text[NORMAL] = @fg_color 
 }
-widget_class "*<GtkProgress>" style "progress-over"
-widget_class "*<GtkProgressBar>" style "progress-over"
 
-# Tweak up the menus
-style "menu-selected" = "light" {
-  # Fix to the text colour of current menu item
-  fg[PRELIGHT] = @base3
-}
-widget_class "*<GtkMenuItem>*" style "menu-selected"
+style "panelbuttons"
+{
+  xthickness      = 0
+    ythickness      = 0
+    bg[NORMAL]    = @bg_color
+    bg[ACTIVE]    = @bg_color 
+    bg[SELECTED]  = @selected_bg_color 
+    bg[PRELIGHT]  = @bg_color
 
-# Tweak up combo box entries
-style "combo-selected" = "light" {
-  # Fix to the text colour of current selection item
-  text[PRELIGHT] = @base3
+    fg[NORMAL]    = @fg_color
+    fg[ACTIVE]    = @selected_fg_color 
+    fg[PRELIGHT]  = @selected_fg_color
 }
-widget "*.gtk-combobox-popup-menu.*" style "combo-selected"
+
+style "chrome-gtk-frame"
+{
+  ChromeGtkFrame::frame-color = @bg_color
+    ChromeGtkFrame::inactive-frame-color = darker(@bg_color)
+
+}
+
+class "ChromeGtkFrame" style "chrome-gtk-frame"
+
+class "*Panel*"             style "panel"
+widget_class "*Panel*GtkToggleButton"   style "panelbuttons"
+widget_class "*Panel*Button"      style "panelbuttons"
+widget_class "*Panel*b*"        style "panelbuttons"
+
+class "GtkWidget"      style "theme-default"
+class "GtkButton"      style "theme-button"
+class "GtkScale"       style "theme-button"
+class "GtkCombo"       style "theme-button"
+class "GtkRange"       style "theme-wide"
+class "GtkFrame"       style "theme-wide"
+class "GtkMenu"        style "theme-menu"
+class "GtkEntry"       style "theme-entry"
+class "GtkMenuItem"    style "theme-menu-item"
+class "GtkNotebook"    style "theme-notebook"
+class "GtkProgressBar" style "theme-progressbar"
+class "GtkScale"   style "theme-scrollbar"
+class "*MenuBar*"      style "theme-menubar"
+
+widget_class "*MenuItem.*" style "theme-menu-item"
+widget_class "*MenuBar.*"  style "theme-menubar-item"
+
+widget_class "*.GtkComboBox.GtkButton" style "theme-combo"
+widget_class "*.GtkCombo.GtkButton"    style "theme-combo"
+
+widget_class "*.tooltips.*.GtkToggleButton" style "theme-tasklist"
+widget "gtk-tooltips"             style "theme-tooltips"
+
+widget_class "*.GtkTreeView.GtkButton"  style "theme-tree"
+widget_class "*.GtkCTree.GtkButton"   style "theme-tree"
+widget_class "*.GtkList.GtkButton"    style "theme-tree"
+widget_class "*.GtkCList.GtkButton"   style "theme-tree"
+widget_class "*.GtkFrame.GtkLabel"    style "theme-frame-title"
+
+widget_class "*.GtkNotebook.*.GtkEventBox" style "theme-notebook"
+widget_class "*.GtkNotebook.*.GtkViewport" style "theme-notebook"
+
