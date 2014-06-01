@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-# AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 # Lock screen after suspend.
 # NEEDS ROOT PERMISSIONS:
 # sudo bash ./suspend_lock.sh
