@@ -1,6 +1,7 @@
-# add this to the .bashrc: . $HOME/.bashrc.load
+# add this to the .bashrc: 
+# source $HOME/.bashrc.load
 
-
+# Define prompt format
 PS1='`
 STATUS=$?
 if [ $STATUS -eq 0 ]; then 
@@ -18,6 +19,7 @@ if [ $STATUS -eq 0 ]; then
 \[\033[0;32m\]\$\[\033[0;00m\] "
 fi`'
 
+
 # Set title for urxvt and xterm
 case "$TERM" in
 xterm*|rxvt*)
@@ -27,29 +29,27 @@ xterm*|rxvt*)
     ;;
 esac
 
-
-export PATH=$PATH:$HOME/bin
+# Store date and time in bash history.
+export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Tell Java that XMonad is non-reparenting WM
 _JAVA_AWT_WM_NONREPARENTING=1 
+
+# Syntax highlighting for less. Install source-highlight first.
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
 
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-# Store date and time in bash history.
-export HISTTIMEFORMAT="%d/%m/%y %T "
-
-# Syntax highlighting for less. Install source-highlight first.
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
 
 alias ..='cd ../'
 alias ll='ls -al'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# Perforce configuration
 export PATH=${PATH}:/home/zoresvit/opt/perforce/bin
 export P4CONFIG=/home/zoresvit/.p4settings
 export P4IGNORE=/home/zoresvit/.p4ignore
-
