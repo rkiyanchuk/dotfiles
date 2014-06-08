@@ -6,9 +6,8 @@
 # equivalent to desktop environments like Gnome or KDE is implemented with 
 # existing CLI tools and shortcuts.
 
-
-# CONFIGURATION
-# =============
+set -o errexit
+set -o xtrace
 
 USE_SSD=true
 SYS_DISK=sda
@@ -16,20 +15,27 @@ SYS_DISK=sda
 SYSFS_CONF=/etc/sysfs.conf
 SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
 
-echo "Include contrib and non-free packages"
+
+# REPOSITORIES AND PACKAGING SETUP
+# ================================
+
+# Add contrib and non-free repositories
 sed -i 's/jessie main$/jessie main contrib non-free/' /etc/apt/sources.list
 
-echo "Add 386 architecture dependencies"
 dpkg --add-architecture i386
 aptitude update
 aptitude -f install
 # Upgrade system to latest state
 aptitude safe-upgrade
 
+
+# CONFIGURATION
+# =============
+
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
-    echo "Optimize SSD performance..."
-    aptitude  install sysfsutils
+    # Optimize SSD performance...
+    aptitude install sysfsutils
 
     # Switch to `deadline` scheduler suitable for SSD.
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
@@ -56,8 +62,6 @@ fi
 # CORE GUI COMPONENTS
 # ===================
 
-echo "Install packages..."
-
 # Core system graphics components
 aptitude -y install ntp
 aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
@@ -68,6 +72,7 @@ aptitude -y install icc-profiles sampleicc-tools  # Color profiles
 
 # Sound
 aptitude -y install alsa pulseaudio paman pavucontrol
+aptitude -y install libpulse0:i386
 
 # Destktop GUI and usability
 aptitude -y install xxkb nitrogen stalonetray
@@ -114,49 +119,7 @@ aptitude -y install tar gzip bzip unrar file-roller
 # CUSTOMIZATIONS
 # ==============
 
-# Compile dmenu, patch for xft support and install
-wget http://dl.suckless.org/tools/dmenu-4.5.tar.gz
-wget http://tools.suckless.org/dmenu/patches/dmenu-4.5-xft-debian.diff
-gunzip dmenu-4.5.tar.gz
-tar -xf dmenu-4.5.tar
-patch -d dmenu-4.5 < dmenu-4.5-xft-debian.diff 
-
-cd dmenu-4.5
-make
-checkinstall -y
-cd ..
-rm -rf dmenu-4.5*
-
-
-# Lock screen after suspend.
-# Remember to modify `username` variable.
-
-cat > /etc/pm/sleep.d/00screensaver-lock << 'EOF'
-#!/bin/sh
-#
-# 00screensaver-lock: lock workstation on hibernate or suspend
-
-dbus=$(ps aux | grep 'dbus-launch' | grep -v root)
-
-username=$(echo $dbus | awk '{print $1}')
-userhome=$(getent passwd $username | cut -d: -f6)
-export XAUTHORITY="$userhome/.Xauthority"
-for x in /tmp/.X11-unix/*; do
-    displaynum=$(echo $x | sed s#/tmp/.X11-unix/X##)
-    if [[ -f "$XAUTHORITY" ]]; then
-        export DISPLAY=":$displaynum"
-    fi
-done
-
-case "$1" in
-    hibernate|suspend)
-        su $USER -c "/usr/bin/gnome-screensaver-command -l" &
-    ;;
-    thaw|resume)
-    ;;
-    *) exit $NA
-    ;;
-esac
-EOF
-
-chmod 755 /etc/pm/sleep.d/00screensaver-lock
+# Install firefox
+# Install calibre
+# install hplip for printing:
+#   http://hplipopensource.com/hplip-web/install/install/index.html
