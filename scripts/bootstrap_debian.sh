@@ -99,7 +99,7 @@ pip install udiskie  # automount usb devices
 # Network utils
 aptitude -y install x11vnc traceroute nmap synergy
 aptitude -y install openssh-client openssh-server ssh-askpass
-aptitude -y install pidgin
+aptitude -y install pidgin irssi
 
 # Misc CLI utils
 aptitude -y install tree htop tmux mc vifm xclip
@@ -128,3 +128,6 @@ aptitude -y install keepassx
 # install hplip for printing:
 #   http://hplipopensource.com/hplip-web/install/install/index.html
 # Install Dropbox
+# Install Skype
+# Install virtualbox
+# Install vagrant
