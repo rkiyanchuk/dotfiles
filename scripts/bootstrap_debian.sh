@@ -114,6 +114,10 @@ pip install virtualenvwrapper
 aptitude -y install goldendict vlc x264 feh geeqie
 aptitude -y install flashplugin-nonfree ttf-mscorefonts-installer
 aptitude -y install tar gzip bzip unrar file-roller
+aptitude -y install clementine
+
+# Security
+aptitude -y install keepassx
 
 
 # CUSTOMIZATIONS
@@ -123,3 +127,4 @@ aptitude -y install tar gzip bzip unrar file-roller
 # Install calibre
 # install hplip for printing:
 #   http://hplipopensource.com/hplip-web/install/install/index.html
+# Install Dropbox
