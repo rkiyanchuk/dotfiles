@@ -13,10 +13,9 @@
 # N, where N is an integer. If you have two cards, try using "-c 1" to make
 # it use the second card.
 
-highlight="#2aa198"
 str=`amixer -c 1 sget Master,0`
 str1=${str#Simple*[}
-v1="<fc=${highlight}>${str1%%]*]}</fc>"
+v1="${str1%%]*]}"
 il=`expr index "$str1" [`
 o="off"
 mutel=''

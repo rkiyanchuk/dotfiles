@@ -88,6 +88,7 @@ aptitude -y install stow
 
 aptitude -y install network-manager network-manager-gnome 
 aptitude -y install network-manager-openvpn
+aptitude -y install bluez-tools blueman
 
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
