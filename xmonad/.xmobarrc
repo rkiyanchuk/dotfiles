@@ -49,8 +49,7 @@ Config {
     -- If it's above 50%, we consider it high usage and make it red.
     Run Cpu [
       "-H", "50",
-      "-t", "CPU: <fc=#cb4b16><total>% </fc>",
-      "-w", "2",
+      "-t", "<fc=#cb4b16><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>% ",
       "--high", "red"
     ] 10,
 
@@ -60,23 +59,24 @@ Config {
 
     -- Gather and format memory usage information
     Run Memory [
-      "-t","Mem: <fc=#b58900><usedratio>% </fc>"
+      "-t","<fc=#b58900><icon=/home/zoresvit/.xmonad/images/mem.xbm/> </fc><usedratio>% "
     ] 10,
 
     -- Date formatting
-    Run Date "%a %b %_d <fc=#859900>%H:%M:%S</fc>" "date" 10,
+    Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
 
     -- Battery information. This is likely to require some customization
     -- based upon your specific hardware. Or, for a desktop you may want
     -- to just remove this section entirely.
     Run Battery [
-      "-t", "<acstatus>: <fc=#d33682><left>% </fc>",
+      "-t", "<acstatus> <left>% ",
       "--",
-      "-O", "AC",
-      "-o", "Bat",
+      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-o", "<fc=#d33682><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
       "-h", "green",
       "-l", "red"
     ] 10,
+    Run Com "uname" ["-s","-r"] "uname" 36000,
 
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
@@ -98,6 +98,6 @@ Config {
 
    -- Overall template for the layout of the xmobar contents. Note that
    -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% Vol: %myvolume%</fc> %date% "
+   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc>  %date% "
 }
 
