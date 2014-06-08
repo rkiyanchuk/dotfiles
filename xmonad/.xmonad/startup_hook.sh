@@ -39,6 +39,10 @@ if [ -z "$(pgrep xxkb)" ] ; then
     xxkb &
 fi
 
+if [ -z "$(pgrep blueman-applet)" ] ; then
+    blueman-applet &
+fi
+
 # On login, we unlock the ssh keychain so we're not prompted for 
 # passphrases later. We pipe /dev/null to ssh-add to make it realize 
 # it's not running in a terminal. Otherwise, it won't launch the prompt.

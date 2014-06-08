@@ -149,9 +149,7 @@ fullLayout = renamed [Replace "F"] $ avoidStruts $ noBorders $ (Full)
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "η" chatLayout 
---  $ onWorkspace "ζ" fullLayout 
-  $ defaultLayouts
+myLayouts = onWorkspace "η" chatLayout $ defaultLayouts
 
 
 myManagementHooks :: [ManageHook]
