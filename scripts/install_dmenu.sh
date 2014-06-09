@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+# Must be run as root.
 # Compile dmenu, patch for xft support and install
 wget http://dl.suckless.org/tools/dmenu-4.5.tar.gz
 wget http://tools.suckless.org/dmenu/patches/dmenu-4.5-xft-debian.diff
