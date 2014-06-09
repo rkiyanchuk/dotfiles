@@ -16,7 +16,7 @@ userhome=$(getent passwd $username | cut -d: -f6)
 export XAUTHORITY="$userhome/.Xauthority"
 for x in /tmp/.X11-unix/*; do
     displaynum=$(echo $x | sed s#/tmp/.X11-unix/X##)
-    if [[ -f "$XAUTHORITY" ]]; then
+    if [ -f "$XAUTHORITY" ]; then
         export DISPLAY=":$displaynum"
     fi
 done

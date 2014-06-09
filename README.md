@@ -60,15 +60,12 @@ complaining that the password is wrong.
 Start `gksu-properties` and switch Authentication mode from `su` to `sudo` and
 grab mode from `enable` to `force enable`.
 
+USB headset assigns to first sound card breaking the config.
 
+Edit `/etc/modprobe.d/alsa-base.conf` file and set appropriate number for needed
+card. For instance:
 
-
-
-
-
-
-
-
-
-
-
+```bash
+    options snd-usb-audio index=2
+```
+    
