@@ -122,14 +122,25 @@ aptitude -y install clementine
 aptitude -y install keepassx
 
 
+# POPULATE HOME DIRECTORY
+# =======================
+
+mkdir -p $HOME/downloads
+# Images, photos, audio, video, etc.
+mkdir -p $HOME/media
+# Software development, projects, repositories
+mkdir -p $HOME/devel
+
+
+
 # CUSTOMIZATIONS
 # ==============
 
-# Install firefox
-# Install calibre
+# Install Dropbox
+# Install Firefox
+# Install Calibre
+# Install Skype
+# Install Virtualbox
+# Install Vagrant
 # install hplip for printing:
 #   http://hplipopensource.com/hplip-web/install/install/index.html
-# Install Dropbox
-# Install Skype
-# Install virtualbox
-# Install vagrant
