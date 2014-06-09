@@ -199,6 +199,8 @@ augroup PROGRAMMING
     " Binary files
     au BufWritePre * if exists("b:editHex") && b:editHex==1 | call ToggleHex() | endif
     au BufWritePost * if exists("b:editHex") && b:editHex==0 | call ToggleHex() | endif
+    " Haskell
+    au BufRead,BufNewFile .xmobarrc set filetype=haskell
 augroup END
 " }}}
 

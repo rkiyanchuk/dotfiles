@@ -1,5 +1,3 @@
--- xmobar configuration file
---
 -- Mess with this file to change the appearance of the contents of the
 -- status bar which are not directly controlled by xmonad. You can see your
 -- changes immediately by recompiling xmonad using "super-q".
@@ -50,6 +48,7 @@ Config {
     Run Cpu [
       "-H", "50",
       "-t", "<fc=#cb4b16><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>% ",
+      "-m", "2",
       "--high", "red"
     ] 10,
 
@@ -59,7 +58,7 @@ Config {
 
     -- Gather and format memory usage information
     Run Memory [
-      "-t","<fc=#b58900><icon=/home/zoresvit/.xmonad/images/mem.xbm/> </fc><usedratio>% "
+      "-t","<fc=#b58900><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>% "
     ] 10,
 
     -- Date formatting
@@ -71,17 +70,18 @@ Config {
     Run Battery [
       "-t", "<acstatus> <left>% ",
       "--",
-      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-O", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-i", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
       "-o", "<fc=#d33682><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
-      "-h", "green",
-      "-l", "red"
+      "-h", "#859900",
+      "-l", "#dc322f"
     ] 10,
     Run Com "uname" ["-s","-r"] "uname" 36000,
 
     -- To get volume information, we run a custom bash script.
     -- This is because the built-in volume support in xmobar is disabled
     -- in Debian and derivatives like Ubuntu.
-    Run Com "/home/zoresvit/.xmonad/get_volume.sh" [] "myvolume" 10,
+    Run Com "/home/zoresvit/.xmonad/volume.sh" [] "myvolume" 10,
 
 
     -- This line tells xmobar to read input from stdin. That's how we
