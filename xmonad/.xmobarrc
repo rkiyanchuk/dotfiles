@@ -1,12 +1,8 @@
--- Mess with this file to change the appearance of the contents of the
--- status bar which are not directly controlled by xmonad. You can see your
--- changes immediately by recompiling xmonad using "super-q".
---
--- There's a lot you can do here. Refer to "man xmobar".
---
--- Author: David Brewer
--- Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
+-- Xmobar documentation: http://projects.haskell.org/xmobar/
+-- Based on David Brewer's repository: 
+-- https://github.com/davidbrewer/xmonad-ubuntu-conf
 
+-- Solarized colors:
 -- Base03    = "#002b36"
 -- Base02    = "#073642"
 -- Base01    = "#586e75"
@@ -26,78 +22,60 @@
 
 
 Config {
-  -- Set font and default foreground/background colors. Note that
-  -- the height of xmobar is controlled by the font you use.
   font = "xft:Liberation Mono-14",
   bgColor = "#002b36",
   fgColor = "#839496",
 
-  -- Position is top left, taking up 95% of screen.
-  -- You are likely to have to tweak the width here based on the width
-  -- of your screen to make it play nicely with stalonetray, which we
-  -- want to be taking up the remainer of the space on the right side
-  -- of your screen.
+  -- Adjust width to leave space for 8 icons in tray.
+  -- Use bash and xrandr to calculate width corresponding:
+  -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
   position = Static {xpos=0 , ypos=0, width=1728, height=24},
 
-
-  -- list of commands which gather information about your system for
-  -- presentation in the bar.
   commands = [
-    -- Gather and format CPU usage information.
-    -- If it's above 50%, we consider it high usage and make it red.
-    Run Cpu [
-      "-H", "50",
-      "-t", "<fc=#cb4b16><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>% ",
-      "-m", "2",
-      "--high", "red"
-    ] 10,
-
-    Run Swap [
-      "-t", "Swap: <fc=#6c71c4><usedratio>% </fc>"
-    ] 10,
-
-    -- Gather and format memory usage information
-    Run Memory [
-      "-t","<fc=#b58900><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>% "
-    ] 10,
-
-    -- Date formatting
-    Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
-
-    -- Battery information. This is likely to require some customization
-    -- based upon your specific hardware. Or, for a desktop you may want
-    -- to just remove this section entirely.
     Run Battery [
-      "-t", "<acstatus> <left>% ",
+      "-t", "<acstatus> <left>%",
       "--",
       "-O", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
       "-i", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
-      "-o", "<fc=#d33682><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
-      "-h", "#859900",
-      "-l", "#dc322f"
+      "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
+      "-l", "#dc322f",
+      "-p", "#859900",
+      "-h", "#859900"
     ] 10,
-    Run Com "uname" ["-s","-r"] "uname" 36000,
 
-    -- To get volume information, we run a custom bash script.
-    -- This is because the built-in volume support in xmobar is disabled
-    -- in Debian and derivatives like Ubuntu.
-    Run Com "/home/zoresvit/.xmonad/volume.sh" [] "myvolume" 10,
+    Run Cpu [
+      "-t", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>% ",
+      "--minwidth", "2",
+      "--high", "#dc322f"
+    ] 10,
 
+    Run Memory [
+      "-t","<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>% "
+    ] 10,
 
-    -- This line tells xmobar to read input from stdin. That's how we
-    -- get the information that xmonad is sending it for display.
+    Run Swap [
+      "-t", "Swap: <usedratio>%",
+      "--high", "#dc322f"
+    ] 10,
+
+    -- Custom script to display volume.
+    -- This is due to built-in volume support in xmobar is disabled in Debian.
+    -- XMobar must be recompiled with `--with-alsa` to enable.
+    Run Com "/home/zoresvit/.xmonad/volume.sh" [] "myvolume" 1,
+
+    Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
+
+    -- Gets input from XMonad into stdin
     Run StdinReader
    ],
 
-   -- Separator character used to wrape variables in the xmobar template
+   -- Separator character used to wrap variables in xmobar template.
    sepChar = "%",
 
-   -- Alignment separater characer used in the xmobar template. Everything
-   -- before this will be aligned left, everything after aligned right.
+   -- Alignment separator character. 
+   -- Everything before it alignes left, everything after alignes right.
    alignSep = "}{",
 
-   -- Overall template for the layout of the xmobar contents. Note that
-   -- space is significant and can be used to add padding.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc>  %date% "
+   -- XMobar Layout template.
+   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
 }
-
