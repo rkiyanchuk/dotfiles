@@ -184,11 +184,11 @@ myKeyBindings =
     , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
     -- Volume control
     , ((myModMask .|. controlMask, xK_m), spawn "amixer -D pulse set Master 1+ toggle")
-    , ((myModMask .|. controlMask, xK_Down), spawn "amixer -q -c 1 set Master 10%-")
-    , ((myModMask .|. controlMask, xK_Up), spawn "amixer -q -c 1 set Master 10%+")
+    , ((myModMask .|. controlMask, xK_Down), spawn "amixer -q -c 1 set Master 5%-")
+    , ((myModMask .|. controlMask, xK_Up), spawn "amixer -q -c 1 set Master 5%+")
     , ((0, 0x1008ff12), spawn "amixer -D pulse set Master 1+ toggle")
-    , ((0, 0x1008ff13), spawn "amixer -q -c 1 set Master 10%+")
-    , ((0, 0x1008ff11), spawn "amixer -q -c 1 set Master 10%-")
+    , ((0, 0x1008ff13), spawn "amixer -q -c 1 set Master 5%+")
+    , ((0, 0x1008ff11), spawn "amixer -q -c 1 set Master 5%-")
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
