@@ -14,9 +14,17 @@
   Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
 -}
 
+import Control.Monad
+import Data.Ratio ((%))
+import qualified Data.Map as M
+
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.Plane
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Grid
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
@@ -29,14 +37,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
 import XMonad.Util.EZConfig
 import XMonad.Util.Run
-import XMonad.Hooks.DynamicLog
-import XMonad.Actions.Plane
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
 import qualified XMonad.StackSet as W
-import qualified Data.Map as M
-import Control.Monad
-import Data.Ratio ((%))
 
 
 solarizedBase03    = "#002b36"
@@ -212,6 +213,7 @@ main = do
       , normalBorderColor = myNormalBorderColor
       , startupHook = do
           spawn "~/.xmonad/startup_hook.sh"
+          setWMName "LG3D"
       , terminal = myTerminal
       , workspaces = myWorkspaces
       , logHook = dynamicLogWithPP $ xmobarPP {
