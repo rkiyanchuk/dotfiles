@@ -34,7 +34,7 @@ esac
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Tell Java that XMonad is non-reparenting WM
-_JAVA_AWT_WM_NONREPARENTING=1 
+export _JAVA_AWT_WM_NONREPARENTING=1 
 
 # Syntax highlighting for less. Install source-highlight first.
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
