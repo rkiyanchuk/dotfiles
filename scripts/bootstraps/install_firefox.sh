@@ -4,7 +4,7 @@
 # AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 # 
  
-FIREFOX_URL="https://download.mozilla.org/?product=firefox-29.0.1-SSL&os=linux64&lang=en-US"
+FIREFOX_URL="https://download-installer.cdn.mozilla.net/pub/firefox/releases/30.0/linux-x86_64/en-US/firefox-30.0.tar.bz2"
 
 wget ${FIREFOX_URL} -O firefox.tar.bz2
 
