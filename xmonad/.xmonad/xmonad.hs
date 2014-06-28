@@ -104,7 +104,7 @@ defaultLayouts = smartBorders(avoidStruts(
   -- Mirrored variation of ResizableTall. In this layout, the large
   -- master window is at the top, and remaining windows tile at the
   -- bottom of the screen. Can be resized as described above.
-  ||| renamed [Replace "R"] (Mirror (ResizableTall 1 (3/100) (1/2) []))
+  ||| renamed [Replace "R"] (Mirror (ResizableTall 1 (3/100) (4/5) []))
 
   -- Full layout makes every window full screen. When you toggle the
   -- active window, it will bring the active window to the front.
