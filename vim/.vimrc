@@ -49,6 +49,7 @@ set hidden
 set lazyredraw  " Speedup execution during macros and other untyped commands.
 set listchars=tab:->,trail:-
 set matchpairs+=<:>
+set mousemodel=popup
 set nowrap
 set path+=.,,**
 set scrolloff=3
