@@ -5,13 +5,13 @@
 # Define prompt format
 PS1='`
 STATUS=$?
-if [ $STATUS -eq 0 ]; then 
+if [ $STATUS -eq 0 ]; then
         echo -n "${debian_chroot:+($debian_chroot)}\
 \[\033[01;32m\]\u@\h\[\033[0;00m\]:\
 \[\033[0;34m\]\W\[\033[0;00m\]\
 \[\033[0;35m\]$(__git_ps1)\[\033[0;00m\]\
 \[\033[0;32m\]\$\[\033[0;00m\] "
-    else 
+    else
         echo -n "${debian_chroot:+($debian_chroot)}\
 \[\033[01;32m\]\u@\h\[\033[0;00m\]:\
 \[\033[0;31m\]$STATUS\[\033[0;00m\]:\
@@ -34,7 +34,7 @@ esac
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 # Tell Java that XMonad is non-reparenting WM
-export _JAVA_AWT_WM_NONREPARENTING=1 
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Syntax highlighting for less. Install source-highlight first.
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
