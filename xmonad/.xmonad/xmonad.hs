@@ -17,6 +17,7 @@
 import Control.Monad
 import Data.Ratio ((%))
 import qualified Data.Map as M
+import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
 import XMonad.Actions.CycleWS
@@ -170,6 +171,7 @@ myManagementHooks = [
 myKeyBindings =
   [
     ((myModMask, xK_b), sendMessage ToggleStruts)
+    , ((0, xF86XK_Sleep), spawn "sudo pm-suspend & gnome-screensaver-command -l")
     , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorShrink)
     , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
     -- Shift to previous workspace
