@@ -4,6 +4,7 @@ bundle/
 backups/
 swap/
 session.vim
+spell/
 
 # XMonad
 # ======
