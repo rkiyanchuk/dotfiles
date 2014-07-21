@@ -106,38 +106,4 @@ URxvt.intensityStyles: false
 URxvt.url-select.autocopy:  true
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
-
 urxvt*urlLauncher: firefox
-
-
-! Xscreensaver
-! ============
-
-xscreensaver.captureStderr: false
-!font settings
-xscreensaver.Dialog.headingFont: FONT_REGULAR
-xscreensaver.Dialog.bodyFont:    FONT_REGULAR
-xscreensaver.Dialog.labelFont:   FONT_REGULAR
-xscreensaver.Dialog.unameFont:   FONT_REGULAR
-xscreensaver.Dialog.buttonFont:  FONT_REGULAR
-xscreensaver.Dialog.dateFont:    FONT_REGULAR
-xscreensaver.passwd.passwdFont:  FONT_REGULAR
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground: S_primary
-xscreensaver.Dialog.background: S_bgrnd
-xscreensaver.Dialog.topShadowColor: S_bgrnd
-xscreensaver.Dialog.bottomShadowColor: S_bgrnd
-xscreensaver.Dialog.Button.foreground: S_primary
-xscreensaver.Dialog.Button.background: S_bgrnd_hi
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground: S_primary
-xscreensaver.Dialog.text.background: S_bgrnd_hi
-xscreensaver.Dialog.internalBorderWidth: 24
-xscreensaver.Dialog.borderWidth: 0
-xscreensaver.Dialog.shadowThickness: 1
-xscreensaver*logo.width: 1
-xscreensaver*logo.height: 1
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground: S_red
-xscreensaver.passwd.thermometer.background: S_blue
-xscreensaver.passwd.thermometer.width: 4
