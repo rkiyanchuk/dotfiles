@@ -55,3 +55,6 @@ alias rgrep='rgrep --color'
 alias egrep='egrep --color'
 
 alias dud='du -d1 -h'
+
+# Perforce config
+export P4CONFIG=.p4config
