@@ -69,7 +69,7 @@ stalonetray &
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
 # Remap caps lock to switch keyboard layout.
-setxkbmap -layout 'us,ru,ua' -option 'grp:caps_toggle,grp_led:caps'
+setxkbmap -layout 'us,ru,ua' -option 'grp:caps_toggle,grp_led:caps,compose:menu'
 
 # Allow custom pointers.
 xsetroot -cursor_name left_ptr
