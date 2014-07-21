@@ -101,6 +101,7 @@ URxvt.colorBD: S_green
 URxvt.colorUL: S_blue
 URxvt*saveLines: 65535
 URxvt.scrollBar: false
+URxvt.intensityStyles: false
 
 URxvt.url-select.autocopy:  true
 URxvt.url-select.launcher:  firefox
