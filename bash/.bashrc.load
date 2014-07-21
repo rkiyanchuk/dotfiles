@@ -53,3 +53,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias grep='grep --color'
 alias rgrep='rgrep --color'
 alias egrep='egrep --color'
+
+alias dud='du -d1 -h'
