@@ -157,6 +157,7 @@ myLayouts = onWorkspace "η" chatLayout $ defaultLayouts
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
   resource =? "stalonetray" --> doIgnore
+  , resource =? "xfce4-notifyd" --> doIgnore
   , resource =? "XXkb" --> doIgnore
   , className =? "rdesktop" --> doFloat
   , (className =? "Iceweasel") --> focusShift "ζ"

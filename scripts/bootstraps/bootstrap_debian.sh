@@ -80,7 +80,7 @@ aptitude -y install suckless-tools moreutils xbacklight
 aptitude -y install qt4-qtconfig 
 aptitude -y install gtk2-engines gtk2-engines-murrine dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
-aptitude -y install libnotify-bin notify-osd
+aptitude -y install libnotify-bin xfce4-notifyd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
 aptitude -y install rxvt-unicode scrot 
 aptitude -y install fonts-liberation fonts-linuxlibertine
