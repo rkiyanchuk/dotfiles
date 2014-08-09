@@ -123,7 +123,7 @@ nmap <silent> <leader>g :split $MYGVIMRC<CR>
 nmap <silent> <leader>V :source $MYVIMRC<CR>
 nmap <silent> <leader>G :source $MYGVIMRC<CR>
 " Restore last session.
-nmap <leader>rs :call LoadSession()<CR>
+nmap <leader>ls :call LoadSession()<CR>
 " Control buffers.
 nmap <silent> <leader>bb :buffers<CR>
 nmap <silent> <leader>bl :b#<CR>
