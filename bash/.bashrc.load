@@ -30,6 +30,9 @@ xterm*|rxvt*)
     ;;
 esac
 
+# TMUX tweaks
+source ~/.tmux_completion.sh
+
 # Store date and time in bash history.
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
