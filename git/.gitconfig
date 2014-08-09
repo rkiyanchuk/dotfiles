@@ -1,6 +1,7 @@
 [user]
 	name = Ruslan Kiianchuk
-	email = rkiyanchuk@mirantis.com
+#	email = rkiyanchuk@mirantis.com
+	email = Ruslan_Kiyanchuk@symantec.com
 
 [alias]
     br = branch
@@ -22,6 +23,7 @@
 
 [gitreview]
 	username = rkiianchuk
+	username = ruslan_kiyanchuk
 
 [help]
     autocorrect = 1
