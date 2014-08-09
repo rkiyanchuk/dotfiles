@@ -62,6 +62,7 @@ set timeoutlen=500
 set undofile
 set undodir=$VIMHOME/backups
 set undolevels=2048
+set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set visualbell
 set wildmenu
