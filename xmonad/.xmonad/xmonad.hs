@@ -133,10 +133,10 @@ defaultLayouts = smartBorders(avoidStruts(
 -- chatLayout = avoidStruts()
 
 
-chatLayout = renamed [Replace "Chat"] 
-  $ avoidStruts $ withIM (0.2) isPidgin 
-  $ reflectHoriz $ withIM (0.2) isSkype (Grid) 
-  where 
+chatLayout = renamed [Replace "Chat"]
+  $ avoidStruts $ withIM (0.2) isPidgin
+  $ reflectHoriz $ withIM (0.2) isSkype (Grid)
+  where
     isSkype = (Title "zoresvit - Skype™")
     isPidgin = (Title "Buddy List")
 
@@ -165,7 +165,6 @@ myManagementHooks = [
 myKeyBindings =
   [
     ((myModMask, xK_b), sendMessage ToggleStruts)
-    , ((0, xF86XK_Sleep), spawn "sudo pm-suspend & gnome-screensaver-command -l")
     , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorShrink)
     , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
     -- Shift to previous workspace
