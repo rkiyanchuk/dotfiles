@@ -65,9 +65,9 @@ fi
 # Core system graphics components
 aptitude -y install ntp
 aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
-aptitude -y install arandr  # GUI for xrandr
 aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install xcompmgr  # for transparency support
+aptitude -y install arandr  # GUI for xrandr
 aptitude -y install icc-profiles sampleicc-tools  # Color profiles
 
 # Sound
@@ -88,11 +88,13 @@ aptitude -y install stow
 
 aptitude -y install network-manager network-manager-gnome 
 aptitude -y install network-manager-openvpn
-aptitude -y install bluez-tools blueman
+aptitude -y install bluez-tools blueman gksu
 
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
 pip install udiskie  # automount usb devices
+
+aptitude -y install linux-firmware gnome-screensaver
 
 
 # OPTIONAL PREFERRED PACKAGES
