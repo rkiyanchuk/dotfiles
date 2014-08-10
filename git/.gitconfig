@@ -11,6 +11,7 @@
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
     mt = mergetool
     st = status
+    populate = "!python ~/dotfiles/scripts/git-populate.py"
 
 [apply]
     whitespace = warn
