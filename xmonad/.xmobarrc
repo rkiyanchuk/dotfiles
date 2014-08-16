@@ -22,7 +22,7 @@
 
 
 Config {
-  font = "xft:Liberation Mono-14",
+  font = "xft:Liberation Mono-13",
   bgColor = "#002b36",
   fgColor = "#839496",
 
