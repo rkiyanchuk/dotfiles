@@ -207,7 +207,7 @@ main = do
       , modMask = myModMask
       , normalBorderColor = myNormalBorderColor
       , startupHook = do
-          spawn "~/.xmonad/startup_hook.sh"
+          spawn "~/.xmonad/init.sh"
           setWMName "LG3D"
       , terminal = myTerminal
       , workspaces = myWorkspaces
