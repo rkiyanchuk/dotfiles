@@ -133,7 +133,7 @@ defaultLayouts = smartBorders(avoidStruts(
 -- chatLayout = avoidStruts()
 
 
-chatLayout = renamed [Replace "Chat"]
+chatLayout = renamed [Replace "C"]
   $ avoidStruts $ withIM (0.2) isPidgin
   $ reflectHoriz $ withIM (0.2) isSkype (Grid)
   where
