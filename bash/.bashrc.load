@@ -31,10 +31,12 @@ xterm*|rxvt*)
 esac
 
 # TMUX tweaks
-source ~/.tmux_completion.sh
+source ~/.tmux/tmux_completion.sh
 
 # Store date and time in bash history.
 export HISTTIMEFORMAT="%d/%m/%y %T "
+export HISTSIZE=-1
+export HISTFILESIZE=-1
 
 # Tell Java that XMonad is non-reparenting WM
 export _JAVA_AWT_WM_NONREPARENTING=1

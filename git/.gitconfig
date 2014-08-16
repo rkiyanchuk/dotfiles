@@ -20,7 +20,7 @@
     editor = vim
 
 [diff]
-    gui = meld
+    gui = vimdiff
 
 [gitreview]
 	username = rkiianchuk
@@ -28,6 +28,9 @@
 
 [help]
     autocorrect = 1
+
+[merge]
+    tool = gvimdiff
 
 [mergetool]
     keepBackup = false

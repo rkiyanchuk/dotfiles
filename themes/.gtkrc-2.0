@@ -16,4 +16,5 @@ gtk-xft-rgba="rgb"
 
 # Colorize GVim window edges.
 style "gvim" {bg[NORMAL] = "#002b36"}
+#style "gvim" {bg[NORMAL] = "#fdf6e3"}
 widget "vim-main-window.*GtkForm" style "gvim"

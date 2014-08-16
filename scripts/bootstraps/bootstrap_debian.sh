@@ -103,7 +103,7 @@ aptitude -y install linux-firmware gnome-screensaver
 # Network utils
 aptitude -y install x11vnc traceroute nmap synergy
 aptitude -y install openssh-client openssh-server ssh-askpass
-aptitude -y install pidgin irssi
+aptitude -y install irssi
 
 # Misc CLI utils
 aptitude -y install tree htop tmux mc vifm xclip
