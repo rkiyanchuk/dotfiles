@@ -1,0 +1,17 @@
+source ~/.mutt/solarized-dark
+
+source ~/.mutt/account.symantec
+set folder = imaps://ruslan_kiyanchuk@TUS1XCHCASPIN04.SYMC.SYMANTEC.COM/
+
+
+
+set spoolfile = +INBOX
+
+bind index G imap-fetch-mail
+
+set imap_check_subscribed
+
+set header_cache = "~/.cache/mutt"
+set message_cachedir = "~/.cache/mutt"
+
+auto_view text/html
