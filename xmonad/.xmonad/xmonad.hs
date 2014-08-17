@@ -179,8 +179,8 @@ myKeyBindings =
     -- Shift window to next workspace
     , ((myModMask .|. shiftMask, xK_Right), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-14'")
-    , ((myModMask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
+    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-13'")
+    , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
     -- Volume control
     , ((myModMask .|. controlMask, xK_m), spawn "amixer -D pulse set Master 1+ toggle")
     , ((myModMask .|. controlMask, xK_Down), spawn "amixer -q -c 1 set Master 5%-")
