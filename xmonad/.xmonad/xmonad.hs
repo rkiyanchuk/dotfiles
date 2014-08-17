@@ -37,6 +37,7 @@ import XMonad.Layout.Fullscreen
 import XMonad.Layout.Reflect
 import XMonad.Layout.Renamed
 import XMonad.Util.EZConfig
+import XMonad.Util.NamedWindows
 import XMonad.Util.Run
 import qualified XMonad.StackSet as W
 
@@ -195,10 +196,18 @@ myKeyBindings =
     , ((myModMask, xK_Print), spawn "scrot")
   ]
 
+-- LibNotify urgency hook
+-- Create notification popup when some window becomes urgent.
+data LibNotifyUrgencyHook = LibNotifyUrgencyHook deriving (Read, Show)
+instance UrgencyHook LibNotifyUrgencyHook where
+    urgencyHook LibNotifyUrgencyHook w = do
+        name     <- getName w
+        Just idx <- fmap (W.findTag w) $ gets windowset
+        safeSpawn "notify-send" [show name, "workspace " ++ idx]
 
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmobarrc"
-  xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
+  xmonad $ withUrgencyHook LibNotifyUrgencyHook $ defaultConfig {
         borderWidth = myBorderWidth
       , focusedBorderColor = myFocusedBorderColor
       , handleEventHook = fullscreenEventHook
