@@ -3,10 +3,14 @@
 @define-color fg_color #586e75;
 @define-color base_color #fdf6e3;
 @define-color text_color #073642;
-@define-color selected_bg_color #93a1a1;
+@define-color selected_bg_color #268bd2;
 @define-color selected_fg_color #fdf6e3;
-@define-color tooltip_bg_color #eee8d5;
-@define-color tooltip_fg_color #073642;
+@define-color tooltip_bg_color #002b36;
+@define-color tooltip_fg_color #eee8d5;
+
+/* dark color scheme */
+@define-color dark_bg_color #eee8d5;
+@define-color dark_fg_color #586e75;
 
 /* colormap actually used by the theme, to be overridden in other css files */
 @define-color theme_bg_color @bg_color;
@@ -37,26 +41,38 @@
 @define-color error_color #dc322f;
 
 /* widget colors */
-@define-color menubar_bg_color #eee8d5;
-@define-color menubar_fg_color #073642;
-@define-color toolbar_bg_color #eee8d5;
-@define-color toolbar_fg_color #586e75;
-@define-color menu_bg_color #eee8d5;
-@define-color menu_fg_color #073642;
-@define-color panel_bg_color #fdf6e3;
-@define-color panel_fg_color #073642;
+@define-color titlebar_bg_color @dark_bg_color;
+@define-color titlebar_fg_color @dark_fg_color;
+@define-color menubar_bg_color @dark_bg_color;
+@define-color menubar_fg_color @dark_fg_color;
+@define-color toolbar_bg_color @theme_bg_color;
+@define-color toolbar_fg_color @theme_fg_color;
+@define-color menu_bg_color @dark_bg_color;
+@define-color menu_fg_color @dark_fg_color;
+@define-color panel_bg_color @dark_bg_color;
+@define-color panel_fg_color @dark_fg_color;
 
 /* osd */
-@define-color osd_base #fdf6e3;
-@define-color osd_fg #586e75;
+@define-color osd_base @base_color;
+@define-color osd_fg @text_color;
 @define-color osd_bg alpha(@osd_base, 0.8);
 
+/* lightdm greeter colors */
+@define-color lightdm_bg_color @dark_bg_color;
+@define-color lightdm_fg_color @dark_fg_color;
+
 /* window manager colors */
-@define-color wm_bg #eee8d5;
-@define-color wm_title_focused #002b36;
-@define-color wm_title_unfocused #073642;
-@define-color wm_border_focused #cec19e;
-@define-color wm_border_unfocused #cec19e;
+@define-color wm_bg @titlebar_bg_color;
+@define-color wm_border_focused mix(shade(@titlebar_bg_color, 0.7), @titlebar_fg_color, 0.21);
+@define-color wm_border_unfocused mix(shade(@titlebar_bg_color, 0.7), @titlebar_fg_color, 0.12);
+@define-color wm_title_focused mix(@titlebar_fg_color, @titlebar_bg_color, 0.1);
+@define-color wm_title_unfocused mix(@titlebar_fg_color, @titlebar_bg_color, 0.4);
+@define-color wm_icons_focused mix(@titlebar_fg_color, @titlebar_bg_color, 0.1);
+@define-color wm_icons_focused_prelight @selected_bg_color;
+@define-color wm_icons_focused_pressed shade(@selected_bg_color, 0.8);
+@define-color wm_icons_unfocused mix(@titlebar_fg_color, @titlebar_bg_color, 0.4);
+@define-color wm_icons_unfocused_prelight @selected_bg_color;
+@define-color wm_icons_unfocused_pressed shade(@selected_bg_color, 0.8);
 
 @import url("gtk-widgets.css");
 @import url("gtk-widgets-assets.css");
@@ -64,3 +80,6 @@
 @import url("apps/granite-widgets.css");
 @import url("apps/unity.css");
 @import url("apps/xfce.css");
+@import url("apps/nemo.css");
+@import url("apps/synaptic.css");
+@import url("apps/lightdm-gtk-greeter.css");
