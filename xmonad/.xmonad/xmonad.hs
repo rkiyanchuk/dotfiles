@@ -169,8 +169,10 @@ myKeyBindings =
     , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
     -- Shift to previous workspace
     , ((myModMask, xK_Left), prevWS)
+    , ((myModMask .|. controlMask, xK_h), prevWS)
     -- Shift to next workspace
     , ((myModMask, xK_Right), nextWS)
+    , ((myModMask .|. controlMask, xK_l), nextWS)
     -- Shift window to previous workspace
     , ((myModMask .|. shiftMask, xK_Left), shiftToPrev)
     -- Shift window to next workspace
