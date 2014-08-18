@@ -2,32 +2,60 @@
 # Designed to be applied after default .bashrc:
 # echo "source $HOME/.bashrc.load" >> $HOME/.bashrc
 
-# Define prompt format
-PS1='`
-STATUS=$?
-if [ $STATUS -eq 0 ]; then
-        echo -n "${debian_chroot:+($debian_chroot)}\
-\[\033[01;32m\]\u@\h\[\033[0;00m\]:\
-\[\033[0;34m\]\W\[\033[0;00m\]\
-\[\033[0;35m\]$(__git_ps1)\[\033[0;00m\]\
-\[\033[0;32m\]\$\[\033[0;00m\] "
+# Define color codes
+RESET="\[\033[0;0m\]"
+BOLD="\[\033[0;1m\]"
+UNDERLINE="\[\033[0;4m\]"
+# foregrounds
+GREY="\[\033[0;30m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[0;32m\]"
+YELLOW="\[\033[0;33m\]"
+BLUE="\[\033[0;34m\]"
+MAGENTA="\[\033[0;35m\]"
+CYAN="\[\033[0;36m\]"
+WHITE="\[\033[0;37m\]"
+# backgrounds
+ONGREY="\[\033[0;40m\]"
+ONRED="\[\033[0;41m\]"
+ONGREEN="\[\033[0;42m\]"
+ONYELLOW="\[\033[0;43m\]"
+ONBLUE="\[\033[0;44m\]"
+ONMAGENTA="\[\033[0;45m\]"
+ONCYAN="\[\033[0;46m\]"
+ONWHITE="\[\033[0;47m\]"
+
+
+prompt_command () {
+
+    # Capture exit code of last command
+    if [ $? -eq 0 ]; then
+        STATUS=""
     else
-        echo -n "${debian_chroot:+($debian_chroot)}\
-\[\033[01;32m\]\u@\h\[\033[0;00m\]:\
-\[\033[0;31m\]$STATUS\[\033[0;00m\]:\
-\[\033[0;34m\]\W\[\033[0;00m\]\
-\[\033[0;35m\]$(__git_ps1)\[\033[0;00m\]\
-\[\033[0;32m\]\$\[\033[0;00m\] "
-fi`'
+        STATUS="${RED}$?${RESET}:"
+    fi
+
+    # Show Git branch if in repository
+    if [ "\$(type -t __git_ps1)" ]; then
+        BRANCH="$(__git_ps1)"
+    fi
+
+    export PS1="${RED}${debian_chroot:+($debian_chroot)}${RESET}\
+${GREEN}\u@\h${RESET}:\
+$STATUS\
+${BLUE}\W${RESET}\
+${MAGENTA}${BRANCH}${RESET}\
+${GREEN}\$${RESET} "
+
+}
+export PROMPT_COMMAND=prompt_command
 
 
-# Set title for urxvt and xterm
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-    ;;
-*)
-    ;;
+# urxvt title
+case $TERM in
+    rxvt-256color)
+        trap 'echo -ne "\e]0;$USER@$HOSTNAME: $BASH_COMMAND\007"' DEBUG
+     ;;
 esac
 
 # TMUX tweaks
@@ -54,13 +82,24 @@ source /usr/local/bin/virtualenvwrapper.sh
 alias ..='cd ../'
 alias ll='ls -Al --group-directories-first'
 alias la='ls -A --group-directories-first'
+alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
-alias grep='grep --color'
-alias rgrep='rgrep --color'
-alias egrep='egrep --color'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 alias stow='stow -v'
 
 alias dud='du -d1 -h'
 
 # Perforce config
 export P4CONFIG=.p4config
+
+# Configure time zone
+#TZ='Europe/Kiev'; export TZ
+TZ='America/Los_Angeles'; export TZ
+
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi

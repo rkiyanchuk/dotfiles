@@ -68,4 +68,4 @@ card. For instance:
 ```bash
     options snd-usb-audio index=2
 ```
-    
+

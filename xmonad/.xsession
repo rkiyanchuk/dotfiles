@@ -13,11 +13,6 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 # Load X resources (fixes some font issues)
 xrdb -merge .Xdefaults
 
-# Start compositing to support transparency. You can omit this
-# if you prefer not to use any transparency, but it is likely to cause
-# ugly black fringing with some programs such as synapse that expect
-# transparency support.
-xcompmgr -n &
 
 
 # Screen configuration
@@ -92,5 +87,14 @@ xset -b
 syndaemon -i 0.5 -K -d
 
 gnome-screensaver &
+
+# Start compositing to support transparency. You can omit this
+# if you prefer not to use any transparency, but it is likely to cause
+# ugly black fringing with some programs such as synapse that expect
+# transparency support.
+#xcompmgr -n &
+
+# Try to start compton on up to 4 displays (by defaults starts only on one).
+seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 
 exec xmonad

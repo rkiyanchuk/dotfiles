@@ -11,7 +11,7 @@
     4. Repeat
 
   Author:     David Brewer
-  Repository: https://github.com/davidbrewer/xmonad-ubuntu-conf
+  Repository:
 -}
 
 import Control.Monad
@@ -179,7 +179,7 @@ myKeyBindings =
     -- Shift window to next workspace
     , ((myModMask .|. shiftMask, xK_Right), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-13'")
+    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-14'")
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
     -- Volume control
     , ((myModMask .|. controlMask, xK_m), spawn "amixer -D pulse set Master 1+ toggle")
@@ -191,8 +191,8 @@ myKeyBindings =
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
-    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10")
-    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     , ((myModMask, xK_Print), spawn "scrot")
   ]
 
@@ -206,7 +206,7 @@ instance UrgencyHook LibNotifyUrgencyHook where
         safeSpawn "notify-send" [show name, "workspace " ++ idx]
 
 main = do
-  xmproc <- spawnPipe "xmobar ~/.xmobarrc"
+  xmproc <- spawnPipe "xmobar"
   xmonad $ withUrgencyHook LibNotifyUrgencyHook $ defaultConfig {
         borderWidth = myBorderWidth
       , focusedBorderColor = myFocusedBorderColor
@@ -218,7 +218,7 @@ main = do
       , modMask = myModMask
       , normalBorderColor = myNormalBorderColor
       , startupHook = do
-          spawn "~/.xmonad/init.sh"
+          spawn "~/.xmonad/autorun.sh"
           setWMName "LG3D"
       , terminal = myTerminal
       , workspaces = myWorkspaces

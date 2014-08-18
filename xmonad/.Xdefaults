@@ -85,7 +85,7 @@ Xft.rgba: rgb
 *pointerColorBackground:    S_base01
 *cursorColor:               S_base1
 *fadeColor:                 S_base03
-*fading:                    20
+*fading:                    0
 
 
 ! URxvt

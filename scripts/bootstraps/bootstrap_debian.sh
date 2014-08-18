@@ -66,7 +66,7 @@ fi
 aptitude -y install ntp
 aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
 aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
-aptitude -y install xcompmgr  # for transparency support
+aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
 aptitude -y install icc-profiles sampleicc-tools  # Color profiles
 
