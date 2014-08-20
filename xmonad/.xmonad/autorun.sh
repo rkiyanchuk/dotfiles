@@ -37,3 +37,8 @@ fi
 #if [ -z "$(pgrep blueman-applet)" ] ; then
 #    blueman-applet &
 #fi
+
+# Conky
+if [ -z "$(pgrep conky)" ] ; then
+    conky -c ~/.conky/conkyrc &
+fi

@@ -1,0 +1,79 @@
+background no
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+
+# Window settings
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 200 250
+maximum_width 400
+
+alignment tr
+gap_x 35
+gap_y 55
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# Fonts
+use_xft yes
+xftfont Liberation Mono:size=12
+xftalpha 0.5
+
+uppercase no
+
+default_color #839496
+
+# Lua code for rings
+#lua_load ~/.conky/rings.lua
+#lua_draw_hook_pre clock_rings
+
+color1 93a1a1  # emphesized text
+color2 586e75  # secondary text
+color3 dc322f  # red
+color4 859900  # green
+color5 268bd2  # blue
+color6 2aa198  # cyan
+color7 6c71c4  # violet
+color8 b58900  # yellow
+color9 cb4b16  # orange
+
+
+default_color 839496  # primary text
+
+TEXT
+$hr
+${color2}Uptime:${color} $uptime
+${color2}Freq (MHz):${color} $freq
+${color2}Freq (GHz):${color} $freq_g
+${color2}RAM Usage:${color} $mem/$memmax - $memperc% ${membar 4}
+${color2}CPU Usage:${color} $cpu% ${cpubar 4}
+${color2}Processes:$color $processes  ${color1}Running:$color $running_processes
+$hr
+${color2}File systems:
+ / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+${color2}Networking:
+Up:${color} ${upspeed eth0} - Down:$color ${downspeed eth0}
+$hr
+${color}Name              PID   CPU%   MEM%
+${color2} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color2} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color2} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color2} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
