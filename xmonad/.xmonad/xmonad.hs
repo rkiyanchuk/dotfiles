@@ -203,7 +203,7 @@ instance UrgencyHook LibNotifyUrgencyHook where
     urgencyHook LibNotifyUrgencyHook w = do
         name     <- getName w
         Just idx <- fmap (W.findTag w) $ gets windowset
-        safeSpawn "notify-send" [show name, "workspace " ++ idx]
+        safeSpawn "notify-send" [show name, "Urgent window"]
 
 main = do
   xmproc <- spawnPipe "xmobar"
