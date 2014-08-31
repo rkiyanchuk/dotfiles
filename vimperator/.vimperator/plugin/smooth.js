@@ -8,7 +8,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["j"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount(scroll_amount));
+            self.smoothScrollBy(getScrollAmount(scroll_amount * (count || 1)));
         },
         {
             count: true
@@ -19,7 +19,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["k"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount(scroll_amount) * -1);
+            self.smoothScrollBy(getScrollAmount(scroll_amount * (count || 1)) * -1);
         },
         {
             count: true
@@ -30,7 +30,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-d>"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount(screen.height / 4));
+            self.smoothScrollBy(getScrollAmount((screen.height / 4) * (count || 1)));
         },
         {
             count: true
@@ -41,7 +41,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-u>"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount(screen.height / 4) * -1);
+            self.smoothScrollBy(getScrollAmount((screen.height / 4) * (count || 1)) * -1);
         },
         {
             count: true
@@ -52,7 +52,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-f>"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount(screen.height / 2));
+            self.smoothScrollBy(getScrollAmount((screen.height / 2) * (count || 1)));
         },
         {
             count: true
@@ -63,7 +63,7 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-b>"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount(screen.height / 2) * -1);
+            self.smoothScrollBy(getScrollAmount((screen.height / 2) * (count || 1)) * -1);
         },
         {
             count: true
