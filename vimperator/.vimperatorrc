@@ -1,0 +1,4 @@
+" vim: set ft=vimperator:
+
+let g:smooziee_scroll_amount="10"
+let g:smooziee_scroll_interval="50"
