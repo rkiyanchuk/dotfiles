@@ -1,5 +1,10 @@
 " vim: set ft=vimperator:
 
-set smartcase
+set animations
+set hlsearch
 set incsearch
+set smartcase
+
+map <C-h> :history<CR>
+
 colorscheme solarized-light
