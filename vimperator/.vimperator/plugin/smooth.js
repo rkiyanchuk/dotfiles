@@ -8,7 +8,8 @@ let self = liberator.plugins.smooziee = (function(){
         ["j"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount(scroll_amount * (count || 1)));
+            multiplier = (count || 1);
+            self.smoothScrollBy(getScrollAmount(scroll_amount * multiplier));
         },
         {
             count: true
@@ -19,7 +20,8 @@ let self = liberator.plugins.smooziee = (function(){
         ["k"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount(scroll_amount * (count || 1)) * -1);
+            multiplier = (count || 1) * -1;  // negate for reverse scroll
+            self.smoothScrollBy(getScrollAmount(scroll_amount * multiplier));
         },
         {
             count: true
@@ -30,7 +32,8 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-d>"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount((screen.height / 4) * (count || 1)));
+            mult = (count || 1);
+            self.smoothScrollBy(getScrollAmount((screen.height / 4) * mult));
         },
         {
             count: true
@@ -41,7 +44,8 @@ let self = liberator.plugins.smooziee = (function(){
         ["<C-u>"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount((screen.height / 4) * (count || 1)) * -1);
+            mult = (count || 1) * -1;  // negate for reverse scroll
+            self.smoothScrollBy(getScrollAmount((screen.height / 4) * mult));
         },
         {
             count: true
@@ -49,10 +53,11 @@ let self = liberator.plugins.smooziee = (function(){
         );
     mappings.addUserMap(
         [modes.NORMAL],
-        ["<C-f>"],
+        ["<C-f>", "<PageDown>"],
         "Smooth scroll down",
         function(count){
-            self.smoothScrollBy(getScrollAmount((screen.height / 2) * (count || 1)));
+            mult = (count || 1);
+            self.smoothScrollBy(getScrollAmount((screen.height / 2) * mult));
         },
         {
             count: true
@@ -60,10 +65,11 @@ let self = liberator.plugins.smooziee = (function(){
         );
     mappings.addUserMap(
         [modes.NORMAL],
-        ["<C-b>"],
+        ["<C-b>", "<PageUp>"],
         "Smooth scroll up",
         function(count){
-            self.smoothScrollBy(getScrollAmount((screen.height / 2) * (count || 1)) * -1);
+            mult = (count || 1) * -1;  // negate for reverse scroll
+            self.smoothScrollBy(getScrollAmount((screen.height / 2) * mult));
         },
         {
             count: true
@@ -77,7 +83,8 @@ let self = liberator.plugins.smooziee = (function(){
     var PUBLICS = {
         smoothScrollBy: function(moment) {
             win = Buffer.findScrollableWindow();
-            interval = window.eval(liberator.globalVariables.smooth_scroll_interval || '20');
+            scroll_interval = liberator.globalVariables.smooth_scroll_interval
+            interval = window.eval(scroll_interval || '20');
             clearTimeout(next);
             smoothScroll(moment);
         }
@@ -94,7 +101,8 @@ let self = liberator.plugins.smooziee = (function(){
         phi = 1.618033;
         sqrt5 = 2.236067;
         fn = amount
-            n = Math.ceil(logBase(phi, (fn * sqrt5 + Math.sqrt(5 * Math.pow(fn, 2) + 4)) / 2))
+            n = Math.ceil(logBase(phi,
+                        (fn * sqrt5 + Math.sqrt(5 * Math.pow(fn, 2) + 4)) / 2))
             return window.eval(n);
     }
 
