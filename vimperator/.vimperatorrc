@@ -6,5 +6,6 @@ set incsearch
 set smartcase
 
 map <C-h> :history<CR>
+map <leader>p :hardcopy<CR>
 
 colorscheme solarized-light
