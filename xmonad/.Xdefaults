@@ -2,7 +2,8 @@
 ! ====================================
 
 ! To switch between light and dark Solarized theme define the symbol when
-! loading ! ``.Xresources`` with ``xrdb`` as follows:
+! loading `.Xresources` with `xrdb` as follows:
+!
 !   $ xrdb -DSOLARIZED_LIGHT -merge ~/.Xresources
 !   $ xrdb -DSOLARIZED_DARK -merge ~/.Xresources
 
@@ -47,21 +48,6 @@
 #define S_base3 #fdf6e3
 #endif
 
-
-! General Xresource settings
-! ==========================
-
-#define FONT_REGULAR xft:Liberation Mono:style=Regular:size=13
-#define FONT_BOLD xft:Liberation Mono:style=Bold:size=13
-#define FONT_ITALIC xft:Liberation Mono:style=Italic:size=13
-Xft.dpi: 96
-Xft.lcdfilter: lcddefault
-Xft.antialias: true
-Xft.autohint: true
-Xft.hinting: true
-Xft.hintstyle: hintslight
-Xft.rgba: rgb
-
 *color0: S_base02
 *color1: S_red
 *color2: S_green
@@ -88,6 +74,29 @@ Xft.rgba: rgb
 *fading:                    0
 
 
+! Fonts
+! =====
+
+#define FONT_REGULAR xft:Liberation Mono:style=Regular:size=13
+#define FONT_BOLD xft:Liberation Mono:style=Bold:size=13
+#define FONT_ITALIC xft:Liberation Mono:style=Italic:size=13
+Xft.dpi: 96
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.autohint: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+
+
+! XTerm
+! =====
+
+XTerm*faceName: Liberation\ Mono
+XTerm*faceSize: 13
+XTerm*locale: true
+
+
 ! URxvt
 ! =====
 
@@ -102,7 +111,6 @@ URxvt.colorUL: S_blue
 URxvt*saveLines: 65535
 URxvt.scrollBar: false
 URxvt.intensityStyles: false
-
 URxvt*urgentOnBell: true
 
 URxvt.url-select.autocopy:  true
