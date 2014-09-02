@@ -1,4 +1,4 @@
-" by http://github.com/yasumemo/dotfiles
+" Based on http://github.com/yasumemo/dotfiles
 
 hi  Bell  border: none; background-color: #586E75;
 hi  Boolean   color: #DC322F;
@@ -16,7 +16,7 @@ hi  CompItem>*  height: 18px; min-height: 18px; padding: 0 0.5ex;
 hi  CompMsg   font-style: italic; margin-left: 16px;
 hi  CompResult  width: 500px; max-width: 500px; overflow: hidden;
 hi  CompTitle   font-weight: bold; background-color: #EEE8D5;
-hi  CompTitle>*   color: #657B83; border-top: 1px solid #657B83; border-bottom: 1px solid #657B83; padding: 1px 0.5ex; text-shadow: 1px 1px 0px #FDF6E3;
+hi  CompTitle>*   color: #657B83; border-top: 1px solid #657B83; border-bottom: 1px solid #657B83; padding: 1px 0.5ex;
 hi  ContentSeparator  border-top: 1px dotted #93A1A1; display: -moz-box;
 hi  Disabled  color: #DC322F;
 hi  Enabled   color: #859900;

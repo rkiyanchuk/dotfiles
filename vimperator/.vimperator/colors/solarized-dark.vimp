@@ -1,4 +1,4 @@
-" by http://github.com/yasumemo/dotfiles
+" Based on http://github.com/yasumemo/dotfiles
 
 hi  Bell  border: none; background-color: #93A1A1;
 hi  Boolean   color: #DC322F;
@@ -15,8 +15,8 @@ hi  CompItem[selected]  background: #073642; box-shadow: 0px 0px 1px #B58900;
 hi  CompItem>*  height: 18px; min-height: 18px; padding: 0 0.5ex;
 hi  CompMsg   font-style: italic; margin-left: 16px;
 hi  CompResult  width: 500px; max-width: 500px; overflow: hidden;
-hi  CompTitle   font-weight: bold; background: linear-gradient(to top, #073642 0%, #002B36 50%, #586E75 100%);
-hi  CompTitle>*   color: #93A1A1; border-top: 1px solid #586E75; border-bottom: 1px solid #586E75; padding: 1px 0.5ex; text-shadow: 1px 1px 0px #586E75;
+hi  CompTitle   font-weight: bold; background-color: #002B36;
+hi  CompTitle>*   color: #93A1A1; border-top: 1px solid #586E75; border-bottom: 1px solid #586E75; padding: 1px 0.5ex;
 hi  ContentSeparator  border-top: 1px dotted #93A1A1; display: -moz-box;
 hi  Disabled  color: #DC322F;
 hi  Enabled   color: #859900;
@@ -66,4 +66,3 @@ hi  WarningMsg  color: #DC322F; background: #002B36;
 "hi  StatusLineBroken  color: #002B36; background-color: #DC322F;
 "hi  StatusLineSecure  color: #FDF6E3; background-color: #268BD2;
 "hi  StatusLineExtended  color: #FDF6E3; background-color: #859900;
-
