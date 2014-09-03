@@ -8,10 +8,4 @@ set smartcase
 map <C-h> :history<CR>
 map <leader>p :hardcopy<CR>
 
-autocmd LocationChange '.*' :fmapc!
-autocmd LocationChange 'mail\.google\.com/mail' :fmaps c / j k n p o u e x s r a # [ ] ? gi gs gt gd ga gc gl
-autocmd LocationChange 'mail\.google\.com/mail/.*/[0-9a-f]+$' :fmaps c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc gl
-autocmd LocationChange 'https?://www\.rememberthemilk\.com/home/' :fmaps j k m i c t ? d p F,f G,g S,s L,l Y,y H,h M,m <Del> <C-S-Left> <C-S-Right>
-autocmd LocationChange 'twitter\.com.*' :fmaps n f r t m u b ? j k gh gn ga gr gd gp gf gl gm gs gu <Space>
-
 colorscheme solarized-light
