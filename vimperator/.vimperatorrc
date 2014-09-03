@@ -1,6 +1,7 @@
 " vim: set ft=vimperator:
 
 set animations
+set focuscontent
 set hlsearch
 set incsearch
 set smartcase
