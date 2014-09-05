@@ -100,10 +100,15 @@ let self = liberator.plugins.smooziee = (function(){
         // http://en.wikipedia.org/wiki/Fibonacci_number#Recognizing_Fibonacci_numbers
         phi = 1.618033;
         sqrt5 = 2.236067;
-        fn = amount
+        fn = amount;
+        if (fn > 0) {
             n = Math.ceil(logBase(phi,
-                        (fn * sqrt5 + Math.sqrt(5 * Math.pow(fn, 2) + 4)) / 2))
-            return window.eval(n);
+                    (fn * sqrt5 + Math.sqrt(5 * Math.pow(fn, 2) + 4)) / 2));
+        } else {
+            n = Math.floor(logBase(phi,
+                    (fn * sqrt5 + Math.sqrt(5 * Math.pow(fn, 2) + 4)) / 2));
+        }
+        return window.eval(n);
     }
 
     function fib(n){
