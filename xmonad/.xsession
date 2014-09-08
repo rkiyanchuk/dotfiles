@@ -97,4 +97,7 @@ gnome-screensaver &
 # Try to start compton on up to 4 displays (by defaults starts only on one).
 seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 
+# Adjust display color temprature
+redshift -O 6800 -g 1.0:1.0:1.0
+
 exec xmonad
