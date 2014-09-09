@@ -35,7 +35,7 @@ aptitude safe-upgrade
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
     # Optimize SSD performance...
-    aptitude install sysfsutils
+    aptitude -y install sysfsutils
 
     # Switch to `deadline` scheduler suitable for SSD.
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
@@ -93,7 +93,6 @@ aptitude -y install bluez-tools blueman gksu
 
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
-pip install udiskie  # automount usb devices
 
 aptitude -y install linux-firmware gnome-screensaver
 
@@ -137,7 +136,8 @@ mkdir -p $HOME/media
 # Software development, projects, repositories
 mkdir -p $HOME/devel
 
-
+# After reboot, once X is initialized:
+# pip install udiskie  # automount usb devices
 
 # CUSTOMIZATIONS
 # ==============
