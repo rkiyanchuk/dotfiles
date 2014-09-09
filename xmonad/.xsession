@@ -98,6 +98,6 @@ gnome-screensaver &
 seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 
 # Adjust display color temprature
-redshift -O 6800 -g 1.0:1.0:1.0
+redshift -O 6500 -g 0.9:0.9:0.9
 
 exec xmonad
