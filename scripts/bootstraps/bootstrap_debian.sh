@@ -69,7 +69,7 @@ aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
 aptitude -y install redshift
-aptitude -y install icc-profiles sampleicc-tools  # Color profiles
+aptitude -y install icc-profiles # Color profiles
 
 # Sound
 aptitude -y install alsa pulseaudio paman pavucontrol
