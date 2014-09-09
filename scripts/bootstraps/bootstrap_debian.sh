@@ -35,7 +35,7 @@ aptitude safe-upgrade
 # Customizations for SSD
 if [ $USE_SSD == true ]; then
     # Optimize SSD performance...
-    aptitude install sysfsutils
+    aptitude -y install sysfsutils
 
     # Switch to `deadline` scheduler suitable for SSD.
     if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
@@ -68,7 +68,8 @@ aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
 aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
-aptitude -y install icc-profiles sampleicc-tools  # Color profiles
+aptitude -y install redshift
+aptitude -y install icc-profiles # Color profiles
 
 # Sound
 aptitude -y install alsa pulseaudio paman pavucontrol
@@ -92,13 +93,15 @@ aptitude -y install bluez-tools blueman gksu
 
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
-pip install udiskie  # automount usb devices
 
 aptitude -y install linux-firmware gnome-screensaver
 
 
+
 # OPTIONAL PREFERRED PACKAGES
 # ===========================
+
+aptitude -y install gdebi
 
 # Network utils
 aptitude -y install x11vnc traceroute nmap synergy
@@ -133,7 +136,8 @@ mkdir -p $HOME/media
 # Software development, projects, repositories
 mkdir -p $HOME/devel
 
-
+# After reboot, once X is initialized:
+# pip install udiskie  # automount usb devices
 
 # CUSTOMIZATIONS
 # ==============

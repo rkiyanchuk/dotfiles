@@ -1,6 +1,7 @@
 source ~/.mutt/solarized-dark
 
 source ~/.mutt/account.symantec
+source ~/.mutt/account.gmail
 set folder = imaps://ruslan_kiyanchuk@TUS1XCHCASPIN04.SYMC.SYMANTEC.COM/
 
 
