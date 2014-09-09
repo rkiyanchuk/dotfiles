@@ -68,6 +68,7 @@ aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
 aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
+aptitude -y install redshift
 aptitude -y install icc-profiles sampleicc-tools  # Color profiles
 
 # Sound
@@ -97,8 +98,11 @@ pip install udiskie  # automount usb devices
 aptitude -y install linux-firmware gnome-screensaver
 
 
+
 # OPTIONAL PREFERRED PACKAGES
 # ===========================
+
+aptitude -y install gdebi
 
 # Network utils
 aptitude -y install x11vnc traceroute nmap synergy
