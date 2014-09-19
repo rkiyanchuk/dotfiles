@@ -40,7 +40,15 @@ prompt_command () {
         BRANCH="$(__git_ps1)"
     fi
 
+    # Show virtualenv if activated
+    if [[ $VIRTUAL_ENV != "" ]]; then
+        VENV="${CYAN}(${VIRTUAL_ENV##*/})${RESET}"
+    else
+        VENV=""
+    fi
+
     export PS1="${RED}${debian_chroot:+($debian_chroot)}${RESET}\
+$VENV\
 ${GREEN}\u@\h${RESET}:\
 $STATUS\
 ${BLUE}\W${RESET}\
