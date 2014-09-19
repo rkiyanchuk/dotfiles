@@ -103,11 +103,6 @@ alias dud='du -d1 -h'
 # Perforce config
 export P4CONFIG=.p4config
 
-# Configure time zone
-#TZ='Europe/Kiev'; export TZ
-TZ='America/Los_Angeles'; export TZ
-
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
