@@ -36,11 +36,11 @@ xrandr --output ${MONITOR} --auto --primary
 
 # If we find that a screen is connected via VGA, activate it and position it
 # to the left of the primary screen.
-# xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --left-of eDP1
+xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --left-of eDP1
 
 # If we find that a screen is connected via DVI, activate it and position it
 # to the left of the primary screen.
-# xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --right-of eDP1
+xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --right-of eDP1
 
 
 # Load screen backgrounds
