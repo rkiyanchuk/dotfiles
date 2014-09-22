@@ -30,7 +30,7 @@ xrdb -merge .Xdefaults
 # connected screens and find out what names you should use to refer to them.
 
 # Activate primary screen (find first one connected)
-MONITOR=$(xrandr | grep -v disconnected | grep connected | cut -d' ' -f 1)
+MONITOR=$(xrandr | grep " connected" | cut -d' ' -f 1 | head -n 1)
 
 xrandr --output ${MONITOR} --auto --primary
 
