@@ -3,14 +3,44 @@
 
 # This script is designed to bootstrap Debian Jessie base system to fully
 # functional desktop environment under XMonad window manager. Functionality
-# equivalent to desktop environments like Gnome or KDE is implemented with 
+# equivalent to desktop environments like Gnome or KDE is implemented with
 # existing CLI tools and shortcuts.
 
 set -o errexit
 set -o xtrace
 
-USE_SSD=true
+usage() {
+    echo "Usage: $0 [-s] [-d <dev>]" 1>&2;
+    echo "       -s Optimized settings for SSD" 1>&2;
+    echo "       -d (sda) Specify target storage device" 1>&2;
+    exit 1;
+}
+
+USE_SSD=false
 SYS_DISK=sda
+
+while getopts "sd:h" opt; do
+    case $opt in
+        s)
+            USE_SSD=true
+            ;;
+        d)
+            SYS_DISK="$OPTARG"
+            ;;
+        h)
+            usage
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+
 
 SYSFS_CONF=/etc/sysfs.conf
 SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
@@ -78,16 +108,16 @@ aptitude -y install libpulse0:i386
 # Destktop GUI and usability
 aptitude -y install xxkb nitrogen stalonetray
 aptitude -y install suckless-tools moreutils xbacklight
-aptitude -y install qt4-qtconfig 
+aptitude -y install qt4-qtconfig
 aptitude -y install gtk2-engines gtk2-engines-murrine dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
 aptitude -y install libnotify-bin xfce4-notifyd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
-aptitude -y install rxvt-unicode scrot 
+aptitude -y install rxvt-unicode scrot
 aptitude -y install fonts-liberation fonts-linuxlibertine
 aptitude -y install stow
 
-aptitude -y install network-manager network-manager-gnome 
+aptitude -y install network-manager network-manager-gnome
 aptitude -y install network-manager-openvpn
 aptitude -y install bluez-tools blueman gksu
 
@@ -138,6 +168,7 @@ mkdir -p $HOME/devel
 
 # After reboot, once X is initialized:
 # pip install udiskie  # automount usb devices
+
 
 # CUSTOMIZATIONS
 # ==============
