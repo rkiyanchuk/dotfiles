@@ -115,7 +115,7 @@ aptitude -y install libnotify-bin xfce4-notifyd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
 aptitude -y install rxvt-unicode scrot
 aptitude -y install fonts-liberation fonts-linuxlibertine
-aptitude -y install stow
+aptitude -y install stow conky-all
 
 aptitude -y install network-manager network-manager-gnome
 aptitude -y install network-manager-openvpn
