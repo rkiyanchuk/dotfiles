@@ -54,7 +54,7 @@ sed -i 's/jessie main$/jessie main contrib non-free/' /etc/apt/sources.list
 
 dpkg --add-architecture i386
 aptitude update
-aptitude -f install
+aptitude -yf install
 # Upgrade system to latest state
 aptitude safe-upgrade
 
