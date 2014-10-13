@@ -8,7 +8,7 @@ set -o errexit
 set -o xtrace
 
 
-RELEASE="32.0.2"
+RELEASE="32.0.3"
 FIREFOX64_URL="https://download-installer.cdn.mozilla.net/pub/firefox/releases/${RELEASE}/linux-x86_64/en-US/firefox-${RELEASE}.tar.bz2"
 FIREFOX32_URL="https://download-installer.cdn.mozilla.net/pub/firefox/releases/${RELEASE}/linux-i686/en-US/firefox-${RELEASE}.tar.bz2"
 
@@ -51,7 +51,7 @@ cat > /opt/firefox_x32/firefox.sh << \EOF
 export ENV_HOME=/opt
 export FIREFOX_HOME=${ENV_HOME}/firefox_x32
 export MOZ_PLUGIN_PATH=${FIREFOX_HOME}/plugins
-export JDK_HOME=${ENV_HOME}/java_x32/${JAVA32_VERSION}
+export JDK_HOME=${ENV_HOME}/java_x32/\${JAVA32_VERSION}
 export JAVA_HOME=${JDK_HOME}/jre
 export PATH=${JAVA_HOME}/bin:${JDK_HOME}/bin:${PATH}
 $FIREFOX_HOME/firefox --no-remote -P webex
