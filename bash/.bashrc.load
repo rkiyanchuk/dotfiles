@@ -90,7 +90,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 alias ..='cd ../'
 alias ll='ls -Al --group-directories-first'
 alias la='ls -A --group-directories-first'
-alias l='ls -CF'
+alias l='ls -CFl'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
 alias grep='grep --color=auto'
 alias rgrep='rgrep --color=auto'
