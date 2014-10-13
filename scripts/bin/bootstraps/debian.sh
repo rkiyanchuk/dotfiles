@@ -124,6 +124,11 @@ aptitude -y install bluez-tools blueman gksu
 aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
 
+# Install udiskie dependencies
+aptitude -y install python-setuptools udisks python-pip python-gobject 
+aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection 
+aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.
+
 aptitude -y install linux-firmware gnome-screensaver
 
 
