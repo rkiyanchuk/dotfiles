@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+ 
+# Create popup notification on package updates.
+
+
+sudo aptitude update > /dev/null
+
+UPDATES=`aptitude -F%p --disable-columns search ~U | wc -l`
+
+if [ $UPDATES -ne '0' ]; then
+export DISPLAY=:0.0 && export XAUTHORITY=/home/zoresvit/.Xauthority && sudo -u zoresvit /usr/bin/notify-send "System update" "$UPDATES updates available"
+fi
