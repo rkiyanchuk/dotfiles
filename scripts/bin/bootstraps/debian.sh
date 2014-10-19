@@ -56,7 +56,7 @@ dpkg --add-architecture i386
 aptitude update
 aptitude -yf install
 # Upgrade system to latest state
-aptitude safe-upgrade
+aptitude -y safe-upgrade
 
 
 # CONFIGURATION
