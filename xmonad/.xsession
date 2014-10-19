@@ -87,20 +87,12 @@ udiskie &
 # Turn off PC speaker bell
 xset -b
 
-# Start notification daemon
-#/usr/lib/notification-daemon/notification-daemon &
-
 # Start synaptic daemon for keyboard monitoring
 syndaemon -i 0.5 -K -d
 
 gnome-screensaver &
 
-# Start compositing to support transparency. You can omit this
-# if you prefer not to use any transparency, but it is likely to cause
-# ugly black fringing with some programs such as synapse that expect
-# transparency support.
-#xcompmgr -n &
-
+# Compton compositor
 # Try to start compton on up to 4 displays (by defaults starts only on one).
 seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 
