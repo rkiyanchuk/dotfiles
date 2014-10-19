@@ -67,8 +67,9 @@ sed --follow-symlinks -i "s/\(gtk-font-name.*\)[0-9]\{2\}/\1${FONTSIZE}/g" ~/.gt
 
 # XMobar
 sed --follow-symlinks -i "s/width=[0-9]\+/width=${XMOBAR_WIDTH}/g" ~/.xmobarrc
+sed --follow-symlinks -i "s/font = \".*\"/font = \"xft:Liberation Mono-${FONTSIZE}\"/g" ~/.xmobarrc
 
-# stalonetray
+# Stalonetray
 sed --follow-symlinks -i "s/^geometry.*/geometry ${TRAYICONS}x1+${XMOBAR_WIDTH}+0/g" ~/.stalonetrayrc
 sed --follow-symlinks -i "s/^icon_size.*/icon_size ${ICONSIZE}/g" ~/.stalonetrayrc
 
