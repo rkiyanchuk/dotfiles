@@ -102,7 +102,7 @@ aptitude -y install redshift
 aptitude -y install icc-profiles # Color profiles
 
 # Sound
-aptitude -y install alsa pulseaudio paman pavucontrol
+aptitude -y install alsa-utils pulseaudio paman pavucontrol
 aptitude -y install libpulse0:i386
 
 # Destktop GUI and usability
@@ -110,6 +110,7 @@ aptitude -y install xxkb nitrogen stalonetray
 aptitude -y install suckless-tools moreutils xbacklight
 aptitude -y install qt4-qtconfig
 aptitude -y install gtk2-engines gtk2-engines-murrine dmz-cursor-theme
+aptitude -y install gtk2-engines-qtcurve
 aptitude -y install libxft2 libxft-dev
 aptitude -y install libnotify-bin xfce4-notifyd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
@@ -125,9 +126,9 @@ aptitude -y install python-pip
 aptitude -y install python-notify  # dependency for udiskie
 
 # Install udiskie dependencies
-aptitude -y install python-setuptools udisks python-pip python-gobject 
-aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection 
-aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.
+aptitude -y install python-setuptools udisks python-pip python-gobject
+aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection
+aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.7
 
 aptitude -y install linux-firmware gnome-screensaver
 
@@ -155,8 +156,14 @@ pip install virtualenvwrapper
 # Multimedia
 aptitude -y install goldendict vlc x264 feh geeqie
 aptitude -y install flashplugin-nonfree ttf-mscorefonts-installer
-aptitude -y install tar gzip bzip unrar file-roller
+aptitude -y install tar gzip unrar file-roller
 aptitude -y install clementine
+
+# Skype dependencies
+aptitude -y install libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386
+aptitude -y install libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386
+aptitude -y install libstdc++6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386
+aptitude -y install libasound2-plugins:i386
 
 # Security
 aptitude -y install keepassx
@@ -174,6 +181,8 @@ mkdir -p $HOME/devel
 # After reboot, once X is initialized:
 # pip install udiskie  # automount usb devices
 
+# System76 Gazelle Pro
+# aptitude -y install firmware-linux firmware-iwlwifi
 
 # CUSTOMIZATIONS
 # ==============
@@ -185,4 +194,4 @@ mkdir -p $HOME/devel
 # Install Virtualbox
 # Install Vagrant
 # install hplip for printing:
-#   http://hplipopensource.com/hplip-web/install/install/index.html
+# http://hplipopensource.com/hplip-web/install/install/index.html
