@@ -84,7 +84,7 @@ _tmux() {
                     ["switch-client"]="-lnp -c target-client -t target-session" \
                     ["unbind-key"]="-acn -t key-table key" \
                     ["unlink-window"]="-k -t target-window" )
-    
+
    declare -A tmux_alias_map
    tmux_alias_map=( ["attach"]="attach-session" \
                     ["detach"]="detach-client" \
@@ -157,7 +157,7 @@ _tmux() {
                     ["lock"]="lock-server" \
                     ["run"]="run-shell" \
                     ["info"]="server-info" )
-                    
+
    local cur="${COMP_WORDS[COMP_CWORD]}"
    local prev="${COMP_WORDS[COMP_CWORD-1]}"
    COMPREPLY=()
@@ -176,16 +176,16 @@ _tmux() {
                cmd="${COMP_WORDS[i]}"
                ((i--))
            done
-           
+
            #if it is an alias, look up what the alias maps to
            local alias_cmd=${tmux_alias_map[$cmd]}
            if [[ -n ${alias_cmd} ]]
            then
                cmd=${alias_cmd}
            fi
-           
+
            #now work out the options to this command
-           local opts=""           
+           local opts=""
            for opt in ${tmux_cmd_map[$cmd]}
            do
                 if [[ "$opt" == -* ]]; then
@@ -200,7 +200,7 @@ _tmux() {
            COMPREPLY=($(compgen -W "$opts" -- ${cur}))
        fi
    else
-       COMPREPLY=($(compgen -W "$(echo ${!tmux_cmd_map[@]} ${!tmux_alias_map[@]})" -- ${cur}))  
+       COMPREPLY=($(compgen -W "$(echo ${!tmux_cmd_map[@]} ${!tmux_alias_map[@]})" -- ${cur}))
    fi
    return 0
 }
