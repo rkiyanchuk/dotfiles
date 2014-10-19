@@ -1,8 +1,10 @@
 # Custom bash configuration.
-# Designed to be applied after default .bashrc:
-# echo "source $HOME/.bashrc.load" >> $HOME/.bashrc
+# Designed to be applied after default `.bashrc`.
+# To enable:
+# $ echo "source $HOME/.bashrc.load" >> $HOME/.bashrc
 
-# Define color codes
+
+# Define color codes.
 RESET="\[\033[0;0m\]"
 BOLD="\[\033[0;1m\]"
 UNDERLINE="\[\033[0;4m\]"
@@ -28,19 +30,19 @@ ONWHITE="\[\033[0;47m\]"
 
 prompt_command () {
 
-    # Capture exit code of last command
+    # Capture exit code of last command.
     if [ $? -eq 0 ]; then
         STATUS=""
     else
         STATUS="${RED}$?${RESET}:"
     fi
 
-    # Show Git branch if in repository
+    # Show Git branch if in repository.
     if [ "\$(type -t __git_ps1)" ]; then
         BRANCH="$(__git_ps1)"
     fi
 
-    # Show virtualenv if activated
+    # Show virtualenv if activated.
     if [[ $VIRTUAL_ENV != "" ]]; then
         VENV="${CYAN}(${VIRTUAL_ENV##*/})${RESET}"
     else
@@ -59,29 +61,30 @@ ${GREEN}\$${RESET} "
 export PROMPT_COMMAND=prompt_command
 
 
-# urxvt title
+# Urxvt title.
 case $TERM in
     rxvt-256color)
         trap 'echo -ne "\e]0;$USER@$HOSTNAME: $BASH_COMMAND\007"' DEBUG
      ;;
 esac
 
-# TMUX tweaks
+# TMUX tweaks.
 source ~/.tmux/tmux_completion.sh
 
 # Store date and time in bash history.
-export HISTTIMEFORMAT="%d/%m/%y %T "
+export HISTTIMEFORMAT="%d.%m.%y %T "
 export HISTSIZE=-1
 export HISTFILESIZE=-1
 
-# Tell Java that XMonad is non-reparenting WM
+# Tell Java that XMonad is non-reparenting WM.
+# Needed for correct Java apps windows operation under XMonad.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# Syntax highlighting for less. Install source-highlight first.
+# Syntax highlighting for `less`. Install `source-highlight` first.
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
-# virtualenvwrapper
+# VirtualEnvWrapper settings.
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/devel
 source /usr/local/bin/virtualenvwrapper.sh
@@ -96,18 +99,15 @@ alias grep='grep --color=auto'
 alias rgrep='rgrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias stow='stow -v'
 
 alias dud='du -d1 -h'
 
-# Perforce config
-export P4CONFIG=.p4config
-
-# set PATH so it includes user's private bin if it exists
+# Set PATH so it includes user's private `bin` directories if those exist.
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
 
+# Required for Python pipsi.
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
