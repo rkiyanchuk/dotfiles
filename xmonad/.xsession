@@ -9,6 +9,8 @@
 # Identify the home of our gtkrc file, important for setting styles of
 # gtk-based applications
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# Needed for Qt applications
+export DESKTOP_SESSION="gnome"
 
 # Configure time zone
 TZ='Europe/Kiev'; export TZ
