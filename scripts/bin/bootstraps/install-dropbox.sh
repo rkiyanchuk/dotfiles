@@ -13,4 +13,5 @@ DROPBOX_URL="https://www.dropbox.com/download?dl=packages/debian/${DROPBOX_DEB}"
 
 wget ${DROPBOX_URL} -O ${DROPBOX_DEB}
 
-sudo dpkg -i dropbox_1.6.2_amd64.deb
+sudo dpkg -i ${DROPBOX_DEB}
+rm -f ${DROPBOX_DEB}
