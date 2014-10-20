@@ -9,12 +9,6 @@ if has('unix')
     let $VIMBUNDLE=$VIMHOME . "/bundle"
 endif
 
-if has('win32') || has('win64')
-    let $VIMHOME=getcwd()
-    let $VIMHOME=$VIMHOME . '\Data\settings\.vim\'
-    behave mswin
-endif
-
 
 " BUILTIN OPTIONS 
 " =============== {{{ 
@@ -107,6 +101,8 @@ let g:load_doxygen_syntax=1 " Load up the doxygen syntax
 
 let g:tex_flavor="latex"  " Set `tex` filetype for *.tex extension.
 let g:tex_indent_brace=0
+
+let g:xml_syntax_folding=1
 " }}}
 
 
@@ -182,9 +178,10 @@ augroup TEXT
 augroup END
 
 augroup PROGRAMMING
+    au!
     au FileType c,cpp,h,tex map <F5> :call Compile()<CR>
     au FileType c,cpp,h set cindent
-    au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
+    au FileType c,cpp,h set 'cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4'
     au BufRead,BufNewFile *.html set shiftwidth=2
     au BufRead,BufNewFile *.html set softtabstop=2
     au BufRead,BufNewFile *.html set tabstop=2
@@ -203,6 +200,15 @@ augroup PROGRAMMING
     au BufWritePost * if exists("b:editHex") && b:editHex==0 | call ToggleHex() | endif
     " Haskell
     au BufRead,BufNewFile .xmobarrc set filetype=haskell
+    " XML
+    au BufRead,BufNewFile *.xml setlocal foldmethod=syntax
+    au Syntax xml normal zR
+    au BufRead,BufNewFile *.xml set makeprg=xmllint\ --noout\ %
+    au FileType xml map <F7> :make <CR>:copen<CR><CR>
+    au BufRead,BufNewFile *.xml set shiftwidth=2
+    au BufRead,BufNewFile *.xml set softtabstop=2
+    au BufRead,BufNewFile *.xml set tabstop=2
+
 augroup END
 " }}}
 
@@ -330,6 +336,8 @@ Bundle 'klen/python-mode'
 Bundle 'bling/vim-airline'
 " Jinja & HTML syntax
 Bundle 'Glench/Vim-Jinja2-Syntax'
+" File navigation with `%` for HTML, LaTeX, XML and others.
+Bundle 'vim-scripts/matchit.zip'
 
 " Turn on filetype recognition, load filetype specific plugins and indents.
 filetype plugin indent on
