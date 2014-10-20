@@ -1,5 +1,7 @@
-Dotfiles
-========
+Zoresvit's Dotfiles
+===================
+
+![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
 
 User resource configuration.
 
