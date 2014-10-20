@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
+CHANNEL="Headphone"
+DEV_NUM="1"
 ORANGE="#cb4b16"
 THRESHOLD="80"
 
-VOLUME_STR=$(amixer get Master | grep 'Mono:' -A 1 | cut -d ' ' -f 7)
+VOLUME_STR=$(amixer get ${CHANNEL} -c ${DEV_NUM} | grep 'Mono:' -A 1 | cut -d ' ' -f 7)
 
 # Extract number.
 VALUE=$(sed "s/[^0-9]//g" <<< ${VOLUME_STR})
                  
-MUTED=$(amixer get Master | grep 'Mono:' -A 1 | cut -d ' ' -f 8)
+MUTED=$(amixer get ${CHANNEL} -c ${DEV_NUM} | grep 'Mono:' -A 1 | cut -d ' ' -f 9)
 if [ ${MUTED} == "[off]" ]; then
     echo "<fc=${ORANGE}>--% </fc>"
 else
