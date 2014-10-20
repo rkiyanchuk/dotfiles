@@ -12,7 +12,17 @@ usage() {
     echo "       -i Icon size to use in status bar."
     echo "       -t Number of tray icons to reserve space for."
     echo "       -w Width of XMobar."
+    echo "       -h Show this help."
     exit 1;
+}
+
+show_settings() {
+    echo "Set values:"
+    echo -e "\tFont size: $FONTSIZE"
+    echo -e "\tTray icons: $TRAYICONS"
+    echo -e "\tIcon size: $ICONSIZE"
+    echo -e "\tScreen dimensions: ${WIDTH}x${HEIGHT}"
+    echo -e "\tXMobar width: $XMOBAR_WIDTH"
 }
 
 
@@ -21,6 +31,9 @@ ICONSIZE=24
 FONTSIZE=12
 WIDTH=$(xrandr | grep primary | grep -o -e "[0-9]\{3,4\}" | sed -n 1p)
 HEIGHT=$(xrandr | grep primary | grep -o -e "[0-9]\{3,4\}" | sed -n 2p)
+
+# Display help if no arguments given.
+[[ ! $1 ]] && { usage; }
 
 while getopts "f:i:t:w:h" opt; do
     case $opt in
@@ -52,12 +65,7 @@ done
 
 XMOBAR_WIDTH=$(($WIDTH - ($ICONSIZE * $TRAYICONS)))
 
-echo "Set values:"
-echo -e "\tFont size: $FONTSIZE"
-echo -e "\tTray icons: $TRAYICONS"
-echo -e "\tIcon size: $ICONSIZE"
-echo -e "\tScreen dimensions: ${WIDTH}x${HEIGHT}"
-echo -e "\tXMobar width: $XMOBAR_WIDTH"
+show_settings
 
 # .Xdefaults
 sed --follow-symlinks -i "s/\(\#define FONT.*\)[0-9]\{2\}/\1${FONTSIZE}/g" ~/.Xdefaults
