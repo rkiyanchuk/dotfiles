@@ -36,6 +36,8 @@ set backup
 set backupdir=$VIMHOME/backups
 set browsedir=buffer
 set completeopt=menuone,preview
+set dictionary+=/usr/share/dict/words
+set complete+=k
 set directory=$VIMHOME/swap
 set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
 set foldmethod=marker
