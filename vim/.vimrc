@@ -10,8 +10,8 @@ if has('unix')
 endif
 
 
-" BUILTIN OPTIONS 
-" =============== {{{ 
+" BUILTIN OPTIONS
+" =============== {{{
 
 " Appearance
 " ----------
@@ -135,7 +135,7 @@ nmap <silent> <leader>ep :cp<CR>
 " Toggle spell check.
 nmap <leader>s :set spell!<CR>
 " Fix spelling by choosing first match from suggestions.
-imap <silent> <leader>sf <ESC>1z=ea 
+imap <silent> <leader>sf <ESC>1z=ea
 nmap <silent> <leader>sf <ESC>1z=e
 " Map the placeholder <+ +> navigation
 nnoremap <silent> <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
