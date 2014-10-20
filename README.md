@@ -3,9 +3,11 @@ Zoresvit's Dotfiles
 
 ![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
 
-User resource configuration.
+Prerequisites
+=============
 
 If you have SSD, enable `relatime` mount options when partitioning the drive.
+
 
 How to
 ======
@@ -26,14 +28,19 @@ Update kernel manually
 
 1. Qtconfig set fonts.
 3. Create SSH keys:
-       $ ssh-keygen -t rsa -C "rkiyanchuk@mirantis.com"
-       $ ssh-add
+
+    ```
+   $ ssh-keygen -t rsa -C "rkiyanchuk@mirantis.com"
+   $ ssh-add
+    ```
 
 Optional steps:
 
+```
 aptitude install -y firmware-linux
 aptitude install -y firmware-realtek  # system76: for ethernet
 aptitude install -y firmware-iwlwifi  # system76: for Intel wireless cards
+```
 
 
 Controls concept
