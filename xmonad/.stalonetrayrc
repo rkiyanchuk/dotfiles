@@ -1,138 +1,119 @@
-# vim:filetype=config:tw=80:et
-#
-# This is sample ~/.stalonetrayrc, resembling default configuration.
-# Remember: command line parameters take precedence.
-#
-# Directives introduced in 0.8 are marked with "NEW in 0.8"
-#
-####################################################################
-#
-# stalonetray understands following directives
-#
-####################################################################
+# Stalonetray configuration options.
 
-# background <color>         # color can be specified as an HTML hex triplet or
-                             # as a name from rgb.txt, note that '#' must be quoted
-background "#002b36"
+background "#002b36"        # Color can be specified as an HTML hex triplet or
+                            # as a name from rgb.txt, note that '#' must be
+                            # quoted.
 
-# decorations <decspec>      # set trays window decorations; possible values for
-                             # decspec are: all, title, border, none
-decorations none
+decorations none            # Set trays window decorations. Possible values for
+                            # decspec are: all, title, border, none.
 
-# display <display name>     # as usual
+# display <display name>    # X display ID to use.
 
-# dockapp_mode <mode>        # set dockapp mode, which can be either simple (for
-                             # e.g. OpenBox, wmaker for WindowMaker, or none
-                             # (default). NEW in 0.8.
-dockapp_mode none
+dockapp_mode none           # Set dockapp mode, which can be either simple (for
+                            # e.g. OpenBox, wmaker for WindowMaker, or none
+                            # (default). NEW in 0.8.
 
-# fuzzy_edges [<level>]      # enable fuzzy edges and set fuzziness level. level
-                             # can be from 0 (disabled) to 3; this setting works
-                             # with tinting and/or transparent and/or pixmap
-                             # backgrounds
-fuzzy_edges 0
+fuzzy_edges 0               # Enable fuzzy edges and set fuzziness level. Level
+                            # can be from 0 (disabled) to 3. This setting works
+                            # with tinting and/or transparent and/or pixmap
+                            # backgrounds.
 
-# geometry <geometry>        # tray's geometry in standard X notation; width and
-                             # height are specified in slot_size multiples
 geometry 8x1+1728+0
+                            # height are specified in slot_size multiples.
 
-# grow_gravity <gravity>     # one of N, S, E, W, NW, NE, SW, SE; tray will grow
-                             # in the direction opposite to one specified by
-							 # grow_gravity; if horizontal or vertical
-							 # direction is not specified, tray will not grow in
-							 # that direction
-grow_gravity E
+grow_gravity E              # One of N, S, E, W, NW, NE, SW, SE. Tray will grow
+                            # in the direction opposite to one specified by
+                            # grow_gravity. If horizontal or vertical
+                            # direction is not specified, tray will not grow in
+                            # that direction.
 
-# icon_gravity <gravity>     # icon placement gravity, one of NW, NE, SW, SE
-icon_gravity NE
+icon_gravity NE             # Icon placement gravity, one of NW, NE, SW, SE.
 
-# icon_size <int>            # specifies dimensions of typical icon slot
+
 icon_size 24
 
-# log_level <level>          # controls the amount of logging output, level can
-                             # be err (default), info, or trace (enabled only
-                             # when stalonetray configured with --enable-debug)
-                             # NEW in 0.8.
-log_level err
 
-# kludges kludge[,kludge]    # enable specific kludges to work around
-                             # non-conforming WMs and/or stalonetray bugs.
-                             # NEW in 0.8. Argument is a
-                             # comma-separated list of
-                             # * fix_window_pos - fix tray window position on
-                             #     erroneous moves by WM
-                             # * force_icons_size - ignore resize events on all
-                             #     icons; force their size to be equal to
-                             #     icon_size
-                             # * use_icon_hints - use icon window hints to
-                             #     dtermine icon size
-kludges force_icons_size
+log_level err               # Controls the amount of logging output, level can
+                            # be err (default), info, or trace (enabled only
+                            # when stalonetray configured with --enable-debug).
+                            # NEW in 0.8.
 
-# max_geometry <geometry>    # maximal tray dimensions; 0 in width/height means
-                             # no limit
-max_geometry 0x24
 
-# no_shrink [<bool>]         # disables shrink-back mode
-no_shrink false
+kludges force_icons_size    # Enable specific kludges to work around
+                            # non-conforming WMs and/or stalonetray bugs.
+                            # NEW in 0.8. Argument is a comma-separated list of
+                            # * fix_window_pos - fix tray window position on
+                            #     erroneous moves by WM
+                            # * force_icons_size - ignore resize events on all
+                            #     icons; force their size to be equal to
+                            #     icon_size
+                            # * use_icon_hints - use icon window hints to
+                            #     dtermine icon size
 
-# parent_bg [<bool>]         # whether to use pseudo-transparency
-                             # (looks better when reparented into smth like FvwmButtons)
-parent_bg false
 
-# pixmap_bg <path_to_xpm>    # use pixmap from specified xpm file for (tiled) background
-# pixmap_bg /home/user/.stalonetraybg.xpm
+max_geometry 0x24           # Maximal tray dimensions; 0 in width/height means
+                            # no limit.
 
-# scrollbars <mode>          # enable/disable scrollbars; mode is either
-                             # vertical, horizontal, all or none (default)
-                             # NEW in 0.8.
-scrollbars none
 
-# scrollbars-size <size>     # scrollbars step in pixels; default is slot_size / 4
+no_shrink false             # Disables shrink-back mode.
+
+
+parent_bg false             # Whether to use pseudo-transparency.
+                            # (looks better when reparented into smth like FvwmButtons)
+
+
+# pixmap_bg <path_to_xpm>   # Use pixmap from specified xpm file for (tiled) background
+# pixmap_bg /home/user/.stalnetraybg.xpm
+
+scrollbars none             # enable/disable scrollbars; mode is either
+                            # vertical, horizontal, all or none (default)
+                            # NEW in 0.8.
+
+
+# scrollbars-size <size>    # scrollbars step in pixels; default is slot_size / 4
 # scrollbars-step 8
 
-# scrollbars-step <step>     # scrollbars step in pixels; default is slot_size / 2
+# scrollbars-step <step>    # scrollbars step in pixels; default is slot_size / 2
 # scrollbars-step 32
 
-# slot_size <int>            # specifies size of icon slot, defaults to
-                             # icon_size NEW in 0.8.
+# slot_size <int>           # specifies size of icon slot, defaults to
+                            # icon_size NEW in 0.8.
 
-# skip_taskbar [<bool>]      # hide tray`s window from the taskbar
-skip_taskbar true
+skip_taskbar true           # Hide tray's window from the taskbar
 
-# sticky [<bool>]            # make a tray`s window sticky across the
-                             # desktops/pages
-sticky true
 
-# tint_color <color>         # set tinting color
-tint_color white
+sticky true                 # make a tray's window sticky across the
+                            # desktops/pages.
 
-# tint_level <level>         # set tinting level; level ranges from 0 (disabled)
-                             # to 255
-tint_level 0
 
-# transparent [<bool>]       # whether to use root-transparency (background
-                             # image must be set with Esetroot or compatible utility)
-transparent false
+tint_color white            # Set tinting color.
 
-# vertical [<bool>]          # whether to use vertical layout (horisontal layout
-                             # is used by default)
-vertical false
 
-# window_layer <layer>       # set the EWMH-compatible window layer; one of:
-                             # bootom, normal, top
-window_layer normal
+tint_level 0                # Set tinting level. Level ranges from 0 (disabled)
+                            # to 255.
 
-# window_strut <mode>        # enable/disable window struts for tray window (to
-                             # avoid converting of tray window by maximized
-                             # windows); mode defines to which screen border tray
-                             # will be attached; it can be either top, bottom,
-                             # left, right, none or auto (default)
-window_strut none
 
-# window_type <type>         # set the EWMH-compatible window type; one of:
-                             # desktop, dock, normal, toolbar, utility
-window_type dock
+transparent false           # Whether to use root-transparency (background
+                            # image must be set with Esetroot or compatible utility).
 
-# xsync [<bool>]             # whether to operate on X server synchronously (SLOOOOW)
-xsync false
 
+vertical false              # Whether to use vertical layout (horisontal layout
+                            # is used by default).
+
+
+window_layer normal         # Set the EWMH-compatible window layer; one of:
+                            # bootom, normal, top.
+
+
+window_strut none           # Enable/disable window struts for tray window (to
+                            # avoid converting of tray window by maximized
+                            # windows). Mode defines to which screen border tray
+                            # will be attached. It can be either top, bottom,
+                            # left, right, none or auto (default).
+
+
+window_type dock            # Set the EWMH-compatible window type; one of:
+                            # desktop, dock, normal, toolbar, utility.
+
+
+xsync false                 # whether to operate on X server synchronously (SLOOOOW).

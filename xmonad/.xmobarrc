@@ -1,5 +1,5 @@
 -- Xmobar documentation: http://projects.haskell.org/xmobar/
--- Based on David Brewer's repository: 
+-- Based on David Brewer's repository:
 -- https://github.com/davidbrewer/xmonad-ubuntu-conf
 
 -- Solarized colors:
@@ -72,7 +72,7 @@ Config {
    -- Separator character used to wrap variables in xmobar template.
    sepChar = "%",
 
-   -- Alignment separator character. 
+   -- Alignment separator character.
    -- Everything before it alignes left, everything after alignes right.
    alignSep = "}{",
 

@@ -6,16 +6,26 @@
 # https://github.com/davidbrewer/xmonad-ubuntu-conf
 
 
-# Identify the home of our gtkrc file, important for setting styles of
-# gtk-based applications
+# Set styles for GTK-based applications.
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# Needed for Qt applications.
+export DESKTOP_SESSION="gnome"
 
 # Configure time zone
-TZ='Europe/Kiev'; export TZ
-#TZ='America/Los_Angeles'; export TZ
+export TZ='Europe/Kiev'
+#export TZ='America/Los_Angeles'
+
+# Turn off PC speaker bell
+xset -b
 
 # Load X resources (fixes some font issues)
 xrdb -merge .Xdefaults
+
+# Start synaptic daemon for keyboard monitoring
+syndaemon -i 0.5 -K -d
+
+# Start USB automount daemon.
+udiskie &
 
 
 # Screen configuration
@@ -29,7 +39,7 @@ xrdb -merge .Xdefaults
 # Note that you can run xrandr at the command line to get a list of your
 # connected screens and find out what names you should use to refer to them.
 
-# Activate primary screen (find first one connected)
+# Activate primary screen (find first one connected).
 MONITOR=$(xrandr | grep " connected" | cut -d' ' -f 1 | head -n 1)
 
 xrandr --output ${MONITOR} --auto --primary
@@ -46,13 +56,10 @@ xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --right-of $
 # Load screen backgrounds
 # =======================
 
-# To set your backgrounds, run nitrogren /path/to/images
+# To set your backgrounds, run nitrogren </path/to/images>.
 nitrogen --restore &
 
-
-# Startup icon tray
-# =================
-
+# Startup icon tray.
 # We are using stalonetray to create a small icon tray at the
 # top right of the screen. You are likely to want to tweak the
 # size of the icons and the width of the tray based upon the
@@ -79,30 +86,13 @@ setxkbmap -layout 'us,ru,ua' \
 # Allow custom pointers.
 xsetroot -cursor_name left_ptr
 
-# Start USB automount daemon
-udiskie &
-
-# Turn off PC speaker bell
-xset -b
-
-# Start notification daemon
-#/usr/lib/notification-daemon/notification-daemon &
-
-# Start synaptic daemon for keyboard monitoring
-syndaemon -i 0.5 -K -d
-
 gnome-screensaver &
 
-# Start compositing to support transparency. You can omit this
-# if you prefer not to use any transparency, but it is likely to cause
-# ugly black fringing with some programs such as synapse that expect
-# transparency support.
-#xcompmgr -n &
-
+# Compton compositor.
 # Try to start compton on up to 4 displays (by defaults starts only on one).
 seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 
-# Adjust display color temprature
+# Adjust display color temprature.
 redshift -O 6500 -g 0.9:0.9:0.9
 
 exec xmonad
