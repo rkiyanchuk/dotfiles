@@ -3,6 +3,8 @@ Zoresvit's Dotfiles
 
 ![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
 
+![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
+
 Prerequisites
 =============
 
