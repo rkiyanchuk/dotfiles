@@ -194,6 +194,7 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     , ((myModMask, xK_Print), spawn "scrot")
+    , ((myModMask .|. shiftMask, xK_Print), spawn "scrot -u")
   ]
 
 -- LibNotify urgency hook
