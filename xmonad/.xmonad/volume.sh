@@ -11,7 +11,7 @@ VOLUME_STR=$(amixer get ${CHANNEL} -c ${DEV_NUM} | grep 'Mono:' -A 1 | cut -d ' 
 # Extract number.
 VALUE=$(sed "s/[^0-9]//g" <<< ${VOLUME_STR})
 
-MUTED=$(amixer get ${CHANNEL} -c ${DEV_NUM} | grep 'Mono:' -A 1 | cut -d ' ' -f 9)
+MUTED=$(amixer get ${CHANNEL} -c ${DEV_NUM} | grep 'Mono:' -A 1 | cut -d ' ' -f 8)
 if [[ ${MUTED} == "[off]" ]]; then
     echo "<fc=${ORANGE}>--% </fc>"
 else
