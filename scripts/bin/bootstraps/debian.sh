@@ -109,8 +109,8 @@ aptitude -y install libpulse0:i386
 aptitude -y install xxkb nitrogen stalonetray
 aptitude -y install suckless-tools moreutils xbacklight
 aptitude -y install qt4-qtconfig
-aptitude -y install gtk2-engines gtk2-engines-murrine dmz-cursor-theme
-aptitude -y install gtk2-engines-qtcurve
+aptitude -y install gtk2-engines gtk2-engines-murrine gtk2-engines-murrine:i386
+aptitude -y install gtk2-engines-qtcurve dmz-cursor-theme
 aptitude -y install libxft2 libxft-dev
 aptitude -y install libnotify-bin xfce4-notifyd
 aptitude -y install libxcursor1:i386  # fixes cursor pointer problem in Skype
