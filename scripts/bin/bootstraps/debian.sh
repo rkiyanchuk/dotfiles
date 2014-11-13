@@ -141,7 +141,7 @@ aptitude -y install gdebi
 
 # Network utils
 aptitude -y install x11vnc traceroute nmap synergy
-aptitude -y install openssh-client openssh-server ssh-askpass
+aptitude -y install openssh-client openssh-server ssh-pass
 aptitude -y install irssi
 
 # Misc CLI utils
