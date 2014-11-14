@@ -1,7 +1,7 @@
 [user]
 	name = Ruslan Kiianchuk
-#	email = rkiyanchuk@mirantis.com
-	email = Ruslan_Kiyanchuk@symantec.com
+	email = rkiyanchuk@mirantis.com
+#	email = Ruslan_Kiyanchuk@symantec.com
 
 [alias]
     br = branch
