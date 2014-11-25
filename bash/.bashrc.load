@@ -102,9 +102,6 @@ alias egrep='egrep --color=auto'
 
 alias dud='du -d1 -h'
 
-# Recursively do `git pull` for all git repositories in current dir.
-alias rgit-pull='find . -type d -name .git -exec sh -c "cd \"{}\"/../ && pwd && git pull" \;'
-
 # Set PATH so it includes user's private `bin` directories if those exist.
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
