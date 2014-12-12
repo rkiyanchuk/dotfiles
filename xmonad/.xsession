@@ -12,8 +12,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export DESKTOP_SESSION="gnome"
 
 # Configure time zone
-export TZ='Europe/Kiev'
-#export TZ='America/Los_Angeles'
+#export TZ='Europe/Kiev'
+export TZ='America/Los_Angeles'
 
 # Turn off PC speaker bell
 xset -b
