@@ -378,7 +378,7 @@ let g:pymode_motion = 1  " Enable python-specific motions.
 let g:pymode_indent = 1
 let g:pymode_utils_whitespaces = 1
 let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<leader>pb'
+let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 
