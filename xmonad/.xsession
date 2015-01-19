@@ -18,7 +18,7 @@ export TZ='America/Los_Angeles'
 # Turn off PC speaker bell
 xset -b
 
-# Load X resources (fixes some font issues)
+# Load X resources (fixes some font issues).
 xrdb -merge .Xdefaults
 
 # Start synaptic daemon for keyboard monitoring

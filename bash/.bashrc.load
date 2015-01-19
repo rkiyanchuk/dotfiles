@@ -110,3 +110,6 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
+
+# Activate tmuxp bash completion, see docs at http://tmuxp.readthedocs.org.
+source tmuxp.bash

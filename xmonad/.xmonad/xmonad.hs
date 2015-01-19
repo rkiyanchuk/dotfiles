@@ -141,11 +141,15 @@ chatLayout = renamed [Replace "C"]
     isSkype = (Title "zoresvit - Skype™")
     isPidgin = (Title "Buddy List")
 
-fullLayout = renamed [Replace "F"] $ avoidStruts $ noBorders $ (Full)
+fullLayout = avoidStruts(smartBorders(
+                renamed [Replace "F"] (noBorders Full) 
+                ||| renamed [Replace "T"] (ResizableTall 1 (3/100) (1/2) [])))
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "η" chatLayout $ defaultLayouts
+myLayouts = onWorkspace "η" chatLayout $ 
+            onWorkspace "ζ" fullLayout $ 
+            defaultLayouts
 
 
 myManagementHooks :: [ManageHook]
@@ -154,12 +158,13 @@ myManagementHooks = [
   , resource =? "xfce4-notifyd" --> doIgnore
   , resource =? "XXkb" --> doIgnore
   , className =? "rdesktop" --> doFloat
-  , (className =? "Iceweasel") --> focusShift "ζ"
-  , (className =? "Firefox") --> focusShift "ζ"
-  , (className =? "Chromium-browser") --> focusShift "ζ"
-  , (className =? "Pidgin") --> focusShift "η"
-  , (className =? "Skype") --> doShift "η"
-  , (className =? "ViberPC") --> doShift "η"
+  , className =? "Iceweasel" --> focusShift "ζ"
+  , className =? "Firefox" --> focusShift "ζ"
+  , className =? "Chromium-browser" --> focusShift "ζ"
+  , className =? "Pidgin" --> focusShift "η"
+  , className =? "Skype" --> doShift "η"
+  , className =? "ViberPC" --> doShift "η"
+  , title =? "Form" --> doIgnore  -- Viber notifications
   ]
   where
     focusShift = doF . liftM2 (.) W.greedyView W.shift

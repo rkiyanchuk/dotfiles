@@ -10,3 +10,7 @@ map <C-h> :history<CR>
 map <leader>p :hardcopy<CR>
 
 colorscheme solarized-light
+
+ " Auto-pin
+autocmd PageLoad listen.grooveshark.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
+autocmd PageLoad cloudfire-dev.slack.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
