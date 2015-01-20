@@ -95,4 +95,8 @@ seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 # Adjust display color temprature.
 redshift -O 6500 -g 0.9:0.9:0.9
 
+# Sync clipboard with X-selection-paste buffer.
+autocutsel -f
+autocutsel -f -s PRIMARY
+
 exec xmonad

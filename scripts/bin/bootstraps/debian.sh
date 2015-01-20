@@ -145,7 +145,7 @@ aptitude -y install openssh-client openssh-server sshpass
 aptitude -y install irssi
 
 # Misc CLI utils
-aptitude -y install tree htop tmux mc vifm xclip
+aptitude -y install tree htop tmux mc vifm xclip autocutsel
 aptitude -y install exuberant-ctags source-highlight checkinstall
 aptitude -y install mercurial git
 
