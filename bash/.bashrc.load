@@ -100,6 +100,20 @@ alias rgrep='rgrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+function set_colorscheme() {
+    if [ $1 == 'light' ];  then
+        xrdb -merge .Xdefaults -DSOLARIZED_LIGHT
+        sed -i 's/002b36/fdf6e3/g' ${HOME}/.gtkrc-2.0
+    elif [ $1 == 'dark' ];  then 
+        xrdb -merge .Xdefaults -DSOLARIZED_DARK
+        sed -i 's/fdf6e3/002b36/g' ${HOME}/.gtkrc-2.0
+    fi
+}
+
+alias colorscheme_light='set_colorscheme light'
+alias colorscheme_dark='set_colorscheme dark'
+alias gvimlight='gvim -c "set background=light"'
+
 alias dud='du -d1 -h'
 
 # Set PATH so it includes user's private `bin` directories if those exist.
