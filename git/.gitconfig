@@ -10,9 +10,14 @@
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
     mt = mergetool
     st = status
+    # Distribute commit across all other branches.
     populate = "!python ~/.git.conf/git-populate.py"
+    # Recursively fast-forward all branches in the repo.
     rffwd = "!bash ~/.git.conf/git-ffwd-branches.sh"
+    # Recursively pull and update all branches in all repos in current dir.
     rpull = "! ~/.git.conf/git-rpull.sh"
+    # Checkout pull request from GitHub.
+    co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
 
 [apply]
     whitespace = warn
