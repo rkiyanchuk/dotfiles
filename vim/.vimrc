@@ -325,6 +325,8 @@ Bundle 'tpope/vim-surround'
 " Intuitive fuzzy files opening.
 " Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+" Puppet editing
+Bundle 'rodjek/vim-puppet'
 
 " Plugins for Python development.
 Bundle 'davidhalter/jedi-vim'
