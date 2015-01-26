@@ -147,7 +147,7 @@ aptitude -y install irssi
 # Misc CLI utils
 aptitude -y install tree htop tmux mc vifm xclip autocutsel
 aptitude -y install exuberant-ctags source-highlight checkinstall
-aptitude -y install mercurial git
+aptitude -y install mercurial git shellcheck
 
 # Python
 aptitude -y install python3-all python2.7-dev python3-dev
@@ -195,3 +195,5 @@ mkdir -p $HOME/devel
 # Install Vagrant
 # install hplip for printing:
 # http://hplipopensource.com/hplip-web/install/install/index.html
+
+# Install GitHub hub utility
