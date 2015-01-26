@@ -327,6 +327,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'kien/ctrlp.vim'
 " Puppet editing
 Bundle 'rodjek/vim-puppet'
+" DNS Zone files editing
+Bundle 'seveas/bind.vim'
 
 " Plugins for Python development.
 Bundle 'davidhalter/jedi-vim'
