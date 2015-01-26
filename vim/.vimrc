@@ -53,7 +53,7 @@ set showfulltag
 set spelllang=en,ru_yo,uk
 set splitbelow
 set splitright
-set textwidth=80
+set textwidth=79
 set timeoutlen=500
 set undofile
 set undodir=$VIMHOME/backups
