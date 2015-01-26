@@ -68,13 +68,16 @@ case $TERM in
      ;;
 esac
 
-# TMUX tweaks.
-source ~/.tmux/tmux_completion.sh
+# Tmux completion.
+source ${HOME}/.tmux/tmux_completion.sh
+
+# Hub for GitHub completion.
+source ${HOME}/.git.conf/hub.bash_completion.sh
 
 # Store date and time in bash history.
 export HISTTIMEFORMAT="%d.%m.%y %T "
-export HISTSIZE=-1
-export HISTFILESIZE=-1
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # Tell Java that XMonad is non-reparenting WM.
 # Needed for correct Java apps windows operation under XMonad.
@@ -104,7 +107,7 @@ function set_colorscheme() {
     if [ $1 == 'light' ];  then
         xrdb -merge .Xdefaults -DSOLARIZED_LIGHT
         sed -i 's/002b36/fdf6e3/g' ${HOME}/.gtkrc-2.0
-    elif [ $1 == 'dark' ];  then 
+    elif [ $1 == 'dark' ];  then
         xrdb -merge .Xdefaults -DSOLARIZED_DARK
         sed -i 's/fdf6e3/002b36/g' ${HOME}/.gtkrc-2.0
     fi
