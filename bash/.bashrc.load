@@ -74,6 +74,9 @@ source ${HOME}/.tmux/tmux_completion.sh
 # Hub for GitHub completion.
 source ${HOME}/.git.conf/hub.bash_completion.sh
 
+# Vagrant completion.
+source ${HOME}/.vagrant.bash_completion.sh
+
 # Store date and time in bash history.
 export HISTTIMEFORMAT="%d.%m.%y %T "
 HISTSIZE=-1
