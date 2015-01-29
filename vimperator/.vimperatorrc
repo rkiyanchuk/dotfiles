@@ -14,3 +14,17 @@ colorscheme solarized-light
  " Auto-pin
 autocmd PageLoad listen.grooveshark.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
 autocmd PageLoad cloudfire-dev.slack.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
+
+
+" Hide bottom statusline.
+:js << EOJS
+function toggle_bottombar() {
+  var bb = document.getElementById('liberator-bottombar');
+  if (!bb)
+    return;
+  bb.style.height = (bb.style.height == '') ? '0px' : '';
+  bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+}
+EOJS
+
+map <silent> <F2> :js toggle_bottombar()<CR>
