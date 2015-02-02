@@ -338,6 +338,7 @@ Bundle 'nvie/vim-flake8'
 Bundle 'nvie/vim-pyunit'
 " python-mode is for syntax and highlighting (completion done by jedi-vim).
 Bundle 'klen/python-mode'
+
 " Enhanced statusline
 Bundle 'bling/vim-airline'
 " Jinja & HTML syntax
