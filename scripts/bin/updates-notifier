@@ -6,6 +6,7 @@
 
 sudo aptitude update > /dev/null
 
+USER='zoresvit'
 UPDATES=`aptitude -F%p --disable-columns search ~U | wc -l`
 
 if [ $UPDATES -ne '0' ]; then
