@@ -184,9 +184,9 @@ augroup PROGRAMMING
     au FileType c,cpp,h,tex map <F5> :call Compile()<CR>
     au FileType c,cpp,h set cindent
     au FileType c,cpp,h set 'cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4'
-    au BufRead,BufNewFile *.html set shiftwidth=2
-    au BufRead,BufNewFile *.html set softtabstop=2
-    au BufRead,BufNewFile *.html set tabstop=2
+    au BufRead,BufNewFile *.html,*.yaml set shiftwidth=2
+    au BufRead,BufNewFile *.html,*.yaml set softtabstop=2
+    au BufRead,BufNewFile *.html,*.yaml set tabstop=2
     " Check current file for correspondence to Google Style Guide with cpplint tool
     au FileType c,cpp nmap <F8> :set makeprg=$VIMHOME/utils/cpplint.py\ %<CR>:make<CR>:copen<CR><CR>
     " Correctly set filetype for configuration files.
@@ -306,45 +306,46 @@ set rtp+=$VIMBUNDLE/vundle/
 call vundle#rc()
 
 " Update Vundle itself.
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 " Solarized colorscheme.
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 " Insert predefined text templates with placeholders.
-Bundle 'drmingdrmer/xptemplate'
+Plugin 'drmingdrmer/xptemplate'
 " File browser.
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Gitk for vim (depends on fugitive).
-Bundle 'gregsexton/gitv'
-Bundle 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'tpope/vim-fugitive'
 " Show project structure.
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 " C/C++ autocompletion using clang.
-Bundle 'Rip-Rip/clang_complete'
+Plugin 'Rip-Rip/clang_complete'
 " Surround text with tags.
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Intuitive fuzzy files opening.
-" Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
+" Plugin 'wincent/Command-T'
+Plugin 'kien/ctrlp.vim'
 " Puppet editing
-Bundle 'rodjek/vim-puppet'
+Plugin 'rodjek/vim-puppet'
 " DNS Zone files editing
-Bundle 'seveas/bind.vim'
+Plugin 'seveas/bind.vim'
 
 " Plugins for Python development.
-Bundle 'davidhalter/jedi-vim'
-Bundle 'nvie/vim-flake8'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
 " Enables advanced unit test support. Install dependencies first:
 " $ pip install nose nose_machineout vim_bridge
-Bundle 'nvie/vim-pyunit'
+Plugin 'nvie/vim-pyunit'
 " python-mode is for syntax and highlighting (completion done by jedi-vim).
-Bundle 'klen/python-mode'
+Plugin 'klen/python-mode'
 
 " Enhanced statusline
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " Jinja & HTML syntax
-Bundle 'Glench/Vim-Jinja2-Syntax'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 " File navigation with `%` for HTML, LaTeX, XML and others.
-Bundle 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/matchit.zip'
+
 
 " Turn on filetype recognition, load filetype specific plugins and indents.
 filetype plugin indent on
