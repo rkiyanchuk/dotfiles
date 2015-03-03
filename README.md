@@ -3,10 +3,9 @@ Zoresvit's Dotfiles
 
 ![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
 
-Prerequisites
-=============
-
-If you have SSD, enable `relatime` mount options when partitioning the drive.
+[Dotfiles](https://wiki.archlinux.org/index.php/Dotfiles) are custom
+configuration files used to maintain preffered settings for used software as
+well as operating system.
 
 
 How to
@@ -78,3 +77,7 @@ card. For instance:
     options snd-usb-audio index=2
 ```
 
+System provisioning hints
+-------------------------
+
+If you have SSD, enable `relatime` mount options when partitioning the drive.
