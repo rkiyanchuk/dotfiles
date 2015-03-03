@@ -13,7 +13,6 @@ colorscheme solarized-light
 
  " Auto-pin
 autocmd PageLoad listen.grooveshark.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
-autocmd PageLoad slack.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
 
 
 " Hide bottom statusline.
