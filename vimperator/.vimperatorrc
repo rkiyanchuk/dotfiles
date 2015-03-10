@@ -5,15 +5,26 @@ set focuscontent
 set hlsearch
 set incsearch
 set smartcase
+set ignorecase
+set smartcase
+
+map <Esc> <C-c>
+
 
 map <C-h> :history<CR>
 map <leader>p :hardcopy<CR>
 
 colorscheme solarized-light
 
- " Auto-pin
-autocmd PageLoad listen.grooveshark.com js if(!getBrowser().mCurrentTab.pinned) getBrowser().pinTab(getBrowser().mCurrentTab);
 
+map <F3> :set apptab<CR>
+map <F4> :set noapptab<CR>
+map D :tabclose!<CR>
+
+command! localhost open http://localhost
+
+
+map <F5> slack()
 
 " Hide bottom statusline.
 :js << EOJS
