@@ -113,8 +113,6 @@ let g:xml_syntax_folding=1
 
 " Default <leader> is \ (backslash). It may be redefined:
 "let mapleader="\"
-" Comma is followed by a space most of the time.
-inoremap , ,<SPACE>
 " Resource configuration editing.
 nmap <silent> <leader>v :split $MYVIMRC<CR>
 nmap <silent> <leader>g :split $MYGVIMRC<CR>
@@ -210,8 +208,14 @@ augroup PROGRAMMING
     au BufRead,BufNewFile *.xml set shiftwidth=2
     au BufRead,BufNewFile *.xml set softtabstop=2
     au BufRead,BufNewFile *.xml set tabstop=2
-
 augroup END
+
+augroup PYTHON
+    au!
+    au FileType python map <F5> :PymodeLint<CR>
+augroup END
+
+
 " }}}
 
 
@@ -307,8 +311,15 @@ call vundle#rc()
 
 " Update Vundle itself.
 Plugin 'gmarik/vundle'
+
 " Solarized colorscheme.
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
+" Use forked repo with fixed SignColumn colors.
+Plugin 'zoresvit/vim-colors-solarized'
+
+" Show git diff in gutter (+/- signs column).
+Plugin 'airblade/vim-gitgutter'
+
 " Insert predefined text templates with placeholders.
 Plugin 'drmingdrmer/xptemplate'
 " File browser.
@@ -326,13 +337,14 @@ Plugin 'tpope/vim-surround'
 " Plugin 'wincent/Command-T'
 Plugin 'kien/ctrlp.vim'
 " Puppet editing
-Plugin 'rodjek/vim-puppet'
+"Plugin 'rodjek/vim-puppet'
+Plugin 'puppetlabs/puppet-syntax-vim'
 " DNS Zone files editing
 Plugin 'seveas/bind.vim'
 
 " Plugins for Python development.
 Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 " Enables advanced unit test support. Install dependencies first:
 " $ pip install nose nose_machineout vim_bridge
 Plugin 'nvie/vim-pyunit'
@@ -377,12 +389,15 @@ nmap <F2> :NERDTreeToggle<CR>
 " Python-mode
 " -----------
 
-let g:pymode_lint = 0
+let g:pymode_lint = 1
+let g:pymode_lint_checkers=['pylint', 'pep8', 'pep257', 'mccabe']
+
 let g:pymode_rope = 0
 let g:pymode_folding = 0
-let g:pymode_motion = 1  " Enable python-specific motions.
 let g:pymode_indent = 1
-let g:pymode_utils_whitespaces = 1
+let g:pymode_motion = 1  " Enable python-specific motions.
+
+let g:pymode_trim_whitespaces = 1
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
