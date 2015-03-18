@@ -130,7 +130,7 @@ aptitude -y install python-setuptools udisks python-pip python-gobject
 aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection
 aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.7
 
-aptitude -y install linux-firmware gnome-screensaver
+aptitude -y install firmware-linux gnome-screensaver
 
 
 
