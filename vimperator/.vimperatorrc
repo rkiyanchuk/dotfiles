@@ -26,15 +26,38 @@ command! localhost open http://localhost
 
 map <F5> slack()
 
-" Hide bottom statusline.
-:js << EOJS
-function toggle_bottombar() {
-  var bb = document.getElementById('liberator-bottombar');
-  if (!bb)
-    return;
-  bb.style.height = (bb.style.height == '') ? '0px' : '';
-  bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
-}
-EOJS
+" Hide status bar when fullscreen mode is detected
+autocmd Fullscreen .* js updateBottomBar()
 
-map <silent> <F2> :js toggle_bottombar()<CR>
+" Re-enable bottom bar during certain commands.
+noremap : :js updateBottomBar(false)<CR>:
+noremap o :js updateBottomBar(false)<CR>o
+noremap O :js updateBottomBar(false)<CR>O
+noremap t :js updateBottomBar(false)<CR>t
+noremap T :js updateBottomBar(false)<CR>t
+noremap / :js updateBottomBar(false)<CR>/
+cnoremap <CR> <CR>:js updateBottomBar()<CR>
+cnoremap <Esc> <Esc>:js updateBottomBar()<CR>
+
+:js << EOF
+
+let hlContentSepValue = highlight.get('ContentSeparator').value
+
+function updateBottomBar(close = window.fullScreen) {
+  let bb = document.getElementById('liberator-bottombar')
+  if (! bb) return
+
+  if (close) {
+    bb.style.height = '0px'
+    bb.style.overflow = 'hidden'
+    liberator.execute('highlight ContentSeparator display: none;')
+  }
+  else {
+    bb.style.height = ''
+    bb.style.overflow = ''
+    liberator.execute('highlight ContentSeparator ' + hlContentSepValue)
+  }
+}
+updateBottomBar()
+
+EOF
