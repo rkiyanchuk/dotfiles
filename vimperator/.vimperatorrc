@@ -8,28 +8,30 @@ set smartcase
 set ignorecase
 set smartcase
 
-map <Esc> <C-c>
-
-
-map <C-h> :history<CR>
-map <leader>p :hardcopy<CR>
-
 colorscheme solarized-light
 
 
-map <F3> :set apptab<CR>
-map <F4> :set noapptab<CR>
+map <leader>p :hardcopy<CR>
+map <leader>e :clearly<CR>  " Activate Evernote Clearly plugin.
+
+" Use full zoom by default.
+map zi zI
+map zo zO
+map zz zZ
+
+" Manipulating app tabs.
+map <F2> :set apptab<CR>
+map <F3> :set noapptab<CR>
 map D :tabclose!<CR>
 
-command! localhost open http://localhost
 
+" Hide status bar when Vimperator is disabled.
+noremap <insert> :js updateBottomBar(true)<CR><insert>
 
-map <F5> slack()
-
-" Hide status bar when fullscreen mode is detected
+" Hide status bar when fullscreen mode is detected.
 autocmd Fullscreen .* js updateBottomBar()
 
-" Re-enable bottom bar during certain commands.
+" Re-enable bottom status bar on following commands:
 noremap : :js updateBottomBar(false)<CR>:
 noremap o :js updateBottomBar(false)<CR>o
 noremap O :js updateBottomBar(false)<CR>O
@@ -38,6 +40,9 @@ noremap T :js updateBottomBar(false)<CR>t
 noremap / :js updateBottomBar(false)<CR>/
 cnoremap <CR> <CR>:js updateBottomBar()<CR>
 cnoremap <Esc> <Esc>:js updateBottomBar()<CR>
+
+
+command! localhost open http://localhost
 
 :js << EOF
 
@@ -59,5 +64,4 @@ function updateBottomBar(close = window.fullScreen) {
   }
 }
 updateBottomBar()
-
 EOF
