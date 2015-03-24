@@ -12,7 +12,6 @@ colorscheme solarized-light
 
 
 map <leader>p :hardcopy<CR>
-map <leader>e :clearly<CR>  " Activate Evernote Clearly plugin.
 
 " Use full zoom by default.
 map zi zI
@@ -24,22 +23,16 @@ map <F2> :set apptab<CR>
 map <F3> :set noapptab<CR>
 map D :tabclose!<CR>
 
+" Activate Evernote Clearly plugin.
+map <leader>r :clearly<CR>
+
 
 " Hide status bar when Vimperator is disabled.
 noremap <insert> :js updateBottomBar(true)<CR><insert>
 
 " Hide status bar when fullscreen mode is detected.
 autocmd Fullscreen .* js updateBottomBar()
-
-" Re-enable bottom status bar on following commands:
-noremap : :js updateBottomBar(false)<CR>:
-noremap o :js updateBottomBar(false)<CR>o
-noremap O :js updateBottomBar(false)<CR>O
-noremap t :js updateBottomBar(false)<CR>t
-noremap T :js updateBottomBar(false)<CR>t
-noremap / :js updateBottomBar(false)<CR>/
-cnoremap <CR> <CR>:js updateBottomBar()<CR>
-cnoremap <Esc> <Esc>:js updateBottomBar()<CR>
+autocmd LocationChange .* js updateBottomBar(false)
 
 
 command! localhost open http://localhost
