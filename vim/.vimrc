@@ -334,7 +334,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 " Puppet editing
 "Plugin 'rodjek/vim-puppet'
-Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'zoresvit/puppet-syntax-vim'
 " DNS Zone files editing
 Plugin 'seveas/bind.vim'
 
@@ -346,6 +346,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-pyunit'
 " python-mode is for syntax and highlighting (completion done by jedi-vim).
 Plugin 'klen/python-mode'
+Plugin 'jmcantrell/vim-virtualenv'
 
 " Enhanced statusline
 Plugin 'bling/vim-airline'
