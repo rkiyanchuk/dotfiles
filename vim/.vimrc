@@ -421,12 +421,11 @@ nmap <F3> :TagbarToggle<CR>
 " Airline
 " -------
 
+" unicode symbols
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
-
-" unicode symbols
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
@@ -439,6 +438,9 @@ let g:airline_symbols.whitespace = 'Ξ'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
+
+let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
+let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-3v', ':0x%03O'])
 
 
 " XPTemplate
