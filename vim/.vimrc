@@ -120,12 +120,8 @@ nmap <silent> <leader>V :source $MYVIMRC<CR>
 nmap <silent> <leader>G :source $MYGVIMRC<CR>
 " Restore last session.
 nmap <leader>ls :call LoadSession()<CR>
-" Control buffers.
-nmap <silent> <leader>bb :buffers<CR>
-nmap <silent> <leader>bl :b#<CR>
-nmap <silent> <leader>bn :bnext<CR>
-nmap <silent> <leader>bp :bprevious<CR>
-nmap <silent> <leader>bd :bdelete<CR>
+" Select buffer.
+nnoremap <leader>bb :buffers<CR>:buffer<Space>
 " Control quickfix window.
 nmap <silent> <leader>co :copen<CR>
 nmap <silent> <leader>cc :cclose<CR>
