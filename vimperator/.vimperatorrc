@@ -27,8 +27,6 @@ map D :tabclose!<CR>
 map <leader>r :clearly<CR>
 
 
-autocmd PageLoadPre .* :zoom! 120
-
 " Hide status bar when Vimperator is disabled.
 noremap <insert> :js updateBottomBar(true)<CR><insert>
 
