@@ -25,8 +25,13 @@ mutt/.mutt/account.*
 
 # vimperator
 # ==========
+
+# Ignore some directories in default profile
 vimperator/.vimperator/info/default/history-command
 vimperator/.vimperator/info/default/history-search
 vimperator/.vimperator/info/default/local-marks
 vimperator/.vimperator/info/default/macros
+
+# Ignore webex profile completely
+vimperator/.vimperator/info/webex
 

@@ -1,4 +1,4 @@
-gtk-theme-name="SolarizedLight"
+gtk-theme-name="numix-solarized-light"
 gtk-icon-theme-name="oxygen"
 gtk-font-name="Liberation Sans 13"
 gtk-cursor-theme-name="DMZ-White"
@@ -15,5 +15,5 @@ gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
 
 # Colorize GVim window edges.
-style "gvim" {bg[NORMAL] = "#fdf6e3"}
+style "gvim" {bg[NORMAL] = "#002b36"}
 widget "vim-main-window.*GtkForm" style "gvim"
