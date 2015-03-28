@@ -6,6 +6,11 @@ swap/
 session.vim
 spell/
 
+# Vifm
+# ====
+vifm/.vifm/Trash
+vifm/.vifm/vifminfo
+
 # XMonad
 # ======
 xmonad.errors
@@ -34,4 +39,3 @@ vimperator/.vimperator/info/default/macros
 
 # Ignore webex profile completely
 vimperator/.vimperator/info/webex
-
