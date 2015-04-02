@@ -22,7 +22,7 @@ vim_source/
 
 # tmux
 # ====
-tmux/.tmux/session.*
+tmux/.tmux/plugins/
 
 # mutt
 # ====
