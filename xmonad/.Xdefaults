@@ -125,4 +125,4 @@ URxvt.matcher.button: 1
 
 ! Keyboard select extension.
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.C-f: perl:keyboard-select:search
+URxvt.keysym.M-f: perl:keyboard-select:search
