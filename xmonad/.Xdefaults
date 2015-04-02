@@ -70,8 +70,6 @@
 *pointerColorForeground:    S_base1
 *pointerColorBackground:    S_base01
 *cursorColor:               S_base1
-*fadeColor:                 S_base03
-*fading:                    0
 
 
 ! Fonts
@@ -116,5 +114,15 @@ URxvt*urgentOnBell: true
 URxvt.url-select.autocopy:  true
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
-urxvt*urlLauncher: firefox
-URxvt*scrollWithBuffer: true
+urxvt.urlLauncher: firefox
+URxvt.scrollWithBuffer: true
+
+! Enable extensions.
+URxvt.perl-ext-common: default,matcher,keyboard-select
+
+! Make URL clickable.
+URxvt.matcher.button: 1
+
+! Keyboard select extension.
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-f: perl:keyboard-select:search
