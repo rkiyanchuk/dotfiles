@@ -22,6 +22,7 @@ XPTvar $CM    ''
 XPTvar $CR    '"""'
 
 XPT docstr wrap	" $CL$CM ..
-`$CL^`$CM^`$CM^`cursor^
+`$CL^`$CM^`$CM^
+`cursor^
 `$CR^
 ..XPT
