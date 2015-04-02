@@ -11,11 +11,11 @@
     mt = mergetool
     st = status -sb
     # Distribute commit across all other branches.
-    populate = "!python ~/.git.conf/git-populate.py"
+    populate = "!python ~/.git.d/git-populate.py"
     # Recursively fast-forward all branches in the repo.
-    rffwd = "!bash ~/.git.conf/git-ffwd-branches.sh"
+    rffwd = "!bash ~/.git.d/git-ffwd-branches.sh"
     # Recursively pull and update all branches in all repos in current dir.
-    rpull = "! ~/.git.conf/git-rpull.sh"
+    rpull = "! ~/.git.d/git-rpull.sh"
     # Checkout pull request from GitHub.
     co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
 
