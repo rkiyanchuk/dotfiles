@@ -9,7 +9,7 @@
     dstat = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
     mt = mergetool
-    st = status
+    st = status -sb
     # Distribute commit across all other branches.
     populate = "!python ~/.git.conf/git-populate.py"
     # Recursively fast-forward all branches in the repo.
