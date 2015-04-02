@@ -39,3 +39,20 @@ vimperator/.vimperator/info/default/macros
 
 # Ignore webex profile completely
 vimperator/.vimperator/info/webex
+
+
+
+python/.virtualenvs/*
+
+!python/.virtualenvs/get_env_details
+!python/.virtualenvs/initialize
+!python/.virtualenvs/postactivate
+!python/.virtualenvs/postdeactivate
+!python/.virtualenvs/postmkproject
+!python/.virtualenvs/postmkvirtualenv
+!python/.virtualenvs/postrmvirtualenv
+!python/.virtualenvs/preactivate
+!python/.virtualenvs/predeactivate
+!python/.virtualenvs/premkproject
+!python/.virtualenvs/premkvirtualenv
+!python/.virtualenvs/prermvirtualenv
