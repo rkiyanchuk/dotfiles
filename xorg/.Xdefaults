@@ -118,11 +118,11 @@ urxvt.urlLauncher: firefox
 URxvt.scrollWithBuffer: true
 
 ! Enable extensions.
-URxvt.perl-ext-common: default,matcher,keyboard-select
+URxvt.perl-ext-common: ...,default,matcher,keyboard-select
 
 ! Make URL clickable.
 URxvt.matcher.button: 1
 
 ! Keyboard select extension.
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-f: perl:keyboard-select:search
+URxvt.keysym.M-s: perl:keyboard-select:search
