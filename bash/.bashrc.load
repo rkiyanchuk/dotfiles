@@ -123,7 +123,7 @@ alias gvimlight='gvim -c "set background=light"'
 alias dud='du -d1 -h'
 
 # Force tmux into 256 colors mode.
-alias tmux="tmux -2"
+export TERM=rxvt-256color
 
 # Set PATH so it includes user's private `bin` directories if those exist.
 if [ -d "$HOME/bin" ] ; then
