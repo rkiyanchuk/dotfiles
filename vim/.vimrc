@@ -354,6 +354,10 @@ Plugin 'bling/vim-airline'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 " File navigation with `%` for HTML, LaTeX, XML and others.
 Plugin 'vim-scripts/matchit.zip'
+" For editing .tmux.conf
+Plugin 'tmux-plugins/vim-tmux'
+
+Plugin 'plasticboy/vim-markdown'
 
 
 " Turn on filetype recognition, load filetype specific plugins and indents.
