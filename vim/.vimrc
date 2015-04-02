@@ -211,6 +211,13 @@ augroup PYTHON
     au FileType python map <F5> :PymodeLint<CR>
 augroup END
 
+augroup BASH
+    au!
+    au BufRead,BufNewFile *.sh set makeprg=shellcheck\ --format\ gcc\ %:p
+    au FileType sh map <F5> :make<CR><CR>:copen<CR>
+augroup END
+
+
 
 " }}}
 
