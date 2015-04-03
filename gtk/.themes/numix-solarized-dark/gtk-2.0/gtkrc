@@ -760,3 +760,7 @@ widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
 widget "xfwm4-tabwin*" style "xfwm-tabwin"
 widget_class "*XfsmLogoutDialog*" style "xfsm-logout"
 widget_class "*XfsmLogoutDialog*GtkButton" style "xfsm-logout-button"
+
+# Colorize GVim window edges.
+style "gvim" {bg[NORMAL] = "#fdf6e3"}
+widget "vim-main-window.*GtkForm" style "gvim"
