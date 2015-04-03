@@ -10,6 +10,8 @@ set smartcase
 
 colorscheme solarized-light
 
+" MAPPINGS
+" ========
 
 map <leader>p :hardcopy<CR>
 
@@ -27,34 +29,33 @@ map D :tabclose!<CR>
 map <leader>r :clearly<CR>
 
 
-" Hide status bar when Vimperator is disabled.
-noremap <insert> :js updateBottomBar(true)<CR><insert>
-
-" Hide status bar when fullscreen mode is detected.
-autocmd Fullscreen .* js updateBottomBar()
-autocmd LocationChange .* js updateBottomBar(false)
-
+" COMMANDS
+" ========
 
 command! localhost open http://localhost
+" Hide status bar when fullscreen mode is detected.
+autocmd Fullscreen .* js updateBottomBar()
+
+
+" FUNCTIONS
+" =========
 
 :js << EOF
-
 let hlContentSepValue = highlight.get('ContentSeparator').value
-
 function updateBottomBar(close = window.fullScreen) {
   let bb = document.getElementById('liberator-bottombar')
-  if (! bb) return
+    if (! bb) return
 
-  if (close) {
-    bb.style.height = '0px'
-    bb.style.overflow = 'hidden'
-    liberator.execute('highlight ContentSeparator display: none;')
-  }
-  else {
-    bb.style.height = ''
-    bb.style.overflow = ''
-    liberator.execute('highlight ContentSeparator ' + hlContentSepValue)
-  }
+      if (close) {
+        bb.style.height = '0px'
+          bb.style.overflow = 'hidden'
+          liberator.execute('highlight ContentSeparator display: none;')
+      }
+      else {
+        bb.style.height = ''
+          bb.style.overflow = ''
+          liberator.execute('highlight ContentSeparator ' + hlContentSepValue)
+      }
 }
 updateBottomBar()
 EOF

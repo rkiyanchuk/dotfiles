@@ -70,7 +70,7 @@ ${color2}Temp:${goto 150} ${acpitemp}°C
 ${color2}Freq:${goto 150} ${freq_g} GHz
 ${voffset 5}${color2}Battery:${goto 150} ${color6}${battery_bar 18,270}
 ${color2}${goto 250} ${voffset -20}${battery_short}
-Disk IO:${goto 150} ${diskiograph_read sda 18,270 073642 073642 0 -l}
+Disk IO:${goto 150} ${diskiograph sda 18,270 073642 073642 0 -l}
 
 ${color2}$hr
 ${color}FILE SYSTEMS
@@ -88,6 +88,5 @@ ${color}NETWORK
 
 ${color2}eth0:${goto 150} ${addrs eth0}
 ${color2}wlan0:${goto 150} ${addrs wlan0}
-Up:${goto 150} ${upspeed wlan0} - Down:$color ${downspeed eth0}
 
 ${color2}$hr
