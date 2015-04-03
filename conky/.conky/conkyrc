@@ -16,16 +16,14 @@ own_window yes
 own_window_type override
 own_window_transparent yes
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+minimum_size 430 800
 
 border_inner_margin 0
 border_outer_margin 0
 
-minimum_size 200 250
-maximum_width 400
-
 alignment tr
-gap_x 35
-gap_y 55
+gap_x 20
+gap_y 50
 
 draw_shades no
 draw_outline no
@@ -34,46 +32,62 @@ draw_graph_borders no
 
 # Fonts
 use_xft yes
-xftfont Liberation Mono:size=12
-xftalpha 0.5
+xftfont Liberation Mono:size=13
 
 uppercase no
 
-default_color #839496
-
-# Lua code for rings
-#lua_load ~/.conky/rings.lua
-#lua_draw_hook_pre clock_rings
-
+default_color 839496  # primary text
 color1 93a1a1  # emphesized text
 color2 586e75  # secondary text
 color3 dc322f  # red
 color4 859900  # green
 color5 268bd2  # blue
-color6 2aa198  # cyan
+color6 073642  # background hilight
 color7 6c71c4  # violet
 color8 b58900  # yellow
 color9 cb4b16  # orange
 
+# Lua code for rings
+#lua_load ~/.conky/rings.lua
+#lua_draw_hook_pre clock_rings
 
-default_color 839496  # primary text
 
 TEXT
-$hr
-${color2}Uptime:${color} $uptime
-${color2}Freq (MHz):${color} $freq
-${color2}Freq (GHz):${color} $freq_g
-${color2}RAM Usage:${color} $mem/$memmax - $memperc% ${membar 4}
-${color2}CPU Usage:${color} $cpu% ${cpubar 4}
-${color2}Processes:$color $processes  ${color1}Running:$color $running_processes
-$hr
-${color2}File systems:
- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-${color2}Networking:
-Up:${color} ${upspeed eth0} - Down:$color ${downspeed eth0}
-$hr
-${color}Name              PID   CPU%   MEM%
-${color2} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color2} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color2} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color2} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+${color2}$hr
+${color}OS
+
+${color2}Uptime:${goto 150} $uptime
+${voffset 5}${color2}CPU:${goto 150} ${color6}${cpubar 18,270}
+${color2}${goto 250} ${voffset -20}${cpu}%${alignr 10}${running_processes} / ${processes}
+${voffset 5}${color2}RAM:${goto 150} ${color6}${membar 18,270}
+${color2}${goto 250} ${voffset -20}${memperc}% ${alignr 10}${mem}
+Cached:${goto 150} ${cached}
+
+${color2}$hr
+${color}HARDWARE
+
+${color2}Temp:${goto 150} ${acpitemp}°C
+${color2}Freq:${goto 150} ${freq_g} GHz
+${voffset 5}${color2}Battery:${goto 150} ${color6}${battery_bar 18,270}
+${color2}${goto 250} ${voffset -20}${battery_short}
+Disk IO:${goto 150} ${diskiograph_read sda 18,270 073642 073642 0 -l}
+
+${color2}$hr
+${color}FILE SYSTEMS
+
+${voffset 5}${color2}/:${goto 150} ${color6}${fs_bar 18,270 /}
+${color2}${alignr 10} ${voffset -20}${fs_used /} / ${fs_size /}
+${voffset 5}${color2}/home:${goto 150} ${color6}${fs_bar 18,270 /home}
+${color2}${alignr 10} ${voffset -20}${fs_used /home} / ${fs_size /home}
+${voffset 5}${color2}/var/tmp:${goto 150} ${color6}${fs_bar 18,270 /var/tmp}
+${color2}${alignr 10} ${voffset -20}${fs_used /var/tmp} / ${fs_size /var/tmp}
+
+
+${color2}$hr
+${color}NETWORK
+
+${color2}eth0:${goto 150} ${addrs eth0}
+${color2}wlan0:${goto 150} ${addrs wlan0}
+Up:${goto 150} ${upspeed wlan0} - Down:$color ${downspeed eth0}
+
+${color2}$hr
