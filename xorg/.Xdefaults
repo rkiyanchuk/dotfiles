@@ -117,7 +117,7 @@ urxvt.urlLauncher: firefox
 URxvt.scrollWithBuffer: true
 
 ! Enable extensions.
-URxvt.perl-ext-common: ...,default,matcher,keyboard-select
+URxvt.perl-ext-common: ...,default,matcher,clipboard,keyboard-select
 
 ! Make URL clickable.
 URxvt.matcher.button: 1
