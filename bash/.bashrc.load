@@ -1,10 +1,12 @@
-# Custom bash configuration.
-# Designed to be applied after default `.bashrc`.
-# To enable:
-# $ echo "source $HOME/.bashrc.load" >> $HOME/.bashrc
+# Init .bashrc if sourced directly.
+if ! grep -q ".bashrc.load" ${HOME}/.bashrc; then 
+    echo "source ${HOME}/.bashrc.load" >> ${HOME}/.bashrc
+fi
 
 
-# Define color codes.
+# COLOR CODES
+# ===========
+
 RESET="\[\033[0;0m\]"
 BOLD="\[\033[0;1m\]"
 UNDERLINE="\[\033[0;4m\]"
@@ -28,8 +30,24 @@ ONCYAN="\[\033[0;46m\]"
 ONWHITE="\[\033[0;47m\]"
 
 
-prompt_command () {
+# CONFIGURATION VARIABLES
+# =======================
 
+HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in bash history.
+HISTSIZE=-1
+HISTFILESIZE=-1
+
+# Force tmux into 256 colors mode.
+export TERM=rxvt-256color
+
+# Tell Java that XMonad is non-reparenting WM.
+# Needed for correct Java apps windows operation under XMonad.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# PROMPT
+# ------
+
+prompt_command () {
     # Capture exit code of last command.
     if [ $? -eq 0 ]; then
         STATUS=""
@@ -61,78 +79,65 @@ ${GREEN}\$${RESET} "
 export PROMPT_COMMAND=prompt_command
 
 
-# Urxvt title.
-case $TERM in
-    rxvt-256color)
-        trap 'echo -ne "\e]0;$USER@$HOSTNAME: $BASH_COMMAND\007"' DEBUG
-     ;;
-esac
-
-# Tmux completion.
-source ${HOME}/.tmux/tmux_completion.sh
-
-# Hub for GitHub completion.
-source ${HOME}/.git.conf/hub.bash_completion.sh
-
-# Vagrant completion.
-source ${HOME}/.vagrant.bash_completion.sh
-
-# Store date and time in bash history.
-export HISTTIMEFORMAT="%d.%m.%y %T "
-HISTSIZE=-1
-HISTFILESIZE=-1
-
-# Tell Java that XMonad is non-reparenting WM.
-# Needed for correct Java apps windows operation under XMonad.
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Syntax highlighting for `less`. Install `source-highlight` first.
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
-
-# VirtualEnvWrapper settings.
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/devel
-source /usr/local/bin/virtualenvwrapper.sh
-
+# ALIASES
+# =======
 
 alias ..='cd ../'
-alias ll='ls -Al --group-directories-first'
-alias la='ls -A --group-directories-first'
+alias dud='du -d1 -h'
 alias l='ls -CFl'
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
+alias la='ls -A --group-directories-first'
+alias ll='ls -Al --group-directories-first'
 alias grep='grep --color=auto'
 alias rgrep='rgrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
+alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
+# Create popup notification when previous command is finished.
+# Usage: $ command; alert
+alias alert='notify-send --urgency=low -i \
+    "$([ $? = 0 ] && echo terminal || echo error)" \
+    "$(history | tail -n1 | sed -e \
+    '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
 
-function set_colorscheme() {
-    if [ $1 == 'light' ];  then
-        xrdb -merge .Xdefaults -DSOLARIZED_LIGHT
-        sed -i 's/002b36/fdf6e3/g' ${HOME}/.gtkrc-2.0
-    elif [ $1 == 'dark' ];  then
-        xrdb -merge .Xdefaults -DSOLARIZED_DARK
-        sed -i 's/fdf6e3/002b36/g' ${HOME}/.gtkrc-2.0
-    fi
-}
 
-alias colorscheme_light='set_colorscheme light'
-alias colorscheme_dark='set_colorscheme dark'
-alias gvimlight='gvim -c "set background=light"'
+# THIRD PARTY APPS
+# ================
 
-alias dud='du -d1 -h'
-
-# Force tmux into 256 colors mode.
-export TERM=rxvt-256color
-
-# Set PATH so it includes user's private `bin` directories if those exist.
+# Make executables in user's `bin` directory available in $PATH.
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
 
+# Make executables from user's Python packages available in $PATH.
 if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Activate tmuxp bash completion, see docs at http://tmuxp.readthedocs.org.
-source tmuxp.bash
+# Syntax highlighting for `less`. Install `source-highlight` first.
+export LESS=" -R "
+if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then 
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+fi
+
+# VirtualEnvWrapper settings.
+export WORKON_HOME=${HOME}/.virtualenvs
+export PROJECT_HOME=${HOME}/devel
+if  type virtualenvwrapper.sh > /dev/null; then
+    source virtualenvwrapper.sh
+fi
+
+# Custom Bash completions.
+if [ -f ${HOME}/.bash/tmux.bash ]; then
+    source ${HOME}/.bash/tmux.bash
+fi
+
+if [ -f ${HOME}/.bash/hub.bash ]; then
+    source ${HOME}/.bash/hub.bash
+fi
+
+if [ -f ${HOME}/.bash/vagrant.bash ]; then
+    source ${HOME}/.bash/vagrant.bash
+fi
+
+if type tmuxp.bash > /dev/null; then 
+    source tmuxp.bash 
+fi
