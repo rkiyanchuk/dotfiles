@@ -1,6 +1,6 @@
 ! Solarized colorscheme for Xresources
 ! ====================================
-
+!
 ! To switch between light and dark Solarized theme define the symbol when
 ! loading `.Xresources` with `xrdb` as follows:
 !
@@ -12,7 +12,6 @@
 #elif defined(SOLARIZED_LIGHT) && defined(SOLARIZED_DARK)
 #undef SOLARIZED_LIGHT
 #endif
-
 
 ! Define Solarized colors
 ! -----------------------
