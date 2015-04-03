@@ -200,7 +200,7 @@ augroup PROGRAMMING
     au BufRead,BufNewFile *.xml setlocal foldmethod=syntax
     au Syntax xml normal zR
     au BufRead,BufNewFile *.xml set makeprg=xmllint\ --noout\ %
-    au FileType xml map <F7> :make <CR>:copen<CR><CR>
+    au FileType xml map <F7> :make<CR>:copen<CR><CR>
     au BufRead,BufNewFile *.xml set shiftwidth=2
     au BufRead,BufNewFile *.xml set softtabstop=2
     au BufRead,BufNewFile *.xml set tabstop=2
