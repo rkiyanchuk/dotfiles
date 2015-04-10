@@ -113,7 +113,7 @@ URxvt*urgentOnBell: true
 URxvt.url-select.autocopy:  true
 URxvt.url-select.launcher:  firefox
 URxvt.url-select.underline: true
-urxvt.urlLauncher: firefox
+urxvt.url-launcher: firefox
 URxvt.scrollWithBuffer: true
 
 ! Enable extensions.
@@ -125,3 +125,4 @@ URxvt.matcher.button: 1
 ! Keyboard select extension.
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.searchable-scrollback: <>
