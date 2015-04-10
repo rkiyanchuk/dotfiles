@@ -142,13 +142,13 @@ chatLayout = renamed [Replace "C"]
     isPidgin = (Title "Buddy List")
 
 fullLayout = avoidStruts(smartBorders(
-                renamed [Replace "F"] (noBorders Full) 
+                renamed [Replace "F"] (noBorders Full)
                 ||| renamed [Replace "T"] (ResizableTall 1 (3/100) (1/2) [])))
 
 -- Here we combine our default layouts with our specific, workspace-locked
 -- layouts.
-myLayouts = onWorkspace "η" chatLayout $ 
-            onWorkspace "ζ" fullLayout $ 
+myLayouts = onWorkspace "η" chatLayout $
+            onWorkspace "ζ" fullLayout $
             defaultLayouts
 
 
