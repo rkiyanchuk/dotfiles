@@ -1,5 +1,5 @@
 # Init .bashrc if sourced directly.
-if ! grep -q ".bashrc.load" ${HOME}/.bashrc; then 
+if ! grep -q ".bashrc.load" ${HOME}/.bashrc; then
     echo "source ${HOME}/.bashrc.load" >> ${HOME}/.bashrc
 fi
 
@@ -69,7 +69,7 @@ prompt_command () {
 
     export PS1="${RED}${debian_chroot:+($debian_chroot)}${RESET}\
 $VENV\
-${GREEN}\u@\h${RESET}:\
+${YELLOW}\u${RESET}@${GREEN}\h${RESET}:\
 $STATUS\
 ${BLUE}\W${RESET}\
 ${MAGENTA}${BRANCH}${RESET}\
@@ -114,7 +114,7 @@ fi
 
 # Syntax highlighting for `less`. Install `source-highlight` first.
 export LESS=" -R "
-if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then 
+if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 fi
 
@@ -138,6 +138,6 @@ if [ -f ${HOME}/.bash/vagrant.bash ]; then
     source ${HOME}/.bash/vagrant.bash
 fi
 
-if type tmuxp.bash > /dev/null; then 
-    source tmuxp.bash 
+if type tmuxp.bash > /dev/null; then
+    source tmuxp.bash
 fi
