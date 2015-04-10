@@ -182,8 +182,10 @@ myKeyBindings =
     , ((myModMask .|. controlMask, xK_l), nextWS)
     -- Shift window to previous workspace
     , ((myModMask .|. shiftMask, xK_Left), shiftToPrev)
+    , ((myModMask .|. controlMask .|. shiftMask, xK_h), shiftToPrev)
     -- Shift window to next workspace
     , ((myModMask .|. shiftMask, xK_Right), shiftToNext)
+    , ((myModMask .|. controlMask .|. shiftMask, xK_l), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-12'")
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
