@@ -1,92 +1,99 @@
-background no
-update_interval 1
-
 cpu_avg_samples 2
-net_avg_samples 2
-
-override_utf8_locale yes
-
 double_buffer yes
 no_buffers yes
-
 text_buffer_size 2048
+update_interval 1
 
-# Window settings
-own_window yes
-own_window_type override
-own_window_transparent yes
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
-minimum_size 430 800
-
-border_inner_margin 0
-border_outer_margin 0
-
-alignment tr
-gap_x 20
-gap_y 50
-
-draw_shades no
-draw_outline no
+# Window settings.
+background no
 draw_borders no
 draw_graph_borders no
+draw_outline no
+draw_shades no
+own_window yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+own_window_transparent yes
+own_window_type override
 
-# Fonts
+alignment tl
+border_inner_margin 0
+border_outer_margin 0
+gap_x 1470
+gap_y 50
+minimum_size 430 800
+
+# Fonts.
 use_xft yes
 xftfont Liberation Mono:size=13
-
 uppercase no
 
+# Solarized colors.
 default_color 839496  # primary text
 color1 93a1a1  # emphesized text
 color2 586e75  # secondary text
 color3 dc322f  # red
 color4 859900  # green
 color5 268bd2  # blue
-color6 073642  # background hilight
-color7 6c71c4  # violet
-color8 b58900  # yellow
-color9 cb4b16  # orange
-
-# Lua code for rings
-#lua_load ~/.conky/rings.lua
-#lua_draw_hook_pre clock_rings
+color6 6c71c4  # violet
+color7 b58900  # yellow
+color8 cb4b16  # orange
+color9 073642  # background hilight
 
 
 TEXT
 ${color2}$hr
 ${color}OS
 
-${color2}Uptime:${goto 150} $uptime
-${voffset 5}${color2}CPU:${goto 150} ${color6}${cpubar 18,270}
-${color2}${goto 250} ${voffset -20}${cpu}%${alignr 10}${running_processes} / ${processes}
-${voffset 5}${color2}RAM:${goto 150} ${color6}${membar 18,270}
+${color2}UTC${goto 150} ${utime}
+Uptime${goto 150} ${uptime}
+Kernel${goto 150} ${kernel}
+${voffset 5}${color2}Load${goto 150} ${color9}${loadgraph 18,270 073642 073642 0 -l}
+${color2}${goto 250} ${voffset -20}${loadavg}
+${voffset 5}${color2}CPU${goto 150} ${color9}${cpubar 18,270}
+${color2}${goto 250} ${voffset -20}${cpu}%${alignr 10}${running_processes}/${processes} :${threads}
+${voffset 5}${color2}RAM${goto 150} ${color9}${membar 18,270}
 ${color2}${goto 250} ${voffset -20}${memperc}% ${alignr 10}${mem}
-Cached:${goto 150} ${cached}
+Cached${goto 150} ${cached}
 
 ${color2}$hr
 ${color}HARDWARE
 
-${color2}Temp:${goto 150} ${acpitemp}°C
-${color2}Freq:${goto 150} ${freq_g} GHz
-${voffset 5}${color2}Battery:${goto 150} ${color6}${battery_bar 18,270}
+${color2}Temp${goto 150} ${acpitemp}°C
+${color2}Freq${goto 150} ${freq_g} GHz
+${voffset 5}${color2}Disk IO${goto 150} ${diskiograph sda 18,270 073642 073642 0 -l}
+${color2}${goto 250} ${voffset -20}R ${diskio_read} ${alignr 10}W ${diskio_write}
+${voffset 5}${color2}Entropy${goto 150} ${color9}${entropy_bar 18,270}
+${color2}${goto 250} ${voffset -20} ${entropy_avail} / ${entropy_poolsize}
+${voffset 5}${color2}Battery${goto 150} ${color9}${battery_bar 18,270}
 ${color2}${goto 250} ${voffset -20}${battery_short}
-Disk IO:${goto 150} ${diskiograph sda 18,270 073642 073642 0 -l}
 
 ${color2}$hr
 ${color}FILE SYSTEMS
 
-${voffset 5}${color2}/:${goto 150} ${color6}${fs_bar 18,270 /}
+${voffset 5}${color2}/${goto 150} ${color9}${fs_bar 18,270 /}
 ${color2}${alignr 10} ${voffset -20}${fs_used /} / ${fs_size /}
-${voffset 5}${color2}/home:${goto 150} ${color6}${fs_bar 18,270 /home}
+${voffset 5}${color2}/home${goto 150} ${color9}${fs_bar 18,270 /home}
 ${color2}${alignr 10} ${voffset -20}${fs_used /home} / ${fs_size /home}
-${voffset 5}${color2}/var/tmp:${goto 150} ${color6}${fs_bar 18,270 /var/tmp}
+${voffset 5}${color2}/var/tmp${goto 150} ${color9}${fs_bar 18,270 /var/tmp}
 ${color2}${alignr 10} ${voffset -20}${fs_used /var/tmp} / ${fs_size /var/tmp}
-
 
 ${color2}$hr
 ${color}NETWORK
 
-${color2}eth0:${goto 150} ${addrs eth0}
-${color2}wlan0:${goto 150} ${addrs wlan0}
+${if_up eth0}\
+${color}eth0 ${color2}${goto 150} ${addr eth0}
+${voffset 5}${color2}${goto 150} ${upspeedgraph eth0 18,125 073642 073642 0 -l}  ${downspeedgraph eth0 18,125 073642 073642 0 -l}
+${color2}${voffset -20}${goto 150}↑ ${upspeed eth0} ${goto 295}↓ ${downspeed eth0}
+${color2}${goto 150}▲ ${totalup eth0} ${goto 295}▼ ${totaldown eth0}\
+${endif}
+
+${if_up wlan0}\
+${color}wlan0 ${color2}${goto 150} ${addr wlan0}
+${voffset 5}${color2}${wireless_essid wlan0} ${goto 150} ${color9}${wireless_link_bar 18,270 wlan0}
+${color2}${alignr 10} ${voffset -20} ${wireless_mode wlan0}  ${wireless_bitrate wlan0}  ${wireless_link_qual_perc wlan0}%
+${voffset 5}${color2}${goto 150} ${upspeedgraph wlan0 18,125 073642 073642 0 -l}  ${downspeedgraph wlan0 18,125 073642 073642 0 -l}
+${color2}${voffset -20}${goto 150}↑ ${upspeed wlan0}${goto 295}↓ ${downspeed wlan0}
+${color2}${goto 150}▲ ${totalup wlan0} ${goto 295}▼ ${totaldown wlan0}\
+${endif}
 
 ${color2}$hr
