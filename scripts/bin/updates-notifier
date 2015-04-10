@@ -7,7 +7,7 @@
 sudo aptitude update > /dev/null
 
 USER='zoresvit'
-UPDATES=`aptitude -F%p --disable-columns search ~U | wc -l`
+UPDATES=$(aptitude -F%p --disable-columns search ~U | wc -l)
 
 if [ $UPDATES -ne '0' ]; then
     export DISPLAY=:0.0 && \
@@ -15,3 +15,5 @@ if [ $UPDATES -ne '0' ]; then
         && sudo -u ${USER} /usr/bin/notify-send \
         "System update" "$UPDATES updates available"
 fi
+
+exit ${UPDATES}
