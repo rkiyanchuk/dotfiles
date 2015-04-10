@@ -99,6 +99,7 @@ aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
 aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
 aptitude -y install redshift
+aptitude -y install laptop-mode-tools
 aptitude -y install icc-profiles # Color profiles
 
 # Sound
