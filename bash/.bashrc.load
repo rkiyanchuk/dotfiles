@@ -1,6 +1,6 @@
 # Init .bashrc if sourced directly.
-if ! grep -q ".bashrc.load" ${HOME}/.bashrc; then
-    echo "source ${HOME}/.bashrc.load" >> ${HOME}/.bashrc
+if ! grep -q ".bashrc.load" "${HOME}/.bashrc"; then
+    echo "source ${HOME}/.bashrc.load" >> "${HOME}/.bashrc"
 fi
 
 
@@ -10,7 +10,7 @@ fi
 RESET="\[\033[0;0m\]"
 BOLD="\[\033[0;1m\]"
 UNDERLINE="\[\033[0;4m\]"
-# foregrounds
+# Foregrounds
 GREY="\[\033[0;30m\]"
 RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
@@ -19,7 +19,7 @@ BLUE="\[\033[0;34m\]"
 MAGENTA="\[\033[0;35m\]"
 CYAN="\[\033[0;36m\]"
 WHITE="\[\033[0;37m\]"
-# backgrounds
+# Backgrounds
 ONGREY="\[\033[0;40m\]"
 ONRED="\[\033[0;41m\]"
 ONGREEN="\[\033[0;42m\]"
@@ -52,11 +52,11 @@ prompt_command () {
     if [ $? -eq 0 ]; then
         STATUS=""
     else
-        STATUS="${RED}$?${RESET}:"
+        STATUS="${RED}${?}${RESET}:"
     fi
 
     # Show Git branch if in repository.
-    if [ "\$(type -t __git_ps1)" ]; then
+    if [ "$(type -t __git_ps1)" ]; then
         BRANCH="$(__git_ps1)"
     fi
 
@@ -91,7 +91,7 @@ alias grep='grep --color=auto'
 alias rgrep='rgrep --color=auto'
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
-# Create popup notification when previous command is finished.
+# Create popup notification when command execution is completed.
 # Usage: $ command; alert
 alias alert='notify-send --urgency=low -i \
     "$([ $? = 0 ] && echo terminal || echo error)" \
@@ -126,17 +126,9 @@ if  type virtualenvwrapper.sh > /dev/null; then
 fi
 
 # Custom Bash completions.
-if [ -f ${HOME}/.bash/tmux.bash ]; then
-    source ${HOME}/.bash/tmux.bash
-fi
-
-if [ -f ${HOME}/.bash/hub.bash ]; then
-    source ${HOME}/.bash/hub.bash
-fi
-
-if [ -f ${HOME}/.bash/vagrant.bash ]; then
-    source ${HOME}/.bash/vagrant.bash
-fi
+source "${HOME}/.bash/tmux.bash"
+source "${HOME}/.bash/hub.bash"
+source "${HOME}/.bash/vagrant.bash"
 
 if type tmuxp.bash > /dev/null; then
     source tmuxp.bash
