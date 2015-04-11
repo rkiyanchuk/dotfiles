@@ -377,6 +377,7 @@ Plugin 'tmux-plugins/vim-tmux'
 
 Plugin 'plasticboy/vim-markdown'
 
+Plugin 'scrooloose/syntastic'
 
 " Turn on filetype recognition, load filetype specific plugins and indents.
 filetype plugin indent on
@@ -401,12 +402,16 @@ let g:ctrlp_map = '<C-p>'
 imap <F2> :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeToggle<CR>
 
+" Jedi-vim
+" --------
+let g:jedi#goto_definitions_command = '<C-]>'
+
 " Python-mode
 " -----------
 
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 0
-let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe']
+let g:pymode_lint_checkers = ['pep8', 'mccabe']
 
 
 let g:pymode_rope = 0
