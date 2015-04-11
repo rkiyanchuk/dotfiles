@@ -381,18 +381,14 @@ Plugin 'plasticboy/vim-markdown'
 " Turn on filetype recognition, load filetype specific plugins and indents.
 filetype plugin indent on
 
-" Clang_complete
+" clang_complete
 " --------------
-
-if has('unix')
-    " clang_complete
-    " --------------
-    let g:clang_use_library=1
-    let g:clang_hl_errors=1
-    let g:clang_complete_copen=1
-    let g:clang_periodic_quickfix=0
-    autocmd Filetype c,cpp,cxx,h,hxx autocmd BufWritePre <buffer> :call g:ClangUpdateQuickFix()
-endif
+let g:clang_use_library=1
+let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang.so.1'
+let g:clang_hl_errors=1
+let g:clang_complete_copen=1
+let g:clang_periodic_quickfix=0
+autocmd Filetype c,cpp autocmd BufWritePre <buffer> :call g:ClangUpdateQuickFix()
 
 " CtrlP
 " -----
