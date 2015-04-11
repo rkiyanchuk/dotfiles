@@ -8,7 +8,7 @@ if [ ! -d "$VIMHOME/bundle" ]
 then
     echo "Setting up Vundle..."
     mkdir -p "$VIMHOME/bundle"
-    git clone https://github.com/gmarik/vundle.git $VIMHOME/bundle/vundle
+    git clone https://github.com/gmarik/vundle.git "$VIMHOME/bundle/vundle"
 
     echo "Install plugins..."
     vim +BundleInstall! +qall
@@ -16,5 +16,4 @@ then
 fi
 
 echo "Install dependencies..."
-sudo pip install nose vim_bridge ipdb
-sudo rm -rf build
+pip install --user --upgrade -r requirements.txt

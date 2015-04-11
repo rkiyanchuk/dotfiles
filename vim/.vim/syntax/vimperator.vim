@@ -54,7 +54,7 @@ syn region vimperatorSet matchgroup=vimperatorCommand start="\%(^\s*:\=\)\@<=\<\
 syn keyword vimperatorOption ac act activate animations autocomplete cd cdpath complete cpt defsearch ds editor eht ei enc encoding
     \ eventignore extendedhinttags fenc fileencoding fh followhints go guioptions helpfile hf hi hin hintinputs hintmatching hinttags
     \ hinttimeout history hm ht hto maxitems messages msgs newtab nextpattern pa pageinfo popups pps previouspattern
-    \ rtp runtimepath si sanitizeitems sts sanitizetimespan scr scroll scrollbars sh shcf shell shellcmdflag showstatuslinks 
+    \ rtp runtimepath si sanitizeitems sts sanitizetimespan scr scroll scrollbars sh shcf shell shellcmdflag showstatuslinks
     \ stal status suggestengines titlestring toolbars urlseparator vbs verbose wildmode wim
     \ wordseparators wsp
     \ contained nextgroup=vimperatorSetMod
