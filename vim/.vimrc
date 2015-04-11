@@ -108,6 +108,17 @@ let g:xml_syntax_folding=1
 " }}}
 
 
+" Select highlighted entry in omni completion.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Map <C-Space> to user defined omni completion (<C-x><C-u>).
+ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-u><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+
 " MAPPINGS
 " ======== {{{
 
