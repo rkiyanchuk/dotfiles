@@ -74,6 +74,7 @@ if !isdirectory($VIMHOME . "/swap")
     call mkdir($VIMHOME . "/swap", "p")
 endif
 
+
 " Search
 " ~~~~~~
 
@@ -351,8 +352,8 @@ Plugin 'tpope/vim-surround'
 " Plugin 'wincent/Command-T'
 Plugin 'kien/ctrlp.vim'
 " Puppet editing
-"Plugin 'rodjek/vim-puppet'
-Plugin 'zoresvit/puppet-syntax-vim'
+Plugin 'rodjek/vim-puppet'
+"Plugin 'zoresvit/puppet-syntax-vim'
 " DNS Zone files editing
 Plugin 'seveas/bind.vim'
 
@@ -460,7 +461,6 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.readonly = 'R'
 let g:airline_symbols.whitespace = 'Ξ'
 
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
 
 let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
