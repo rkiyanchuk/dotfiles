@@ -188,7 +188,7 @@ augroup PROGRAMMING
     au!
     au FileType c,cpp,h,tex map <F5> :call Compile()<CR>
     au FileType c,cpp,h set cindent
-    au FileType c,cpp,h set 'cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4'
+    au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
     au BufRead,BufNewFile *.html,*.yaml set shiftwidth=2
     au BufRead,BufNewFile *.html,*.yaml set softtabstop=2
     au BufRead,BufNewFile *.html,*.yaml set tabstop=2
@@ -224,8 +224,8 @@ augroup END
 
 augroup BASH
     au!
-    au BufRead,BufNewFile *.sh set makeprg=shellcheck\ --format\ gcc\ %:p
-    au FileType sh map <F5> :make<CR><CR>:copen<CR>
+    au FileType sh set makeprg=shellcheck\ --format\ gcc\ %:p
+    au FileType sh map <F5> :make<CR><CR>:copen<CR><CR>
 augroup END
 
 
