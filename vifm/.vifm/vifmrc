@@ -122,7 +122,7 @@ filextype *.jpg,*.jpeg,*.png,*.gif geeqie %f 2>/dev/null &
 filextype *.pdf mupdf %f 2>/dev/null &
 filextype *.zip file-roller %f 2>/dev/null &
 filextype *.doc,*.rtf libreoffice %f 2>/dev/null &
-filextype *.avi,*.mkv,*.mpeg,*.mp3,*.3GP vlc %f 2>/dev/null &
+filextype *.avi,*.mkv,*.mpeg,*.mp3,*.flac,*.3GP vlc %f 2>/dev/null &
 
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
