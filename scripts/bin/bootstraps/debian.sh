@@ -149,6 +149,7 @@ aptitude -y install irssi
 aptitude -y install tree htop tmux mc vifm xclip autocutsel
 aptitude -y install exuberant-ctags source-highlight checkinstall
 aptitude -y install mercurial git shellcheck
+aptitude -y install cmake
 
 # Python
 aptitude -y install python3-all python2.7-dev python3-dev
