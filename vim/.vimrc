@@ -234,9 +234,6 @@ nmap <silent> <leader>R :call ReloadConfig()<CR>
 nmap <leader>ls :call LoadSession()<CR>
 " List all buffers and load specified buffer number.
 nnoremap <leader>bb :buffers<CR>:buffer<Space>
-" Control quickfix window.
-nmap <silent> <leader>co :copen<CR>
-nmap <silent> <leader>cc :cclose<CR>
 " Toggle spell check.
 nmap <leader>s :set spell!<CR>
 " Fix spelling by choosing first match from suggestions.
@@ -333,6 +330,12 @@ let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 
 let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
+
+" Syntastic
+" ---------
+
+" HTML5 lint with http://www.htacg.org/tidy-html5.
+let g:syntastic_html_tidy_exec = 'tidy5'
 
 
 " NERDTree
