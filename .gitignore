@@ -5,6 +5,7 @@ backups/
 swap/
 session.vim
 spell/
+.netrwhist
 
 # Vifm
 # ====

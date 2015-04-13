@@ -1,72 +1,10 @@
-"
-" AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
-"
-" For better understanding of each uncommented setting see ":help '<item>'".
+" Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 
 
-if has('unix')
-    let $VIMHOME=$HOME . "/.vim"
-    let $VIMBUNDLE=$VIMHOME . "/bundle"
-endif
+let $VIMHOME=$HOME . "/.vim"
+let $VIMBUNDLE=$VIMHOME . "/bundle"
 
-
-" BUILTIN OPTIONS
-" =============== {{{
-
-" Appearance
-" ----------
-
-set background=dark
-set colorcolumn=80
-set cursorcolumn
-set cursorline
-set fillchars=
-set laststatus=2
-set number
-set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
-set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
-
-" Behavior
-" --------
-
-set nocompatible  " Ensure Vi improved features are enabled.
-syntax on
-set backspace=indent,eol,start
-set backup
-set backupdir=$VIMHOME/backups
-set browsedir=buffer
-set completeopt=menuone,preview
-set dictionary+=/usr/share/dict/words
-set complete+=k
-set directory=$VIMHOME/swap
-set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
-set foldmethod=marker
-set hidden
-set lazyredraw  " Speedup execution during macros and other untyped commands.
-set listchars=tab:->,trail:-
-set matchpairs+=<:>
-set mousemodel=popup
-set nowrap
-set path+=.,,**
-set scrolloff=3
-set showfulltag
-set spelllang=en,ru_yo,uk
-set splitbelow
-set splitright
-set textwidth=79
-set timeoutlen=500
-set undofile
-set undodir=$VIMHOME/backups
-set undolevels=2048
-set updatetime=1000  " For more efficient Tagbar functioning
-set virtualedit=all
-set visualbell
-set wildmenu
-" Close omni-completion preview window when entering or leaving insert mode.
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-command! -bar Hex call ToggleHex()
-" Create missing directories
+" Create dedicated directories.
 if !isdirectory($VIMHOME . "/backups")
     call mkdir($VIMHOME . "/backups", "p")
 endif
@@ -75,8 +13,55 @@ if !isdirectory($VIMHOME . "/swap")
 endif
 
 
+" OPTIONS
+" ======= {{{
+
+syntax on
+
+set background=dark
+set backspace=indent,eol,start
+set backup
+set backupdir=$VIMHOME/backups
+set browsedir=buffer
+set colorcolumn=80
+set complete+=k
+set completeopt=menuone,preview
+set cursorcolumn
+set cursorline
+set dictionary+=/usr/share/dict/words
+set directory=$VIMHOME/swap
+set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
+set fillchars=
+set foldmethod=marker
+set hidden
+set laststatus=2
+set lazyredraw  " Speedup execution during macros and other untyped commands.
+set listchars=tab:->,trail:-
+set matchpairs+=<:>
+set mousemodel=popup
+set nocompatible  " Ensure Vi improved features are enabled.
+set nowrap
+set number
+set path+=.,,**
+set scrolloff=3
+set showfulltag
+set spelllang=en,ru_yo,uk
+set splitbelow
+set splitright
+set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
+set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
+set textwidth=79
+set timeoutlen=500
+set undodir=$VIMHOME/backups
+set undofile
+set undolevels=2048
+set updatetime=1000  " For more efficient Tagbar functioning
+set virtualedit=all
+set visualbell
+set wildmenu
+
 " Search
-" ~~~~~~
+" ------
 
 set hlsearch
 set ignorecase
@@ -85,7 +70,7 @@ set nowrapscan
 set smartcase
 
 " Indent
-" ~~~~~~
+" ------
 
 set autoindent
 set expandtab
@@ -95,79 +80,30 @@ set tabstop=4
 
 " Filetype
 " --------
-let c_comment_strings=1
-let c_curly_error=1  " Highlight a missing `}` (may be slow).
-let c_space_errors=1  " Highlight extra white spaces.
-let c_no_tab_space_error=1
 
-let g:load_doxygen_syntax=1 " Load up the doxygen syntax
+let c_comment_strings = 1
+let c_curly_error = 1  " Highlight a missing `}` (may be slow).
+let c_space_errors = 1  " Highlight extra white spaces.
 
-let g:tex_flavor="latex"  " Set `tex` filetype for *.tex extension.
-let g:tex_indent_brace=0
+let g:load_doxygen_syntax = 1  " Load doxygen syntax.
 
-let g:xml_syntax_folding=1
-" }}}
+let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
+let g:tex_indent_brace = 0  " Prevent overindentation for `]` and `}`.
 
+let g:xml_syntax_folding = 1
 
-" Select highlighted entry in omni completion.
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Map <C-Space> to user defined omni completion (<C-x><C-u>).
- inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-\ "\<lt>C-n>" :
-\ "\<lt>C-x>\<lt>C-u><c-r>=pumvisible() ?" .
-\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-imap <C-@> <C-Space>
-
-" MAPPINGS
-" ======== {{{
-
-" Default <leader> is \ (backslash). It may be redefined:
-"let mapleader="\"
-" Resource configuration editing.
-nmap <silent> <leader>v :split $MYVIMRC<CR>
-nmap <silent> <leader>g :split $MYGVIMRC<CR>
-nmap <silent> <leader>V :source $MYVIMRC<CR>
-nmap <silent> <leader>G :source $MYGVIMRC<CR>
-" Restore last session.
-nmap <leader>ls :call LoadSession()<CR>
-" Select buffer.
-nnoremap <leader>bb :buffers<CR>:buffer<Space>
-" Control quickfix window.
-nmap <silent> <leader>co :copen<CR>
-nmap <silent> <leader>cc :cclose<CR>
-" Navigate compile errors in quickfix window.
-nmap <silent> <leader>en :cn<CR>
-nmap <silent> <leader>ep :cp<CR>
-" Toggle spell check.
-nmap <leader>s :set spell!<CR>
-" Fix spelling by choosing first match from suggestions.
-imap <silent> <leader>sf <ESC>1z=ea
-nmap <silent> <leader>sf <ESC>1z=e
-" Map the placeholder <+ +> navigation
-nnoremap <silent> <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
-inoremap <silent> <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
-" Make the current file executable.
-nmap <leader>x :w<CR>:!chmod 755 %<CR>:e<CR><CR>
-" Remove trailing spaces (http://vim.wikia.com/wiki/Remove_unwanted_spaces).
-nnoremap <leader>rts :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-" Enable russian alternate layout.
-inoremap <leader>ru <ESC>:set keymap=russian-jcukenwin<CR>a
-nnoremap <leader>ru :set keymap=russian-jcukenwin<CR>
-" Enable ukrainian alternate layout.
-inoremap <leader>uk <ESC>:set keymap=ukrainian-jcuken<CR>a
-nnoremap <leader>uk :set keymap=ukrainian-jcuken<CR>
-" Enable hebrew alternate layout.
-inoremap <leader>he <ESC>:set keymap=hebrew_utf-8<CR>a
-nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
 " }}}
 
 
 " AUTOCOMMANDS
 " ============ {{{
 
+" Close omni-completion preview window when entering or leaving insert mode.
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 augroup TEXT
+    " Auto commands for any text file.
     au!
     " Insert predefined boilerplate on file creation.
     au BufNewFile * silent! 0r $VIMHOME/templates/boilerplates/%:e.tpl
@@ -175,61 +111,41 @@ augroup TEXT
     au FileType qf call AdjustWindowHeight(3, 6)
     " Automatically save session on exit.
     au VimLeave * call SaveSession()
-    " Navigate line by line through wrapped text (skip wrapped lines).
+    " Navigate row by row through wrapped text.
     au BufReadPre * imap <UP> <ESC>gka
     au BufReadPre * imap <DOWN> <ESC>gja
-    " Navigate row by row through wrapped text.
     au BufReadPre * nmap k gk
     au BufReadPre * nmap j gj
-    " Correct filetype detection for *.md files.
-    au BufRead,BufNewFile *.md set filetype=markdown
 augroup END
 
-augroup PROGRAMMING
+augroup CPP
     au!
-    au FileType c,cpp,h,tex map <F5> :call Compile()<CR>
+    au FileType c,cpp,h map <F6> :call Compile()<CR>
     au FileType c,cpp,h set cindent
     au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
-    au BufRead,BufNewFile *.html,*.yaml set shiftwidth=2
-    au BufRead,BufNewFile *.html,*.yaml set softtabstop=2
-    au BufRead,BufNewFile *.html,*.yaml set tabstop=2
-    " Check current file for correspondence to Google Style Guide with cpplint tool
-    au FileType c,cpp nmap <F8> :set makeprg=$VIMHOME/utils/cpplint.py\ %<CR>:make<CR>:copen<CR><CR>
-    " Correctly set filetype for configuration files.
-    au BufRead,BufNewFile *.conf set filetype=cfg
-    " Sage specific configuration.
-    au BufRead,BufNewFile *.sage set filetype=python
-    " LaTeX
-    let $TEXTARGET=substitute(@%, ".tex", ".pdf", "")
+augroup END
+
+augroup LATEX
     au FileType tex set makeprg=make\ -f\ $VIMHOME/utils/Makefile_tex\ TARGET=%
-    au FileType tex map <F5> :make -B <CR>
-    " Binary files
-    au BufWritePre * if exists("b:editHex") && b:editHex==1 | call ToggleHex() | endif
-    au BufWritePost * if exists("b:editHex") && b:editHex==0 | call ToggleHex() | endif
-    " Haskell
+    au FileType tex map <F6> :make -B <CR>
+augroup END
+
+augroup WEB
+    au FileType html,yaml,xml set shiftwidth=2
+    au FileType html,yaml,xml set softtabstop=2
+    au FileType html,yaml,xml set tabstop=2
+
+    au FileType xml setlocal foldmethod=syntax
+    au Syntax xml normal zR  " Open all folds by default.
+augroup END
+
+augroup MISC
+    au!
+    " Treat Xmobar config as Haskell file.
     au BufRead,BufNewFile .xmobarrc set filetype=haskell
-    " XML
-    au BufRead,BufNewFile *.xml setlocal foldmethod=syntax
-    au Syntax xml normal zR
-    au BufRead,BufNewFile *.xml set makeprg=xmllint\ --noout\ %
-    au FileType xml map <F7> :make<CR>:copen<CR><CR>
-    au BufRead,BufNewFile *.xml set shiftwidth=2
-    au BufRead,BufNewFile *.xml set softtabstop=2
-    au BufRead,BufNewFile *.xml set tabstop=2
+    " Treat .conf files as .cfg.
+    au BufRead,BufNewFile *.conf set filetype=cfg
 augroup END
-
-augroup PYTHON
-    au!
-    au FileType python map <F5> :PymodeLint<CR>
-augroup END
-
-augroup BASH
-    au!
-    au FileType sh set makeprg=shellcheck\ --format\ gcc\ %:p
-    au FileType sh map <F5> :make<CR><CR>:copen<CR><CR>
-augroup END
-
-
 
 " }}}
 
@@ -255,147 +171,169 @@ function! Compile()
         cd ..
         let curdir= getcwd()
     endwhile
-    if filereadable('Makefile')
-        set makeprg=make
-    elseif filereadable('SConstruct')
+    if filereadable('SConstruct')
         set makeprg=scons
     else
         set makeprg=make
     endif
-    echo "now building..."
+    echo "Building..."
     silent w
     make
-    echo "build finished"
+    echo "Build finished."
 endfunction
 
 function! LoadSession()
-    " Load last vim session
+    " Load saved Vim session from file.
     if argc() == 0
         execute 'source $VIMHOME/session.vim'
     endif
 endfunction
 
 function! SaveSession()
-    " Save current vim session.
+    " Save current Vim session to file.
     execute 'mksession! $VIMHOME/session.vim'
 endfunction
 
-function! ToggleHex()
-    " Helper function for processing binary files via hex editor.
-    let l:modified=&mod
-    let l:oldreadonly=&readonly
-    let &readonly=0
-    let l:oldmodifiable=&modifiable
-    let &modifiable=1
-    if !exists("b:editHex") || !b:editHex
-        " save old options
-        let b:oldft=&ft
-        let b:oldbin=&bin
-        " set new options
-        setlocal binary " make sure it overrides any textwidth, etc.
-        let &ft="xxd"
-        " set status
-        let b:editHex=1
-        " switch to hex editor
-        %!xxd
-    else
-        " restore old options
-        let &ft=b:oldft
-        if !b:oldbin
-            setlocal nobinary
+if !exists("*ReloadConfig")
+    " Reload .vimrc and .gvimrc configuration files.
+    function! ReloadConfig()
+        source $MYVIMRC
+        if has("gui_running")
+          source $MYGVIMRC
         endif
-        " set status
-        let b:editHex=0
-        " return to normal editing
-        %!xxd -r
-    endif
-    " restore values for modified and read only state
-    let &mod=l:modified
-    let &readonly=l:oldreadonly
-    let &modifiable=l:oldmodifiable
+    endfunction
+endif
+
+function! TrimSpaces() range
+    let oldhlsearch=ShowSpaces(1)
+    execute a:firstline.",".a:lastline."substitute ///ge"
+    let &hlsearch=oldhlsearch
 endfunction
+
 " }}}
 
 
-" VUNDLE PLUGINS
-" ============== {{{
+" COMMANDS
+" ======== {{{
+
+command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+" Save restricted file opened without root permissions via sudo.
+command! W :w !sudo tee %
+
+"}}}
+
+
+" MAPPINGS
+" ======== {{{
+
+" Default <leader> key is \ (backslash).
+"let mapleader="\"
+nmap <silent> <leader>V :split $MYVIMRC<CR>
+nmap <silent> <leader>R :call ReloadConfig()<CR>
+nmap <leader>ls :call LoadSession()<CR>
+" List all buffers and load specified buffer number.
+nnoremap <leader>bb :buffers<CR>:buffer<Space>
+" Control quickfix window.
+nmap <silent> <leader>co :copen<CR>
+nmap <silent> <leader>cc :cclose<CR>
+" Toggle spell check.
+nmap <leader>s :set spell!<CR>
+" Fix spelling by choosing first match from suggestions.
+imap <silent> <leader>sf <ESC>1z=ea
+nmap <silent> <leader>sf <ESC>1z=e
+" Enable russian alternate layout.
+inoremap <leader>ru <ESC>:set keymap=russian-jcukenwin<CR>a
+nnoremap <leader>ru :set keymap=russian-jcukenwin<CR>
+" Enable ukrainian alternate layout.
+inoremap <leader>uk <ESC>:set keymap=ukrainian-jcuken<CR>a
+nnoremap <leader>uk :set keymap=ukrainian-jcuken<CR>
+" Enable hebrew alternate layout.
+inoremap <leader>he <ESC>:set keymap=hebrew_utf-8<CR>a
+nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
+
+" }}}
+
+
+" VUNDLE
+" ====== {{{
 
 filetype off  " Filetype recognition must be disabled for Vundle setup.
 set rtp+=$VIMBUNDLE/vundle/
-call vundle#rc()
+call vundle#begin()
 
-" Update Vundle itself.
+" Vundle plugin manager.
 Plugin 'gmarik/vundle'
 
+" Enhanced statusline.
+Plugin 'bling/vim-airline'
+
 " Solarized colorscheme.
-" Plugin 'altercation/vim-colors-solarized'
-" Use forked repo with fixed SignColumn colors.
 Plugin 'zoresvit/vim-colors-solarized'
+
+" Intuitive files opening via fuzzy search.
+Plugin 'wincent/command-t'
+
+" File browser.
+Plugin 'scrooloose/nerdtree'
+
+" File tags browser.
+Plugin 'majutsushi/tagbar'
+
+" Ultimate autocompletion.
+Plugin 'Valloric/YouCompleteMe'
+
+" Ultimate static syntax analysis.
+Plugin 'scrooloose/syntastic'
 
 " Show git diff in gutter (+/- signs column).
 Plugin 'airblade/vim-gitgutter'
 
-" Insert predefined text templates with placeholders.
-Plugin 'drmingdrmer/xptemplate'
-" File browser.
-Plugin 'scrooloose/nerdtree'
-" Gitk for vim (depends on fugitive).
+" Git repository visualizer (requires `vim-fugitive`).
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
-" Show project structure.
-Plugin 'majutsushi/tagbar'
-" C/C++ autocompletion using clang.
-Plugin 'Rip-Rip/clang_complete'
-" Surround text with tags.
-Plugin 'tpope/vim-surround'
-" Intuitive fuzzy files opening.
-" Plugin 'wincent/Command-T'
-Plugin 'kien/ctrlp.vim'
-" Puppet editing
-Plugin 'rodjek/vim-puppet'
-"Plugin 'zoresvit/puppet-syntax-vim'
-" DNS Zone files editing
-Plugin 'seveas/bind.vim'
 
-" Plugins for Python development.
-Plugin 'davidhalter/jedi-vim'
-"Plugin 'nvie/vim-flake8'
-" Enables advanced unit test support. Install dependencies first:
-" $ pip install nose nose_machineout vim_bridge
-Plugin 'nvie/vim-pyunit'
-" python-mode is for syntax and highlighting (completion done by jedi-vim).
-Plugin 'klen/python-mode'
-Plugin 'jmcantrell/vim-virtualenv'
-
-" Enhanced statusline
-Plugin 'bling/vim-airline'
-" Jinja & HTML syntax
-Plugin 'Glench/Vim-Jinja2-Syntax'
 " File navigation with `%` for HTML, LaTeX, XML and others.
 Plugin 'vim-scripts/matchit.zip'
-" For editing .tmux.conf
-Plugin 'tmux-plugins/vim-tmux'
 
+" Python code editing.
+Plugin 'klen/python-mode'
+
+" Activate virtualenvs from Vim.
+Plugin 'jmcantrell/vim-virtualenv'
+
+" Puppet editing.
+Plugin 'rodjek/vim-puppet'
+"Plugin 'zoresvit/puppet-syntax-vim'
+
+" DNS Zone files editing.
+Plugin 'seveas/bind.vim'
+
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'plasticboy/vim-markdown'
 
-Plugin 'scrooloose/syntastic'
+" Editing .tmux.conf.
+Plugin 'tmux-plugins/vim-tmux'
 
-" Turn on filetype recognition, load filetype specific plugins and indents.
+" Editing binary files.
+Plugin 'fidian/hexmode'
+
+call vundle#end()
 filetype plugin indent on
 
-" clang_complete
-" --------------
-let g:clang_use_library=1
-let g:clang_library_path='/usr/lib/x86_64-linux-gnu/libclang.so.1'
-let g:clang_hl_errors=1
-let g:clang_complete_copen=1
-let g:clang_periodic_quickfix=0
-autocmd Filetype c,cpp autocmd BufWritePre <buffer> :call g:ClangUpdateQuickFix()
 
-" CtrlP
-" -----
+" Commant-t
+" ---------
 
-let g:ctrlp_map = '<C-p>'
+let g:CommandTAlwaysShowDotFiles = 1
+let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+
+" YouCompleteMe
+" -------------
+
+let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/.ycm_extra_conf.py'
+let g:ycm_seed_identifiers_with_syntax = 1
+
 
 " NERDTree
 " --------
@@ -405,6 +343,7 @@ nmap <F2> :NERDTreeToggle<CR>
 
 " Jedi-vim
 " --------
+
 let g:jedi#goto_definitions_command = '<C-]>'
 
 " Python-mode
@@ -413,7 +352,6 @@ let g:jedi#goto_definitions_command = '<C-]>'
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_checkers = ['pep8', 'mccabe']
-
 
 let g:pymode_rope = 0
 let g:pymode_folding = 0
@@ -425,7 +363,6 @@ let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
-
 
 " Solarized
 " ---------
@@ -466,10 +403,4 @@ let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-3v', ':0x%03O'])
 
-
-" XPTemplate
-" ----------
-
-let g:xptemplate_brace_complete='([{<'
-set rtp+=$VIMHOME/templates/
 " }}}

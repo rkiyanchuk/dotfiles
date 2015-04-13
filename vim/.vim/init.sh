@@ -15,5 +15,14 @@ then
     echo "Done."
 fi
 
+pushd "${HOME}/.vim/bundle/YouCompleteMe"
+./install.sh --clang-completer
+popd
+
+pushd "${HOME}/.vim/bundle/command-t/ruby/command-t"
+ruby extconf.rb
+make
+popd
+
 echo "Install dependencies..."
 pip install --user --upgrade -r requirements.txt

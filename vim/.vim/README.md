@@ -8,3 +8,9 @@ Setup
 3. Run `init.sh` script.
     The script will install `Vundle` plugin manager, install all the plugins
     and Python dependencies to user directory.
+
+```
+$ bash compile.sh
+$ sudo bash build.sh
+$ bash init.sh
+```

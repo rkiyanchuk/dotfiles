@@ -4,26 +4,26 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # This Makefile is designed to compile latex documents using latex or pdflatex.
-# So far it supports bibliography processing via bibtex (.bib file or a simlink 
-# should be located in the same directory from where `make` is called). The 
-# recompilation is done automatically until all references are resolved (.log 
+# So far it supports bibliography processing via bibtex (.bib file or a simlink
+# should be located in the same directory from where `make` is called). The
+# recompilation is done automatically until all references are resolved (.log
 # file checked for corresponding warnings). Bash and Make syntax is very ugly
 # but this solution is the most straightforward and portable AFAIK.
 # Executing `make tarball` creates an archive that contains tex sources, bibtex
 # database files, custom styles and graphics (in graphics folder). For my own
 # comfort the Makefile is set up to copy my custom styles into the tarball if
 # any of them is used in tex document (check is done by grepping the .tex file).
-# This Makefile is designed to suit my own needs, but I hope it may be useful 
+# This Makefile is designed to suit my own needs, but I hope it may be useful
 # for somebody else. If you make any improvements to this Makefile I would
 # appreciate notifying me of those changes -- it's very likely they will be
 # useful for me as well.
@@ -41,7 +41,7 @@ TEX=pdflatex $(PARAMS)
 # directories and files to exclude from compressing into tar
 EXCLUDE=--exclude=$(AUXDIR)
 
-$(TARGET) : 
+$(TARGET) :
 	@mkdir -p $(AUXDIR)
 # check for bibliography file and execute bibtex if needed
 	@if [ -f *.bib ]; \
@@ -69,9 +69,9 @@ cleanall :
 # Compress documents for sharing.
 # Includes tex sources, styles, bibliography and pdf putput)
 tarball:
-# This peace of code is not portable. It is intended to include my 
+# This peace of code is not portable. It is intended to include my
 # customized styles in the tarball, so the receiver is able to compile
-# sources right away. Erase the `ifeq` conditions or modify it to suit your 
+# sources right away. Erase the `ifeq` conditions or modify it to suit your
 # own latex setup.
 ifneq (,$(findstring zoresvit,$(USER)))
 	@if grep "{zcv}" *.tex > /dev/null; \
