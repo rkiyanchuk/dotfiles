@@ -78,18 +78,15 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-" Filetype
-" --------
+" Filetype settings
+" -----------------
 
 let c_comment_strings = 1
 let c_curly_error = 1  " Highlight a missing `}` (may be slow).
 let c_space_errors = 1  " Highlight extra white spaces.
-
 let g:load_doxygen_syntax = 1  " Load doxygen syntax.
-
 let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
 let g:tex_indent_brace = 0  " Prevent overindentation for `]` and `}`.
-
 let g:xml_syntax_folding = 1
 
 " }}}
@@ -252,8 +249,11 @@ nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
 " }}}
 
 
-" VUNDLE
-" ====== {{{
+" PLUGINS
+" ======= {{{
+
+" Vundle
+" ------
 
 filetype off  " Filetype recognition must be disabled for Vundle setup.
 set rtp+=$VIMBUNDLE/vundle/
@@ -320,37 +320,34 @@ filetype plugin indent on
 
 
 " Commant-t
-" ---------
+" ~~~~~~~~~
 
 let g:CommandTAlwaysShowDotFiles = 1
 let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+let g:CommandTMaxHeight = 10
 
 " YouCompleteMe
-" -------------
+" ~~~~~~~~~~~~~
 
-let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
+nnoremap <C-]> :YcmCompleter GoTo<CR>
 
 " Syntastic
-" ---------
+" ~~~~~~~~~
 
 " HTML5 lint with http://www.htacg.org/tidy-html5.
 let g:syntastic_html_tidy_exec = 'tidy5'
 
 
 " NERDTree
-" --------
+" ~~~~~~~~
 
 imap <F2> :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeToggle<CR>
 
-" Jedi-vim
-" --------
-
-let g:jedi#goto_definitions_command = '<C-]>'
-
 " Python-mode
-" -----------
+" ~~~~~~~~~~~
 
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 0
@@ -368,7 +365,7 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 
 " Solarized
-" ---------
+" ~~~~~~~~~
 
 if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
     let g:solarized_bold=0
@@ -378,15 +375,15 @@ if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
 endif
 
 " Tagbar
-" ------
+" ~~~~~~
 
 imap <F3> :TagbarToggle<CR>
 nmap <F3> :TagbarToggle<CR>
 
 " Airline
-" -------
+" ~~~~~~~
 
-" unicode symbols
+" Unicode symbols.
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
