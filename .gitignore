@@ -1,5 +1,4 @@
 # Vim
-# ===
 bundle/
 backups/
 swap/
@@ -8,12 +7,10 @@ spell/
 .netrwhist
 
 # Vifm
-# ====
 vifm/.vifm/Trash
 vifm/.vifm/vifminfo
 
 # XMonad
-# ======
 xmonad.errors
 xmonad.hi
 xmonad.o
@@ -21,30 +18,25 @@ xmonad-x86_64-linux
 *.swp
 vim_source/
 
-# tmux
-# ====
+# Tmux
 tmux/.tmux/plugins/
 
-# mutt
-# ====
+# Mutt
 mutt/.mutt/account.*
 
-# vimperator
-# ==========
-
-# Ignore some directories in default profile
+# Vimperator
 vimperator/.vimperator/info/default/history-command
 vimperator/.vimperator/info/default/history-search
 vimperator/.vimperator/info/default/local-marks
 vimperator/.vimperator/info/default/macros
 
-# Ignore webex profile completely
 vimperator/.vimperator/info/webex
 
 
+# Python
+*.pyc
 
 python/.virtualenvs/*
-
 !python/.virtualenvs/get_env_details
 !python/.virtualenvs/initialize
 !python/.virtualenvs/postactivate
