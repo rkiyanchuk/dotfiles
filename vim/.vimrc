@@ -336,7 +336,7 @@ let g:CommandTMaxHeight = 10
 
 let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
-nnoremap <C-[> :YcmCompleter GoTo<CR>
+nmap <leader>j :YcmCompleter GoTo<CR>
 
 " Syntastic
 " ~~~~~~~~~
