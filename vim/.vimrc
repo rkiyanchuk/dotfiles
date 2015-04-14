@@ -283,6 +283,11 @@ Plugin 'Valloric/YouCompleteMe'
 " Ultimate static syntax analysis.
 Plugin 'scrooloose/syntastic'
 
+" Snippets engine.
+Plugin 'SirVer/ultisnips'
+" Snippets database.
+Plugin 'honza/vim-snippets'
+
 " Show git diff in gutter (+/- signs column).
 Plugin 'airblade/vim-gitgutter'
 
@@ -331,7 +336,7 @@ let g:CommandTMaxHeight = 10
 
 let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
-nnoremap <C-]> :YcmCompleter GoTo<CR>
+nnoremap <C-[> :YcmCompleter GoTo<CR>
 
 " Syntastic
 " ~~~~~~~~~
@@ -339,6 +344,15 @@ nnoremap <C-]> :YcmCompleter GoTo<CR>
 " HTML5 lint with http://www.htacg.org/tidy-html5.
 let g:syntastic_html_tidy_exec = 'tidy5'
 
+" Utlisnips
+" ~~~~~~~~~
+
+let g:UltiSnipsExpandTrigger       = '<c-\>'
+let g:UltiSnipsListSnippets        = '<c-l>'
+let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+
+let g:UltiSnipsEditSplit="horizontal"
 
 " NERDTree
 " ~~~~~~~~
