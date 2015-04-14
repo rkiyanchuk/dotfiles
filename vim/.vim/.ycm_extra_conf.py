@@ -86,7 +86,7 @@ flags = [
     '-isystem', './tests/gmock',
     '-isystem', './tests/gmock/include',
 
-    '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9.2/include',
+    '-isystem', '/usr/lib/gcc/x86_64-linux-gnu/4.9/include',
     '-I', './src',
     '-I', './include',
     '-isystem', '/usr/include',
@@ -96,7 +96,8 @@ flags = [
 flagsRec = [
     '/usr/include',
     '/usr/local/include',
-    '/usr/lib/gcc/x86_64-linux-gnu/4.9.2/include']
+    '/usr/lib/gcc/x86_64-linux-gnu/4.9/include',
+    '/usr/include/c++/4.9']
 
 AddDirsRecursively(flagsRec)
 
