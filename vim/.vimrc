@@ -13,9 +13,9 @@ if !isdirectory($VIMHOME . "/swap")
 endif
 
 
-" OPTIONS
-" ======= {{{
+" {{{ OPTIONS
 
+set nocompatible  " Ensure Vi improved features are enabled.
 syntax on
 
 set background=dark
@@ -33,13 +33,13 @@ set directory=$VIMHOME/swap
 set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
 set fillchars=
 set foldmethod=marker
+set formatoptions+=ro
 set hidden
 set laststatus=2
 set lazyredraw  " Speedup execution during macros and other untyped commands.
 set listchars=tab:->,trail:-
 set matchpairs+=<:>
 set mousemodel=popup
-set nocompatible  " Ensure Vi improved features are enabled.
 set nowrap
 set number
 set path+=.,,**
@@ -92,8 +92,7 @@ let g:xml_syntax_folding = 1
 " }}}
 
 
-" AUTOCOMMANDS
-" ============ {{{
+" {{{ AUTOCOMMANDS
 
 " Close omni-completion preview window when entering or leaving insert mode.
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -147,8 +146,7 @@ augroup END
 " }}}
 
 
-" FUNCTIONS
-" ========= {{{
+" {{{ FUNCTIONS
 
 function! AdjustWindowHeight(minheight, maxheight)
     " Adjust QuickFix window height according to the number of data lines.
@@ -210,8 +208,7 @@ endfunction
 " }}}
 
 
-" COMMANDS
-" ======== {{{
+" {{{ COMMANDS
 
 command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
@@ -221,8 +218,7 @@ command! W :w !sudo tee %
 "}}}
 
 
-" MAPPINGS
-" ======== {{{
+" {{{ MAPPINGS
 
 " Default <leader> key is \ (backslash).
 "let mapleader="\"
@@ -250,10 +246,9 @@ nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
 
 
 " PLUGINS
-" ======= {{{
+" =======
 
-" Vundle
-" ------
+" {{{ Vundle
 
 filetype off  " Filetype recognition must be disabled for Vundle setup.
 set rtp+=$VIMBUNDLE/vundle/
@@ -295,7 +290,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
 
-" File navigation with `%` for HTML, LaTeX, XML and others.
+" Navigating matching tags with `%` for HTML, LaTeX, XML and others.
 Plugin 'vim-scripts/matchit.zip'
 
 " Python code editing.
@@ -304,25 +299,65 @@ Plugin 'klen/python-mode'
 " Activate virtualenvs from Vim.
 Plugin 'jmcantrell/vim-virtualenv'
 
-" Puppet editing.
+" Puppet manifests editing.
 Plugin 'rodjek/vim-puppet'
-"Plugin 'zoresvit/puppet-syntax-vim'
 
 " DNS Zone files editing.
 Plugin 'seveas/bind.vim'
 
+" Syntax highlight for Jinja2 template engine.
 Plugin 'Glench/Vim-Jinja2-Syntax'
+
+" Enhanced Markdown editing.
 Plugin 'plasticboy/vim-markdown'
 
-" Editing .tmux.conf.
+" Enhanced editing of Tmux configuration file (.tmux.conf).
 Plugin 'tmux-plugins/vim-tmux'
 
 " Editing binary files.
 Plugin 'fidian/hexmode'
 
+" Syntax highlighting for numerous file types and languages.
+Plugin 'sheerun/vim-polyglot'
+
 call vundle#end()
 filetype plugin indent on
 
+" }}}
+
+" {{{ Configuration
+
+" Airline
+" ~~~~~~~ 
+
+" Unicode symbols.
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.readonly = 'R'
+let g:airline_symbols.whitespace = 'Ξ'
+
+let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
+let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
+
+" Solarized
+" ~~~~~~~~~
+
+if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
+    let g:solarized_bold=0
+    let g:solarized_underline=0
+    let g:solarized_italic=0
+    colorscheme solarized
+endif
 
 " Commant-t
 " ~~~~~~~~~
@@ -330,6 +365,18 @@ filetype plugin indent on
 let g:CommandTAlwaysShowDotFiles = 1
 let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 let g:CommandTMaxHeight = 10
+
+" NERDTree
+" ~~~~~~~~
+
+imap <F2> :NERDTreeToggle<CR>
+nmap <F2> :NERDTreeToggle<CR>
+
+" Tagbar
+" ~~~~~~
+
+imap <F3> :TagbarToggle<CR>
+nmap <F3> :TagbarToggle<CR>
 
 " YouCompleteMe
 " ~~~~~~~~~~~~~
@@ -354,12 +401,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 let g:UltiSnipsEditSplit="horizontal"
 
-" NERDTree
-" ~~~~~~~~
-
-imap <F2> :NERDTreeToggle<CR>
-nmap <F2> :NERDTreeToggle<CR>
-
 " Python-mode
 " ~~~~~~~~~~~
 
@@ -378,43 +419,10 @@ let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 
-" Solarized
-" ~~~~~~~~~
+" Markdown
+" ~~~~~~~~
 
-if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
-    let g:solarized_bold=0
-    let g:solarized_underline=0
-    let g:solarized_italic=0
-    colorscheme solarized
-endif
-
-" Tagbar
-" ~~~~~~
-
-imap <F3> :TagbarToggle<CR>
-nmap <F3> :TagbarToggle<CR>
-
-" Airline
-" ~~~~~~~
-
-" Unicode symbols.
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.readonly = 'R'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline#extensions#tabline#tab_nr_type = 2
-
-let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
-let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-3v', ':0x%03O'])
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_math=1
 
 " }}}
