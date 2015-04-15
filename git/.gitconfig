@@ -46,5 +46,9 @@
 
 [push]
 	default = simple
+
 [hub]
 	protocol = https
+
+[web]
+	browser = firefox
