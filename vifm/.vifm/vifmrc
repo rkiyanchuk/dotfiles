@@ -12,6 +12,7 @@ set ignorecase
 set smartcase
 
 nnoremap \v :write | execute ':!%n${EDITOR:-vim} $MYVIFMRC' | restart<cr>
+nnoremap \m :move &<cr>
 
 set vicmd=vim
 " set vicmd=elvis\ -G\ termcap
