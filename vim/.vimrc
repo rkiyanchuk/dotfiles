@@ -48,8 +48,8 @@ set showfulltag
 set spelllang=en,ru_yo,uk
 set splitbelow
 set splitright
-set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
+set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 set textwidth=79
 set timeoutlen=500
 set undodir=$VIMHOME/backups
@@ -132,7 +132,7 @@ augroup WEB
     au FileType html,yaml,xml set tabstop=2
 
     au FileType xml setlocal foldmethod=syntax
-    au Syntax xml normal zR  " Open all folds by default.
+    au FileType xml normal zR  " Open all folds by default.
 augroup END
 
 augroup MISC
@@ -199,6 +199,17 @@ if !exists("*ReloadConfig")
     endfunction
 endif
 
+function! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
+endfunction
+
 function! TrimSpaces() range
     let oldhlsearch=ShowSpaces(1)
     execute a:firstline.",".a:lastline."substitute ///ge"
@@ -245,10 +256,7 @@ nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
 " }}}
 
 
-" PLUGINS
-" =======
-
-" {{{ Vundle
+" {{{ PLUGINS
 
 filetype off  " Filetype recognition must be disabled for Vundle setup.
 set rtp+=$VIMBUNDLE/vundle/
@@ -318,17 +326,17 @@ Plugin 'tmux-plugins/vim-tmux'
 Plugin 'fidian/hexmode'
 
 " Syntax highlighting for numerous file types and languages.
-Plugin 'sheerun/vim-polyglot'
+Plugin 'ekalinin/Dockerfile.vim'
 
 call vundle#end()
 filetype plugin indent on
 
 " }}}
 
-" {{{ Configuration
+" {{{ Configurations
 
 " Airline
-" ~~~~~~~ 
+" ~~~~~~~
 
 " Unicode symbols.
 let g:airline_powerline_fonts = 1
