@@ -101,8 +101,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 augroup TEXT
     " Auto commands for any text file.
     au!
-    " Insert predefined boilerplate on file creation.
-    au BufNewFile * silent! 0r $VIMHOME/templates/boilerplates/%:e.tpl
     " Enable quickfix window height adjustment.
     au FileType qf call AdjustWindowHeight(3, 6)
     " Automatically save session on exit.
@@ -122,7 +120,7 @@ augroup CPP
 augroup END
 
 augroup LATEX
-    au FileType tex set makeprg=make\ -f\ $VIMHOME/utils/Makefile_tex\ TARGET=%
+    au FileType tex set makeprg=make\ -f\ $VIMHOME/Makefile_tex\ TARGET=%
     au FileType tex map <F6> :make -B <CR>
 augroup END
 
@@ -325,8 +323,11 @@ Plugin 'tmux-plugins/vim-tmux'
 " Editing binary files.
 Plugin 'fidian/hexmode'
 
-" Syntax highlighting for numerous file types and languages.
+" Enhanced Dockerfile editing.
 Plugin 'ekalinin/Dockerfile.vim'
+
+" Syntax highlighting for Conky.
+Plugin 'smancill/conky-syntax.vim'
 
 call vundle#end()
 filetype plugin indent on

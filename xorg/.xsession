@@ -1,9 +1,5 @@
-#!/bin/sh
-# -*- coding: utf-8 -*-
-
-# AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
-# Based on David Brewer's XMonad configuration:
-# https://github.com/davidbrewer/xmonad-ubuntu-conf
+#!/usr/bin/env bash
+# encoding: utf-8
 
 
 # CONFIGURATION VARIABLES
@@ -22,13 +18,13 @@ export TZ='America/Los_Angeles'
 
 # Activate primary screen (find first one connected).
 MONITOR=$(xrandr | grep " connected" | cut -d' ' -f 1 | head -n 1)
-xrandr --output ${MONITOR} --auto --primary
+xrandr --output "${MONITOR}" --auto --primary
 
 # Activate secondary screens if connected.
-xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --right-of ${MONITOR}
+xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --right-of "${MONITOR}"
 xrandr | grep 'VGA1 disconnected' | ifne xrandr --output VGA1 --off
 
-xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --left-of ${MONITOR}
+xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --left-of "${MONITOR}"
 xrandr | grep 'HDMI1 disconnected' | ifne xrandr --output HDMI1 --off
 
 
@@ -71,9 +67,8 @@ setxkbmap -layout 'us,ru,ua' \
 
 gnome-screensaver > /dev/null 2>&1 &
 
-# Try to start Compton compositor on up to 4 displays
-# (by defaults starts only on one).
 if ! pgrep compton > /dev/null; then
+    # Try to start Compton compositor on up to 4 displays.
     seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
 fi
 

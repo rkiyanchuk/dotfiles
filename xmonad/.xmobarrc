@@ -1,7 +1,3 @@
--- Xmobar documentation: http://projects.haskell.org/xmobar/
--- Based on David Brewer's repository:
--- https://github.com/davidbrewer/xmonad-ubuntu-conf
-
 -- Solarized colors:
 -- Base03    = "#002b36"
 -- Base02    = "#073642"
@@ -27,7 +23,7 @@ Config {
   fgColor = "#839496",
 
   -- Adjust width to leave space for 8 icons in tray.
-  -- Use bash and xrandr to calculate width corresponding:
+  -- Use bash and xrandr to calculate corresponding width:
   -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
   position = Static {xpos=0 , ypos=0, width=1728, height=24},
 
@@ -35,22 +31,32 @@ Config {
     Run Battery [
       "-t", "<acstatus> <left>%",
       "--",
-      "-O", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
-      "-i", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
       "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
-      "-l", "#dc322f",
-      "-p", "#859900",
-      "-h", "#859900"
-    ] 10,
+      "-l", "#586e75",
+      "-m", "#b58900",
+      "-h", "#dc322f",
+      "-p", "#859900"
+    ] 50,
 
     Run Cpu [
-      "-t", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>% ",
+      "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc><total>%",
       "--minwidth", "2",
       "--high", "#dc322f"
     ] 10,
 
+    Run CoreTemp [
+      "--template", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/temp.xbm/></fc> <core0>°C",
+      "--Low", "60",
+      "--High", "80",
+      "--low", "#586e75",
+      "--normal", "#b58900",
+      "--high", "#dc322f"
+    ] 10,
+
     Run Memory [
-      "-t","<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>% "
+        "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
     ] 10,
 
     Run Swap [
@@ -60,12 +66,11 @@ Config {
 
     -- Custom script to display volume.
     -- This is due to built-in volume support in xmobar is disabled in Debian.
-    -- XMobar must be recompiled with `--with-alsa` to enable.
     Run Com "/home/zoresvit/.xmonad/volume.sh" [] "myvolume" 1,
 
     Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
 
-    -- Gets input from XMonad into stdin
+    -- Gets input from XMonad into stdin to dipslay workspaces and titles.
     Run StdinReader
    ],
 
@@ -77,5 +82,5 @@ Config {
    alignSep = "}{",
 
    -- XMobar Layout template.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
+   template = "%StdinReader% }{ <fc=#586e75>%battery% %coretemp% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
 }

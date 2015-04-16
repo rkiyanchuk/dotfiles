@@ -1,41 +1,8 @@
-# Vim
-bundle/
-backups/
-swap/
-session.vim
-spell/
-.netrwhist
-
-# Vifm
-vifm/.vifm/Trash
-vifm/.vifm/vifminfo
-
-# XMonad
-xmonad.errors
-xmonad.hi
-xmonad.o
-xmonad-x86_64-linux
-*.swp
-vim_source/
-
-# Tmux
-tmux/.tmux/plugins/
-
 # Mutt
 mutt/.mutt/account.*
 
-# Vimperator
-vimperator/.vimperator/info/default/history-command
-vimperator/.vimperator/info/default/history-search
-vimperator/.vimperator/info/default/local-marks
-vimperator/.vimperator/info/default/macros
-
-vimperator/.vimperator/info/webex
-
-
 # Python
 *.pyc
-
 python/.virtualenvs/*
 !python/.virtualenvs/get_env_details
 !python/.virtualenvs/initialize
@@ -49,3 +16,33 @@ python/.virtualenvs/*
 !python/.virtualenvs/premkproject
 !python/.virtualenvs/premkvirtualenv
 !python/.virtualenvs/prermvirtualenv
+
+# Tmux
+tmux/.tmux/plugins/
+
+# Vifm
+vifm/.vifm/Trash
+vifm/.vifm/vifminfo
+
+# Vim
+.netrwhist
+backups/
+bundle/
+session.vim
+spell/
+swap/
+
+# Vimperator
+vimperator/.vimperator/info/default/history-command
+vimperator/.vimperator/info/default/history-search
+vimperator/.vimperator/info/default/local-marks
+vimperator/.vimperator/info/default/macros
+vimperator/.vimperator/info/webex
+
+# XMonad
+*.swp
+vim_source/
+xmonad-x86_64-linux
+xmonad.errors
+xmonad.hi
+xmonad.o

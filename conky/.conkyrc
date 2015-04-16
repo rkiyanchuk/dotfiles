@@ -58,7 +58,6 @@ Cached${goto 150} ${cached}
 ${color2}$hr
 ${color}HARDWARE
 
-${color2}Temp${goto 150} ${acpitemp}°C
 ${color2}Freq${goto 150} ${freq_g} GHz
 ${voffset 5}${color2}Disk IO${goto 150} ${diskiograph sda 18,270 073642 073642 0 -l}
 ${color2}${goto 250} ${voffset -20}R ${diskio_read} ${alignr 10}W ${diskio_write}

@@ -1,5 +1,8 @@
 " vim: set ft=vimperator:
 
+" OPTIONS
+" =======
+
 set animations
 set focuscontent
 set hlsearch
@@ -9,6 +12,7 @@ set ignorecase
 set smartcase
 
 colorscheme solarized-light
+
 
 " MAPPINGS
 " ========

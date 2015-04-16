@@ -1,4 +1,7 @@
-# Init .bashrc if sourced directly.
+# In order to keep distribution-specific sensible default Bash configuration,
+# user's configuration extends default `.bashrc`.
+
+# Source this file to append it to the end of `.bashrc`:
 if ! grep -q ".bashrc.load" "${HOME}/.bashrc"; then
     echo "source ${HOME}/.bashrc.load" >> "${HOME}/.bashrc"
 fi
@@ -74,7 +77,6 @@ $STATUS\
 ${BLUE}\W${RESET}\
 ${MAGENTA}${BRANCH}${RESET}\
 ${GREEN}\$${RESET} "
-
 }
 export PROMPT_COMMAND=prompt_command
 

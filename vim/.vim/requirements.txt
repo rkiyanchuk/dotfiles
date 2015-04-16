@@ -2,3 +2,4 @@ nose
 vim_bridge
 mock
 flake8
+pylint

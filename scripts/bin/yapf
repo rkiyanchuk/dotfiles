@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
-# AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
-# <+description+>
- 
-PYTHONPATH=${HOME}/devel/yapf python ${HOME}/devel/yapf/yapf $@
+# Shortcut to launch Yapf Python code formatter.
+
+PYTHONPATH="${HOME}/devel/yapf python ${HOME}/devel/yapf/yapf $@"
