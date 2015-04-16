@@ -35,7 +35,7 @@ redshift -O 6500 -g 0.9:0.9:0.9 > /dev/null  # Adjust display color temprature.
 nitrogen --restore &  # Set screen wallpaper (see man for choosing image).
 
 xset -b  # Turn off PC speaker bell.
-xrdb -merge .Xdefaults  # Load X resources.
+xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
 
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
