@@ -2,8 +2,8 @@
 # user's configuration extends default `.bashrc`.
 
 # Source this file to append it to the end of `.bashrc`:
-if ! grep -q ".bashrc.load" "${HOME}/.bashrc"; then
-    echo "source ${HOME}/.bashrc.load" >> "${HOME}/.bashrc"
+if ! grep -q ".bashrc.local" "${HOME}/.bashrc"; then
+    echo "source ${HOME}/.bashrc.local" >> "${HOME}/.bashrc"
 fi
 
 
