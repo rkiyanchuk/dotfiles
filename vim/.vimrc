@@ -314,9 +314,6 @@ Plugin 'seveas/bind.vim'
 " Syntax highlight for Jinja2 template engine.
 Plugin 'Glench/Vim-Jinja2-Syntax'
 
-" Enhanced Markdown editing.
-Plugin 'plasticboy/vim-markdown'
-
 " Enhanced editing of Tmux configuration file (.tmux.conf).
 Plugin 'tmux-plugins/vim-tmux'
 
@@ -427,11 +424,5 @@ let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
-
-" Markdown
-" ~~~~~~~~
-
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_math=1
 
 " }}}
