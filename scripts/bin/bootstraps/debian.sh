@@ -42,7 +42,6 @@ while getopts "sd:h" opt; do
 done
 
 
-SYSFS_CONF=/etc/sysfs.conf
 SYSCTL_LOCAL_CONF=/etc/sysctl.d/local.conf
 
 
@@ -66,11 +65,6 @@ aptitude -y safe-upgrade
 if [ $USE_SSD == true ]; then
     # Optimize SSD performance...
     aptitude -y install sysfsutils
-
-    # Switch to `deadline` scheduler suitable for SSD.
-    if ! grep -q "scheduler.*=.*deadline" ${SYSFS_CONF}; then
-        echo "block/$SYS_DISK/queue/scheduler = deadline" >> ${SYSFS_CONF}
-    fi
 
     # Tweak kernel parameters.
     if [ -f ${SYSCTL_LOCAL_CONF} ]; then
