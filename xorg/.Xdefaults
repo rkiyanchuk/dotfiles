@@ -109,6 +109,7 @@ URxvt*saveLines: 65535
 URxvt.scrollBar: false
 URxvt.intensityStyles: false
 URxvt*urgentOnBell: true
+URxvt.letterSpace: -1
 
 URxvt.url-select.autocopy:  true
 URxvt.url-select.launcher:  firefox
