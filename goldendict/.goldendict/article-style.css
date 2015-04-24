@@ -1,0 +1,151 @@
+
+html, body {
+    background: #fdf6e3;
+    font-family: "Liberation Sans", "Verdana", sans-serif;
+    font-size: 14px;
+    color: #657b83;
+}
+
+a {
+    text-decoration: none;
+    color: #268bd2;
+}
+
+li {
+    margin: 1em 1em 1em 1em !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #586e75;
+}
+
+::selection {
+    background: #eee8d5;
+    color: #dc322f;
+}
+
+/* Dictionary's name heading */
+.gddictname {
+    border: 0px;
+    margin-top: 3em; margin-bottom: 1em;
+    font-size: 14px;
+    background: #eee8d5;
+}
+
+.gdfromprefix {
+    display: none;
+}
+
+.gdarticle {
+    color: #586e75;
+    display: block;
+    padding-top: 1px;
+    margin-top: -9px;
+    margin-bottom: 8px;
+    background: #fdf6e3;
+    /*fix for invalid blg*/
+    font-style: normal;
+}
+
+div.sdct_t {
+    font-weight: bold;
+    color: #657b83;
+}
+
+.xdxf_num {
+    color: #dc322f;
+    font-weight: bold;
+    padding-left:-15px;
+}
+
+.xdxf_def {
+    border-color: inherit;
+    display: block;
+    border-width: 1px;
+    border-style: dashed;
+    margin: 1px;
+    margin-left: 15px;
+}
+
+.xdxf_def:target {
+    /* this pseudoclass is used to marked out the referenced <def> that was just clicked */
+    border-color: #dc322f;
+    border-width: 1px;
+    border-style: double;
+}
+
+.xdxf_abbr {
+    font-style: normal;
+    color: #2aa198;
+    cursor: default;
+}
+
+.xdxf_co, .xdxf_co_old {
+    color: #6c71c4;
+    font-style: normal;
+}
+
+/* Grammar information */
+.xdxf_gr {
+    color: #93a1a1;
+    display: block;
+}
+
+.xdxf_gr_old {
+    color: #268bd2; /*orangered;*/
+}
+
+/* Example */
+.xdxf_ex {
+    color: inherit;
+    display: block;
+    margin-left: 14px;
+}
+
+.xdxf_ex_old {
+    color: inherit;
+}
+
+.xdxf_dtrn {
+    color: #657b83;
+    font-weight: normal;
+}
+
+.xdxf_ex .xdxf_ex_markd, .xdxf_ex_old .xdxf_ex_markd {
+    color: inherit;
+    background-color: inherit;
+}
+
+.sdict_forms {
+    font-style: normal;
+}
+
+.lsa_play a {
+    text-decoration: none;
+    color: #268bd2;
+}
+
+.dsl_u {
+    text-decoration: none;
+}
+
+.dsl_article font[color=c_default_color] {
+    color: #859900;
+}
+
+.dsl_p, .dsl_p :not(a) {
+    /* DSL Feature: Enforce the style even if the childen tags say otherwise, except links */
+    color: #859900 !important; /* DSL label color must have highest priority */
+    font-style: normal;
+    cursor: default;
+    font-weight: normal; /* DSL feature: labels are always of normal weight */
+}
+
+.gdstemmedsuggestion_head {
+    margin-left: 11px;
+    font-style: normal;
+}
+
+.mwiki q {
+    font-style: normal;
+}
