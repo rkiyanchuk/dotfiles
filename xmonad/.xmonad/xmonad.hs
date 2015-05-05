@@ -128,9 +128,9 @@ myKeyBindings =
     , ((myModMask .|. controlMask, xK_m), toggleMute >> return ())
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
     , ((myModMask .|. controlMask, xK_Down), lowerVolume 10 >> return ())
-    , ((0, xF86XK_AudioRaiseVolume), lowerVolume 10 >> return ())
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 10 >> return ())
     , ((myModMask .|. controlMask, xK_Up), raiseVolume 10 >> return())
-    , ((0, xF86XK_AudioLowerVolume), raiseVolume 10 >> return ())
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume 10 >> return ())
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
