@@ -3,7 +3,11 @@
 
 # Source this file to append it to the end of `.bashrc`:
 if ! grep -q ".bashrc.local" "${HOME}/.bashrc"; then
-    echo "source ${HOME}/.bashrc.local" >> "${HOME}/.bashrc"
+    cat <<'EOF' >> ${HOME}/.bashrc
+if [ -f "$HOME/.bashrc.local" ] ; then
+    source ${HOME}/.bashrc.local
+fi
+EOF
 fi
 
 
