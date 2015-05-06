@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 
 ACCENT_COLOR="#cb4b16"
 THRESHOLD="79"
 
+# Choose channel and device preferences based on host name.
 if [[ $(hostname) == "zion" ]]; then
     CHANNEL="Master"
     DEV_NUM="1"

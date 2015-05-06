@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
-
-# AUTHOR: Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
-
+# encoding: utf-8
 
 if ! pgrep nm-applet > /dev/null; then
     nm-applet &  # Start network manager
@@ -17,12 +14,12 @@ if ! pgrep xxkb > /dev/null; then
     xxkb &
 fi
 
-# Temporarily disabled until fixed in Debian Jessie
+# Temporarily disabled until icon issues fixed in Debian.
 # if ! pgrep blueman-applet > /dev/null; then
 #     blueman-applet &
 # fi
 
 if ! pgrep conky > /dev/null ; then
     # Start conky after wallpaper is loaded for correct drawing.
-    sleep 0.1; conky -d
+    sleep 0.2; conky -d
 fi
