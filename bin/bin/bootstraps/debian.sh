@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
+# encoding: utf-8
 
 # This script is designed to bootstrap Debian Jessie base system to fully
 # functional desktop environment under XMonad window manager. Functionality
