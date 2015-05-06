@@ -41,7 +41,7 @@ HISTSIZE=-1
 HISTFILESIZE=-1
 
 # Force tmux into 256 colors mode.
-export TERM=rxvt-256color
+export TERM=rxvt-unicode-256color
 
 # Tell Java that XMonad is non-reparenting WM.
 # Needed for correct Java apps windows operation under XMonad.

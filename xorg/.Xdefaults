@@ -102,6 +102,7 @@ URxvt*background: S_base03
 URxvt*font: FONT_REGULAR
 URxvt*boldFont: FONT_BOLD
 URxvt*italicFont: FONT_ITALIC
+URxvt*boldItalicFont: FONT_BOLD
 URxvt.colorIT: S_magenta
 URxvt.colorBD: S_green
 URxvt.colorUL: S_blue
