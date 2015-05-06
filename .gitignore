@@ -35,11 +35,7 @@ spell/
 swap/
 
 # Vimperator
-vimperator/.vimperator/info/default/history-command
-vimperator/.vimperator/info/default/history-search
-vimperator/.vimperator/info/default/local-marks
-vimperator/.vimperator/info/default/macros
-vimperator/.vimperator/info/webex
+vimperator/.vimperator/info
 
 # XMonad
 *.swp

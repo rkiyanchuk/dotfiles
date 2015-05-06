@@ -5,10 +5,10 @@ Zoresvit's Dotfiles
 configuration files used to maintain user preferred settings across the
 operating system. Thanks to version control systems
 (like [Git](http://git-scm.com/)) and repository hosting services
-(like [GitHub](https://dotfiles.github.io)) _dotfiles_ are now easy to maintain
+(like [GitHub](https://dotfiles.github.io)) *dotfiles* are now easy to maintain
 as well as share with others.
 
-Looking at someone else's _dotfiles_ helps to discover new configurations and
+Looking at someone else's *dotfiles* helps to discover new configurations and
 tweaks of commonly used software to increase productivity and comfort.
 
 ![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
@@ -16,9 +16,9 @@ tweaks of commonly used software to increase productivity and comfort.
 Concepts
 --------
 
-All configuration files are stored in _dotfiles_ Git repository and shared via
+All configuration files are stored in *dotfiles* Git repository and shared via
 [GitHub](https://github.com). However in order to take effect these files need
-to be placed in correct directories, so some kind of _dotfiles_ manager is
+to be placed in correct directories, so some kind of *dotfiles* manager is
 needed.
 
 Despite numerous dedicated tools for managing dotfiles
@@ -32,23 +32,23 @@ tools are used: GNU [`stow`](http://www.gnu.org/software/stow/) and
 
 All user-specific configuration files are stored in user's `home` directory.
 In order to maintain these files under single repository they are moved to
-_dotfiles_ Git repository and _symlinks_ are created in place using `stow`.
+*dotfiles* Git repository and *symlinks* are created in place using `stow`.
 
 Often users are at the same time administrators of their own computers, so it
 would be useful to also maintain some system configuration files. In this case
 symlinking with `stow` is not a proper solution as system partition must remain
-integral. To safely populate system configuration files from the _dotfiles_
+integral. To safely populate system configuration files from the *dotfiles*
 repository to the target system `rsync` can be used.
 
 
 Usage
 =====
 
-The _dotfiles_ repository contains directories with configuration files. Each
-directory corresponds to a _"package"_ for convenience. For instance, all
-Bash-related configuration files are stored in `bash` _"package"_ (directory).
+The *dotfiles* repository contains directories with configuration files. Each
+directory corresponds to a *"package"* for convenience. For instance, all
+Bash-related configuration files are stored in `bash` *"package"* (directory).
 
-There is a special _package_
+There is a special *package*
 
 User configuration
 ------------------
