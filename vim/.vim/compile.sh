@@ -1,11 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# Download sources and compile Vim.
+# Download source code and compile Vim.
 
-hg clone https://vim.googlecode.com/hg/ vim_source
-pushd vim_source
+hg clone https://vim.googlecode.com/hg/ vim_src
+pushd vim_src
 hg pull
 hg update
+
+# Uncomment to get specific version instead of master.
 #hg update v7-4
 
 aptitude build-dep vim

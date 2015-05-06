@@ -1,28 +1,32 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+# Print commands trace.
+set -x
 
 # Populate configuration files
 VIMHOME="$HOME/.vim"
 
-# Setup bundle plugin manager
-if [ ! -d "$VIMHOME/bundle" ]
+# Setup Vundle plugin manager.
+if [ ! -d "$VIMHOME/bundle" ] 
 then
     echo "Setting up Vundle..."
     mkdir -p "$VIMHOME/bundle"
     git clone https://github.com/gmarik/vundle.git "$VIMHOME/bundle/vundle"
-
-    echo "Install plugins..."
-    vim +BundleInstall! +qall
-    echo "Done."
 fi
 
+# Install plugins.
+vim +PluginInstall! +qall
+
+# Setup YouCompleteMe plugin.
 pushd "${HOME}/.vim/bundle/YouCompleteMe"
 ./install.sh --clang-completer
 popd
 
+# Setup command-t plugin.
 pushd "${HOME}/.vim/bundle/command-t/ruby/command-t"
 ruby extconf.rb
 make
 popd
 
-echo "Install dependencies..."
-pip install --user --upgrade -r requirements.txt
+# Install dependencies.
+pip install --user --upgrade -r python-requirements.txt
