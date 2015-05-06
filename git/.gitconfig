@@ -6,8 +6,10 @@
     br = branch -avv
     cm = commit
     co = checkout
-    dstat = diff --stat
+    ds = diff --stat
+    dc = diff --cached
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
+    ls = ls-files
     mt = mergetool
     st = status -sb
     # Checkout pull request from GitHub.
