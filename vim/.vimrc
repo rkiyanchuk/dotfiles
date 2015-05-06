@@ -326,6 +326,9 @@ Plugin 'ekalinin/Dockerfile.vim'
 " Syntax highlighting for Conky.
 Plugin 'smancill/conky-syntax.vim'
 
+" Editing Markdown
+Plugin 'plasticboy/vim-markdown'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -420,5 +423,10 @@ let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
+
+" vim-markdown
+" ~~~~~~~~~~~~
+
+let g:vim_markdown_folding_disabled = 1
 
 " }}}
