@@ -114,7 +114,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Syntax highlighting for `less`. Install `source-highlight` first.
+# Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
 if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
