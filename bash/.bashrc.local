@@ -127,7 +127,7 @@ fi
 # VirtualEnvWrapper settings.
 export WORKON_HOME=${HOME}/.virtualenvs
 export PROJECT_HOME=${HOME}/devel
-if  type virtualenvwrapper.sh > /dev/null; then
+if  type virtualenvwrapper.sh > /dev/null 2>&1; then
     source virtualenvwrapper.sh
 fi
 
@@ -136,6 +136,6 @@ source "${HOME}/.bash/tmux.bash"
 source "${HOME}/.bash/hub.bash"
 source "${HOME}/.bash/vagrant.bash"
 
-if type tmuxp.bash > /dev/null; then
+if type tmuxp.bash > /dev/null 2>&1; then
     source tmuxp.bash
 fi
