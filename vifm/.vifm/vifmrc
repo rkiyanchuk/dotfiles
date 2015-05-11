@@ -11,8 +11,9 @@
 set ignorecase
 set smartcase
 
-nnoremap \v :write | execute ':!%n${EDITOR:-vim} $MYVIFMRC' | restart<cr>
-nnoremap \m :move &<cr>
+nnoremap \V :write | execute ':!%n${EDITOR:-vim} $MYVIFMRC' | restart<cr>
+nnoremap M :move &<cr>
+nnoremap D :delete &<cr>
 
 set vicmd=vim
 " set vicmd=elvis\ -G\ termcap
@@ -119,11 +120,11 @@ set timefmt=\ %m/%d\ %H:%M
 " :filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
 " %PARAM value is filled from the first line of file (whole line).
 " Example first line for SshMount filetype: root@127.0.0.1:/
-filextype *.jpg,*.jpeg,*.png,*.gif geeqie %f 2>/dev/null &
+filextype *.jpg,*.jpeg,*.SRW,*.png,*.gif geeqie %f 2>/dev/null &
 filextype *.pdf mupdf %f 2>/dev/null &
 filextype *.zip file-roller %f 2>/dev/null &
 filextype *.doc,*.rtf libreoffice %f 2>/dev/null &
-filextype *.avi,*.mkv,*.mpeg,*.mp3,*.flac,*.3GP vlc %f 2>/dev/null &
+filextype *.avi,*.mkv,*.mpeg,*.mp3,*.mp4,*.flac,*.3GP vlc %f 2>/dev/null &
 
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
