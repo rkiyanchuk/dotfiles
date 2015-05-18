@@ -234,8 +234,6 @@ command! W :w !sudo tee %
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
 nmap <leader>ls :call LoadSession()<CR>
-" List all buffers and load specified buffer number.
-nnoremap <leader>bb :buffers<CR>:buffer<Space>
 " Toggle spell check.
 nmap <leader>s :set spell!<CR>
 " Fix spelling by choosing first match from suggestions.
@@ -269,8 +267,8 @@ Plugin 'bling/vim-airline'
 " Solarized colorscheme.
 Plugin 'zoresvit/vim-colors-solarized'
 
-" Intuitive files opening via fuzzy search.
-Plugin 'wincent/command-t'
+" Fuzzy search and navigation across files and buffers.
+Plugin 'Shougo/unite.vim'
 
 " File browser.
 Plugin 'scrooloose/nerdtree'
@@ -368,12 +366,13 @@ if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
     colorscheme solarized
 endif
 
-" Commant-t
-" ~~~~~~~~~
+" Unite
+" ~~~~~
 
-let g:CommandTAlwaysShowDotFiles = 1
-let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-let g:CommandTMaxHeight = 10
+call unite#custom#profile('default', 'context', {'winheight': 10})
+nnoremap <leader>f :Unite -start-insert file_rec<CR>
+nnoremap <leader>b :Unite buffer<CR>
+let g:unite_enable_auto_select=0
 
 " NERDTree
 " ~~~~~~~~
