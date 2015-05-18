@@ -97,6 +97,8 @@ alias grep='grep --color=auto'
 alias rgrep='rgrep --color=auto'
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
+alias mount-share='sudo mount -t cifs //192.168.1.1/share share/ \
+    -o uid=1000,gid=1000,credentials=${HOME}/.smb.credentials'
 # Create popup notification when command execution is completed.
 # Usage: $ command; alert
 alias alert='notify-send --urgency=low -i \
