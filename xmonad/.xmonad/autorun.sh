@@ -21,5 +21,5 @@ fi
 
 if ! pgrep conky > /dev/null ; then
     # Start conky after wallpaper is loaded for correct drawing.
-    sleep 0.2; conky -d
+    sleep 1; conky -d
 fi
