@@ -123,7 +123,7 @@ set timefmt=\ %m/%d\ %H:%M
 filextype *.jpg,*.jpeg,*.SRW,*.png,*.gif geeqie %f 2>/dev/null &
 filextype *.pdf mupdf %f 2>/dev/null &
 filextype *.zip file-roller %f 2>/dev/null &
-filextype *.doc,*.rtf libreoffice %f 2>/dev/null &
+filextype *.doc,*.docx,*.rtf libreoffice %f 2>/dev/null &
 filextype *.avi,*.mkv,*.mpeg,*.mp3,*.mp4,*.flac,*.3GP vlc %f 2>/dev/null &
 
 " You can also add %CLEAR if you want to clear screen before running FUSE
