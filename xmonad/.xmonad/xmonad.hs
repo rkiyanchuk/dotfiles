@@ -50,7 +50,7 @@ myNormalBorderColor  = solarizedBase02  -- Color of inactive border.
 myBorderWidth        = 1                -- Width of border around windows.
 myTerminal           = "urxvt"          -- Which terminal software to use.
 
-myTitleLength       = 70  -- Truncate window title to this length.
+myTitleLength       = 90  -- Truncate window title to this length.
 -- Workspace indicator wrappers.
 myCurrentWSLeft     = "["
 myCurrentWSRight    = "]"
