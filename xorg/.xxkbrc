@@ -5,7 +5,7 @@ XXkb.mainwindow.geometry: 20x20+0+0
 XXkb.image.path: /home/zoresvit/.xmonad/images
 XXkb.mainwindow.image.1: lang_us.xpm
 XXkb.mainwindow.image.2: lang_ru.xpm
-XXkb.mainwindow.image.3: lang_ua.xpm
+XXkb.mainwindow.image.3: lang_uk.xpm
 XXkb.mainwindow._delete: no
 XXkb.button.enable: no
 XXkb.controls.two_state: no
