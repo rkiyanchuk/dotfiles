@@ -20,7 +20,7 @@ import XMonad.Layout.Circle
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Reflect
-import XMonad.Layout.Renamed
+import XMonad.Layout.Named
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedWindows
 import XMonad.Util.Run
@@ -64,14 +64,19 @@ startupWorkspace = "α"
 
 
 defaultLayouts = smartBorders(avoidStruts(
-  renamed [Replace "T"] (ResizableTall 1 (3/100) (1/2) [])
-  ||| renamed [Replace "R"] (Mirror (ResizableTall 1 (3/100) (4/5) []))
-  ||| renamed [Replace "F"] (noBorders Full)
-  ||| renamed [Replace "#"] (Grid)
-  ||| renamed [Replace "O"] (Circle)))
+    named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>" 
+        (ResizableTall 1 (3/100) (1/2) [])
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_rtall.xpm/>" 
+        (Mirror (ResizableTall 1 (3/100) (4/5) []))
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>" 
+        (noBorders Full)
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_grid.xpm/>" 
+        (Grid)
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_circ.xpm/>" 
+        (Circle)))
 
 
-chatLayout = renamed [Replace "C"]
+chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
   $ avoidStruts $ withIM (0.2) isPidgin
   $ reflectHoriz $ withIM (0.2) isSkype (Grid)
   where
@@ -79,8 +84,8 @@ chatLayout = renamed [Replace "C"]
     isPidgin = (Title "Buddy List")
 
 fullLayout = avoidStruts(smartBorders(
-                renamed [Replace "F"] (noBorders Full)
-                ||| renamed [Replace "T"] (ResizableTall 1 (3/100) (1/2) [])))
+                named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>" (noBorders Full)
+                ||| named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>" (ResizableTall 1 (3/100) (1/2) [])))
 
 myLayouts = onWorkspace "η" chatLayout $
             onWorkspace "ζ" fullLayout $
