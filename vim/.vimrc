@@ -325,7 +325,7 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'smancill/conky-syntax.vim'
 
 " Editing Markdown
-Plugin 'plasticboy/vim-markdown'
+Plugin 'gabrielelana/vim-markdown'
 
 call vundle#end()
 filetype plugin indent on
@@ -425,7 +425,5 @@ let g:pymode_syntax_all = 1
 
 " vim-markdown
 " ~~~~~~~~~~~~
-
-let g:vim_markdown_folding_disabled = 1
 
 " }}}
