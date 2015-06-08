@@ -1,0 +1,15 @@
+session_name: symc-envs
+
+windows:
+
+  - window_name: dft-foreman
+    panes:
+      - shell_command: ssh rkiyanchuk@10.119.160.188
+
+  - window_name: ash2-foreman
+    panes:
+      - shell_command: ssh symc-ash2-dao
+
+  - window_name: phx2-foreman
+    panes:
+      - shell_command: ssh symc-phx2-dao

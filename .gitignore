@@ -1,4 +1,3 @@
-passwd
 
 # Mutt
 mutt/.mutt/account.*
@@ -21,6 +20,7 @@ python/.virtualenvs/*
 
 # Tmux
 tmux/.tmux/plugins/
+tmux/.tmuxp/passwd*
 
 # Vifm
 vifm/.vifm/Trash
