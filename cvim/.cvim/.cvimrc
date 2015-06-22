@@ -1,0 +1,10 @@
+set noautofocus
+map <S-j> :tabnext<CR>
+map <S-k> :tabprevious<CR>
+let barposition = "bottom"
+let completionengines = ["google", "amazon"]
+let searchalias g = "google"
+unmap x
+unmap X
+map D closeTab
+map U lastClosedTab
