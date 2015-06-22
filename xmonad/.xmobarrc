@@ -29,19 +29,20 @@ Config {
 
   commands = [
     Run Battery [
-      "-t", "<acstatus> <left>%",
+      "--template", "<acstatus> <left>%",
+      "--Low", "10",
+      "--High", "30",
+      "--low", "#dc322f",
+      "--normal", "#b58900",
+      "--high", "#586e75",
       "--",
-      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
-      "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
       "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
-      "-l", "#586e75",
-      "-m", "#b58900",
-      "-h", "#dc322f",
-      "-p", "#859900"
+      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
+      "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
     ] 50,
 
     Run Cpu [
-      "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc><total>%",
+      "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>%",
       "--minwidth", "2",
       "--high", "#dc322f"
     ] 10,
@@ -57,11 +58,6 @@ Config {
 
     Run Memory [
         "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
-    ] 10,
-
-    Run Swap [
-      "-t", "Swap: <usedratio>%",
-      "--high", "#dc322f"
     ] 10,
 
     -- Custom script to display volume.
