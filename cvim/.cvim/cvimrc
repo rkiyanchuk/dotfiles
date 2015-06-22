@@ -1,0 +1,15 @@
+let barposition = "bottom"
+let completionengines = ["google", "amazon"]
+let searchalias g = "google"
+map D closeTab
+map J nextTab
+map K previousTab
+map U lastClosedTab
+map zz zoomOrig
+set cncpcompletion
+set noautofocus
+set numerichints
+set typelinkhints
+unmap X
+unmap x
+unmap zz
