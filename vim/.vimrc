@@ -39,7 +39,8 @@ set laststatus=2
 set lazyredraw  " Speedup execution during macros and other untyped commands.
 set listchars=tab:->,trail:-
 set matchpairs+=<:>
-set mousemodel=popup
+set mouse=a
+set mousemodel=popup_setpos
 set nowrap
 set number
 set path+=.,,**
