@@ -1,4 +1,6 @@
 set noautofocus
+set numerichints
+set typelinkhints
 map <S-j> :tabnext<CR>
 map <S-k> :tabprevious<CR>
 let barposition = "bottom"
