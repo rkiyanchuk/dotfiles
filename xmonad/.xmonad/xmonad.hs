@@ -98,13 +98,8 @@ myManagementHooks = [
   , resource =? "xfce4-notifyd" --> doIgnore
   , resource =? "XXkb" --> doIgnore
   , className =? "rdesktop" --> doFloat
-  , className =? "Iceweasel" --> focusShift "ζ"
-  , className =? "Firefox" --> focusShift "ζ"
-  , className =? "Chromium-browser" --> focusShift "ζ"
   , className =? "Pidgin" --> focusShift "η"
   , className =? "Skype" --> doShift "η"
-  , className =? "ViberPC" --> doShift "η"
-  , title =? "Form" --> doIgnore  -- Viber notifications
   ]
   where
     focusShift = doF . liftM2 (.) W.greedyView W.shift
