@@ -64,15 +64,15 @@ startupWorkspace = "α"
 
 
 defaultLayouts = smartBorders(avoidStruts(
-    named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>" 
+    named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>"
         (ResizableTall 1 (3/100) (1/2) [])
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_rtall.xpm/>" 
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_rtall.xpm/>"
         (Mirror (ResizableTall 1 (3/100) (4/5) []))
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>" 
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>"
         (noBorders Full)
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_grid.xpm/>" 
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_grid.xpm/>"
         (Grid)
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_circ.xpm/>" 
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_circ.xpm/>"
         (Circle)))
 
 
