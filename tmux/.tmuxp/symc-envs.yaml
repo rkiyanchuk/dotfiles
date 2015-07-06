@@ -2,7 +2,19 @@ session_name: symc-envs
 
 windows:
 
-  - window_name: dft-foreman
+  - window_name: ash1-prod-foreman
+    panes:
+      - shell_command: ssh ruslan_kiyanchuk@10.119.172.4
+
+  - window_name: ash1-prod-dhcp
+    panes:
+      - shell_command: ssh ruslan_kiyanchuk@10.119.172.5
+
+  - window_name: ash1-prod-cmdb
+    panes:
+      - shell_command: ssh ruslan_kiyanchuk@10.119.172.6
+
+  - window_name: ash1-lab-foreman
     panes:
       - shell_command: ssh rkiyanchuk@10.119.160.188
 

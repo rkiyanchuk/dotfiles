@@ -63,6 +63,6 @@ windows:
       - null
 
   - window_name: switchconf
-    start_directory: /home/zoresvit/devel/projects/symantec/dao/switchconf
+    start_directory: /home/zoresvit/devel/projects/symantec/switchconf
     panes:
       - null
