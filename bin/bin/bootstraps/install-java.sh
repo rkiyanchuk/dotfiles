@@ -7,9 +7,8 @@
 set -o errexit
 set -o xtrace
 
-# V8 Update 31
-JAVA32="http://javadl.sun.com/webapps/download/AutoDL?BundleId=106238"
-JAVA64="http://javadl.sun.com/webapps/download/AutoDL?BundleId=106240"
+JAVA32="http://javadl.sun.com/webapps/download/AutoDL?BundleId=108137"
+JAVA64="http://javadl.sun.com/webapps/download/AutoDL?BundleId=108139"
 
 # Java x32
 wget $JAVA32 -O java32.tar.gz
