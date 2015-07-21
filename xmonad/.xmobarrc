@@ -78,5 +78,5 @@ Config {
    alignSep = "}{",
 
    -- XMobar Layout template.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %coretemp% %cpu% %memory% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
+   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
 }
