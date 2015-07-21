@@ -115,14 +115,14 @@ augroup END
 
 augroup CPP
     au!
-    au FileType c,cpp,h map <F6> :call Compile()<CR>
+    au FileType c,cpp,h map <F5> :call Compile()<CR>
     au FileType c,cpp,h set cindent
     au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
 augroup END
 
 augroup LATEX
-    au FileType tex set makeprg=make\ -f\ $VIMHOME/Makefile_tex\ TARGET=%
-    au FileType tex map <F6> :make -B <CR>
+    au FileType tex set makeprg=rubber\ -m\ xelatex\ %
+    au FileType tex map <F5> :make <CR>
 augroup END
 
 augroup WEB
