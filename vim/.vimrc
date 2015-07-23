@@ -328,6 +328,9 @@ Plugin 'smancill/conky-syntax.vim'
 " Editing Markdown
 Plugin 'gabrielelana/vim-markdown'
 
+" Editing LaTeX files.
+Plugin 'lervag/vimtex'
+
 call vundle#end()
 filetype plugin indent on
 
