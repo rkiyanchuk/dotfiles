@@ -1,36 +1,36 @@
-session_name: symc-dev
+session_name: symc-dev-dao
 
 windows:
 
   - window_name: bash
     start_directory: /home/zoresvit/devel/projects/symantec
     panes:
-      - shell_command: git rpull; workon dao; cd dao
+      - shell_command: git rpull; workon symc-dao; cd dao
 
   - window_name: dao-agent
     start_directory: /home/zoresvit/devel/projects/symantec/dao/daoagent
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-ci
     start_directory: /home/zoresvit/devel/projects/symantec/dao/dao-ci
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-client
     start_directory: /home/zoresvit/devel/projects/symantec/dao/daoclient
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-common
     start_directory: /home/zoresvit/devel/projects/symantec/dao/dao-common
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-control
     start_directory: /home/zoresvit/devel/projects/symantec/dao/dao-control
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-deploy
     start_directory: /home/zoresvit/devel/projects/symantec/dao/dao-deploy
@@ -40,7 +40,7 @@ windows:
   - window_name: dao-dhcp
     start_directory: /home/zoresvit/devel/projects/symantec/dao/daodhcp
     panes:
-      - shell_command: workon dao
+      - shell_command: workon symc-dao
 
   - window_name: dao-foreman
     start_directory: /home/zoresvit/devel/projects/symantec/dao/dao-foreman
