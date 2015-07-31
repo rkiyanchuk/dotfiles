@@ -3,7 +3,8 @@
 	email = ruslan.kiianchuk@gmail.com
 
 [alias]
-    br = branch -avv
+    br = branch -vv
+    bra = branch -avv
     cm = commit
     co = checkout
     ds = diff --stat
