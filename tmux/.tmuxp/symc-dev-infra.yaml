@@ -1,13 +1,13 @@
-session_name: symc-dev-infra
+session_name: symc-infra
 
 windows:
 
   - window_name: bash
     start_directory: /home/zoresvit/devel/projects/symantec/infra
     panes:
-      - shell_command: git rpull; workon symc-infra;
+      - shell_command: git rpull;
 
   - window_name: cms
     start_directory: /home/zoresvit/devel/projects/symantec/infra/cms
     panes:
-      - shell_command: workon symc-infra
+      - shell_command: workon symc-cms;
