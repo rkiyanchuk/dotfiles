@@ -113,9 +113,9 @@ URxvt*urgentOnBell: true
 URxvt.letterSpace: -1
 
 URxvt.url-select.autocopy:  true
-URxvt.url-select.launcher:  chromium
+URxvt.url-select.launcher:  google-chrome
 URxvt.url-select.underline: true
-urxvt.url-launcher: chromium
+urxvt.url-launcher: google-chrome
 URxvt.scrollWithBuffer: true
 
 ! Enable extensions.

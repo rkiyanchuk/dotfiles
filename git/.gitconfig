@@ -51,4 +51,4 @@
 	protocol = https
 
 [web]
-	browser = chromium
+	browser = google-chrome
