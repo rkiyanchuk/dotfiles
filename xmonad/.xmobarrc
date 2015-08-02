@@ -30,7 +30,7 @@ Config {
   commands = [
     Run Battery [
       "--template", "<acstatus> <left>%",
-      "--Low", "10",
+      "--Low", "15",
       "--High", "30",
       "--low", "#dc322f",
       "--normal", "#b58900",
