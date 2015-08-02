@@ -113,19 +113,16 @@ alias alert='notify-send --urgency=low -i \
 # ================
 
 # Make executables in user's `bin` directory available in $PATH.
-if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
+export PATH="$PATH:$HOME/bin"
 
 # Make executables from user's Python packages available in $PATH.
-if [ -d "$HOME/.local/bin" ] ; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
+export PATH="$PATH:$HOME/.local/bin"
 
 # Make executables from user's Cabal (Haskell) packages available in $PATH.
-if [ -d "$HOME/.cabal/bin" ] ; then
-    export PATH="$HOME/.cabal/bin:$PATH"
-fi
+export PATH=":$PATH:$HOME/.cabal/bin"
+
+# Make executables from user's Ruby Gem packages available in $PATH.
+export PATH=":$PATH:$HOME/.gem/ruby/2.1.0/bin"
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
