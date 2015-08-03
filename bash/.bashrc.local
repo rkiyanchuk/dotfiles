@@ -112,6 +112,10 @@ alias alert='notify-send --urgency=low -i \
 # THIRD PARTY APPS
 # ================
 
+# Path for Go lang.
+export GOPATH="${HOME}/.go"
+export PATH="$PATH:$HOME/.go/bin"
+
 # Make executables in user's `bin` directory available in $PATH.
 export PATH="$PATH:$HOME/bin"
 
