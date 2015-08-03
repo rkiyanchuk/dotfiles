@@ -121,12 +121,11 @@ aptitude -y install stow conky-all
 aptitude -y install network-manager network-manager-gnome
 aptitude -y install network-manager-openvpn
 aptitude -y install bluez-tools blueman gksu
+aptitude -y install usbmount
 
 aptitude -y install python-pip
-aptitude -y install python-notify  # dependency for udiskie
 
-# Install udiskie dependencies
-aptitude -y install python-setuptools udisks python-pip python-gobject
+aptitude -y install python-setuptools python-pip python-gobject
 aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection
 aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.7
 
@@ -178,9 +177,6 @@ mkdir -p $HOME/downloads
 mkdir -p $HOME/media
 # Software development, projects, repositories
 mkdir -p $HOME/devel
-
-# After reboot, once X is initialized:
-# pip install udiskie  # automount usb devices
 
 # System76 Gazelle Pro
 # aptitude -y install firmware-linux firmware-iwlwifi

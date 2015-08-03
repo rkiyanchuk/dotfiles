@@ -43,10 +43,6 @@ if ! pgrep syndaemon > /dev/null; then
     syndaemon -i 0.5 -K -d  # Start synaptics daemon for keyboard monitoring.
 fi
 
-if ! pgrep udiskie > /dev/null; then
-    udiskie &  # Start USB automount daemon.
-fi
-
 if ! pgrep stalonetray > /dev/null; then
     stalonetray &  # Start system tray.
 fi
