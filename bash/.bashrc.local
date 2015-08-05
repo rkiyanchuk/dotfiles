@@ -145,6 +145,7 @@ fi
 source "${HOME}/.bash/tmux.bash"
 source "${HOME}/.bash/hub.bash"
 source "${HOME}/.bash/vagrant.bash"
+source "${HOME}/.bash/docker-compose.bash"
 
 if  [ -f "${HOME}/.local/bin/tmuxp.bash" ] ; then
     source tmuxp.bash
