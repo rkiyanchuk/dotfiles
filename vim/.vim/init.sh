@@ -23,4 +23,4 @@ pushd "${HOME}/.vim/bundle/YouCompleteMe"
 popd
 
 # Install dependencies.
-pip install --user --upgrade -r python-requirements.txt
+pip install --user --upgrade -r ${HOME}/.vim/python-requirements.txt
