@@ -10,4 +10,9 @@ windows:
   - window_name: cms
     start_directory: /home/zoresvit/devel/projects/symantec/infra/cms
     panes:
-      - shell_command: workon symc-cms;
+      - shell_command: workon symc-infra;
+
+  - window_name: config
+    start_directory: /home/zoresvit/devel/projects/symantec/infra/config
+    panes:
+      - shell_command: workon symc-infra;

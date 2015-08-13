@@ -16,7 +16,7 @@ windows:
 
   - window_name: ash1-lab-foreman
     panes:
-      - shell_command: ssh rkiyanchuk@10.119.160.188
+      - shell_command: ssh ruslan_kiyanchuk@10.119.160.188
 
   - window_name: ash2-foreman
     panes:
