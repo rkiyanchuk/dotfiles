@@ -31,13 +31,13 @@ function is_alive() {
 
 
 if is_alive ${RPI}; then
-    popup "Media Backup" "Backup started." ${ICON_INFO}
-    OUTPUT=$((${BACKUP_CMD}) 2>&1)
+    popup "Media Backup" "Started." ${ICON_INFO}
+    ${BACKUP_CMD}
     STATUS=$?
     if [[ ${STATUS} -eq 0 ]]; then
-        popup "Media Backup" "Backup completed.\n\n${OUTPUT}" ${ICON_INFO}
+        popup "Media Backup" "Completed." ${ICON_INFO}
     else
-        popup "Media Backup" "Backup FAILED.\n\n${OUTPUT}" ${ICON_ERROR}
+        popup "Media Backup" "FAILED." ${ICON_ERROR}
     fi
 else
     popup "Media Backup" "Attempted backup, but RPi is unreachable!" ${ICON_ERROR}
