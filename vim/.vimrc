@@ -374,8 +374,8 @@ endif
 " ~~~~~
 
 call unite#custom#profile('default', 'context', {'winheight': 10})
-nnoremap <leader>f :Unite -start-insert file_rec<CR>
-nnoremap <leader>b :Unite buffer<CR>
+nnoremap <leader>f :Unite -no-split -start-insert file_rec<CR>
+nnoremap <leader>b :Unite -no-split buffer<CR>
 let g:unite_enable_auto_select=0
 
 " NERDTree
