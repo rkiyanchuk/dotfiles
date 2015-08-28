@@ -121,7 +121,7 @@ aptitude -y install stow conky-all
 aptitude -y install network-manager network-manager-gnome
 aptitude -y install network-manager-openvpn
 aptitude -y install bluez-tools blueman gksu
-aptitude -y install usbmount
+aptitude -y install pmount
 
 aptitude -y install python-pip
 
