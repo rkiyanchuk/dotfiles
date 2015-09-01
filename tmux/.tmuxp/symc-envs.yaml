@@ -16,7 +16,11 @@ windows:
 
   - window_name: ash1-lab-foreman
     panes:
-      - shell_command: ssh ruslan_kiyanchuk@10.119.160.188
+      - shell_command: ssh ruslan_kiyanchuk@10.119.172.104
+
+  - window_name: ash1-lab-cms
+    panes:
+      - shell_command: ssh root@10.119.160.164
 
   - window_name: ash2-foreman
     panes:
@@ -25,3 +29,4 @@ windows:
   - window_name: phx2-foreman
     panes:
       - shell_command: ssh symc-phx2-dao
+ 
