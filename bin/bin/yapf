@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# coding: utf-8
-
-# Shortcut to launch Yapf Python code formatter.
-
-PYTHONPATH="${HOME}/devel/yapf python ${HOME}/devel/yapf/yapf $@"
