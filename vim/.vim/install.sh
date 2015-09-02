@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Create Vim Deb package.
+# Create and install Vim Deb package.
+# Requires root privileges!
 
 pushd vim_src
 checkinstall -y

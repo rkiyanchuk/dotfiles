@@ -1,6 +1,5 @@
 " Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 
-
 let $VIMHOME=$HOME . "/.vim"
 let $VIMBUNDLE=$VIMHOME . "/bundle"
 
@@ -15,7 +14,6 @@ endif
 
 " {{{ OPTIONS
 
-set nocompatible  " Ensure Vi improved features are enabled.
 syntax on
 
 set background=dark
@@ -24,7 +22,6 @@ set backup
 set backupdir=$VIMHOME/backups
 set browsedir=buffer
 set colorcolumn=80
-set complete+=k
 set completeopt=menuone,preview
 set cursorcolumn
 set cursorline
@@ -33,7 +30,7 @@ set directory=$VIMHOME/swap
 set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
 set fillchars=
 set foldmethod=marker
-set formatoptions+=ro
+set formatoptions+=rt
 set hidden
 set laststatus=2
 set lazyredraw  " Speedup execution during macros and other untyped commands.
@@ -43,19 +40,19 @@ set mouse=a
 set mousemodel=popup_setpos
 set nowrap
 set number
-set path+=.,,**
+set path+=**
 set scrolloff=3
 set showfulltag
 set spelllang=en,ru_yo,uk
 set splitbelow
 set splitright
+" Set native status line as fallback from vim-airline.
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
 set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 set textwidth=79
 set timeoutlen=500
-set undodir=$VIMHOME/backups
+set undodir=$VIMHOME/swap
 set undofile
-set undolevels=2048
 set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set visualbell
@@ -102,6 +99,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 augroup TEXT
     " Auto commands for any text file.
     au!
+    au FileType text,markdown set spell
     " Enable quickfix window height adjustment.
     au FileType qf call AdjustWindowHeight(3, 6)
     " Automatically save session on exit.
@@ -121,8 +119,10 @@ augroup CPP
 augroup END
 
 augroup LATEX
-    au FileType tex set makeprg=rubber\ -m\ xelatex\ %
+    au FileType tex set makeprg=latexrun\ --latex-cmd\ xelatex\ %
     au FileType tex map <F5> :make <CR>
+    au FileType tex map <F6> :VimtexView <CR>
+    au FileType tex set spell
 augroup END
 
 augroup WEB
@@ -234,12 +234,6 @@ command! W :w !sudo tee %
 "let mapleader="\"
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
-nmap <leader>ls :call LoadSession()<CR>
-" Toggle spell check.
-nmap <leader>s :set spell!<CR>
-" Fix spelling by choosing first match from suggestions.
-imap <silent> <leader>sf <ESC>1z=ea
-nmap <silent> <leader>sf <ESC>1z=e
 " Enable russian alternate layout.
 inoremap <leader>ru <ESC>:set keymap=russian-jcukenwin<CR>a
 nnoremap <leader>ru :set keymap=russian-jcukenwin<CR>
@@ -250,6 +244,7 @@ nnoremap <leader>uk :set keymap=ukrainian-jcuken<CR>
 inoremap <leader>he <ESC>:set keymap=hebrew_utf-8<CR>a
 nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
 
+
 " }}}
 
 
@@ -259,77 +254,43 @@ filetype off  " Filetype recognition must be disabled for Vundle setup.
 set rtp+=$VIMBUNDLE/vundle/
 call vundle#begin()
 
-" Vundle plugin manager.
-Plugin 'gmarik/vundle'
+" Essentials
+" ==========
 
-" Enhanced statusline.
-Plugin 'bling/vim-airline'
-
-" Solarized colorscheme.
+Plugin 'gmarik/vundle'  " Vim plugin manager.
+Plugin 'bling/vim-airline'  " Enhanced status line.
 Plugin 'zoresvit/vim-colors-solarized'
+Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
+Plugin 'scrooloose/nerdtree'  " File browser.
+Plugin 'majutsushi/tagbar'  " File tags browser.
+Plugin 'Valloric/YouCompleteMe'  " Ultimate auto-completion.
+Plugin 'scrooloose/syntastic'  " Ultimate static syntax analysis.
+Plugin 'SirVer/ultisnips'  " Snippets engine.
+Plugin 'honza/vim-snippets'  " Snippets database.
+Plugin 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
+Plugin 'tpope/vim-fugitive'  " Git interface for Vim.
+Plugin 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
+Plugin 'vim-scripts/matchit.zip'  " Enhanced navigation of  matching tags (%).
+Plugin 'reedes/vim-wordy'  " Text writing enhancement à la Grammarly.
 
-" Fuzzy search and navigation across files and buffers.
-Plugin 'Shougo/unite.vim'
+" Programming
+" ===========
 
-" File browser.
-Plugin 'scrooloose/nerdtree'
-
-" File tags browser.
-Plugin 'majutsushi/tagbar'
-
-" Ultimate autocompletion.
-Plugin 'Valloric/YouCompleteMe'
-
-" Ultimate static syntax analysis.
-Plugin 'scrooloose/syntastic'
-
-" Snippets engine.
-Plugin 'SirVer/ultisnips'
-" Snippets database.
-Plugin 'honza/vim-snippets'
-
-" Show git diff in gutter (+/- signs column).
-Plugin 'airblade/vim-gitgutter'
-
-" Git repository visualizer (requires `vim-fugitive`).
-Plugin 'gregsexton/gitv'
-Plugin 'tpope/vim-fugitive'
-
-" Navigating matching tags with `%` for HTML, LaTeX, XML and others.
-Plugin 'vim-scripts/matchit.zip'
-
-" Python code editing.
 Plugin 'klen/python-mode'
-
-" Activate virtualenvs from Vim.
-Plugin 'jmcantrell/vim-virtualenv'
-
-" Puppet manifests editing.
+Plugin 'jmcantrell/vim-virtualenv'  " Activate Python virtualenvs from Vim.
+Plugin 'lervag/vimtex'
+Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'rodjek/vim-puppet'
 
-" DNS Zone files editing.
-Plugin 'seveas/bind.vim'
+" Enhancements
+" ============
 
-" Syntax highlight for Jinja2 template engine.
-Plugin 'Glench/Vim-Jinja2-Syntax'
-
-" Enhanced editing of Tmux configuration file (.tmux.conf).
-Plugin 'tmux-plugins/vim-tmux'
-
-" Editing binary files.
-Plugin 'fidian/hexmode'
-
-" Enhanced Dockerfile editing.
-Plugin 'ekalinin/Dockerfile.vim'
-
-" Syntax highlighting for Conky.
-Plugin 'smancill/conky-syntax.vim'
-
-" Editing Markdown
-Plugin 'gabrielelana/vim-markdown'
-
-" Editing LaTeX files.
-Plugin 'lervag/vimtex'
+Plugin 'seveas/bind.vim'  " Edit DNS Zone files.
+Plugin 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
+Plugin 'fidian/hexmode'  " Edit binary files.
+Plugin 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
+Plugin 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
+Plugin 'gabrielelana/vim-markdown'  " Edi Markdown.
 
 call vundle#end()
 filetype plugin indent on
@@ -355,7 +316,6 @@ let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.readonly = 'R'
 let g:airline_symbols.whitespace = 'Ξ'
-
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
@@ -403,14 +363,13 @@ nmap <leader>j :YcmCompleter GoTo<CR>
 " HTML5 lint with http://www.htacg.org/tidy-html5.
 let g:syntastic_html_tidy_exec = 'tidy5'
 
-" Utlisnips
+" UtliSnips
 " ~~~~~~~~~
 
 let g:UltiSnipsExpandTrigger       = '<c-\>'
 let g:UltiSnipsListSnippets        = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
 let g:UltiSnipsEditSplit="horizontal"
 
 " Python-mode
@@ -427,7 +386,15 @@ let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 
-" vim-markdown
-" ~~~~~~~~~~~~
+" vim-wordy
+" ~~~~~~~~~
+
+nnoremap <silent> W :NextWordy<cr>
+
+" vimtex
+" ~~~~~~
+
+let g:vimtex_latexmk_enabled = 0
+let g:vimtex_fold_enabled = 0
 
 " }}}

@@ -1,6 +1,5 @@
 " Ruslan Kiianchuk <ruslan.kiianchuk@gmail.com>
 
-
 " Set up the GUI cursor look nice
 set guicursor=n-v-c:block-Cursor-blinkon0
 set guicursor+=ve:ver35-Cursor
