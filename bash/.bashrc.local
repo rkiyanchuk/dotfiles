@@ -51,6 +51,8 @@ export TERM=rxvt-unicode-256color
 # Needed for correct Java apps windows operation under XMonad.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+
 # PROMPT
 # ------
 
