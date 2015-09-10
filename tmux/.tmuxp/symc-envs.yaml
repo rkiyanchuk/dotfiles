@@ -4,29 +4,28 @@ windows:
 
   - window_name: ash1-prod-foreman
     panes:
-      - shell_command: ssh ruslan_kiyanchuk@10.119.172.4
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.4
 
   - window_name: ash1-prod-dhcp
     panes:
-      - shell_command: ssh ruslan_kiyanchuk@10.119.172.5
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.5
 
   - window_name: ash1-prod-cmdb
     panes:
-      - shell_command: ssh ruslan_kiyanchuk@10.119.172.6
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.6
 
   - window_name: ash1-lab-foreman
     panes:
-      - shell_command: ssh ruslan_kiyanchuk@10.119.172.104
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.104
 
   - window_name: ash1-lab-cms
     panes:
-      - shell_command: ssh root@10.119.160.164
+      - shell_command: TERM=xterm ssh root@10.119.160.164
 
   - window_name: ash2-foreman
     panes:
-      - shell_command: ssh symc-ash2-dao
+      - shell_command: TERM=xterm ssh symc-ash2-dao
 
   - window_name: phx2-foreman
     panes:
-      - shell_command: ssh symc-phx2-dao
- 
+      - shell_command: TERM=xterm ssh symc-phx2-dao
