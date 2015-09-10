@@ -95,9 +95,9 @@ alias dud='du -d1 -h'
 alias l='ls -CFl'
 alias la='ls -A --group-directories-first'
 alias ll='ls -Ahl --group-directories-first'
-alias grep='grep --color=always'
-alias igrep='grep -i --color=always'
-alias rgrep='rgrep --color=always'
+alias grep='grep --color=auto'
+alias igrep='grep -i --color=auto'
+alias rgrep='rgrep --color=auto'
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
 alias mount-share='sudo mount -t cifs //192.168.1.1/share share/ \
@@ -131,6 +131,9 @@ export PATH=":$PATH:$HOME/.cabal/bin"
 
 # Make executables from user's Ruby Gem packages available in $PATH.
 export PATH=":$PATH:$HOME/.gem/ruby/2.1.0/bin"
+
+# Set default JAVA SDK location (requires openjdk-8-jdk package). 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
