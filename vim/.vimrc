@@ -118,6 +118,11 @@ augroup CPP
     au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
 augroup END
 
+augroup JAVA
+    au!
+    au FileType java set omnifunc=javacomplete#Complete
+augroup END
+
 augroup LATEX
     au FileType tex set makeprg=latexrun\ --latex-cmd\ xelatex\ %
     au FileType tex map <F5> :make <CR>
@@ -281,6 +286,7 @@ Plugin 'jmcantrell/vim-virtualenv'  " Activate Python virtualenvs from Vim.
 Plugin 'lervag/vimtex'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'rodjek/vim-puppet'
+Plugin 'artur-shaik/vim-javacomplete2'
 
 " Enhancements
 " ============
