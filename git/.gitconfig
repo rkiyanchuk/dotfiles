@@ -44,9 +44,6 @@
 [credential]
     helper = cache --timeout=43200
 
-[push]
-	default = simple
-
 [hub]
 	protocol = https
 
