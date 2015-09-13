@@ -41,8 +41,8 @@ ONWHITE="\[\033[0;47m\]"
 # =======================
 
 HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in bash history.
-HISTSIZE=-1
-HISTFILESIZE=-1
+HISTSIZE=1000
+HISTFILESIZE=1000
 
 # Force tmux into 256 colors mode.
 export TERM=rxvt-unicode-256color
@@ -132,7 +132,7 @@ export PATH=":$PATH:$HOME/.cabal/bin"
 # Make executables from user's Ruby Gem packages available in $PATH.
 export PATH=":$PATH:$HOME/.gem/ruby/2.1.0/bin"
 
-# Set default JAVA SDK location (requires openjdk-8-jdk package). 
+# Set default JAVA SDK location (requires openjdk-8-jdk package).
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
