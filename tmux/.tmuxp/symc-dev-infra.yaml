@@ -12,7 +12,12 @@ windows:
     panes:
       - shell_command: workon symc-infra;
 
-  - window_name: config
-    start_directory: /home/zoresvit/devel/projects/symantec/infra/config
+  - window_name: yidb
+    start_directory: /home/zoresvit/devel/projects/symantec/infra/yidb
+    panes:
+      - shell_command: workon symc-infra;
+
+  - window_name: puppet-cms
+    start_directory: /home/zoresvit/devel/projects/symantec/infra/puppet-cms
     panes:
       - shell_command: workon symc-infra;
