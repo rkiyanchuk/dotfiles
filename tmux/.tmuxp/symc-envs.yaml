@@ -2,7 +2,11 @@ session_name: symc-envs
 
 windows:
 
-  - window_name: ash1-prod-foreman
+  - window_name: ash1-prod-hyperv
+    panes:
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.150.68
+
+  - window_name: ash1-prod-dao
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.4
 
@@ -10,22 +14,40 @@ windows:
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.5
 
-  - window_name: ash1-prod-cmdb
+  - window_name: ash1-prod-cms
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.6
 
-  - window_name: ash1-lab-foreman
+
+  - window_name: ash1-dev-hyperv
+    panes:
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.150.89
+
+  - window_name: ash1-dev-dao
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.104
 
-  - window_name: ash1-lab-cms
+  - window_name: ash1-dev-dhcp
     panes:
-      - shell_command: TERM=xterm ssh root@10.119.160.164
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.105
 
-  - window_name: ash2-foreman
+  - window_name: ash1-dev-cms
+    panes:
+      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.106
+
+
+  - window_name: ash2-dao
     panes:
       - shell_command: TERM=xterm ssh symc-ash2-dao
 
-  - window_name: phx2-foreman
+  - window_name: ash2-mongo-1
     panes:
-      - shell_command: TERM=xterm ssh symc-phx2-dao
+      - shell_command: TERM=xterm ssh symc-ash2-mongo-1
+
+  - window_name: ash2-mongo-2
+    panes:
+      - shell_command: TERM=xterm ssh symc-ash2-mongo-2
+
+  - window_name: ash2-mongo-3
+    panes:
+      - shell_command: TERM=xterm ssh symc-ash2-mongo-3
