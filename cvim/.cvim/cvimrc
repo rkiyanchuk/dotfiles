@@ -1,15 +1,37 @@
 let barposition = "bottom"
-let completionengines = ["google", "amazon"]
+let blacklists = ["https://docs.google.com/*"]
+let completionengines = ["google", "duckduckgo", "wikipedia", "google-maps", "amazon"]
+let qmark m = ["https://music.google.com"]
+let qmark s = [ "https://miracloud.slack.com/", "https://cloudfire-dev.slack.com/"]
+let searchalias a = "amazon"
+let searchalias d = "duckduckgo"
 let searchalias g = "google"
-map D closeTab
-map J nextTab
-map K previousTab
-map U lastClosedTab
-map zz zoomOrig
+let searchalias m = "google-maps"
+let searchalias w = "wikipedia"
+let searchlimit = 10
+
+site '*://*.slack.com/*' {
+    call :pintab
+}
+
+set autohidecursor
 set cncpcompletion
+set linkanimations
 set noautofocus
 set numerichints
+set scalehints
+set showtabindices
 set typelinkhints
+
+unmap J
+unmap K
 unmap X
 unmap x
-unmap zz
+
+map J nextTab
+map K previousTab
+map D closeTab
+map U lastClosedTab
+
+let configpath = '/home/zoresvit/.cvim/cvimrc'
+set localconfig
