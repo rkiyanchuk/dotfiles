@@ -43,7 +43,7 @@ set number
 set path+=**
 set scrolloff=3
 set showfulltag
-set spelllang=en,ru_yo,uk
+set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
 " Set native status line as fallback from vim-airline.
@@ -239,16 +239,6 @@ command! W :w !sudo tee %
 "let mapleader="\"
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
-" Enable russian alternate layout.
-inoremap <leader>ru <ESC>:set keymap=russian-jcukenwin<CR>a
-nnoremap <leader>ru :set keymap=russian-jcukenwin<CR>
-" Enable ukrainian alternate layout.
-inoremap <leader>uk <ESC>:set keymap=ukrainian-jcuken<CR>a
-nnoremap <leader>uk :set keymap=ukrainian-jcuken<CR>
-" Enable hebrew alternate layout.
-inoremap <leader>he <ESC>:set keymap=hebrew_utf-8<CR>a
-nnoremap <leader>he :set keymap=hebrew_utf-8<CR>
-
 
 " }}}
 
@@ -266,6 +256,7 @@ Plugin 'gmarik/vundle'  " Vim plugin manager.
 Plugin 'bling/vim-airline'  " Enhanced status line.
 Plugin 'zoresvit/vim-colors-solarized'
 Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
+Plugin 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plugin 'scrooloose/nerdtree'  " File browser.
 Plugin 'majutsushi/tagbar'  " File tags browser.
 Plugin 'Valloric/YouCompleteMe'  " Ultimate auto-completion.
@@ -277,6 +268,7 @@ Plugin 'tpope/vim-fugitive'  " Git interface for Vim.
 Plugin 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
 Plugin 'vim-scripts/matchit.zip'  " Enhanced navigation of  matching tags (%).
 Plugin 'reedes/vim-wordy'  " Text writing enhancement à la Grammarly.
+Plugin 'vim-scripts/LanguageTool'  " Grammar checker.
 
 " Programming
 " ===========
@@ -325,6 +317,12 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
+
+" xkbswitch
+" ~~~~~~~~~
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
 " Solarized
 " ~~~~~~~~~
@@ -392,15 +390,27 @@ let g:pymode_breakpoint_bind = '<leader>B'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 
-" vim-wordy
-" ~~~~~~~~~
-
-nnoremap <silent> W :NextWordy<cr>
-
 " vimtex
 " ~~~~~~
 
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
+
+" vim-wordy
+" ~~~~~~~~~
+
+nnoremap <silent> <F8> :NextWordy<CR>
+let g:wordy#ring = [
+  \ ['weak', 'weasel', 'puffery', 'business-jargon', 'art-jargon',],
+  \ ['being', 'passive-voice', 'problematic', 'redundant', ],
+  \ ['colloquial', 'idiomatic', 'similies', ],
+  \ ['contractions', 'opinion', 'vague-time', 'said-synonyms', ],
+  \ ]
+
+" LanguageTool
+" ~~~~~~~~~~~~
+
+let g:languagetool_jar='/opt/languagetool/languagetool-commandline.jar'
+nmap <silent> <F7> :LanguageToolCheck<CR>
 
 " }}}
