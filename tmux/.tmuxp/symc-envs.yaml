@@ -4,41 +4,53 @@ windows:
 
   - window_name: ash1-prod-hyperv
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.150.68
+      - shell_command: TERM=xterm ssh symc-ash1-prod-hyperv
 
   - window_name: ash1-prod-dao
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.4
+      - shell_command: TERM=xterm ssh symc-ash1-prod-dao
 
   - window_name: ash1-prod-dhcp
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.5
+      - shell_command: TERM=xterm ssh symc-ash1-prod-dhcp
 
   - window_name: ash1-prod-cms
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.6
+      - shell_command: TERM=xterm ssh symc-ash1-prod-cms
 
 
   - window_name: ash1-dev-hyperv
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.150.89
+      - shell_command: TERM=xterm ssh symc-ash1-dev-hyperv
 
   - window_name: ash1-dev-dao
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.104
+      - shell_command: TERM=xterm ssh symc-ash1-dev-dao
 
   - window_name: ash1-dev-dhcp
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.105
+      - shell_command: TERM=xterm ssh symc-ash1-dev-dhcp
 
   - window_name: ash1-dev-cms
     panes:
-      - shell_command: TERM=xterm ssh ruslan_kiyanchuk@10.119.172.106
+      - shell_command: TERM=xterm ssh symc-ash1-dev-cms
 
 
   - window_name: ash2-dao
     panes:
       - shell_command: TERM=xterm ssh symc-ash2-dao
+
+  - window_name: ash2-cms-1
+    panes:
+      - shell_command: TERM=xterm ssh symc-ash2-cms-1
+
+  - window_name: ash2-cms-2
+    panes:
+      - shell_command: TERM=xterm ssh symc-ash2-cms-2
+
+  - window_name: ash2-cms-3
+    panes:
+      - shell_command: TERM=xterm ssh symc-ash2-cms-3
 
   - window_name: ash2-mongo-1
     panes:
@@ -51,3 +63,32 @@ windows:
   - window_name: ash2-mongo-3
     panes:
       - shell_command: TERM=xterm ssh symc-ash2-mongo-3
+
+
+  - window_name: phx2-dao
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-dao
+
+  - window_name: phx2-cms-1
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-cms-1
+
+  - window_name: phx2-cms-2
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-cms-2
+
+  - window_name: phx2-cms-3
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-cms-3
+
+  - window_name: phx2-mongo-1
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-mongo-1
+
+  - window_name: phx2-mongo-2
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-mongo-2
+
+  - window_name: phx2-mongo-3
+    panes:
+      - shell_command: TERM=xterm ssh symc-phx2-mongo-3
