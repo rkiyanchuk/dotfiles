@@ -8,7 +8,7 @@ set -o errexit
 set -o xtrace
 
 
-RELEASE="40.0.3"
+RELEASE="41.0"
 FIREFOX64_URL="https://download-installer.cdn.mozilla.net/pub/firefox/releases/${RELEASE}/linux-x86_64/en-US/firefox-${RELEASE}.tar.bz2"
 FIREFOX32_URL="https://download-installer.cdn.mozilla.net/pub/firefox/releases/${RELEASE}/linux-i686/en-US/firefox-${RELEASE}.tar.bz2"
 
