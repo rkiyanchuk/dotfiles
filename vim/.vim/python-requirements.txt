@@ -4,3 +4,4 @@ mock
 flake8
 pylint
 sphinx
+pyOpenSSL>=0.15.1  # Fixes slow OpenSSL import affecting YouCompleteMe.
