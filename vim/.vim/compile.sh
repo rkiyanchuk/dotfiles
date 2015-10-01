@@ -2,13 +2,9 @@
 
 # Download source code and compile Vim.
 
-hg clone https://vim.googlecode.com/hg/ vim_src
-pushd vim_src
-hg pull
-hg update
-
-# Uncomment to get specific version instead of master.
-#hg update v7-4
+git clone https://github.com/vim/vim.git
+pushd vim
+git pull
 
 aptitude build-dep vim
 

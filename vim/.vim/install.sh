@@ -3,7 +3,7 @@
 # Create and install Vim Deb package.
 # Requires root privileges!
 
-pushd vim_src
+pushd vim
 checkinstall -y
 popd
-rm -r vim_src
+rm -r vim
