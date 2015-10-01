@@ -411,6 +411,6 @@ let g:wordy#ring = [
 " ~~~~~~~~~~~~
 
 let g:languagetool_jar='/opt/languagetool/languagetool-commandline.jar'
-nmap <silent> <F7> :LanguageToolCheck<CR>
+nmap <silent> <F9> :LanguageToolCheck<CR>
 
 " }}}
