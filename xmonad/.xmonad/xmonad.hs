@@ -16,7 +16,6 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
-import XMonad.Layout.Circle
 import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Reflect
@@ -69,12 +68,7 @@ defaultLayouts = smartBorders(avoidStruts(
     ||| named "<icon=/home/zoresvit/.xmonad/images/layout_rtall.xpm/>"
         (Mirror (ResizableTall 1 (3/100) (4/5) []))
     ||| named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>"
-        (noBorders Full)
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_grid.xpm/>"
-        (Grid)
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_circ.xpm/>"
-        (Circle)))
-
+        (noBorders Full)))
 
 chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
   $ avoidStruts $ withIM (0.2) isPidgin
@@ -83,26 +77,20 @@ chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
     isSkype = (Title "zoresvit - Skype™")
     isPidgin = (Title "Buddy List")
 
-fullLayout = avoidStruts(smartBorders(
-                named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>" (noBorders Full)
-                ||| named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>" (ResizableTall 1 (3/100) (1/2) [])))
-
 myLayouts = onWorkspace "η" chatLayout $
-            onWorkspace "ζ" fullLayout $
             defaultLayouts
-
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
-  resource =? "stalonetray" --> doIgnore
-  , resource =? "xfce4-notifyd" --> doIgnore
-  , resource =? "XXkb" --> doIgnore
-  , className =? "rdesktop" --> doFloat
-  , className =? "Pidgin" --> focusShift "η"
-  , className =? "Skype" --> doShift "η"
+  resource =? "stalonetray" --> doIgnore,
+  resource =? "xfce4-notifyd" --> doIgnore,
+  resource =? "XXkb" --> doIgnore,
+  className =? "rdesktop" --> doFloat,
+  className =? "Skype" --> doShift "η",
+  className =? "Gimp" --> doTile
   ]
   where
-    focusShift = doF . liftM2 (.) W.greedyView W.shift
+    doTile = ask >>= doF . W.sink
 
 myKeyBindings =
   [
