@@ -111,14 +111,15 @@ myKeyBindings =
     , ((myModMask .|. controlMask .|. shiftMask, xK_l), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-13'")
+    -- Lock computer.
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
     -- Volume control
     , ((myModMask .|. controlMask, xK_m), toggleMute >> return ())
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
-    , ((myModMask .|. controlMask, xK_Down), lowerVolume 10 >> return ())
-    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 10 >> return ())
-    , ((myModMask .|. controlMask, xK_Up), raiseVolume 10 >> return())
-    , ((0, xF86XK_AudioLowerVolume), lowerVolume 10 >> return ())
+    , ((myModMask .|. controlMask, xK_Down), lowerVolume 5 >> return ())
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 5 >> return ())
+    , ((myModMask .|. controlMask, xK_Up), raiseVolume 5 >> return())
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume 5 >> return ())
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
