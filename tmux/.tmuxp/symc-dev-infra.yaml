@@ -12,6 +12,11 @@ windows:
     panes:
       - shell_command: workon symc-infra;
 
+  - window_name: cms-client
+    start_directory: /home/zoresvit/devel/projects/symantec/infra/cms-client
+    panes:
+      - shell_command: workon symc-infra;
+
   - window_name: yidb
     start_directory: /home/zoresvit/devel/projects/symantec/infra/yidb
     panes:
