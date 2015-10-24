@@ -1,5 +1,6 @@
 asciinema
 docker-compose==1.3.3
+em
 httpie
 pylint
 tmuxp
