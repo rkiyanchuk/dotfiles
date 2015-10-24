@@ -1,4 +1,4 @@
-snippet setup
+snippet setup "Define distibute setup function" !
 """
 `basename $PWD`
 
@@ -40,4 +40,18 @@ setup(
 		'Programming Language :: Python :: 2.7',
 	],
 )
+endsnippet
+
+snippet doc "Google style docstring" !
+"""${1}
+
+"""
+endsnippet
+
+snippet doci "One line docstring"
+"""${1}."""
+endsnippet
+
+snippet lambda "Lambda function"
+lambda ${1:x}: ${0}
 endsnippet
