@@ -1,18 +1,70 @@
+
+# Accounts
+# ========
+
+source ~/.mutt/account.gmail
+
+# Paths
+# =====
+
+set folder           = ~/.mail               # mailbox location
+set alias_file       = ~/.mutt/alias         # where to store aliases
+set header_cache     = ~/.mutt/cache/headers # where to store headers
+set message_cachedir = ~/.mutt/cache/bodies  # where to store bodies
+set certificate_file = ~/.mutt/certificates  # where to store certs
+set mailcap_path     = ~/.mutt/mailcap       # entries for filetypes
+set tmpdir           = ~/.mutt/temp          # where to keep temp files
+set signature        = ~/.mutt/sig           # my signature file
+
 source ~/.mutt/solarized-dark
 
-source ~/.mutt/account.symantec
-#source ~/.mutt/account.gmail
-set folder = imaps://ruslan_kiyanchuk@TUS1XCHCASPIN04.SYMC.SYMANTEC.COM/
+# Sidebar Patch
+# =============
+
+set sidebar_delim = '  │'
+set sidebar_visible = yes
+set sidebar_width = 24
+color sidebar_new color221 color233
+
+# Basic Options
+# =============
+
+set wait_key = no
+set mbox_type = Maildir
+set timeout = 3
+set mail_check = 0
+unset move  # Gmail already does this.
+unset confirmappend
+unset mark_old
+set delete
+set quit
+set beep_new
+set pipe_decode  # Strip headers and eval mimes when piping.
+set thorough_search  # Strip headers and eval mimes before searching.
+
+# Status Bar
+# ----------
+
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options
+# ==============
+
+ignore *  # Ignore all headers.
+unignore from: to: cc: date: subject:
+unhdr_order *  # Some distros order things by default;
+hdr_order from: to: cc: date: subject:  # and in this order.
 
 
+set spoolfile = "+ruslan-kiianchuk/INBOX"
 
-set spoolfile = +INBOX
+# Mailboxes to show in the sidebar.
+mailboxes +ruslan-kiianchuk/INBOX \
+          +ruslan-kiianchuk/archive \
+          +ruslan-kiianchuk/sent \
+          +ruslan-kiianchuk/drafts \
 
-bind index G imap-fetch-mail
-
-set imap_check_subscribed
-
-set header_cache = "~/.cache/mutt"
-set message_cachedir = "~/.cache/mutt"
-
-auto_view text/html
+# Other special folders.
+set mbox = "+ruslan-kiianchuk/archive"
+set postponed = "+ruslan-kiianchuk/drafts"
