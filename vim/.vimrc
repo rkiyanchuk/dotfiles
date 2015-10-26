@@ -115,16 +115,16 @@ augroup CPP
     au!
     au FileType c,cpp,h map <F5> :call Compile()<CR>
     au FileType c,cpp,h set cindent
-    au FileType c,cpp,h set cinoptions=h3,l1,g1,t0,i4,+4,(0,w1,W4
+    au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
 augroup JAVA
     au!
-    au FileType java set omnifunc=javacomplete#Complete
+    au FileType java set omnifunc = javacomplete#Complete
 augroup END
 
 augroup LATEX
-    au FileType tex set makeprg=latexrun\ --latex-cmd\ xelatex\ %
+    au FileType tex set makeprg = latexrun\ --latex-cmd\ xelatex\ %
     au FileType tex map <F5> :make <CR>
     au FileType tex map <F6> :VimtexView <CR>
     au FileType tex set spell
