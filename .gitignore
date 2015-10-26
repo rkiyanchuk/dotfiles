@@ -1,6 +1,7 @@
 
 # Mutt
 mutt/.mutt/account.*
+mutt/.mutt/temp/
 
 # Python
 *.pyc
@@ -33,9 +34,6 @@ bundle/
 session.vim
 spell/
 swap/
-
-# Vimperator
-vimperator/.vimperator/info
 
 # XMonad
 *.swp

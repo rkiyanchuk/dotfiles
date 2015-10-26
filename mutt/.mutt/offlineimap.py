@@ -10,3 +10,6 @@ def get_password():
         text = f.read()
         password = re.search(r"imap_pass = '(.+)'", text).group(1)
         return password
+
+if __name__ == "__main__":
+    print(get_password())
