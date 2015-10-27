@@ -12,7 +12,7 @@
 #
 
 [database]
-path=/home/zoresvit/.mail
+path=/home/zoresvit/mail
 
 # User configuration
 #

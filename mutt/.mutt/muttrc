@@ -5,9 +5,10 @@ source ~/.mutt/solarized-dark
 # Options
 # =======
 
-set folder           = ~/.mail
+set folder           = ~/mail
 set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
 set tmpdir           = ~/.mutt/temp
 set mailcap_path     = ~/.mailcap
 
@@ -19,6 +20,7 @@ set sort_aux = reverse-last-date-received
 set sort_re
 set uncollapse_jump
 
+set ssl_usesystemcerts
 set beep_new
 set delete
 set mail_check = 0

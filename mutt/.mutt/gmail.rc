@@ -1,0 +1,8 @@
+# vim: set ft=muttrc:
+
+set mbox = "+ruslan-kiianchuk/archive"
+set postponed = "+ruslan-kiianchuk/drafts"
+set spoolfile = "+ruslan-kiianchuk/INBOX"
+
+set from = "ruslan.kiianchuk@gmail.com"
+set sendmail = "/usr/bin/msmtp -a ruslan.kiianchuk"

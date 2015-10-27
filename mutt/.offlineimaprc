@@ -1,7 +1,7 @@
 [general]
-ui = TTY.TTYUI
+ui = ttyui
 accounts = gmail
-pythonfile = "~/.mutt/offlineimap.py"
+pythonfile = ~/.mutt/offlineimap.py
 fsync = False
 
 [Account gmail]
@@ -18,7 +18,7 @@ postsynchook = notmuch new
 
 [Repository gmail-local]
 type = Maildir
-localfolders = ~/.mail/ruslan-kiianchuk
+localfolders = ~/mail/ruslan-kiianchuk
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'sent':    '[Gmail]/Sent Mail',
                             'starred': '[Gmail]/Starred',
@@ -47,7 +47,7 @@ folderfilter = lambda folder: folder not in [
 
 [Repository mirantis-local]
 type = Maildir
-localfolders = ~/.mail/mirantis
+localfolders = ~/mail/mirantis
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'sent':    '[Gmail]/Sent Mail',
                             'starred': '[Gmail]/Starred',
