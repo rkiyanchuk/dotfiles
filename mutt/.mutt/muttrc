@@ -77,10 +77,10 @@ set sidebar_width = 24
 color sidebar_new color221 color233
 
 # Mailboxes to show in the sidebar.
-mailboxes +ruslan-kiianchuk/INBOX \
-          +ruslan-kiianchuk/archive \
-          +ruslan-kiianchuk/sent \
-          +ruslan-kiianchuk/drafts \
+mailboxes +gmail/INBOX \
+          +gmail/archive \
+          +gmail/sent \
+          +gmail/drafts \
 
 # Header Options
 # --------------
@@ -94,7 +94,10 @@ hdr_order from: to: cc: date: subject:  # and in this order.
 # Accounts
 # ========
 
+source ~/.mutt/gmail.rc
 
+folder-hook gmail/* source ~/.mutt/gmail.rc
+folder-hook mirantis/* source ~/.mutt/mirantis.rc
 
 # Key Bindings
 # ============
