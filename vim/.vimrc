@@ -290,6 +290,7 @@ Plugin 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
 Plugin 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
 Plugin 'gabrielelana/vim-markdown'  " Edit Markdown.
 Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
+Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 
 call vundle#end()
 filetype plugin indent on
