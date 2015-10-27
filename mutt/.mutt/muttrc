@@ -6,16 +6,10 @@ source ~/.mutt/solarized-dark
 # =======
 
 set folder           = ~/.mail
-set alias_file       = ~/.mutt/alias
 set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
-set certificate_file = ~/.mutt/certificates
-set mailcap_path     = ~/.mutt/mailcap
 set tmpdir           = ~/.mutt/temp
-set signature        = ~/.mutt/sig
-set mbox = "+ruslan-kiianchuk/archive"
-set postponed = "+ruslan-kiianchuk/drafts"
-set spoolfile = "+ruslan-kiianchuk/INBOX"
+set mailcap_path     = ~/.mailcap
 
 set date_format = "%Y-%m-%d"
 set index_format = "[%Z]  %D  %-20.20F  %s"
@@ -50,11 +44,12 @@ unset markers  # no ugly plus signs
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 
-# Compose
-# -------
+# Send
+# ----
 
 set askcc
 set attribution = "On %d, %n wrote:"
+set editor = "vim"
 set edit_headers
 set envelope_from
 set fast_reply
@@ -68,13 +63,8 @@ set reply_to
 set reverse_name
 set sig_dashes
 unset mime_forward
-
-set editor = "vim"
-
-set from = "ruslan.kiianchuk@gmail.com"
-set sendmail = "/usr/bin/msmtp -a ruslan.kiianchuk"
-set sendmail_wait = 0
 unset record
+
 
 # Sidebar
 # -------
@@ -102,7 +92,6 @@ hdr_order from: to: cc: date: subject:  # and in this order.
 # Accounts
 # ========
 
-source ~/.mutt/account.gmail
 
 
 # Key Bindings

@@ -1,7 +1,8 @@
 
 # Mutt
-mutt/.mutt/account.*
+mutt/.mutt/secret.yaml
 mutt/.mutt/temp/
+mutt/.mutt/cache/
 
 # Python
 *.pyc

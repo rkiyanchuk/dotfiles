@@ -1,16 +1,22 @@
 [general]
 ui = TTY.TTYUI
-accounts = RuslanKiianchuk
-pythonfile=~/.mutt/offlineimap.py
+accounts = gmail
+pythonfile = "~/.mutt/offlineimap.py"
 fsync = False
 
-[Account RuslanKiianchuk]
-localrepository = RuslanKiianchuk-Local
-remoterepository = RuslanKiianchuk-Remote
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
 status_backend = sqlite
 postsynchook = notmuch new
 
-[Repository RuslanKiianchuk-Local]
+[Account mirantis]
+localrepository = mirantis-local
+remoterepository = mirantis-remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository gmail-local]
 type = Maildir
 localfolders = ~/.mail/ruslan-kiianchuk
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
@@ -20,11 +26,11 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'archive': '[Gmail]/All Mail',
                             }.get(folder, folder)
 
-[Repository RuslanKiianchuk-Remote]
+[Repository gmail-remote]
 maxconnections = 1
 type = Gmail
 remoteuser = ruslan.kiianchuk@gmail.com
-remotepasseval = get_password()
+remotepasseval = get_password('gmail')
 realdelete = no
 nametrans = lambda folder: {
                             '[Gmail]/Drafts':    'drafts',
@@ -36,6 +42,34 @@ nametrans = lambda folder: {
                            }.get(folder, folder)
 folderfilter = lambda folder: folder not in [
                                             '[Gmail]/Trash',
-                                            '[Gmail]/Important',
+                                            '[Gmail]/Spam',
+                                            ]
+
+[Repository mirantis-local]
+type = Maildir
+localfolders = ~/.mail/mirantis
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'starred': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository mirantis-remote]
+maxconnections = 1
+type = Gmail
+remoteuser = rkiyanchuk@mirantis.com
+remotepasseval = get_password('mirantis')
+realdelete = no
+nametrans = lambda folder: {
+                            '[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'starred',
+                            '[Gmail]/Important': 'important',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                           }.get(folder, folder)
+folderfilter = lambda folder: folder not in [
+                                            '[Gmail]/Trash',
                                             '[Gmail]/Spam',
                                             ]
