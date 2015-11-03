@@ -269,6 +269,7 @@ Plugin 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
 Plugin 'vim-scripts/matchit.zip'  " Enhanced navigation of  matching tags (%).
 Plugin 'reedes/vim-wordy'  " Text writing enhancement à la Grammarly.
 Plugin 'vim-scripts/LanguageTool'  " Grammar checker.
+Plugin 'mkitt/tabline.vim'  " Better tabs naming.
 
 " Programming
 " ===========
