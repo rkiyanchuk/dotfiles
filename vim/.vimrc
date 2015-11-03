@@ -120,7 +120,7 @@ augroup END
 
 augroup JAVA
     au!
-    au FileType java set omnifunc = javacomplete#Complete
+    au FileType java set omnifunc =javacomplete#Complete
 augroup END
 
 augroup LATEX
