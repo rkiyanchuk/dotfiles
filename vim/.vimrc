@@ -362,7 +362,8 @@ nmap <F3> :TagbarToggle<CR>
 
 let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
-nmap <leader>j :YcmCompleter GoTo<CR>
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>j  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Syntastic
 " ~~~~~~~~~
