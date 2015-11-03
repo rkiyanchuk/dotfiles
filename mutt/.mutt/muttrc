@@ -20,7 +20,6 @@ set sort_aux = reverse-last-date-received
 set sort_re
 set uncollapse_jump
 
-set ssl_usesystemcerts
 set beep_new
 set delete
 set mail_check = 0
