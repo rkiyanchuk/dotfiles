@@ -22,7 +22,7 @@ set backup
 set backupdir=$VIMHOME/backups
 set browsedir=buffer
 set colorcolumn=80
-set completeopt=menuone,preview
+set completeopt=longest,menuone
 set cursorcolumn
 set cursorline
 set dictionary+=/usr/share/dict/words
@@ -58,6 +58,7 @@ set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set visualbell
 set wildmenu
+set wildmode=list:longest
 
 " Search
 " ------
