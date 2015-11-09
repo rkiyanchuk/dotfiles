@@ -272,6 +272,7 @@ Plugin 'vim-scripts/matchit.zip'  " Enhanced navigation of  matching tags (%).
 Plugin 'reedes/vim-wordy'  " Text writing enhancement à la Grammarly.
 Plugin 'vim-scripts/LanguageTool'  " Grammar checker.
 Plugin 'mkitt/tabline.vim'  " Better tabs naming.
+Plugin 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 
 " Programming
 " ===========
