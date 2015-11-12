@@ -38,7 +38,6 @@ set listchars=tab:->,trail:-
 set matchpairs+=<:>
 set mouse=a
 set mousemodel=popup_setpos
-set nomodeline
 set nowrap
 set number
 set path+=**
