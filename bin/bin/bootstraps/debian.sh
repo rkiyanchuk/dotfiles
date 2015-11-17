@@ -166,7 +166,7 @@ aptitude -y install libstdc++6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386
 aptitude -y install libasound2-plugins:i386
 
 # Security
-aptitude -y install keepassx libsecret-tools
+aptitude -y install keepassx libsecret-tools apt-transport-https
 
 
 # POPULATE HOME DIRECTORY
