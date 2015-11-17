@@ -282,6 +282,8 @@ Plugin 'lervag/vimtex'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'rodjek/vim-puppet'
 Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'jszakmeister/markdown2ctags'
+Plugin 'jszakmeister/rst2ctags'
 
 " Enhancements
 " ============
@@ -377,7 +379,7 @@ let g:tagbar_type_make = {
 
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '$VIMHOME/markdown2ctags.py',
+    \ 'ctagsbin' : '$VIMBUNDLE/markdown2ctags/markdown2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
@@ -402,7 +404,7 @@ let g:tagbar_type_puppet = {
 
 let g:tagbar_type_rst = {
     \ 'ctagstype': 'rst',
-    \ 'ctagsbin' : '/path/to/rst2ctags.py',
+    \ 'ctagsbin' : '$VIMBUNDLE/rst2ctags/rst2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
