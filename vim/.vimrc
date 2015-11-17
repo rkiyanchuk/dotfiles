@@ -247,13 +247,13 @@ nmap <silent> <leader>R :call ReloadConfig()<CR>
 " {{{ PLUGINS
 
 filetype off  " Filetype recognition must be disabled for Vundle setup.
-set rtp+=$VIMBUNDLE/vundle/
+set rtp+=$VIMBUNDLE/Vundle.vim/
 call vundle#begin()
 
 " Essentials
 " ==========
 
-Plugin 'gmarik/vundle'  " Vim plugin manager.
+Plugin 'VundleVim/Vundle.vim'  " Vim plugin manager.
 Plugin 'bling/vim-airline'  " Enhanced status line.
 Plugin 'zoresvit/vim-colors-solarized'
 Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
