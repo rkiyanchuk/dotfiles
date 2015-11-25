@@ -11,3 +11,8 @@ windows:
     start_directory: /home/zoresvit/devel/projects/symantec/cis/cis-puppet
     panes:
       - shell_command: workon symc-cis;
+
+  - window_name: reconcile
+    start_directory: /home/zoresvit/devel/projects/symantec/cis/reconcile
+    panes:
+      - shell_command: workon symc-cis;
