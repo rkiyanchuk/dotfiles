@@ -1,5 +1,5 @@
 let barposition = "bottom"
-let blacklists = ["https://docs.google.com/*"]
+let blacklists = ["https://docs.google.com/*","https://www.lufthansa.com/*","https://www.westernunion.com/*"]
 let completionengines = ["google", "duckduckgo", "wikipedia", "google-maps", "amazon"]
 let qmark m = ["https://music.google.com"]
 let qmark s = [ "https://miracloud.slack.com/", "https://cloudfire-dev.slack.com/"]
@@ -20,7 +20,6 @@ set linkanimations
 set noautofocus
 set numerichints
 set scalehints
-set showtabindices
 set typelinkhints
 
 unmap J
