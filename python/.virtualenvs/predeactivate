@@ -1,6 +1,0 @@
-#!/bin/bash
-# This hook is run before every virtualenv is deactivated.
-
-# Restore Python setting for byte code generation.
-export PYTHONDONTWRITEBYTECODE=$_PYTHONDONTWRITEBYTECODE
-unset _PYTHONDONTWRITEBYETCODE

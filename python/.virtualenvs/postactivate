@@ -1,6 +1,0 @@
-#!/bin/bash
-# This hook is run after every virtualenv is activated.
-
-# Prevent Python from generating *.pyc files when virtualenv is activated.
-export _PYTHONDONTWRITEBYTECODE=$PYTHONDONTWRITEBYTECODE
-export PYTHONDONTWRITEBYTECODE=1
