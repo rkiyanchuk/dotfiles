@@ -2,7 +2,8 @@ asciinema
 docker-compose
 em
 httpie
+pew
+pip
 pylint
 tmuxp
-virtualenvwrapper
 yapf

@@ -123,8 +123,6 @@ aptitude -y install network-manager-openvpn
 aptitude -y install bluez-tools blueman gksu
 aptitude -y install pmount
 
-aptitude -y install python-pip
-
 aptitude -y install python-setuptools python-pip python-gobject
 aptitude -y install python-yaml libgio2.0-cil-dev gobject-introspection
 aptitude -y install libgtk2.0-0 libnotify4 gettext gir1.2-notify-0.7
@@ -151,7 +149,6 @@ aptitude -y install cmake
 
 # Python
 aptitude -y install python3-all python2.7-dev python3-dev
-pip install virtualenvwrapper
 
 # Multimedia
 aptitude -y install goldendict vlc x264 feh geeqie

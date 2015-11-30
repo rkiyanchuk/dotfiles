@@ -116,15 +116,16 @@ alias xelatexrun='latexrun --latex-cmd xelatex'
 # THIRD PARTY APPS
 # ================
 
+# Make executables from user's Python packages available in $PATH.
+export PATH="$PATH:$HOME/.local/bin"
+source "$(pew shell_config)"  # Activiate bash completion for Pew venv manager.
+
 # Path for Go lang.
 export GOPATH="${HOME}/.go"
 export PATH="$PATH:$HOME/.go/bin"
 
 # Make executables in user's `bin` directory available in $PATH.
 export PATH="$PATH:$HOME/bin"
-
-# Make executables from user's Python packages available in $PATH.
-export PATH="$PATH:$HOME/.local/bin"
 
 # Make executables from user's Cabal (Haskell) packages available in $PATH.
 export PATH=":$PATH:$HOME/.cabal/bin"
@@ -139,13 +140,6 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export LESS=" -R "
 if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-fi
-
-# VirtualEnvWrapper settings.
-export WORKON_HOME=${HOME}/.virtualenvs
-export PROJECT_HOME=${HOME}/devel
-if  [ -f "${HOME}/.local/bin/virtualenvwrapper.sh" ] ; then
-    source virtualenvwrapper.sh
 fi
 
 # Custom Bash completions.
