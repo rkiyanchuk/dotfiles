@@ -1,6 +1,6 @@
 KERNEL!="sd[a-z][0-9]|mmcblk[0-9]p[0-9]", GOTO="skip_automount"
 
-ACTION=="add", RUN+="/usr/bin/sudo -u zoresvit /usr/bin/pmount --sync  %k"
+ACTION=="add", RUN+="/usr/bin/sudo -u zoresvit /usr/bin/pmount %k"
 ACTION=="remove", RUN+="/usr/bin/sudo -u zoresvit /usr/bin/pumount %k"
 
 LABEL="skip_automount"
