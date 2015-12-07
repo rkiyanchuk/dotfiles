@@ -7,8 +7,8 @@ windows:
     panes:
       - shell_command: git rpull;
 
-  - window_name: puppet
-    start_directory: /home/zoresvit/devel/projects/symantec/cis/cis-puppet
+  - window_name: deploy
+    start_directory: /home/zoresvit/devel/projects/symantec/cis/cis-deploy
     panes:
       - shell_command: pew workon symc-cis;
 
