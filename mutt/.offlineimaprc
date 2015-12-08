@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = gmail, mirantis
+accounts = gmail, mirantis, symantec
 pythonfile = ~/.mutt/offlineimap.py
 fsync = False
 
@@ -13,6 +13,12 @@ postsynchook = notmuch new
 [Account mirantis]
 localrepository = mirantis-local
 remoterepository = mirantis-remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Account symantec]
+localrepository = symantec-local
+remoterepository = symantec-remote
 status_backend = sqlite
 postsynchook = notmuch new
 
@@ -73,3 +79,24 @@ folderfilter = lambda folder: folder not in [
                                             '[Gmail]/Trash',
                                             '[Gmail]/Spam',
                                             ]
+
+[Repository symantec-local]
+type = Maildir
+localfolders = ~/mail/symantec
+nametrans = lambda folder: {'drafts':  'Drafts',
+                            'sent':    'Sent Items',
+                            'trash':   'Deleted Items',
+                            }.get(folder, folder)
+
+[Repository symantec-remote]
+maxconnections = 1
+type = IMAP
+remoteuser = ruslan_kiyanchuk
+remotehost = TUS1XCHCASPIN04.SYMC.SYMANTEC.COM
+remotepasseval = get_password('symantec')
+realdelete = no
+nametrans = lambda folder: {
+                            'Drafts':    'drafts',
+                            'Sent Items': 'sent',
+                            'Deleted Items':     'trash',
+                           }.get(folder, folder)

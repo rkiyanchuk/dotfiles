@@ -97,6 +97,7 @@ source ~/.mutt/gmail.rc
 
 folder-hook gmail/* source ~/.mutt/gmail.rc
 folder-hook mirantis/* source ~/.mutt/mirantis.rc
+folder-hook symantec/* source ~/.mutt/symantec.rc
 
 # Key Bindings
 # ============

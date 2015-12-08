@@ -1,0 +1,7 @@
+# vim: set ft=muttrc:
+
+set postponed = "+symantec/drafts"
+set spoolfile = "+symantec/INBOX"
+
+set from = "ruslan_kiyanchuk@symantec.com"
+set sendmail = "/usr/bin/msmtp -a symantec"
