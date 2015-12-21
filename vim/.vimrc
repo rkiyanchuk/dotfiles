@@ -296,6 +296,7 @@ Plugin 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
 Plugin 'gabrielelana/vim-markdown'  " Edit Markdown.
 Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
 Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
 
 call vundle#end()
 filetype plugin indent on
