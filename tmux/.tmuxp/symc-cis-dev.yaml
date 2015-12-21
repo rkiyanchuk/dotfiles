@@ -16,8 +16,3 @@ windows:
     start_directory: /home/zoresvit/devel/projects/symantec/cis/reconcile
     panes:
       - null
-
-  - window_name: calaca
-    start_directory: /home/zoresvit/devel/projects/symantec/cis/calaca
-    panes:
-      - null
