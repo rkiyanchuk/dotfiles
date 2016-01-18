@@ -1,0 +1,1 @@
+KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/zoresvit/.Xauthority", RUN+="/usr/local/bin/displays.sh"
