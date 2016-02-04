@@ -89,11 +89,15 @@ fi
 # Core system graphics components
 aptitude -y install ntp
 aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
-aptitude -y install xmonad libghc-xmonad-dev libghc-xmonad-contrib-dev xmobar
-aptitude -y install cabal-install
+aptitude -y install libghc-xmonad-dev libghc-xmonad-contrib-dev
+aptitude -y install cabal-install 
+# XMobar dependencies:
+aptitude -y install libiw-dev libghc-libxml-sax-dev c2hs libasound2-dev
+
 
 cabal udpate
-cabal install xmonad-extras
+cabal install --global xmonad xmonad-extras
+cabal install --global xmobar --flags "all_extensions"
 
 aptitude -y install compton  # compositor for transparency support
 aptitude -y install arandr  # GUI for xrandr
@@ -121,6 +125,7 @@ aptitude -y install stow conky-all
 aptitude -y install network-manager network-manager-gnome
 aptitude -y install network-manager-openvpn
 aptitude -y install bluez-tools blueman gksu
+aptitude -y install pulseaudio-module-bluetooth
 aptitude -y install pmount
 
 aptitude -y install python-setuptools python-pip python-gobject

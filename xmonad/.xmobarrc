@@ -60,9 +60,16 @@ Config {
         "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
     ] 10,
 
-    -- Custom script to display volume.
-    -- This is due to built-in volume support in xmobar is disabled in Debian.
-    Run Com "/home/zoresvit/.xmonad/volume.sh" [] "myvolume" 1,
+    Run Volume "default" "Master" [
+      "-t", "<volume><status>",
+      "-h", "#cb4b16",
+      "-H", "85",
+      "--",
+      "-o", "-",
+      "-O", "%",
+      "--onc", "#586e75",
+      "--offc", "#dc322f"
+    ] 1,
 
     Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
 
@@ -78,5 +85,5 @@ Config {
    alignSep = "}{",
 
    -- XMobar Layout template.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %myvolume%</fc> %date% "
+   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %default:Master%</fc> %date% "
 }
