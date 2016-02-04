@@ -15,9 +15,9 @@ if ! pgrep xxkb > /dev/null; then
 fi
 
 # Temporarily disabled until icon issues fixed in Debian.
-# if ! pgrep blueman-applet > /dev/null; then
-#     blueman-applet &
-# fi
+if ! pgrep blueman-applet > /dev/null; then
+    blueman-applet &
+fi
 
 if ! pgrep conky > /dev/null ; then
     # Start conky after wallpaper is loaded for correct drawing.
