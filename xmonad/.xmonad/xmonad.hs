@@ -82,15 +82,14 @@ myLayouts = onWorkspace "η" chatLayout $
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
+  resource =? "XXkb" --> doIgnore,
+  className =? "Kazam" --> doFloat,
+  resource =? "screenkey" --> doIgnore,
   resource =? "stalonetray" --> doIgnore,
   resource =? "xfce4-notifyd" --> doIgnore,
-  resource =? "XXkb" --> doIgnore,
   className =? "rdesktop" --> doFloat,
-  className =? "Skype" --> doShift "η",
-  className =? "Gimp" --> doTile
+  className =? "Skype" --> doShift "η"
   ]
-  where
-    doTile = ask >>= doF . W.sink
 
 myKeyBindings =
   [
