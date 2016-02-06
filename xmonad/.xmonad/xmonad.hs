@@ -71,11 +71,11 @@ defaultLayouts = smartBorders(avoidStruts(
         (noBorders Full)))
 
 chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
-  $ avoidStruts $ withIM (0.2) isPidgin
-  $ reflectHoriz $ withIM (0.2) isSkype (Grid)
+    $ avoidStruts $ reflectHoriz $ withIM (0.2) isSkype (Grid)
+    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>"
+        (ResizableTall 1 (3/100) (1/2) [])
   where
     isSkype = (Title "zoresvit - Skype™")
-    isPidgin = (Title "Buddy List")
 
 myLayouts = onWorkspace "η" chatLayout $
             defaultLayouts
