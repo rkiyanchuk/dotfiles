@@ -5,21 +5,22 @@ import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.Plane
 import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
-import XMonad.Layout.ResizableTile
 import XMonad.Layout.IM
-import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.PerWorkspace (onWorkspace)
-import XMonad.Layout.Fullscreen
 import XMonad.Layout.Reflect
-import XMonad.Layout.Named
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedWindows
 import XMonad.Util.Run
@@ -126,6 +127,10 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     , ((myModMask, xK_Print), spawn "scrot -e 'mv $f $${HOME}/media/screenshots'")
     , ((myModMask .|. shiftMask, xK_Print), spawn "scrot -u -e 'mv $f $${HOME}/media/screenshots'")
+    , ((myModMask, xK_w), onPrevNeighbour W.view)
+    , ((myModMask, xK_e), onNextNeighbour W.view)
+    , ((myModMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
+    , ((myModMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
   ]
 
 -- LibNotify urgency hook
