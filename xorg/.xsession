@@ -56,19 +56,20 @@ fi
 # Configure keyboard bindings.
 setxkbmap -layout 'us,ru,ua' \
     -variant 'altgr-intl,,' \
+    -option 'terminate:ctrl_alt_bksp' \
     -option 'grp:caps_toggle' \
     -option 'grp_led:caps' \
-    -option 'compose:menu-altgr' \
+    -option 'compose:altgr_rctrl' \
     -option 'lv3:ralt_switch'
 
 # Configure USB keyboard.
  setxkbmap -device 10 \
      -layout 'us,ru,ua' \
     -variant 'altgr-intl,,' \
+    -option 'terminate:ctrl_alt_bksp' \
     -option 'grp:caps_toggle' \
-    -option 'grp_led:caps' \
-    -option 'compose:menu-altgr' \
-    -option 'lv3:ralt_switch' 
+    -option 'compose:altgr_rctrl' \
+    -option 'lv3:ralt_switch'
 
 gnome-screensaver > /dev/null 2>&1 &
 
