@@ -61,6 +61,15 @@ setxkbmap -layout 'us,ru,ua' \
     -option 'compose:menu-altgr' \
     -option 'lv3:ralt_switch'
 
+# Configure USB keyboard.
+ setxkbmap -device 10 \
+     -layout 'us,ru,ua' \
+    -variant 'altgr-intl,,' \
+    -option 'grp:caps_toggle' \
+    -option 'grp_led:caps' \
+    -option 'compose:menu-altgr' \
+    -option 'lv3:ralt_switch' 
+
 gnome-screensaver > /dev/null 2>&1 &
 
 if ! pgrep compton > /dev/null; then
