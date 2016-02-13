@@ -72,7 +72,7 @@ defaultLayouts = smartBorders(avoidStruts(
         (noBorders Full)))
 
 chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
-    $ avoidStruts $ reflectHoriz $ withIM (0.2) isSkype (Grid)
+    $ avoidStruts $ withIM (0.2) isSkype (Grid)
     ||| named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>"
         (ResizableTall 1 (3/100) (1/2) [])
   where
@@ -89,7 +89,8 @@ myManagementHooks = [
   resource =? "stalonetray" --> doIgnore,
   resource =? "xfce4-notifyd" --> doIgnore,
   className =? "rdesktop" --> doFloat,
-  className =? "Skype" --> doShift "η"
+  className =? "Skype" --> doShift "η",
+  className =? "Slack" --> doShift "η"
   ]
 
 myKeyBindings =
