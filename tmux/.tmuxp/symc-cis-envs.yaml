@@ -2,6 +2,7 @@ session_name: symc-cis-envs
 
 windows:
 
+# ASH2
   - window_name: ash2-cisdata-1
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@v-cisdata-001-prod.ash2.symcpe.net
@@ -22,7 +23,7 @@ windows:
     panes:
       - shell_command: TERM=xterm ssh ruslan_kiyanchuk@v-cisclient-002-prod.ash2.symcpe.net
 
-
+# PHX2
   - window_name: phx2-cisdata-1
     panes:
       - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-001-prod.phx2.symcpe.net
@@ -43,7 +44,7 @@ windows:
     panes:
       - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisclient-002-prod.phx2.symcpe.net
 
-
+# LHR1
   - window_name: lhr1-cisdata-1
     panes:
       - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-001-prod.lhr1.symcpe.net
@@ -63,3 +64,24 @@ windows:
   - window_name: lhr1-cisclient-2
     panes:
       - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisclient-002-prod.lhr1.symcpe.net
+
+# AMS2
+  - window_name: ams2-cisdata-1
+    panes:
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-001-prod.ams2.symcpe.net
+
+  - window_name: ams2-cisdata-2
+    panes:
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-002-prod.ams2.symcpe.net
+
+  - window_name: ams2-cisdata-3
+    panes:
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-003-prod.ams2.symcpe.net
+
+  - window_name: ams2-ciscli-1
+    panes:
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-ciscli-001-prod.ams2.symcpe.net
+
+  - window_name: ams2-ciscli-2
+    panes:
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-ciscli-002-prod.ams2.symcpe.net
