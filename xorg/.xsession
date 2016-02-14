@@ -54,22 +54,25 @@ if ! pgrep gnome-keyring-daemon > /dev/null; then
 fi
 
 # Configure keyboard bindings.
-setxkbmap -layout 'us,ru,ua' \
+MASTER_KEYBOARD=$(xinput -list | grep "Virtual core keyboard" | sed 's/.*id=\([0-9]*\).*/\1/')
+setxkbmap -device $MASTER_KEYBOARD \
+    -layout 'us,ru,ua' \
     -variant 'altgr-intl,,' \
-    -option 'terminate:ctrl_alt_bksp' \
     -option 'grp:caps_toggle' \
     -option 'grp_led:caps' \
-    -option 'compose:altgr_rctrl' \
-    -option 'lv3:ralt_switch'
+    -option 'lv3:ralt_switch' \
+    -option 'compose:menu-altgr'
 
-# Configure USB keyboard.
- setxkbmap -device 10 \
-     -layout 'us,ru,ua' \
+## Configure Bluetooth keyboard.
+K380_KEYBOARD=$(xinput -list | grep "Keyboard K380" | sed 's/.*id=\([0-9]*\).*/\1/')
+if [ ! -z $K380_KEYBOARD ]; then
+    setxkbmap -device $K380_KEYBOARD \
+    -layout 'us,ru,ua' \
     -variant 'altgr-intl,,' \
-    -option 'terminate:ctrl_alt_bksp' \
     -option 'grp:caps_toggle' \
-    -option 'compose:altgr_rctrl' \
-    -option 'lv3:ralt_switch'
+    -option 'lv3:ralt_switch' \
+    -option 'compose:rctrl-altgr'
+fi
 
 gnome-screensaver > /dev/null 2>&1 &
 
