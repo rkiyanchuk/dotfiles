@@ -78,10 +78,10 @@ windows:
     panes:
       - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisdata-003-prod.ams2.symcpe.net
 
-  - window_name: ams2-ciscli-1
+  - window_name: ams2-cisclient-1
     panes:
-      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-ciscli-001-prod.ams2.symcpe.net
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisclient-001-prod.ams2.symcpe.net
 
-  - window_name: ams2-ciscli-2
+  - window_name: ams2-cisclient-2
     panes:
-      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-ciscli-002-prod.ams2.symcpe.net
+      - shell_command: TERM=xterm ssh -tt symc-ash2 ssh ruslan_kiyanchuk@v-cisclient-002-prod.ams2.symcpe.net
