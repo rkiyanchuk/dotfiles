@@ -2,7 +2,7 @@
 
 VIMHOME="${HOME}/.vim"
 VUNDLE="https://github.com/gmarik/vundle.git"
-XKB_SWITCH="https://github.com/ierton/xkb-switch.git"
+XKB_SWITCH="https://github.com/zoresvit/xkb-switch.git"
 LANGTOOL_VER=3.1
 LANGUAGETOOL="https://www.languagetool.org/download/LanguageTool-${LANGTOOL_VER}.zip"
 
