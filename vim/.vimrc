@@ -255,6 +255,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'  " Vim plugin manager.
 Plugin 'bling/vim-airline'  " Enhanced status line.
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'zoresvit/vim-colors-solarized'
 Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
 Plugin 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
