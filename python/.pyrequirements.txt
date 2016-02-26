@@ -1,4 +1,5 @@
 asciinema
+cookiecutter
 docker-compose
 em
 httpie
