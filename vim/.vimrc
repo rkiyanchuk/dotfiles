@@ -298,6 +298,7 @@ Plugin 'gabrielelana/vim-markdown'  " Edit Markdown.
 Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
 Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
+Plugin 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
 
 call vundle#end()
 filetype plugin indent on
