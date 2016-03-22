@@ -71,15 +71,7 @@ defaultLayouts = smartBorders(avoidStruts(
     ||| named "<icon=/home/zoresvit/.xmonad/images/layout_full.xpm/>"
         (noBorders Full)))
 
-chatLayout = named "<icon=/home/zoresvit/.xmonad/images/layout_chat.xpm/>"
-    $ avoidStruts $ withIM (0.2) isSkype (Grid)
-    ||| named "<icon=/home/zoresvit/.xmonad/images/layout_tall.xpm/>"
-        (ResizableTall 1 (3/100) (1/2) [])
-  where
-    isSkype = (Title "zoresvit - Skype™")
-
-myLayouts = onWorkspace "η" chatLayout $
-            defaultLayouts
+myLayouts = defaultLayouts
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
