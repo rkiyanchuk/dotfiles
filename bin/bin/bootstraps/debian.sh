@@ -90,7 +90,7 @@ fi
 aptitude -y install ntp
 aptitude -y install xserver-xorg xserver-xorg-input-synaptics xinit slim
 aptitude -y install libghc-xmonad-dev libghc-xmonad-contrib-dev
-aptitude -y install cabal-install 
+aptitude -y install cabal-install
 # XMobar dependencies:
 aptitude -y install libiw-dev libghc-libxml-sax-dev c2hs libasound2-dev
 
@@ -161,12 +161,6 @@ aptitude -y install flashplugin-nonfree ttf-mscorefonts-installer
 aptitude -y install tar gzip unrar file-roller
 aptitude -y install clementine
 
-# Skype dependencies
-aptitude -y install libqt4-dbus:i386 libqt4-network:i386 libqt4-xml:i386
-aptitude -y install libqtcore4:i386 libqtgui4:i386 libqtwebkit4:i386
-aptitude -y install libstdc++6:i386 libxss1:i386 libxv1:i386 libssl1.0.0:i386
-aptitude -y install libasound2-plugins:i386
-
 # Security
 aptitude -y install keepassx libsecret-tools apt-transport-https
 
@@ -189,7 +183,6 @@ mkdir -p $HOME/devel
 # Install Dropbox
 # Install Firefox
 # Install Calibre
-# Install Skype
 # Install Virtualbox
 # Install Vagrant
 # install hplip for printing:
