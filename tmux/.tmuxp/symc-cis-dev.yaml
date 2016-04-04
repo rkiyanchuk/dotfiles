@@ -16,3 +16,13 @@ windows:
     start_directory: /home/zoresvit/devel/projects/symantec/cis/reconcile
     panes:
       - null
+
+  - window_name: bloodhound
+    start_directory: /home/zoresvit/devel/projects/symantec/cis/bloodhound
+    panes:
+      - null
+
+  - window_name: spectroscope
+    start_directory: /home/zoresvit/devel/projects/symantec/cis/spectroscope
+    panes:
+      - null
