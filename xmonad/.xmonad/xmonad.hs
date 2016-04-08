@@ -108,6 +108,7 @@ myKeyBindings =
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
     -- Volume control
     , ((myModMask .|. controlMask, xK_m), toggleMute >> return ())
+    , ((myModMask .|. controlMask .|. mod1Mask, xK_m), spawn "amixer -c 2 set PCM toggle")  -- Mute wireless headset.
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
     , ((myModMask .|. controlMask, xK_Down), lowerVolume 5 >> return ())
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume 5 >> return ())
