@@ -149,7 +149,7 @@ main = do
       , modMask = myModMask
       , normalBorderColor = myNormalBorderColor
       , startupHook = do
-          spawn "~/.xmonad/autorun.sh"
+          spawn "${HOME}/.xmonad/autorun.sh"
           setWMName "LG3D"
       , terminal = myTerminal
       , workspaces = myWorkspaces

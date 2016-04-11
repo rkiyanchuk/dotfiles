@@ -23,3 +23,7 @@ if ! pgrep conky > /dev/null ; then
     # Start conky after wallpaper is loaded for correct drawing.
     sleep 1; conky -d
 fi
+
+if ! pgrep -f lock.sh > /dev/null; then
+    setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
+fi
