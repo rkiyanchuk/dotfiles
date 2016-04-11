@@ -106,14 +106,14 @@ myKeyBindings =
     , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-13'")
     -- Lock computer.
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
-    -- Volume control
-    , ((myModMask .|. controlMask, xK_m), toggleMute >> return ())
-    , ((myModMask .|. controlMask .|. mod1Mask, xK_m), spawn "amixer -c 2 set PCM toggle")  -- Mute wireless headset.
-    , ((0, xF86XK_AudioMute), toggleMute >> return ())
-    , ((myModMask .|. controlMask, xK_Down), lowerVolume 5 >> return ())
-    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 5 >> return ())
-    , ((myModMask .|. controlMask, xK_Up), raiseVolume 5 >> return())
-    , ((0, xF86XK_AudioLowerVolume), lowerVolume 5 >> return ())
+    -- Volume control (a bit hackish as Volume only controls `amixer`, not PulseAudio.
+
+    , ((myModMask .|. controlMask, xK_Up), spawn "${HOME}/.xmonad/volume.sh raise")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "${HOME}/.xmonad/volume.sh raise")
+    , ((myModMask .|. controlMask, xK_Down), spawn "${HOME}/.xmonad/volume.sh lower")
+    , ((0, xF86XK_AudioLowerVolume), spawn "${HOME}/.xmonad/volume.sh lower")
+    , ((myModMask .|. controlMask, xK_m), spawn "${HOME}/.xmonad/volume.sh mute")
+    , ((0, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute")
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
