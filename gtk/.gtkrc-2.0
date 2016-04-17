@@ -1,5 +1,5 @@
-gtk-theme-name="numix-solarized-light"
-gtk-icon-theme-name="oxygen"
+gtk-theme-name="numix"
+gtk-icon-theme-name="Numix-Circle"
 gtk-font-name="Liberation Sans 13"
 gtk-cursor-theme-name="Pulse-Glass"
 gtk-cursor-theme-size=0
