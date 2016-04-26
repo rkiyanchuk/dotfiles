@@ -28,14 +28,17 @@ sync_ntp_time () {
 
 partition () {
     # I have 2 drives which are reserved entirely for / and /home partitions.
-    ROOT_DEVICE='86c49e5a-ce1f-4b3e-b3bc-34b1521f741f'
-    HOME_DEVICE='3348aab8-65cc-4839-9561-0fad775e0038'
+    ROOT_DEVICE_ID='ata-INTEL_SSDSC2BW120A4_CVDA336001ZK1207GN'
+    HOME_DEVICE_ID='ata-Samsung_SSD_850_EVO_250GB_S21NNSAG845105P'
 
     if [ $TEST ]; then
         # Replace UUIDs with test drives from VirtualBox.
-        ROOT_DEVICE='d3e3eef6-8e31-41fa-915d-5689489a639c'
-        HOME_DEVICE='62f2f07e-03d6-4ae2-8e1d-6f90ea3982e2'
+        ROOT_DEVICE_ID='ata-VBOX_HARDDISK_VB62f2f07e-e28239ea'
+        HOME_DEVICE_ID='ata-VBOX_HARDDISK_VBd3e3eef6-9c639a48'
     fi
+
+    ROOT_DEVICE=$(readlink -f ${ROOT_DEVICE_ID})
+    HOME_DEVICE=$(readlink -f ${HOME_DEVICE_ID})
 
     # Partition device for / (root).
     parted "/dev/${ROOT_DEVICE}" mklabel msdos
