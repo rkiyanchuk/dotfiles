@@ -22,12 +22,12 @@ setup(
 	packages=find_packages(exclude=['tests*']),
 
 	install_requires=[
-		${7}
+	${7}
 	],
 	test_require=[
-		${8}
+	${8}
 	],
-	# Available classifiers: https://goo.gl/G1iJ2B
+# Available classifiers: https://goo.gl/G1iJ2B
 	classifiers=[
 		'Environment :: Console',
 		'Operating System :: OS Independent',
@@ -42,7 +42,7 @@ setup(
 )
 endsnippet
 
-snippet doc "Google style docstring" !
+snippet doc "Docstring" !
 """${1}.
 
 ${0}
@@ -56,4 +56,15 @@ endsnippet
 
 snippet lambda "Lambda function"
 lambda ${1:x}: ${0}
+endsnippet
+
+snippet decorator "Function decorator"
+def ${1:decorator_name}(func):
+	"""$1 decorator"""
+	@wraps(func)
+	def ${2:wrapper}(*args, **kwargs):
+		${0}
+		${3:return func(*args, **kwargs)}
+
+	return $2
 endsnippet

@@ -442,7 +442,7 @@ let g:UltiSnipsListSnippets        = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsEditSplit = "horizontal"
-let g:ultisnips_python_style = "google"
+let g:ultisnips_python_style = "sphinx"
 
 " Python-mode
 " ~~~~~~~~~~~
