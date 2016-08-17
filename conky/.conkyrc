@@ -2,7 +2,7 @@ cpu_avg_samples 2
 double_buffer yes
 no_buffers yes
 text_buffer_size 2048
-update_interval 1
+update_interval 3
 
 # Window settings.
 background no
@@ -25,7 +25,7 @@ minimum_size 430 800
 
 # Fonts.
 use_xft yes
-xftfont Liberation Mono:size=13
+xftfont Dejavu Sans Mono:size=14
 uppercase no
 
 # Solarized colors.
@@ -48,11 +48,11 @@ ${color}OS
 ${color2}UTC${goto 150} ${utime}
 Uptime${goto 150} ${uptime}
 Kernel${goto 150} ${kernel}
-${voffset 5}${color2}Load${goto 150} ${color9}${loadgraph 18,270 073642 073642 0 -l}
+${voffset 5}${color2}Load${goto 150} ${color9}${loadgraph 20,270 073642 073642 0 -l}
 ${color2}${goto 250} ${voffset -20}${loadavg}
-${voffset 5}${color2}CPU${goto 150} ${color9}${cpubar 18,270}
+${voffset 5}${color2}CPU${goto 150} ${color9}${cpubar 20,270}
 ${color2}${goto 250} ${voffset -20}${cpu}%${alignr 10}${running_processes}/${processes} :${threads}
-${voffset 5}${color2}RAM${goto 150} ${color9}${membar 18,270}
+${voffset 5}${color2}RAM${goto 150} ${color9}${membar 20,270}
 ${color2}${goto 250} ${voffset -20}${memperc}% ${alignr 10}${mem}
 Cached${goto 150} ${cached}
 
@@ -60,38 +60,38 @@ ${color2}$hr
 ${color}HARDWARE
 
 ${color2}Freq${goto 150} ${freq_g} GHz
-${voffset 5}${color2}Disk IO${goto 150} ${diskiograph sda 18,270 073642 073642 0 -l}
+${voffset 5}${color2}Disk IO${goto 150} ${diskiograph sda 20,270 073642 073642 0 -l}
 ${color2}${goto 250} ${voffset -20}R ${diskio_read} ${alignr 10}W ${diskio_write}
-${voffset 5}${color2}Entropy${goto 150} ${color9}${entropy_bar 18,270}
+${voffset 5}${color2}Entropy${goto 150} ${color9}${entropy_bar 20,270}
 ${color2}${goto 250} ${voffset -20} ${entropy_avail} / ${entropy_poolsize}
-${voffset 5}${color2}Battery${goto 150} ${color9}${battery_bar 18,270}
-${color2}${goto 250} ${voffset -20}${battery_short}
+${voffset 5}${color2}Battery${goto 150} ${color9}${battery_bar 20,270}
+${color2}${goto 200} ${voffset -20}${battery_short}   ${battery_time}
 
 ${color2}$hr
 ${color}FILE SYSTEMS
 
-${voffset 5}${color2}/${goto 150} ${color9}${fs_bar 18,270 /}
+${voffset 5}${color2}/${goto 150} ${color9}${fs_bar 20,270 /}
 ${color2}${alignr 10} ${voffset -20}${fs_used /} / ${fs_size /}
-${voffset 5}${color2}/home${goto 150} ${color9}${fs_bar 18,270 /home}
+${voffset 5}${color2}/var${goto 150} ${color9}${fs_bar 20,270 /var}
+${color2}${alignr 10} ${voffset -20}${fs_used /var} / ${fs_size /var}
+${voffset 5}${color2}/home${goto 150} ${color9}${fs_bar 20,270 /home}
 ${color2}${alignr 10} ${voffset -20}${fs_used /home} / ${fs_size /home}
-${voffset 5}${color2}/var/tmp${goto 150} ${color9}${fs_bar 18,270 /var/tmp}
-${color2}${alignr 10} ${voffset -20}${fs_used /var/tmp} / ${fs_size /var/tmp}
 
 ${color2}$hr
 ${color}NETWORK
 
 ${if_up eth0}\
 ${color}eth0 ${color2}${goto 150} ${addr eth0}
-${voffset 5}${color2}${goto 150} ${upspeedgraph eth0 18,125 073642 073642 0 -l}  ${downspeedgraph eth0 18,125 073642 073642 0 -l}
+${voffset 5}${color2}${goto 150} ${upspeedgraph eth0 20,125 073642 073642 0 -l}  ${downspeedgraph eth0 20,125 073642 073642 0 -l}
 ${color2}${voffset -20}${goto 150}↑ ${upspeed eth0} ${goto 295}↓ ${downspeed eth0}
 ${color2}${goto 150}▲ ${totalup eth0} ${goto 295}▼ ${totaldown eth0}\
 ${endif}
 
 ${if_up wlan0}\
 ${color}wlan0 ${color2}${goto 150} ${addr wlan0}
-${voffset 5}${color2}${wireless_essid wlan0} ${goto 150} ${color9}${wireless_link_bar 18,270 wlan0}
+${voffset 5}${color2}${wireless_essid wlan0} ${goto 150} ${color9}${wireless_link_bar 20,270 wlan0}
 ${color2}${alignr 10} ${voffset -20} ${wireless_mode wlan0}  ${wireless_bitrate wlan0}  ${wireless_link_qual_perc wlan0}%
-${voffset 5}${color2}${goto 150} ${upspeedgraph wlan0 18,125 073642 073642 0 -l}  ${downspeedgraph wlan0 18,125 073642 073642 0 -l}
+${voffset 5}${color2}${goto 150} ${upspeedgraph wlan0 20,125 073642 073642 0 -l}  ${downspeedgraph wlan0 20,125 073642 073642 0 -l}
 ${color2}${voffset -20}${goto 150}↑ ${upspeed wlan0}${goto 295}↓ ${downspeed wlan0}
 ${color2}${goto 150}▲ ${totalup wlan0} ${goto 295}▼ ${totaldown wlan0}\
 ${endif}
