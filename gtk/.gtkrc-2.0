@@ -1,6 +1,6 @@
-gtk-theme-name="numix"
+gtk-theme-name="Numix"
 gtk-icon-theme-name="Numix-Circle"
-gtk-font-name="Liberation Sans 13"
+gtk-font-name="Dejavu Sans 14"
 gtk-cursor-theme-name="Pulse-Glass"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
