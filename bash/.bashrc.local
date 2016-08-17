@@ -1,16 +1,6 @@
 # In order to keep distribution-specific sensible default Bash configuration,
 # user's configuration extends default `.bashrc`.
 
-# Source this file to append it to the end of `.bashrc`:
-if ! grep -q ".bashrc.local" "${HOME}/.bashrc"; then
-    cat <<'EOF' >> ${HOME}/.bashrc
-if [ -f "$HOME/.bashrc.local" ] ; then
-    source ${HOME}/.bashrc.local
-fi
-EOF
-fi
-
-
 # COLOR CODES
 # ===========
 
@@ -51,10 +41,11 @@ export TERM=rxvt-unicode-256color
 # Needed for correct Java apps windows operation under XMonad.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
-
 # PROMPT
 # ------
+
+# Source git prompt
+source /usr/share/git/completion/git-prompt.sh
 
 prompt_command () {
     # Capture exit code of last command.
@@ -117,23 +108,9 @@ alias xelatexrun='latexrun --latex-cmd xelatex'
 
 # Make executables from user's Python packages available in $PATH.
 export PATH="$PATH:$HOME/.local/bin"
-source "$(pew shell_config)"  # Activiate bash completion for Pew venv manager.
 
-# Path for Go lang.
-export GOPATH="${HOME}/.go"
-export PATH="$PATH:$HOME/.go/bin"
-
-# Make executables in user's `bin` directory available in $PATH.
-export PATH="$PATH:$HOME/bin"
-
-# Make executables from user's Cabal (Haskell) packages available in $PATH.
-export PATH="$PATH:$HOME/.cabal/bin"
-
-# Make executables from user's Ruby Gem packages available in $PATH.
-export PATH="$PATH:$HOME/.gem/ruby/2.1.0/bin"
-
-# Set default JAVA SDK location (requires openjdk-8-jdk package).
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+# Activiate bash completion for Pew venv manager.
+source "${HOME}/.local/lib/python3.5/site-packages/pew/shell_config/init.bash"
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
@@ -146,7 +123,3 @@ source "${HOME}/.bash/tmux.bash"
 source "${HOME}/.bash/hub.bash"
 source "${HOME}/.bash/vagrant.bash"
 source "${HOME}/.bash/docker-compose.bash"
-
-if  [ -f "${HOME}/.local/bin/tmuxp.bash" ] ; then
-    source tmuxp.bash
-fi
