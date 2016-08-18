@@ -18,14 +18,14 @@
 
 
 Config {
-  font = "xft:Liberation Mono-13",
+  font = "xft:Dejavu Sans Mono-14",
   bgColor = "#002b36",
   fgColor = "#839496",
 
   -- Adjust width to leave space for 8 icons in tray.
   -- Use bash and xrandr to calculate corresponding width:
   -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
-  position = Static {xpos=0 , ypos=0, width=1704, height=24},
+  position = Static {xpos=0 , ypos=0, width=1728, height=24},
 
   commands = [
     Run Battery [

@@ -18,7 +18,7 @@ fuzzy_edges 0               # Enable fuzzy edges and set fuzziness level. Level
                             # with tinting and/or transparent and/or pixmap
                             # backgrounds.
 
-geometry 8x1+1728+0
+geometry 8x1+1725+0
 
 grow_gravity E              # One of N, S, E, W, NW, NE, SW, SE. Tray will grow
                             # in the direction opposite to one specified by
