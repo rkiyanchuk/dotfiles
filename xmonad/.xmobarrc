@@ -39,26 +39,26 @@ Config {
       "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
       "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
       "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
-    ] 50,
+    ] 100,
 
     Run Cpu [
       "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>%",
       "--minwidth", "2",
       "--high", "#dc322f"
-    ] 10,
+    ] 20,
 
     Run CoreTemp [
       "--template", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/temp.xbm/></fc> <core0>°C",
-      "--Low", "60",
+      "--Low", "70",
       "--High", "80",
       "--low", "#586e75",
       "--normal", "#b58900",
       "--high", "#dc322f"
-    ] 10,
+    ] 50,
 
     Run Memory [
         "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
-    ] 10,
+    ] 20,
 
     Run Volume "default" "Master" [
       "-t", "<volume><status>",
@@ -69,7 +69,7 @@ Config {
       "-O", "%",
       "--onc", "#586e75",
       "--offc", "#dc322f"
-    ] 1,
+    ] 10,
 
     Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
 

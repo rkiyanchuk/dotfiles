@@ -4,7 +4,7 @@
 # Listen DBUS queue to get signal from Gnome Screensaver about lock events.
 
 DBUS_SESSION="type='signal',interface='org.gnome.ScreenSaver'"
-MUTE_COMMAND="${HOME}/.xmonad/volume.sh mute"
+MUTE_COMMAND="pulseaudio-ctl mute; pulseaudio-ctl mute-input"
 
 function mute_on_lock() {
     while IFS= read -r line; do
