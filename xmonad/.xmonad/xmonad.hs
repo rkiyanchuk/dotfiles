@@ -90,30 +90,38 @@ myKeyBindings =
     ((myModMask, xK_b), sendMessage ToggleStruts)
     , ((myModMask .|. shiftMask, xK_l), sendMessage MirrorShrink)
     , ((myModMask .|. shiftMask, xK_h), sendMessage MirrorExpand)
+
     -- Shift to previous workspace
     , ((myModMask, xK_Left), prevWS)
     , ((myModMask .|. controlMask, xK_h), prevWS)
+
     -- Shift to next workspace
     , ((myModMask, xK_Right), nextWS)
     , ((myModMask .|. controlMask, xK_l), nextWS)
+
     -- Shift window to previous workspace
     , ((myModMask .|. shiftMask, xK_Left), shiftToPrev)
     , ((myModMask .|. controlMask .|. shiftMask, xK_h), shiftToPrev)
+
     -- Shift window to next workspace
     , ((myModMask .|. shiftMask, xK_Right), shiftToNext)
     , ((myModMask .|. controlMask .|. shiftMask, xK_l), shiftToNext)
     , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Liberation Mono-13'")
+    , ((myModMask, xK_p), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Dejavu Sans Mono-14'")
+    , ((0, xF86XK_Search), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Dejavu Sans Mono-14'")
+
     -- Lock computer.
     , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
-    -- Volume control (a bit hackish as Volume only controls `amixer`, not PulseAudio.
 
-    , ((myModMask .|. controlMask, xK_Up), spawn "${HOME}/.xmonad/volume.sh raise")
-    , ((0, xF86XK_AudioRaiseVolume), spawn "${HOME}/.xmonad/volume.sh raise")
-    , ((myModMask .|. controlMask, xK_Down), spawn "${HOME}/.xmonad/volume.sh lower")
-    , ((0, xF86XK_AudioLowerVolume), spawn "${HOME}/.xmonad/volume.sh lower")
-    , ((myModMask .|. controlMask, xK_m), spawn "${HOME}/.xmonad/volume.sh mute")
-    , ((0, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute")
+    -- Sound control.
+    , ((myModMask .|. controlMask, xK_Up), spawn "pulseaudio-ctl up")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")
+    , ((myModMask .|. controlMask, xK_Down), spawn "pulseaudio-ctl down")
+    , ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down")
+    , ((myModMask .|. controlMask, xK_m), spawn "pulseaudio-ctl mute")
+    , ((myModMask .|. controlMask .|. shiftMask, xK_m), spawn "pulseaudio-ctl mute-input")
+    , ((0, xF86XK_AudioMute), spawn "pulseaudio-ctl mute")
+
     -- Brightness control
     , ((myModMask .|. controlMask, xK_Right), spawn "xbacklight -inc 5")
     , ((myModMask .|. controlMask, xK_Left), spawn "xbacklight -dec 5")
