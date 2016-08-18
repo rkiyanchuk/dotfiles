@@ -1,2 +1,0 @@
-KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/zoresvit/.Xauthority", RUN+="/usr/local/bin/displays.sh"
-KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{address}=="34:88:5d:42:6d:c3", RUN+="/usr/local/bin/k380.sh"
