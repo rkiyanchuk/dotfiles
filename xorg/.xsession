@@ -6,10 +6,11 @@
 # =======================
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export DESKTOP_SESSION="gnome"  # Needed for Qt applications.
+export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications.
 
 # Time zone.
 export TZ='America/Los_Angeles'
+#export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
 
 
@@ -39,10 +40,6 @@ xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
 
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
-if ! pgrep syndaemon > /dev/null; then
-    syndaemon -i 0.5 -K -d  # Start synaptics daemon for keyboard monitoring.
-fi
-
 if ! pgrep stalonetray > /dev/null; then
     stalonetray &  # Start system tray.
 fi
@@ -61,7 +58,7 @@ setxkbmap -device $MASTER_KEYBOARD \
     -option 'grp:caps_toggle' \
     -option 'grp_led:caps' \
     -option 'lv3:ralt_switch' \
-    -option 'compose:menu-altgr'
+    -option 'compose:rctrl-altgr'
 
 ## Configure Bluetooth keyboard.
 K380_KEYBOARD=$(xinput -list | grep "Keyboard K380" | sed 's/.*id=\([0-9]*\).*/\1/')
