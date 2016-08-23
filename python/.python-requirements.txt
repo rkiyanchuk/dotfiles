@@ -1,10 +1,6 @@
 asciinema
 cookiecutter
-docker-compose
-em
 httpie
 pew
 pip
 pylint
-tmuxp
-yapf
