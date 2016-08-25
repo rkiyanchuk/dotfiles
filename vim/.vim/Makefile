@@ -17,7 +17,7 @@ init:
 	# Setup Vundle plugin manager.
 	if [ ! -d "${VIMHOME}/bundle" ]; then \
 		mkdir -p "${VIMHOME}/bundle"; \
-		git clone ${VUNDLE} "${VIMHOME}/bundle/vundle"; \
+		git clone ${VUNDLE} "${VIMHOME}/bundle/Vundle.vim"; \
 	fi
 
 	# Install plugins.

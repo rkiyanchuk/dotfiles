@@ -73,6 +73,10 @@ fi
 
 gnome-screensaver > /dev/null 2>&1 &
 
+if ! pgrep xsessiond > /dev/null; then
+    xsessiond > /dev/null 2>&1 &
+fi
+
 if ! pgrep compton > /dev/null; then
     # Try to start Compton compositor on up to 4 displays.
     seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
