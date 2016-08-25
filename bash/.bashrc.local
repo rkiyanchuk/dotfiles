@@ -109,9 +109,6 @@ alias xelatexrun='latexrun --latex-cmd xelatex'
 # Make executables from user's Python packages available in $PATH.
 export PATH="$PATH:$HOME/.local/bin"
 
-# Activiate bash completion for Pew venv manager.
-source "${HOME}/.local/lib/python3.5/site-packages/pew/shell_config/init.bash"
-
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
 if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
