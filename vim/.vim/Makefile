@@ -2,7 +2,7 @@
 
 VIMHOME="${HOME}/.vim"
 VUNDLE="https://github.com/VundleVim/Vundle.vim.git"
-DEPS="curl xkb-switch-git"
+DEPS="curl xkb-switch-git ttf-dejavu-sans-mono-powerline-git"
 INSTALL_CMD="pacaur"
 INSTALL_ARGS="-Sy"
 

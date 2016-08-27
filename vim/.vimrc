@@ -98,6 +98,11 @@ if !exists("*ReloadConfig")
     endfunction
 endif
 
+function! AdjustWindowHeight(minheight, maxheight)
+    " Adjust QuickFix window height according to the number of data lines.
+    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
 function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch
@@ -118,20 +123,63 @@ endfunction
 " }}}
 
 
+" {{{ AUTOCOMMANDS
+
+" Close omni-completion preview window when entering or leaving insert mode.
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+augroup TEXT
+    " Auto commands for any text file.
+    au!
+    au FileType text,markdown set spell
+    " Enable quickfix window height adjustment.
+    au FileType qf call AdjustWindowHeight(3, 6)
+augroup END
+
+augroup CPP
+    au!
+    au FileType c,cpp,h set cindent
+    au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
+augroup END
+
+augroup LATEX
+    au FileType tex set spell
+augroup END
+
+augroup WEB
+    au FileType html,yaml,xml set shiftwidth=2
+    au FileType html,yaml,xml set softtabstop=2
+    au FileType html,yaml,xml set tabstop=2
+
+    au FileType xml setlocal foldmethod=syntax
+    au FileType xml normal zR  " Open all folds by default.
+augroup END
+
+augroup MISC
+    au!
+    " Treat Xmobar config as Haskell file.
+    au BufRead,BufNewFile .xmobarrc set filetype=haskell
+    " Treat .conf files as .cfg.
+    au BufRead,BufNewFile *.conf set filetype=cfg
+augroup END
+
+" }}}
+
+
 " {{{ COMMANDS
 
+" Remove trailing spaces from file.
 command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 
 " Save restricted file opened without root permissions via sudo.
 command! W :w !sudo tee %
 
-"}}}
-"
+" }}}
+
 
 " {{{ MAPPINGS
 
-" Default <leader> key is \ (backslash).
-"let mapleader="\"
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
 
@@ -155,7 +203,6 @@ Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
 Plugin 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plugin 'scrooloose/nerdtree'  " File browser.
 Plugin 'majutsushi/tagbar'  " File tags browser.
-"Plugin 'Valloric/YouCompleteMe'  " Ultimate auto-completion.
 Plugin 'scrooloose/syntastic'  " Ultimate static syntax analysis.
 Plugin 'SirVer/ultisnips'  " Snippets engine.
 Plugin 'honza/vim-snippets'  " Snippets database.
@@ -168,7 +215,7 @@ Plugin 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 " Programming
 " ===========
 
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'rodjek/vim-puppet'
@@ -245,14 +292,14 @@ let g:unite_enable_auto_select=0
 " NERDTree
 " --------
 
-imap <F2> :NERDTreeToggle<CR>
-nmap <F2> :NERDTreeToggle<CR>
+imap <leader>1 :NERDTreeToggle<CR>
+nmap <leader>1 :NERDTreeToggle<CR>
 
 " Tagbar
 " ------
 
-imap <F3> :TagbarToggle<CR>
-nmap <F3> :TagbarToggle<CR>
+imap <leader>2 :TagbarToggle<CR>
+nmap <leader>2 :TagbarToggle<CR>
 
 let g:tagbar_type_css = {
 \ 'ctagstype' : 'Css',
@@ -313,7 +360,7 @@ let g:tagbar_type_rst = {
 " YouCompleteMe
 " -------------
 
-let g:ycm_global_ycm_extra_conf = '/home/zoresvit/.vim/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -339,14 +386,14 @@ let g:ultisnips_python_style = "sphinx"
 
 let g:pymode_rope = 0
 let g:pymode_folding = 0
-let g:pymode_indent = 1
-let g:pymode_motion = 1
+let g:pymode_indent = 0
+let g:pymode_motion = 0
 
-let g:pymode_trim_whitespaces = 1
-let g:pymode_breakpoint = 1
+let g:pymode_trim_whitespaces = 0
+let g:pymode_breakpoint = 0
 let g:pymode_breakpoint_bind = '<leader>B'
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
+let g:pymode_syntax = 0
+let g:pymode_syntax_all = 0
 
 " vimtex
 " ------

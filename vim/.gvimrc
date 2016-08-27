@@ -6,6 +6,8 @@ set guicursor+=i-ci:ver25-Cursor
 set guicursor+=r-cr:hor20-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
+set linespace=2  " Make underscore visible for some fonts.
+
 " Disable visual bell flashing.
 set t_vb=
 
