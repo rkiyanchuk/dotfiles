@@ -10,6 +10,7 @@ import XMonad.Actions.Plane
 import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Fullscreen
@@ -73,7 +74,6 @@ defaultLayouts = smartBorders(avoidStruts(
 
 myLayouts = defaultLayouts
 
-myManagementHooks :: [ManageHook]
 myManagementHooks = [
   resource =? "XXkb" --> doIgnore,
   className =? "Kazam" --> doFloat,
@@ -82,7 +82,8 @@ myManagementHooks = [
   resource =? "xfce4-notifyd" --> doIgnore,
   className =? "rdesktop" --> doFloat,
   className =? "Skype" --> doShift "η",
-  className =? "Slack" --> doShift "η"
+  className =? "Slack" --> doShift "η",
+  isFullscreen --> (doF W.focusDown <+> doFullFloat)
   ]
 
 myKeyBindings =
@@ -150,7 +151,7 @@ main = do
         borderWidth = myBorderWidth
       , focusedBorderColor = myFocusedBorderColor
       , handleEventHook = fullscreenEventHook
-      , layoutHook = myLayouts
+      , layoutHook = smartBorders (myLayouts)
       , manageHook = manageHook defaultConfig
           <+> composeAll myManagementHooks
           <+> manageDocks
