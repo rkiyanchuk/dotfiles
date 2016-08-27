@@ -77,7 +77,6 @@
 #define FONT_REGULAR xft:Dejavu Sans Mono:style=Regular:size=14,xft:Dejavu Sans Mono for Powerline:style=Regular:size=14
 #define FONT_BOLD xft:Dejavu Sans Mono:style=Bold:size=14,xft:Dejavu Sans Mono for Powerline:style=Bold:size=14
 #define FONT_ITALIC xft:Dejavu Sans Mono:style=Italic:size=14,xft:Dejavu Sans Mono for Powerline:style=Italic:size=14
-URxvt.lineSpace: 1
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias: true
@@ -85,6 +84,9 @@ Xft.autohint: true
 Xft.hinting: true
 Xft.hintstyle: hintfull
 Xft.rgba: rgb
+
+! Fix underscore not being displayed
+URxvt.lineSpace: 1
 
 
 ! XTerm
