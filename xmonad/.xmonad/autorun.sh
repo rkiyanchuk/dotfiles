@@ -9,9 +9,9 @@ if ! pgrep dropbox > /dev/null; then
     dropbox start &
 fi
 
-# XXkb keyboard indicator.
-if ! pgrep xxkb > /dev/null; then
-    xxkb &
+# gxkb keyboard indicator.
+if ! pgrep gxkb > /dev/null; then
+    gxkb &
 fi
 
 # Temporarily disabled until icon issues fixed in Debian.
@@ -26,10 +26,6 @@ fi
 
 if ! pgrep -f lock.sh > /dev/null; then
     setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
-fi
-
-if ! pgrep keepassx > /dev/null ; then
-    keepassx &
 fi
 
 if ! pgrep goldendict > /dev/null ; then
