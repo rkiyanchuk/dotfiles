@@ -90,6 +90,7 @@ alias grep='grep --color=auto'
 alias igrep='grep -i --color=auto'
 alias rgrep='rgrep --color=auto'
 alias ssh='TERM=xterm ssh'
+alias pyclean="find . -name '*.pyc' -delete"
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
 alias mount-share='sudo mount -t cifs //192.168.1.1/share share/ \
