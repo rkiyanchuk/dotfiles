@@ -17,11 +17,11 @@ own_window_type override
 own_window_colour 002e39
 
 alignment tl
+pad_percents 2
 border_inner_margin 0
 border_outer_margin 0
 gap_x 1470
 gap_y 50
-minimum_size 430 800
 
 # Fonts.
 use_xft yes
@@ -44,56 +44,61 @@ color9 073642  # background hilight
 TEXT
 ${color2}$hr
 ${color}OS
-
-${color2}UTC${goto 150} ${utime}
-Uptime${goto 150} ${uptime}
-Kernel${goto 150} ${kernel}
-${voffset 5}${color2}Load${goto 150} ${color9}${loadgraph 20,270 073642 073642 0 -l}
-${color2}${goto 250} ${voffset -20}${loadavg}
-${voffset 5}${color2}CPU${goto 150} ${color9}${cpubar 20,270}
-${color2}${goto 250} ${voffset -20}${cpu}%${alignr 10}${running_processes}/${processes} :${threads}
-${voffset 5}${color2}RAM${goto 150} ${color9}${membar 20,270}
-${color2}${goto 250} ${voffset -20}${memperc}% ${alignr 10}${mem}
-Cached${goto 150} ${cached}
+#
+${color2}
+UTC             ${goto 150}${utime}${voffset 5}
+Uptime          ${goto 150}${uptime}${voffset 5}
+Kernel          ${goto 150}${kernel}${voffset 5}
+${color2}Load   ${goto 140}${voffset -10}${color9}${loadgraph 24,270 073642 073642 0 -l}
+${color2}       ${goto 150}${voffset -36}${loadavg}${voffset 5}
+${color2}CPU    ${goto 140}${voffset -10}${color9}${cpubar 24,270}
+${color2}       ${goto 150}${voffset -36}${cpu}%${alignr 10}${running_processes}/${processes} :${threads}${voffset 5}
+${color2}RAM    ${goto 140}${voffset -10}${color9}${membar 24,270}
+${color2}       ${goto 150}${voffset -36}${memperc}% ${alignr 10}${mem}${voffset 5}
+RAM Cached      ${goto 150}${cached}
 
 ${color2}$hr
 ${color}HARDWARE
 
-${color2}Freq${goto 150} ${freq_g} GHz
-${voffset 5}${color2}Disk IO${goto 150} ${diskiograph sda 20,270 073642 073642 0 -l}
-${color2}${goto 250} ${voffset -20}R ${diskio_read} ${alignr 10}W ${diskio_write}
-${voffset 5}${color2}Entropy${goto 150} ${color9}${entropy_bar 20,270}
-${color2}${goto 250} ${voffset -20} ${entropy_avail} / ${entropy_poolsize}
-${voffset 5}${color2}Battery${goto 150} ${color9}${battery_bar 20,270}
-${color2}${goto 200} ${voffset -20}${battery_short}   ${battery_time}
+${color2}Freq       ${goto 150}${freq_g} GHz ${voffset 5}
+${color2}Disk IO    ${goto 140}${voffset -10}${diskiograph sda 24,270 073642 073642 0 -l}
+${color2}           ${goto 150}${voffset -36}R ${diskio_read}${alignr 10}W ${diskio_write}${voffset 5}
+${color2}Entropy    ${goto 140}${voffset -10}${color9}${entropy_bar 24,270}
+${color2}           ${goto 150}${voffset -36}${entropy_avail}${alignr 10}/${entropy_poolsize} b${voffset 5}
+${color2}Battery    ${goto 140}${voffset -10}${color9}${battery_bar 24,270}
+${color2}           ${goto 150}${voffset -36}${battery_short}${alignr 10}${battery_time}
 
 ${color2}$hr
 ${color}FILE SYSTEMS
 
-${voffset 5}${color2}/${goto 150} ${color9}${fs_bar 20,270 /}
-${color2}${alignr 10} ${voffset -20}${fs_used /} / ${fs_size /}
-${voffset 5}${color2}/var${goto 150} ${color9}${fs_bar 20,270 /var}
-${color2}${alignr 10} ${voffset -20}${fs_used /var} / ${fs_size /var}
-${voffset 5}${color2}/home${goto 150} ${color9}${fs_bar 20,270 /home}
-${color2}${alignr 10} ${voffset -20}${fs_used /home} / ${fs_size /home}
+${color2}/          ${goto 140}${voffset -10}${color9}${fs_bar 24,270 /}
+${color2}           ${voffset -36}${alignr 10}${fs_used /} / ${fs_size /}${voffset 5}
+${color2}/var       ${goto 140}${voffset -10}${color9}${fs_bar 24,270 /var}
+${color2}           ${voffset -36}${alignr 10}${fs_used /var} / ${fs_size /var}${voffset 5}
+${color2}/home      ${goto 140}${voffset -10}${color9}${fs_bar 24,270 /home}
+${color2}           ${voffset -36}${alignr 10}${fs_used /home} / ${fs_size /home}${voffset 5}
 
 ${color2}$hr
 ${color}NETWORK
 
-${if_up eth0}\
-${color}eth0 ${color2}${goto 150} ${addr eth0}
-${voffset 5}${color2}${goto 150} ${upspeedgraph eth0 20,125 073642 073642 0 -l}  ${downspeedgraph eth0 20,125 073642 073642 0 -l}
-${color2}${voffset -20}${goto 150}↑ ${upspeed eth0} ${goto 295}↓ ${downspeed eth0}
-${color2}${goto 150}▲ ${totalup eth0} ${goto 295}▼ ${totaldown eth0}\
+${if_up wlp58s0}\
+${color}wlp58s0     ${goto 150}${color2}${addr wlp58s0}${voffset 5}
+${wireless_essid wlp58s0}\
+${goto 140}${voffset -10}${color9}${wireless_link_bar 24,270 wlp58s0}${color2}
+${goto 150}${voffset -36}${wireless_mode wlp58s0}  ${wireless_bitrate wlp58s0}  ${wireless_link_qual_perc wlp58s0}%
+${goto 150}${upspeedgraph wlp58s0 24,125 073642 073642 0 -l}  ${downspeedgraph wlp58s0 24,125 073642 073642 0 -l}
+${voffset -36}  ${goto 150}↑ ${upspeed wlp58s0} ${alignr}↓ ${downspeed wlp58s0}
+                ${goto 150}▲ ${totalup wlp58s0} ${alignr}▼ ${totaldown wlp58s0}
 ${endif}
 
-${if_up wlan0}\
-${color}wlan0 ${color2}${goto 150} ${addr wlan0}
-${voffset 5}${color2}${wireless_essid wlan0} ${goto 150} ${color9}${wireless_link_bar 20,270 wlan0}
-${color2}${alignr 10} ${voffset -20} ${wireless_mode wlan0}  ${wireless_bitrate wlan0}  ${wireless_link_qual_perc wlan0}%
-${voffset 5}${color2}${goto 150} ${upspeedgraph wlan0 20,125 073642 073642 0 -l}  ${downspeedgraph wlan0 20,125 073642 073642 0 -l}
-${color2}${voffset -20}${goto 150}↑ ${upspeed wlan0}${goto 295}↓ ${downspeed wlan0}
-${color2}${goto 150}▲ ${totalup wlan0} ${goto 295}▼ ${totaldown wlan0}\
+${if_up enp57s0u1u4}\
+${color}enp57s0u1u4     ${goto 150}${color2}${addr enp57s0u1u4}${voffset 5}
+${wireless_essid enp57s0u1u4}\
+${goto 140}${voffset -10}${color9}${wireless_link_bar 24,270 enp57s0u1u4}${color2}
+${goto 150}${voffset -36}${wireless_mode enp57s0u1u4}  ${wireless_bitrate enp57s0u1u4}  ${wireless_link_qual_perc enp57s0u1u4}%
+${goto 150}${upspeedgraph enp57s0u1u4 24,125 073642 073642 0 -l}  ${downspeedgraph enp57s0u1u4 24,125 073642 073642 0 -l}
+${voffset -36}  ${goto 150}↑ ${upspeed enp57s0u1u4} ${alignr}↓ ${downspeed enp57s0u1u4}
+                ${goto 150}▲ ${totalup enp57s0u1u4} ${alignr}▼ ${totaldown enp57s0u1u4}
 ${endif}
 
 ${color2}$hr
