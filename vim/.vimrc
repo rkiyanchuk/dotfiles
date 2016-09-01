@@ -226,6 +226,7 @@ Plugin 'jszakmeister/rst2ctags'
 " Enhancements
 " ============
 
+Plugin 'Firef0x/PKGBUILD.vim'
 Plugin 'seveas/bind.vim'  " Edit DNS Zone files.
 Plugin 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
 Plugin 'fidian/hexmode'  " Edit binary files.
