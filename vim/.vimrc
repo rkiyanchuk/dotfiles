@@ -14,18 +14,19 @@ endif
 
 syntax on
 
+"set completeopt=longest,menuone
+"set fillchars=
+"set showfulltag
 set background=dark
 set backspace=indent,eol,start
 set backup
 set backupdir=$VIMHOME/backups
 set browsedir=buffer
 set colorcolumn=80
-"set completeopt=longest,menuone
 set cursorcolumn
 set cursorline
 set directory=$VIMHOME/swap
 set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
-"set fillchars=
 set foldmethod=marker
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden
@@ -39,7 +40,7 @@ set nowrap
 set number
 set path+=**
 set scrolloff=3
-"set showfulltag
+set showbreak=↪
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
@@ -236,7 +237,7 @@ Plugin 'gabrielelana/vim-markdown'  " Edit Markdown.
 Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
 Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
-"Plugin 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
+Plugin 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
 
 call vundle#end()
 filetype plugin indent on
