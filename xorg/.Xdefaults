@@ -95,6 +95,7 @@ URxvt.lineSpace: 1
 XTerm*faceName: Dejavu Sans\ Mono
 XTerm*faceSize: 14
 XTerm*locale: true
+XTerm*scaleHeight: 1.01
 
 
 ! URxvt
