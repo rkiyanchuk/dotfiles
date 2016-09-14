@@ -109,6 +109,7 @@ alias xelatexrun='latexrun --latex-cmd xelatex'
 
 # Make executables from user's Python packages available in $PATH.
 export PATH="$PATH:$HOME/.local/bin"
+export EDITOR="vim"
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
