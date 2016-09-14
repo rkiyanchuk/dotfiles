@@ -18,72 +18,66 @@
 
 
 Config {
-  font = "xft:Dejavu Sans Mono-14",
-  bgColor = "#002b36",
-  fgColor = "#839496",
+    font = "xft:Dejavu Sans Mono-14"
+  , bgColor = "#002b36"
+  , fgColor = "#839496"
 
   -- Adjust width to leave space for 8 icons in tray.
   -- Use bash and xrandr to calculate corresponding width:
   -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
-  position = Static {xpos=0 , ypos=0, width=1728, height=24},
+  , position = Static {xpos=0 , ypos=0, width=1728, height=24}
 
-  commands = [
-    Run Battery [
-      "--template", "<acstatus> <left>%",
-      "--Low", "15",
-      "--High", "30",
-      "--low", "#dc322f",
-      "--normal", "#b58900",
-      "--high", "#586e75",
-      "--",
-      "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>",
-      "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>",
-      "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
-    ] 100,
+    -- layout
+  , sepChar =  "%"   -- delineator between plugin names and straight text
+  , alignSep = "}{"  -- separator between left-right alignment
+  , template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> -</fc> %date% "
 
-    Run Cpu [
-      "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>%",
-      "--minwidth", "2",
-      "--high", "#dc322f"
-    ] 20,
 
-    Run CoreTemp [
-      "--template", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/temp.xbm/></fc> <core0>°C",
-      "--Low", "70",
-      "--High", "80",
-      "--low", "#586e75",
-      "--normal", "#b58900",
-      "--high", "#dc322f"
-    ] 50,
+  -- general behavior
+  , lowerOnStart =     True    -- send to bottom of window stack on start
+  , hideOnStart =      False   -- start with window unmapped (hidden)
+  --, allDesktops =      True    -- show on all desktops
+  , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+  --, pickBroadest =     False   -- choose widest display (multi-monitor)
+  , persistent =       True    -- enable/disable hiding (True = disabled)
 
-    Run Memory [
-        "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
-    ] 20,
-
-    Run Volume "default" "Master" [
-      "-t", "<volume><status>",
-      "-h", "#cb4b16",
-      "-H", "85",
-      "--",
-      "-o", "-",
-      "-O", "%",
-      "--onc", "#586e75",
-      "--offc", "#dc322f"
-    ] 10,
-
-    Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10,
-
+  , commands =
+  [
     -- Gets input from XMonad into stdin to dipslay workspaces and titles.
-    Run StdinReader
-   ],
+      Run StdinReader
 
-   -- Separator character used to wrap variables in xmobar template.
-   sepChar = "%",
+    , Run Battery [
+        "--template", "<acstatus> <left>%"
+      , "--Low", "15"
+      , "--High", "30"
+      , "--low", "#dc322f"
+      , "--normal", "#b58900"
+      , "--high", "#586e75"
+      , "--"
+      , "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>"
+      , "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
+      , "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
+    ] 100
 
-   -- Alignment separator character.
-   -- Everything before it alignes left, everything after alignes right.
-   alignSep = "}{",
+    , Run Cpu [
+        "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>%"
+      , "--minwidth", "2"
+      , "--high", "#dc322f"
+    ] 20
 
-   -- XMobar Layout template.
-   template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %default:Master%</fc> %date% "
+    , Run CoreTemp [
+        "--template", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/temp.xbm/></fc> <core0>°C"
+      , "--Low", "70"
+      , "--High", "80"
+      , "--low", "#586e75"
+      , "--normal", "#b58900"
+      , "--high", "#dc322f"
+    ] 50
+
+    , Run Memory [
+        "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
+    ] 20
+
+    , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
+  ]
 }
