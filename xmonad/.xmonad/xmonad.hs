@@ -7,7 +7,6 @@ import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.Plane
-import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -51,7 +50,7 @@ myNormalBorderColor  = solarizedBase02  -- Color of inactive border.
 myBorderWidth        = 1                -- Width of border around windows.
 myTerminal           = "urxvt"          -- Which terminal software to use.
 
-myTitleLength       = 90  -- Truncate window title to this length.
+myTitleLength       = 79  -- Truncate window title to this length.
 -- Workspace indicator wrappers.
 myCurrentWSLeft     = "["
 myCurrentWSRight    = "]"
@@ -76,10 +75,8 @@ myLayouts = defaultLayouts
 
 myManagementHooks = [
   resource =? "XXkb" --> doIgnore,
-  className =? "Kazam" --> doFloat,
   resource =? "screenkey" --> doIgnore,
   resource =? "stalonetray" --> doIgnore,
-  resource =? "xfce4-notifyd" --> doIgnore,
   className =? "rdesktop" --> doFloat,
   className =? "Skype" --> doShift "η",
   className =? "Slack" --> doShift "η",
