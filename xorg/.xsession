@@ -6,27 +6,12 @@
 # =======================
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications.
+export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications to configure theme.
 
 # Time zone.
 export TZ='America/Los_Angeles'
 #export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
-
-
-# SCREENS
-# =======
-
-# Activate primary screen (find first one connected).
-#MONITOR=$(xrandr | grep " connected" | cut -d' ' -f 1 | head -n 1)
-#xrandr --output "${MONITOR}" --auto --primary
-#
-## Activate secondary screens if connected.
-#xrandr | grep 'VGA1 connected' | ifne xrandr --output VGA1 --auto --left-of "${MONITOR}"
-#xrandr | grep 'VGA1 disconnected' | ifne xrandr --output VGA1 --off
-#
-#xrandr | grep 'HDMI1 connected' | ifne xrandr --output HDMI1 --auto --left-of "${MONITOR}"
-#xrandr | grep 'HDMI1 disconnected' | ifne xrandr --output HDMI1 --off
 
 
 # DESKTOP ENVIRONMENT
@@ -50,25 +35,8 @@ if ! pgrep gnome-keyring-daemon > /dev/null; then
         --components=gpg,pkcs11,secrets,ssh > /dev/null
 fi
 
-# Configure keyboard bindings.
-MASTER_KEYBOARD=$(xinput -list | grep "Virtual core keyboard" | sed 's/.*id=\([0-9]*\).*/\1/')
-setxkbmap -device $MASTER_KEYBOARD \
-    -layout 'us,ru,ua' \
-    -variant 'altgr-intl,,' \
-    -option 'grp:caps_toggle' \
-    -option 'grp_led:caps' \
-    -option 'lv3:ralt_switch' \
-    -option 'compose:rctrl-altgr'
-
-## Configure Bluetooth keyboard.
-K380_KEYBOARD=$(xinput -list | grep "Keyboard K380" | sed 's/.*id=\([0-9]*\).*/\1/')
-if [ ! -z $K380_KEYBOARD ]; then
-    setxkbmap -device $K380_KEYBOARD \
-    -layout 'us,ru,ua' \
-    -variant 'altgr-intl,,' \
-    -option 'grp:caps_toggle' \
-    -option 'lv3:ralt_switch' \
-    -option 'compose:rctrl-altgr'
+if ! pgrep ssh-agent > /dev/null; then
+    eval $(ssh-agent -s)
 fi
 
 gnome-screensaver > /dev/null 2>&1 &
