@@ -94,8 +94,6 @@ ${endif}
 ${if_up enp57s0u1u4}\
 ${color}enp57s0u1u4     ${goto 150}${color2}${addr enp57s0u1u4}${voffset 5}
 ${wireless_essid enp57s0u1u4}\
-${goto 140}${voffset -10}${color9}${wireless_link_bar 24,245 enp57s0u1u4}${color2}
-${goto 150}${voffset -36}${wireless_mode enp57s0u1u4}  ${wireless_bitrate enp57s0u1u4}  ${wireless_link_qual_perc enp57s0u1u4}%
 ${goto 150}${upspeedgraph enp57s0u1u4 24,125 073642 073642 0 -l}  ${downspeedgraph enp57s0u1u4 24,125 073642 073642 0 -l}
 ${voffset -36}  ${goto 150}↑ ${upspeed enp57s0u1u4} ${alignr}↓ ${downspeed enp57s0u1u4}
                 ${goto 150}▲ ${totalup enp57s0u1u4} ${alignr}▼ ${totaldown enp57s0u1u4}
