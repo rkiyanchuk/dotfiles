@@ -51,3 +51,5 @@
     browser = google-chrome
 [push]
     default = simple
+[credential "https://stash.ges.symantec.com"]
+    helper = symantec-stash -a
