@@ -1,6 +1,6 @@
 [user]
-	name = Ruslan Kiianchuk
-	email = ruslan.kiianchuk@gmail.com
+    name = Ruslan Kiianchuk
+    email = ruslan.kiianchuk@gmail.com
 [alias]
     br = branch -vv
     bra = branch -avv
@@ -29,8 +29,8 @@
     gui = vimdiff
 
 [gitreview]
-	username = rkiianchuk
-	username = ruslan_kiyanchuk
+    username = rkiianchuk
+    username = ruslan_kiyanchuk
 
 [help]
     autocorrect = 1
@@ -45,9 +45,9 @@
     helper = cache --timeout=43200
 
 [hub]
-	protocol = https
+    protocol = https
 
 [web]
-	browser = google-chrome
+    browser = google-chrome
 [push]
-	default = simple
+    default = simple
