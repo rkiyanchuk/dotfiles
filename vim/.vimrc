@@ -367,11 +367,6 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" Syntastic
-" ---------
-
-" HTML5 lint with http://www.htacg.org/tidy-html5.
-let g:syntastic_html_tidy_exec = 'tidy5'
 
 " UtliSnips
 " ---------
@@ -402,5 +397,17 @@ let g:pymode_syntax_all = 0
 
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
+
+" Syntastic
+" ---------
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " }}}
