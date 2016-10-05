@@ -216,7 +216,6 @@ Plugin 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 " Programming
 " ===========
 
-"Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'rodjek/vim-puppet'
@@ -377,20 +376,6 @@ let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 let g:UltiSnipsEditSplit = "horizontal"
 let g:ultisnips_python_style = "sphinx"
-
-" Python-mode
-" -----------
-
-let g:pymode_rope = 0
-let g:pymode_folding = 0
-let g:pymode_indent = 0
-let g:pymode_motion = 0
-
-let g:pymode_trim_whitespaces = 0
-let g:pymode_breakpoint = 0
-let g:pymode_breakpoint_bind = '<leader>B'
-let g:pymode_syntax = 0
-let g:pymode_syntax_all = 0
 
 " vimtex
 " ------
