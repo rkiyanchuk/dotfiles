@@ -222,6 +222,8 @@ Plugin 'rodjek/vim-puppet'
 Plugin 'artur-shaik/vim-javacomplete2'
 Plugin 'jszakmeister/markdown2ctags'
 Plugin 'jszakmeister/rst2ctags'
+Plugin 'mbr/vim-pyre'
+Plugin 'vim-scripts/indentpython.vim'
 
 " Enhancements
 " ============
