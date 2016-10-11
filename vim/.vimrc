@@ -22,7 +22,7 @@ set backspace=indent,eol,start
 set backup
 set backupdir=$VIMHOME/backups
 set browsedir=buffer
-set colorcolumn=100
+set colorcolumn=80
 set cursorcolumn
 set cursorline
 set directory=$VIMHOME/swap
@@ -47,7 +47,7 @@ set splitright
 " Set native status line as fallback from vim-airline.
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
 set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
-set textwidth=99
+set textwidth=79
 set undodir=$VIMHOME/swap
 set undofile
 set updatetime=1000  " For more efficient Tagbar functioning
@@ -397,5 +397,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ["pylint", "pycodestyle"]
 
 " }}}
