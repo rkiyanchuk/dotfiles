@@ -14,7 +14,7 @@ endif
 
 syntax on
 
-"set completeopt=longest,menuone
+set completeopt=longest,menuone
 "set fillchars=
 "set showfulltag
 set background=dark
@@ -54,6 +54,7 @@ set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set visualbell
 set wildmenu
+set wildmode=longest:full,list,full
 
 " Search
 " ------
