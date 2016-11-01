@@ -54,7 +54,7 @@ set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set visualbell
 set wildmenu
-set wildmode=longest:full,list,full
+set wildmode=longest,full
 
 " Search
 " ------
