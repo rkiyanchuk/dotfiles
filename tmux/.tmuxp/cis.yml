@@ -4,7 +4,7 @@ windows:
   - window_name: cis
     start_directory: ~/devel/projects/symantec/cis
     panes:
-      - null
+      - shell_command_before: pew workon cis
 
   - window_name: cis-api
     start_directory: ~/devel/projects/symantec/cis/cis-api
@@ -20,3 +20,13 @@ windows:
     start_directory: ~/devel/projects/symantec/cis/cis-deploy
     panes:
       - shell_command_before: vagrant status
+
+  - window_name: astute
+    start_directory: ~/devel/projects/symantec/cis/astute
+    panes:
+      - null
+
+  - window_name: vpn
+    start_directory: ~/devel/projects/symantec/cis
+    panes:
+      - shell_command_before: pew workon juniper
