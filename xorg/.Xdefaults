@@ -92,7 +92,7 @@ URxvt.lineSpace: 1
 ! XTerm
 ! =====
 
-XTerm*faceName: Dejavu Sans\ Mono
+XTerm*faceName: Dejavu Sans Mono
 XTerm*faceSize: 14
 XTerm*locale: true
 XTerm*scaleHeight: 1.01
@@ -101,6 +101,7 @@ XTerm*scaleHeight: 1.01
 ! URxvt
 ! =====
 
+! Colors
 URxvt*foreground: S_base0
 URxvt*background: S_base03
 URxvt*font: FONT_REGULAR
@@ -110,25 +111,25 @@ URxvt*boldItalicFont: FONT_BOLD
 URxvt.colorIT: S_magenta
 URxvt.colorBD: S_green
 URxvt.colorUL: S_blue
+
+! Behavior
 URxvt*saveLines: 65535
 URxvt.scrollBar: false
 URxvt.intensityStyles: false
 URxvt*urgentOnBell: true
 URxvt.letterSpace: -1
-
-URxvt.url-select.autocopy:  true
-URxvt.url-select.launcher:  google-chrome
-URxvt.url-select.underline: true
-urxvt.url-launcher: google-chrome
 URxvt.scrollWithBuffer: true
 
-! Enable extensions.
-URxvt.perl-ext-common: ...,default,matcher,clipboard,keyboard-select
+! Enable extensions
+URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select,...
 
-! Make URL clickable.
+! Make URL clickable
 URxvt.matcher.button: 1
+URxvt.matcher.launcher: /usr/bin/xdg-open
+URxvt.url-launcher: /usr/bin/xdg-open
 
-! Keyboard select extension.
+
+! Keyboard select extension
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.searchable-scrollback: <>
