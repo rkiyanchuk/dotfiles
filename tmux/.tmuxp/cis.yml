@@ -6,6 +6,11 @@ windows:
     panes:
       - shell_command_before: pew workon cis
 
+  - window_name: cis-repo
+    start_directory: ~/devel/projects/symantec/cis/cis
+    panes:
+      - shell_command_before: pew workon cis
+
   - window_name: cis-api
     start_directory: ~/devel/projects/symantec/cis/cis-api
     panes:
