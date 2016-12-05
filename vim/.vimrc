@@ -184,6 +184,7 @@ command! W :w !sudo tee %
 
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
+nmap <silent> <leader>s :set spell!<CR>
 
 " }}}
 
