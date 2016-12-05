@@ -27,7 +27,3 @@ fi
 if ! pgrep -f lock.sh > /dev/null; then
     setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
 fi
-
-if ! pgrep goldendict > /dev/null ; then
-    goldendict &
-fi
