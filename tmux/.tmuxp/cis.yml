@@ -6,25 +6,10 @@ windows:
     panes:
       - shell_command_before: pew workon cis
 
-  - window_name: cis-repo
+  - window_name: repo
     start_directory: ~/devel/projects/symantec/cis/cis
     panes:
       - shell_command_before: pew workon cis
-
-  - window_name: cis-api
-    start_directory: ~/devel/projects/symantec/cis/cis-api
-    panes:
-      - shell_command_before: pew workon cis
-
-  - window_name: cis-collector
-    start_directory: ~/devel/projects/symantec/cis/cis-collector
-    panes:
-      - shell_command_before: pew workon cis
-
-  - window_name: cis-deploy
-    start_directory: ~/devel/projects/symantec/cis/cis-deploy
-    panes:
-      - shell_command_before: vagrant status
 
   - window_name: astute
     start_directory: ~/devel/projects/symantec/cis/astute
