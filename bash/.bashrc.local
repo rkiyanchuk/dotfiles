@@ -30,9 +30,12 @@ ONWHITE="\[\033[0;47m\]"
 # CONFIGURATION VARIABLES
 # =======================
 
+stty -ixon  # Enable backward history search with C-s.
+
 HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in bash history.
 HISTSIZE=1000
 HISTFILESIZE=1000
+export HISTCONTROL=ignoreboth:erasedups  # Avoid duplicates in history.
 
 # Force tmux into 256 colors mode.
 export TERM=rxvt-unicode-256color
