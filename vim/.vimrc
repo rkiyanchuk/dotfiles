@@ -301,6 +301,7 @@ let g:unite_enable_auto_select=0
 
 imap <leader>1 :NERDTreeToggle<CR>
 nmap <leader>1 :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 " Tagbar
 " ------
