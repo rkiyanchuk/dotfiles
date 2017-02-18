@@ -214,6 +214,7 @@ Plugin 'tpope/vim-fugitive'  " Git interface for Vim.
 Plugin 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
 Plugin 'mkitt/tabline.vim'  " Better tabs naming.
 Plugin 'sjl/gundo.vim'  " Browse Vim undo tree graph.
+Plugin 'wincent/ferret'  " Multi-file search.
 
 " Programming
 " ===========
@@ -241,6 +242,7 @@ Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
 Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
 Plugin 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
+Plugin 'rhysd/vim-grammarous'
 
 call vundle#end()
 filetype plugin indent on
