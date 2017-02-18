@@ -109,7 +109,7 @@ myKeyBindings =
     , ((0, xF86XK_Search), spawn "dmenu_run -i -nb '#002b36' -nf  '#839496' -sb '#073642' -sf '#93a1a1' -fn 'Dejavu Sans Mono-14'")
 
     -- Lock computer.
-    , ((myModMask .|. mod1Mask, xK_l), spawn "gnome-screensaver-command -l")
+    , ((myModMask, xK_Escape), spawn "gnome-screensaver-command -l")
 
     -- Sound control.
     , ((myModMask .|. controlMask, xK_Up), spawn "pulseaudio-ctl up")
