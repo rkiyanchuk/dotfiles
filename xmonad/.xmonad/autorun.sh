@@ -27,3 +27,9 @@ fi
 if ! pgrep -f lock.sh > /dev/null; then
     setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
 fi
+
+# Keep Arch Linux Updated.
+if ! pgrep kalu > /dev/null; then
+    # Wait until network gets initialized.
+    sleep 10 && kalu >/dev/null 2>&1 &
+fi
