@@ -11,11 +11,6 @@ windows:
     panes:
       - shell_command_before: pew workon cis
 
-  - window_name: astute
-    start_directory: ~/devel/projects/symantec/cis/astute
-    panes:
-      - null
-
   - window_name: vpn
     start_directory: ~/devel/projects/symantec/cis
     panes:
