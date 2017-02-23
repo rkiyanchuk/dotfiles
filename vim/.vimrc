@@ -133,23 +133,30 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 augroup TEXT
     " Auto commands for any text file.
-    au!
+    autocmd!
     au FileType text,markdown set spell
     " Enable quickfix window height adjustment.
     au FileType qf call AdjustWindowHeight(3, 6)
 augroup END
 
 augroup CPP
-    au!
+    autocmd!
     au FileType c,cpp,h set cindent
     au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
 augroup LATEX
+    autocmd!
     au FileType tex set spell
 augroup END
 
+augroup HASKELL
+    autocmd!
+    au FileType haskell set shiftround
+augroup END
+
 augroup WEB
+    autocmd!
     au FileType html,yaml,xml set shiftwidth=2
     au FileType html,yaml,xml set softtabstop=2
     au FileType html,yaml,xml set tabstop=2
@@ -159,7 +166,7 @@ augroup WEB
 augroup END
 
 augroup MISC
-    au!
+    autocmd!
     " Treat Xmobar config as Haskell file.
     au BufRead,BufNewFile .xmobarrc set filetype=haskell
     " Treat .conf files as .cfg.
