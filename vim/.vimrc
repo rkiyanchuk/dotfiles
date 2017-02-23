@@ -218,14 +218,16 @@ Plug 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
 Plug 'mkitt/tabline.vim'  " Better tabs naming.
 Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 Plug 'wincent/ferret'  " Multi-file search.
+Plug 'Shougo/vimproc'
 
 " Programming
 " ===========
 
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'neomake/neomake'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' } 
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'jszakmeister/markdown2ctags'
@@ -283,6 +285,7 @@ let g:airline_symbols.paste = '▼'
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.whitespace = '∅'
 let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
 let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
 
@@ -397,3 +400,15 @@ let g:ultisnips_python_style = "sphinx"
 
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
+
+" jedi-vim
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
