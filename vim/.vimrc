@@ -210,7 +210,6 @@ Plug 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'   " File tags browser.
-"Plug 'vim-syntastic/syntastic/'  " Ultimate static syntax analysis.
 Plug 'SirVer/ultisnips'  " Snippets engine.
 Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
@@ -376,13 +375,6 @@ let g:tagbar_type_rst = {
     \ 'sort': 0,
 \ }
 
-" YouCompleteMe
-" -------------
-
-let g:ycm_global_ycm_extra_conf = $VIMHOME . '/.ycm_extra_conf.py'
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>j :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 " UtliSnips
@@ -400,18 +392,3 @@ let g:ultisnips_python_style = "sphinx"
 
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
-
-" Syntastic
-" ---------
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ["pylint", "pycodestyle"]
-
-" }}}
