@@ -261,6 +261,11 @@ call plug#end()
 
 " {{{ PLUGINS CONFIGURATION
 
+" neco-ghc
+augroup HASKELL
+    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
+
 " Airline
 " -------
 
