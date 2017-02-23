@@ -1,5 +1,5 @@
 let $VIMHOME=$HOME . "/.vim"
-let $VIMBUNDLE=$VIMHOME . "/bundle"
+let $VIMPLUGINS=$VIMHOME . "/plugins"
 
 " Create directories required by Vim configuration.
 if !isdirectory($VIMHOME . "/backups")
@@ -191,61 +191,65 @@ nmap <silent> <leader>s :set spell!<CR>
 
 " {{{ PLUGINS
 
-filetype off  " Filetype recognition must be disabled for Vundle setup.
-set rtp+=$VIMBUNDLE/Vundle.vim/
-call vundle#begin()
+call plug#begin($VIMPLUGINS)
 
 " Essentials
 " ==========
 
-Plugin 'VundleVim/Vundle.vim'  " Vim plugin manager.
-Plugin 'bling/vim-airline'  " Enhanced status line.
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'zoresvit/vim-colors-solarized'
-Plugin 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
-Plugin 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
-Plugin 'scrooloose/nerdtree'  " File browser.
-Plugin 'majutsushi/tagbar'  " File tags browser.
-Plugin 'scrooloose/syntastic'  " Ultimate static syntax analysis.
-Plugin 'SirVer/ultisnips'  " Snippets engine.
-Plugin 'honza/vim-snippets'  " Snippets database.
-Plugin 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
-Plugin 'tpope/vim-fugitive'  " Git interface for Vim.
-Plugin 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
-Plugin 'mkitt/tabline.vim'  " Better tabs naming.
-Plugin 'sjl/gundo.vim'  " Browse Vim undo tree graph.
-Plugin 'wincent/ferret'  " Multi-file search.
+Plug 'bling/vim-airline'  " Enhanced status line.
+Plug 'vim-airline/vim-airline-themes'
+Plug 'zoresvit/vim-colors-solarized'
+Plug 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
+Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'majutsushi/tagbar'   " File tags browser.
+"Plug 'vim-syntastic/syntastic/'  " Ultimate static syntax analysis.
+Plug 'SirVer/ultisnips'  " Snippets engine.
+Plug 'honza/vim-snippets'  " Snippets database.
+Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
+Plug 'tpope/vim-fugitive'  " Git interface for Vim.
+Plug 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
+Plug 'mkitt/tabline.vim'  " Better tabs naming.
+Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
+Plug 'wincent/ferret'  " Multi-file search.
 
 " Programming
 " ===========
 
-Plugin 'lervag/vimtex'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'rodjek/vim-puppet'
-Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'jszakmeister/markdown2ctags'
-Plugin 'jszakmeister/rst2ctags'
-Plugin 'mbr/vim-pyre'
-Plugin 'vim-scripts/indentpython.vim'
+Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'Shougo/neocomplete.vim'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' } 
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'jszakmeister/markdown2ctags'
+Plug 'jszakmeister/rst2ctags'
+Plug 'mbr/vim-pyre'
+Plug 'vim-scripts/indentpython.vim'
+" Haskell
+Plug 'Shougo/vimproc.vim', { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+
+" Tab specific option
 
 " Enhancements
 " ============
 
-Plugin 'Firef0x/PKGBUILD.vim'
-Plugin 'seveas/bind.vim'  " Edit DNS Zone files.
-Plugin 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
-Plugin 'fidian/hexmode'  " Edit binary files.
-Plugin 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
-Plugin 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
-Plugin 'gabrielelana/vim-markdown'  " Edit Markdown.
-Plugin 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
-Plugin 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
-Plugin 'Matt-Deacalion/vim-systemd-syntax'
-Plugin 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
-Plugin 'rhysd/vim-grammarous'
+Plug 'Firef0x/PKGBUILD.vim'
+Plug 'seveas/bind.vim'  " Edit DNS Zone files.
+Plug 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
+Plug 'fidian/hexmode'  " Edit binary files.
+Plug 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
+Plug 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
+Plug 'gabrielelana/vim-markdown'  " Edit Markdown.
+Plug 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
+Plug 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
+Plug 'Matt-Deacalion/vim-systemd-syntax'
+Plug 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
+Plug 'rhysd/vim-grammarous'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 " }}}
 
@@ -281,7 +285,7 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " Solarized
 " ---------
 
-if isdirectory($VIMBUNDLE . "/vim-colors-solarized")
+if isdirectory($VIMPLUGINS . "/vim-colors-solarized")
     let g:solarized_bold=0
     let g:solarized_underline=0
     let g:solarized_italic=0
@@ -327,7 +331,7 @@ let g:tagbar_type_make = {
 
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '$VIMBUNDLE/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsbin' : '$VIMPLUGINS/markdown2ctags/markdown2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
@@ -352,7 +356,7 @@ let g:tagbar_type_puppet = {
 
 let g:tagbar_type_rst = {
     \ 'ctagstype': 'rst',
-    \ 'ctagsbin' : '$VIMBUNDLE/rst2ctags/rst2ctags.py',
+    \ 'ctagsbin' : '$VIMPLUGINS/rst2ctags/rst2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
