@@ -209,7 +209,7 @@ Plug 'zoresvit/vim-colors-solarized'
 Plug 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'majutsushi/tagbar'   " File tags browser.
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}   " File tags browser.
 Plug 'SirVer/ultisnips'  " Snippets engine.
 Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
