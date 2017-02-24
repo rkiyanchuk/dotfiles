@@ -1,6 +1,6 @@
 # Stalonetray configuration options.
 
-background "#002b36"        # Color can be specified as an HTML hex triplet or
+background "#202020"        # Color can be specified as an HTML hex triplet or
                             # as a name from rgb.txt, note that '#' must be
                             # quoted.
 

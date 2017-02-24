@@ -19,7 +19,7 @@
 
 Config {
     font = "xft:Dejavu Sans Mono-14"
-  , bgColor = "#002b36"
+  , bgColor = "#202020"
   , fgColor = "#839496"
 
   -- Adjust width to leave space for 8 icons in tray.
