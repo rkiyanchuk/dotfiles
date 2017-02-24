@@ -223,7 +223,7 @@ Plug 'Shougo/vimproc'
 " Programming
 " ===========
 
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', {'commit': '235b88b6c53aaad7e8d1b3d2fa1d68b59bd50da6'} | Plug 'dojoteef/neomake-autolint'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
