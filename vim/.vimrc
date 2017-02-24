@@ -73,6 +73,7 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+set shiftround
 
 " Filetype settings
 " -----------------
@@ -148,11 +149,6 @@ augroup END
 augroup LATEX
     autocmd!
     au FileType tex set spell
-augroup END
-
-augroup HASKELL
-    autocmd!
-    au FileType haskell set shiftround
 augroup END
 
 augroup WEB
@@ -259,11 +255,6 @@ call plug#end()
 " }}}
 
 " {{{ PLUGINS CONFIGURATION
-
-" neco-ghc
-augroup HASKELL
-    au FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
 
 " Airline
 " -------
