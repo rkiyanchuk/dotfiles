@@ -60,7 +60,6 @@ myUrgentWSLeft      = "{"
 myUrgentWSRight     = "}"
 
 myWorkspaces = [ "α", "β", "γ", "δ", "ε", "ζ", "η"]
-startupWorkspace = "α"
 
 
 defaultLayouts = smartBorders(avoidStruts(

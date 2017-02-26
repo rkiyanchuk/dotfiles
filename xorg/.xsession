@@ -2,9 +2,6 @@
 # encoding: utf-8
 
 
-# CONFIGURATION VARIABLES
-# =======================
-
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications to configure theme.
 
@@ -14,20 +11,13 @@ export TZ='America/Los_Angeles'
 #export TZ='Europe/Kiev'
 
 
-# DESKTOP ENVIRONMENT
-# ===================
-
-#redshift -O 6500 -g 0.9:0.9:0.9 > /dev/null  # Adjust display color temprature.
-nitrogen --restore &  # Set screen wallpaper (see man for choosing image).
+feh --bg-fill ${HOME}/.xmonad/images/zoresvit_wallpaper.png &  # Set screen wallpaper (see man for choosing image).
 
 xset -b  # Turn off PC speaker bell.
 xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
-
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
-if ! pgrep stalonetray > /dev/null; then
-    stalonetray &  # Start system tray.
-fi
+gnome-screensaver > /dev/null 2>&1 &
 
 if ! pgrep gnome-keyring-daemon > /dev/null; then
     # Start keyring for applications that expect access to system keyring.
@@ -35,11 +25,13 @@ if ! pgrep gnome-keyring-daemon > /dev/null; then
         --components=gpg,pkcs11,secrets,ssh > /dev/null
 fi
 
+if ! pgrep lock.sh > /dev/null; then
+    setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
+fi
+
 if ! pgrep ssh-agent > /dev/null; then
     eval $(ssh-agent -s)
 fi
-
-gnome-screensaver > /dev/null 2>&1 &
 
 if ! pgrep compton > /dev/null; then
     # Try to start Compton compositor on up to 4 displays.
