@@ -1,13 +1,13 @@
 
 import XMonad
 import XMonad.Config.Desktop(desktopConfig)
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.SetWMName(setWMName)
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.NoBorders
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName(setWMName)
+import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
 import XMonad.Util.EZConfig as EZ
 import XMonad.Util.SpawnOnce(spawnOnce)
 import Graphics.X11.ExtraTypes.XF86
@@ -60,16 +60,15 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     ]
 
-main = xmonad $ desktopConfig
+main = xmonad $ ewmh desktopConfig
     { borderWidth        = myBorderWidth
     , normalBorderColor  = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
     , modMask            = myModMask
     , workspaces         = myWorkspaces
     , terminal           = myTerminal
-    , handleEventHook    = handleEventHook desktopConfig
-                           <+> fullscreenEventHook
     , layoutHook         = avoidStruts $ smartBorders myLayouts
+    , handleEventHook    = handleEventHook def <+> fullscreenEventHook
     , manageHook         = manageDocks
                            <+> manageHook def
                            <+> composeAll myManageHook
@@ -80,6 +79,6 @@ main = xmonad $ desktopConfig
                               spawnOnce "dropbox start"
                               spawnOnce "sleep 10 && kalu"
                               spawnOnce "nm-applet"
-                              spawnOnce "polybar -r top"
+                              spawnOnce "polybar top"
                               spawn "albert"
     } `EZ.additionalKeys` myKeyBindings
