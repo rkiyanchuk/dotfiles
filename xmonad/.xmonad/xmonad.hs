@@ -49,6 +49,7 @@ myManageHook =
 
 myKeyBindings =
     [ ((myModMask, xK_Escape), spawn "gnome-screensaver-command -l")
+    , ((myModMask, xK_b), sendMessage ToggleStruts)
 
     -- Sound control.
     , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")
@@ -58,6 +59,10 @@ myKeyBindings =
     -- Brightness control
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+
+    -- Screenshot
+    , ((0, xK_Print), spawn "scrot -e 'mv $f $${HOME}/downloads'")
+    , ((shiftMask, xK_Print), spawn "scrot -u -e 'mv $f $${HOME}/downloads'")
     ]
 
 main = xmonad $ ewmh def

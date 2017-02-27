@@ -1,5 +1,8 @@
 ; vim:ft=dosini
 
+[settings]
+screenchange-reload = true
+
 [colors]
 base03  = #002b36
 base02  = #073642
@@ -42,17 +45,16 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "Dejavu Sans Mono:size=14"
-font-1 = "Ionicons:size=14"
-font-2 = "FontAwesome:size=14"
+font-0 = "Dejavu Sans Mono for Powerline:size=14"
+font-1 = "Material Design Icons:size=14"
 
 tray-position = right
 tray-padding = 1
 tray-maxsize = 28
 
-modules-left = ewmh backlight battery volume
+modules-left = ewmh backlight temperature battery volume
 modules-center = xwindow
-modules-right = cpu memory temperature xkeyboard date
+modules-right = cpu memory xkeyboard date
 
 
 [module/xwindow]
@@ -62,141 +64,129 @@ label = %title:0:80:…%
 
 [module/xkeyboard]
 type = internal/xkeyboard
-
-format-prefix = " "
+format-prefix = 
+format-prefix-padding-right = 1
+format-foreground = ${colors.secondary}
 
 
 [module/backlight]
 type = internal/backlight
 card = intel_backlight
-; Available tags:
-;   <label> (default)
-;   <ramp>
-;   <bar>
-format = <label>
-format-prefix = " "
+format-foreground = ${colors.secondary}
 
-; Available tokens:
-;   %percentage% (default)
-label = %percentage%%
+format = <ramp>
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
 
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.secondary}
 
-label = %percentage%%
-
-format = <label> <ramp-load>
-
-ramp-load-0 = ▁
-ramp-load-1 = ▂
-ramp-load-2 = ▃
-ramp-load-3 = ▄
-ramp-load-4 = ▅
-ramp-load-5 = ▆
-ramp-load-6 = ▇
-ramp-load-7 = █
+label = %percentage:2%%
+format = <label>
+format-prefix = 
+format-foreground = ${colors.secondary}
 
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.accent}
-format-underline = ${colors.green}
-label = %percentage_used%%
+label = %percentage_used:2%%
+format = <label>
+format-prefix = 
+format-prefix-padding-right = 1
+format-foreground = ${colors.secondary}
+
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
+date = "%b %d"
+date-alt = "%Y-%m-%d"
+time = %H:%M:%S
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.accent}
-format-underline = #0a6cf5
-
 label = %date% %time%
+format-prefix = ""
+format-foreground = ${colors.secondary}
+format-prefix-padding-right = 1
+
 
 [module/volume]
 type = internal/volume
-
+label-volume = %percentage%%
+format-volume-prefix = 
+label-muted = 
 format-volume = <label-volume>
-label-volume = ""
-label-volume-foreground = ${root.foreground}
+format-muted = <label-muted>
+format-muted-underline = ${colors.red}
+format-volume-foreground = ${colors.secondary}
+format-muted-foreground = ${colors.secondary}
 
-format-muted-foreground = ${colors.accent}
-label-muted = ""
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 98
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.yellow}
+time-format = %H:%M
 
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-charging-foreground = ${colors.secondary}
+format-discharging-foreground = ${colors.secondary}
+format-full = 
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.accent}
-format-full-underline = ${self.format-charging-underline}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.accent}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.accent}
 animation-charging-framerate = 750
+
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+thermal-zone = 7
+warn-temperature = 70
 
-format = <ramp> <label>
-format-underline = ${colors.orange}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format = <label>
+format-prefix = 
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.secondary}
+format-warn = <label-warn>
+format-warn-prefix = 
+format-warn-underline = ${colors.red}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.accent}
+label-foreground = ${colors.secondary}
+format-prefix-foreground = ${colors.secondary}
 
-[settings]
-screenchange-reload = true
 
 [module/ewmh]
 type = internal/xworkspaces
 
-; icon-[0-9]+ = <desktop-name>;<icon>
-; NOTE: The desktop name needs to match the name configured by the WM
-; You can get a list of the defined desktops using:
-; $ xprop -root _NET_DESKTOP_NAMES
 icon-0 = 1;
 icon-1 = 2;
 icon-2 = 3;
 icon-3 = 4;
-icon-default = "  "
+icon-default = "  "
 
 label-monitor = %icon%
 
@@ -206,14 +196,14 @@ label-active-background = ${colors.background-alt}
 label-active-underline = ${colors.yellow}
 
 label-occupied = %icon%
-label-occupied-underline = #00FF00
+label-occupied-underline = ${colors.orange}
 
 label-urgent = %icon%
-label-urgent-primary = ${colors.primary}
+label-urgent-foreground = ${colors.primary}
 label-urgent-background = ${colors.background}
 label-urgent-underline = ${colors.red}
 
 label-empty = %icon%
-label-empty-primary = ${colors.secondary}
+label-empty-foreground = ${colors.secondary}
 label-empty-background = ${colors.background}
 label-empty-underline = ${colors.background-alt}
