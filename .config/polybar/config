@@ -18,12 +18,11 @@ blue    = #268bd2
 cyan    = #2aa198
 green   = #859900
 
-background = ${colors.base03}
-background-alt = ${colors.base02}
-foreground = ${colors.base0}
-foreground-alt = ${colors.base1}
+background = #202020
+background-alt = #303030
 primary = ${colors.base0}
-secondary = ${colors.base1}
+accent = ${colors.base1}
+secondary = ${colors.base01}
 
 
 [bar/top]
@@ -34,47 +33,38 @@ padding = 1
 fixed-center = false
 
 background = ${colors.background}
-foreground = ${colors.foreground}
+foreground = ${colors.primary}
+line-size = 3
+line-color = ${colors.secondary}
 
-line-size = 2
-line-color = ${colors.red}
-
-padding-left = 0
-padding-right = 2
-
+padding-left = 1
+padding-right = 1
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
-font-0 = "Dejavu Sans Mono for Powerline:size=14"
+font-0 = "Dejavu Sans Mono:size=14"
 font-1 = "Ionicons:size=14"
 font-2 = "FontAwesome:size=14"
 
-modules-left = ewmh
-modules-center = xwindow
-modules-right = backlight volume cpu memory battery temperature xkeyboard date
-
-tray-position = left
-tray-padding = 2
+tray-position = right
+tray-padding = 1
 tray-maxsize = 28
+
+modules-left = ewmh backlight battery volume
+modules-center = xwindow
+modules-right = cpu memory temperature xkeyboard date
+
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:60:...%
+label = %title:0:80:…%
+
 
 [module/xkeyboard]
 type = internal/xkeyboard
-blacklist-0 = num lock
 
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
 
-label-layout = %layout%
-label-layout-underline = ${colors.blue}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
 
 [module/backlight]
 type = internal/backlight
@@ -95,15 +85,27 @@ label = %percentage%%
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.red}
+format-prefix-foreground = ${colors.secondary}
+
 label = %percentage%%
+
+format = <label> <ramp-load>
+
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.green}
 label = %percentage_used%%
 
@@ -118,7 +120,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = #0a6cf5
 
 label = %date% %time%
@@ -126,29 +128,12 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
 label-volume = ""
 label-volume-foreground = ${root.foreground}
 
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.accent}
 label-muted = ""
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -163,19 +148,19 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.accent}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.accent}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.accent}
 animation-charging-framerate = 750
 
 [module/temperature]
@@ -195,7 +180,7 @@ label-warn-foreground = ${colors.secondary}
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.accent}
 
 [settings]
 screenchange-reload = true
@@ -224,11 +209,11 @@ label-occupied = %icon%
 label-occupied-underline = #00FF00
 
 label-urgent = %icon%
-label-urgent-foreground = ${colors.primary}
+label-urgent-primary = ${colors.primary}
 label-urgent-background = ${colors.background}
 label-urgent-underline = ${colors.red}
 
 label-empty = %icon%
-label-empty-foreground = ${colors.secondary}
+label-empty-primary = ${colors.secondary}
 label-empty-background = ${colors.background}
 label-empty-underline = ${colors.background-alt}

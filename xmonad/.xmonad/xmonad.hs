@@ -60,7 +60,7 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
     ]
 
-main = xmonad $ desktopConfig
+main = xmonad $ ewmh def
     { borderWidth        = myBorderWidth
     , normalBorderColor  = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
@@ -71,7 +71,6 @@ main = xmonad $ desktopConfig
     , handleEventHook    = handleEventHook def <+> fullscreenEventHook
     , manageHook         = manageDocks <+> manageHook def <+> composeAll myManageHook
     , startupHook        = do setWMName "LG3D"
-                              spawnOnce "gxkb"
                               spawnOnce "blueman-applet"
                               spawnOnce "conky -d"
                               spawnOnce "dropbox start"
