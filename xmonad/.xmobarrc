@@ -21,7 +21,7 @@
 
 Config {
     font = "xft:Dejavu Sans Mono:size=14,Material Design Icons:size=14"
-  , bgColor = "#002b36"
+  , bgColor = "#202020"
   , fgColor = "#839496"
 
   -- Adjust width to leave space for 8 icons in tray.
@@ -32,7 +32,7 @@ Config {
     -- layout
   , sepChar =  "%"   -- delineator between plugin names and straight text
   , alignSep = "}{"  -- separator between left-right alignment
-  , template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198></fc> %volume%</fc> %date% "
+  , template = "%StdinReader% }{ %battery% %cpu% %memory% %coretemp% %volume% %date% %kbd% "
 
 
   -- general behavior
@@ -83,5 +83,6 @@ Config {
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
 
     , Run Com "/home/zoresvit/.xmonad/volume.sh" [] "volume" 20
+    , Run Kbd [("us(altgr-intl)", "En"), ("ru", "Ru"), ("ua", "Uk")]
   ]
 }
