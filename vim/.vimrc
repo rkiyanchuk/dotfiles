@@ -163,8 +163,6 @@ augroup END
 
 augroup MISC
     autocmd!
-    " Treat Xmobar config as Haskell file.
-    au BufRead,BufNewFile .xmobarrc set filetype=haskell
     " Treat .conf files as .cfg.
     au BufRead,BufNewFile *.conf set filetype=cfg
 augroup END
