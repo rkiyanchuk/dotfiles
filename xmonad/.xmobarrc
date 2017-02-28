@@ -20,19 +20,19 @@
 
 
 Config {
-    font = "xft:Dejavu Sans Mono-14"
+    font = "xft:Dejavu Sans Mono:size=14,Material Design Icons:size=14"
   , bgColor = "#002b36"
   , fgColor = "#839496"
 
   -- Adjust width to leave space for 8 icons in tray.
   -- Use bash and xrandr to calculate corresponding width:
   -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
-  , position = Static {xpos=0 , ypos=0, width=1728, height=24}
+  , position = Static {xpos=0 , ypos=0, width=1920, height=32}
 
     -- layout
   , sepChar =  "%"   -- delineator between plugin names and straight text
   , alignSep = "}{"  -- separator between left-right alignment
-  , template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198><icon=/home/zoresvit/.xmonad/images/volume.xbm/></fc> %volume%</fc> %date% "
+  , template = "%StdinReader% }{ <fc=#586e75>%battery% %cpu% %memory% %coretemp% <fc=#2aa198></fc> %volume%</fc> %date% "
 
 
   -- general behavior
@@ -56,19 +56,19 @@ Config {
       , "--normal", "#b58900"
       , "--high", "#586e75"
       , "--"
-      , "-o", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/bat_full.xbm/></fc>"
-      , "-O", "<fc=#859900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
-      , "-i", "<fc=#b58900><icon=/home/zoresvit/.xmonad/images/ac.xbm/></fc>"
+      , "-o", "<fc=#2aa198></fc>"
+      , "-O", "<fc=#859900></fc>"
+      , "-i", "<fc=#b58900></fc>"
     ] 100
 
     , Run Cpu [
-        "-t", "<fc=#6c71c4><icon=/home/zoresvit/.xmonad/images/cpu.xbm/></fc> <total>%"
+        "-t", "<fc=#6c71c4></fc> <total>%"
       , "--minwidth", "2"
       , "--high", "#dc322f"
     ] 20
 
     , Run CoreTemp [
-        "--template", "<fc=#2aa198><icon=/home/zoresvit/.xmonad/images/temp.xbm/></fc> <core0>°C"
+        "--template", "<fc=#2aa198></fc> <core0>°C"
       , "--Low", "70"
       , "--High", "80"
       , "--low", "#586e75"
@@ -77,7 +77,7 @@ Config {
     ] 50
 
     , Run Memory [
-        "-t","<fc=#268bd2><icon=/home/zoresvit/.xmonad/images/mem.xbm/></fc> <usedratio>%"
+        "-t","<fc=#268bd2></fc> <usedratio>%"
     ] 20
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10

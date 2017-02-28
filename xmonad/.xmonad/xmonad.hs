@@ -6,10 +6,13 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName(setWMName)
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Named
 import XMonad.Util.EZConfig as EZ
 import XMonad.Util.SpawnOnce(spawnOnce)
+import XMonad.Util.Run as Run
 import Graphics.X11.ExtraTypes.XF86
 
 
@@ -37,9 +40,9 @@ myBorderWidth        = 1
 myTerminal           = "urxvt"
 myWorkspaces = [ "1", "2", "3", "4" ]
 
-myLayouts = ResizableTall 1 (3/100) (1/2) []
-            ||| Mirror (ResizableTall 1 (3/100) (4/5) [])
-            ||| Full
+myLayouts = named "V" (ResizableTall 1 (3/100) (1/2) [])
+            ||| named "H" (Mirror (ResizableTall 1 (3/100) (4/5) []))
+            ||| named "F" Full
 
 myManageHook =
     [
@@ -65,22 +68,33 @@ myKeyBindings =
     , ((shiftMask, xK_Print), spawn "scrot -u -e 'mv $f $${HOME}/downloads'")
     ]
 
-main = xmonad $ ewmh def
-    { borderWidth        = myBorderWidth
-    , normalBorderColor  = myNormalBorderColor
-    , focusedBorderColor = myFocusedBorderColor
-    , modMask            = myModMask
-    , workspaces         = myWorkspaces
-    , terminal           = myTerminal
-    , layoutHook         = avoidStruts $ smartBorders myLayouts
-    , handleEventHook    = handleEventHook def <+> fullscreenEventHook
-    , manageHook         = manageDocks <+> manageHook def <+> composeAll myManageHook
-    , startupHook        = do setWMName "LG3D"
-                              spawnOnce "blueman-applet"
-                              spawnOnce "conky -d"
-                              spawnOnce "dropbox start"
-                              spawnOnce "sleep 10 && kalu"
-                              spawnOnce "nm-applet"
-                              spawnOnce "polybar top"
-                              spawn "albert"
-    } `EZ.additionalKeys` myKeyBindings
+main = do
+    xmproc <- Run.spawnPipe "xmobar"
+    xmonad $ ewmh def
+        { borderWidth        = myBorderWidth
+        , normalBorderColor  = myNormalBorderColor
+        , focusedBorderColor = myFocusedBorderColor
+        , modMask            = myModMask
+        , workspaces         = myWorkspaces
+        , terminal           = myTerminal
+        , layoutHook         = avoidStruts $ smartBorders myLayouts
+        , handleEventHook    = handleEventHook def <+> fullscreenEventHook <+> docksEventHook
+        , manageHook         = manageDocks <+> manageHook def <+> composeAll myManageHook
+        , logHook            = dynamicLogWithPP $ xmobarPP {
+              ppOutput = Run.hPutStrLn xmproc
+            , ppCurrent = xmobarColor solarizedRed "X"
+            , ppHidden = xmobarColor solarizedBase0 ""
+            , ppHiddenNoWindows = xmobarColor solarizedBase02 ""
+            , ppLayout = xmobarColor solarizedCyan ""
+            , ppTitle = xmobarStrip
+            , ppUrgent = xmobarColor solarizedRed "" . wrap "{" "}"
+            , ppVisible = xmobarColor solarizedBase01 "" . wrap "[" "]"
+            }
+        , startupHook        = do setWMName "LG3D"
+                                  spawnOnce "blueman-applet"
+                                  spawnOnce "conky -d"
+                                  spawnOnce "dropbox start"
+                                  spawnOnce "sleep 10 && kalu"
+                                  spawnOnce "nm-applet"
+                                  spawn "albert"
+        } `EZ.additionalKeys` myKeyBindings
