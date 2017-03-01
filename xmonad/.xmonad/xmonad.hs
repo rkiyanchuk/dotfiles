@@ -7,6 +7,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName(setWMName)
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.LayoutModifier
+import XMonad.Layout.Monitor
 import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
@@ -59,7 +61,14 @@ layoutIcons =
     , "<icon=" ++ iconsRoot ++ "layout_full.xpm" ++ "/>"
     ]
 
-myLayouts = named (layoutIcons !! 0) (ResizableTall 1 (3/100) (1/2) [])
+tray = monitor
+    { prop = ClassName "stalonetray"
+    , name = "stalonetray"
+    , visible = False
+    }
+
+myLayouts = ModifiedLayout tray $
+            named (layoutIcons !! 0) (ResizableTall 1 (3/100) (1/2) [])
             ||| named (layoutIcons !! 1) (Mirror (ResizableTall 1 (3/100) (4/5) []))
             ||| named (layoutIcons !! 2) Full
 
@@ -107,7 +116,7 @@ main = do
         , startupHook        = do setWMName "LG3D"
                                   spawnOnce "nm-applet"
                                   spawnOnce "blueman-applet"
-                                  spawnOnce "dropbox start"
+                                  spawnOnce "dropbox"
                                   spawnOnce "conky -d"
                                   spawnOnce "sleep 10 && kalu"
                                   spawn "albert"
@@ -117,7 +126,7 @@ main = do
                                , ppHidden = xmobarColor solarizedBase0 ""
                                , ppHiddenNoWindows = xmobarColor solarizedBase01 colorBackground
                                , ppLayout = xmobarColor solarizedCyan ""
-                               , ppTitle = xmobarStrip . shorten 90
+                               , ppTitle = xmobarStrip . shorten 80
                                , ppUrgent = xmobarColor solarizedRed colorBackgroundUrg
                                , ppVisible = xmobarColor solarizedBase01 ""
                                }

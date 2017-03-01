@@ -43,7 +43,7 @@ if ! pgrep compton > /dev/null; then
 fi
 
 if ! pgrep stalonetray > /dev/null; then
-    sleep 3 && stalonetray &  # Start system tray.
+    stalonetray &  # Start system tray.
 fi
 
 if ! pgrep xmonad > /dev/null; then
