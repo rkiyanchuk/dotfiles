@@ -6,14 +6,20 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName(setWMName)
-import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Named
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.Named
 import XMonad.Util.EZConfig as EZ
-import XMonad.Util.SpawnOnce(spawnOnce)
+import XMonad.Util.NamedWindows
 import XMonad.Util.Run as Run
+import XMonad.Util.SpawnOnce(spawnOnce)
+
+import qualified XMonad.StackSet as W
+
 import Graphics.X11.ExtraTypes.XF86
+import System.Environment
+import System.IO.Unsafe
 
 
 solarizedBase03     = "#002b36"
@@ -33,16 +39,29 @@ solarizedBlue       = "#268bd2"
 solarizedCyan       = "#2aa198"
 solarizedGreen      = "#859900"
 
+colorBackground     = "#152327"
+colorBackgroundAlt  = "#223034"
+colorBackgroundUrg  = "#252730"
+
 myModMask            = mod4Mask  -- Changes Mod key to "super".
 myFocusedBorderColor = solarizedBlue
 myNormalBorderColor  = solarizedBase02
 myBorderWidth        = 1
 myTerminal           = "urxvt"
-myWorkspaces = [ "1", "2", "3", "4" ]
+iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
+myWorkspaces         = [ " 1 ", " 2 ", " 3 ", " 4 " ]
 
-myLayouts = named "V" (ResizableTall 1 (3/100) (1/2) [])
-            ||| named "H" (Mirror (ResizableTall 1 (3/100) (4/5) []))
-            ||| named "F" Full
+
+layoutIcons =
+    [
+      "<icon=" ++ iconsRoot ++ "layout_tall.xpm" ++ "/>"
+    , "<icon=" ++ iconsRoot ++ "layout_mtall.xpm" ++ "/>"
+    , "<icon=" ++ iconsRoot ++ "layout_full.xpm" ++ "/>"
+    ]
+
+myLayouts = named (layoutIcons !! 0) (ResizableTall 1 (3/100) (1/2) [])
+            ||| named (layoutIcons !! 1) (Mirror (ResizableTall 1 (3/100) (4/5) []))
+            ||| named (layoutIcons !! 2) Full
 
 myManageHook =
     [
@@ -68,9 +87,10 @@ myKeyBindings =
     , ((shiftMask, xK_Print), spawn "scrot -u -e 'mv $f $${HOME}/downloads'")
     ]
 
+
 main = do
     xmproc <- Run.spawnPipe "xmobar"
-    xmonad $ ewmh def
+    xmonad $ withUrgencyHook NoUrgencyHook $ ewmh def
         { borderWidth        = myBorderWidth
         , normalBorderColor  = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
@@ -78,23 +98,27 @@ main = do
         , workspaces         = myWorkspaces
         , terminal           = myTerminal
         , layoutHook         = avoidStruts $ smartBorders myLayouts
-        , handleEventHook    = handleEventHook def <+> fullscreenEventHook <+> docksEventHook
-        , manageHook         = manageDocks <+> manageHook def <+> composeAll myManageHook
-        , logHook            = dynamicLogWithPP $ xmobarPP {
-              ppOutput = Run.hPutStrLn xmproc
-            , ppCurrent = xmobarColor solarizedRed "X"
-            , ppHidden = xmobarColor solarizedBase0 ""
-            , ppHiddenNoWindows = xmobarColor solarizedBase02 ""
-            , ppLayout = xmobarColor solarizedCyan ""
-            , ppTitle = xmobarStrip
-            , ppUrgent = xmobarColor solarizedRed "" . wrap "{" "}"
-            , ppVisible = xmobarColor solarizedBase01 "" . wrap "[" "]"
-            }
+        , handleEventHook    = handleEventHook def
+                               <+> fullscreenEventHook
+                               <+> docksEventHook
+        , manageHook         = manageDocks
+                               <+> manageHook def
+                               <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
-                                  spawnOnce "blueman-applet"
-                                  spawnOnce "conky -d"
-                                  spawnOnce "dropbox start"
-                                  spawnOnce "sleep 10 && kalu"
                                   spawnOnce "nm-applet"
+                                  spawnOnce "blueman-applet"
+                                  spawnOnce "dropbox start"
+                                  spawnOnce "conky -d"
+                                  spawnOnce "sleep 10 && kalu"
                                   spawn "albert"
+        , logHook            = dynamicLogWithPP $ xmobarPP {
+                                 ppOutput = Run.hPutStrLn xmproc
+                               , ppCurrent = xmobarColor solarizedBlue colorBackgroundAlt
+                               , ppHidden = xmobarColor solarizedBase0 ""
+                               , ppHiddenNoWindows = xmobarColor solarizedBase01 colorBackground
+                               , ppLayout = xmobarColor solarizedCyan ""
+                               , ppTitle = xmobarStrip . shorten 90
+                               , ppUrgent = xmobarColor solarizedRed colorBackgroundUrg
+                               , ppVisible = xmobarColor solarizedBase01 ""
+                               }
         } `EZ.additionalKeys` myKeyBindings
