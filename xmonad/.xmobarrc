@@ -20,45 +20,37 @@
 
 
 Config {
-    font = "xft:Dejavu Sans Mono:size=14,Material Design Icons:size=14"
-  , bgColor = "#202020"
-  , fgColor = "#839496"
+    font        = "xft:Dejavu Sans Mono:size=14,Material Design Icons:size=14"
+  , bgColor     = "#152327"
+  , fgColor     = "#839496"
 
-  -- Adjust width to leave space for 8 icons in tray.
-  -- Use bash and xrandr to calculate corresponding width:
-  -- echo $(( $(xrandr | grep current | cut -d ' ' -f 8) - (24*8) ))
-  , position = Static {xpos=0 , ypos=0, width=1920, height=32}
+  , position    = TopSize C 100 32
 
-    -- layout
-  , sepChar =  "%"   -- delineator between plugin names and straight text
-  , alignSep = "}{"  -- separator between left-right alignment
-  , template = "%StdinReader% }{ %battery% %cpu% %memory% %coretemp% %volume% %date% %kbd% "
+  -- layout
+  , sepChar     = "%"   -- Delimeter between plugin names and straight text.
+  , alignSep    = "}{"  -- Separator between left-right alignment.
+  , template    = "%StdinReader% }{ %battery% %cpu% %memory% %coretemp% %volume% %date% %bright% %kbd% "
 
-
-  -- general behavior
-  , lowerOnStart =     True    -- send to bottom of window stack on start
-  , hideOnStart =      False   -- start with window unmapped (hidden)
-  --, allDesktops =      True    -- show on all desktops
-  , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-  --, pickBroadest =     False   -- choose widest display (multi-monitor)
-  , persistent =       True    -- enable/disable hiding (True = disabled)
+  -- behavior
+  , lowerOnStart        = True   -- Send to bottom of window stack on start.
+  , allDesktops         = True
+  , overrideRedirect    = False  -- Make Xmobar behave like dock app.
 
   , commands =
-  [
-    -- Gets input from XMonad into stdin to dipslay workspaces and titles.
-      Run StdinReader
+    [
+      Run StdinReader  -- Dipslay input about workspaces and titles from XMonad.
 
     , Run Battery [
-        "--template", "<acstatus> <left>%"
+        "--template", "|<acstatus> <leftipat>|"
       , "--Low", "15"
       , "--High", "30"
       , "--low", "#dc322f"
       , "--normal", "#b58900"
       , "--high", "#586e75"
       , "--"
-      , "-o", "<fc=#2aa198></fc>"
-      , "-O", "<fc=#859900></fc>"
-      , "-i", "<fc=#b58900></fc>"
+      , "--on-icon-pattern", ""
+      , "--off-icon-pattern", ""
+      , "--idle-icon-pattern", ""
     ] 100
 
     , Run Cpu [
@@ -78,11 +70,18 @@ Config {
 
     , Run Memory [
         "-t","<fc=#268bd2></fc> <usedratio>%"
-    ] 20
+      ] 20
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
 
     , Run Com "/home/zoresvit/.xmonad/volume.sh" [] "volume" 20
     , Run Kbd [("us(altgr-intl)", "En"), ("ru", "Ru"), ("ua", "Uk")]
-  ]
+
+    , Run Brightness [
+        "-t", "<ipat>"
+      , "--"
+      , "-D", "intel_backlight"
+      , "--brightness-icon-pattern", "x"
+      ] 50
+    ]
 }
