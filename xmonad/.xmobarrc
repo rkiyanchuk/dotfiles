@@ -29,7 +29,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{ %battery% %cpu% %memory% %coretemp% %volume% %date% %bright% %kbd% "
+  , template    = "%StdinReader% }{ <fc=#586e75>%battery%  %cpu%  %memory%  %coretemp%  %default:Master%  %kbd% </fc> %date% "
 
   -- behavior
   , lowerOnStart        = True   -- Send to bottom of window stack on start.
@@ -41,7 +41,7 @@ Config {
       Run StdinReader  -- Dipslay input about workspaces and titles from XMonad.
 
     , Run Battery [
-        "--template", "|<acstatus> <leftipat>|"
+        "--template", "<leftipat><left>%"
       , "--Low", "15"
       , "--High", "30"
       , "--low", "#dc322f"
@@ -54,34 +54,48 @@ Config {
     ] 100
 
     , Run Cpu [
-        "-t", "<fc=#6c71c4></fc> <total>%"
+        "-t", "<total>%"
       , "--minwidth", "2"
+      , "--Low", "30"
+      , "--High", "80"
+      , "--low", "#586e75"
       , "--high", "#dc322f"
+      , "--normal", "#839496"
     ] 20
 
+    , Run Memory [
+        "-t"," <usedratio>%"
+      , "--minwidth", "2"
+      , "--Low", "30"
+      , "--low", "#586e75"
+      , "--High", "80"
+      , "--high", "#dc322f"
+      ] 20
+
     , Run CoreTemp [
-        "--template", "<fc=#2aa198></fc> <core0>°C"
-      , "--Low", "70"
+        "--template", " <core0>°C"
+      , "--Low", "60"
       , "--High", "80"
       , "--low", "#586e75"
       , "--normal", "#b58900"
       , "--high", "#dc322f"
     ] 50
 
-    , Run Memory [
-        "-t","<fc=#268bd2></fc> <usedratio>%"
-      ] 20
+    , Run Volume "default" "Master" [
+        "-t", "<status> <volumevbar>"
+      , "--High", "80"
+      , "--high", "#839496"
+      , "--"
+      , "--on", ""
+      , "--off", ""
+      , "--onc", "#586e75"
+      , "--offc", "#dc322f"
+    ] 10
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
 
-    , Run Com "/home/zoresvit/.xmonad/volume.sh" [] "volume" 20
-    , Run Kbd [("us(altgr-intl)", "En"), ("ru", "Ru"), ("ua", "Uk")]
-
-    , Run Brightness [
-        "-t", "<ipat>"
-      , "--"
-      , "-D", "intel_backlight"
-      , "--brightness-icon-pattern", "x"
-      ] 50
+    , Run Kbd [("us(altgr-intl)", "<fc=#859900>En</fc>"),
+               ("ru", "<fc=#cb4b16>Ru</fc>"),
+               ("ua", "<fc=#268bd2>Uk</fc>")]
     ]
 }
