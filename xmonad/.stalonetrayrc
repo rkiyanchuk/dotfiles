@@ -1,5 +1,7 @@
 transparent true
-geometry 6x1+1240+0
+
+# Adjust tray position to be on the left of XMobar's right side metadata.
+geometry 8x1+1240+0
 
 grow_gravity E
 icon_size 28
