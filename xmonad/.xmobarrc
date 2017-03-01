@@ -29,12 +29,10 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{ <fc=#586e75>%battery%  %cpu%  %memory%  %coretemp%  %default:Master%  %kbd% </fc> %date% "
+  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %default:Master% %kbd%  %date% "
 
   -- behavior
-  , lowerOnStart        = True   -- Send to bottom of window stack on start.
-  , allDesktops         = True
-  , overrideRedirect    = False  -- Make Xmobar behave like dock app.
+  --, lowerOnStart        = False   -- Send to bottom of window stack on start.
 
   , commands =
     [
@@ -42,60 +40,64 @@ Config {
 
     , Run Battery [
         "--template", "<leftipat><left>%"
+      , "--minwidth", "2"
       , "--Low", "15"
       , "--High", "30"
       , "--low", "#dc322f"
-      , "--normal", "#b58900"
-      , "--high", "#586e75"
+      , "--normal", "#93a1a1"
+      , "--high", "#839496"
       , "--"
-      , "--on-icon-pattern", ""
-      , "--off-icon-pattern", ""
-      , "--idle-icon-pattern", ""
-    ] 100
+      , "--on-icon-pattern", ""
+      , "--off-icon-pattern", ""
+      , "--idle-icon-pattern", ""
+      ] 100
 
     , Run Cpu [
         "-t", "<total>%"
       , "--minwidth", "2"
       , "--Low", "30"
       , "--High", "80"
-      , "--low", "#586e75"
+      , "--low", "#839496"
       , "--high", "#dc322f"
-      , "--normal", "#839496"
-    ] 20
+      , "--normal", "#93a1a1"
+      ] 20
 
     , Run Memory [
-        "-t"," <usedratio>%"
+        "-t","<usedratio>%"
       , "--minwidth", "2"
       , "--Low", "30"
-      , "--low", "#586e75"
+      , "--low", "#839496"
+      , "--normal", "#93a1a1"
       , "--High", "80"
       , "--high", "#dc322f"
       ] 20
 
     , Run CoreTemp [
-        "--template", " <core0>°C"
+        "--template", "<core0>°C"
+      , "--minwidth", "2"
       , "--Low", "60"
       , "--High", "80"
-      , "--low", "#586e75"
-      , "--normal", "#b58900"
+      , "--low", "#839496"
+      , "--normal", "#93a1a1"
       , "--high", "#dc322f"
-    ] 50
+      ] 50
 
     , Run Volume "default" "Master" [
-        "-t", "<status> <volumevbar>"
+        "-t", "<status><volume>%"
+      , "--minwidth", "2"
       , "--High", "80"
-      , "--high", "#839496"
+      , "--high", "#93a1a1"
       , "--"
       , "--on", ""
       , "--off", ""
-      , "--onc", "#586e75"
+      , "--onc", "#839496"
       , "--offc", "#dc322f"
-    ] 10
+      ] 10
+
+    , Run Kbd [("us(altgr-intl)", "<fc=#839496>En</fc>"),
+               ("ru", "<fc=#dc322f>Ru</fc>"),
+               ("ua", "<fc=#b58900>Uk</fc>")]
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
-
-    , Run Kbd [("us(altgr-intl)", "<fc=#859900>En</fc>"),
-               ("ru", "<fc=#cb4b16>Ru</fc>"),
-               ("ua", "<fc=#268bd2>Uk</fc>")]
     ]
 }
