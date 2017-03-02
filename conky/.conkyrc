@@ -21,7 +21,7 @@ pad_percents 2
 border_inner_margin 0
 border_outer_margin 0
 gap_x 1500
-gap_y 50
+gap_y 30
 
 # Fonts.
 use_xft yes
@@ -98,5 +98,4 @@ ${goto 150}${upspeedgraph enp57s0u1u4 24,125 073642 073642 0 -l}  ${downspeedgra
 ${voffset -36}  ${goto 150}↑ ${upspeed enp57s0u1u4} ${alignr}↓ ${downspeed enp57s0u1u4}
                 ${goto 150}▲ ${totalup enp57s0u1u4} ${alignr}▼ ${totaldown enp57s0u1u4}
 ${endif}
-
 ${color2}$hr

@@ -1,11 +1,11 @@
 background "#152327"
 
 # Adjust tray position to be on the left of XMobar's right side metadata.
-geometry 1x1+1270+0
+geometry 1x1+1270+1048
 max_geometry 8x32
-
-kludges force_icon_size
 
 grow_gravity E
 icon_gravity NE
 icon_size 28
+
+kludges force_icons_size

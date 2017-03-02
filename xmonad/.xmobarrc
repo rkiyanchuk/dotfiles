@@ -24,7 +24,7 @@ Config {
   , bgColor     = "#152327"
   , fgColor     = "#839496"
 
-  , position    = TopSize C 100 32
+  , position    = BottomSize C 100 32
 
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
