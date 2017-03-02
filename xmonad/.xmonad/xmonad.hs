@@ -1,5 +1,6 @@
 
 import XMonad
+import XMonad.Actions.PhysicalScreens
 import XMonad.Config.Desktop(desktopConfig)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -81,6 +82,10 @@ myManageHook =
 myKeyBindings =
     [ ((myModMask, xK_Escape), spawn "gnome-screensaver-command -l")
     , ((myModMask, xK_b), sendMessage ToggleStruts)
+    , ((myModMask, xK_w), onPrevNeighbour W.view)
+    , ((myModMask, xK_e), onNextNeighbour W.view)
+    , ((myModMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
+    , ((myModMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
 
     -- Sound control.
     , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")
