@@ -126,7 +126,7 @@ main = do
                                , ppHidden = xmobarColor solarizedBase0 ""
                                , ppHiddenNoWindows = xmobarColor solarizedBase01 colorBackground
                                , ppLayout = xmobarColor solarizedCyan ""
-                               , ppTitle = xmobarStrip . shorten 80
+                               , ppTitle = xmobarStrip . shorten 75
                                , ppUrgent = xmobarColor solarizedRed colorBackgroundUrg
                                , ppVisible = xmobarColor solarizedBase01 ""
                                }
