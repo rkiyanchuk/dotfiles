@@ -12,8 +12,9 @@ draw_outline no
 draw_shades no
 own_window yes
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
-own_window_transparent yes
+own_window_transparent no
 own_window_type override
+own_window_colour 002e39
 
 alignment tl
 pad_percents 2
