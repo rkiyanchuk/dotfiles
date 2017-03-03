@@ -10,36 +10,45 @@ export TZ='America/Los_Angeles'
 #export TZ='Europe/Kiev'
 
 
-function spawn {
-    PROG=$1
-    CMD=$2
-    if ! pgrep -x $PROG > /dev/null; then
-        ${CMD:-$PROG} > /dev/null 2>&1 &
-    fi
-}
-
-# Set screen wallpaper (see man for choosing image).
-feh --bg-fill ${HOME}/.xmonad/images/zoresvit_wallpaper.png &
+feh --bg-fill ${HOME}/.xmonad/images/zoresvit_wallpaper.png &  # Set screen wallpaper (see man for choosing image).
 
 xset -b  # Turn off PC speaker bell.
 xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
-if ! pgrep -x ssh-agent > /dev/null; then
+gnome-screensaver > /dev/null 2>&1 &
+
+if ! pgrep gnome-keyring-daemon > /dev/null; then
+    # Start keyring for applications that expect access to system keyring.
+    gnome-keyring-daemon --daemonize --start \
+        --components=gpg,pkcs11,secrets,ssh > /dev/null
+fi
+
+if ! pgrep lock.sh > /dev/null; then
+    setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
+fi
+
+if ! pgrep udiskie > /dev/null; then
+    udiskie >/dev/null 2>&1 < /dev/null &
+fi
+
+if ! pgrep ssh-agent > /dev/null; then
     eval $(ssh-agent -s)
 fi
 
-spawn gnome-screensaver
-spawn udiskie
-spawn lock.sh 'setsid "${HOME}/.xmonad/lock.sh"'
-spawn stalonetray  # Start system tray.
-spawn redshift
+if ! pgrep compton > /dev/null; then
+    # Try to start Compton compositor on up to 4 displays.
+    seq 0 3 | xargs -l1 -I@ compton -b -d :0.@
+fi
 
-# Start keyring for applications that expect access to system keyring.
-spawn gnome-keyring-daemon 'gnome-keyring-daemon --daemonize --start \
-    --components=gpg,pkcs11,secrets,ssh'
+if ! pgrep stalonetray > /dev/null; then
+    stalonetray &  # Start system tray.
+fi
 
-# Try to start Compton compositor on up to 4 displays.
-spawn compton 'seq 0 3 | xargs -l1 -I@ compton -b -d :0.@'
+if ! pgrep -x redshift > /dev/null; then
+    redshift & > /dev/null 2>&1
+fi
 
-spawn xmonad 'exec xmonad'
+if ! pgrep xmonad > /dev/null; then
+    exec xmonad
+fi
