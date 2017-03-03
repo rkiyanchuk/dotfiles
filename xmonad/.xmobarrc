@@ -29,7 +29,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %default:Master% %kbd%  %date% "
+  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %default:Master% %kbd% %date% "
 
   -- behavior
   --, lowerOnStart        = False   -- Send to bottom of window stack on start.
@@ -94,9 +94,9 @@ Config {
       , "--offc", "#dc322f"
       ] 10
 
-    , Run Kbd [("us(altgr-intl)", "<fc=#839496>En</fc>"),
-               ("ru", "<fc=#dc322f>Ru</fc>"),
-               ("ua", "<fc=#b58900>Uk</fc>")]
+    , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
+               ("ru", "Ru <fc=#dc322f></fc>"),
+               ("ua", "Uk <fc=#b58900></fc>")]
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
     ]
