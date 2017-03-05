@@ -23,16 +23,12 @@ Config {
     font        = "xft:Dejavu Sans Mono:size=14,Material Design Icons:size=14"
   , bgColor     = "#152327"
   , fgColor     = "#839496"
-
   , position    = BottomSize C 100 32
 
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %default:Master% %kbd% %date% "
-
-  -- behavior
-  --, lowerOnStart        = False   -- Send to bottom of window stack on start.
+  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %diskio%  %kbd% %date% "
 
   , commands =
     [
@@ -65,7 +61,7 @@ Config {
     , Run Memory [
         "-t","<usedratio>%"
       , "--minwidth", "2"
-      , "--Low", "30"
+      , "--Low", "40"
       , "--low", "#839496"
       , "--normal", "#93a1a1"
       , "--High", "80"
@@ -82,17 +78,9 @@ Config {
       , "--high", "#dc322f"
       ] 50
 
-    , Run Volume "default" "Master" [
-        "-t", "<status><volume>%"
-      , "--minwidth", "2"
-      , "--High", "80"
-      , "--high", "#93a1a1"
-      , "--"
-      , "--on", ""
-      , "--off", ""
-      , "--onc", "#839496"
-      , "--offc", "#dc322f"
-      ] 10
+    , Run DiskIO [("sda2", "<total>")] [
+        "--minwidth", "3"
+    ] 20
 
     , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
                ("ru", "Ru <fc=#dc322f></fc>"),

@@ -32,6 +32,10 @@ if ! pgrep udiskie > /dev/null; then
     udiskie >/dev/null 2>&1 < /dev/null &
 fi
 
+if ! pgrep volnoti > /dev/null; then
+    volnoti &
+fi
+
 if ! pgrep ssh-agent > /dev/null; then
     eval $(ssh-agent -s)
 fi

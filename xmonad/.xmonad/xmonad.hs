@@ -25,30 +25,30 @@ import System.Environment
 import System.IO.Unsafe
 
 
-solarizedBase03     = "#002b36"
-solarizedBase02     = "#073642"
-solarizedBase01     = "#586e75"
-solarizedBase00     = "#657b83"
-solarizedBase0      = "#839496"
-solarizedBase1      = "#93a1a1"
-solarizedBase2      = "#eee8d5"
-solarizedBase3      = "#fdf6e3"
-solarizedYellow     = "#b58900"
-solarizedOrange     = "#cb4b16"
-solarizedRed        = "#dc322f"
-solarizedMagenta    = "#d33682"
-solarizedViolet     = "#6c71c4"
-solarizedBlue       = "#268bd2"
-solarizedCyan       = "#2aa198"
-solarizedGreen      = "#859900"
+colorBase03     = "#002b36"
+colorBase02     = "#073642"
+colorBase01     = "#586e75"
+colorBase00     = "#657b83"
+colorBase0      = "#839496"
+colorBase1      = "#93a1a1"
+colorBase2      = "#eee8d5"
+colorBase3      = "#fdf6e3"
+colorYellow     = "#b58900"
+colorOrange     = "#cb4b16"
+colorRed        = "#dc322f"
+colorMagenta    = "#d33682"
+colorViolet     = "#6c71c4"
+colorBlue       = "#268bd2"
+colorCyan       = "#2aa198"
+colorGreen      = "#859900"
 
 colorBackground     = "#152327"
 colorBackgroundAlt  = "#223034"
 colorBackgroundUrg  = "#252730"
 
 myModMask            = mod4Mask  -- Changes Mod key to "super".
-myFocusedBorderColor = solarizedBlue
-myNormalBorderColor  = solarizedBase02
+myFocusedBorderColor = colorBlue
+myNormalBorderColor  = colorBase02
 myBorderWidth        = 1
 myTerminal           = "urxvt"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
@@ -86,15 +86,17 @@ myKeyBindings =
     , ((myModMask, xK_e), onNextNeighbour W.view)
     , ((myModMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
     , ((myModMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
+    , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pulseaudio-ctl up")
-    , ((0, xF86XK_AudioLowerVolume), spawn "pulseaudio-ctl down")
-    , ((0, xF86XK_AudioMute), spawn "pulseaudio-ctl mute")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
+    , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)")
+    , ((0, xF86XK_AudioMute), spawn "pamixer -t && (pamixer --get-mute && volnoti-show -m || volnoti-show $(pamixer --get-volume))")
+    , ((shiftMask, xF86XK_AudioMute), spawn "pamixer --default-source -t")
 
     -- Brightness control
-    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
-    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5 && volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5 && volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)")
 
     -- Screenshot
     , ((0, xK_Print), spawn "scrot -e 'mv $f $${HOME}/downloads'")
@@ -120,6 +122,7 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawnOnce "nm-applet"
+                                  spawnOnce "pasystray -m 150"
                                   spawnOnce "blueman-applet"
                                   spawnOnce "dropbox"
                                   spawnOnce "conky -d"
@@ -127,13 +130,13 @@ main = do
                                   spawn "albert"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
-                               , ppCurrent = xmobarColor solarizedBlue colorBackgroundAlt
-                               , ppHidden = xmobarColor solarizedBase0 ""
-                               , ppHiddenNoWindows = xmobarColor solarizedBase01 colorBackground
-                               , ppLayout = xmobarColor solarizedCyan ""
+                               , ppCurrent = xmobarColor colorBlue colorBackgroundAlt
+                               , ppHidden = xmobarColor colorBase0 ""
+                               , ppHiddenNoWindows = xmobarColor colorBase01 colorBackground
+                               , ppLayout = xmobarColor colorCyan ""
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
-                               , ppUrgent = xmobarColor solarizedRed colorBackgroundUrg
-                               , ppVisible = xmobarColor solarizedBase01 ""
+                               , ppUrgent = xmobarColor colorRed colorBackgroundUrg
+                               , ppVisible = xmobarColor colorBase01 ""
                                }
         } `EZ.additionalKeys` myKeyBindings
