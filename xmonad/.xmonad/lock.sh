@@ -4,15 +4,34 @@
 # Listen DBUS queue to get signal from Gnome Screensaver about lock events.
 
 DBUS_SESSION="type='signal',interface='org.gnome.ScreenSaver'"
-MUTE_COMMAND="pulseaudio-ctl mute; pulseaudio-ctl mute-input"
+SINKS=$(pamixer --list-sinks | grep alsa | awk '{print $1}' | tr '\n' ' ')
+SOURCES=$(pamixer --list-sources | grep alsa | awk '{print $1}' | tr '\n' ' ')
+
+function mute {
+    for sink in ${SINKS}; do
+        pamixer --sink ${sink} --mute
+    done
+    for source in ${SOURCES}; do
+        pamixer --source ${source} --mute
+    done
+}
+
+function unmute {
+    for sink in ${SINKS}; do
+        pamixer --sink ${sink} --unmute
+    done
+    for source in ${SOURCES}; do
+        pamixer --source ${source} --unmute
+    done
+}
 
 function mute_on_lock() {
     while IFS= read -r line; do
         if [[ "$line" == *"boolean true"* ]]; then
-            eval "${MUTE_COMMAND}"
+            mute
         fi
         if [[ "$line" == *"boolean false"* ]]; then
-            eval "${MUTE_COMMAND}"
+            unmute
         fi
     done
 }
