@@ -48,7 +48,7 @@ colorBackgroundUrg  = "#252730"
 
 myModMask            = mod4Mask  -- Changes Mod key to "super".
 myFocusedBorderColor = colorBlue
-myNormalBorderColor  = colorBase02
+myNormalBorderColor  = "#084652"
 myBorderWidth        = 1
 myTerminal           = "urxvt"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
