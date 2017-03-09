@@ -34,7 +34,7 @@ case $1 in
         for input in ${inputs}; do
             pamixer --source ${input} --unmute
         done
-            notify-send "Inputs unmuted "
+        notify-send "Inputs unmuted "
         ;;
 
     "status" )
