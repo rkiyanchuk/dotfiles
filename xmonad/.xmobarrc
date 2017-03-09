@@ -51,6 +51,7 @@ Config {
     , Run Cpu [
         "-t", "<total>%"
       , "--minwidth", "2"
+      , "-c", "0"
       , "--Low", "30"
       , "--High", "80"
       , "--low", "#839496"
@@ -61,6 +62,7 @@ Config {
     , Run Memory [
         "-t","<usedratio>%"
       , "--minwidth", "2"
+      , "-c", "0"
       , "--Low", "40"
       , "--low", "#839496"
       , "--normal", "#93a1a1"
@@ -79,7 +81,8 @@ Config {
       ] 50
 
     , Run DiskIO [("sda2", "<total>")] [
-        "--minwidth", "3"
+        "--minwidth", "4"
+      , "-c", "0"
     ] 20
 
     , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
