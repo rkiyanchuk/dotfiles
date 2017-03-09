@@ -25,11 +25,11 @@ if ! pgrep gnome-keyring-daemon > /dev/null; then
 fi
 
 if ! pgrep lock.sh > /dev/null; then
-    setsid "${HOME}/.xmonad/lock.sh" >/dev/null 2>&1 < /dev/null &
+    setsid "${HOME}/.xmonad/lock.sh" &
 fi
 
 if ! pgrep udiskie > /dev/null; then
-    udiskie >/dev/null 2>&1 < /dev/null &
+    udiskie &
 fi
 
 if ! pgrep volnoti > /dev/null; then
@@ -50,7 +50,7 @@ if ! pgrep stalonetray > /dev/null; then
 fi
 
 if ! pgrep -x redshift > /dev/null; then
-    redshift & > /dev/null 2>&1
+    redshift &
 fi
 
 if ! pgrep xmonad > /dev/null; then
