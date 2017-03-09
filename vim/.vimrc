@@ -178,6 +178,8 @@ command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 " Save restricted file opened without root permissions via sudo.
 command! W :w !sudo tee %
 
+command! Update PlugUpdate | PlugUpgrade
+
 " }}}
 
 
