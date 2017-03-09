@@ -1,7 +1,7 @@
 background "#152327"
 
 # Adjust tray position to be on the left of XMobar's right side metadata.
-geometry 1x1+1230+1048
+geometry 1x1+1250+1048
 max_geometry 8x32
 
 grow_gravity E
