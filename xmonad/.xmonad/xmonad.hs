@@ -93,6 +93,7 @@ myKeyBindings =
     , ((0, xF86XK_AudioLowerVolume), spawn "${HOME}/.xmonad/volume.sh dec")
     , ((0, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute")
     , ((shiftMask, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute-input")
+    , ((shiftMask .|. controlMask, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh unmute-input")
 
     -- Brightness control
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5 && volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)")

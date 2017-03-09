@@ -7,35 +7,34 @@ ICON_MIC_REC="<fc=#dc322f></fc>"
 
 case $1 in
     "inc" )
-        sink=$(pamixer --list-sinks | grep -oE "^[0-9]+" | tail -n 1)
-        pamixer --sink ${sink} -i ${STEP}
-        volnoti-show $(pamixer --sink ${sink} --get-volume)
+        pamixer -i ${STEP}
+        volnoti-show $(pamixer --get-volume)
         ;;
 
     "dec" )
-        sink=$(pamixer --list-sinks | grep -oE "^[0-9]+" | tail -n 1)
-        pamixer --sink ${sink} -d ${STEP}
-        volnoti-show $(pamixer --sink ${sink} --get-volume)
+        pamixer -d ${STEP}
+        volnoti-show $(pamixer --get-volume)
         ;;
 
     "mute" )
-        sink=$(pamixer --list-sinks | grep -oE "^[0-9]+" | tail -n 1)
-        pamixer --sink ${sink} -t
-        pamixer --sink ${sink} --get-mute && volnoti-show -m || volnoti-show $(pamixer --get-volume)
+        pamixer -t
+        pamixer --get-mute && volnoti-show -m || volnoti-show $(pamixer --get-volume)
         ;;
 
     "mute-input" )
         inputs=$(pamixer --list-sources | grep input | grep -oE "^[0-9]+" | tr '\n' ' ')
         for input in ${inputs}; do
-            pamixer --source ${input} -t
+            pamixer --source ${input} --mute
         done
+        notify-send "Inputs muted "
+        ;;
 
-        if [[ $(pamixer --default-source --get-mute) == "true" ]]; then
-            notify-send "Inputs muted "
-        else
+    "unmute-input" )
+        inputs=$(pamixer --list-sources | grep input | grep -oE "^[0-9]+" | tr '\n' ' ')
+        for input in ${inputs}; do
+            pamixer --source ${input} --unmute
+        done
             notify-send "Inputs unmuted "
-
-        fi
         ;;
 
     "status" )
