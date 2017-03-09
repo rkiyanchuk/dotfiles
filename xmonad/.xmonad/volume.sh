@@ -26,15 +26,12 @@ case $1 in
         for input in ${inputs}; do
             pamixer --source ${input} --mute
         done
-        notify-send "Inputs muted "
+        notify-send "All inputs muted "
         ;;
 
     "unmute-input" )
-        inputs=$(pamixer --list-sources | grep input | grep -oE "^[0-9]+" | tr '\n' ' ')
-        for input in ${inputs}; do
-            pamixer --source ${input} --unmute
-        done
-        notify-send "Inputs unmuted "
+        pamixer --default-source --unmute
+        notify-send "Input unmuted "
         ;;
 
     "status" )
