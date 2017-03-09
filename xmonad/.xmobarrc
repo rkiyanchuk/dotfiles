@@ -28,7 +28,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %diskio%  %kbd% %date% "
+  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %vol%  %kbd% %date% "
 
   , commands =
     [
@@ -80,10 +80,7 @@ Config {
       , "--high", "#dc322f"
       ] 50
 
-    , Run DiskIO [("sda2", "<total>")] [
-        "--minwidth", "4"
-      , "-c", "0"
-    ] 20
+    , Run Com "/home/zoresvit/.xmonad/volume.sh" ["status"] "vol" 50
 
     , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
                ("ru", "Ru <fc=#dc322f></fc>"),

@@ -89,10 +89,10 @@ myKeyBindings =
     , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 5 && volnoti-show $(pamixer --get-volume)")
-    , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 5 && volnoti-show $(pamixer --get-volume)")
-    , ((0, xF86XK_AudioMute), spawn "pamixer -t && (pamixer --get-mute && volnoti-show -m || volnoti-show $(pamixer --get-volume))")
-    , ((shiftMask, xF86XK_AudioMute), spawn "pamixer --default-source -t")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "${HOME}/.xmonad/volume.sh inc")
+    , ((0, xF86XK_AudioLowerVolume), spawn "${HOME}/.xmonad/volume.sh dec")
+    , ((0, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute")
+    , ((shiftMask, xF86XK_AudioMute), spawn "${HOME}/.xmonad/volume.sh mute-input")
 
     -- Brightness control
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5 && volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)")
