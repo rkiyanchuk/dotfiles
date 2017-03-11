@@ -20,9 +20,6 @@ function unmute {
     for sink in ${SINKS}; do
         pamixer --sink ${sink} --unmute
     done
-    for source in ${SOURCES}; do
-        pamixer --source ${source} --unmute
-    done
 }
 
 function mute_on_lock() {
