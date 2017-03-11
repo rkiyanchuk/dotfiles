@@ -194,6 +194,7 @@ nmap <silent> <leader>s :set spell!<CR>
 
 " {{{ PLUGINS
 
+" Auto install vim-plug plugin manager.
 if empty(glob($VIMHOME . '/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -226,7 +227,7 @@ Plug 'Shougo/vimproc'
 " ===========
 
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-Plug 'jiangmiao/auto-pairs'
+Plug 'zoresvit/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -410,3 +411,7 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 
 " Neomake
 let g:neomake_autolint_sign_column_always = 1
+
+" Auto-Pairs
+let g:AutoPairsShortcutFastWrap = '<leader>w'
+let g:AutoPairsShortcutJump = '<C-j>'
