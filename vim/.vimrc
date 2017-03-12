@@ -227,7 +227,7 @@ Plug 'Shougo/vimproc'
 " ===========
 
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-Plug 'zoresvit/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
