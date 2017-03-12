@@ -28,7 +28,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp% %vol%  %kbd% %date% "
+  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp%  %kbd% %date% "
 
   , commands =
     [
@@ -79,8 +79,6 @@ Config {
       , "--normal", "#93a1a1"
       , "--high", "#dc322f"
       ] 50
-
-    , Run Com "/home/zoresvit/.xmonad/volume.sh" ["status"] "vol" 50
 
     , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
                ("ru", "Ru <fc=#dc322f></fc>"),

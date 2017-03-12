@@ -1,17 +1,15 @@
 #!/bin/bash
 
 STEP=5
-ICON_HEADPHONES=""
-ICON_MIC_MUTE=""
-ICON_MIC_REC="<fc=#dc322f></fc>"
+BRIGHTNESS_ICON="/usr/share/pixmaps/volnoti/display-brightness-symbolic.svg"
 
 case $1 in
-    "inc" )
+    "vol-inc" )
         pamixer -i ${STEP}
         volnoti-show $(pamixer --get-volume)
         ;;
 
-    "dec" )
+    "vol-dec" )
         pamixer -d ${STEP}
         volnoti-show $(pamixer --get-volume)
         ;;
@@ -34,10 +32,13 @@ case $1 in
         notify-send "Input unmuted "
         ;;
 
-    "status" )
-        if [[ $(pamixer --default-source --get-mute) == "true" ]]; then
-            echo -n "${ICON_MIC_MUTE}"
-        else
-            echo -n "${ICON_MIC_REC}"
-        fi
+    "br-inc" )
+        xbacklight -inc ${STEP}
+        volnoti-show -s ${BRIGHTNESS_ICON} $(xbacklight -get)
+        ;;
+
+    "br-dec" )
+        xbacklight -dec ${STEP}
+        volnoti-show -s ${BRIGHTNESS_ICON} $(xbacklight -get)
+        ;;
 esac
