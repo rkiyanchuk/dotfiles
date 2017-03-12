@@ -229,6 +229,7 @@ Plug 'Shougo/vimproc'
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
@@ -237,7 +238,6 @@ Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'jszakmeister/markdown2ctags'
 Plug 'jszakmeister/rst2ctags'
 Plug 'mbr/vim-pyre'
-Plug 'vim-scripts/indentpython.vim'
 " Haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
@@ -415,3 +415,8 @@ let g:neomake_autolint_sign_column_always = 1
 " Auto-Pairs
 let g:AutoPairsShortcutFastWrap = '<leader>w'
 let g:AutoPairsShortcutJump = '<C-j>'
+
+"Python-mode
+let g:pymode_doc_bind = ''
+let g:pymode_lint = 0
+let g:pymode_rope = 0
