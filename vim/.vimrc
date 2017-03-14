@@ -414,7 +414,7 @@ let g:neomake_autolint_sign_column_always = 1
 
 " Auto-Pairs
 let g:AutoPairsShortcutFastWrap = '<leader>w'
-let g:AutoPairsShortcutJump = '<C-j>'
+let g:AutoPairsShortcutJump = '<C-l>'
 
 "Python-mode
 let g:pymode_doc_bind = ''
