@@ -28,7 +28,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %cpu% %memory% %coretemp%  %kbd% %date% "
+  , template    = "%StdinReader% }{%battery% %coretemp% %cpu% %memory%  %kbd% %date% "
 
   , commands =
     [
@@ -47,6 +47,16 @@ Config {
       , "--off-icon-pattern", ""
       , "--idle-icon-pattern", ""
       ] 100
+
+    , Run CoreTemp [
+        "--template", "<core0>°C"
+      , "--minwidth", "2"
+      , "--Low", "60"
+      , "--High", "80"
+      , "--low", "#839496"
+      , "--normal", "#93a1a1"
+      , "--high", "#dc322f"
+      ] 50
 
     , Run Cpu [
         "-t", "<total>%"
@@ -69,16 +79,6 @@ Config {
       , "--High", "80"
       , "--high", "#dc322f"
       ] 20
-
-    , Run CoreTemp [
-        "--template", "<core0>°C"
-      , "--minwidth", "2"
-      , "--Low", "60"
-      , "--High", "80"
-      , "--low", "#839496"
-      , "--normal", "#93a1a1"
-      , "--high", "#dc322f"
-      ] 50
 
     , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
                ("ru", "Ru <fc=#dc322f></fc>"),
