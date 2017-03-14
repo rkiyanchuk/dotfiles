@@ -52,7 +52,7 @@ myNormalBorderColor  = "#084652"
 myBorderWidth        = 1
 myTerminal           = "urxvt"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
-myWorkspaces         = [ " 1 ", " 2 ", " 3 ", " 4 " ]
+myWorkspaces         = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 "]
 
 
 layoutIcons =
