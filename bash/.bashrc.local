@@ -37,6 +37,8 @@ HISTSIZE=1000
 HISTFILESIZE=1000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
+shopt -s autocd  # Auto append cd to directory
+
 # Force tmux into 256 colors mode.
 export TERM=rxvt-unicode-256color
 
