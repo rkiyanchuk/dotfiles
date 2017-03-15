@@ -1,6 +1,0 @@
-asciinema
-cookiecutter
-httpie
-pew
-pip
-pylint
