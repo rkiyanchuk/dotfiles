@@ -178,7 +178,7 @@ command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 " Save restricted file opened without root permissions via sudo.
 command! W :w !sudo tee %
 
-command! Update PlugUpdate | PlugUpgrade
+command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
 
 " }}}
 
