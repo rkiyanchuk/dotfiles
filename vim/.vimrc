@@ -232,7 +232,7 @@ Plug 'Shougo/vimproc'
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'python-mode/python-mode', {'for': 'python'}
+"Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
