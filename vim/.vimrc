@@ -117,7 +117,7 @@ function! ShowSpaces(...)
   return oldhlsearch
 endfunction
 
-function! TrimSpaces() range
+function! FixSpaces() range
     let oldhlsearch=ShowSpaces(1)
     execute a:firstline.",".a:lastline."substitute ///ge"
     let &hlsearch=oldhlsearch
@@ -173,7 +173,7 @@ augroup END
 " {{{ COMMANDS
 
 " Remove trailing spaces from file.
-command! -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 
 " Save restricted file opened without root permissions via sudo.
 command! W :w !sudo tee %
