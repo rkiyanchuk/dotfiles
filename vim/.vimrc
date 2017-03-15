@@ -190,7 +190,7 @@ nmap <silent> <leader>R :call ReloadConfig()<CR>
 nmap <silent> <leader>s :set spell!<CR>
 
 " Reset search highlighting by pressing Enter in normal mode.
-nnoremap <CR> :noh<CR>
+nnoremap <C-_> :noh<CR>
 
 " }}}
 
