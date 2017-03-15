@@ -285,8 +285,12 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.whitespace = '∅'
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tagbar#enabled = 0
-let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
-let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
+if isdirectory($VIMPLUGINS . "/vim-airline")
+    let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
+    let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
+else
+    echomsg 'vim-airline plugin is not installed.'
+endif
 
 
 " xkbswitch
@@ -307,11 +311,14 @@ endif
 
 " Unite
 " -----
-
-call unite#custom#profile('default', 'context', {'winheight': 10})
-nnoremap <leader>f :Unite -no-split -start-insert file_rec<CR>
-nnoremap <leader>b :Unite -no-split buffer<CR>
-let g:unite_enable_auto_select=0
+if isdirectory($VIMPLUGINS . '/unite.vim')
+    call unite#custom#profile('default', 'context', {'winheight': 10})
+    nnoremap <leader>f :Unite -no-split -start-insert file_rec<CR>
+    nnoremap <leader>b :Unite -no-split buffer<CR>
+    let g:unite_enable_auto_select=0
+else
+    echomsg 'unite.vim is not installed.'
+endif
 
 " NERDTree
 " --------
