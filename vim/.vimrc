@@ -414,6 +414,7 @@ let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*f
 
 " Neomake
 let g:neomake_autolint_sign_column_always = 1
+let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 
 " Auto-Pairs
 let g:AutoPairsShortcutFastWrap = '<leader>w'
