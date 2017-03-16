@@ -163,6 +163,8 @@ augroup END
 
 augroup MISC
     autocmd!
+    au FileType gitcommit set colorcolumn=73
+    au FileType gitcommit set tw=72
     " Treat .conf files as .cfg.
     au BufRead,BufNewFile *.conf set filetype=cfg
 augroup END
