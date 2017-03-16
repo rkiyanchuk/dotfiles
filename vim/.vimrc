@@ -262,6 +262,8 @@ Plug 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
 Plug 'rhysd/vim-grammarous'
+Plug 'hashivim/vim-vagrant'
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
