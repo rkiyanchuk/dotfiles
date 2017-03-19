@@ -16,8 +16,6 @@ xset -b  # Turn off PC speaker bell.
 xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
-gnome-screensaver > /dev/null 2>&1 &
-
 if ! pgrep gnome-keyring-daemon > /dev/null; then
     # Start keyring for applications that expect access to system keyring.
     gnome-keyring-daemon --daemonize --start \
