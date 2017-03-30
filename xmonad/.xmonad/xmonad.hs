@@ -100,8 +100,8 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "${HOME}/.xmonad/control.sh br-dec")
 
     -- Screenshot
-    , ((0, xK_Print), spawn "scrot -e 'mv $f $${HOME}/downloads'")
-    , ((shiftMask, xK_Print), spawn "scrot -u -e 'mv $f $${HOME}/downloads'")
+    , ((0, xK_Print), spawn "deepin-screenshot")
+    , ((shiftMask, xK_Print), spawn "deepin-screenshot --fullscreen")
     ]
 
 
