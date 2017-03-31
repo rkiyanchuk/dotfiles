@@ -164,7 +164,7 @@ augroup END
 augroup MISC
     autocmd!
     au FileType gitcommit set colorcolumn=73
-    au FileType gitcommit set tw=72
+    au FileType gitcommit set textwidth=72
     " Treat .conf files as .cfg.
     au BufRead,BufNewFile *.conf set filetype=cfg
 augroup END
@@ -232,7 +232,6 @@ Plug 'Shougo/vimproc'
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'jiangmiao/auto-pairs'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-"Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
