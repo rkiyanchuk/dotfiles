@@ -189,7 +189,7 @@ command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
 
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
-nmap <silent> <leader>s :set spell!<CR>
+nmap <silent> <leader>sp :set spell!<CR>
 
 " Reset search highlighting by pressing Enter in normal mode.
 nnoremap <C-_> :noh<CR>
@@ -214,18 +214,16 @@ call plug#begin($VIMPLUGINS)
 Plug 'bling/vim-airline'  " Enhanced status line.
 Plug 'vim-airline/vim-airline-themes'
 Plug 'zoresvit/vim-colors-solarized'
-Plug 'Shougo/unite.vim'  " Fuzzy search for files and buffers.
+Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}   " File tags browser.
 Plug 'SirVer/ultisnips'  " Snippets engine.
 Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
-Plug 'tpope/vim-fugitive'  " Git interface for Vim.
-Plug 'gregsexton/gitv'  " Git repository visualizer (requires vim-fugitive).
+Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
 Plug 'mkitt/tabline.vim'  " Better tabs naming.
 Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
-Plug 'wincent/ferret'  " Multi-file search.
 Plug 'Shougo/vimproc'
 
 " Programming
@@ -315,13 +313,27 @@ endif
 
 " Unite
 " -----
-if isdirectory($VIMPLUGINS . '/unite.vim')
-    call unite#custom#profile('default', 'context', {'winheight': 10})
-    nnoremap <leader>f :Unite -no-split -start-insert file_rec<CR>
-    nnoremap <leader>b :Unite -no-split buffer<CR>
-    let g:unite_enable_auto_select=0
+if isdirectory($VIMPLUGINS . '/denite.nvim')
+    nnoremap <leader>f :Denite file_rec<CR>
+    nnoremap <leader>b :Denite buffer<CR>
+    nnoremap <leader>s :Denite grep<CR>
+
+    call denite#custom#var('file_rec', 'command',
+                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+	call denite#custom#var('grep', 'command', ['ag'])
+	call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
+
+    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
+    call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
 else
-    echomsg 'unite.vim is not installed.'
+    echomsg 'denite.vim is not installed.'
 endif
 
 " NERDTree
