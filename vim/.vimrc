@@ -189,7 +189,7 @@ command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
 
 nmap <silent> <leader>V :split $MYVIMRC<CR>
 nmap <silent> <leader>R :call ReloadConfig()<CR>
-nmap <silent> <leader>sp :set spell!<CR>
+nmap <silent> <leader>s :set spell!<CR>
 
 " Reset search highlighting by pressing Enter in normal mode.
 nnoremap <C-_> :noh<CR>
@@ -313,9 +313,11 @@ endif
 " Unite
 " -----
 if isdirectory($VIMPLUGINS . '/denite.nvim')
-    nnoremap <leader>f :Denite file_rec<CR>
-    nnoremap <leader>b :Denite buffer<CR>
-    nnoremap <leader>s :Denite grep<CR>
+    nnoremap <leader>ff :Denite file_rec<CR>
+    nnoremap <leader>fb :Denite buffer<CR>
+    nnoremap <leader>fp :Denite grep<CR>
+    nnoremap <leader>fr :Denite register<CR>
+    nnoremap <leader>fw :DeniteCursorWord grep<CR>
 
     call denite#custom#var('file_rec', 'command',
                 \ ['rg', '--files', '--glob', '!.git', ''])
