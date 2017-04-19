@@ -46,7 +46,8 @@ colorBackground     = "#152327"
 colorBackgroundAlt  = "#223034"
 colorBackgroundUrg  = "#252730"
 
-myModMask            = mod4Mask  -- Changes Mod key to "super".
+metaMask            = mod4Mask  -- Changes Mod key to "super".
+altMask             = mod1Mask  -- Map Alt to more descriptive var.
 myFocusedBorderColor = colorBlue
 myNormalBorderColor  = "#084652"
 myBorderWidth        = 1
@@ -80,13 +81,13 @@ myManageHook =
     ]
 
 myKeyBindings =
-    [ ((myModMask, xK_Escape), spawn "gnome-screensaver-command -l")
-    , ((myModMask, xK_b), sendMessage ToggleStruts)
-    , ((myModMask, xK_w), onPrevNeighbour W.view)
-    , ((myModMask, xK_e), onNextNeighbour W.view)
-    , ((myModMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
-    , ((myModMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
-    , ((myModMask, xK_space), spawn "albert toggle")
+    [ ((metaMask, xK_Escape), spawn "gnome-screensaver-command -l")
+    , ((metaMask, xK_b), sendMessage ToggleStruts)
+    , ((metaMask, xK_w), onPrevNeighbour W.view)
+    , ((metaMask, xK_e), onNextNeighbour W.view)
+    , ((metaMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
+    , ((metaMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
+    , ((altMask, xK_space), spawn "albert toggle")
     , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
@@ -112,7 +113,7 @@ main = do
         { borderWidth        = myBorderWidth
         , normalBorderColor  = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
-        , modMask            = myModMask
+        , modMask            = metaMask
         , workspaces         = myWorkspaces
         , terminal           = myTerminal
         , layoutHook         = avoidStruts $ smartBorders myLayouts
