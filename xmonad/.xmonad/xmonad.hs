@@ -86,6 +86,7 @@ myKeyBindings =
     , ((myModMask, xK_e), onNextNeighbour W.view)
     , ((myModMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
     , ((myModMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
+    , ((myModMask, xK_space), spawn "albert toggle")
     , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
