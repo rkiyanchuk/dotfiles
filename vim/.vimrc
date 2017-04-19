@@ -315,9 +315,9 @@ endif
 if isdirectory($VIMPLUGINS . '/denite.nvim')
     nnoremap <leader>ff :Denite file_rec<CR>
     nnoremap <leader>fb :Denite buffer<CR>
-    nnoremap <leader>fp :Denite grep<CR>
+    nnoremap <leader>fg :Denite grep<CR>
     nnoremap <leader>fr :Denite register<CR>
-    nnoremap <leader>fw :DeniteCursorWord grep<CR>
+    nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
 
     call denite#custom#var('file_rec', 'command',
                 \ ['rg', '--files', '--glob', '!.git', ''])
