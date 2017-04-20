@@ -101,11 +101,6 @@ if !exists("*ReloadConfig")
     endfunction
 endif
 
-function! AdjustWindowHeight(minheight, maxheight)
-    " Adjust QuickFix window height according to the number of data lines.
-    exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
-
 function! ShowSpaces(...)
   let @/='\v(\s+$)|( +\ze\t)'
   let oldhlsearch=&hlsearch
@@ -225,6 +220,7 @@ Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
 Plug 'mkitt/tabline.vim'  " Better tabs naming.
 Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 Plug 'Shougo/vimproc'
+Plug 'blueyed/vim-qf_resize'
 
 " Programming
 " ===========
