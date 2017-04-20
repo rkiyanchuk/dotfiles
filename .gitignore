@@ -26,3 +26,6 @@ xmonad.errors
 xmonad.hi
 xmonad.o
 xmonad.state
+
+# GTK
+gtk/.config/gtk-3.0/bookmarks
