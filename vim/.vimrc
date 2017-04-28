@@ -131,8 +131,6 @@ augroup TEXT
     " Auto commands for any text file.
     autocmd!
     au FileType text,markdown set spell
-    " Enable quickfix window height adjustment.
-    au FileType qf call AdjustWindowHeight(3, 6)
 augroup END
 
 augroup CPP
