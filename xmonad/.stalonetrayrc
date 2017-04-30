@@ -7,6 +7,7 @@ max_geometry 8x32
 grow_gravity E
 icon_gravity NE
 icon_size 28
+no_shrink true
 scrollbars horizontal
 scrollbars_highlight "#355347"
 scrollbars_step 28
