@@ -15,8 +15,7 @@ endif
 syntax on
 
 set completeopt=longest,menuone
-"set fillchars=
-"set showfulltag
+set showfulltag
 set background=dark
 set backspace=indent,eol,start
 set backup
