@@ -89,20 +89,18 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -d1 -h'
-alias l='ls -CFl'
+alias l='ls -hl --group-directories-first'
 alias la='ls -A --group-directories-first'
 alias ll='ls -Ahl --group-directories-first'
 alias grep='grep --color=auto'
-alias igrep='grep -i --color=auto'
-alias rgrep='rgrep --color=auto'
+alias rgrep='grep -r --color=auto'
 alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
-alias mount-share='sudo mount -t cifs //192.168.1.1/share share/ \
-    -o uid=1000,gid=1000,credentials=${HOME}/.smb.credentials'
 # Create popup notification when command execution is completed.
-# Usage: $ command; alert
+# Usage:
+#   ~$ command; alert
 alias alert='notify-send --urgency=low -i \
     "$([ $? = 0 ] && echo terminal || echo error)" \
     "$(history | tail -n1 | sed -e \
