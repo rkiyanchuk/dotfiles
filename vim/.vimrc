@@ -236,6 +236,8 @@ Plug 'mbr/vim-pyre'
 " Haskell
 Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+" Go
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Enhancements
 " ============
