@@ -13,7 +13,6 @@ export TZ='America/Los_Angeles'
 feh --bg-fill ${HOME}/.xmonad/images/zoresvit_wallpaper.png &  # Set screen wallpaper (see man for choosing image).
 
 xset -b  # Turn off PC speaker bell.
-xrdb -merge ${HOME}/.Xdefaults  # Load X resources.
 xsetroot -cursor_name left_ptr  # Allow custom pointers.
 
 if ! pgrep gnome-keyring-daemon > /dev/null; then
