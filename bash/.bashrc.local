@@ -88,13 +88,15 @@ export PROMPT_COMMAND=prompt_command
 # =======
 
 alias ..='cd ../'
-alias dud='du -d1 -h'
+alias dud='du -hd1'
 alias l='ls -hl --group-directories-first'
 alias la='ls -A --group-directories-first'
 alias ll='ls -Ahl --group-directories-first'
 alias grep='grep --color=auto'
 alias rgrep='grep -r --color=auto'
 alias ssh='TERM=xterm ssh'
+alias docker='sudo docker'
+alias dkr='sudo docker'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
