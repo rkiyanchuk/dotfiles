@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # encoding: utf-8
 
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications to configure theme.
 
 # Time zone.
