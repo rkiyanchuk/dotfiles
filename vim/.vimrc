@@ -59,9 +59,10 @@ set wildmode=longest,full
 " ------
 
 set hlsearch
-set ignorecase
 set incsearch
 set nowrapscan
+set ignorecase
+set infercase
 set smartcase
 
 " Indent
