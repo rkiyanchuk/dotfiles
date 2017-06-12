@@ -67,6 +67,7 @@ set smartcase
 " Indent
 " ------
 
+set breakindent
 set autoindent
 set expandtab
 set shiftwidth=4
