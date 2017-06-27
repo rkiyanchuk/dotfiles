@@ -102,8 +102,9 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "${HOME}/.xmonad/control.sh br-dec")
 
     -- Screenshot
-    , ((0, xK_Print), spawn "deepin-screenshot")
-    , ((shiftMask, xK_Print), spawn "deepin-screenshot --fullscreen")
+    , ((0, xK_Print), spawn "xfce4-screenshooter -r -s ${HOME}/downloads/")
+    , ((altMask, xK_Print), spawn "xfce4-screenshooter -w -s ${HOME}/downloads/")
+    , ((shiftMask, xK_Print), spawn "xfce4-screenshooter -f -s ${HOME}/downloads/")
     ]
 
 
