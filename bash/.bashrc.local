@@ -37,10 +37,32 @@ HISTSIZE=1000
 HISTFILESIZE=1000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
-shopt -s autocd  # Auto append cd to directory
+OSNAME=$(uname)
 
-# Force tmux into 256 colors mode.
-export TERM=rxvt-unicode-256color
+if [[ ${OSNAME} == 'Linux' ]]; then
+    shopt -s autocd  # Auto append cd to directory
+
+    # Force tmux into 256 colors mode.
+    export TERM=rxvt-unicode-256color
+
+    # Source git prompt
+    source /usr/share/git/completion/git-prompt.sh
+
+    # Make executables from user's Python packages available in $PATH.
+    export PATH="$PATH:$HOME/.local/bin"
+
+elif [[ ${OSNAME} == 'Darwin' ]]; then
+    [ -f $(brew --prefix)/etc/bash_completion ] && source $(brew --prefix)/etc/bash_completion
+
+    # Enable colors in iTerm.
+    export CLICOLOR=1
+
+    # Oversrite Python from Homebrew.
+    export PATH="$(brew --prefix):$PATH"
+
+    # Make executables from user's Python packages available in $PATH.
+    export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+fi
 
 # Tell Java that XMonad is non-reparenting WM.
 # Needed for correct Java apps windows operation under XMonad.
@@ -49,9 +71,6 @@ export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=tr
 
 # PROMPT
 # ------
-
-# Source git prompt
-source /usr/share/git/completion/git-prompt.sh
 
 prompt_command () {
     # Capture exit code of last command.
@@ -81,6 +100,7 @@ ${BLUE}\W${RESET}\
 ${MAGENTA}${BRANCH}${RESET}\
 ${GREEN}\$${RESET} "
 }
+
 export PROMPT_COMMAND=prompt_command
 
 
@@ -89,9 +109,9 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
-alias l='ls -hl --group-directories-first'
-alias la='ls -A --group-directories-first'
-alias ll='ls -Ahl --group-directories-first'
+alias l='ls -hl'
+alias la='ls -A'
+alias ll='ls -Ahl'
 alias grep='grep --color=auto'
 alias rgrep='grep -r --color=auto'
 alias ssh='TERM=xterm ssh'
@@ -113,8 +133,6 @@ alias xelatexrun='latexrun --latex-cmd xelatex'
 # THIRD PARTY APPS
 # ================
 
-# Make executables from user's Python packages available in $PATH.
-export PATH="$PATH:$HOME/.local/bin"
 export EDITOR="vim"
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
