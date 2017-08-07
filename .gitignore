@@ -11,12 +11,14 @@ tmux/.tmux/plugins/
 tmux/.tmuxp/*.yml
 
 # Vim
-.netrwhist
-backups/
-bundle/
-session.vim
-spell/
-swap/
+/vim/.vim/.netrwhist
+/vim/.vim/backups/
+/vim/.vim/bundle/
+/vim/.vim/session.vim
+/vim/.vim/spell/
+/vim/.vim/swap/
+/vim/.vim/autoload/
+/vim/.vim/plugins/
 
 # XMonad
 *.swp
