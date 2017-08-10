@@ -205,46 +205,34 @@ call plug#begin($VIMPLUGINS)
 " Essentials
 " ==========
 
-Plug 'bling/vim-airline'  " Enhanced status line.
-Plug 'vim-airline/vim-airline-themes'
 Plug 'zoresvit/vim-colors-solarized'
+Plug 'Shougo/vimproc'
+Plug 'mkitt/tabline.vim'  " Better tabs naming.
+Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
+Plug 'SirVer/ultisnips'  " Snippets engine.
+Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}   " File tags browser.
-Plug 'SirVer/ultisnips'  " Snippets engine.
-Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
 Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
-Plug 'mkitt/tabline.vim'  " Better tabs naming.
-Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
-Plug 'Shougo/vimproc'
-Plug 'blueyed/vim-qf_resize'
 
 " Programming
 " ===========
 
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-Plug 'jiangmiao/auto-pairs'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'Shougo/neocomplete.vim'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'jiangmiao/auto-pairs'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'jszakmeister/markdown2ctags'
 Plug 'jszakmeister/rst2ctags'
-Plug 'mbr/vim-pyre'
-" Haskell
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-" Go
 Plug 'fatih/vim-go', { 'for': 'go' }
 
-" Enhancements
-" ============
-
-Plug 'Firef0x/PKGBUILD.vim'
 Plug 'seveas/bind.vim'  " Edit DNS Zone files.
 Plug 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
 Plug 'fidian/hexmode'  " Edit binary files.
@@ -265,40 +253,14 @@ call plug#end()
 
 " {{{ PLUGINS CONFIGURATION
 
-" Airline
-" -------
-
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.paste = '▼'
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.whitespace = '∅'
-let g:airline#extensions#tabline#tab_nr_type = 2
-let g:airline#extensions#tagbar#enabled = 0
-if isdirectory($VIMPLUGINS . "/vim-airline")
-    let g:airline_section_y = airline#section#create_right(['ffenc', '0x%02B'])
-    let g:airline_section_z = airline#section#create(['windowswap', '%p%% ', 'linenr', ':%-v', ':0x%03O'])
-else
-    echomsg 'vim-airline plugin is not installed.'
-endif
-
-
-" xkbswitch
-" ---------
+" vim-xkbswitch
+" -------------
 
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
-" Solarized
-" ---------
+" vim-colors-solarized
+" --------------------
 
 if isdirectory($VIMPLUGINS . "/vim-colors-solarized")
     let g:solarized_bold=0
@@ -307,8 +269,8 @@ if isdirectory($VIMPLUGINS . "/vim-colors-solarized")
     colorscheme solarized
 endif
 
-" Unite
-" -----
+" Denite
+" ------
 if isdirectory($VIMPLUGINS . '/denite.nvim')
     nnoremap <leader>ff :Denite file_rec<CR>
     nnoremap <leader>fb :Denite buffer<CR>
@@ -403,8 +365,6 @@ let g:tagbar_type_rst = {
     \ 'sort': 0,
 \ }
 
-
-
 " UtliSnips
 " ---------
 
@@ -441,8 +401,4 @@ let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 let g:AutoPairsShortcutFastWrap = '<leader>w'
 let g:AutoPairsShortcutJump = '<C-l>'
 
-"Python-mode
-let g:pymode_doc_bind = ''
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_folding = 0
+" }}}

@@ -7,10 +7,14 @@ set guicursor+=r-cr:hor20-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 set linespace=2  " Make underscore visible for some fonts.
+set guioptions=ca  " Remove toolbars and menues.
 
 " Disable visual bell flashing.
 set t_vb=
 
-set guifont=DejaVu\ Sans\ Mono\ 14
-set guioptions=ca  " Remove toolbars and menues.
 
+if has("gui_macvim")
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+else
+    set guifont=DejaVu\ Sans\ Mono\ 14
+endif
