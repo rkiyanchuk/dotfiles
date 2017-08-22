@@ -43,7 +43,7 @@ set showbreak=↪
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
-" Set native status line as fallback from vim-airline.
+" Set native status line as fallback.
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
 set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 set textwidth=79
@@ -214,7 +214,7 @@ Plug 'honza/vim-snippets'  " Snippets database.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}   " File tags browser.
+Plug 'majutsushi/tagbar'  " File tags browser.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
 Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
 
@@ -252,6 +252,11 @@ call plug#end()
 " }}}
 
 " {{{ PLUGINS CONFIGURATION
+
+" powerline-status
+" ----------------
+
+set rtp+=/Users/zoresvit/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
 
 " vim-xkbswitch
 " -------------
