@@ -52,7 +52,15 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     export PATH="$PATH:$HOME/.local/bin"
 
 elif [[ ${OSNAME} == 'Darwin' ]]; then
-    [ -f $(brew --prefix)/etc/bash_completion ] && source $(brew --prefix)/etc/bash_completion
+
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        source $(brew --prefix)/etc/bash_completion
+    fi
+
+    # Resource Git completion to avoid conflicts with Hub completion.
+    if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+        source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+    fi
 
     # Enable colors in iTerm.
     export CLICOLOR=1
