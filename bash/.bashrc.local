@@ -53,23 +53,26 @@ if [[ ${OSNAME} == 'Linux' ]]; then
 
 elif [[ ${OSNAME} == 'Darwin' ]]; then
 
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        source $(brew --prefix)/etc/bash_completion
+    BREW='/usr/local'
+    USER_PYTHON="${HOME}/Library/Python/2.7/bin"
+
+    if [ -f ${BREW}/etc/bash_completion ]; then
+        source ${BREW}/etc/bash_completion
     fi
 
     # Resource Git completion to avoid conflicts with Hub completion.
-    if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
-        source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+    if [ -f ${BREW}/etc/bash_completion.d/git-completion.bash ]; then
+        source ${BREW}/etc/bash_completion.d/git-completion.bash
     fi
+
+
+    #source ${HOME}/Library/Python/2.7/lib/python/site-packages/pew/shell_config/init.bash
 
     # Enable colors in iTerm.
     export CLICOLOR=1
 
-    # Oversrite Python from Homebrew.
-    export PATH="$(brew --prefix):$PATH"
-
-    # Make executables from user's Python packages available in $PATH.
-    export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+    # Prepend PATH with user's Brew and Python dirs.
+    export PATH="${BREW}:${USER_PYTHON}:$PATH"
 fi
 
 # Tell Java that XMonad is non-reparenting WM.
