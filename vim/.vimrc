@@ -256,7 +256,9 @@ call plug#end()
 " powerline-status
 " ----------------
 
-set rtp+=/Users/zoresvit/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
+if has('macunix')
+    set rtp+=${HOME}/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
+endif
 
 " vim-xkbswitch
 " -------------
