@@ -51,6 +51,29 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     # Make executables from user's Python packages available in $PATH.
     export PATH="$PATH:$HOME/.local/bin"
 
+    # Custom Bash completions.
+    source "${HOME}/.bash/tmux.bash"
+    source "${HOME}/.bash/hub.bash"
+    source "${HOME}/.bash/vagrant.bash"
+    source "${HOME}/.bash/docker-compose.bash"
+
+    # Create popup notification when command execution is completed.
+    # Usage:
+    #   ~$ command; alert
+    alias alert='notify-send --urgency=low -i \
+        "$([ $? = 0 ] && echo terminal || echo error)" \
+        "$(history | tail -n1 | sed -e \
+        '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
+
+    if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
+        export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+    fi
+
+    # Tell Java that XMonad is non-reparenting WM.
+    # Needed for correct Java apps windows operation under XMonad.
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+
 elif [[ ${OSNAME} == 'Darwin' ]]; then
 
     BREW='/usr/local'
@@ -60,25 +83,12 @@ elif [[ ${OSNAME} == 'Darwin' ]]; then
         source ${BREW}/etc/bash_completion
     fi
 
-    # Resource Git completion to avoid conflicts with Hub completion.
-    if [ -f ${BREW}/etc/bash_completion.d/git-completion.bash ]; then
-        source ${BREW}/etc/bash_completion.d/git-completion.bash
-    fi
-
-
-    #source ${HOME}/Library/Python/2.7/lib/python/site-packages/pew/shell_config/init.bash
-
     # Enable colors in iTerm.
     export CLICOLOR=1
 
     # Prepend PATH with user's Brew and Python dirs.
     export PATH="${BREW}:${USER_PYTHON}:$PATH"
 fi
-
-# Tell Java that XMonad is non-reparenting WM.
-# Needed for correct Java apps windows operation under XMonad.
-export _JAVA_AWT_WM_NONREPARENTING=1
-export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 # PROMPT
 # ------
@@ -132,14 +142,6 @@ alias dkr='sudo docker'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
 alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
-# Create popup notification when command execution is completed.
-# Usage:
-#   ~$ command; alert
-alias alert='notify-send --urgency=low -i \
-    "$([ $? = 0 ] && echo terminal || echo error)" \
-    "$(history | tail -n1 | sed -e \
-    '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
-alias xelatexrun='latexrun --latex-cmd xelatex'
 
 
 # THIRD PARTY APPS
@@ -149,12 +151,3 @@ export EDITOR="vim"
 
 # Syntax highlighting for `less`. Requires `source-highlight` package.
 export LESS=" -R "
-if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
-    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-fi
-
-# Custom Bash completions.
-source "${HOME}/.bash/tmux.bash"
-source "${HOME}/.bash/hub.bash"
-source "${HOME}/.bash/vagrant.bash"
-source "${HOME}/.bash/docker-compose.bash"
