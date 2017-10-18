@@ -127,6 +127,7 @@ alias grep='grep --color=auto'
 alias rgrep='grep -r --color=auto'
 alias ssh='TERM=xterm ssh'
 alias docker='sudo docker'
+alias open='xdg-open'
 alias dkr='sudo docker'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
