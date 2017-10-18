@@ -12,5 +12,10 @@ set guioptions=ca  " Remove toolbars and menues.
 " Disable visual bell flashing.
 set t_vb=
 
-set guifont=Hack\ 14
+if has('macunix')
+    set guifont=Hack:h14
+else
+    set guifont=Hack\ 14
+endif
+
 set guioptions=ca  " Remove toolbars and menues.
