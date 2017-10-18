@@ -74,9 +74,9 @@
 ! Fonts
 ! =====
 
-#define FONT_REGULAR xft:Dejavu Sans Mono:style=Regular:size=14,xft:Dejavu Sans Mono for Powerline:style=Regular:size=14
-#define FONT_BOLD xft:Dejavu Sans Mono:style=Bold:size=14,xft:Dejavu Sans Mono for Powerline:style=Bold:size=14
-#define FONT_ITALIC xft:Dejavu Sans Mono:style=Italic:size=14,xft:Dejavu Sans Mono for Powerline:style=Italic:size=14
+#define FONT_REGULAR xft:Hack:style=Regular:size=14
+#define FONT_BOLD xft:Hack:style=Bold:size=14
+#define FONT_ITALIC xft:Hack:style=Italic:size=14
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias: true
@@ -92,7 +92,7 @@ URxvt.lineSpace: 1
 ! XTerm
 ! =====
 
-XTerm*faceName: Dejavu Sans Mono
+XTerm*faceName: Hack
 XTerm*faceSize: 14
 XTerm*locale: true
 XTerm*scaleHeight: 1.01

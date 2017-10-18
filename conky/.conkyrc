@@ -22,7 +22,7 @@ gap_y 10
 
 # Fonts.
 use_xft yes
-xftfont Dejavu Sans Mono:size=14
+xftfont Hack:size=14
 uppercase no
 
 # Solarized colors.

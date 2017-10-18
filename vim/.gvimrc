@@ -12,9 +12,5 @@ set guioptions=ca  " Remove toolbars and menues.
 " Disable visual bell flashing.
 set t_vb=
 
-
-if has("gui_macvim")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-else
-    set guifont=DejaVu\ Sans\ Mono\ 14
-endif
+set guifont=Hack\ 14
+set guioptions=ca  " Remove toolbars and menues.
