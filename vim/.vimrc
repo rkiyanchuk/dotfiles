@@ -408,4 +408,6 @@ let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 let g:AutoPairsShortcutFastWrap = '<leader>w'
 let g:AutoPairsShortcutJump = '<C-l>'
 
+let g:gundo_prefer_python3 = 1
+
 " }}}
