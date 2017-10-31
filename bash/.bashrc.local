@@ -88,6 +88,8 @@ elif [[ ${OSNAME} == 'Darwin' ]]; then
 
     # Prepend PATH with user's Brew and Python dirs.
     export PATH="${BREW}:${USER_PYTHON}:$PATH"
+
+    alias upgrade-all='brew update && brew upgrade --cleanup && brew cu -afyq && mas upgrade'
 fi
 
 # PROMPT
