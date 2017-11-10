@@ -51,6 +51,8 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     # Make executables from user's Python packages available in $PATH.
     export PATH="$PATH:$HOME/.local/bin"
 
+    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+
     # Custom Bash completions.
     source "${HOME}/.bash/tmux.bash"
     source "${HOME}/.bash/hub.bash"
@@ -132,9 +134,9 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
-alias l='ls -hl'
-alias la='ls -A'
-alias ll='ls -Ahl'
+alias l='ls -hl --color'
+alias la='ls -A --color'
+alias ll='ls -Ahl --color'
 alias grep='grep --color=auto'
 alias rgrep='grep -r --color=auto'
 alias ssh='TERM=xterm ssh'
