@@ -76,6 +76,12 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
+    alias ssh='TERM=xterm ssh'
+    alias docker='sudo docker'
+    alias open='xdg-open'
+    alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
+    alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
+
 elif [[ ${OSNAME} == 'Darwin' ]]; then
 
     BREW='/usr/local'
@@ -139,13 +145,7 @@ alias la='ls -A --color'
 alias ll='ls -Ahl --color'
 alias grep='grep --color=auto'
 alias rgrep='grep -r --color=auto'
-alias ssh='TERM=xterm ssh'
-alias docker='sudo docker'
-alias open='xdg-open'
-alias dkr='sudo docker'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
-alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
-alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
 
 
 # THIRD PARTY APPS
