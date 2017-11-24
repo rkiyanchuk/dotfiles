@@ -76,6 +76,11 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     export _JAVA_AWT_WM_NONREPARENTING=1
     export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
+    alias l='ls -hl --color'
+    alias ll='ls -Ahl --color'
+    alias grep='grep --color=auto'
+    alias rgrep='grep -r --color=auto'
+
     alias ssh='TERM=xterm ssh'
     alias docker='sudo docker'
     alias open='xdg-open'
@@ -98,6 +103,10 @@ elif [[ ${OSNAME} == 'Darwin' ]]; then
     export PATH="${BREW}:${USER_PYTHON}:$PATH"
 
     alias upgrade-all='brew update && brew upgrade --cleanup && brew cu -afyq && mas upgrade'
+    alias l='ls -hl'
+    alias ll='ls -Ahl'
+    alias grep='grep --color=auto'
+    alias rgrep='grep --color=auto -r'
 fi
 
 # PROMPT
@@ -140,11 +149,6 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
-alias l='ls -hl --color'
-alias la='ls -A --color'
-alias ll='ls -Ahl --color'
-alias grep='grep --color=auto'
-alias rgrep='grep -r --color=auto'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 
 
