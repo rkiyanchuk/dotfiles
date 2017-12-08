@@ -82,7 +82,6 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     alias rgrep='grep -r --color=auto'
 
     alias ssh='TERM=xterm ssh'
-    alias docker='sudo docker'
     alias open='xdg-open'
     alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
     alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
@@ -149,6 +148,7 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
+alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 
 
