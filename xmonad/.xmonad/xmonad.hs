@@ -91,15 +91,14 @@ myKeyBindings =
     , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
-    , ((0, xF86XK_AudioRaiseVolume), spawn "${HOME}/.xmonad/control.sh vol-inc")
-    , ((0, xF86XK_AudioLowerVolume), spawn "${HOME}/.xmonad/control.sh vol-dec")
-    , ((0, xF86XK_AudioMute), spawn "${HOME}/.xmonad/control.sh mute")
-    , ((shiftMask, xF86XK_AudioMute), spawn "${HOME}/.xmonad/control.sh mute-input")
-    , ((shiftMask .|. controlMask, xF86XK_AudioMute), spawn "${HOME}/.xmonad/control.sh unmute-input")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "pamixer -i 5")
+    , ((0, xF86XK_AudioLowerVolume), spawn "pamixer -d 5")
+    , ((0, xF86XK_AudioMute), spawn "pamixer -t")
+    , ((shiftMask, xF86XK_AudioMute), spawn "pamixer -t")
 
     -- Brightness control
-    , ((0, xF86XK_MonBrightnessUp), spawn "${HOME}/.xmonad/control.sh br-inc")
-    , ((0, xF86XK_MonBrightnessDown), spawn "${HOME}/.xmonad/control.sh br-dec")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
 
     -- Screenshot
     , ((0, xK_Print), spawn "xfce4-screenshooter -r -s ${HOME}/downloads/")
