@@ -83,11 +83,10 @@ myManageHook =
 myKeyBindings =
     [ ((metaMask, xK_Escape), spawn "gnome-screensaver-command -l")
     , ((metaMask, xK_b), sendMessage ToggleStruts)
-    , ((metaMask, xK_w), onPrevNeighbour W.view)
-    , ((metaMask, xK_e), onNextNeighbour W.view)
-    , ((metaMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
-    , ((metaMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
-    , ((altMask, xK_space), spawn "albert toggle")
+--  , ((metaMask, xK_w), onPrevNeighbour W.view)
+--   , ((metaMask, xK_e), onNextNeighbour W.view)
+--  , ((metaMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
+--  , ((metaMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
     , ((0, xF86XK_Search), spawn "albert toggle")
 
     -- Sound control.
