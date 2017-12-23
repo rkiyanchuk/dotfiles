@@ -53,12 +53,6 @@ if [[ ${OSNAME} == 'Linux' ]]; then
 
     eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
-    # Custom Bash completions.
-    source "${HOME}/.bash/tmux.bash"
-    source "${HOME}/.bash/hub.bash"
-    source "${HOME}/.bash/vagrant.bash"
-    source "${HOME}/.bash/docker-compose.bash"
-
     # Create popup notification when command execution is completed.
     # Usage:
     #   ~$ command; alert
