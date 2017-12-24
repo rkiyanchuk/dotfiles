@@ -1,4 +1,4 @@
-background "#152327"
+background "#232629"
 
 # Adjust tray position to be on the left of XMobar's right side metadata.
 geometry 1x1+1310+1050
@@ -9,7 +9,7 @@ icon_gravity NE
 icon_size 28
 no_shrink true
 scrollbars horizontal
-scrollbars_highlight "#355347"
+scrollbars_highlight "#31363b"
 scrollbars_step 28
 
 kludges force_icons_size

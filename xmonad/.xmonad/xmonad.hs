@@ -42,14 +42,14 @@ colorBlue       = "#268bd2"
 colorCyan       = "#2aa198"
 colorGreen      = "#859900"
 
-colorBackground     = "#152327"
-colorBackgroundAlt  = "#223034"
-colorBackgroundUrg  = "#252730"
+colorBackground     = "#232629"
+colorBackgroundAlt  = "#31363b"
+colorBackgroundUrg  = "#da4453"
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
 altMask             = mod1Mask  -- Map Alt to more descriptive var.
-myFocusedBorderColor = colorBlue
-myNormalBorderColor  = "#084652"
+myFocusedBorderColor = "#3daee9"
+myNormalBorderColor  = "#2c3e50"
 myBorderWidth        = 1
 myTerminal           = "urxvt"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
@@ -132,7 +132,7 @@ main = do
                                   spawn "albert"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
-                               , ppCurrent = xmobarColor colorBlue colorBackgroundAlt
+                               , ppCurrent = xmobarColor myFocusedBorderColor colorBackgroundAlt
                                , ppHidden = xmobarColor colorBase0 ""
                                , ppHiddenNoWindows = xmobarColor colorBase01 colorBackground
                                , ppLayout = xmobarColor colorCyan ""
