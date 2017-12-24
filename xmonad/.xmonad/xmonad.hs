@@ -100,9 +100,9 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
 
     -- Screenshot
-    , ((0, xK_Print), spawn "xfce4-screenshooter -r -s ${HOME}/downloads/")
-    , ((altMask, xK_Print), spawn "xfce4-screenshooter -w -s ${HOME}/downloads/")
-    , ((shiftMask, xK_Print), spawn "xfce4-screenshooter -f -s ${HOME}/downloads/")
+    , ((0, xK_Print), spawn "deepin-screenshot -s ${HOME}/downloads/")
+    , ((altMask, xK_Print), spawn "deepin-screenshot -w -s ${HOME}/downloads/")
+    , ((shiftMask, xK_Print), spawn "deepin-screenshot -f -s ${HOME}/downloads/")
     ]
 
 
