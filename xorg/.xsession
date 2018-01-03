@@ -8,3 +8,5 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0  # Fix QT 5 wrong HiDPI scaling.
 export TZ='America/Los_Angeles'
 #export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
+
+eval $(ssh-agent -s) > /dev/null 2>&1
