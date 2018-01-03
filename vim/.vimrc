@@ -258,6 +258,8 @@ call plug#end()
 
 if has('macunix')
     set rtp+=${HOME}/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
+else
+    set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
 endif
 
 " vim-xkbswitch
