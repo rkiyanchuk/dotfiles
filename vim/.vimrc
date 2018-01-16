@@ -217,6 +217,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'  " File tags browser.
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
 Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Programming
 " ===========
@@ -253,14 +255,10 @@ call plug#end()
 
 " {{{ PLUGINS CONFIGURATION
 
-" powerline-status
-" ----------------
+" vim-airline
+" -----------
 
-if has('macunix')
-    set rtp+=${HOME}/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/
-else
-    set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
-endif
+let g:airline_powerline_fonts = 1
 
 " vim-xkbswitch
 " -------------
