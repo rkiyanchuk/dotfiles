@@ -121,7 +121,7 @@ URxvt.letterSpace: -1
 URxvt.scrollWithBuffer: true
 
 ! Enable extensions
-URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select,...
+URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select
 
 ! Make URL clickable
 URxvt.matcher.button: 1
@@ -132,4 +132,3 @@ URxvt.url-launcher: /usr/bin/xdg-open
 ! Keyboard select extension
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
-URxvt.searchable-scrollback: <>
