@@ -42,6 +42,11 @@ OSNAME=$(uname)
 if [[ ${OSNAME} == 'Linux' ]]; then
     shopt -s autocd  # Auto append cd to directory
 
+    PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
+    if [ -f ${PEW_SHELL_CONFIG} ]; then
+        source ${PEW_SHELL_CONFIG}
+    fi
+
     # Force tmux into 256 colors mode.
     export TERM=rxvt-unicode-256color
 
