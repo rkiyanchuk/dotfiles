@@ -149,6 +149,7 @@ alias ..='cd ../'
 alias dud='du -hd1'
 alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
+alias packer="packer-io"
 
 
 # THIRD PARTY APPS
