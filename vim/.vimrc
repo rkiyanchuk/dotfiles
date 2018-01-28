@@ -401,6 +401,7 @@ if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Neomake
 let g:neomake_autolint_sign_column_always = 1
