@@ -85,8 +85,6 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 
-! Fix underscore not being displayed
-URxvt.lineSpace: 1
 
 
 ! XTerm
@@ -119,6 +117,8 @@ URxvt.intensityStyles: false
 URxvt*urgentOnBell: true
 URxvt.letterSpace: -1
 URxvt.scrollWithBuffer: true
+! Fix underscore not being displayed
+URxvt.lineSpace: 1
 
 ! Enable extensions
 URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select
