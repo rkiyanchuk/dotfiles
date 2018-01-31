@@ -9,4 +9,6 @@ export TZ='America/Los_Angeles'
 #export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
 
-eval $(ssh-agent -s) > /dev/null 2>&1
+if [[ "${SSH_AGENT_PID}" == "" ]]; then
+    eval $(ssh-agent) > /dev/null 2>&1
+fi
