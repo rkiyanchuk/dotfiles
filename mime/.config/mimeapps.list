@@ -1,8 +1,13 @@
 [Added Associations]
-application/pdf=zathura.desktop;
+application/pdf=evince.desktop;zathura.desktop;
 image/jpeg=geeqie.desktop;
 video/h264=vlc.desktop;
 video/x-msvideo=vlc.desktop;
+video/mp2t=vlc.desktop;
+image/png=geeqie.desktop;gimp.desktop;feh.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;calibre-ebook-edit.desktop;
+application/x-compressed-tar=org.gnome.FileRoller.desktop;
+
 [Default Applications]
 application/ogg=vlc.desktop;
 application/vnd.rn-realmedia=vlc.desktop;
@@ -42,7 +47,7 @@ audio/x-wav=vlc.desktop;
 image/vnd.rn-realpix=vlc.desktop;
 image/webp=google-chrome.desktop;
 misc/ultravox=vlc.desktop;
-text/html=google-chrome.desktop;
+text/html=chromium.desktop
 text/xml=google-chrome.desktop;
 video/dv=vlc.desktop;
 video/mp2t=vlc.desktop;
@@ -73,9 +78,12 @@ x-content/video-dvd=vlc.desktop;
 x-content/video-svcd=vlc.desktop;
 x-content/video-vcd=vlc.desktop;
 x-scheme-handler/ftp=google-chrome.desktop;
-x-scheme-handler/http="google-chrome.desktop".desktop;google-chrome.desktop;
-x-scheme-handler/https=google-chrome.desktop;
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/https=chromium.desktop
 x-scheme-handler/mms=vlc.desktop;
 x-scheme-handler/rtmp=vlc.desktop;
 x-scheme-handler/rtsp=vlc.desktop;
-
+image/png=geeqie.desktop
+x-scheme-handler/about=chromium.desktop
+x-scheme-handler/unknown=chromium.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop
