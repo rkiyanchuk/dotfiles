@@ -405,7 +405,6 @@ autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Neomake
 let g:neomake_autolint_sign_column_always = 1
-let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
 
 " Auto-Pairs
 let g:AutoPairsShortcutFastWrap = '<leader>w'
