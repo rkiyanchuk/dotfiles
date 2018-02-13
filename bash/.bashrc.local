@@ -48,7 +48,7 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     fi
 
     # Force tmux into 256 colors mode.
-    export TERM=rxvt-unicode-256color
+    export TERM=xterm-color
 
     # Source git prompt
     source /usr/share/git/completion/git-prompt.sh
@@ -135,7 +135,7 @@ $VENV\
 ${YELLOW}\u${RESET}@${GREEN}\h${RESET}:\
 $STATUS\
 ${BLUE}\W${RESET}\
-${MAGENTA}${BRANCH}${RESET}\
+${RED}${BRANCH}${RESET}\
 ${GREEN}\$${RESET} "
 }
 
