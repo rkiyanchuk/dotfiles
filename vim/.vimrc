@@ -46,6 +46,7 @@ set splitright
 " Set native status line as fallback.
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
 set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
+set termguicolors
 set textwidth=79
 set undodir=$VIMHOME/swap
 set undofile
@@ -204,8 +205,7 @@ call plug#begin($VIMPLUGINS)
 
 " Essentials
 " ==========
-
-Plug 'zoresvit/vim-colors-solarized'
+Plug 'icymind/NeoSolarized'
 Plug 'Shougo/vimproc'
 Plug 'mkitt/tabline.vim'  " Better tabs naming.
 Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
@@ -251,6 +251,7 @@ Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
+
 " }}}
 
 " {{{ PLUGINS CONFIGURATION
@@ -268,14 +269,11 @@ let g:airline_right_sep=''
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
-" vim-colors-solarized
-" --------------------
+" NeoSolarized
+" ------------
 
-if isdirectory($VIMPLUGINS . "/vim-colors-solarized")
-    let g:solarized_bold=0
-    let g:solarized_underline=0
-    let g:solarized_italic=0
-    colorscheme solarized
+if isdirectory($VIMPLUGINS . "/NeoSolarized")
+    colorscheme NeoSolarized
 endif
 
 " Denite
