@@ -31,7 +31,7 @@ set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden
 set laststatus=2
 set lazyredraw  " Speedup execution during macros and other untyped commands.
-set listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
+set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
 set matchpairs+=<:>
 set mouse=a
 set mousemodel=popup_setpos
