@@ -101,7 +101,7 @@ myKeyBindings =
 
     -- Screenshot
     , ((0, xK_Print), spawn "flameshot gui -p ${HOME}/downloads")
-    , ((controlMask, xK_Print), spawn "flameshot full -p ${HOME}/downloads")
+    , ((shiftMask, xK_Print), spawn "flameshot full -p ${HOME}/downloads")
     ]
 
 
