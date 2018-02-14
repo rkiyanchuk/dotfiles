@@ -294,7 +294,6 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " ------------
 
 if isdirectory($VIMPLUGINS . "/NeoSolarized")
-    let g:neosolarized_visibility = "low"
     colorscheme NeoSolarized
 endif
 
