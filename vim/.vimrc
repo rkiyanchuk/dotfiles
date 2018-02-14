@@ -203,41 +203,59 @@ endif
 
 call plug#begin($VIMPLUGINS)
 
-" Essentials
-" ==========
-Plug 'icymind/NeoSolarized'
-Plug 'Shougo/vimproc'
-Plug 'mkitt/tabline.vim'  " Better tabs naming.
-Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
-Plug 'SirVer/ultisnips'  " Snippets engine.
-Plug 'honza/vim-snippets'  " Snippets database.
+Plug 'icymind/NeoSolarized'  " Solarized colorscheme with true color support.
+Plug 'Shougo/vimproc' " Asynchronous execution library for Vim.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
+Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
 Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'majutsushi/tagbar'  " File tags browser.
+Plug 'mkitt/tabline.vim'  " Better tabs naming.
+
+
+" Snippets
+Plug 'SirVer/ultisnips'  " Snippets engine.
+Plug 'honza/vim-snippets'  " Snippets database.
+
+" Git
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
 Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
+
+" Statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Programming
 " ===========
 
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-Plug 'Shougo/neocomplete.vim'
+" Completion
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-go', {'for': 'python', 'do': 'make'}
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+
+" Static analysis and formatting.
+Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+
 Plug 'jiangmiao/auto-pairs'
+Plug 'fidian/hexmode'  " Edit binary files in hex.
+"Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
+
+" Spell check
+Plug 'rhysd/vim-grammarous'
+
+" Filetypes and syntax
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'jszakmeister/markdown2ctags'
 Plug 'jszakmeister/rst2ctags'
-Plug 'fatih/vim-go', { 'for': 'go' }
-
 Plug 'seveas/bind.vim'  " Edit DNS Zone files.
 Plug 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
-Plug 'fidian/hexmode'  " Edit binary files.
 Plug 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
 Plug 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
 Plug 'gabrielelana/vim-markdown'  " Edit Markdown.
@@ -245,12 +263,12 @@ Plug 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
 Plug 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
 Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
-Plug 'rhysd/vim-grammarous'
 Plug 'hashivim/vim-vagrant'
 Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
+let g:deoplete#enable_at_startup = 1
 
 " }}}
 
@@ -396,17 +414,6 @@ let g:ultisnips_python_style = "sphinx"
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
 
-" jedi-vim
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-
-" Neocomplete
-let g:neocomplete#enable_at_startup = 1
-if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Neomake
@@ -417,5 +424,9 @@ let g:AutoPairsShortcutFastWrap = '<leader>w'
 let g:AutoPairsShortcutJump = '<C-l>'
 
 let g:gundo_prefer_python3 = 1
+
+" jedi-vim
+let g:jedi#completions_enabled = 0
+let g:jedi#use_tabs_not_buffers = 1
 
 " }}}
