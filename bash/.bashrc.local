@@ -48,7 +48,7 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     fi
 
     # Force tmux into 256 colors mode.
-    export TERM=xterm-color
+    export TERM=xterm-256color
 
     # Source git prompt
     source /usr/share/git/completion/git-prompt.sh
@@ -82,8 +82,6 @@ if [[ ${OSNAME} == 'Linux' ]]; then
 
     alias ssh='TERM=xterm ssh'
     alias open='xdg-open'
-    alias colorscheme-light='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_LIGHT'
-    alias colorscheme-dark='xrdb -merge ${HOME}/.Xdefaults -DSOLARIZED_DARK'
 
 elif [[ ${OSNAME} == 'Darwin' ]]; then
 
