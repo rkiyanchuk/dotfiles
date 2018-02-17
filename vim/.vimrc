@@ -234,7 +234,7 @@ Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim'
 
 Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-go', {'for': 'python', 'do': 'make'}
+Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
@@ -244,7 +244,7 @@ Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'fidian/hexmode'  " Edit binary files in hex.
-"Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': 'GoInstallBinaries' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Spell check
@@ -402,7 +402,32 @@ let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
 
 " Neomake
+call neomake#configure#automake('rw', 1000)
+
 let g:neomake_autolint_sign_column_always = 1
+let g:neomake_go_gometalinter_maker = {
+  \ 'args': [
+  \   '--tests',
+  \   '--enable-gc',
+  \   '--concurrency=3',
+  \   '--fast',
+  \   '-D', 'aligncheck',
+  \   '-D', 'dupl',
+  \   '-D', 'gocyclo',
+  \   '-D', 'gotype',
+  \   '-E', 'errcheck',
+  \   '-E', 'misspell',
+  \   '-E', 'unused',
+  \   '%:p:h',
+  \ ],
+  \ 'append_file': 0,
+  \ 'errorformat':
+  \   '%E%f:%l:%c:%trror: %m,' .
+  \   '%W%f:%l:%c:%tarning: %m,' .
+  \   '%E%f:%l::%trror: %m,' .
+  \   '%W%f:%l::%tarning: %m'
+  \ }
+
 
 " Auto-Pairs
 let g:AutoPairsShortcutFastWrap = '<leader>w'
