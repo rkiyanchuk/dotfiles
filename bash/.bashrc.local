@@ -56,6 +56,9 @@ if [[ ${OSNAME} == 'Linux' ]]; then
     # Make executables from user's Python packages available in $PATH.
     export PATH="$PATH:$HOME/.local/bin"
 
+    # Make executables from user's GOPATH/bin available in $PATH.
+    export PATH="$PATH:$HOME/go/bin"
+
     eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
     # Create popup notification when command execution is completed.
