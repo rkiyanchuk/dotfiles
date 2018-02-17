@@ -240,7 +240,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
 " Static analysis and formatting.
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'neomake/neomake'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'fidian/hexmode'  " Edit binary files in hex.
@@ -283,7 +283,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 let g:deoplete#enable_yarp = 1
 
 " vim-xkbswitch
@@ -291,9 +291,7 @@ let g:XkbSwitchEnabled = 1
 let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
 " NeoSolarized
-if isdirectory($VIMPLUGINS . "/NeoSolarized")
-    colorscheme NeoSolarized
-endif
+colorscheme NeoSolarized
 
 " gitgutter
 let g:gitgutter_override_sign_column_highlight = 0
