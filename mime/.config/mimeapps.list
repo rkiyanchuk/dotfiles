@@ -7,6 +7,13 @@ video/mp2t=vlc.desktop;
 image/png=geeqie.desktop;gimp.desktop;feh.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;calibre-ebook-edit.desktop;
 application/x-compressed-tar=org.gnome.FileRoller.desktop;
+text/csv=libreoffice-calc.desktop;
+text/plain=nvim.desktop;
+application/epub+zip=calibre-ebook-viewer.desktop;
+font/otf=org.gnome.font-viewer.desktop;
+application/msword=libreoffice-writer.desktop;
+text/x-bibtex=nvim.desktop;
+video/mp4=vlc.desktop;
 
 [Default Applications]
 application/ogg=vlc.desktop;
