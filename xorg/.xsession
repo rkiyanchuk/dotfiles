@@ -12,3 +12,7 @@ export TZ='America/Los_Angeles'
 if [[ "${SSH_AGENT_PID}" == "" ]]; then
     eval $(ssh-agent) > /dev/null 2>&1
 fi
+
+if [[ ! $(pgrep -f "lock.sh") ]]; then
+    bash ${HOME}/.xmonad/lock.sh &
+fi
