@@ -25,7 +25,6 @@ set colorcolumn=80
 set cursorcolumn
 set cursorline
 set directory=$VIMHOME/swap
-set fileencodings=utf-8,windows-1251,iso-8859015,koi8-r,latin1
 set foldmethod=marker
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden
@@ -38,6 +37,7 @@ set mousemodel=popup_setpos
 set nowrap
 set number
 set path+=**
+set pyxversion=3
 set scrolloff=3
 set showbreak=↪
 set spelllang=en_us,ru_yo,uk
@@ -229,9 +229,10 @@ Plug 'vim-airline/vim-airline-themes'
 " ===========
 
 " Completion
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'roxma/nvim-yarp'
+Plug 'Shougo/deoplete.nvim'
+
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', {'for': 'python', 'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
@@ -268,15 +269,12 @@ Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
-let g:deoplete#enable_at_startup = 1
 
 " }}}
 
 " {{{ PLUGINS CONFIGURATION
 
 " vim-airline
-" -----------
-
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -284,25 +282,23 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
-" vim-xkbswitch
-" -------------
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_yarp = 1
 
+" vim-xkbswitch
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
 " NeoSolarized
-" ------------
-
 if isdirectory($VIMPLUGINS . "/NeoSolarized")
     colorscheme NeoSolarized
 endif
 
 " gitgutter
-" ---------
 let g:gitgutter_override_sign_column_highlight = 0
 
 " Denite
-" ------
 if isdirectory($VIMPLUGINS . '/denite.nvim')
     nnoremap <leader>ff :Denite file_rec<CR>
     nnoremap <leader>fb :Denite buffer<CR>
@@ -329,15 +325,11 @@ else
 endif
 
 " NERDTree
-" --------
-
 imap <leader>1 :NERDTreeToggle<CR>
 nmap <leader>1 :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
 
 " Tagbar
-" ------
-
 imap <leader>2 :TagbarToggle<CR>
 nmap <leader>2 :TagbarToggle<CR>
 
@@ -398,8 +390,6 @@ let g:tagbar_type_rst = {
 \ }
 
 " UtliSnips
-" ---------
-
 let g:UltiSnipsExpandTrigger       = '<c-\>'
 let g:UltiSnipsListSnippets        = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
@@ -408,12 +398,8 @@ let g:UltiSnipsEditSplit = "horizontal"
 let g:ultisnips_python_style = "sphinx"
 
 " vimtex
-" ------
-
 let g:vimtex_latexmk_enabled = 0
 let g:vimtex_fold_enabled = 0
-
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " Neomake
 let g:neomake_autolint_sign_column_always = 1
@@ -422,6 +408,7 @@ let g:neomake_autolint_sign_column_always = 1
 let g:AutoPairsShortcutFastWrap = '<leader>w'
 let g:AutoPairsShortcutJump = '<C-l>'
 
+" Gundo
 let g:gundo_prefer_python3 = 1
 
 " jedi-vim
