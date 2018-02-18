@@ -44,7 +44,6 @@ colorGreen      = "#859900"
 
 colorBackground     = "#232629"
 colorBackgroundAlt  = "#31363b"
-colorBackgroundUrg  = "#da4453"
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
 altMask             = mod1Mask  -- Map Alt to more descriptive var.
@@ -132,12 +131,12 @@ main = do
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
                                , ppCurrent = xmobarColor myFocusedBorderColor colorBackgroundAlt
-                               , ppHidden = xmobarColor colorBase0 ""
+                               , ppHidden = xmobarColor colorBase1 ""
                                , ppHiddenNoWindows = xmobarColor colorBase01 colorBackground
                                , ppLayout = xmobarColor colorCyan ""
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
-                               , ppUrgent = xmobarColor colorRed colorBackgroundUrg
+                               , ppUrgent = xmobarColor colorRed colorBackground
                                , ppVisible = xmobarColor colorBase01 ""
                                }
         } `EZ.additionalKeys` myKeyBindings
