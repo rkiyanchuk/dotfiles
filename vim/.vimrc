@@ -273,12 +273,12 @@ let g:gundo_prefer_python3 = 1
 " denite
 " ------
 
+nnoremap <leader>ff :Denite file_rec<CR>
+nnoremap <leader>fb :Denite buffer<CR>
+nnoremap <leader>fg :Denite grep<CR>
+nnoremap <leader>fr :Denite register<CR>
+nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
 if exists(':Denite')
-    nnoremap <leader>ff :Denite file_rec<CR>
-    nnoremap <leader>fb :Denite buffer<CR>
-    nnoremap <leader>fg :Denite grep<CR>
-    nnoremap <leader>fr :Denite register<CR>
-    nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
     call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
