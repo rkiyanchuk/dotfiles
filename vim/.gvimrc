@@ -17,5 +17,3 @@ if has('macunix')
 else
     set guifont=Hack\ 14
 endif
-
-set guioptions=ca  " Remove toolbars and menues.

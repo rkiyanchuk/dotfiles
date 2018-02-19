@@ -235,6 +235,7 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'chase/vim-ansible-yaml'
 Plug 'hashivim/vim-vagrant'
 Plug 'hashivim/vim-terraform'
+Plug 'fidian/hexmode'
 
 call plug#end()
 
