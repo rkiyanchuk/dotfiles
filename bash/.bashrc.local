@@ -1,5 +1,6 @@
 # In order to keep distribution-specific sensible default Bash configuration,
 # user's configuration extends default `.bashrc`.
+# Add `source ${HOME}/.bashrc.local` to default `.bashrc` to activate.
 
 # COLOR CODES
 # ===========
@@ -31,85 +32,56 @@ ONWHITE="\[\033[0;47m\]"
 # =======================
 
 stty -ixon  # Enable backward history search with C-s.
+shopt -s autocd  # Auto append cd to directory
 
 HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in Bash history.
-HISTSIZE=1000
-HISTFILESIZE=1000
+HISTSIZE=10000
+HISTFILESIZE=10000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
-OSNAME=$(uname)
 
-if [[ ${OSNAME} == 'Linux' ]]; then
-    shopt -s autocd  # Auto append cd to directory
+# ENVIRONMENT VARIABLES
+# =====================
 
-    PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
-    if [ -f ${PEW_SHELL_CONFIG} ]; then
-        source ${PEW_SHELL_CONFIG}
-    fi
+export EDITOR="vim"
 
-    # Force tmux into 256 colors mode.
-    export TERM=xterm-256color
+# Syntax highlighting for `less`. Requires `source-highlight` package.
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+export LESS=" -R "
 
-    # Source git prompt
-    source /usr/share/git/completion/git-prompt.sh
+# Force tmux into 256 colors mode.
+export TERM=xterm-256color
 
-    # Make executables from user's Python packages available in $PATH.
-    export PATH="$PATH:$HOME/.local/bin"
+# Tell Java that XMonad is non-reparenting WM.
+# Needed for correct Java apps windows operation under XMonad.
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-    # Make executables from user's GOPATH/bin available in $PATH.
-    export PATH="$PATH:$HOME/go/bin"
+# Set styles for Java application.
+export export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd \
+    -Dswing.aatext=true \
+    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel \
+    -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+# Make executables from user's Python packages available in $PATH.
+export PATH="$PATH:$HOME/.local/bin"
 
-    # Create popup notification when command execution is completed.
-    # Usage:
-    #   ~$ command; alert
-    alias alert='notify-send --urgency=low -i \
-        "$([ $? = 0 ] && echo terminal || echo error)" \
-        "$(history | tail -n1 | sed -e \
-        '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
+# Make executables from user's GOPATH/bin available in $PATH.
+export PATH="$PATH:$HOME/go/bin"
 
-    if [ ! -f /usr/share/source-highlight/src-hilite-lesspipe.sh ]; then
-        export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-    fi
+eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
-    # Tell Java that XMonad is non-reparenting WM.
-    # Needed for correct Java apps windows operation under XMonad.
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-
-    alias l='ls -hl --color'
-    alias ll='ls -Ahl --color'
-    alias grep='grep --color=auto'
-    alias rgrep='grep -r --color=auto'
-
-    alias ssh='TERM=xterm ssh'
-    alias open='xdg-open'
-
-elif [[ ${OSNAME} == 'Darwin' ]]; then
-
-    BREW='/usr/local'
-    USER_PYTHON="${HOME}/Library/Python/2.7/bin"
-
-    if [ -f ${BREW}/etc/bash_completion ]; then
-        source ${BREW}/etc/bash_completion
-    fi
-
-    # Enable colors in iTerm.
-    export CLICOLOR=1
-
-    # Prepend PATH with user's Brew and Python dirs.
-    export PATH="${BREW}:${USER_PYTHON}:$PATH"
-
-    alias upgrade-all='brew update && brew upgrade --cleanup && brew cu -ayq && mas upgrade'
-    alias l='ls -hl'
-    alias ll='ls -Ahl'
-    alias grep='grep --color=auto'
-    alias rgrep='grep --color=auto -r'
+# Enable Pew shell completion.
+PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
+if [ -f ${PEW_SHELL_CONFIG} ]; then
+    source ${PEW_SHELL_CONFIG}
 fi
 
+
 # PROMPT
-# ------
+# ======
+
+# Source git prompt
+source /usr/share/git/completion/git-prompt.sh
 
 prompt_command () {
     # Capture exit code of last command.
@@ -148,15 +120,20 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
+alias l='ls -hl --color'
+alias ll='ls -Ahl --color'
+alias grep='grep --color=auto'
+alias rgrep='grep -r --color=auto'
+alias ssh='TERM=xterm ssh'
+alias open='xdg-open'
 alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias packer="packer-io"
 
-
-# THIRD PARTY APPS
-# ================
-
-export EDITOR="vim"
-
-# Syntax highlighting for `less`. Requires `source-highlight` package.
-export LESS=" -R "
+# Create popup notification when command execution is completed.
+# Usage:
+#   ~$ command; alert
+alias alert='notify-send --urgency=low -i \
+    "$([ $? = 0 ] && echo terminal || echo error)" \
+    "$(history | tail -n1 | sed -e \
+    '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'

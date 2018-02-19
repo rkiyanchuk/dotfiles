@@ -86,7 +86,6 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 
 
-
 ! XTerm
 ! =====
 
@@ -113,22 +112,10 @@ URxvt.colorUL: S_blue
 ! Behavior
 URxvt*saveLines: 65535
 URxvt.scrollBar: false
-URxvt.intensityStyles: false
 URxvt*urgentOnBell: true
-URxvt.letterSpace: -1
 URxvt.scrollWithBuffer: true
-! Fix underscore not being displayed
-URxvt.lineSpace: 1
-
-! Enable extensions
-URxvt.perl-ext-common: default,matcher,clipboard,keyboard-select
 
 ! Make URL clickable
 URxvt.matcher.button: 1
 URxvt.matcher.launcher: /usr/bin/xdg-open
 URxvt.url-launcher: /usr/bin/xdg-open
-
-
-! Keyboard select extension
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
