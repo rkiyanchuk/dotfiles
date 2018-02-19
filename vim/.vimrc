@@ -197,6 +197,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'  " Auto-matching braces.
 Plug 'neomake/neomake'  " Static analysis and formatting.
 
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
@@ -320,7 +321,6 @@ let g:python3_host_prog = "/bin/python"
 " UtliSnips
 " ---------
 
-let g:UltiSnipsListSnippets = '<c-l>'
 let g:ultisnips_python_style = "sphinx"
 
 " Neomake
@@ -345,3 +345,7 @@ let g:pymode_trim_whitespaces = 0
 let g:pymode_debug = 0
 let g:pymode_rope = 0
 
+" auto-pairs
+" ----------
+
+let g:AutoPairsShortcutJump = '<C-l>'
