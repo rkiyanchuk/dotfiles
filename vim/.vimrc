@@ -10,55 +10,42 @@ if !isdirectory($VIMHOME . "/swap")
 endif
 
 
-" {{{ OPTIONS
+" OPTIONS
+" =======
 
 syntax on
 
-set completeopt=longest,menuone
-set showfulltag
 set background=dark
-set backspace=indent,eol,start
 set backup
 set backupdir=$VIMHOME/backups
-set browsedir=buffer
 set colorcolumn=80
 set cursorcolumn
 set cursorline
-set directory=$VIMHOME/swap
-set foldmethod=marker
+set directory=$VIMHOME/swap  " Store swap files here instead of current dir.
+set foldmethod=syntax
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
-set hidden
-set laststatus=2
-set lazyredraw  " Speedup execution during macros and other untyped commands.
+set hidden  " Hide current buffer when opening new file instead of closing it.
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
 set matchpairs+=<:>
-set mouse=a
 set mousemodel=popup_setpos
 set nowrap
 set number
-set path+=**
-set pyxversion=3
+set path+=**  " Search downwards in a directory for `gf`, etc.
 set scrolloff=3
 set showbreak=↪
+set showfulltag  " Show arguments for a function when available, etc.
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
-" Set native status line as fallback.
-set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
-set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 set termguicolors
 set textwidth=79
 set undodir=$VIMHOME/swap
 set undofile
 set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
-set visualbell
 set wildmenu
-set wildmode=longest,full
 
 " Search
-" ------
-
 set hlsearch
 set incsearch
 set nowrapscan
@@ -67,8 +54,6 @@ set infercase
 set smartcase
 
 " Indent
-" ------
-
 set breakindent
 set autoindent
 set expandtab
@@ -77,21 +62,35 @@ set softtabstop=4
 set tabstop=4
 set shiftround
 
-" Filetype settings
-" -----------------
+if has("python3")
+    set pyxversion=3
+endif
 
+" Set native status line as fallback.
+set laststatus=2
+set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
+set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
+
+" Filetype settings
 let c_comment_strings = 1
-let c_curly_error = 1  " Highlight a missing `}` (may be slow).
 let c_space_errors = 1  " Highlight extra white spaces.
 let g:load_doxygen_syntax = 1
 let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
-let g:tex_indent_brace = 0  " Prevent overindentation for `]` and `}`.
 let g:xml_syntax_folding = 1
 
-" }}}
+
+" MAPPINGS
+" ========
+
+nmap <silent> <leader>V :split $MYVIMRC<CR>
+nmap <silent> <leader>R :call ReloadConfig()<CR>
+
+" Reset search highlighting by double pressing Esc in normal mode.
+nnoremap <Esc><Esc> :noh<CR>
 
 
-" {{{ FUNCTIONS
+" FUNCTIONS
+" =========
 
 if !exists("*ReloadConfig")
     " Reload .vimrc and .gvimrc configuration files.
@@ -100,39 +99,52 @@ if !exists("*ReloadConfig")
         if has("gui_running")
           source $MYGVIMRC
         endif
+        echomsg "Sourced Vim config!"
+        " Add second line to make Vim prompt for continuation.
+        echomsg ""
     endfunction
 endif
 
 function! ShowSpaces(...)
-  let @/='\v(\s+$)|( +\ze\t)'
-  let oldhlsearch=&hlsearch
-  if !a:0
-    let &hlsearch=!&hlsearch
-  else
-    let &hlsearch=a:1
-  end
-  return oldhlsearch
+    " Highlight trailing spaces.
+    let @/='\v(\s+$)|( +\ze\t)'
+    let oldhlsearch=&hlsearch
+    if !a:0
+        let &hlsearch=!&hlsearch
+    else
+        let &hlsearch=a:1
+    end
+    return oldhlsearch
 endfunction
 
 function! FixSpaces() range
+    " Remove trailing spaces.
     let oldhlsearch=ShowSpaces(1)
     execute a:firstline.",".a:lastline."substitute ///ge"
     let &hlsearch=oldhlsearch
 endfunction
 
-" }}}
+
+" COMMANDS
+" ========
+
+" Remove trailing spaces from file.
+command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
+
+" Save restricted file opened without root permissions via sudo.
+command! W :w !sudo tee %
+
+" Update plugins.
+command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
 
 
-" {{{ AUTOCOMMANDS
-
-" Close omni-completion preview window when entering or leaving insert mode.
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" AUTOCOMMANDS
+" ============
 
 augroup TEXT
-    " Auto commands for any text file.
+    " Auto commands for any text files.
     autocmd!
-    au FileType text,markdown set spell
+    au FileType text,markdown,tex set spell
 augroup END
 
 augroup CPP
@@ -141,58 +153,24 @@ augroup CPP
     au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
-augroup LATEX
-    autocmd!
-    au FileType tex set spell
-augroup END
-
-augroup WEB
-    autocmd!
-    au FileType html,yaml,xml set shiftwidth=2
-    au FileType html,yaml,xml set softtabstop=2
-    au FileType html,yaml,xml set tabstop=2
-
-    au FileType xml setlocal foldmethod=syntax
-    au FileType xml normal zR  " Open all folds by default.
-augroup END
-
 augroup MISC
     autocmd!
     au FileType gitcommit set colorcolumn=73
     au FileType gitcommit set textwidth=72
-    " Treat .conf files as .cfg.
-    au BufRead,BufNewFile *.conf set filetype=cfg
+
+    au BufRead,BufNewFile *.conf set filetype=cfg  " Treat .conf files as .cfg.
+
+    " Open all folds by default
+    au Syntax * normal zR
+
+    " Auto close omni-completion preview window.
+    au CursorMovedI * if pumvisible() == 0|pclose|endif
+    au InsertLeave * if pumvisible() == 0|pclose|endif
 augroup END
 
-" }}}
 
-
-" {{{ COMMANDS
-
-" Remove trailing spaces from file.
-command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
-
-" Save restricted file opened without root permissions via sudo.
-command! W :w !sudo tee %
-
-command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
-
-" }}}
-
-
-" {{{ MAPPINGS
-
-nmap <silent> <leader>V :split $MYVIMRC<CR>
-nmap <silent> <leader>R :call ReloadConfig()<CR>
-nmap <silent> <leader>s :set spell!<CR>
-
-" Reset search highlighting by pressing Enter in normal mode.
-nnoremap <Esc><Esc> :noh<CR>
-
-" }}}
-
-
-" {{{ PLUGINS
+" PLUGINS
+" =======
 
 " Auto install vim-plug plugin manager.
 if empty(glob($VIMHOME . '/autoload/plug.vim'))
@@ -201,80 +179,112 @@ if empty(glob($VIMHOME . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 call plug#begin($VIMPLUGINS)
 
-Plug 'icymind/NeoSolarized'  " Solarized colorscheme with true color support.
-Plug 'Shougo/vimproc' " Asynchronous execution library for Vim.
+Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
+
+" NOTE: Keep this fork until https://github.com/icymind/NeoSolarized/pull/16
+" gets merged upstream.
+Plug 'zoresvit/NeoSolarized'
+
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+    Plug 'jszakmeister/markdown2ctags'
+    Plug 'jszakmeister/rst2ctags'
+
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
-Plug 'sjl/gundo.vim'  " Browse Vim undo tree graph.
-Plug 'lyokha/vim-xkbswitch'  " Automatic keyboard layout switcher.
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'majutsushi/tagbar'  " File tags browser.
-Plug 'mkitt/tabline.vim'  " Better tabs naming.
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'neomake/neomake'  " Static analysis and formatting.
 
-
-" Snippets
-Plug 'SirVer/ultisnips'  " Snippets engine.
-Plug 'honza/vim-snippets'  " Snippets database.
-
-" Git
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
-Plug 'gregsexton/gitv' | Plug 'tpope/vim-fugitive'  " Git interface for Vim.
-
-" Statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Programming
-" ===========
+Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
 
 " Completion
+" ----------
+
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'roxma/nvim-yarp'
 Plug 'Shougo/deoplete.nvim'
 
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 
-" Static analysis and formatting.
-Plug 'neomake/neomake'
+if executable("clang")
+    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
+else
+    echomsg "Install clang package for C/C++ completion support!"
+endif
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'fidian/hexmode'  " Edit binary files in hex.
-Plug 'fatih/vim-go', { 'for': 'go', 'do': 'GoInstallBinaries' }
-Plug 'lervag/vimtex', { 'for': 'tex' }
+if executable("gocode")
+    Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
+else
+    echomsg "Install godode package for Go lang completion support!"
+endif
 
-" Spell check
-Plug 'rhysd/vim-grammarous'
-
-" Filetypes and syntax
-Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'jszakmeister/markdown2ctags'
-Plug 'jszakmeister/rst2ctags'
-Plug 'seveas/bind.vim'  " Edit DNS Zone files.
-Plug 'tmux-plugins/vim-tmux'  " Edit Tmux configuration file.
-Plug 'ekalinin/Dockerfile.vim'  " Edit Dockerfile.
-Plug 'smancill/conky-syntax.vim'  " Syntax highlighting for Conky.
-Plug 'gabrielelana/vim-markdown'  " Edit Markdown.
-Plug 'hrother/msmtp.vim'  " msmtprc syntax highlighting.
-Plug 'hrother/offlineimaprc.vim'  " offlineimaprc highlighting.
+" Enhancements for specific file types.
+Plug 'tmux-plugins/vim-tmux'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'smancill/conky-syntax.vim'
 Plug 'Matt-Deacalion/vim-systemd-syntax'
-Plug 'chase/vim-ansible-yaml'  " Ansible syntax highlighting and snippets.
+Plug 'gabrielelana/vim-markdown'
+Plug 'chase/vim-ansible-yaml'
 Plug 'hashivim/vim-vagrant'
 Plug 'hashivim/vim-terraform'
 
 call plug#end()
 
 
-" }}}
+" NeoSolarized
+" ------------
 
-" {{{ PLUGINS CONFIGURATION
+" Silent suppresses errors when colorscheme plugin is not yet installed.
+silent! colorscheme NeoSolarized
+
+" nerdtree
+" --------
+
+imap <leader>1 :NERDTreeToggle<CR>
+nmap <leader>1 :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
+
+" Close Vim if NERDTree is the only window left.
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" tagbar
+" ------
+
+imap <leader>2 :TagbarToggle<CR>
+nmap <leader>2 :TagbarToggle<CR>
+source $VIMHOME/tagbar_types.vim
+
+" gundo
+" -----
+
+imap <leader>3 :GundoToggle<CR>
+nmap <leader>3 :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
+
+" denite
+" ------
+
+if exists(':Denite')
+    nnoremap <leader>ff :Denite file_rec<CR>
+    nnoremap <leader>fb :Denite buffer<CR>
+    nnoremap <leader>fg :Denite grep<CR>
+    nnoremap <leader>fr :Denite register<CR>
+    nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
+    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
+    call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
+endif
 
 " vim-airline
+" -----------
+
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -282,160 +292,33 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
-" Deoplete
-let g:deoplete#enable_at_startup = 0
-let g:deoplete#enable_yarp = 1
-
-" vim-xkbswitch
-let g:XkbSwitchEnabled = 1
-let g:XkbSwitchSkipFt = [ 'nerdtree' ]
-
-" NeoSolarized
-colorscheme NeoSolarized
-
 " gitgutter
+" ---------
+
 let g:gitgutter_override_sign_column_highlight = 0
 
-" Denite
-if isdirectory($VIMPLUGINS . '/denite.nvim')
-    nnoremap <leader>ff :Denite file_rec<CR>
-    nnoremap <leader>fb :Denite buffer<CR>
-    nnoremap <leader>fg :Denite grep<CR>
-    nnoremap <leader>fr :Denite register<CR>
-    nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
+" deoplete
+" --------
 
-    call denite#custom#var('file_rec', 'command',
-                \ ['rg', '--files', '--glob', '!.git', ''])
-
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-
-    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
-    call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
-else
-    echomsg 'denite.vim is not installed.'
-endif
-
-" NERDTree
-imap <leader>1 :NERDTreeToggle<CR>
-nmap <leader>1 :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
-
-" Tagbar
-imap <leader>2 :TagbarToggle<CR>
-nmap <leader>2 :TagbarToggle<CR>
-
-let g:tagbar_type_css = {
-\ 'ctagstype' : 'Css',
-    \ 'kinds'     : [
-        \ 'c:classes',
-        \ 's:selectors',
-        \ 'i:identities'
-    \ ]
-\ }
-
-let g:tagbar_type_make = {
-            \ 'kinds':[
-                \ 'm:macros',
-                \ 't:targets'
-            \ ]
-\}
-
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '$VIMPLUGINS/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-
-let g:tagbar_type_puppet = {
-    \ 'ctagstype': 'puppet',
-    \ 'kinds': [
-        \'c:class',
-        \'s:site',
-        \'n:node',
-        \'d:definition'
-      \]
-    \}
-
-let g:tagbar_type_rst = {
-    \ 'ctagstype': 'rst',
-    \ 'ctagsbin' : '$VIMPLUGINS/rst2ctags/rst2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-
-" UtliSnips
-let g:UltiSnipsExpandTrigger       = '<c-\>'
-let g:UltiSnipsListSnippets        = '<c-l>'
-let g:UltiSnipsJumpForwardTrigger  = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-let g:UltiSnipsEditSplit = "horizontal"
-let g:ultisnips_python_style = "sphinx"
-
-" vimtex
-let g:vimtex_latexmk_enabled = 0
-let g:vimtex_fold_enabled = 0
-
-" Neomake
-call neomake#configure#automake('rw', 1000)
-
-let g:neomake_autolint_sign_column_always = 1
-let g:neomake_go_gometalinter_maker = {
-  \ 'args': [
-  \   '--tests',
-  \   '--enable-gc',
-  \   '--concurrency=3',
-  \   '--fast',
-  \   '-D', 'aligncheck',
-  \   '-D', 'dupl',
-  \   '-D', 'gocyclo',
-  \   '-D', 'gotype',
-  \   '-E', 'errcheck',
-  \   '-E', 'misspell',
-  \   '-E', 'unused',
-  \   '%:p:h',
-  \ ],
-  \ 'append_file': 0,
-  \ 'errorformat':
-  \   '%E%f:%l:%c:%trror: %m,' .
-  \   '%W%f:%l:%c:%tarning: %m,' .
-  \   '%E%f:%l::%trror: %m,' .
-  \   '%W%f:%l::%tarning: %m'
-  \ }
-
-
-" Auto-Pairs
-let g:AutoPairsShortcutFastWrap = '<leader>w'
-let g:AutoPairsShortcutJump = '<C-l>'
-
-" Gundo
-let g:gundo_prefer_python3 = 1
+autocmd InsertEnter * call deoplete#enable()  " Enable Deoplete on insert.
+let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
+let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 
 " jedi-vim
+" --------
 let g:jedi#completions_enabled = 0
 let g:jedi#use_tabs_not_buffers = 1
 
-" }}}
+" UtliSnips
+" ---------
+
+let g:UltiSnipsListSnippets = '<c-l>'
+let g:ultisnips_python_style = "sphinx"
+
+" Neomake
+" -------
+
+let g:neomake_autolint_sign_column_always = 1
+" Enable automake if Neomake plugin is loaded.
+" exists() doesn't work because plugins loaded after .vimrc is read.
+autocmd BufReadPost * if exists(":Neomake") | exe "call neomake#configure#automake('irw', 1000)" | endif
