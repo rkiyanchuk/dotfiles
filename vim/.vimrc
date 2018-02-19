@@ -211,6 +211,7 @@ Plug 'Shougo/deoplete.nvim'
 
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'python-mode/python-mode', {'for': 'python'}
 
 if executable("clang")
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
@@ -306,8 +307,15 @@ let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 
 " jedi-vim
 " --------
+
 let g:jedi#completions_enabled = 0
 let g:jedi#use_tabs_not_buffers = 1
+
+" deoplete-jedi
+" -------------
+
+" Force Jedi to use system python when working from virtualenv.
+let g:python3_host_prog = "/bin/python"
 
 " UtliSnips
 " ---------
@@ -322,3 +330,18 @@ let g:neomake_autolint_sign_column_always = 1
 " Enable automake if Neomake plugin is loaded.
 " exists() doesn't work because plugins loaded after .vimrc is read.
 autocmd BufReadPost * if exists(":Neomake") | exe "call neomake#configure#automake('irw', 1000)" | endif
+
+" python-mode
+" -----------
+
+let g:pymode_python = 'python3'
+let g:pymode_doc = 1
+let g:pymode_indent = 1
+let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_virtualenv = 0
+let g:pymode_rope_completion = 0
+let g:pymode_trim_whitespaces = 0
+let g:pymode_debug = 0
+let g:pymode_rope = 0
+
