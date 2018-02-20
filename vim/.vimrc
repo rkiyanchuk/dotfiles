@@ -82,8 +82,8 @@ let g:xml_syntax_folding = 1
 " MAPPINGS
 " ========
 
-nmap <silent> <leader>V :split $MYVIMRC<CR>
-nmap <silent> <leader>R :call ReloadConfig()<CR>
+nnoremap <silent> <leader>V :split $MYVIMRC<CR>
+nnoremap <silent> <leader>R :call ReloadConfig()<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :noh<CR>
@@ -249,8 +249,8 @@ silent! colorscheme NeoSolarized
 " nerdtree
 " --------
 
-imap <leader>1 :NERDTreeToggle<CR>
-nmap <leader>1 :NERDTreeToggle<CR>
+inoremap <leader>1 :NERDTreeToggle<CR>
+nnoremap <leader>1 :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
 
 " Close Vim if NERDTree is the only window left.
@@ -259,15 +259,15 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " tagbar
 " ------
 
-imap <leader>2 :TagbarToggle<CR>
-nmap <leader>2 :TagbarToggle<CR>
+inoremap <leader>2 :TagbarToggle<CR>
+nnoremap <leader>2 :TagbarToggle<CR>
 source $VIMHOME/tagbar_types.vim
 
 " gundo
 " -----
 
-imap <leader>3 :GundoToggle<CR>
-nmap <leader>3 :GundoToggle<CR>
+inoremap <leader>3 :GundoToggle<CR>
+nnoremap <leader>3 :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 
 " denite
