@@ -213,6 +213,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'python-mode/python-mode', {'for': 'python'}
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
 if executable("clang")
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
@@ -350,3 +351,8 @@ let g:pymode_rope = 0
 " ----------
 
 let g:AutoPairsShortcutJump = '<C-l>'
+
+" vim-javacomplete2
+" -----------------
+
+let g:JavaComplete_UsePython3 = 1
