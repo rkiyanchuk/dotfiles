@@ -215,6 +215,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
+Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
 if executable("clang")
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
 else
