@@ -69,7 +69,7 @@ tray = monitor
     }
 
 myLayouts = ModifiedLayout tray $
-            named (layoutIcons !! 0) (ResizableTall 1 (3/100) (1/2) [])
+            named (head layoutIcons) (ResizableTall 1 (3/100) (1/2) [])
             ||| named (layoutIcons !! 1) (Mirror (ResizableTall 1 (3/100) (4/5) []))
             ||| named (layoutIcons !! 2) Full
 
