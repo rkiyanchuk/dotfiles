@@ -203,6 +203,7 @@ Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'  " Auto-matching braces.
 Plug 'neomake/neomake'  " Static analysis and formatting.
+Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
 
 Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
 Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
