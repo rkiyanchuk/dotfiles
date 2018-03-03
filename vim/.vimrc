@@ -99,9 +99,8 @@ if !exists("*ReloadConfig")
         if has("gui_running")
           source $MYGVIMRC
         endif
-        echomsg "Sourced Vim config!"
+        redraw | echomsg "Sourced Vim config!"
         " Add second line to make Vim prompt for continuation.
-        echomsg ""
     endfunction
 endif
 
