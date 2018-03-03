@@ -62,12 +62,6 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd \
     -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel \
     -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 
-# Make executables from user's Python packages available in $PATH.
-export PATH="$PATH:$HOME/.local/bin"
-
-# Make executables from user's GOPATH/bin available in $PATH.
-export PATH="$PATH:$HOME/go/bin"
-
 eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
 # Enable Pew shell completion.

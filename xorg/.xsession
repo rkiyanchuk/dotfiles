@@ -9,6 +9,14 @@ export TZ='America/Los_Angeles'
 #export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
 
+
+# Make executables from user's Python packages available in $PATH.
+export PATH="$PATH:$HOME/.local/bin"
+
+# Make executables from user's GOPATH/bin available in $PATH.
+export PATH="$PATH:$HOME/go/bin"
+
+
 if [[ "${SSH_AGENT_PID}" == "" ]]; then
     eval $(ssh-agent) > /dev/null 2>&1
 fi
