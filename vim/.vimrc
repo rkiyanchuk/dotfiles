@@ -229,7 +229,7 @@ endif
 if executable("gocode")
     Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
 else
-    echomsg "Install godode package for Go lang completion support!"
+    echomsg "Install gocode package for Go lang completion support!"
 endif
 
 " Enhancements for specific file types.
