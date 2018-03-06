@@ -18,6 +18,7 @@ syntax on
 set background=dark
 set backup
 set backupdir=$VIMHOME/backups
+set backspace=indent,eol,start
 set colorcolumn=80
 set cursorcolumn
 set cursorline
