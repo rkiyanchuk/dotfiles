@@ -322,7 +322,11 @@ let g:jedi#use_tabs_not_buffers = 1
 " -------------
 
 " Force Jedi to use system python when working from virtualenv.
-let g:python3_host_prog = "/bin/python"
+if has('mac')
+    let g:python3_host_prog = '/usr/local/bin/python3'
+elseif has('unix')
+    let g:python3_host_prog = "/bin/python"
+endif
 
 " UtliSnips
 " ---------
