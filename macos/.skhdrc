@@ -9,12 +9,6 @@ alt - escape : pmset displaysleepnow
 # Close focused window
 alt + shift - c : chunkc tiling::window --close
 
-# Focus window
-# alt - h : chunkc tiling::window --focus west
-# alt - j : chunkc tiling::window --focus south
-# alt - k : chunkc tiling::window --focus north
-# alt - l : chunkc tiling::window --focus east
-
 alt - j : chunkc tiling::window --focus prev
 alt - k : chunkc tiling::window --focus next
 
@@ -22,14 +16,10 @@ alt - k : chunkc tiling::window --focus next
 shift + alt - space : chunkc tiling::desktop --equalize
 
 # Swap window
-shift + alt - h : chunkc tiling::window --swap west
-shift + alt - j : chunkc tiling::window --swap south
-shift + alt - k : chunkc tiling::window --swap north
-shift + alt - l : chunkc tiling::window --swap east
+shift + alt - j : chunkc tiling::window --swap next
+shift + alt - k : chunkc tiling::window --swap prev
 
 # Send window to desktop
-shift + alt + ctrl - h : chunkc tiling::window --send-to-desktop prev
-shift + alt + ctrl - l : chunkc tiling::window --send-to-desktop next
 shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
 shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
 shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
@@ -46,16 +36,10 @@ shift + alt - w  : chunkc tiling::window --send-to-monitor 1;
 shift + alt - e  : chunkc tiling::window --send-to-monitor 2;
 
 # increase region size
-shift + alt - up    : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
-shift + alt - down  : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
-shift + alt - left  : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
-shift + alt - right : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
-
-# decrease region size
-ctrl + shift + alt - down  : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
-ctrl + shift + alt - up    : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
-ctrl + shift + alt - right : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
-ctrl + shift + alt - left  : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
+ctrl + shift + alt - up    : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+ctrl + shift + alt - down  : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+ctrl + shift + alt - left  : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+ctrl + shift + alt - right : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
 
 # rotate tree
 #alt - r : chunkc tiling::desktop --rotate 90
@@ -65,9 +49,6 @@ ctrl + alt - f : chunkc tiling::window --toggle fullscreen
 
 # toggle window native fullscreen
 shift + alt - f : chunkc tiling::window --toggle native-fullscreen
-
-# toggle window parent zoom
-alt - d : chunkc tiling::window --toggle parent
 
 # toggle window split type
 alt - space : chunkc tiling::window --toggle split
