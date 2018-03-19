@@ -23,7 +23,6 @@ set colorcolumn=80
 set cursorcolumn
 set cursorline
 set directory=$VIMHOME/swap  " Store swap files here instead of current dir.
-set foldmethod=syntax
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
