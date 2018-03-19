@@ -46,7 +46,7 @@ Config {
       , "--on-icon-pattern", ""
       , "--off-icon-pattern", ""
       , "--idle-icon-pattern", ""
-      ] 600
+      ] 50
 
     , Run CoreTemp [
         "--template", "<core0>°C"
