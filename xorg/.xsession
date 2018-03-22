@@ -18,9 +18,9 @@ export PATH="$PATH:$HOME/go/bin"
 
 
 if [[ "${SSH_AGENT_PID}" == "" ]]; then
-    eval $(ssh-agent) > /dev/null 2>&1
+    eval "$(ssh-agent)" > /dev/null 2>&1
 fi
 
 if [[ ! $(pgrep -f "lock.sh") ]]; then
-    bash ${HOME}/.xmonad/lock.sh &
+    bash "${HOME}/.xmonad/lock.sh" &
 fi
