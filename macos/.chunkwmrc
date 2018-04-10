@@ -49,7 +49,7 @@ chunkc set focused_border_skip_floating  0
 # Plugins to load when chunkwm starts.
 # If chunkc plugin_dir is not set, the absolutepath is necessary.
 chunkc core::load tiling.so
-chunkc core::load ffm.so
+#chunkc core::load ffm.so
 
 
 # Shell commands require escaped quotes to pass value containing a whitespace.
