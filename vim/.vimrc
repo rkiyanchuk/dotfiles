@@ -88,6 +88,9 @@ nnoremap <silent> <leader>R :call ReloadConfig()<CR>
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :noh<CR>
 
+" Save restricted file opened without root permissions via sudo.
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
 
 " FUNCTIONS
 " =========
@@ -129,9 +132,6 @@ endfunction
 
 " Remove trailing spaces from file.
 command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
-
-" Save restricted file opened without root permissions via sudo.
-command! W :w !sudo tee %
 
 " Update plugins.
 command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
