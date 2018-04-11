@@ -1,6 +1,6 @@
 [user]
-    name = Ruslan Kiianchuk
-    email = ruslan.kiianchuk@gmail.com
+    name = Ruslan Kiyanchuk
+    email = ruslan.kiyanchuk@gmail.com
 [alias]
     br = branch -vv
     bra = branch -avv
@@ -29,7 +29,7 @@
     gui = vimdiff
 
 [gitreview]
-    username = rkiianchuk
+    username = rkiyanchuk
     username = ruslan_kiyanchuk
 
 [help]
