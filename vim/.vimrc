@@ -220,7 +220,7 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 
 Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
 if executable("clang")
@@ -380,6 +380,12 @@ let g:JavaComplete_UsePython3 = 1
 " ------
 
 nnoremap <leader>g :GoDef<CR>
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_extra_types = 1
+
 
 " UltiSnips
 " ---------
