@@ -130,6 +130,8 @@ endfunction
 " COMMANDS
 " ========
 
+command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
+
 " Remove trailing spaces from file.
 command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 
@@ -378,3 +380,8 @@ let g:JavaComplete_UsePython3 = 1
 " ------
 
 nnoremap <leader>g :GoDef<CR>
+
+" UltiSnips
+" ---------
+
+let g:UltiSnipsExpandTrigger = '<C-\>'
