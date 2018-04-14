@@ -218,6 +218,7 @@ Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'python-mode/python-mode', {'for': 'python'}
 Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+Plug 'fatih/vim-go', {'for': 'go'}
 
 Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
 if executable("clang")
@@ -372,3 +373,8 @@ let g:AutoPairsShortcutJump = '<C-l>'
 " -----------------
 
 let g:JavaComplete_UsePython3 = 1
+
+" vim-go
+" ------
+
+nnoremap <leader>g :GoDef<CR>
