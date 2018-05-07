@@ -188,10 +188,7 @@ endif
 call plug#begin($VIMPLUGINS)
 
 Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
-
-" NOTE: Keep this fork until https://github.com/icymind/NeoSolarized/pull/16
-" gets merged upstream.
-Plug 'zoresvit/NeoSolarized'
+Plug 'icymind/NeoSolarized'
 
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
