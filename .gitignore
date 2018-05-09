@@ -31,3 +31,7 @@ xmonad.state
 
 # GTK
 gtk/.config/gtk-3.0/bookmarks
+
+# Albert
+core.db
+last_used_version
