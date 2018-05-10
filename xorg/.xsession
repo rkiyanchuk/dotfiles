@@ -8,6 +8,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0  # Fix QT 5 wrong HiDPI scaling.
 export TZ='America/Los_Angeles'
 #export TZ='Europe/Amsterdam'
 #export TZ='Europe/Kiev'
+#export TZ='Asia/Jerusalem'
 
 
 # Make executables from user's Python packages available in $PATH.
