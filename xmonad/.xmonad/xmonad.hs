@@ -99,8 +99,8 @@ myKeyBindings =
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
 
     -- Screenshot
-    , ((0, xK_Print), spawn "flameshot gui -p ${HOME}/downloads")
-    , ((shiftMask, xK_Print), spawn "flameshot full -p ${HOME}/downloads")
+    , ((0, xK_Print), spawn "flameshot gui -p ${HOME}/Dropbox/Screenshots")
+    , ((shiftMask, xK_Print), spawn "flameshot full -p ${HOME}/Dropbox/Screenshots")
     ]
 
 
