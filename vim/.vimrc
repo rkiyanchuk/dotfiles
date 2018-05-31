@@ -289,11 +289,11 @@ call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'nor
 call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
 
-call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
-        \ ['-i', '--vimgrep'])
+        \ ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
