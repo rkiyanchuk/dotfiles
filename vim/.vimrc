@@ -89,7 +89,7 @@ nnoremap <silent> <leader>R :call ReloadConfig()<CR>
 nnoremap <Esc><Esc> :noh<CR>
 
 " Save restricted file opened without root permissions via sudo.
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!<CR>
 
 
 " FUNCTIONS
