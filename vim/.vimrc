@@ -166,7 +166,8 @@ augroup MISC
 
     " Auto close omni-completion preview window.
     au CursorMovedI * if pumvisible() == 0|pclose|endif
-    au InsertLeave * if pumvisible() == 0|pclose|endif
+    au CompleteDone * if pumvisible() == 0|pclose|endif
+
 
     " Make <K> to open ansible-doc when editing playbooks.
     au FileType ansible set keywordprg=ansible-doc
