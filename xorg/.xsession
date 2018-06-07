@@ -11,6 +11,18 @@ export TZ='America/Los_Angeles'
 #export TZ='Asia/Jerusalem'
 
 
+# Set styles for Java application.
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on \
+    -Djdk.gtk.version=3 \
+    -Dswing.aatext=true \
+    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel \
+    -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel \
+    -Dsun.java2d.opengl=true"
+
+# Tell Java that XMonad is non-reparenting WM.
+# Needed for correct Java apps windows operation under XMonad.
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Make executables from user's Python packages available in $PATH.
 export PATH="$PATH:$HOME/.local/bin"
 

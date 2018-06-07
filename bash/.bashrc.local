@@ -52,16 +52,6 @@ export LESS=" -R "
 # Force tmux into 256 colors mode.
 export TERM=xterm-256color
 
-# Tell Java that XMonad is non-reparenting WM.
-# Needed for correct Java apps windows operation under XMonad.
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Set styles for Java application.
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd \
-    -Dswing.aatext=true \
-    -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel \
-    -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-
 eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
 # Enable Pew shell completion.
