@@ -309,6 +309,9 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
+call airline#parts#define_raw('char', '§ %2Bh')
+let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
