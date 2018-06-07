@@ -342,7 +342,8 @@ let g:jedi#use_tabs_not_buffers = 1
 if has('mac')
     let g:python3_host_prog = '/usr/local/bin/python3'
 elseif has('unix')
-    let g:python3_host_prog = "/bin/python"
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 " UtliSnips
