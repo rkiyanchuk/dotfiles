@@ -29,6 +29,7 @@ export PATH="$PATH:$HOME/.local/bin"
 # Make executables from user's GOPATH/bin available in $PATH.
 export PATH="$PATH:$HOME/go/bin"
 
+xset -b  # Disable PC speaker bip.
 
 if [[ "${SSH_AGENT_PID}" == "" ]]; then
     eval "$(ssh-agent)" > /dev/null 2>&1
