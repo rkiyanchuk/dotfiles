@@ -358,6 +358,7 @@ let g:ultisnips_python_style = "sphinx"
 " -------
 
 let g:neomake_autolint_sign_column_always = 1
+let g:neomake_open_list = 2
 " Enable automake if Neomake plugin is loaded.
 " exists() doesn't work because plugins loaded after .vimrc is read.
 autocmd BufReadPost * if exists(":Neomake") | exe "call neomake#configure#automake('irw', 1000)" | endif
