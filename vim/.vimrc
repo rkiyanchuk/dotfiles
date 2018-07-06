@@ -154,6 +154,13 @@ augroup CPP
     au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
+augroup HTML
+    autocmd!
+    au FileType html setlocal shiftwidth=2
+    au FileType html setlocal softtabstop=2
+    au FileType html setlocal tabstop=2
+augroup END
+
 augroup MISC
     autocmd!
     au FileType gitcommit set colorcolumn=73
