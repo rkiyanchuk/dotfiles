@@ -299,7 +299,7 @@ call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'nore
 
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading'])
+        \ ['--vimgrep', '--no-heading', '-uu'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
