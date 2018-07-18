@@ -50,7 +50,7 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=" -R "
 
 # Force tmux into 256 colors mode.
-export TERM=xterm-256color
+#export TERM=xterm-256color
 
 eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 

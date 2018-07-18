@@ -1,0 +1,26 @@
+[Desktop Entry]
+DefaultProfile=solarized-dark.profile
+
+[DownloadDialog Settings]
+Height 1080=541
+Width 1920=698
+
+[Favorite Profiles]
+Favorites=solarized-dark.profile,solarized-light.profile
+
+[KonsoleWindow]
+AllowMenuAccelerators=true
+ShowMenuBarByDefault=false
+ShowWindowTitleOnTitleBar=true
+UseSingleInstance=true
+
+[MainWindow]
+Height 1080=1048
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAQYAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1920=1920
+
+[TabBar]
+TabBarPosition=Top
+TabBarVisibility=ShowTabBarWhenNeeded
