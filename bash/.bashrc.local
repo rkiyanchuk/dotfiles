@@ -113,6 +113,7 @@ alias open='xdg-open'
 alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias packer="packer-io"
+alias gnvim="nvim-gtk"
 
 # Create popup notification when command execution is completed.
 # Usage:

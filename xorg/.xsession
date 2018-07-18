@@ -23,6 +23,9 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on \
 # Needed for correct Java apps windows operation under XMonad.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# NeoVim GTK settings.
+export NVIM_GTK_NO_HEADERBAR=1
+
 # Make executables from user's Python packages available in $PATH.
 export PATH="$PATH:$HOME/.local/bin"
 
