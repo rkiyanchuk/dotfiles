@@ -61,8 +61,25 @@ fi
 # PROMPT
 # ======
 
-# Source git prompt
-source /usr/share/git/completion/git-prompt.sh
+# Self-made replacement for slow __git_ps1.
+function __git_branch() {
+    local head
+    local branch
+    git_root=$(pwd)
+    while [[ "$git_root" != "" && ! -e "$git_root/.git" ]]; do
+        git_root="${git_root%/*}"
+    done
+
+    if [[ -d "$git_root/.git" ]]; then
+        head=$(<"$git_root/.git/HEAD")
+        branch=" (${head##*/})"
+    else
+        branch=""
+    fi
+
+    echo "$branch"
+}
+
 
 prompt_command () {
     # Capture exit code of last command.
@@ -72,10 +89,7 @@ prompt_command () {
         STATUS="${RED}${?}${RESET}:"
     fi
 
-    # Show Git branch if in repository.
-    if [ "$(type -t __git_ps1)" ]; then
-        BRANCH="$(__git_ps1)"
-    fi
+    BRANCH=$(__git_branch)
 
     # Show virtualenv if activated.
     if [[ $VIRTUAL_ENV != "" ]]; then
