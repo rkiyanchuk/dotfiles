@@ -84,6 +84,7 @@ let g:xml_syntax_folding = 1
 
 nnoremap <silent> <leader>V :split $MYVIMRC<CR>
 nnoremap <silent> <leader>R :call ReloadConfig()<CR>
+nnoremap <silent> <leader>cc :lclose<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :noh<CR>
