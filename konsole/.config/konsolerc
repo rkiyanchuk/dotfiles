@@ -6,7 +6,7 @@ Height 1080=541
 Width 1920=698
 
 [Favorite Profiles]
-Favorites=solarized-light.profile,solarized-dark.profile
+Favorites=solarized-dark.profile,solarized-light.profile
 
 [KonsoleWindow]
 AllowMenuAccelerators=true
