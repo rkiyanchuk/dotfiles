@@ -45,17 +45,16 @@ HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
 export EDITOR="vim"
 
-# Syntax highlighting for `less`. Requires `source-highlight` package.
-export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
-export LESS=" -R "
-
-eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+# Add user binaries to PATH.
+export PATH="${USER}/node_modules/.bin:${USER}.local/bin/:$PATH"
 
 # Enable Pew shell completion.
 PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
 if [ -f ${PEW_SHELL_CONFIG} ]; then
     source ${PEW_SHELL_CONFIG}
 fi
+
+eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
 
 # PROMPT
@@ -115,13 +114,9 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
-alias l='ls -hl --color'
-alias ll='ls -Ahl --color'
-alias grep='grep --color=auto'
-alias rgrep='grep -r --color=auto'
-alias ssh='TERM=xterm ssh'
+alias l='ls -hl --color=auto'
+alias ll='ls -Ahl --color=auto'
 alias open='xdg-open'
-alias ssh='TERM=xterm ssh'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias packer="packer-io"
 alias gnvim="nvim-gtk"
