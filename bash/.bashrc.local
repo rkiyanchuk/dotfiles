@@ -119,7 +119,8 @@ alias ll='ls -Ahl --color=auto'
 alias open='xdg-open'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias packer="packer-io"
-alias gnvim="nvim-gtk"
+alias vim="nvim"
+alias gvim="nvim-gtk"
 
 # Create popup notification when command execution is completed.
 # Usage:
