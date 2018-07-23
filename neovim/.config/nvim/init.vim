@@ -3,21 +3,24 @@ let $VIMSITE=$HOME . "/.local/share/nvim/site"
 let $VIMPLUGINS=$VIMSITE . "/plugins"
 
 " Create directories required by Vim configuration.
-if !isdirectory($VIMHOME . "/backups")
-    call mkdir($VIMHOME . "/backups", "p")
+if !isdirectory($VIMSITE . "/backups")
+    call mkdir($VIMSITE . "/backups", "p")
 endif
-if !isdirectory($VIMHOME . "/swap")
-    call mkdir($VIMHOME . "/swap", "p")
+if !isdirectory($VIMSITE . "/swap")
+    call mkdir($VIMSITE . "/swap", "p")
+endif
+if !isdirectory($VIMSITE . "/undo")
+    call mkdir($VIMSITE . "/undo", "p")
 endif
 
 set background=dark
 set backup
-set backupdir=$VIMHOME/backups
+set backupdir=$VIMSITE/backups
 set backspace=indent,eol,start
 set colorcolumn=80
 set cursorcolumn
 set cursorline
-set directory=$VIMHOME/swap  " Store swap files here instead of current dir.
+set directory=$VIMSITE/swap  " Store swap files here instead of current dir.
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
@@ -35,7 +38,7 @@ set splitbelow
 set splitright
 set termguicolors
 set textwidth=79
-set undodir=$VIMHOME/swap
+set undodir=$VIMSITE/undo
 set undofile
 set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
