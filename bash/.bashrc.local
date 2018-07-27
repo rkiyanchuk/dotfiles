@@ -27,18 +27,43 @@ ONMAGENTA="\[\033[0;45m\]"
 ONCYAN="\[\033[0;46m\]"
 ONWHITE="\[\033[0;47m\]"
 
-
-# CONFIGURATION VARIABLES
-# =======================
-
-stty -ixon  # Enable backward history search with C-s.
-shopt -s autocd  # Auto append cd to directory
+MACOS='darwin17'
+LINUX='linux-gnu'
 
 HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in Bash history.
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
+stty -ixon  # Enable backward history search with C-s.
+
+if [[ $OSTYPE == $LINUX ]]; then
+    shopt -s autocd  # Auto append cd to directory
+    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+    USER_PATHS="${HOME}/.local/bin:${HOME}/go/bin:${HOME}/node_modules/.bin"
+
+elif [[ $OSTYPE == $MACOS ]]; then
+    export CLICOLOR=1
+
+    BREW='/usr/local'
+    if [ -f ${BREW}/etc/bash_completion ]; then
+        source ${BREW}/etc/bash_completion
+    fi
+
+    GIT_COMPLETION="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
+    GIT_PROMPT="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
+    USER_PATHS="${HOME}/.local/bin:${HOME}/go/bin:${HOME}/node_modules/.bin:${HOME}/Library/Python/3.6/bin"
+
+    if [ -f ${GIT_COMPLETION} ]; then
+        source ${GIT_COMPLETION}
+    fi
+
+    if [ -f ${GIT_PROMPT} ]; then
+        source ${GIT_PROMPT}
+    fi
+
+
+fi
 
 # ENVIRONMENT VARIABLES
 # =====================
@@ -46,7 +71,7 @@ HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 export EDITOR="vim"
 
 # Add user binaries to PATH.
-export PATH="${USER}/node_modules/.bin:${USER}.local/bin/:$PATH"
+export PATH="${USER_PATHS}:$PATH"
 
 # Enable Pew shell completion.
 PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
@@ -54,7 +79,6 @@ if [ -f ${PEW_SHELL_CONFIG} ]; then
     source ${PEW_SHELL_CONFIG}
 fi
 
-eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 
 
 # PROMPT
@@ -114,18 +138,26 @@ export PROMPT_COMMAND=prompt_command
 
 alias ..='cd ../'
 alias dud='du -hd1'
-alias l='ls -hl --color=auto'
-alias ll='ls -Ahl --color=auto'
-alias open='xdg-open'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
-alias packer="packer-io"
 alias vim="nvim"
-alias gvim="nvim-gtk"
 
-# Create popup notification when command execution is completed.
-# Usage:
-#   ~$ command; alert
-alias alert='notify-send --urgency=low -i \
-    "$([ $? = 0 ] && echo terminal || echo error)" \
-    "$(history | tail -n1 | sed -e \
-    '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
+if [[ $OSTYPE == $LINUX ]]; then
+    alias ls='ls --color=auto'
+    alias l='ls -hl --color=auto'
+    alias ll='ls -Ahl --color=auto'
+    alias open='xdg-open'
+    alias packer="packer-io"
+    alias gvim="nvim-gtk"
+
+    # Create popup notification when command execution is completed.
+    # Usage:
+    #   ~$ command; alert
+    alias alert='notify-send --urgency=low -i \
+        "$([ $? = 0 ] && echo terminal || echo error)" \
+        "$(history | tail -n1 | sed -e \
+        '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
+elif [[ $OSTYPE == $MACOS ]]; then
+    alias gvim="vimr"
+    alias l='ls -hl'
+    alias ll='ls -Ahl'
+fi
