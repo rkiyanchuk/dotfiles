@@ -10,6 +10,9 @@ mutt/.mutt/cache/
 tmux/.tmux/plugins/
 tmux/.tmuxp/*.yml
 
+# Neovim
+/neovim/.config/nvim/.netrwhist
+
 # Vim
 /vim/.vim/.netrwhist
 /vim/.vim/backups/

@@ -1,4 +1,4 @@
-let $VIMHOME=$HOME . "/.config/nvim/"
+let $VIMHOME=$HOME . "/.config/nvim"
 let $VIMSITE=$HOME . "/.local/share/nvim/site"
 let $VIMPLUGINS=$VIMSITE . "/plugins"
 
@@ -84,12 +84,11 @@ let g:python_host_skip_check = 0
 
 nnoremap <silent> <leader>V :split $MYVIMRC<CR>
 nnoremap <silent> <leader>R :call ReloadConfig()<CR>
+nnoremap <silent> <leader>co :copen<CR>
+nnoremap <silent> <leader>cc :cclose<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
-nnoremap <Esc><Esc> :noh<CR>
-
-" Save restricted file opened without root permissions via sudo.
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!<CR>
+nnoremap <Esc><Esc> :nohlsearch<CR>
 
 
 " FUNCTIONS
@@ -174,7 +173,6 @@ augroup MISC
     " Auto close omni-completion preview window.
     au CursorMovedI * if pumvisible() == 0|pclose|endif
     au CompleteDone * if pumvisible() == 0|pclose|endif
-
 
     " Make <K> to open ansible-doc when editing playbooks.
     au FileType ansible set keywordprg=ansible-doc
@@ -293,18 +291,20 @@ nnoremap <leader>fb :Denite buffer<CR>
 nnoremap <leader>fg :Denite grep<CR>
 nnoremap <leader>fr :Denite register<CR>
 nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
+if exists('g:loaded_denite')
+    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
+    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
+    call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
+    call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
 
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'default_opts',
+            \ ['--vimgrep', '--no-heading'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+endif
 
 
 " vim-airline
@@ -317,16 +317,17 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
-call airline#parts#define_raw('char', '§ %2Bh')
-let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
+if exists('g:loaded_airline')
+    call airline#parts#define_raw('char', '§ %2Bh')
+    let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_buffers = 0
+    let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#show_tab_type = 0
+    let g:airline#extensions#tabline#show_tabs = 1
+    let g:airline#extensions#tabline#tab_min_count = 2
+    let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
+endif
 
 " gitgutter
 " ---------
@@ -340,17 +341,12 @@ autocmd InsertEnter * call deoplete#enable()  " Enable Deoplete on insert.
 let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 
-" jedi-vim
-" --------
-
-let g:jedi#completions_enabled = 0
-let g:jedi#use_tabs_not_buffers = 1
-
 " deoplete-jedi
 " -------------
 
 " Force Jedi to use system python when working from virtualenv.
 if has('mac')
+    let g:python_host_prog = '/usr/local/bin/python2'
     let g:python3_host_prog = '/usr/local/bin/python3'
 elseif has('unix')
     let g:python_host_prog = '/usr/bin/python2'
