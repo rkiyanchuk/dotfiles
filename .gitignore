@@ -41,3 +41,6 @@ last_used_version
 
 # GoldenDict
 goldendict/.goldendict/index/
+
+# Konsole
+konsole/.local/
