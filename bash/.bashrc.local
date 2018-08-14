@@ -146,7 +146,6 @@ if [[ $OSTYPE == $LINUX ]]; then
     alias l='ls -hl --color=auto'
     alias ll='ls -Ahl --color=auto'
     alias open='xdg-open'
-    alias packer="packer-io"
     alias gvim="nvim-gtk"
 
     # Create popup notification when command execution is completed.
