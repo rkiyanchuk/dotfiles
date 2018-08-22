@@ -95,8 +95,8 @@ myKeyBindings =
     , ((shiftMask, xF86XK_AudioMute), spawn "pamixer -t")
 
     -- Brightness control
-    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
-    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5 && notify-send Brightness -i notification-display-brightness-low -h int:value:$(xbacklight) -h string:x-canonical-private-synchronous:brightness -t 1000 -i /usr/share/icons/Adwaita/64x64/status/display-brightness-symbolic.symbolic.png")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5 && notify-send Brightness -i notification-display-brightness-low -h int:value:$(xbacklight) -h string:x-canonical-private-synchronous:brightness -t 1000 -i /usr/share/icons/Adwaita/64x64/status/display-brightness-symbolic.symbolic.png")
 
     -- Screenshot
     , ((0, xK_Print), spawn "flameshot gui -p ${HOME}/Dropbox/Screenshots")
