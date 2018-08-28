@@ -11,7 +11,8 @@ tmux/.tmux/plugins/
 tmux/.tmuxp/*.yml
 
 # Neovim
-/neovim/.config/nvim/.netrwhist
+.netrwhist
+/neovim/.config/nvim/spell/
 
 # Vim
 /vim/.vim/.netrwhist
@@ -41,3 +42,6 @@ last_used_version
 
 # GoldenDict
 goldendict/.goldendict/index/
+
+# Konsole
+konsole/.local/
