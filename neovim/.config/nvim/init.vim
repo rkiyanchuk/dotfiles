@@ -291,7 +291,10 @@ nnoremap <leader>fb :Denite buffer<CR>
 nnoremap <leader>fg :Denite grep<CR>
 nnoremap <leader>fr :Denite register<CR>
 nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
-if exists('g:loaded_denite')
+
+" Call functions if Denite is loaded.
+" exists() doesn't work .vimrc is source before any plugins are loaded.
+if &rtp =~ 'Denite'
     call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
@@ -317,17 +320,19 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_skip_empty_sections = 1
 
-if exists('g:loaded_airline')
+if &rtp =~ 'airline'
     call airline#parts#define_raw('char', '§ %2Bh')
-    let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#show_buffers = 0
-    let g:airline#extensions#tabline#show_splits = 0
-    let g:airline#extensions#tabline#show_tab_type = 0
-    let g:airline#extensions#tabline#show_tabs = 1
-    let g:airline#extensions#tabline#tab_min_count = 2
-    let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
 endif
+
+let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
 
 " gitgutter
 " ---------
