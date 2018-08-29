@@ -2,137 +2,59 @@
 # user's configuration extends default `.bashrc`.
 # Add `source ${HOME}/.bashrc.local` to default `.bashrc` to activate.
 
-# COLOR CODES
-# ===========
-
-RESET="\[\033[0;0m\]"
-BOLD="\[\033[0;1m\]"
-UNDERLINE="\[\033[0;4m\]"
-# Foregrounds
-GREY="\[\033[0;30m\]"
-RED="\[\033[0;31m\]"
-GREEN="\[\033[0;32m\]"
-YELLOW="\[\033[0;33m\]"
-BLUE="\[\033[0;34m\]"
-MAGENTA="\[\033[0;35m\]"
-CYAN="\[\033[0;36m\]"
-WHITE="\[\033[0;37m\]"
-# Backgrounds
-ONGREY="\[\033[0;40m\]"
-ONRED="\[\033[0;41m\]"
-ONGREEN="\[\033[0;42m\]"
-ONYELLOW="\[\033[0;43m\]"
-ONBLUE="\[\033[0;44m\]"
-ONMAGENTA="\[\033[0;45m\]"
-ONCYAN="\[\033[0;46m\]"
-ONWHITE="\[\033[0;47m\]"
-
-MACOS='darwin17'
-LINUX='linux-gnu'
+MACOS="darwin*"
+LINUX="linux-gnu"
 
 HISTTIMEFORMAT="%d.%m.%y %T "  # Store date and time in Bash history.
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
+export EDITOR="vim"
+export GPG_TTY=$(tty)
+export GOPATH=".go"
+
+export PATH="${HOME}/.local/bin:$PATH"  # Scripts installed by pip (Python).
+export PATH="${HOME}/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
+export PATH="${HOME}/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
+export PATH="${HOME}/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
+
+# Enable Pew shell completion.
+source $(pew shell_config)
+
+if [ -x /usr/bin/dircolors ]; then
+    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+fi
+
 stty -ixon  # Enable backward history search with C-s.
+shopt -s histappend
+shopt -s checkwinsize
 
 if [[ $OSTYPE == $LINUX ]]; then
     shopt -s autocd  # Auto append cd to directory
-    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
-    USER_PATHS="${HOME}/.local/bin:${HOME}/go/bin:${HOME}/node_modules/.bin"
+fi
 
-elif [[ $OSTYPE == $MACOS ]]; then
+if [[ $OSTYPE == $MACOS ]]; then
     export CLICOLOR=1
 
-    BREW='/usr/local'
-    if [ -f ${BREW}/etc/bash_completion ]; then
-        source ${BREW}/etc/bash_completion
+    if [ -f /usr/local/etc/bash_completion ]; then
+        # Source completion for programs installed via Homebrew.
+        source /usr/local/etc/bash_completion
     fi
 
     GIT_COMPLETION="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash"
     GIT_PROMPT="/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
-    USER_PATHS="${HOME}/.local/bin:${HOME}/go/bin:${HOME}/node_modules/.bin:${HOME}/Library/Python/3.6/bin"
-
-    if [ -f ${GIT_COMPLETION} ]; then
-        source ${GIT_COMPLETION}
-    fi
-
-    if [ -f ${GIT_PROMPT} ]; then
-        source ${GIT_PROMPT}
-    fi
-
-
+    if [ -f ${GIT_COMPLETION} ]; then source ${GIT_COMPLETION}; fi
+    if [ -f ${GIT_PROMPT} ]; then source ${GIT_PROMPT}; fi
 fi
 
-# ENVIRONMENT VARIABLES
-# =====================
-
-export EDITOR="vim"
-
-# Add user binaries to PATH.
-export PATH="${USER_PATHS}:$PATH"
-
-export GPG_TTY=`tty`
-
-# Enable Pew shell completion.
-PEW_SHELL_CONFIG='/usr/lib/python3.6/site-packages/pew/shell_config/init.bash'
-if [ -f ${PEW_SHELL_CONFIG} ]; then
-    source ${PEW_SHELL_CONFIG}
-fi
-
-
-
-# PROMPT
-# ======
-
-# Self-made replacement for slow __git_ps1.
-function __git_branch() {
-    local head
-    local branch
-    git_root=$(pwd)
-    while [[ "$git_root" != "" && ! -e "$git_root/.git" ]]; do
-        git_root="${git_root%/*}"
-    done
-
-    if [[ -d "$git_root/.git" ]]; then
-        head=$(<"$git_root/.git/HEAD")
-        branch=" (${head##*/})"
-    else
-        branch=""
-    fi
-
-    echo "$branch"
+_pip_completion()
+{
+  COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                 COMP_CWORD=$COMP_CWORD \
+                 PIP_AUTO_COMPLETE=1 $1 ) )
 }
-
-
-prompt_command () {
-    # Capture exit code of last command.
-    if [ $? -eq 0 ]; then
-        STATUS=""
-    else
-        STATUS="${RED}${?}${RESET}:"
-    fi
-
-    BRANCH=$(__git_branch)
-
-    # Show virtualenv if activated.
-    if [[ $VIRTUAL_ENV != "" ]]; then
-        VENV="${CYAN}[${VIRTUAL_ENV##*/}]${RESET} "
-    else
-        VENV=""
-    fi
-
-    export PS1="${RED}${debian_chroot:+($debian_chroot)}${RESET}\
-$VENV\
-${YELLOW}\u${RESET}@${GREEN}\h${RESET}:\
-$STATUS\
-${BLUE}\W${RESET}\
-${RED}${BRANCH}${RESET}\
-${GREEN}\$${RESET} "
-}
-
-export PROMPT_COMMAND=prompt_command
+complete -o default -F _pip_completion pip
 
 
 # ALIASES
@@ -157,8 +79,82 @@ if [[ $OSTYPE == $LINUX ]]; then
         "$([ $? = 0 ] && echo terminal || echo error)" \
         "$(history | tail -n1 | sed -e \
         '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
-elif [[ $OSTYPE == $MACOS ]]; then
+fi
+
+if [[ $OSTYPE == $MACOS ]]; then
     alias gvim="vimr"
     alias l='ls -hl'
     alias ll='ls -Ahl'
 fi
+
+
+# PROMPT
+# ======
+
+# Color codes
+RESET="\[\033[0;0m\]"
+BOLD="\[\033[0;1m\]"
+UNDERLINE="\[\033[0;4m\]"
+GREY="\[\033[0;30m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[0;32m\]"
+YELLOW="\[\033[0;33m\]"
+BLUE="\[\033[0;34m\]"
+MAGENTA="\[\033[0;35m\]"
+CYAN="\[\033[0;36m\]"
+WHITE="\[\033[0;37m\]"
+ONGREY="\[\033[0;40m\]"
+ONRED="\[\033[0;41m\]"
+ONGREEN="\[\033[0;42m\]"
+ONYELLOW="\[\033[0;43m\]"
+ONBLUE="\[\033[0;44m\]"
+ONMAGENTA="\[\033[0;45m\]"
+ONCYAN="\[\033[0;46m\]"
+ONWHITE="\[\033[0;47m\]"
+
+# Self-made replacement for slow __git_ps1.
+function __git_branch() {
+    local head
+    local branch
+    git_root=$(pwd)
+    while [[ "$git_root" != "" && ! -e "$git_root/.git" ]]; do
+        git_root="${git_root%/*}"
+    done
+
+    if [[ -d "$git_root/.git" ]]; then
+        head=$(<"$git_root/.git/HEAD")
+        branch=" (${head##*/})"
+    else
+        branch=""
+    fi
+
+    echo "$branch"
+}
+
+prompt_command () {
+    # Capture exit code of last command.
+    if [ $? -eq 0 ]; then
+        STATUS=""
+    else
+        STATUS="${RED}${?}${RESET}:"
+    fi
+
+    BRANCH=$(__git_branch)
+
+    # Show virtualenv if activated.
+    if [[ $VIRTUAL_ENV != "" ]]; then
+        VENV="${CYAN}[${VIRTUAL_ENV##*/}]${RESET} "
+    fi
+
+    PROMPT="${RED}${debian_chroot:+($debian_chroot)}${RESET}"
+    PROMPT+="$VENV"
+    PROMPT+="${YELLOW}\u${RESET}@${GREEN}\h${RESET}:"
+    PROMPT+="$STATUS"
+    PROMPT+="${BLUE}\W${RESET}"
+    PROMPT+="${RED}${BRANCH}${RESET}"
+    PROMPT+="${GREEN}\$${RESET} "
+
+    export PS1=${PROMPT}
+}
+
+export PROMPT_COMMAND=prompt_command
