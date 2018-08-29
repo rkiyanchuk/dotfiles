@@ -20,7 +20,9 @@ export PATH="${HOME}/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
 export PATH="${HOME}/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 
 # Enable Pew shell completion.
-source $(pew shell_config)
+# Update this value by checking $ pew shell_config
+# Though it's too slow to execute here every time.
+source /usr/lib/python3.7/site-packages/pew/shell_config/init.bash
 
 if [ -x /usr/bin/dircolors ]; then
     eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
@@ -71,14 +73,6 @@ if [[ $OSTYPE == $LINUX ]]; then
     alias ll='ls -Ahl --color=auto'
     alias open='xdg-open'
     alias gvim="nvim-gtk"
-
-    # Create popup notification when command execution is completed.
-    # Usage:
-    #   ~$ command; alert
-    alias alert='notify-send --urgency=low -i \
-        "$([ $? = 0 ] && echo terminal || echo error)" \
-        "$(history | tail -n1 | sed -e \
-        '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"; printf "\a"'
 fi
 
 if [[ $OSTYPE == $MACOS ]]; then
