@@ -25,11 +25,7 @@
 [core]
     editor = vim
 
-[diff]
-    gui = vimdiff
-
 [gitreview]
-    username = rkiyanchuk
     username = ruslan_kiyanchuk
 
 [help]
