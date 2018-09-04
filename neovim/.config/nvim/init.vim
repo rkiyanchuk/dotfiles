@@ -19,56 +19,57 @@ endif
 call plug#begin($VIMHOME . '/plugins')
 
 Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
-Plug 'icymind/NeoSolarized'
+Plug 'icymind/NeoSolarized'  " Solarized colorscheme.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
     Plug 'jszakmeister/markdown2ctags'
     Plug 'jszakmeister/rst2ctags'
-
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
-Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
+Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'  " Auto-matching braces.
-Plug 'neomake/neomake'  " Static analysis and formatting.
-Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
 
-Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
+" Git integration.
 Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
-
-" Completion
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'python-mode/python-mode', {'for': 'python'}
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-
-Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
-if executable("clang")
-    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
-else
-    echomsg "Install clang package for C/C++ completion support!"
-endif
-
-if executable("gocode")
-    Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-else
-    echomsg "Install gocode package for Go lang completion support!"
-endif
+Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
+Plug 'mhinz/vim-signify'  "Show a diff using Vim its sign column
 
 " Enhancements for specific file types.
-Plug 'tmux-plugins/vim-tmux'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'smancill/conky-syntax.vim'
-Plug 'Matt-Deacalion/vim-systemd-syntax'
-Plug 'gabrielelana/vim-markdown'
-Plug 'pearofducks/ansible-vim'
+Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
+Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
-Plug 'hashivim/vim-terraform'
 Plug 'fidian/hexmode'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ }
+
+
+" Plug 'neomake/neomake'  " Static analysis and formatting.
+"
+" Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+" Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+"
+" Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
+" if executable("clang")
+"     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
+" else
+"     echomsg "Install clang package for C/C++ completion support!"
+" endif
+"
+" if executable("gocode")
+"     Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
+" else
+"     echomsg "Install gocode package for Go lang completion support!"
+" endif
+"
 
 call plug#end()
 
@@ -76,43 +77,42 @@ call plug#end()
 " SETTINGS
 " ========
 
+set autoread
 set background=dark
 set backspace=indent,eol,start
 set backup
+set clipboard=unnamed,unnamedplus
 set colorcolumn=80
+set completeopt=longest,menuone
+"set completeopt=longest,menuonepreview  " Disable until preview with splitbelow is fixed.
 set cursorcolumn
 set cursorline
-set formatoptions+=r  " Automatically insert current comment leader on Enter.
+set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
 set matchpairs+=<:>
 set mouse=a
 set mousemodel=popup_setpos
+set noshowmode  " Mode is already displayed by vim-airline plugin.
 set nowrap
 set number
 set path+=**  " Search downwards in a directory for `gf`, etc.
 set scrolloff=3
 set showbreak=↪
+set showcmd
 set showfulltag  " Show arguments for a function when available, etc.
+set sidescrolloff=3
+set signcolumn=yes
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
 set termguicolors
 set textwidth=79
+set title
 set undofile
 set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set wildmenu
-set undodir=$VIMSITE/undo
-set backupdir=$VIMSITE/backups
-set directory=$VIMSITE/swap  " Directory to store swap files.
-
-" Ensure directories for Vim temp files exist.
-for path in [&undodir, &backupdir, &directory]
-    if !isdirectory(expand(path))
-        call mkdir(expand(path), "p")
-    endif
-endfor
 
 " Search
 set hlsearch
@@ -136,6 +136,18 @@ set laststatus=2
 set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
 set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
 
+" Directories for temp files.
+set undodir=$VIMSITE/undo
+set backupdir=$VIMSITE/backups
+set directory=$VIMSITE/swap  " Directory to store swap files.
+
+" Ensure directories for Vim temp files exist.
+for path in [&undodir, &backupdir, &directory]
+    if !isdirectory(expand(path))
+        call mkdir(expand(path), "p")
+    endif
+endfor
+
 " Filetype settings
 let c_comment_strings = 1
 let c_space_errors = 1  " Highlight extra white spaces.
@@ -155,33 +167,36 @@ catch
     colorscheme desert
 endtry
 
+
 " MAPPINGS
 " ========
 
 nnoremap <silent> <leader>V :split $MYVIMRC<CR>
-nnoremap <silent> <leader>R :call ReloadConfig()<CR>
-nnoremap <silent> <leader>co :copen<CR>
-nnoremap <silent> <leader>cc :cclose<CR>
+nnoremap <leader>R :call ReloadConfig()<CR>
+nnoremap <leader>s :set spell!<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
 
-inoremap <leader>1 :NERDTreeToggle<CR>
-nnoremap <leader>1 :NERDTreeToggle<CR>
+inoremap <silent> <leader>1 :NERDTreeToggle<CR>
+nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
-inoremap <leader>2 :TagbarToggle<CR>
-nnoremap <leader>2 :TagbarToggle<CR>
+inoremap <silent> <leader>2 :TagbarToggle<CR>
+nnoremap <silent> <leader>2 :TagbarToggle<CR>
 
-inoremap <leader>3 :GundoToggle<CR>
-nnoremap <leader>3 :GundoToggle<CR>
+inoremap <silent> <leader>3 :GundoToggle<CR>
+nnoremap <silent> <leader>3 :GundoToggle<CR>
 
-nnoremap <leader>ff :Denite file_rec<CR>
-nnoremap <leader>fb :Denite buffer<CR>
-nnoremap <leader>fg :Denite grep<CR>
-nnoremap <leader>fr :Denite register<CR>
-nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
+nnoremap <silent> <leader>ff :Denite file_rec<CR>
+nnoremap <silent> <leader>fb :Denite buffer<CR>
+nnoremap <silent> <leader>fg :Denite grep<CR>
+nnoremap <silent> <leader>fr :Denite register<CR>
+nnoremap <silent> <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
 
-nnoremap <leader>g :GoDef<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 
 
 " FUNCTIONS
@@ -269,8 +284,7 @@ augroup MISC
     au Syntax * normal zR
 
     " Auto close omni-completion preview window.
-    au CursorMovedI * if pumvisible() == 0|pclose|endif
-    au CompleteDone * if pumvisible() == 0|pclose|endif
+    au CursorMovedI,CompleteDone * if pumvisible() == 0|pclose|endif
 
     " Make <K> to open ansible-doc when editing playbooks.
     au FileType ansible set keywordprg=ansible-doc
@@ -372,19 +386,6 @@ let g:neomake_autolint_sign_column_always = 1
 let g:neomake_open_list = 2
 " Enable automake if Neomake plugin is loaded.
 autocmd BufReadPost * if PluginInstalled('neomake') | exe "call neomake#configure#automake('irw', 1000)" | endif
-
-" ==> python-mode/python-mode
-
-let g:pymode_python = 'python3'
-let g:pymode_doc = 1
-let g:pymode_indent = 1
-let g:pymode_folding = 0
-let g:pymode_lint = 0
-let g:pymode_virtualenv = 0
-let g:pymode_rope_completion = 0
-let g:pymode_trim_whitespaces = 0
-let g:pymode_debug = 0
-let g:pymode_rope = 0
 
 " ==> jiangmiao/auto-pairs
 
