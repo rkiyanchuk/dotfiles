@@ -1,26 +1,87 @@
-let $VIMHOME=$HOME . "/.config/nvim"
+let $VIMHOME=fnamemodify($MYVIMRC, ':h')
 let $VIMSITE=$HOME . "/.local/share/nvim/site"
-let $VIMPLUGINS=$VIMSITE . "/plugins"
 
-" Create directories required by Vim configuration.
-if !isdirectory($VIMSITE . "/backups")
-    call mkdir($VIMSITE . "/backups", "p")
+
+" PLUGINS
+" =======
+
+" Auto install vim-plug plugin manager.
+if !filereadable($VIMHOME . '/autoload/plug.vim')
+    if executable('curl')
+        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    else
+        echomsg "Install curl to download vim-plug plugin manager!"
+    endif
 endif
-if !isdirectory($VIMSITE . "/swap")
-    call mkdir($VIMSITE . "/swap", "p")
+
+call plug#begin($VIMHOME . '/plugins')
+
+Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
+Plug 'icymind/NeoSolarized'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+    Plug 'jszakmeister/markdown2ctags'
+    Plug 'jszakmeister/rst2ctags'
+
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'  " Auto-matching braces.
+Plug 'neomake/neomake'  " Static analysis and formatting.
+Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
+
+Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
+Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
+
+" Completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'python-mode/python-mode', {'for': 'python'}
+Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+
+Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
+if executable("clang")
+    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
+else
+    echomsg "Install clang package for C/C++ completion support!"
 endif
-if !isdirectory($VIMSITE . "/undo")
-    call mkdir($VIMSITE . "/undo", "p")
+
+if executable("gocode")
+    Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
+else
+    echomsg "Install gocode package for Go lang completion support!"
 endif
+
+" Enhancements for specific file types.
+Plug 'tmux-plugins/vim-tmux'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'smancill/conky-syntax.vim'
+Plug 'Matt-Deacalion/vim-systemd-syntax'
+Plug 'gabrielelana/vim-markdown'
+Plug 'pearofducks/ansible-vim'
+Plug 'hashivim/vim-vagrant'
+Plug 'hashivim/vim-terraform'
+Plug 'fidian/hexmode'
+
+call plug#end()
+
+
+" SETTINGS
+" ========
 
 set background=dark
-set backup
-set backupdir=$VIMSITE/backups
 set backspace=indent,eol,start
+set backup
 set colorcolumn=80
 set cursorcolumn
 set cursorline
-set directory=$VIMSITE/swap  " Store swap files here instead of current dir.
 set formatoptions+=r  " Automatically insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
@@ -38,11 +99,20 @@ set splitbelow
 set splitright
 set termguicolors
 set textwidth=79
-set undodir=$VIMSITE/undo
 set undofile
 set updatetime=1000  " For more efficient Tagbar functioning
 set virtualedit=all
 set wildmenu
+set undodir=$VIMSITE/undo
+set backupdir=$VIMSITE/backups
+set directory=$VIMSITE/swap  " Directory to store swap files.
+
+" Ensure directories for Vim temp files exist.
+for path in [&undodir, &backupdir, &directory]
+    if !isdirectory(expand(path))
+        call mkdir(expand(path), "p")
+    endif
+endfor
 
 " Search
 set hlsearch
@@ -78,6 +148,12 @@ let g:xml_syntax_folding = 1
 let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
 
+try
+    colorscheme NeoSolarized
+catch
+    echomsg "NeoSolarized plugin is missing! Using built-in colorscheme."
+    colorscheme desert
+endtry
 
 " MAPPINGS
 " ========
@@ -89,6 +165,23 @@ nnoremap <silent> <leader>cc :cclose<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
+
+inoremap <leader>1 :NERDTreeToggle<CR>
+nnoremap <leader>1 :NERDTreeToggle<CR>
+
+inoremap <leader>2 :TagbarToggle<CR>
+nnoremap <leader>2 :TagbarToggle<CR>
+
+inoremap <leader>3 :GundoToggle<CR>
+nnoremap <leader>3 :GundoToggle<CR>
+
+nnoremap <leader>ff :Denite file_rec<CR>
+nnoremap <leader>fb :Denite buffer<CR>
+nnoremap <leader>fg :Denite grep<CR>
+nnoremap <leader>fr :Denite register<CR>
+nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
+
+nnoremap <leader>g :GoDef<CR>
 
 
 " FUNCTIONS
@@ -118,11 +211,16 @@ function! ShowSpaces(...)
     return oldhlsearch
 endfunction
 
-function! FixSpaces() range
+function! FixSpaces()
     " Remove trailing spaces.
     let oldhlsearch=ShowSpaces(1)
     execute a:firstline.",".a:lastline."substitute ///ge"
     let &hlsearch=oldhlsearch
+endfunction
+
+function! PluginInstalled(name)
+    " Check if plugin has been installed.
+    return isdirectory($VIMHOME . "/plugins/" . a:name)
 endfunction
 
 
@@ -176,125 +274,34 @@ augroup MISC
 
     " Make <K> to open ansible-doc when editing playbooks.
     au FileType ansible set keywordprg=ansible-doc
-
 augroup END
 
 
-" PLUGINS
-" =======
+" PLUGIN SETTINGS
+" ===============
 
-" Auto install vim-plug plugin manager.
-if empty(glob($VIMSITE . '/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" ==> icymind/NeoSolarized
 
-
-call plug#begin($VIMPLUGINS)
-
-" Essentials
-" ==========
-
-Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
-Plug 'icymind/NeoSolarized'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-    Plug 'jszakmeister/markdown2ctags'
-    Plug 'jszakmeister/rst2ctags'
-
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
-Plug 'Shougo/denite.nvim'  " Fuzzy search for files and buffers.
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'  " Auto-matching braces.
-Plug 'neomake/neomake'  " Static analysis and formatting.
-Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
-
-Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
-Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
-
-" Completion
-" ----------
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'zchee/deoplete-jedi', {'for': 'python'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'python-mode/python-mode', {'for': 'python'}
-Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-
-Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
-if executable("clang")
-    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
-else
-    echomsg "Install clang package for C/C++ completion support!"
-endif
-
-if executable("gocode")
-    Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-else
-    echomsg "Install gocode package for Go lang completion support!"
-endif
-
-" Enhancements for specific file types.
-Plug 'tmux-plugins/vim-tmux'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'smancill/conky-syntax.vim'
-Plug 'Matt-Deacalion/vim-systemd-syntax'
-Plug 'gabrielelana/vim-markdown'
-Plug 'pearofducks/ansible-vim'
-Plug 'hashivim/vim-vagrant'
-Plug 'hashivim/vim-terraform'
-Plug 'fidian/hexmode'
-
-call plug#end()
-
-" NeoSolarized
-" ------------
-
-" Silent suppresses errors when colorscheme plugin is not yet installed.
-silent! colorscheme NeoSolarized
 let g:neosolarized_bold = 0
 
-" nerdtree
-" --------
+" ==> scrooloose/nerdtree
 
-inoremap <leader>1 :NERDTreeToggle<CR>
-nnoremap <leader>1 :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
 
 " Close Vim if NERDTree is the only window left.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" tagbar
-" ------
+" ==> majutsushi/tagbar
 
-inoremap <leader>2 :TagbarToggle<CR>
-nnoremap <leader>2 :TagbarToggle<CR>
 source $VIMHOME/tagbar_types.vim
 
-" gundo
-" -----
+" ==> sjl/gundo.vim
 
-inoremap <leader>3 :GundoToggle<CR>
-nnoremap <leader>3 :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 
-" denite
-" ------
+" ==> Shougo/denite.nvim
 
-nnoremap <leader>ff :Denite file_rec<CR>
-nnoremap <leader>fb :Denite buffer<CR>
-nnoremap <leader>fg :Denite grep<CR>
-nnoremap <leader>fr :Denite register<CR>
-nnoremap <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
-
-" Call functions if Denite is loaded.
-" exists() doesn't work .vimrc is source before any plugins are loaded.
-if &rtp =~ 'Denite'
+if PluginInstalled('denite.nvim')
     call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
     call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
     call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
@@ -309,22 +316,22 @@ if &rtp =~ 'Denite'
     call denite#custom#var('grep', 'final_opts', [])
 endif
 
-
-" vim-airline
-" -----------
+" ==> vim-airline/vim-airline
 
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+
+" Remove separators (they are distracting).
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_skip_empty_sections = 1
 
-if &rtp =~ 'airline'
+if PluginInstalled("vim-airline")
+    " Show character code under cursor.
     call airline#parts#define_raw('char', '§ %2Bh')
+    let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
 endif
-
-let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -334,22 +341,18 @@ let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
 
-" gitgutter
-" ---------
+" ==> Shougo/deoplete.nvim
 
-let g:gitgutter_override_sign_column_highlight = 0
+if PluginInstalled("deoplete.nvim")
+    autocmd InsertEnter * call deoplete#enable()  " Enable Deoplete on insert.
+endif
 
-" deoplete
-" --------
-
-autocmd InsertEnter * call deoplete#enable()  " Enable Deoplete on insert.
 let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 
-" deoplete-jedi
-" -------------
+" ==> zchee/deoplete-jedi
 
-" Force Jedi to use system python when working from virtualenv.
+" Force Jedi to use system Python when working from virtualenv.
 if has('mac')
     let g:python_host_prog = '/usr/local/bin/python2'
     let g:python3_host_prog = '/usr/local/bin/python3'
@@ -358,22 +361,19 @@ elseif has('unix')
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" UtliSnips
-" ---------
+" ==> SirVer/ultisnips
 
+let g:UltiSnipsExpandTrigger = '<C-\>'
 let g:ultisnips_python_style = "sphinx"
 
-" Neomake
-" -------
+" ==> neomake/neomake
 
 let g:neomake_autolint_sign_column_always = 1
 let g:neomake_open_list = 2
 " Enable automake if Neomake plugin is loaded.
-" exists() doesn't work because plugins loaded after .vimrc is read.
-autocmd BufReadPost * if exists(":Neomake") | exe "call neomake#configure#automake('irw', 1000)" | endif
+autocmd BufReadPost * if PluginInstalled('neomake') | exe "call neomake#configure#automake('irw', 1000)" | endif
 
-" python-mode
-" -----------
+" ==> python-mode/python-mode
 
 let g:pymode_python = 'python3'
 let g:pymode_doc = 1
@@ -386,28 +386,18 @@ let g:pymode_trim_whitespaces = 0
 let g:pymode_debug = 0
 let g:pymode_rope = 0
 
-" auto-pairs
-" ----------
+" ==> jiangmiao/auto-pairs
 
 let g:AutoPairsShortcutJump = '<C-l>'
 
-" vim-javacomplete2
-" -----------------
+" ==> artur-shaik/vim-javacomplete2
 
 let g:JavaComplete_UsePython3 = 1
 
-" vim-go
-" ------
+" ==> fatih/vim-go
 
-nnoremap <leader>g :GoDef<CR>
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_extra_types = 1
-
-
-" UltiSnips
-" ---------
-
-let g:UltiSnipsExpandTrigger = '<C-\>'
