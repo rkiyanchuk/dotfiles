@@ -23,7 +23,7 @@
     whitespace = warn
 
 [core]
-    editor = vim
+    editor = nvim
 
 [gitreview]
     username = ruslan_kiyanchuk
