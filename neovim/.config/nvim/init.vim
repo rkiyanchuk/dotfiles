@@ -30,10 +30,8 @@ Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Git integration.
 Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'  " Show git diff in gutter (+/- signs column).
-Plug 'mhinz/vim-signify'  "Show a diff using Vim its sign column
+Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 
 " Enhancements for specific file types.
 Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
