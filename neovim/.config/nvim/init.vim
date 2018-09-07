@@ -1,5 +1,6 @@
 let $VIMHOME=fnamemodify($MYVIMRC, ':h')
 let $VIMSITE=$HOME . "/.local/share/nvim/site"
+let $VIMPLUGINS=$VIMSITE . "/plugins"
 
 
 " PLUGINS
@@ -16,7 +17,7 @@ if !filereadable($VIMHOME . '/autoload/plug.vim')
     endif
 endif
 
-call plug#begin($VIMHOME . '/plugins')
+call plug#begin($VIMPLUGINS)
 
 Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 Plug 'icymind/NeoSolarized'  " Solarized colorscheme.
@@ -235,7 +236,7 @@ endfunction
 
 function! PluginInstalled(name)
     " Check if plugin has been installed.
-    return isdirectory($VIMHOME . "/plugins/" . a:name)
+    return isdirectory($VIMPLUGINS . a:name)
 endfunction
 
 
