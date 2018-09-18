@@ -234,7 +234,7 @@ endfunction
 
 function! PluginInstalled(name)
     " Check if plugin has been installed.
-    return isdirectory($VIMPLUGINS . a:name)
+    return isdirectory($VIMPLUGINS . "/" . a:name)
 endfunction
 
 
