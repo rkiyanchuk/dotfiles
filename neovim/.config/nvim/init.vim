@@ -23,37 +23,31 @@ Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 Plug 'icymind/NeoSolarized'  " Solarized colorscheme.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
     Plug 'jszakmeister/markdown2ctags'
     Plug 'jszakmeister/rst2ctags'
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 
+" Use my fork of auto-pairs until upstream merges the pull request:
+" https://github.com/jiangmiao/auto-pairs/pull/222
+Plug 'zoresvit/auto-pairs', {'branch': 'patch-2'}
+"Plug 'jiangmiao/auto-pairs'
+
+" Completion and programming.
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+
 " Enhancements for specific file types.
 Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
 Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
-Plug 'fidian/hexmode'
-
-"Plug 'jiangmiao/auto-pairs'
-" Use my fork until upstream merges the pull request:
-" https://github.com/jiangmiao/auto-pairs/pull/222
-Plug 'zoresvit/auto-pairs', {'branch': 'patch-2'}
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ }
+Plug 'fidian/hexmode'  " Hex
 
 call plug#end()
 
@@ -182,7 +176,6 @@ nnoremap <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
-
 " FUNCTIONS
 " =========
 
@@ -246,8 +239,8 @@ augroup END
 
 augroup CPP
     autocmd!
-    au FileType c,cpp,h set cindent
-    au FileType c,cpp,h set cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
+    au FileType c,cpp,h setlocal cindent
+    au FileType c,cpp,h setlocal cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
 augroup HTML
@@ -259,8 +252,8 @@ augroup END
 
 augroup MISC
     autocmd!
-    au FileType gitcommit set colorcolumn=73
-    au FileType gitcommit set textwidth=72
+    au FileType gitcommit setlocal colorcolumn=73
+    au FileType gitcommit setlocal textwidth=72
 
     au BufRead,BufNewFile *.conf set filetype=cfg  " Treat .conf files as .cfg.
 
