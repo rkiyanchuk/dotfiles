@@ -358,3 +358,13 @@ let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 let g:signify_sign_changedelete      = '≂'
 let g:signify_sign_show_count = 0
+
+" ==> autozimu/LanguageClient-neovim
+
+let g:LanguageClient_serverCommands = {}
+
+if executable('pyls')
+    let g:LanguageClient_serverCommands.python = 'pyls'
+else
+    echomsg "Python language server is missing!"
+endif
