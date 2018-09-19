@@ -48,7 +48,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
 Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
-Plug 'fidian/hexmode'  " Hex
+Plug 'fidian/hexmode'  " Hex editor mode.
 
 call plug#end()
 
@@ -150,7 +150,7 @@ endtry
 " MAPPINGS
 " ========
 
-nnoremap <silent> <leader>V :split $MYVIMRC<CR>
+nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
 nnoremap <leader>R :call ReloadConfig()<CR>
 nnoremap <leader>s :set spell!<CR>
 
@@ -308,8 +308,7 @@ if PluginInstalled('denite.nvim')
     call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
 
     call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts',
-            \ ['--vimgrep', '-uu', '--no-heading'])
+    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '-uu', '--no-heading'])
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
@@ -355,14 +354,10 @@ let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 let g:UltiSnipsExpandTrigger = '<C-\>'
 let g:ultisnips_python_style = "sphinx"
 
-" ==> jiangmiao/auto-pairs
-
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
-
 " ==> mhinz/vim-signify
 
 let g:signify_vcs_list = ['git', 'hg']
-let g:signify_sign_delete            = '-'
+let g:signify_sign_delete            = '−'
 let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 let g:signify_sign_changedelete      = '≂'
@@ -383,6 +378,7 @@ else
     " Dependencies:
     " - python-jedi
     " - python-rope
+    " - flake8
     " - python-pyflakes
     " - python-mccabe
     " - python-pycodestyle
