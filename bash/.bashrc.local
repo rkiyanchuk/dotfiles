@@ -15,13 +15,13 @@ export EDITOR="vim"
 export GPG_TTY=$(tty)
 export GOPATH="$HOME/.go"
 
-export PATH="${HOME}/.local/bin:$PATH"  # Scripts installed by pip (Python).
-export PATH="${HOME}/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
-export PATH="${HOME}/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
-export PATH="${HOME}/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
+export PATH="$HOME/.local/bin:$PATH"  # Scripts installed by pip (Python).
+export PATH="$HOME/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
+export PATH="$HOME/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
+export PATH="$HOME/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 
 if [ -x /usr/bin/dircolors ]; then
-    eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
+    eval $(dircolors $HOME/.dircolors/dircolors.ansi-universal)
 fi
 
 stty -ixon  # Enable backward history search with C-s.
@@ -142,18 +142,17 @@ prompt_command () {
 
     # Show virtualenv if activated.
     if [[ $VIRTUAL_ENV != "" ]]; then
-        VENV="${CYAN}[${VIRTUAL_ENV##*/}]${RESET} "
+        VENV="$CYAN[${VIRTUAL_ENV##*/}]$RESET "
     fi
 
-    PROMPT="${RED}${debian_chroot:+($debian_chroot)}${RESET}"
-    PROMPT+="$VENV"
-    PROMPT+="${YELLOW}\u${RESET}@${GREEN}\h${RESET}:"
+    PROMPT="$VENV"
+    PROMPT+="$YELLOW\u$RESET@$GREEN\h$RESET:"
     PROMPT+="$STATUS"
-    PROMPT+="${BLUE}\W${RESET}"
+    PROMPT+="$BLUE\W$RESET"
     PROMPT+="${RED}${BRANCH}${RESET}"
-    PROMPT+="${GREEN}\$${RESET} "
+    PROMPT+="$GREEN\$$RESET "
 
-    export PS1=${PROMPT}
+    export PS1=$PROMPT
 }
 
 export PROMPT_COMMAND=prompt_command
