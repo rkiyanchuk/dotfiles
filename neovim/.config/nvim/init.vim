@@ -172,9 +172,12 @@ nnoremap <silent> <leader>fg :Denite grep<CR>
 nnoremap <silent> <leader>fr :Denite register<CR>
 nnoremap <silent> <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+function! SetLSPShortcuts()
+    nnoremap <silent> <F2> :Denite contextMenu<CR>
+    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> <leader>gi :call LanguageClient#textDocument_implementation()<CR>
+endfunction()
 
 
 " FUNCTIONS
@@ -266,6 +269,11 @@ augroup MISC
 
     " Make <K> to open ansible-doc when editing playbooks.
     au FileType ansible setlocal keywordprg=ansible-doc
+augroup END
+
+augroup LSP
+  autocmd!
+  autocmd FileType c,cpp,objc,objcpp,py,go,sh call SetLSPShortcuts()
 augroup END
 
 
