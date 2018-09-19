@@ -39,6 +39,11 @@ Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
 Plug 'fidian/hexmode'
 
+"Plug 'jiangmiao/auto-pairs'
+" Use my fork until upstream merges the pull request:
+" https://github.com/jiangmiao/auto-pairs/pull/222
+Plug 'zoresvit/auto-pairs', {'branch': 'patch-2'}
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'autozimu/LanguageClient-neovim', {
