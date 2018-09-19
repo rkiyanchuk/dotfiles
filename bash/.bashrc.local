@@ -13,7 +13,7 @@ HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 export TERM=xterm-256color
 export EDITOR="vim"
 export GPG_TTY=$(tty)
-export GOPATH=".go"
+export GOPATH="$HOME/.go"
 
 export PATH="${HOME}/.local/bin:$PATH"  # Scripts installed by pip (Python).
 export PATH="${HOME}/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
