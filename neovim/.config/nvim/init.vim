@@ -389,3 +389,23 @@ else
     " Dependencies:
     " - bash-language-server
 endif
+
+if executable('clangd')
+    let g:LanguageClient_serverCommands.c = ['clangd']
+    let g:LanguageClient_serverCommands.objc = ['clangd']
+    let g:LanguageClient_serverCommands.cpp = ['clangd']
+    let g:LanguageClient_serverCommands.objcpp = ['clangd']
+else
+    echomsg "Cland language server is missing!"
+    " Dependencies:
+    " - clang
+endif
+
+if executable('go-langserver')
+    let g:LanguageClient_serverCommands.go = ['go-langserver', '-gocodecompletion']
+else
+    echomsg "Go language server is missing!"
+    " Dependencies:
+    " - go-langserver-git
+    " - gocode-git
+endif
