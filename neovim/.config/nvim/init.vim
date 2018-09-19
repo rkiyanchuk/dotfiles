@@ -9,8 +9,8 @@ let $VIMPLUGINS=$VIMSITE . "/plugins"
 " Auto install vim-plug plugin manager.
 if !filereadable($VIMHOME . '/autoload/plug.vim')
     if executable('curl')
-        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     else
         echomsg "Install curl to download vim-plug plugin manager!"
@@ -50,26 +50,6 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ }
 
-
-" Plug 'neomake/neomake'  " Static analysis and formatting.
-"
-" Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
-" Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
-"
-" Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp', 'cxx']}
-" if executable("clang")
-"     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'cxx']}
-" else
-"     echomsg "Install clang package for C/C++ completion support!"
-" endif
-"
-" if executable("gocode")
-"     Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
-" else
-"     echomsg "Install gocode package for Go lang completion support!"
-" endif
-"
-
 call plug#end()
 
 
@@ -83,7 +63,7 @@ set backup
 set clipboard=unnamed,unnamedplus
 set colorcolumn=80
 set completeopt=longest,menuone
-"set completeopt=longest,menuonepreview  " Disable until preview with splitbelow is fixed.
+"set completeopt=longest,menuone,preview  " Disable until preview with splitbelow is fixed.
 set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
@@ -363,41 +343,11 @@ endif
 let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
 let g:deoplete#sources#clang#clang_header="/usr/include/clang"
 
-" ==> zchee/deoplete-jedi
-
-" Force Jedi to use system Python when working from virtualenv.
-if has('mac')
-    let g:python_host_prog = '/usr/local/bin/python2'
-    let g:python3_host_prog = '/usr/local/bin/python3'
-elseif has('unix')
-    let g:python_host_prog = '/usr/bin/python2'
-    let g:python3_host_prog = '/usr/bin/python3'
-endif
-
 " ==> SirVer/ultisnips
 
 let g:UltiSnipsExpandTrigger = '<C-\>'
 let g:ultisnips_python_style = "sphinx"
 
-" ==> neomake/neomake
-
-let g:neomake_autolint_sign_column_always = 1
-let g:neomake_open_list = 2
-" Enable automake if Neomake plugin is loaded.
-autocmd BufReadPost * if PluginInstalled('neomake') | exe "call neomake#configure#automake('irw', 1000)" | endif
-
 " ==> jiangmiao/auto-pairs
 
-let g:AutoPairsShortcutJump = '<C-l>'
-
-" ==> artur-shaik/vim-javacomplete2
-
-let g:JavaComplete_UsePython3 = 1
-
-" ==> fatih/vim-go
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_extra_types = 1
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<':'>'}
