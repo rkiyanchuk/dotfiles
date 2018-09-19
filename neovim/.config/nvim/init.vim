@@ -9,8 +9,8 @@ let $VIMPLUGINS=$VIMSITE . "/plugins"
 " Auto install vim-plug plugin manager.
 if !filereadable($VIMHOME . '/autoload/plug.vim')
     if executable('curl')
-        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     else
         echomsg "Install curl to download vim-plug plugin manager!"
@@ -225,7 +225,7 @@ command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 
 " Update plugins.
-command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
+command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade | source $MYVIMRC
 
 
 " AUTOCOMMANDS
@@ -234,7 +234,7 @@ command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade
 augroup TEXT
     " Auto commands for any text files.
     autocmd!
-    au FileType text,markdown,tex set spell
+    au FileType text,markdown,tex setlocal spell
 augroup END
 
 augroup CPP
@@ -255,7 +255,7 @@ augroup MISC
     au FileType gitcommit setlocal colorcolumn=73
     au FileType gitcommit setlocal textwidth=72
 
-    au BufRead,BufNewFile *.conf set filetype=cfg  " Treat .conf files as .cfg.
+    au BufRead,BufNewFile *.conf setlocal filetype=cfg  " Treat .conf files as .cfg.
 
     " Open all folds by default
     au Syntax * normal zR
@@ -264,7 +264,7 @@ augroup MISC
     au CursorMovedI,CompleteDone * if pumvisible() == 0|pclose|endif
 
     " Make <K> to open ansible-doc when editing playbooks.
-    au FileType ansible set keywordprg=ansible-doc
+    au FileType ansible setlocal keywordprg=ansible-doc
 augroup END
 
 
@@ -364,7 +364,7 @@ let g:signify_sign_show_count = 0
 let g:LanguageClient_serverCommands = {}
 
 if executable('pyls')
-    let g:LanguageClient_serverCommands.python = 'pyls'
+    let g:LanguageClient_serverCommands.python = ['pyls']
 else
     echomsg "Python language server is missing!"
 endif
