@@ -367,4 +367,12 @@ if executable('pyls')
     let g:LanguageClient_serverCommands.python = ['pyls']
 else
     echomsg "Python language server is missing!"
+    " Dependencies:
+    " - python-jedi
+    " - python-rope
+    " - python-pyflakes
+    " - python-mccabe
+    " - python-pycodestyle
+    " - python-pydocstyle
+    " - yapf
 endif
