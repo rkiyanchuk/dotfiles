@@ -376,3 +376,11 @@ else
     " - python-pydocstyle
     " - yapf
 endif
+
+if executable('bash-language-server')
+    let g:LanguageClient_serverCommands.sh = ['bash-language-server', 'start']
+else
+    echomsg "Bash language server is missing!"
+    " Dependencies:
+    " - bash-language-server
+endif
