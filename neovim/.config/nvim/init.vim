@@ -42,6 +42,7 @@ Plug 'zoresvit/auto-pairs', {'branch': 'patch-2'}
 " Completion and programming.
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+Plug 'Shougo/echodoc.vim'
 
 " Enhancements for specific file types.
 Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
@@ -358,6 +359,10 @@ let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = '~'
 let g:signify_sign_changedelete      = '≂'
 let g:signify_sign_show_count = 0
+
+" ==> Shougo/echodoc.vim
+
+let g:echodoc#enable_at_startup = 1
 
 " ==> autozimu/LanguageClient-neovim
 
