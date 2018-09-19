@@ -20,11 +20,6 @@ export PATH="${HOME}/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
 export PATH="${HOME}/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
 export PATH="${HOME}/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 
-# Enable Pew shell completion.
-# Update this value by checking $ pew shell_config
-# Though it's too slow to execute here every time.
-source /usr/lib/python3.7/site-packages/pew/shell_config/init.bash
-
 if [ -x /usr/bin/dircolors ]; then
     eval $(dircolors ${HOME}/.dircolors/dircolors.ansi-universal)
 fi
@@ -35,10 +30,17 @@ shopt -s checkwinsize
 
 if [[ $OSTYPE == $LINUX ]]; then
     shopt -s autocd  # Auto append cd to directory
+
+    # Enable Pew shell completion.
+    # Update this value by checking $ pew shell_config
+    # Though it's too slow to execute here every time.
+    source /usr/lib/python3.7/site-packages/pew/shell_config/init.bash
 fi
 
 if [[ $OSTYPE == $MACOS ]]; then
     export CLICOLOR=1
+
+    source /usr/local/lib/python3.7/site-packages/pew/shell_config/init.bash
 
     if [ -f /usr/local/etc/bash_completion ]; then
         # Source completion for programs installed via Homebrew.
