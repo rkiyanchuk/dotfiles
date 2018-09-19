@@ -40,6 +40,8 @@ fi
 if [[ $OSTYPE == $MACOS ]]; then
     export CLICOLOR=1
 
+    export PATH="$HOME/Library/Python/3.7/bin:$PATH"  # Scripts installed by pip (Python) on macOS.
+
     source /usr/local/lib/python3.7/site-packages/pew/shell_config/init.bash
 
     if [ -f /usr/local/etc/bash_completion ]; then
