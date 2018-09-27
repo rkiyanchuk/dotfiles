@@ -286,7 +286,7 @@ let g:neosolarized_bold = 0
 
 " ==> scrooloose/nerdtree
 
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 " Close Vim if NERDTree is the only window left.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
