@@ -10,7 +10,6 @@ export TZ='America/Los_Angeles'
 #export TZ='Europe/Kiev'
 #export TZ='Asia/Jerusalem'
 
-
 # Set styles for Java application.
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on \
     -Djdk.gtk.version=3 \
@@ -25,12 +24,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # NeoVim GTK settings.
 export NVIM_GTK_NO_HEADERBAR=1
-
-# Make executables from user's Python packages available in $PATH.
-export PATH="$PATH:$HOME/.local/bin"
-
-# Make executables from user's GOPATH/bin available in $PATH.
-export PATH="$PATH:$HOME/go/bin"
 
 xset -b  # Disable PC speaker bip.
 
