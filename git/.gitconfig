@@ -1,14 +1,16 @@
 [user]
     name = Ruslan Kiyanchuk
     email = ruslan.kiyanchuk@gmail.com
+    signingkey = FAFCBE8AD9CD1CF9
+
 [alias]
     br = branch -vv
     bra = branch -avv
-    cm = commit
+    cm = commit -S
     co = checkout
     ds = diff --stat
     dc = diff --cached
-    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cblue>%Creset %s%Cred%d%Creset [%Cgreen%an%Creset]\"
+    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cgreen%an%Creset %Cred%G?%Creset %Cblue>%Creset %s%Cred%d%Creset %Cgreen%GK%Creset \"
     ls = ls-files
     mt = mergetool
     st = status -sb
