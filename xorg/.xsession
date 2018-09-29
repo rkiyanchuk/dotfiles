@@ -25,6 +25,11 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # NeoVim GTK settings.
 export NVIM_GTK_NO_HEADERBAR=1
 
+# Explicitely set XDG_RUNTIME_DIR for systemd.
+# See bug for details:
+# https://answers.launchpad.net/ubuntu/+source/systemd/+question/287454
+export XDG_RUNTIME_DIR=/run/user/`id -u`
+
 xset -b  # Disable PC speaker bip.
 
 if [[ "${SSH_AGENT_PID}" == "" ]]; then
