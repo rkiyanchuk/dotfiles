@@ -80,7 +80,7 @@ Config {
       , "--high", "#dc322f"
       ] 20
 
-    , Run Kbd [("us(altgr-intl)", "En <fc=#839496></fc>"),
+    , Run Kbd [("us(altgr-intl)", "En <fc=#859900></fc>"),
                ("ru", "Ru <fc=#dc322f></fc>"),
                ("ua", "Uk <fc=#b58900></fc>")]
 

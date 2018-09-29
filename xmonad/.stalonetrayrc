@@ -11,5 +11,3 @@ no_shrink true
 scrollbars horizontal
 scrollbars_highlight "#31363b"
 scrollbars_step 28
-
-kludges force_icons_size
