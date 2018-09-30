@@ -138,6 +138,8 @@ let g:xml_syntax_folding = 1
 " See https://github.com/neovim/neovim/issues/5728#issuecomment-265454125
 let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 try
     colorscheme NeoSolarized
@@ -371,8 +373,8 @@ let g:echodoc#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {}
 
-if executable('pyls')
-    let g:LanguageClient_serverCommands.python = ['pyls']
+if executable('/usr/bin/pyls')
+    let g:LanguageClient_serverCommands.python = ['/usr/bin/pyls']
 else
     echomsg "Python language server is missing!"
     " Dependencies:
