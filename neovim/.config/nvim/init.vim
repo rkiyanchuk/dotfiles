@@ -273,7 +273,7 @@ augroup END
 
 augroup LSP
   autocmd!
-  autocmd FileType c,cpp,objc,objcpp,py,go,sh call SetLSPShortcuts()
+  autocmd FileType c,cpp,objc,objcpp,python,go,sh call SetLSPShortcuts()
 augroup END
 
 
