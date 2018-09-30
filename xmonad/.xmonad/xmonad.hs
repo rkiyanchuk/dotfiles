@@ -121,8 +121,8 @@ main = do
                                <+> manageHook def
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
+                                  spawnOnce "stalonetray"
                                   spawnOnce "nm-applet"
-                                  spawnOnce "pasystray -m 150"
                                   spawnOnce "blueman-applet"
                                   spawnOnce "dropbox"
                                   spawnOnce "conky -d"
