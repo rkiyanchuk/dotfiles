@@ -275,7 +275,7 @@ augroup END
 
 augroup LSP
   autocmd!
-  autocmd FileType c,cpp,objc,objcpp,python,go,sh call SetLSPShortcuts()
+  autocmd FileType c,cpp,objc,objcpp,python,go,sh,java call SetLSPShortcuts()
 augroup END
 
 
@@ -414,4 +414,12 @@ else
     " Dependencies:
     " - go-langserver-git
     " - gocode-git
+endif
+
+if executable('jdtls')
+    let g:LanguageClient_serverCommands.java = ['jdtls']
+else
+    echomsg "Java language server is missing!"
+    " Installation instructions:
+    " https://www.reddit.com/r/vim/comments/844bwy/has_anyone_gotten_java_language_server_to_work/e2o5hhr
 endif
