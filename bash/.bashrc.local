@@ -72,6 +72,7 @@ alias ..='cd ../'
 alias dud='du -hd1'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
+alias vimdiff="nvim -d"
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias ls='ls --color=auto'
