@@ -11,7 +11,7 @@ HISTFILESIZE=10000
 HISTCONTROL=ignoreboth:erasedups  # Remove duplicates from Bash history.
 
 export TERM=xterm-256color
-export EDITOR="vim"
+export EDITOR="nvim"
 export GPG_TTY=$(tty)
 export GOPATH="$HOME/.go"
 
