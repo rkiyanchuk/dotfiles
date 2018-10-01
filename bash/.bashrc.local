@@ -78,7 +78,7 @@ if [[ $OSTYPE == $LINUX ]]; then
     alias ls='ls --color=auto'
     alias l='ls -hl --color=auto'
     alias ll='ls -Ahl --color=auto'
-    alias open='xdg-open'
+    alias open='mimeo'
     alias gvim="nvim-gtk"
 fi
 
