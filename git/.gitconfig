@@ -11,6 +11,7 @@
     dc = diff --cached
     ds = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %ad %Cgreen%an%Creset %Cred%G?%Creset %Cblue>%Creset %s%Cred%d%Creset %Cgreen%GK%Creset \"
+    rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
     ls = ls-files
     mt = mergetool
     st = status -sb
