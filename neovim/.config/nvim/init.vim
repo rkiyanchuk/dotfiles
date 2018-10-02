@@ -371,6 +371,7 @@ let g:echodoc#enable_at_startup = 1
 
 " ==> autozimu/LanguageClient-neovim
 
+let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
 let g:LanguageClient_serverCommands = {}
 
 if executable('pyls')
