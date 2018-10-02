@@ -31,7 +31,8 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
+    Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 
 " Use my fork of auto-pairs until upstream merges the pull request:
