@@ -373,8 +373,8 @@ let g:echodoc#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {}
 
-if executable('/usr/bin/pyls')
-    let g:LanguageClient_serverCommands.python = ['/usr/bin/pyls']
+if executable('pyls')
+    let g:LanguageClient_serverCommands.python = ['pyls']
 else
     echomsg "Python language server is missing!"
     " Dependencies:
