@@ -56,4 +56,4 @@
     default = simple
 
 [credential "https://stash.ges.symantec.com"]
-    helper = symantec-stash -a
+    helper = symantec-stash

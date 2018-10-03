@@ -310,8 +310,11 @@ if PluginInstalled('denite.nvim')
     call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
     call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
 
+	call denite#custom#var('file_rec', 'command',
+        \ ['rg', '--files', '--glob', '!.tox', '!.tox'])
+
     call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '-uu', '--no-heading'])
+    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '-uu', '--no-heading', '-g', '!.tox', '-g', '!.git'])
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
@@ -372,6 +375,7 @@ let g:echodoc#enable_at_startup = 1
 
 " ==> autozimu/LanguageClient-neovim
 
+let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
 let g:LanguageClient_serverCommands = {}
 
 if executable('pyls')
