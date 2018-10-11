@@ -80,9 +80,9 @@ Config {
       , "--high", "#dc322f"
       ] 20
 
-    , Run Kbd [("us(altgr-intl)", "En <fc=#859900></fc>"),
-               ("ru", "Ru <fc=#dc322f></fc>"),
-               ("ua", "Uk <fc=#b58900></fc>")]
+    , Run Kbd [("us(altgr-intl)", "<fc=#859900>En</fc>"),
+               ("ru", "<fc=#dc322f>Ru</fc>"),
+               ("ua", "<fc=#b58900>Uk</fc>")]
 
     , Run Date "%a %b %0d <fc=#859900>%H:%M:%S</fc>" "date" 10
     ]
