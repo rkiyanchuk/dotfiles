@@ -4,8 +4,8 @@
 # Listen DBUS queue to get signal from Gnome Screensaver about lock events.
 
 DBUS_SESSION="type='signal',interface='org.gnome.ScreenSaver'"
-SINKS=$(pamixer --list-sinks | grep alsa | awk '{print $1}' | tr '\n' ' ')
-SOURCES=$(pamixer --list-sources | grep alsa | awk '{print $1}' | tr '\n' ' ')
+SINKS=$(pamixer --list-sinks | awk '{print $1}' | tr '\n' ' ')
+SOURCES=$(pamixer --list-sources | awk '{print $1}' | tr '\n' ' ')
 
 function mute {
     for sink in ${SINKS}; do
@@ -33,4 +33,4 @@ function mute_on_lock() {
     done
 }
 
-dbus-monitor --session "${DBUS_SESSION}" | mute_on_lock
+dbus-monitor --session "${DBUS_SESSION}" | mute_on_lock > /dev/null 2>&1
