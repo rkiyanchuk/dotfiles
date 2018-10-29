@@ -137,6 +137,6 @@ main = do
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
                                , ppUrgent = xmobarColor colorRed colorBackground
-                               , ppVisible = xmobarColor colorBase01 ""
+                               , ppVisible = xmobarColor colorBase1 ""
                                }
         } `EZ.additionalKeys` myKeyBindings
