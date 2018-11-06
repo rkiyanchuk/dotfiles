@@ -6,5 +6,4 @@
 BOLD="\033[0;1m"
 RESET="\033[0;0m"
 
-find -type d -name .git -exec bash -c "cd \"{}\"/../ && echo -ne \"${BOLD}\";
-    pwd; echo -ne \"${RESET}\" && git rffwd" \;
+find ${PWD} -type d -name .git -exec bash -c "cd \"{}\"/../ && echo -ne \"${BOLD}\"; pwd; echo -ne \"${RESET}\" && git rffwd" \;
