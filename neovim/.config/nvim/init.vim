@@ -148,6 +148,11 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
+" ==> icymind/NeoSolarized
+
+let g:neosolarized_bold = 0
+let g:neosolarized_visibility = "low"
+
 try
     colorscheme NeoSolarized
 catch
@@ -288,10 +293,6 @@ augroup END
 
 " PLUGIN SETTINGS
 " ===============
-
-" ==> icymind/NeoSolarized
-
-let g:neosolarized_bold = 0
 
 " ==> scrooloose/nerdtree
 
