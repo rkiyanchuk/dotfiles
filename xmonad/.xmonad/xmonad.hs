@@ -121,13 +121,13 @@ main = do
                                <+> manageHook def
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
+                                  spawn "albert"
                                   spawnOnce "stalonetray"
                                   spawnOnce "nm-applet"
                                   spawnOnce "blueman-applet"
                                   spawnOnce "dropbox"
                                   spawnOnce "conky -d"
                                   spawnOnce "sleep 10 && kalu"
-                                  spawn "albert"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
                                , ppCurrent = xmobarColor myFocusedBorderColor colorBackgroundAlt
