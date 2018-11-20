@@ -2,5 +2,3 @@
 #                     be found at https://github.com/koekeishiya/skhd/issues/1
 
 alt + shift - return : open -na /Applications/iTerm.app
-
-alt - escape : pmset displaysleepnow
