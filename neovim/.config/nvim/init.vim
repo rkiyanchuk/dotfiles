@@ -151,7 +151,6 @@ endif
 " ==> icymind/NeoSolarized
 
 let g:neosolarized_bold = 0
-let g:neosolarized_visibility = "low"
 
 try
     colorscheme NeoSolarized
