@@ -95,3 +95,29 @@ if executable('gotags')
 else
     echomsg "No tags support for Go. Install gotags Go package!"
 endif
+
+  let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds': [
+      \ 'n:modules',
+      \ 's:structs',
+      \ 'i:traits',
+      \ 'c:implementations',
+      \ 'f:functions',
+      \ 'g:enums',
+      \ 't:types',
+      \ 'v:variables',
+      \ 'M:macros',
+      \ 'm:struct members',
+      \ 'e:enumerators',
+      \ 'F:methods',
+    \ ],
+    \ 'sro': '.',
+    \ 'kind2scope': {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'g': 'enum',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+    \ },
+  \ }
