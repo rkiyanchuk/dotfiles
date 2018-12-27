@@ -87,6 +87,7 @@ if [[ $OSTYPE == $MACOS ]]; then
     alias gvim="vimr"
     alias l='ls -hl'
     alias ll='ls -Ahl'
+    alias updatedb="sudo /usr/libexec/locate.updatedb"
 fi
 
 
