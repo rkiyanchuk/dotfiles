@@ -1,0 +1,7 @@
+QWidget {
+    padding: 3px;
+}
+
+MainWindow {
+    background-color: #002b36;
+}

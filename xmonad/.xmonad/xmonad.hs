@@ -50,7 +50,7 @@ altMask             = mod1Mask  -- Map Alt to more descriptive var.
 myFocusedBorderColor = "#3daee9"
 myNormalBorderColor  = "#2c3e50"
 myBorderWidth        = 1
-myTerminal           = "termite"
+myTerminal           = "qterminal"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
 myWorkspaces         = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 "]
 
