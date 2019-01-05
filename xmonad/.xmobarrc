@@ -23,14 +23,13 @@ Config {
     font        = "xft:Hack:size=14,Material Design Icons:size=14"
   , bgColor     = "#232629"
   , fgColor     = "#839496"
-  , position    = BottomSize C 100 32
+  , position    = BottomSize C 100 28
 
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery% %coretemp% %cpu% %memory%  %kbd% %date% "
-
-  , commands =
+  , template    = "%StdinReader% }{%battery%  %kbd% %date% "
+  , commands    =
     [
       Run StdinReader  -- Dipslay input about workspaces and titles from XMonad.
 
@@ -47,38 +46,6 @@ Config {
       , "--off-icon-pattern", ""
       , "--idle-icon-pattern", ""
       ] 50
-
-    , Run CoreTemp [
-        "--template", "<core0>°C"
-      , "--minwidth", "2"
-      , "--Low", "60"
-      , "--High", "80"
-      , "--low", "#839496"
-      , "--normal", "#93a1a1"
-      , "--high", "#dc322f"
-      ] 50
-
-    , Run Cpu [
-        "-t", "<total>%"
-      , "--minwidth", "2"
-      , "-c", "0"
-      , "--Low", "30"
-      , "--High", "80"
-      , "--low", "#839496"
-      , "--high", "#dc322f"
-      , "--normal", "#93a1a1"
-      ] 20
-
-    , Run Memory [
-        "-t","<usedratio>%"
-      , "--minwidth", "2"
-      , "-c", "0"
-      , "--Low", "40"
-      , "--low", "#839496"
-      , "--normal", "#93a1a1"
-      , "--High", "80"
-      , "--high", "#dc322f"
-      ] 20
 
     , Run Kbd [("us(altgr-intl)", "<fc=#859900>En</fc>"),
                ("ru", "<fc=#dc322f>Ru</fc>"),

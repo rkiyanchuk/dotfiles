@@ -50,7 +50,7 @@ altMask             = mod1Mask  -- Map Alt to more descriptive var.
 myFocusedBorderColor = "#3daee9"
 myNormalBorderColor  = "#2c3e50"
 myBorderWidth        = 1
-myTerminal           = "qterminal"
+myTerminal           = "gnome-terminal"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
 myWorkspaces         = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 "]
 
@@ -122,10 +122,12 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawn "albert"
-                                  spawnOnce "stalonetray"
-                                  spawnOnce "nm-applet"
-                                  spawnOnce "blueman-applet"
-                                  spawnOnce "dropbox"
+                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 340 --tint 0x232629 --alpha 0 --transparent true --height 28"
+                                  spawnOnce "multiload-ng-systray"
+                                  spawnOnce "sleep 1 && nm-applet"
+                                  spawnOnce "sleep 1 && blueman-applet"
+                                  spawnOnce "sleep 1 && dropbox"
+                                  spawnOnce "sleep 1 && pasystray --notify=all"
                                   spawnOnce "conky -d"
                                   spawnOnce "sleep 10 && kalu"
         , logHook            = dynamicLogWithPP $ xmobarPP {
