@@ -28,7 +28,7 @@ Config {
   -- layout
   , sepChar     = "%"   -- Delimeter between plugin names and straight text.
   , alignSep    = "}{"  -- Separator between left-right alignment.
-  , template    = "%StdinReader% }{%battery%  %kbd% %date% "
+  , template    = "%StdinReader% }{%battery% %kbd% %date% "
   , commands    =
     [
       Run StdinReader  -- Dipslay input about workspaces and titles from XMonad.
