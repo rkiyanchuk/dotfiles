@@ -42,8 +42,8 @@ colorBlue       = "#268bd2"
 colorCyan       = "#2aa198"
 colorGreen      = "#859900"
 
-colorBackground     = "#232629"
-colorBackgroundAlt  = "#31363b"
+colorBackground     = "#31363b"
+colorBackgroundAlt  = "#4d4d4d"
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
 altMask             = mod1Mask  -- Map Alt to more descriptive var.
@@ -62,14 +62,7 @@ layoutIcons =
     , "<icon=" ++ iconsRoot ++ "layout_full.xpm" ++ "/>"
     ]
 
-tray = monitor
-    { prop = ClassName "stalonetray"
-    , name = "stalonetray"
-    , visible = False
-    }
-
-myLayouts = ModifiedLayout tray $
-            named (head layoutIcons) (ResizableTall 1 (3/100) (1/2) [])
+myLayouts = named (head layoutIcons) (ResizableTall 1 (3/100) (1/2) [])
             ||| named (layoutIcons !! 1) (Mirror (ResizableTall 1 (3/100) (4/5) []))
             ||| named (layoutIcons !! 2) Full
 
@@ -122,7 +115,7 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawn "albert"
-                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x232629 --alpha 0 --transparent true --height 28"
+                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x31363b --alpha 0 --transparent true --height 28"
                                   spawnOnce "multiload-ng-systray"
                                   spawnOnce "sleep 1 && nm-applet"
                                   spawnOnce "sleep 1 && blueman-applet"
