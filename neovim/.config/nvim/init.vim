@@ -384,6 +384,7 @@ let g:echodoc#enable_at_startup = 1
 
 let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
 let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_useVirtualText = 0
 
 if executable('pyls')
     let g:LanguageClient_serverCommands.python = ['pyls']
