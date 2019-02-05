@@ -50,7 +50,7 @@ Plug 'sheerun/vim-polyglot'  " Syntax and indent pack for many languages.
 Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
 Plug 'fidian/hexmode'  " Hex editor mode.
-Plug 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
 
 call plug#end()
 
