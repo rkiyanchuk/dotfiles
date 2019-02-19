@@ -57,3 +57,6 @@
 
 [credential "https://stash.ges.symantec.com"]
     helper = symantec-stash
+
+[includeIf "gitdir:~/devel/symc/"]
+    path = ~/devel/symc/.gitconfig
