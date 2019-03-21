@@ -182,11 +182,11 @@ nnoremap <silent> <leader>2 :TagbarToggle<CR>
 inoremap <silent> <leader>3 :GundoToggle<CR>
 nnoremap <silent> <leader>3 :GundoToggle<CR>
 
-nnoremap <silent> <leader>ff :Denite file_rec<CR>
+nnoremap <silent> <leader>ff :Denite file/rec<CR>
 nnoremap <silent> <leader>fb :Denite buffer<CR>
 nnoremap <silent> <leader>fg :Denite grep<CR>
 nnoremap <silent> <leader>fr :Denite register<CR>
-nnoremap <silent> <leader>fw :DeniteCursorWord file_rec buffer grep<CR>
+nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
 
 function! SetLSPShortcuts()
     nnoremap <silent> <F2> :Denite contextMenu<CR>
