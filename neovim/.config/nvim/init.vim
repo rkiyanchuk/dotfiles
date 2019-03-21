@@ -20,7 +20,7 @@ endif
 call plug#begin($VIMPLUGINS)
 
 Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
-Plug 'icymind/NeoSolarized'  " Solarized colorscheme.
+Plug 'arcticicestudio/nord-vim'  " Colorscheme.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
@@ -149,14 +149,16 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" ==> icymind/NeoSolarized
+" ==> colorscheme
 
-let g:neosolarized_bold = 0
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_uniform_diff_background = 1
 
 try
-    colorscheme NeoSolarized
+    colorscheme nord
 catch
-    echomsg "NeoSolarized plugin is missing! Using built-in colorscheme."
+    echomsg "Colorscheme plugin is missing! Using built-in desert colorscheme."
     colorscheme desert
 endtry
 
