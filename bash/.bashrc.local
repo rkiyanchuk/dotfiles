@@ -14,6 +14,7 @@ export TERM=xterm-256color
 export EDITOR="nvim"
 export GPG_TTY=$(tty)
 export GOPATH="$HOME/.go"
+export QT_LOGGING_RULES="qt5ct.debug=false"  # https://superuser.com/a/1308321/173270
 
 export PATH="$HOME/.local/bin:$PATH"  # Scripts installed by pip (Python).
 export PATH="$HOME/.poetry/bin:$PATH"  # Scripts installed by poetry (Python).
@@ -80,7 +81,7 @@ if [[ $OSTYPE == $LINUX ]]; then
     alias l='ls -hl --color=auto'
     alias ll='ls -Ahl --color=auto'
     alias open='mimeo'
-    alias gvim="nvim-gtk"
+    alias gvim="nvim-qt"
 fi
 
 if [[ $OSTYPE == $MACOS ]]; then

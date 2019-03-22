@@ -149,12 +149,13 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" ==> colorscheme
+" GUI settings
+set guifont=Hack:h14
 
+" colorscheme
 let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
-
 try
     colorscheme nord
 catch
