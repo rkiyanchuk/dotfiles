@@ -42,7 +42,7 @@ colorBlue       = "#268bd2"
 colorCyan       = "#2aa198"
 colorGreen      = "#859900"
 
-colorBackground     = "#31363b"
+colorBackground     = "#21262b"
 colorBackgroundAlt  = "#4d4d4d"
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
@@ -115,7 +115,7 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawn "albert"
-                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x31363b --alpha 0 --transparent true --height 28"
+                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x21262b --alpha 0 --transparent true --height 28"
                                   spawnOnce "multiload-ng-systray"
                                   spawnOnce "sleep 1 && nm-applet"
                                   spawnOnce "sleep 1 && blueman-applet"
