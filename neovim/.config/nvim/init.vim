@@ -438,3 +438,10 @@ else
     " Installation instructions:
     " https://www.reddit.com/r/vim/comments/844bwy/has_anyone_gotten_java_language_server_to_work/e2o5hhr
 endif
+
+if executable('typescript-language-server')
+    let g:LanguageClient_serverCommands["javascript"] = ['typescript-language-server', '--stdio']
+else
+    echomsg "JavaScript language server is missing!"
+    " - typescript-language-server
+endif
