@@ -3,4 +3,4 @@
 xmonad --restart
 
 # Set screen wallpaper.
-feh --bg-fill ${HOME}/.xmonad/images/zoresvit_wallpaper.png
+feh --bg-fill ${HOME}/.xmonad/images/wallpaper-breeze.png
