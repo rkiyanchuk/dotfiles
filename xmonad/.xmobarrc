@@ -22,7 +22,7 @@
 Config {
     font        = "xft:Hack:size=14,Material Design Icons:size=14"
   , bgColor     = "#21262b"
-  , fgColor     = "#bdc3c7"
+  , fgColor     = "#D8DEE9"
   , position    = BottomSize C 100 28
 
   -- layout
@@ -38,19 +38,19 @@ Config {
       , "--minwidth", "2"
       , "--Low", "15"
       , "--High", "30"
-      , "--low", "#da4453"
-      , "--normal", "#bdc3c7"
-      , "--high", "#bdc3c7"
+      , "--low", "#BF616A"
+      , "--normal", "#D8DEE9"
+      , "--high", "#D8DEE9"
       , "--"
       , "--on-icon-pattern", ""
       , "--off-icon-pattern", ""
       , "--idle-icon-pattern", ""
       ] 50
 
-    , Run Kbd [("us(altgr-intl)", "<fc=#1d99f3>En</fc>"),
-               ("ru", "<fc=#da4453>Ru</fc>"),
-               ("ua", "<fc=#fdbc4b>Uk</fc>")]
+    , Run Kbd [("us(altgr-intl)", "<fc=#8FBCBB>En</fc>"),
+               ("ru", "<fc=#BF616A>Ru</fc>"),
+               ("ua", "<fc=#EBCB8B>Uk</fc>")]
 
-    , Run Date "%a %b %0d <fc=#27ae60>%H:%M:%S</fc>" "date" 10
+    , Run Date "%a %b %0d <fc=#8FBCBB>%H:%M:%S</fc>" "date" 10
     ]
 }

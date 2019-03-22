@@ -25,30 +25,30 @@ import System.Environment
 import System.IO.Unsafe
 
 
-colorBase03     = "#002b36"
-colorBase02     = "#073642"
-colorBase01     = "#586e75"
-colorBase00     = "#657b83"
-colorBase0      = "#839496"
-colorBase1      = "#93a1a1"
-colorBase2      = "#eee8d5"
-colorBase3      = "#fdf6e3"
-colorYellow     = "#b58900"
-colorOrange     = "#cb4b16"
-colorRed        = "#dc322f"
-colorMagenta    = "#d33682"
-colorViolet     = "#6c71c4"
-colorBlue       = "#268bd2"
-colorCyan       = "#2aa198"
-colorGreen      = "#859900"
+nord0   = "#2e3440"
+nord1   = "#3b4252"
+nord2   = "#434c5e"
+nord3   = "#4c566a"
+nord4   = "#d8dee9"
+nord5   = "#e5e9f0"
+nord6   = "#eceff4"
+nord7   = "#8fbcbb"
+nord8   = "#88c0d0"
+nord9   = "#81a1c1"
+nord10  = "#5e81ac"
+nord11  = "#bf616a"
+nord12  = "#d08770"
+nord13  = "#ebcb8b"
+nord14  = "#a3be8c"
+nord15  = "#b48ead"
 
-colorBackground     = "#21262b"
-colorBackgroundAlt  = "#4d4d4d"
+colorBackground     = nord0
+colorBackgroundAlt  = nord1
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
 altMask             = mod1Mask  -- Map Alt to more descriptive var.
-myFocusedBorderColor = "#3daee9"
-myNormalBorderColor  = "#2c3e50"
+myFocusedBorderColor = nord8
+myNormalBorderColor  = nord3
 myBorderWidth        = 1
 myTerminal           = "gnome-terminal"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
@@ -125,13 +125,13 @@ main = do
                                   spawnOnce "sleep 10 && kalu"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
-                               , ppCurrent = xmobarColor myFocusedBorderColor colorBackgroundAlt
-                               , ppHidden = xmobarColor colorBase1 ""
-                               , ppHiddenNoWindows = xmobarColor colorBase01 colorBackground
-                               , ppLayout = xmobarColor colorCyan ""
+                               , ppCurrent = xmobarColor nord6 colorBackgroundAlt
+                               , ppHidden = xmobarColor nord4 ""
+                               , ppHiddenNoWindows = xmobarColor nord2 ""
+                               , ppLayout = xmobarColor nord7 ""
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
-                               , ppUrgent = xmobarColor colorRed colorBackground
-                               , ppVisible = xmobarColor colorBase1 ""
+                               , ppUrgent = xmobarColor nord11 colorBackground
+                               , ppVisible = xmobarColor nord2 ""
                                }
         } `EZ.additionalKeys` myKeyBindings
