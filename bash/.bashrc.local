@@ -22,7 +22,7 @@ export PATH="$HOME/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
 export PATH="$HOME/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 
 if [ -x /usr/bin/dircolors ]; then
-    eval $(dircolors $HOME/.dircolors/dircolors.ansi-universal)
+    eval $(dircolors $HOME/.dircolors/dircolors.nord)
 fi
 
 stty -ixon  # Enable backward history search with C-s.
