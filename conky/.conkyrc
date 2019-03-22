@@ -26,32 +26,32 @@ xftfont Hack:size=14
 uppercase no
 
 # Solarized colors.
-default_color 839496  # primary text
-color1 93a1a1  # emphesized text
-color2 586e75  # secondary text
-color3 dc322f  # red
-color4 859900  # green
-color5 268bd2  # blue
-color6 6c71c4  # violet
-color7 b58900  # yellow
-color8 cb4b16  # orange
-color9 073642  # background highlight
+default_color 434c5e  # primary text
+color1 434c5e  # emphesized text
+color2 4c566a  # secondary text
+color3 bf616a  # red
+color4 a3be8c  # green
+color5 5e81ac  # blue
+color6 b48ead  # violet
+color7 ebcb8b  # yellow
+color8 d08770  # orange
+color9 1e2430  # background
 
 
 TEXT
-${color2}$hr
+${color1}$hr
 ${color}OS
 #
-${color2}
+${color1}
 UTC             ${goto 150}${utime}${voffset 5}
 Uptime          ${goto 150}${uptime}${voffset 5}
 Kernel          ${goto 150}${kernel}${voffset 5}
-${color2}Load   ${goto 140}${voffset -10}${color9}${loadgraph 24,300 073642 073642 0 -l}
-${color2}       ${goto 150}${voffset -36}${loadavg}${voffset 5}
-${color2}CPU    ${goto 140}${voffset -10}${color9}${cpubar 24,300}
-${color2}       ${goto 150}${voffset -36}${cpu}%${alignr 20}${running_processes}/${processes} :${threads}${voffset 5}
-${color2}RAM    ${goto 140}${voffset -10}${color9}${membar 24,300}
-${color2}       ${goto 150}${voffset -36}${memperc}% ${alignr 20}${mem}${voffset 5}
+${color1}Load   ${goto 140}${voffset -10}${color9}${loadgraph 24,300 073642 073642 0 -l}
+${color1}       ${goto 150}${voffset -36}${loadavg}${voffset 5}
+${color1}CPU    ${goto 140}${voffset -10}${color9}${cpubar 24,300}
+${color1}       ${goto 150}${voffset -36}${cpu}%${alignr 20}${running_processes}/${processes} :${threads}${voffset 5}
+${color1}RAM    ${goto 140}${voffset -10}${color9}${membar 24,300}
+${color1}       ${goto 150}${voffset -36}${memperc}% ${alignr 20}${mem}${voffset 5}
 RAM Cached      ${goto 150}${cached}
 
 ${color2}$hr
