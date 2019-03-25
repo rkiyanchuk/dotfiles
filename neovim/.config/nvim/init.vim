@@ -150,7 +150,9 @@ else
 endif
 
 " GUI settings
-set guifont=Hack:h14
+if !has("mac")
+    set guifont=Hack:h14
+endif
 
 " colorscheme
 let g:nord_italic = 1
