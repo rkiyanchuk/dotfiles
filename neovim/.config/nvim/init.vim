@@ -64,8 +64,7 @@ set backspace=indent,eol,start
 set backup
 set clipboard=unnamed,unnamedplus
 set colorcolumn=80
-set completeopt=longest,menuone
-"set completeopt=longest,menuone,preview  " Disable until preview with splitbelow is fixed.
+set completeopt=longest,menuone,preview
 set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
