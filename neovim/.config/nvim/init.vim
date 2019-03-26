@@ -249,6 +249,10 @@ command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 " Update plugins.
 command! Update :call ReloadConfig() | PlugUpdate | PlugUpgrade | source $MYVIMRC
 
+" Commands for merge conflict resolution.
+command! MergeLocal :diffget //2
+command! MergeRemote :diffget //3
+
 
 " AUTOCOMMANDS
 " ============
