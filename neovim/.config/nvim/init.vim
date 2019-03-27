@@ -36,8 +36,8 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 
 " Use my fork of auto-pairs until upstream merges the pull request:
-" https://github.com/jiangmiao/auto-pairs/pull/222
-Plug 'zoresvit/auto-pairs', {'branch': 'patch-2'}
+" https://github.com/jiangmiao/auto-pairs/pull/254
+Plug 'zoresvit/auto-pairs', {'branch': 'fix-jump'}
 "Plug 'jiangmiao/auto-pairs'
 
 " Completion and programming.
