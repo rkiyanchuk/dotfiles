@@ -43,7 +43,7 @@ nord14  = "#a3be8c"
 nord15  = "#b48ead"
 
 colorBackground     = nord0
-colorBackgroundAlt  = nord1
+colorBackgroundAlt  = nord2
 
 metaMask            = mod4Mask  -- Changes Mod key to "super".
 altMask             = mod1Mask  -- Map Alt to more descriptive var.
@@ -115,7 +115,7 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawn "albert"
-                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x21262b --alpha 0 --transparent true --height 28"
+                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 335 --tint 0x3B4252 --alpha 0 --transparent true --height 28"
                                   spawnOnce "multiload-ng-systray"
                                   spawnOnce "sleep 1 && nm-applet"
                                   spawnOnce "sleep 1 && blueman-applet"
@@ -125,10 +125,10 @@ main = do
                                   spawnOnce "sleep 10 && kalu"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
-                               , ppCurrent = xmobarColor nord6 colorBackgroundAlt
-                               , ppHidden = xmobarColor nord4 ""
-                               , ppHiddenNoWindows = xmobarColor nord2 ""
-                               , ppLayout = xmobarColor nord7 ""
+                               , ppCurrent = xmobarColor nord7 colorBackgroundAlt
+                               , ppHidden = xmobarColor nord10 ""
+                               , ppHiddenNoWindows = xmobarColor nord3 ""
+                               , ppLayout = xmobarColor nord3 ""
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
                                , ppUrgent = xmobarColor nord11 colorBackground

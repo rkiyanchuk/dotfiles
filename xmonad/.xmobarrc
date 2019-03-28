@@ -21,7 +21,7 @@
 
 Config {
     font        = "xft:Hack:size=14,Material Design Icons:size=14"
-  , bgColor     = "#21262b"
+  , bgColor     = "#3B4252"
   , fgColor     = "#D8DEE9"
   , position    = BottomSize C 100 28
 
