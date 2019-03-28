@@ -46,7 +46,7 @@ ${color1}
 UTC             ${goto 150}${utime}${voffset 5}
 Uptime          ${goto 150}${uptime}${voffset 5}
 Kernel          ${goto 150}${kernel}${voffset 5}
-${color1}Load   ${goto 140}${voffset -10}${color9}${loadgraph 24,300 073642 073642 0 -l}
+${color1}Load   ${goto 140}${voffset -10}${color9}${loadgraph 24,300 1e2430 1e2430 0 -l}
 ${color1}       ${goto 150}${voffset -36}${loadavg}${voffset 5}
 ${color1}CPU    ${goto 140}${voffset -10}${color9}${cpubar 24,300}
 ${color1}       ${goto 150}${voffset -36}${cpu}%${alignr 20}${running_processes}/${processes} :${threads}${voffset 5}
@@ -58,7 +58,7 @@ ${color2}$hr
 ${color}HARDWARE
 
 ${color2}Freq       ${goto 150}${freq_g} GHz ${voffset 5}
-${color2}Disk IO    ${goto 140}${voffset -10}${diskiograph sda 24,300 073642 073642 0 -l}
+${color2}Disk IO    ${goto 140}${voffset -10}${diskiograph sda 24,300 1e2430 1e2430 0 -l}
 ${color2}           ${goto 150}${voffset -36}R ${diskio_read}${alignr 20}W ${diskio_write}${voffset 5}
 ${color2}Entropy    ${goto 140}${voffset -10}${color9}${entropy_bar 24,300}
 ${color2}           ${goto 150}${voffset -36}${entropy_avail}${alignr 20}/${entropy_poolsize} b${voffset 5}
