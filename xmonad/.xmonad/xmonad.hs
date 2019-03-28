@@ -125,13 +125,13 @@ main = do
                                   spawnOnce "sleep 10 && kalu"
         , logHook            = dynamicLogWithPP $ xmobarPP {
                                  ppOutput = Run.hPutStrLn xmproc
-                               , ppCurrent = xmobarColor nord7 colorBackgroundAlt
-                               , ppHidden = xmobarColor nord10 ""
+                               , ppCurrent = xmobarColor nord6 colorBackgroundAlt
+                               , ppHidden = xmobarColor nord7 ""
                                , ppHiddenNoWindows = xmobarColor nord3 ""
                                , ppLayout = xmobarColor nord3 ""
                                , ppTitle = xmobarStrip . shorten 75
                                , ppSep = " "
-                               , ppUrgent = xmobarColor nord11 colorBackground
-                               , ppVisible = xmobarColor nord2 ""
+                               , ppUrgent = xmobarColor nord12 colorBackground
+                               , ppVisible = xmobarColor nord6 ""
                                }
         } `EZ.additionalKeys` myKeyBindings
