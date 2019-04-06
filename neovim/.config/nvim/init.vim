@@ -44,6 +44,7 @@ Plug 'zoresvit/auto-pairs', {'branch': 'fix-jump'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 Plug 'Shougo/echodoc.vim'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
 " Enhancements for specific file types.
 Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
