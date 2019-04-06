@@ -83,7 +83,7 @@ ${color}wlp58s0     ${goto 150}${color2}${addr wlp58s0}${voffset 5}
 ${wireless_essid wlp58s0}\
 ${goto 140}${voffset -10}${color9}${wireless_link_bar 24,300 wlp58s0}${color2}
 ${goto 150}${voffset -36}${wireless_mode wlp58s0}  ${wireless_bitrate wlp58s0}  ${wireless_link_qual_perc wlp58s0}%
-${goto 150}${upspeedgraph wlp58s0 24,135 073642 073642 0 -l}  ${downspeedgraph wlp58s0 24,135 073642 073642 0 -l}
+${goto 150}${upspeedgraph wlp58s0 24,135 073642 073642 0 -l}  ${downspeedgraph wlp58s0 24,135 1e2430 1e2430 0 -l}
 ${voffset -36}  ${goto 150}↑ ${upspeed wlp58s0} ${alignr 20}↓ ${downspeed wlp58s0}
       Total     ${goto 150}▲ ${totalup wlp58s0} ${alignr 20}▼ ${totaldown wlp58s0}
 ${endif}
@@ -91,7 +91,7 @@ ${endif}
 ${if_up enp57s0u1u4}\
 ${color}enp57s0u1u4     ${goto 150}${color2}${addr enp57s0u1u4}${voffset 5}
 ${wireless_essid enp57s0u1u4}\
-${goto 150}${voffset -10}${upspeedgraph enp57s0u1u4 24,135 073642 073642 0 -l}  ${downspeedgraph enp57s0u1u4 24,135 073642 073642 0 -l}
+${goto 150}${voffset -10}${upspeedgraph enp57s0u1u4 24,135 073642 073642 0 -l}  ${downspeedgraph enp57s0u1u4 24,135 1e2430 1e2430 0 -l}
 ${voffset -36}  ${goto 150}↑ ${upspeed enp57s0u1u4} ${alignr 20}↓ ${downspeed enp57s0u1u4}
       Total     ${goto 150}▲ ${totalup enp57s0u1u4} ${alignr 20}▼ ${totaldown enp57s0u1u4}
 ${endif}
