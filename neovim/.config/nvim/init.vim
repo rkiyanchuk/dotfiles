@@ -304,7 +304,7 @@ augroup END
 
 " ==> scrooloose/nerdtree
 
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.o$', '\.cmake$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.o$']
 
 
 " Close Vim if NERDTree is the only window left.
