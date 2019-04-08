@@ -350,7 +350,7 @@ let g:airline_right_alt_sep = ''
 
 if PluginInstalled("vim-airline")
     " Show character code under cursor.
-    call airline#parts#define_raw('char', '§ %2Bh')
+    call airline#parts#define_raw('char', '≎%2Bₕ')
     let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
 endif
 
