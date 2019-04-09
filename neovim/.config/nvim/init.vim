@@ -190,12 +190,14 @@ nnoremap <silent> <leader>fg :Denite grep<CR>
 nnoremap <silent> <leader>fr :Denite register<CR>
 nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
 
-function! SetLSPShortcuts()
-    nnoremap <silent> <F2> :Denite contextMenu<CR>
-    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <silent> <leader>gi :call LanguageClient#textDocument_implementation()<CR>
-endfunction()
+function! SetLSPMappings()
+    if has_key(g:LanguageClient_serverCommands, &filetype)
+        nnoremap <buffer> <silent> <F2> :Denite contextMenu<CR>
+        nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+        nnoremap <buffer> <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
+        nnoremap <buffer> <silent> <leader>gi :call LanguageClient#textDocument_implementation()<CR>
+    endif
+endfunction
 
 
 " FUNCTIONS
@@ -294,8 +296,8 @@ augroup MISC
 augroup END
 
 augroup LSP
-  autocmd!
-  autocmd FileType c,cpp,objc,objcpp,python,go,sh,java call SetLSPShortcuts()
+    autocmd!
+    autocmd FileType * call SetLSPMappings()
 augroup END
 
 
@@ -394,61 +396,15 @@ let g:echodoc#enable_at_startup = 1
 let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_useVirtualText = 0
-
-if executable('pyls')
-    let g:LanguageClient_serverCommands.python = ['pyls']
-else
-    echomsg "Python language server is missing!"
-    " Dependencies:
-    " - python-jedi
-    " - python-rope
-    " - flake8
-    " - python-pyflakes
-    " - python-mccabe
-    " - python-pycodestyle
-    " - python-pydocstyle
-    " - yapf
-endif
-
-if executable('bash-language-server')
-    let g:LanguageClient_serverCommands.sh = ['bash-language-server', 'start']
-else
-    echomsg "Bash language server is missing!"
-    " Dependencies:
-    " - bash-language-server
-endif
-
-if executable('clangd')
-    let g:LanguageClient_serverCommands.c = ['clangd']
-    let g:LanguageClient_serverCommands.objc = ['clangd']
-    let g:LanguageClient_serverCommands.cpp = ['clangd']
-    let g:LanguageClient_serverCommands.objcpp = ['clangd']
-else
-    echomsg "Cland language server is missing!"
-    " Dependencies:
-    " - clang
-endif
-
-if executable('go-langserver')
-    let g:LanguageClient_serverCommands.go = ['go-langserver', '-gocodecompletion']
-else
-    echomsg "Go language server is missing!"
-    " Dependencies:
-    " - go-langserver-git
-    " - gocode-git
-endif
-
-if executable('jdtls')
-    let g:LanguageClient_serverCommands.java = ['jdtls']
-else
-    echomsg "Java language server is missing!"
-    " Installation instructions:
-    " https://www.reddit.com/r/vim/comments/844bwy/has_anyone_gotten_java_language_server_to_work/e2o5hhr
-endif
-
-if executable('typescript-language-server')
-    let g:LanguageClient_serverCommands["javascript"] = ['typescript-language-server', '--stdio']
-else
-    echomsg "JavaScript language server is missing!"
-    " - typescript-language-server
-endif
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'sh': ['bash-language-server', 'start'],
+    \ 'h': ['clangd'],
+    \ 'hpp': ['clangd'],
+    \ 'c': ['clangd'],
+    \ 'cpp': ['clangd'],
+    \ 'go': ['go-langserver', '-gocodecompletion'],
+    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'java': ['jdtls'],
+    \ 'javascript': ['typescript-language-server', '--stdio']
+    \ }
