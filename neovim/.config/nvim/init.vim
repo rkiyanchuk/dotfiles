@@ -24,15 +24,15 @@ Plug 'arcticicestudio/nord-vim'  " Colorscheme.
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-    Plug 'jszakmeister/markdown2ctags'
-    Plug 'jszakmeister/rst2ctags'
+Plug 'jszakmeister/markdown2ctags'
+Plug 'jszakmeister/rst2ctags'
 
 Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-Plug 'gregsexton/gitv', {'on': ['Gitv']}
-    Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 
 " Use my fork of auto-pairs until upstream merges the pull request:
@@ -40,16 +40,18 @@ Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
 Plug 'zoresvit/auto-pairs', {'branch': 'fix-jump'}
 "Plug 'jiangmiao/auto-pairs'
 
-" Completion and programming.
+" Programming
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-Plug 'Shougo/echodoc.vim'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
+" Language Server Protocol
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+Plug 'Shougo/echodoc.vim'
+
 " Enhancements for specific file types.
+Plug 'fidian/hexmode'  " Hex editor mode.
 Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
 Plug 'hashivim/vim-vagrant'
-Plug 'fidian/hexmode'  " Hex editor mode.
 Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
 
 call plug#end()
@@ -308,7 +310,6 @@ augroup END
 
 let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.o$']
 
-
 " Close Vim if NERDTree is the only window left.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -399,12 +400,11 @@ let g:LanguageClient_useVirtualText = 0
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'sh': ['bash-language-server', 'start'],
-    \ 'h': ['clangd'],
-    \ 'hpp': ['clangd'],
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
-    \ 'go': ['go-langserver', '-gocodecompletion'],
+    \ 'go': ['go-langserver', '-gocodecompletion', '-lint-tool', 'golint'],
     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'java': ['jdtls'],
-    \ 'javascript': ['typescript-language-server', '--stdio']
+    \ 'java': ['jdtls', '-data', getcwd()],
+    \ 'javascript': ['typescript-language-server', '--stdio'],
+    \ 'javascript.jsx': ['typescript-language-server', '--stdio']
     \ }
