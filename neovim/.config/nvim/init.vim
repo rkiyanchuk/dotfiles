@@ -198,6 +198,7 @@ function! SetLSPMappings()
         nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
         nnoremap <buffer> <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
         nnoremap <buffer> <silent> <leader>gi :call LanguageClient#textDocument_implementation()<CR>
+        nnoremap <buffer> <silent> <Esc><Esc> :nohlsearch<CR>:call LanguageClient#clearDocumentHighlight()<CR>
     endif
 endfunction
 
@@ -294,7 +295,7 @@ augroup MISC
     au CursorMovedI,CompleteDone * if pumvisible() == 0|pclose|endif
 
     " Make <K> to open ansible-doc when editing playbooks.
-    au FileType ansible setlocal keywordprg=ansible-doc
+    au FileType yaml.ansible setlocal keywordprg=ansible-doc
 augroup END
 
 augroup LSP
@@ -395,7 +396,6 @@ let g:echodoc#enable_at_startup = 1
 " ==> autozimu/LanguageClient-neovim
 
 let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
-let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_useVirtualText = 0
 let g:LanguageClient_diagnosticsDisplay =
             \ {
@@ -430,13 +430,13 @@ let g:LanguageClient_diagnosticsDisplay =
             \ }
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'sh': ['bash-language-server', 'start'],
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
-    \ 'go': ['go-langserver', '-gocodecompletion', '-lint-tool', 'golint'],
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-    \ 'java': ['jdtls', '-data', getcwd()],
-    \ 'javascript': ['typescript-language-server', '--stdio'],
-    \ 'javascript.jsx': ['typescript-language-server', '--stdio']
-    \ }
+            \ 'python': ['pyls'],
+            \ 'sh': ['bash-language-server', 'start'],
+            \ 'c': ['clangd'],
+            \ 'cpp': ['clangd'],
+            \ 'go': ['go-langserver', '-gocodecompletion', '-lint-tool', 'golint'],
+            \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+            \ 'java': ['jdtls', '-data', getcwd()],
+            \ 'javascript': ['typescript-language-server', '--stdio'],
+            \ 'javascript.jsx': ['typescript-language-server', '--stdio']
+            \ }
