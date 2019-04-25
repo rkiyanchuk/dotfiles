@@ -397,6 +397,38 @@ let g:echodoc#enable_at_startup = 1
 let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_diagnosticsDisplay =
+            \ {
+            \     1: {
+            \         "name": "Error",
+            \         "texthl": "ALEError",
+            \         "signText": "✖",
+            \         "signTexthl": "ALEErrorSign",
+            \         "virtualTexthl": "Error",
+            \     },
+            \     2: {
+            \         "name": "Warning",
+            \         "texthl": "",
+            \         "signText": "⚠",
+            \         "signTexthl": "ALEWarningSign",
+            \         "virtualTexthl": "Todo",
+            \     },
+            \     3: {
+            \         "name": "Information",
+            \         "texthl": "",
+            \         "signText": "ℹ",
+            \         "signTexthl": "ALEInfoSign",
+            \         "virtualTexthl": "Todo",
+            \     },
+            \     4: {
+            \         "name": "Hint",
+            \         "texthl": "ALEInfo",
+            \         "signText": "➤",
+            \         "signTexthl": "ALEInfoSign",
+            \         "virtualTexthl": "Todo",
+            \     },
+            \ }
+
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'sh': ['bash-language-server', 'start'],
