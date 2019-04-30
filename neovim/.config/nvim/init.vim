@@ -309,7 +309,7 @@ augroup END
 
 " ==> scrooloose/nerdtree
 
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', '\.o$']
+let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
 
 " Close Vim if NERDTree is the only window left.
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
