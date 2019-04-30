@@ -334,7 +334,7 @@ if PluginInstalled('denite.nvim')
         \ ['rg', '--files', '-g', '!.tox', '-g', '!.git', '-g', '!.venv'])
 
     call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '-u', '--smart-case', '--no-heading'])
+    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--smart-case', '--no-heading'])
     call denite#custom#var('grep', 'recursive_opts', [])
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
