@@ -1,60 +1,226 @@
-let $VIMHOME=fnamemodify($MYVIMRC, ':h')
-let $VIMSITE=$HOME . "/.local/share/nvim/site"
-let $VIMPLUGINS=$VIMSITE . "/plugins"
+let $VIM_HOME=fnamemodify($MYVIMRC, ':h')
+let $VIM_SITE=$HOME . "/.local/share/nvim/site"
+let $VIM_PLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
 
 " PLUGINS
 " =======
 
-" Auto install vim-plug plugin manager.
-if !filereadable($VIMHOME . '/autoload/plug.vim')
+" Auto install vim-plug plugin manage/r.
+if !filereadable($VIM_HOME . '/autoload/plug.vim')
     if executable('curl')
-        silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
-                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        silent !curl -fLo $VIM_HOME/autoload/plug.vim --create-dirs $VIM_PLUG_URL
         autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     else
         echomsg "Install curl to download vim-plug plugin manager!"
     endif
 endif
 
-call plug#begin($VIMPLUGINS)
+call plug#begin($VIM_HOME . "/plugins")
+    Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
-Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
-Plug 'arcticicestudio/nord-vim'  " Colorscheme.
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+    " Basics
+    Plug 'arcticicestudio/nord-vim'  " Colorscheme.
+    Plug 'itchyny/lightline.vim'  " Enhanced status line.
+    Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+    Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'jszakmeister/markdown2ctags'
-Plug 'jszakmeister/rst2ctags'
+    " Editing
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'cohama/lexima.vim'
+    Plug 'fidian/hexmode'  " Hex editor mode.
 
-Plug 'Shougo/denite.nvim'  " Fuzzy search for files, buffers and other sources.
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " Version control
+    Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive' 
+    Plug 'mhinz/vim-signify'  " Show diff in signcolumn.
 
-Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'  " Show file diff in signcolumn.
+    " Completion
+    Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-path'
+    Plug 'ncm2/ncm2-ultisnips'
+    Plug 'ncm2/ncm2-vim-lsp'
+    if exists('*nvim_open_win')
+        Plug 'ncm2/float-preview.nvim'
+    endif
 
-" Use my fork of auto-pairs until upstream merges the pull request:
-" https://github.com/jiangmiao/auto-pairs/pull/254
-Plug 'zoresvit/auto-pairs', {'branch': 'fix-jump'}
-"Plug 'jiangmiao/auto-pairs'
+    " Programming
+    Plug 'liuchengxu/vista.vim', {'on': 'Vista'}
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    "Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
-" Programming
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-
-" Language Server Protocol
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-Plug 'Shougo/echodoc.vim'
-
-" Enhancements for specific file types.
-Plug 'fidian/hexmode'  " Hex editor mode.
-Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
-Plug 'hashivim/vim-vagrant'
-Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
-
+    " Enhancements for specific file types.
+    Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
+    Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
+    Plug 'pearofducks/ansible-vim', {'for': 'ansible', 'do': 'cd ./UltiSnips; ./generate.py'}
+    Plug 'cespare/vim-toml', {'for': ['toml']}
+    Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
+    Plug 'pangloss/vim-javascript', {'for': ['javascript']}
+    Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
+    Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
+    Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['jinja']}
 call plug#end()
+
+" nord-vim
+" --------
+
+let g:nord_italic = 1
+let g:nord_underline = 1
+let g:nord_uniform_diff_background = 1
+colorscheme nord
+
+" lightline.vim
+" -------------
+
+let g:lightline = {
+    \ 'colorscheme': 'nord',
+    \ 'active': {
+    \   'left': [
+    \               ['mode', 'paste'],
+    \               ['fugitive'],
+    \               ['filename']
+    \           ],
+    \   'right': [
+    \               ['lineinfo'],
+    \               ['percent'],
+    \               ['filetype', 'fileformat', 'fileencoding', 'charvaluehex']
+    \           ]
+    \ },
+    \ 'inactive': {
+    \   'left': [[], ['filename']],
+    \   'right': [['lineinfo'], ['percent']]
+    \ },
+    \ 'component': {
+    \   'lineinfo': '%3l:%-2v',
+	\   'charvaluehex': '%2Bₕ',
+    \ },
+    \ 'component_function': {
+    \   'readonly': 'LightlineReadonly',
+    \   'fugitive': 'LightlineFugitive'
+    \ },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
+    \ }
+
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+    if exists('*fugitive#head')
+        let branch = fugitive#head()
+        return branch !=# '' ? ''.branch : ''
+    endif
+    return ''
+endfunction
+
+" gundo.vim
+" ---------
+
+let g:gundo_prefer_python3 = 1
+
+" ctrlp.vim
+" ---------
+
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
+
+" ultisnips
+" ---------
+
+let g:UltiSnipsExpandTrigger = '<C-\>'
+
+command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
+
+" vim-signify
+" -----------
+"
+let g:signify_vcs_list = ['git', 'hg']
+let g:signify_sign_delete            = '−'
+let g:signify_sign_delete_first_line = '‾'
+let g:signify_sign_change            = '~'
+let g:signify_sign_changedelete      = '≂'
+let g:signify_sign_show_count = 0
+
+" ncm2
+" ----
+
+let g:float_preview#docked = 0
+let g:float_preview#max_width = 100
+
+function! NCM2Config()
+    call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
+    call nvim_win_set_option(g:float_preview#win, 'cursorcolumn', v:false)
+endfunction
+
+augroup NCM2
+    autocmd!
+    autocmd User FloatPreviewWinOpen call NCM2Config()
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup end
+
+" vista.vim
+" ---------
+
+let g:vista_echo_cursor = 0
+let g:vista_blink = [0, 0]
+
+" vim-lsp
+" -------
+
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_highlights_enabled = 0
+
+augroup LSPCLANG
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+augroup end
+
+augroup LSPPYTHON
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {
+        \   'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}
+        \   }
+        \ })
+augroup end
+
+augroup LSPRUST
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+augroup end
+
+augroup LSPGOLANG
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd BufWritePre *.go LspDocumentFormatSync
+augroup end
+
+augroup LSPBASH
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'bash-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+        \ 'whitelist': ['sh'],
+        \ })
+augroup end
 
 
 " SETTINGS
@@ -66,25 +232,26 @@ set backspace=indent,eol,start
 set backup
 set clipboard=unnamed,unnamedplus
 set colorcolumn=80
-set completeopt=longest,menuone,preview
+set completeopt=menuone,noinsert,noselect
 set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
+set lazyredraw
 set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
 set matchpairs+=<:>
 set mouse=a
+set mousehide
 set mousemodel=popup_setpos
-set noshowmode  " Mode is already displayed by vim-airline plugin.
+set nofoldenable
+set noshowmode  " Mode is already displayed by statusline plugin.
 set nowrap
 set number
 set path+=**  " Search downwards in a directory for `gf`, etc.
 set scrolloff=3
 set showbreak=↪
-set showcmd
 set showfulltag  " Show arguments for a function when available, etc.
 set sidescrolloff=3
-set signcolumn=yes
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
@@ -92,7 +259,7 @@ set termguicolors
 set textwidth=79
 set title
 set undofile
-set updatetime=1000  " For more efficient Tagbar functioning
+set updatetime=1000
 set virtualedit=all
 set wildmenu
 
@@ -104,7 +271,7 @@ set ignorecase
 set infercase
 set smartcase
 
-" Indent
+" Indentation
 set breakindent
 set autoindent
 set expandtab
@@ -113,15 +280,10 @@ set softtabstop=4
 set tabstop=4
 set shiftround
 
-" Set native status line as fallback.
-set laststatus=2
-set statusline=%f\ %m\ %r\ %y\ [%{&fileencoding}]\ [len\ %L:%p%%]
-set statusline+=\ [pos\ %02l:%02c\ 0x%O]\ [chr\ %3b\ 0x%02B]\ [buf\ #%n]
-
 " Directories for temp files.
-set undodir=$VIMSITE/undo
-set backupdir=$VIMSITE/backups
-set directory=$VIMSITE/swap  " Directory to store swap files.
+set undodir=$VIM_SITE/undo
+set backupdir=$VIM_SITE/backups
+set directory=$VIM_SITE/swap  " Directory to store swap files.
 
 " Ensure directories for Vim temp files exist.
 for path in [&undodir, &backupdir, &directory]
@@ -130,18 +292,23 @@ for path in [&undodir, &backupdir, &directory]
     endif
 endfor
 
+" File browser
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_liststyle = 3
+let g:netrw_silent = 1
+let g:netrw_special_syntax = 1
+let g:netrw_winsize = 20
+
 " Filetype settings
 let c_comment_strings = 1
 let c_space_errors = 1  " Highlight extra white spaces.
-let g:load_doxygen_syntax = 1
 let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
-let g:xml_syntax_folding = 1
 
 " Prevent Neovim from calling Python on startup.
 " See https://github.com/neovim/neovim/issues/5728#issuecomment-265454125
 let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
-
 if has("mac")
     let g:python_host_prog  = '/usr/local/bin/python'
     let g:python3_host_prog = '/usr/local/bin/python3'
@@ -155,69 +322,39 @@ if !has("mac")
     set guifont=Hack:h14
 endif
 
-" colorscheme
-let g:nord_italic = 1
-let g:nord_underline = 1
-let g:nord_uniform_diff_background = 1
-try
-    colorscheme nord
-catch
-    echomsg "Colorscheme plugin is missing! Using built-in desert colorscheme."
-    colorscheme desert
-endtry
-
 
 " MAPPINGS
 " ========
 
 nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
-nnoremap <leader>R :call ReloadConfig()<CR>
+nnoremap <leader>R :source $MYVIMRC<CR>
 nnoremap <leader>s :set spell!<CR>
+nnoremap <leader>ff :CtrlP<CR>
+nnoremap <leader>fb :CtrlPBuffer<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
 
-inoremap <silent> <leader>1 :NERDTreeToggle<CR>
-nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
+inoremap <silent> <leader>1 :Lexplore<CR>
+nnoremap <silent> <leader>1 :Lexplore<CR>
 
-inoremap <silent> <leader>2 :TagbarToggle<CR>
-nnoremap <silent> <leader>2 :TagbarToggle<CR>
+inoremap <silent> <leader>2 :Vista<CR>
+nnoremap <silent> <leader>2 :Vista<CR>
 
 inoremap <silent> <leader>3 :GundoToggle<CR>
 nnoremap <silent> <leader>3 :GundoToggle<CR>
 
-nnoremap <silent> <leader>ff :Denite file/rec<CR>
-nnoremap <silent> <leader>fb :Denite buffer<CR>
-nnoremap <silent> <leader>fg :Denite grep<CR>
-nnoremap <silent> <leader>fr :Denite register<CR>
-nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
-
-function! SetLSPMappings()
-    if has_key(g:LanguageClient_serverCommands, &filetype)
-        nnoremap <buffer> <silent> <F2> :Denite contextMenu<CR>
-        nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-        nnoremap <buffer> <silent> <leader>gd :call LanguageClient#textDocument_definition()<CR>
-        nnoremap <buffer> <silent> <leader>gi :call LanguageClient#textDocument_implementation()<CR>
-        nnoremap <buffer> <silent> <Esc><Esc> :nohlsearch<CR>:call LanguageClient#clearDocumentHighlight()<CR>
-    endif
-endfunction
+"nnoremap <silent> <leader>ff :Denite file/rec<CR>
+"nnoremap <silent> <leader>fb :Denite buffer<CR>
+"nnoremap <silent> <leader>fg :Denite grep<CR>
+"nnoremap <silent> <leader>fr :Denite register<CR>
+"nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
 
 
-" FUNCTIONS
-" =========
+" COMMANDS
+" ========
 
-if !exists("*ReloadConfig")
-    " Reload .vimrc and .gvimrc configuration files.
-    function! ReloadConfig()
-        source $MYVIMRC
-        if has("gui_running")
-          source $MYGVIMRC
-        endif
-        redraw | echomsg "Sourced Vim config!"
-        " Add second line to make Vim prompt for continuation.
-    endfunction
-endif
-
+" Remove trailing spaces from file.
 function! ShowSpaces(...)
     " Highlight trailing spaces.
     let @/='\v(\s+$)|( +\ze\t)'
@@ -237,18 +374,6 @@ function! FixSpaces()
     let &hlsearch=oldhlsearch
 endfunction
 
-function! PluginInstalled(name)
-    " Check if plugin has been installed.
-    return isdirectory($VIMPLUGINS . "/" . a:name)
-endfunction
-
-
-" COMMANDS
-" ========
-
-command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
-
-" Remove trailing spaces from file.
 command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
 
 " Update plugins.
@@ -262,181 +387,14 @@ command! MergeRemote :diffget //3
 " AUTOCOMMANDS
 " ============
 
-augroup TEXT
-    " Auto commands for any text files.
-    autocmd!
-    au FileType text,markdown,tex setlocal spell
-augroup END
-
 augroup CPP
     autocmd!
-    au FileType c,cpp,h setlocal cindent
-    au FileType c,cpp,h setlocal cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
-augroup END
-
-augroup HTML
-    autocmd!
-    au FileType html setlocal shiftwidth=2
-    au FileType html setlocal softtabstop=2
-    au FileType html setlocal tabstop=2
+    autocmd FileType c,h,cpp,cxx setlocal cindent
+    autocmd FileType c,h,cpp,cxx setlocal cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
 augroup MISC
     autocmd!
-    au FileType gitcommit setlocal colorcolumn=73
-    au FileType gitcommit setlocal textwidth=72
-
-    au BufRead,BufNewFile *.conf setlocal filetype=cfg  " Treat .conf files as .cfg.
-
-    " Open all folds by default
-    au Syntax * normal zR
-
-    " Auto close omni-completion preview window.
-    au CursorMovedI,CompleteDone * if pumvisible() == 0|pclose|endif
-
-    " Make <K> to open ansible-doc when editing playbooks.
-    au FileType yaml.ansible setlocal keywordprg=ansible-doc
+    " Treat .conf files as .cfg.
+    autocmd BufReadPost,BufNewFile *.conf setlocal filetype=cfg
 augroup END
-
-augroup LSP
-    autocmd!
-    autocmd FileType * call SetLSPMappings()
-augroup END
-
-
-" PLUGIN SETTINGS
-" ===============
-
-" ==> scrooloose/nerdtree
-
-let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
-
-" Close Vim if NERDTree is the only window left.
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" ==> majutsushi/tagbar
-
-source $VIMHOME/tagbar_types.vim
-
-" ==> sjl/gundo.vim
-
-let g:gundo_prefer_python3 = 1
-
-" ==> Shougo/denite.nvim
-
-if PluginInstalled('denite.nvim')
-    call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-    call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-    call denite#custom#map('insert', '<C-j>', '<denite:assign_next_text>', 'noremap')
-    call denite#custom#map('insert', '<C-k>', '<denite:assign_previous_text>', 'noremap')
-
-    call denite#custom#var('file/rec', 'command',
-        \ ['rg', '--files', '-g', '!.tox', '-g', '!.git', '-g', '!.venv'])
-
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--smart-case', '--no-heading'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-endif
-
-" ==> vim-airline/vim-airline
-
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
-
-" Remove separators (they are distracting).
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-
-if PluginInstalled("vim-airline")
-    " Show character code under cursor.
-    call airline#parts#define_raw('char', '≎%2Bₕ')
-    let g:airline_section_y = airline#section#create_left(['char', 'ffenc'])
-endif
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
-
-" ==> Shougo/deoplete.nvim
-
-if PluginInstalled("deoplete.nvim")
-    autocmd InsertEnter * call deoplete#enable()  " Enable Deoplete on insert.
-endif
-
-let g:deoplete#sources#clang#libclang_path="/usr/lib/libclang.so"
-let g:deoplete#sources#clang#clang_header="/usr/include/clang"
-
-" ==> SirVer/ultisnips
-
-let g:UltiSnipsExpandTrigger = '<C-\>'
-let g:ultisnips_python_style = "sphinx"
-
-" ==> mhinz/vim-signify
-
-let g:signify_vcs_list = ['git', 'hg']
-let g:signify_sign_delete            = '−'
-let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change            = '~'
-let g:signify_sign_changedelete      = '≂'
-let g:signify_sign_show_count = 0
-
-" ==> Shougo/echodoc.vim
-
-let g:echodoc#enable_at_startup = 1
-
-" ==> autozimu/LanguageClient-neovim
-
-let g:LanguageClient_settingsPath = $VIMHOME . "/settings.json"
-let g:LanguageClient_useVirtualText = 0
-let g:LanguageClient_diagnosticsDisplay =
-            \ {
-            \     1: {
-            \         "name": "Error",
-            \         "texthl": "ALEError",
-            \         "signText": "✖",
-            \         "signTexthl": "ALEErrorSign",
-            \         "virtualTexthl": "Error",
-            \     },
-            \     2: {
-            \         "name": "Warning",
-            \         "texthl": "",
-            \         "signText": "⚠",
-            \         "signTexthl": "ALEWarningSign",
-            \         "virtualTexthl": "Todo",
-            \     },
-            \     3: {
-            \         "name": "Information",
-            \         "texthl": "",
-            \         "signText": "ℹ",
-            \         "signTexthl": "ALEInfoSign",
-            \         "virtualTexthl": "Todo",
-            \     },
-            \     4: {
-            \         "name": "Hint",
-            \         "texthl": "ALEInfo",
-            \         "signText": "➤",
-            \         "signTexthl": "ALEInfoSign",
-            \         "virtualTexthl": "Todo",
-            \     },
-            \ }
-
-let g:LanguageClient_serverCommands = {
-            \ 'python': ['pyls'],
-            \ 'sh': ['bash-language-server', 'start'],
-            \ 'c': ['clangd'],
-            \ 'cpp': ['clangd'],
-            \ 'go': ['go-langserver', '-gocodecompletion', '-lint-tool', 'golint'],
-            \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-            \ 'java': ['jdtls', '-data', getcwd()],
-            \ 'javascript': ['typescript-language-server', '--stdio'],
-            \ 'javascript.jsx': ['typescript-language-server', '--stdio']
-            \ }
