@@ -190,14 +190,6 @@ augroup NCM2
     autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup end
 
-" By default pressing Enter when completion is activated closes completion
-" window instead of inserting new line. This fixes the behaviour by
-" automatically closing completion window and inserting new line.
-function! OnEnterPressed()
-    return empty(v:completed_item) ? "\<C-y>\<CR>" : "\<C-y>"
-endfunction
-inoremap <expr> <CR> pumvisible() ? OnEnterPressed() : "\<CR>"
-
 " vista.vim
 " ---------
 
