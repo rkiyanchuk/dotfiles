@@ -195,6 +195,13 @@ augroup end
 
 let g:vista_echo_cursor = 0
 let g:vista_blink = [0, 0]
+let g:vista_executive_for = {
+  \ 'cpp': 'vim_lsp',
+  \ 'c': 'vim_lsp',
+  \ 'python': 'vim_lsp',
+  \ 'go': 'vim_lsp',
+  \ 'rust': 'vim_lsp',
+  \ }
 
 " vim-lsp
 " -------
@@ -368,8 +375,8 @@ nnoremap <Esc><Esc> :nohlsearch<CR>
 inoremap <silent> <leader>1 :Lexplore<CR>
 nnoremap <silent> <leader>1 :Lexplore<CR>
 
-inoremap <silent> <leader>2 :Vista<CR>
-nnoremap <silent> <leader>2 :Vista<CR>
+inoremap <silent> <leader>2 :Vista!!<CR>
+nnoremap <silent> <leader>2 :Vista!!<CR>
 
 inoremap <silent> <leader>3 :GundoToggle<CR>
 nnoremap <silent> <leader>3 :GundoToggle<CR>
