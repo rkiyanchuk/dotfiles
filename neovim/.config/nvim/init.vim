@@ -23,7 +23,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'arcticicestudio/nord-vim'  " Colorscheme.
     Plug 'itchyny/lightline.vim'  " Enhanced status line.
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'Shougo/denite.nvim'
 
     " Editing
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -120,10 +120,41 @@ endfunction
 
 let g:gundo_prefer_python3 = 1
 
-" ctrlp.vim
-" ---------
+" denite.nvim
+" -----------
 
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10,results:10'
+try
+    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep', '--no-heading'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+    call denite#custom#var('grep', 'separator', ['--'])
+    call denite#custom#var('grep', 'final_opts', [])
+	call denite#custom#option('_', 'statusline', v:false)
+catch
+    echomsg "Denite plugin missing"
+endtry
+
+function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> <C-c> denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+endfunction
+
+augroup DENITE
+    autocmd!
+    autocmd FileType denite call s:denite_my_settings()
+augroup end
+
+nnoremap <silent> <leader>ff :Denite file/rec -auto-resize -smartcase -start-filter<CR>
+nnoremap <silent> <leader>fb :Denite buffer -auto-resize<CR>
+nnoremap <silent> <leader>fg :Denite grep -auto-resize<CR>
+nnoremap <silent> <leader>fr :Denite register -auto-resize<CR>
+nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
+
 
 " ultisnips
 " ---------
@@ -337,8 +368,6 @@ endif
 nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
 nnoremap <leader>R :source $MYVIMRC<CR>
 nnoremap <leader>s :set spell!<CR>
-nnoremap <leader>ff :CtrlP<CR>
-nnoremap <leader>fb :CtrlPBuffer<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
@@ -351,12 +380,6 @@ nnoremap <silent> <leader>2 :Vista<CR>
 
 inoremap <silent> <leader>3 :GundoToggle<CR>
 nnoremap <silent> <leader>3 :GundoToggle<CR>
-
-"nnoremap <silent> <leader>ff :Denite file/rec<CR>
-"nnoremap <silent> <leader>fb :Denite buffer<CR>
-"nnoremap <silent> <leader>fg :Denite grep<CR>
-"nnoremap <silent> <leader>fr :Denite register<CR>
-"nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
 
 
 " COMMANDS
