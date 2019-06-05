@@ -93,7 +93,7 @@ let g:lightline = {
     \ },
     \ 'component': {
     \   'lineinfo': '%3l:%-2v',
-	\   'charvaluehex': '%2Bₕ',
+    \   'charvaluehex': '%2Bₕ',
     \ },
     \ 'component_function': {
     \   'readonly': 'LightlineReadonly',
@@ -131,7 +131,7 @@ try
     call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
     call denite#custom#var('grep', 'separator', ['--'])
     call denite#custom#var('grep', 'final_opts', [])
-	call denite#custom#option('_', 'statusline', v:false)
+    call denite#custom#option('_', 'statusline', v:false)
 catch
     echomsg "Denite plugin missing"
 endtry
