@@ -50,7 +50,7 @@ altMask             = mod1Mask  -- Map Alt to more descriptive var.
 myFocusedBorderColor = nord8
 myNormalBorderColor  = nord3
 myBorderWidth        = 1
-myTerminal           = "gnome-terminal"
+myTerminal           = "tilix"
 iconsRoot            = unsafePerformIO (getEnv "HOME") ++ "/.xmonad/images/"
 myWorkspaces         = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 "]
 
@@ -76,7 +76,7 @@ myKeyBindings =
     [ ((metaMask, xK_Escape), spawn "gnome-screensaver-command -l")
     , ((metaMask, xK_b), sendMessage ToggleStruts)
 --  , ((metaMask, xK_w), onPrevNeighbour W.view)
---   , ((metaMask, xK_e), onNextNeighbour W.view)
+--  , ((metaMask, xK_e), onNextNeighbour W.view)
 --  , ((metaMask .|. shiftMask, xK_w), onPrevNeighbour W.shift)
 --  , ((metaMask .|. shiftMask, xK_e), onNextNeighbour W.shift)
     , ((0, xF86XK_Search), spawn "albert toggle")

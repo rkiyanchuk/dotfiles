@@ -356,11 +356,6 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" GUI settings
-if !has("mac")
-    set guifont=Hack:h14
-endif
-
 
 " MAPPINGS
 " ========

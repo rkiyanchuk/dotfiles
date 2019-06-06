@@ -74,9 +74,9 @@
 ! Fonts
 ! =====
 
-#define FONT_REGULAR xft:Hack:style=Regular:size=14
-#define FONT_BOLD xft:Hack:style=Bold:size=14
-#define FONT_ITALIC xft:Hack:style=Italic:size=14
+#define FONT_REGULAR xft:Iosevka:style=Regular:size=16
+#define FONT_BOLD xft:Iosevka:style=Bold:size=16
+#define FONT_ITALIC xft:Iosevka:style=Italic:size=16
 Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias: true
@@ -89,7 +89,7 @@ Xft.rgba: rgb
 ! XTerm
 ! =====
 
-XTerm*faceName: Hack
+XTerm*faceName: Iosevka
 XTerm*faceSize: 14
 XTerm*locale: true
 XTerm*scaleHeight: 1.01

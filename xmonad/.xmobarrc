@@ -20,7 +20,7 @@
 
 
 Config {
-    font        = "xft:Hack:size=14,Material Design Icons:size=14"
+    font        = "xft:Iosevka:size=16"
   , bgColor     = "#3B4252"
   , fgColor     = "#D8DEE9"
   , position    = BottomSize C 100 28
@@ -42,9 +42,10 @@ Config {
       , "--normal", "#D8DEE9"
       , "--high", "#D8DEE9"
       , "--"
-      , "--on-icon-pattern", ""
-      , "--off-icon-pattern", ""
-      , "--idle-icon-pattern", ""
+      , "--on-icon-pattern", "ﮣ "
+      , "--off-icon-pattern", " "
+      , "--idle-icon-pattern", " "
+
       ] 50
 
     , Run Kbd [("us(altgr-intl)", "<fc=#8FBCBB>En</fc>"),
