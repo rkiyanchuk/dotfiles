@@ -21,7 +21,7 @@ call plug#begin($VIM_HOME . "/plugins")
 
     " Basics
     Plug 'arcticicestudio/nord-vim'  " Colorscheme.
-    Plug 'itchyny/lightline.vim'  " Enhanced status line.
+    Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'Shougo/denite.nvim'
 
@@ -74,7 +74,6 @@ colorscheme nord
 " -------------
 
 let g:lightline = {
-    \ 'colorscheme': 'nord',
     \ 'active': {
     \   'left': [
     \               ['mode', 'paste'],
@@ -82,7 +81,7 @@ let g:lightline = {
     \               ['filename']
     \           ],
     \   'right': [
-    \               ['lineinfo'],
+    \               [ 'trailing', 'lineinfo'],
     \               ['percent'],
     \               ['filetype', 'fileformat', 'fileencoding', 'charvaluehex']
     \           ]
@@ -99,9 +98,14 @@ let g:lightline = {
     \   'readonly': 'LightlineReadonly',
     \   'fugitive': 'LightlineFugitive'
     \ },
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
     \ }
+
+let g:lightline.colorscheme = 'nord'
+let g:lightline.separator = { 'left': '', 'right': '' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+let g:lightline.component_expand = {'trailing': 'lightline#trailing_whitespace#component'}
+let g:lightline.component_type = {'trailing': 'error'}
+let g:lightline#trailing_whitespace#indicator = '●'
 
 function! LightlineReadonly()
     return &readonly ? '' : ''
