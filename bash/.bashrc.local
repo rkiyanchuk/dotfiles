@@ -89,6 +89,7 @@ if [[ $OSTYPE == $MACOS ]]; then
     alias l='ls -hl'
     alias ll='ls -Ahl'
     alias updatedb="sudo /usr/libexec/locate.updatedb"
+    alias ctags="/usr/local/bin/ctags"
 fi
 
 
