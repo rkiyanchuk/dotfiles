@@ -6,7 +6,7 @@ let $VIM_PLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/pl
 " PLUGINS
 " =======
 
-" Auto install vim-plug plugin manage/r.
+" Auto install vim-plug plugin manager.
 if !filereadable($VIM_HOME . '/autoload/plug.vim')
     if executable('curl')
         silent !curl -fLo $VIM_HOME/autoload/plug.vim --create-dirs $VIM_PLUG_URL
@@ -378,34 +378,21 @@ nnoremap <silent> <leader>3 :GundoToggle<CR>
 " COMMANDS
 " ========
 
-" Remove trailing spaces from file.
-function! ShowSpaces(...)
-    " Highlight trailing spaces.
-    let @/='\v(\s+$)|( +\ze\t)'
-    let oldhlsearch=&hlsearch
-    if !a:0
-        let &hlsearch=!&hlsearch
-    else
-        let &hlsearch=a:1
-    end
-    return oldhlsearch
-endfunction
-
-function! FixSpaces()
-    " Remove trailing spaces.
-    let oldhlsearch=ShowSpaces(1)
-    execute a:firstline.",".a:lastline."substitute ///ge"
-    let &hlsearch=oldhlsearch
-endfunction
-
-command! -bar -nargs=0 -range=% FixSpaces <line1>,<line2>call FixSpaces()
-
 " Update plugins.
 command! Update :PlugUpdate | PlugUpgrade | source $MYVIMRC
 
 " Commands for merge conflict resolution.
 command! MergeLocal :diffget //2
 command! MergeRemote :diffget //3
+
+" Remove trailing spaces from file.
+function! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfunction
+
+command! TrimWhitespace call TrimWhitespace() | :write
 
 
 " AUTOCOMMANDS
