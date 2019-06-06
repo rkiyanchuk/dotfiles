@@ -330,6 +330,7 @@ let g:netrw_liststyle = 3
 let g:netrw_silent = 1
 let g:netrw_special_syntax = 1
 let g:netrw_winsize = 20
+let g:netrw_list_hide = netrw_gitignore#Hide()
 
 " Filetype settings
 let c_comment_strings = 1
