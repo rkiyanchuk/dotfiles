@@ -215,17 +215,14 @@ let g:lsp_virtual_text_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlights_enabled = 0
 
-augroup LSPCLANG
+augroup LSP
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'clangd',
         \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
         \ })
-augroup end
 
-augroup LSPPYTHON
-    autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'pyls',
         \ 'cmd': {server_info->['pyls']},
@@ -234,30 +231,21 @@ augroup LSPPYTHON
         \   'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}
         \   }
         \ })
-augroup end
 
-augroup LSPRUST
-    autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'rls',
         \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
         \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
         \ 'whitelist': ['rust'],
         \ })
-augroup end
 
-augroup LSPGOLANG
-    autocmd!
+    autocmd BufWritePre *.go LspDocumentFormatSync
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
         \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
         \ 'whitelist': ['go'],
         \ })
-    autocmd BufWritePre *.go LspDocumentFormatSync
-augroup end
 
-augroup LSPBASH
-    autocmd!
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'bash-language-server',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
