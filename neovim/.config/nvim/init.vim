@@ -92,7 +92,7 @@ let g:lightline = {
     \   'right': [['lineinfo'], ['percent']]
     \ },
     \ 'component': {
-    \   'lineinfo': '%3l:%-2v',
+    \   'lineinfo': ' %2l:%-2v',
     \   'charvaluehex': '%2Bₕ',
     \ },
     \ 'component_function': {
