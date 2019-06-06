@@ -119,6 +119,7 @@ endfunction
 " ---------
 
 let g:gundo_prefer_python3 = 1
+let g:gundo_help = 0
 
 " denite.nvim
 " -----------
