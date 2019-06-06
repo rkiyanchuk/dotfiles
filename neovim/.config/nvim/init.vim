@@ -31,7 +31,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'fidian/hexmode'  " Hex editor mode.
 
     " Version control
-    Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive' 
+    Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
     Plug 'mhinz/vim-signify'  " Show diff in signcolumn.
 
     " Completion
@@ -165,7 +165,7 @@ command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 
 " vim-signify
 " -----------
-"
+
 let g:signify_vcs_list = ['git', 'hg']
 let g:signify_sign_delete            = '−'
 let g:signify_sign_delete_first_line = '‾'
