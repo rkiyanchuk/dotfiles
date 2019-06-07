@@ -22,7 +22,7 @@ gap_y 10
 
 # Fonts.
 use_xft yes
-xftfont Iosevka:size=16
+xftfont Iosevka:style=Light:size=16
 uppercase no
 
 # Solarized colors.

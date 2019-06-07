@@ -20,7 +20,7 @@
 
 
 Config {
-    font        = "xft:Iosevka:size=16"
+    font        = "xft:Iosevka:style=Light:size=16"
   , bgColor     = "#3B4252"
   , fgColor     = "#D8DEE9"
   , position    = BottomSize C 100 28
