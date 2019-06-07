@@ -32,11 +32,7 @@ shopt -s checkwinsize
 
 if [[ $OSTYPE == $LINUX ]]; then
     shopt -s autocd  # Auto append cd to directory
-
-    # Enable Pew shell completion.
-    # Update this value by checking $ pew shell_config
-    # Though it's too slow to execute here every time.
-    source /usr/lib/python3.7/site-packages/pew/shell_config/init.bash
+    source /usr/share/git/completion/git-prompt.sh
 fi
 
 if [[ $OSTYPE == $MACOS ]]; then
@@ -117,25 +113,6 @@ ONMAGENTA="\[\033[0;45m\]"
 ONCYAN="\[\033[0;46m\]"
 ONWHITE="\[\033[0;47m\]"
 
-# Self-made replacement for slow __git_ps1.
-function __git_branch() {
-    local head
-    local branch
-    git_root=$(pwd)
-    while [[ "$git_root" != "" && ! -e "$git_root/.git" ]]; do
-        git_root="${git_root%/*}"
-    done
-
-    if [[ -d "$git_root/.git" ]]; then
-        head=$(<"$git_root/.git/HEAD")
-        branch=" (${head##*/})"
-    else
-        branch=""
-    fi
-
-    echo "$branch"
-}
-
 prompt_command () {
     # Capture exit code of last command.
     if [ $? -eq 0 ]; then
@@ -144,7 +121,7 @@ prompt_command () {
         STATUS="${RED}${?}${RESET}:"
     fi
 
-    BRANCH=$(__git_branch)
+    BRANCH="\$(__git_ps1 ' %s')"
 
     # Show virtualenv if activated.
     if [[ $VIRTUAL_ENV != "" ]]; then
