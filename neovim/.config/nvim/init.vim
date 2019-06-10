@@ -337,7 +337,6 @@ let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_silent = 1
 let g:netrw_special_syntax = 1
-let g:netrw_winsize = 20
 let g:netrw_list_hide = netrw_gitignore#Hide()
 
 " Filetype settings
@@ -369,8 +368,8 @@ nnoremap <leader>s :set spell!<CR>
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
 
-inoremap <silent> <leader>1 :Lexplore<CR>
-nnoremap <silent> <leader>1 :Lexplore<CR>
+inoremap <silent> <leader>1 :Lexplore 20<CR>
+nnoremap <silent> <leader>1 :Lexplore 20<CR>
 
 inoremap <silent> <leader>2 :Vista!!<CR>
 nnoremap <silent> <leader>2 :Vista!!<CR>
