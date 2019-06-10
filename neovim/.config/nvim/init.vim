@@ -168,6 +168,11 @@ let g:UltiSnipsExpandTrigger = '<C-\>'
 
 command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 
+" lexima.vim
+" ----------
+
+inoremap <C-l> <Right>
+
 " vim-signify
 " -----------
 
