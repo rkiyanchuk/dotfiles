@@ -132,16 +132,19 @@ nnoremap <silent> <leader>3 :GundoToggle<CR>
 " nerdtree
 " --------
 
-autocmd! BufEnter * call NERDTreeToggleCursorcolumn()
+let NERDTreeMinimalUI=1
+let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
+
+inoremap <silent> <leader>1 :NERDTreeToggle<CR>
+nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 function! NERDTreeToggleCursorcolumn()
     if (bufname("%") =~ "NERD_Tree_")
         setlocal nocursorcolumn
     endif
 endfunction
+autocmd! BufEnter * call NERDTreeToggleCursorcolumn()
 
-inoremap <silent> <leader>1 :NERDTreeToggle<CR>
-nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 " denite.nvim
 " -----------
