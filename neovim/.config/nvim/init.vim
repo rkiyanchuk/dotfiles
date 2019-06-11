@@ -371,14 +371,6 @@ for path in [&undodir, &backupdir, &directory]
     endif
 endfor
 
-" File browser
-let g:netrw_banner = 0
-let g:netrw_browse_split = 4
-let g:netrw_liststyle = 3
-let g:netrw_silent = 1
-let g:netrw_special_syntax = 1
-let g:netrw_list_hide = netrw_gitignore#Hide()
-
 " Filetype settings
 let c_comment_strings = 1
 let c_space_errors = 1  " Highlight extra white spaces.
