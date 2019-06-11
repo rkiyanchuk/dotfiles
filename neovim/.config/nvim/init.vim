@@ -23,6 +23,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'arcticicestudio/nord-vim'  " Colorscheme.
     Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
+    Plug 'scrooloose/nerdtree'
     Plug 'Shougo/denite.nvim'
 
     " Editing
@@ -124,6 +125,20 @@ endfunction
 
 let g:gundo_prefer_python3 = 1
 let g:gundo_help = 0
+
+" nerdtree
+" --------
+
+autocmd! BufEnter * call NERDTreeToggleCursorcolumn()
+
+function! NERDTreeToggleCursorcolumn()
+    if (bufname("%") =~ "NERD_Tree_")
+        setlocal nocursorcolumn
+    endif
+endfunction
+
+inoremap <silent> <leader>1 :NERDTreeToggle<CR>
+nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 " denite.nvim
 " -----------
@@ -384,6 +399,11 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
+" Fix NERDTree curslorline in Neovim.
+" Must be after :set termguicolors
+" https://github.com/trevordmiller/nova-vim/issues/106
+" https://github.com/neovim/neovim/issues/9019
+highlight NERDTreeFile ctermfg=251
 
 " MAPPINGS
 " ========
