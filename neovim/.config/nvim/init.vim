@@ -126,6 +126,9 @@ endfunction
 let g:gundo_prefer_python3 = 1
 let g:gundo_help = 0
 
+inoremap <silent> <leader>3 :GundoToggle<CR>
+nnoremap <silent> <leader>3 :GundoToggle<CR>
+
 " nerdtree
 " --------
 
@@ -233,6 +236,8 @@ let g:vista_executive_for = {
     \ 'sh': 'vim_lsp',
     \ }
 
+inoremap <silent> <leader>2 :Vista!!<CR>
+nnoremap <silent> <leader>2 :Vista!!<CR>
 
 " vim-lsp
 " -------
@@ -395,15 +400,6 @@ nnoremap <leader>s :set spell!<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
-
-inoremap <silent> <leader>1 :Lexplore 20<CR>
-nnoremap <silent> <leader>1 :Lexplore 20<CR>
-
-inoremap <silent> <leader>2 :Vista!!<CR>
-nnoremap <silent> <leader>2 :Vista!!<CR>
-
-inoremap <silent> <leader>3 :GundoToggle<CR>
-nnoremap <silent> <leader>3 :GundoToggle<CR>
 
 
 " COMMANDS
