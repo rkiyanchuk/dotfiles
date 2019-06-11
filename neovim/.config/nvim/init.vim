@@ -193,7 +193,6 @@ inoremap <silent> <C-l> <C-r>=lexima#insmode#leave_all("")<CR>
 " vim-signify
 " -----------
 
-let g:signify_disable_by_default = 1
 let g:signify_vcs_list = ['git', 'hg']
 let g:signify_sign_delete            = '−'
 let g:signify_sign_delete_first_line = '‾'
@@ -224,7 +223,6 @@ augroup end
 let g:vista_echo_cursor = 0
 let g:vista_blink = [0, 0]
 
-
 " NOTE: for some reason required on MacOS for Vista to recognize what to use.
 let g:vista_executive_for = {
     \ 'c': 'vim_lsp',
@@ -248,23 +246,6 @@ let g:lsp_signs_information = {'text': 'ℹ'}
 let g:lsp_signs_hint = {'text': '➤'}
 " Avoid red highlighting on error which is too distracting.
 highlight link LspErrorText healthError
-
-let g:signcolumn_lsp = 1
-function! SigncolumnToggle()
-    " Switching between vim-lsp and signify.
-    if g:signcolumn_lsp
-        call lsp#ui#vim#signs#disable()
-        :SignifyEnable
-        let g:signcolumn_lsp = 0
-    else
-        :SignifyDisable
-        call lsp#ui#vim#signs#enable()
-        let g:signcolumn_lsp = 1
-    endif
-endfunction
-
-inoremap <silent> <leader>4 :call SigncolumnToggle()<CR>
-nnoremap <silent> <leader>4 :call SigncolumnToggle()<CR>
 
 augroup LSP
     autocmd!
