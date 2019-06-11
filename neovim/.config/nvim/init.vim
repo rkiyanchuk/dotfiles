@@ -223,8 +223,9 @@ augroup end
 " vista.vim
 " ---------
 
-let g:vista_echo_cursor = 0
+let g:vista_icon_indent = ["▸ ", ""]
 let g:vista_blink = [0, 0]
+let g:vista_top_level_blink = [0, 0]
 
 " NOTE: for some reason required on MacOS for Vista to recognize what to use.
 let g:vista_executive_for = {
