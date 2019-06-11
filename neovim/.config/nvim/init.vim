@@ -194,7 +194,7 @@ command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 
 " Jump over auto-inserted characters.
 " See https://github.com/cohama/lexima.vim/issues/83
-inoremap <silent> <C-l> <C-r>=lexima#insmode#leave_all("")<CR>
+inoremap <C-l> <C-r>=lexima#insmode#leave(1, "")<CR>
 
 " vim-signify
 " -----------
