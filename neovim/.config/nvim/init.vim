@@ -252,6 +252,14 @@ let g:lsp_signs_hint = {'text': '➤'}
 " Avoid red highlighting on error which is too distracting.
 highlight link LspErrorText healthError
 
+nnoremap <leader>gd :LspDefinition<CR>
+nnoremap <leader>gD :LspDeclaration<CR>
+nnoremap <leader>K :LspHover<CR>
+nnoremap <leader>lr :LspReferences<CR>
+nnoremap <leader>li :LspDocumentDiagnostics<CR>
+nnoremap <leader>ls :LspDocumentSymbol<CR>
+nnoremap <leader>lw :LspWorkspaceSymbol<CR>
+
 augroup LSP
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
