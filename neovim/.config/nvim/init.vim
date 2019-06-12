@@ -323,6 +323,7 @@ set mouse=a
 set mousehide
 set mousemodel=popup_setpos
 set nofoldenable
+set noshowcmd
 set noshowmode  " Mode is already displayed by statusline plugin.
 set nowrap
 set number
