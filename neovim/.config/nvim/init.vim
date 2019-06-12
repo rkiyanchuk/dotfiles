@@ -288,7 +288,6 @@ augroup LSP
         \ 'whitelist': ['rust'],
         \ })
 
-    autocmd BufWritePre *.go LspDocumentFormatSync
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
         \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
