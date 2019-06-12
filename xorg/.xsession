@@ -22,9 +22,6 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on \
 # Needed for correct Java apps windows operation under XMonad.
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# NeoVim GTK settings.
-export NVIM_GTK_NO_HEADERBAR=1
-
 # Explicitely set XDG_RUNTIME_DIR for systemd.
 # See bug for details:
 # https://answers.launchpad.net/ubuntu/+source/systemd/+question/287454
