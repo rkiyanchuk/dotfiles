@@ -61,6 +61,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
     Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
     Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['jinja']}
+    Plug 'ekalinin/Dockerfile.vim', {'for': ['Dockerfile']}
 call plug#end()
 
 " nord-vim
