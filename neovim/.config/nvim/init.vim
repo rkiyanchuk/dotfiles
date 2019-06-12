@@ -23,7 +23,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'arcticicestudio/nord-vim'  " Colorscheme.
     Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
-    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
     Plug 'Shougo/denite.nvim'
 
     " Editing
