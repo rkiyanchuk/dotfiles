@@ -311,7 +311,6 @@ set background=dark
 set backspace=indent,eol,start
 set backup
 set clipboard=unnamed,unnamedplus
-set colorcolumn=80
 set completeopt=menuone,noinsert,noselect
 set cursorcolumn
 set cursorline
