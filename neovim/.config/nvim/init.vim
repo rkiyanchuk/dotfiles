@@ -300,6 +300,11 @@ augroup LSP
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
         \ 'whitelist': ['sh'],
         \ })
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'jdtls',
+        \ 'cmd': {server_info->['jdtls']},
+        \ 'whitelist': ['java'],
+        \ })
 augroup end
 
 
