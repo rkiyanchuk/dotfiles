@@ -81,11 +81,11 @@ if [[ $OSTYPE == $LINUX ]]; then
 fi
 
 if [[ $OSTYPE == $MACOS ]]; then
-    alias gvim="vimr --cur-env"
     alias l='ls -hl'
     alias ll='ls -Ahl'
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias ctags="/usr/local/bin/ctags"
+    alias gvim='f(){ nohup nvim-qt "$@" > /dev/null &  unset -f f; }; f'
 fi
 
 
