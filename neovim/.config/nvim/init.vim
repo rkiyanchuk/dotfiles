@@ -405,6 +405,7 @@ highlight NERDTreeFile ctermfg=251
 nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
 nnoremap <leader>R :source $MYVIMRC<CR>
 nnoremap <leader>s :set spell!<CR>
+nnoremap <leader>t :split term://bash<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
