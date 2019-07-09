@@ -126,6 +126,8 @@ prompt_command () {
     # Show virtualenv if activated.
     if [[ $VIRTUAL_ENV != "" ]]; then
         VENV="$CYAN[${VIRTUAL_ENV##*/}]$RESET "
+    else
+        VENV=""
     fi
 
     PROMPT="$VENV"
