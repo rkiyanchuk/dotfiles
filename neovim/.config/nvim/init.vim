@@ -62,6 +62,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
     Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['jinja']}
     Plug 'ekalinin/Dockerfile.vim', {'for': ['Dockerfile']}
+    Plug 'chr4/nginx.vim', {'for': ['nginx']}
 call plug#end()
 
 " nord-vim
