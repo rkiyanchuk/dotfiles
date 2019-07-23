@@ -251,6 +251,7 @@ nnoremap <silent> <leader>2 :Vista!!<CR>
 let g:lsp_virtual_text_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlights_enabled = 0
+let g:lsp_peek_alignment = "top"
 let g:lsp_signs_error = {'text': '✘'}
 let g:lsp_signs_warning = {'text': ''}
 let g:lsp_signs_information = {'text': ''}
@@ -258,6 +259,7 @@ let g:lsp_signs_hint = {'text': 'ﰲ'}
 " Avoid red highlighting on error which is too distracting.
 highlight link LspErrorText healthError
 
+nnoremap <leader>pd :LspPeekDefinition<CR>
 nnoremap <leader>gd :LspDefinition<CR>
 nnoremap <leader>gD :LspDeclaration<CR>
 nnoremap <leader>K :LspHover<CR>
