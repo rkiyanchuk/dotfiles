@@ -1,4 +1,0 @@
-#  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
-#                     be found at https://github.com/koekeishiya/skhd/issues/1
-
-alt + shift - return : open -na /Applications/iTerm.app
