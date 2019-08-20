@@ -380,7 +380,6 @@ endfor
 
 " Filetype settings
 let c_comment_strings = 1
-let c_space_errors = 1  " Highlight extra white spaces.
 let g:load_doxygen_syntax = 1
 let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
 
