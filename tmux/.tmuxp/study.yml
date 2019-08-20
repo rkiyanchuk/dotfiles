@@ -1,0 +1,16 @@
+---
+session_name: study
+start_directory: "${HOME}/devel/src/courses"
+windows:
+
+  - window_name: playground
+    start_directory: "${HOME}/devel/src/playground"
+    focus: true
+    panes:
+      - null
+
+  - window_name: algorithms
+    start_directory: algorithms
+    focus: true
+    panes:
+      - null
