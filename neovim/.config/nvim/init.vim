@@ -20,7 +20,8 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    Plug 'arcticicestudio/nord-vim'  " Colorscheme.
+    "Plug 'arcticicestudio/nord-vim'  " Colorscheme.
+    Plug 'rakr/vim-one'
     Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
@@ -71,7 +72,9 @@ call plug#end()
 let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
-colorscheme nord
+"colorscheme nord
+set background=dark " for the dark version
+colorscheme one
 
 " lightline.vim
 " -------------
@@ -103,7 +106,7 @@ let g:lightline = {
     \ },
     \ }
 
-let g:lightline.colorscheme = 'nord'
+let g:lightline.colorscheme = 'one'
 let g:lightline.separator = { 'left': '', 'right': '' }
 let g:lightline.subseparator = { 'left': '', 'right': '' }
 let g:lightline.component_expand = {'trailing': 'lightline#trailing_whitespace#component'}
@@ -314,7 +317,6 @@ augroup end
 " ========
 
 set autoread
-set background=dark
 set backspace=indent,eol,start
 set backup
 set clipboard=unnamed,unnamedplus
@@ -442,8 +444,11 @@ augroup CPP
     autocmd FileType c,h,cpp,cxx setlocal cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
+
 augroup MISC
     autocmd!
+    autocmd FileType html,xml,yaml setlocal shiftwidth=2
+    autocmd FileType html,xml,yaml setlocal tabstop=2
     " Treat .conf files as .cfg.
     autocmd BufReadPost,BufNewFile *.conf setlocal filetype=cfg
 augroup END
