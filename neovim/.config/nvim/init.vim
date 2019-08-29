@@ -53,17 +53,9 @@ call plug#begin($VIM_HOME . "/plugins")
     "Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
     " Enhancements for specific file types.
+    Plug 'sheerun/vim-polyglot'
     Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
     Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
-    Plug 'pearofducks/ansible-vim', {'for': 'ansible', 'do': 'cd ./UltiSnips; ./generate.py'}
-    Plug 'cespare/vim-toml', {'for': ['toml']}
-    Plug 'leafgarland/typescript-vim', {'for': ['typescript']}
-    Plug 'pangloss/vim-javascript', {'for': ['javascript']}
-    Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['cpp']}
-    Plug 'plasticboy/vim-markdown', {'for': ['markdown']}
-    Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['jinja']}
-    Plug 'ekalinin/Dockerfile.vim', {'for': ['Dockerfile']}
-    Plug 'chr4/nginx.vim', {'for': ['nginx']}
 call plug#end()
 
 " nord-vim
