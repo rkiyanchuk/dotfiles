@@ -20,8 +20,8 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    "Plug 'arcticicestudio/nord-vim'  " Colorscheme.
-    Plug 'rakr/vim-one'
+    Plug 'arcticicestudio/nord-vim'  " Colorscheme.
+    Plug 'rakr/vim-one'  " Colorscheme for light background.
     Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
@@ -64,9 +64,8 @@ call plug#end()
 let g:nord_italic = 1
 let g:nord_underline = 1
 let g:nord_uniform_diff_background = 1
-"colorscheme nord
-set background=dark " for the dark version
-colorscheme one
+set background=dark
+colorscheme nord
 
 " lightline.vim
 " -------------
@@ -98,7 +97,7 @@ let g:lightline = {
     \ },
     \ }
 
-let g:lightline.colorscheme = 'one'
+let g:lightline.colorscheme = 'nord'
 let g:lightline.separator = { 'left': '', 'right': '' }
 let g:lightline.subseparator = { 'left': '', 'right': '' }
 let g:lightline.component_expand = {'trailing': 'lightline#trailing_whitespace#component'}
