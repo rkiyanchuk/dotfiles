@@ -258,7 +258,7 @@ nnoremap <leader>gd :LspDefinition<CR>
 nnoremap <leader>gD :LspDeclaration<CR>
 nnoremap <leader>K :LspHover<CR>
 nnoremap <leader>lr :LspReferences<CR>
-nnoremap <leader>li :LspDocumentDiagnostics<CR>
+nnoremap <leader>ld :LspDocumentDiagnostics<CR>
 nnoremap <leader>ls :LspDocumentSymbol<CR>
 nnoremap <leader>lw :LspWorkspaceSymbol<CR>
 
@@ -310,7 +310,7 @@ augroup end
 set autoread
 set backspace=indent,eol,start
 set backup
-set clipboard=unnamed,unnamedplus
+set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
 set cursorcolumn
 set cursorline
