@@ -208,14 +208,8 @@ let g:signify_sign_show_count = 0
 let g:float_preview#docked = 0
 let g:float_preview#max_width = 100
 
-function! NCM2Config()
-    call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
-    call nvim_win_set_option(g:float_preview#win, 'cursorcolumn', v:false)
-endfunction
-
 augroup NCM2
     autocmd!
-    autocmd User FloatPreviewWinOpen call NCM2Config()
     autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup end
 
@@ -312,7 +306,7 @@ set backspace=indent,eol,start
 set backup
 set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
-set cursorcolumn
+"set cursorcolumn  # Doesn't play nice with float-preview window for now
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
