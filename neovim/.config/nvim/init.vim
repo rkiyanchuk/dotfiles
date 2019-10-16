@@ -223,6 +223,11 @@ let g:vista_top_level_blink = [0, 0]
 inoremap <silent> <leader>2 :Vista!!<CR>
 nnoremap <silent> <leader>2 :Vista!!<CR>
 
+if exists('*nvim_open_win')
+    let g:vista_echo_cursor = 1
+    let g:vista_echo_cursor_strategy = "floating_win"
+endif
+
 " vim-lsp
 " -------
 
