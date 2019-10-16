@@ -220,16 +220,6 @@ let g:vista_icon_indent = ["▸ ", ""]
 let g:vista_blink = [0, 0]
 let g:vista_top_level_blink = [0, 0]
 
-" NOTE: for some reason required on MacOS for Vista to recognize what to use.
-let g:vista_executive_for = {
-    \ 'c': 'vim_lsp',
-    \ 'cpp': 'vim_lsp',
-    \ 'python': 'vim_lsp',
-    \ 'rust': 'vim_lsp',
-    \ 'go': 'vim_lsp',
-    \ 'sh': 'vim_lsp',
-    \ }
-
 inoremap <silent> <leader>2 :Vista!!<CR>
 nnoremap <silent> <leader>2 :Vista!!<CR>
 
