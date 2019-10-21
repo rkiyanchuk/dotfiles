@@ -250,6 +250,7 @@ nnoremap <leader>lr :LspReferences<CR>
 nnoremap <leader>ld :LspDocumentDiagnostics<CR>
 nnoremap <leader>ls :LspDocumentSymbol<CR>
 nnoremap <leader>lw :LspWorkspaceSymbol<CR>
+nnoremap <leader>lf :LspDocumentFormat<CR>
 
 augroup LSP
     autocmd!
