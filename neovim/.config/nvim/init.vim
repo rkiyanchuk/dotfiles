@@ -228,6 +228,11 @@ if exists('*nvim_open_win')
     let g:vista_echo_cursor_strategy = "floating_win"
 endif
 
+" vim-polyglot
+" ------------
+
+let g:python_highlight_space_errors = 0
+
 " vim-lsp
 " -------
 
