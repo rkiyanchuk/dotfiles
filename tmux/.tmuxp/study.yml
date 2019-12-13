@@ -1,16 +1,25 @@
 ---
 session_name: study
-start_directory: "${HOME}/devel/src/courses"
+start_directory: "${HOME}/devel/src"
 windows:
 
   - window_name: playground
     start_directory: "${HOME}/devel/src/playground"
     focus: true
     panes:
-      - null
+      - shell_command:
+        - git status
 
-  - window_name: algorithms
-    start_directory: algorithms
+  - window_name: cryptography1
+    start_directory: "${HOME}/devel/src/courses/cryptography1"
     focus: true
     panes:
-      - null
+      - shell_command:
+        - git status
+
+  - window_name: algorithms
+    start_directory: "${HOME}/devel/src/courses/algorithms"
+    focus: true
+    panes:
+      - shell_command:
+        - git status
