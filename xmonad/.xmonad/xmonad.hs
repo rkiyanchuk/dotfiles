@@ -117,7 +117,7 @@ main = do
                                <+> composeAll myManageHook
         , startupHook        = do setWMName "LG3D"
                                   spawn "albert"
-                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 280 --tint 0x3B4252 --alpha 0 --transparent true --height 28"
+                                  spawnOnce "trayer --edge bottom --widthtype request --align right  --distancefrom right --distance 280 --tint 0x3B4252 --alpha 0 --transparent true --height 28 --monitor primary"
                                   spawnOnce "multiload-ng-systray"
                                   spawnOnce "sleep 1 && nm-applet"
                                   spawnOnce "sleep 1 && blueman-applet"
