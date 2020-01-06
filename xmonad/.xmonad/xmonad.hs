@@ -90,8 +90,6 @@ myKeyBindings =
     -- Brightness control
     , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
-    , ((metaMask .|. shiftMask, xK_Up), spawn "xbacklight -inc 5")
-    , ((metaMask .|. shiftMask, xK_Down), spawn "xbacklight -dec 5")
 
     -- Screenshot
     , ((0, xK_Print), spawn "flameshot gui -p ${HOME}/Dropbox/Screenshots")
