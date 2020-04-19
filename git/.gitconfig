@@ -60,5 +60,5 @@
 [credential "https://stash.ges.symantec.com"]
     helper = symantec-stash
 
-[includeIf "gitdir:~/devel/symc/"]
-    path = ~/devel/symc/.gitconfig
+[includeIf "gitdir:~/workspace/brex/"]
+    path = ~/workspace/brex/.gitconfig
