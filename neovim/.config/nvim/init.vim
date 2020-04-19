@@ -375,13 +375,8 @@ let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
 " See https://github.com/neovim/neovim/issues/5728#issuecomment-265454125
 let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
-if has("mac")
-    let g:python_host_prog  = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
-else
-    let g:python_host_prog  = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
-endif
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Fix NERDTree curslorline in Neovim.
 " Must be after :set termguicolors
