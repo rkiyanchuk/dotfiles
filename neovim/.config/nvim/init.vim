@@ -428,6 +428,10 @@ augroup CPP
     autocmd FileType c,h,cpp,cxx setlocal cinoptions = "h3,l1,g1,t0,i4,+4,(0,w1,W4"
 augroup END
 
+augroup PYTHON
+  autocmd!
+  autocmd FileType python setlocal comments+=b:#:   " sphinx (#:) comments
+augroup END
 
 augroup MISC
     autocmd!
