@@ -183,6 +183,12 @@ command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 " lexima.vim
 " ----------
 
+" Fix compatibiility with autoclosing completion window with pumvisible()
+" See https://github.com/cohama/lexima.vim/issues/65
+let g:lexima_no_default_rules = 1
+call lexima#set_default_rules()
+call lexima#insmode#map_hook('before', '<CR>', '')
+
 " Jump over auto-inserted characters.
 " See https://github.com/cohama/lexima.vim/issues/83
 inoremap <silent> <C-l> <C-r>=lexima#insmode#leave(1, "")<CR>
@@ -399,6 +405,13 @@ nnoremap <leader>t :split term://zsh<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
+
+" Autoclose completion window on Enter.
+function! OnEnterPressed()
+    return empty(v:completed_item) ? "\<C-y>\<CR>" : "\<C-y>"
+endfunction
+inoremap <expr> <CR> pumvisible() ? OnEnterPressed() : "\<CR>"
+
 " }}}
 
 " {{{ COMMANDS
