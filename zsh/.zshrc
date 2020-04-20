@@ -115,7 +115,7 @@ export PATH="$HOME/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 MACOS="darwin*"
 LINUX="linux-gnu"
 
-if [[ $OSTYPE == $MACOS ]]; then
+if [[ $OSTYPE =~ $MACOS ]]; then
     export CLICOLORS=1
     export PATH="$HOME/Library/Python/3.7/bin:$PATH"  # Scripts installed by pip (Python) on macOS.
     export PATH="/usr/local/opt/llvm/bin:$PATH"  # LLVM and Clang binaries.
@@ -135,7 +135,7 @@ if [[ $OSTYPE == $LINUX ]]; then
     alias add-sink-2="pactl load-module module-jack-sink client_name=pulse_sink_2 connect=yes"
 fi
 
-if [[ $OSTYPE == $MACOS ]]; then
+if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias ctags="/usr/local/bin/ctags"
     alias gvim="vimr"
