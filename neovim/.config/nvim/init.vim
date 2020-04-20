@@ -210,6 +210,13 @@ augroup NCM2
     autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup end
 
+function! DisableExtras()
+  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
+  call nvim_win_set_option(g:float_preview#win, 'cursorcolumn', v:false)
+endfunction
+
+autocmd User FloatPreviewWinOpen call DisableExtras()
+
 " vista.vim
 " ---------
 
@@ -224,6 +231,8 @@ if exists('*nvim_open_win')
     let g:vista_echo_cursor = 1
     let g:vista_echo_cursor_strategy = "floating_win"
 endif
+
+autocmd FileType vista,vista_kind call DisableExtras()
 
 " vim-polyglot
 " ------------
@@ -304,7 +313,7 @@ set backspace=indent,eol,start
 set backup
 set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
-"set cursorcolumn  # Doesn't play nice with float-preview window for now
+set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
