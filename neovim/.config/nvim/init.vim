@@ -258,10 +258,9 @@ let g:lsp_signs_hint = {'text': 'ﰲ'}
 " Avoid red highlighting on error which is too distracting.
 highlight link LspErrorText healthError
 
-nnoremap <leader>pd :LspPeekDefinition<CR>
-nnoremap <leader>gd :LspDefinition<CR>
-nnoremap <leader>gD :LspDeclaration<CR>
 nnoremap <leader>K :LspHover<CR>
+nnoremap <leader>ld :LspDefinition<CR>
+nnoremap <leader>lD :LspPeekDefinition<CR>
 nnoremap <leader>lr :LspReferences<CR>
 nnoremap <leader>ld :LspDocumentDiagnostics<CR>
 nnoremap <leader>ls :LspDocumentSymbol<CR>
