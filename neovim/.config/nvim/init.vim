@@ -2,9 +2,7 @@ let $VIM_HOME=fnamemodify($MYVIMRC, ':h')
 let $VIM_SITE=$HOME . "/.local/share/nvim/site"
 let $VIM_PLUG_URL="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 
-
-" PLUGINS
-" =======
+" {{{ PLUGINS
 
 " Auto install vim-plug plugin manager.
 if !filereadable($VIM_HOME . '/autoload/plug.vim')
@@ -49,16 +47,18 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'liuchengxu/vista.vim', {'on': 'Vista'}
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-    "Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
-    " Enhancements for specific file types.
+    " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
     Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
     Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
 call plug#end()
+" }}}
 
-" colorschme
-" ----------
+" {{{ PLUGIN SETTINGS
+
+" colorscheme
+" -----------
 
 set background=dark
 let g:one_allow_italics = 1
@@ -174,12 +174,10 @@ nnoremap <silent> <leader>fg :Denite grep -auto-resize<CR>
 nnoremap <silent> <leader>fr :Denite register -auto-resize<CR>
 nnoremap <silent> <leader>fw :DeniteCursorWord file/rec buffer grep<CR>
 
-
 " ultisnips
 " ---------
 
 let g:UltiSnipsExpandTrigger = '<C-\>'
-
 command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 
 " lexima.vim
@@ -250,6 +248,7 @@ let g:lsp_signs_error = {'text': '✘'}
 let g:lsp_signs_warning = {'text': ''}
 let g:lsp_signs_information = {'text': ''}
 let g:lsp_signs_hint = {'text': 'ﰲ'}
+
 " Avoid red highlighting on error which is too distracting.
 highlight link LspErrorText healthError
 
@@ -276,7 +275,9 @@ augroup LSP
         \ 'cmd': {server_info->['pyls']},
         \ 'whitelist': ['python'],
         \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true},
-        \                                           'pycodestyle': {'maxLineLength': 100}}}}
+        \                                           'pycodestyle': {'maxLineLength': 100}}
+        \     }
+        \   }
         \ })
 
     autocmd User lsp_setup call lsp#register_server({
@@ -303,10 +304,9 @@ augroup LSP
         \ 'whitelist': ['java'],
         \ })
 augroup end
+" }}}
 
-
-" SETTINGS
-" ========
+" {{{ SETTINGS
 
 set autoread
 set backspace=indent,eol,start
@@ -388,22 +388,20 @@ let g:python3_host_prog = '/usr/bin/python3'
 " Must be after :set termguicolors
 " https://github.com/trevordmiller/nova-vim/issues/106
 " https://github.com/neovim/neovim/issues/9019
-highlight NERDTreeFile ctermfg=251
+"highlight NERDTreeFile ctermfg=251
 
-" MAPPINGS
-" ========
+" {{{ MAPPINGS
 
 nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
 nnoremap <leader>R :source $MYVIMRC<CR>
 nnoremap <leader>s :set spell!<CR>
-nnoremap <leader>t :split term://bash<CR>
+nnoremap <leader>t :split term://zsh<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
+" }}}
 
-
-" COMMANDS
-" ========
+" {{{ COMMANDS
 
 " Update plugins.
 command! Update :PlugUpdate | PlugUpgrade | source $MYVIMRC
@@ -420,10 +418,9 @@ function! TrimWhitespace()
 endfunction
 
 command! TrimWhitespace call TrimWhitespace() | :write
+" }}}
 
-
-" AUTOCOMMANDS
-" ============
+" {{{ AUTOCOMMANDS
 
 augroup CPP
     autocmd!
@@ -439,3 +436,5 @@ augroup MISC
     " Treat .conf files as .cfg.
     autocmd BufReadPost,BufNewFile *.conf setlocal filetype=cfg
 augroup END
+" }}}
+" }}}
