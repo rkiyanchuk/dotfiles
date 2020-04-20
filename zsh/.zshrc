@@ -115,10 +115,6 @@ export PATH="$HOME/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
 MACOS="darwin*"
 LINUX="linux-gnu"
 
-if [[ $OSTYPE == $LINUX ]]; then
-    export QT_LOGGING_RULES="qt5ct.debug=false"  # https://superuser.com/a/1308321/173270
-fi
-
 if [[ $OSTYPE == $MACOS ]]; then
     export PATH="$HOME/Library/Python/3.7/bin:$PATH"  # Scripts installed by pip (Python) on macOS.
     export PATH="/usr/local/opt/llvm/bin:$PATH"  # LLVM and Clang binaries.

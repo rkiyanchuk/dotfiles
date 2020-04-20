@@ -3,6 +3,7 @@
 
 export QT_QPA_PLATFORMTHEME="qt5ct"  # Needed for Qt applications to configure theme.
 export QT_AUTO_SCREEN_SCALE_FACTOR=0  # Fix QT 5 wrong HiDPI scaling.
+export QT_LOGGING_RULES="qt5ct.debug=false"  # https://superuser.com/a/1308321/173270
 
 # Time zone.
 export TZ='America/Los_Angeles'

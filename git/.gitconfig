@@ -57,8 +57,5 @@
 [push]
     default = simple
 
-[credential "https://stash.ges.symantec.com"]
-    helper = symantec-stash
-
 [includeIf "gitdir:~/workspace/brex/"]
     path = ~/workspace/brex/.gitconfig
