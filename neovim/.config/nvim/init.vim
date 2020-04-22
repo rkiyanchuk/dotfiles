@@ -19,7 +19,7 @@ call plug#begin($VIM_HOME . "/plugins")
 
     " Basics
     Plug 'rakr/vim-one'  " Colorscheme for light background.
-    Plug 'itchyny/lightline.vim' | Plug 'maximbaz/lightline-trailing-whitespace'
+    Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
     Plug 'Shougo/denite.nvim'
@@ -44,7 +44,7 @@ call plug#begin($VIM_HOME . "/plugins")
     endif
 
     " Programming
-    Plug 'liuchengxu/vista.vim', {'on': 'Vista'}
+    Plug 'liuchengxu/vista.vim'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
 
@@ -64,54 +64,27 @@ set background=dark
 let g:one_allow_italics = 1
 colorscheme one
 
-" lightline.vim
-" -------------
+" vim-airline
+" -----------
 
-let g:lightline = {
-    \ 'active': {
-    \   'left': [
-    \               ['mode', 'paste'],
-    \               ['fugitive'],
-    \               ['filename']
-    \           ],
-    \   'right': [
-    \               [ 'trailing', 'lineinfo'],
-    \               ['percent'],
-    \               ['filetype', 'fileformat', 'fileencoding', 'charvaluehex']
-    \           ]
-    \ },
-    \ 'inactive': {
-    \   'left': [[], ['filename']],
-    \   'right': [['lineinfo'], ['percent']]
-    \ },
-    \ 'component': {
-    \   'lineinfo': ' %2l:%-2v',
-    \   'charvaluehex': '%2Bₕ',
-    \ },
-    \ 'component_function': {
-    \   'readonly': 'LightlineReadonly',
-    \   'fugitive': 'LightlineFugitive'
-    \ },
-    \ }
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_skip_empty_sections = 1
 
-let g:lightline.colorscheme = 'one'
-let g:lightline.separator = { 'left': '', 'right': '' }
-let g:lightline.subseparator = { 'left': '', 'right': '' }
-let g:lightline.component_expand = {'trailing': 'lightline#trailing_whitespace#component'}
-let g:lightline.component_type = {'trailing': 'error'}
-let g:lightline#trailing_whitespace#indicator = '●'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#tabline#tab_nr_type = 1  " Show tab number
+let g:airline#extensions#wordcount#enabled = 0
 
-function! LightlineReadonly()
-    return &readonly ? '' : ''
-endfunction
-
-function! LightlineFugitive()
-    if exists('*fugitive#head')
-        let branch = fugitive#head()
-        return branch !=# '' ? ''.branch : ''
-    endif
-    return ''
-endfunction
+let g:airline_section_y = airline#section#create_right(['%{&fenc!=#""?&fenc:&enc}', '%{&ff}', '%2Bₕ'])
+let g:airline_section_z = airline#section#create_right(['☰ %2l:%-2v', '%p%%'])
 
 " gundo.vim
 " ---------
