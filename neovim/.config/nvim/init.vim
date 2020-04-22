@@ -240,6 +240,14 @@ nnoremap <leader>ls :LspDocumentSymbol<CR>
 nnoremap <leader>lw :LspWorkspaceSymbol<CR>
 nnoremap <leader>lf :LspDocumentFormat<CR>
 
+let g:vista_c_executive = "vim_lsp"
+let g:vista_cpp_executive = "vim_lsp"
+let g:vista_python_executive = "vim_lsp"
+let g:vista_rust_executive = "vim_lsp"
+let g:vista_go_executive = "vim_lsp"
+let g:vista_sh_executive = "vim_lsp"
+let g:vista_java_executive = "vim_lsp"
+
 augroup LSP
     autocmd!
     autocmd User lsp_setup call lsp#register_server({
