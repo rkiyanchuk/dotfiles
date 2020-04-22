@@ -137,6 +137,5 @@ fi
 
 if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
-    alias ctags="/usr/local/bin/ctags"
     alias gvim="vimr"
 fi
