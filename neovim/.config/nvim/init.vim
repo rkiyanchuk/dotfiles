@@ -48,6 +48,8 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
 
+    Plug 'elixir-editors/vim-elixir'
+
     " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
     Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
@@ -247,6 +249,7 @@ let g:vista_rust_executive = "vim_lsp"
 let g:vista_go_executive = "vim_lsp"
 let g:vista_sh_executive = "vim_lsp"
 let g:vista_java_executive = "vim_lsp"
+let g:vista_elixir_executive = "vim_lsp"
 
 augroup LSP
     autocmd!
@@ -288,6 +291,11 @@ augroup LSP
         \ 'name': 'jdtls',
         \ 'cmd': {server_info->['jdtls']},
         \ 'whitelist': ['java'],
+        \ })
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'elixir-ls',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, '~/workspace/misc/elixir-ls/rel/language_server.sh']},
+        \ 'whitelist': ['elixir', 'eelixir'],
         \ })
 augroup end
 " }}}
