@@ -237,7 +237,7 @@ nnoremap <leader>K :LspHover<CR>
 nnoremap <leader>ld :LspDefinition<CR>
 nnoremap <leader>lD :LspPeekDefinition<CR>
 nnoremap <leader>lr :LspReferences<CR>
-nnoremap <leader>ld :LspDocumentDiagnostics<CR>
+nnoremap <leader>ldd :LspDocumentDiagnostics<CR>
 nnoremap <leader>ls :LspDocumentSymbol<CR>
 nnoremap <leader>lw :LspWorkspaceSymbol<CR>
 nnoremap <leader>lf :LspDocumentFormat<CR>
