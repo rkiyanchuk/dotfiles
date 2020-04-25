@@ -120,6 +120,8 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     export PATH="$HOME/Library/Python/3.7/bin:$PATH"  # Scripts installed by pip (Python) on macOS.
     export PATH="/usr/local/opt/llvm/bin:$PATH"  # LLVM and Clang binaries.
     export PATH="/usr/local/sbin:$PATH"
+
+    [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 fi
 
 # Aliases
