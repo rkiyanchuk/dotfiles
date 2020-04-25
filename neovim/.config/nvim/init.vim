@@ -222,7 +222,7 @@ let g:python_highlight_space_errors = 0
 " -------
 
 let g:lsp_virtual_text_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_float_cursor = 1
 let g:lsp_highlights_enabled = 0
 let g:lsp_peek_alignment = "top"
 let g:lsp_signs_error = {'text': '✘'}
