@@ -309,7 +309,7 @@ set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
-set listchars=tab:→\ ,space:·,extends:▶,precedes:◀,nbsp:␣
+set listchars=tab:→\ ,space:·,trail:·,extends:▶,precedes:◀,nbsp:␣,eol:¬
 set matchpairs+=<:>
 set mouse=a
 set mousehide
