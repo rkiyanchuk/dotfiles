@@ -8,8 +8,8 @@
     bra = branch -avv
     cm = commit -S
     co = checkout
-    prev = checkout HEAD^1
-    next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
+    co-prev = checkout HEAD^1
+    co-next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
     dc = diff --cached
     ds = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %Cgreen%ad%Creset %s  %Cgreen%an%Creset %Cred%G?%Creset %Cblue%GK%Creset %Cred%d%Creset \"
@@ -37,9 +37,12 @@
     autocorrect = 1
 
 [merge]
-    tool = vimdiff
+    tool = nvim
 
-[mergetool "vimdiff"]
+[diff]
+	tool = nvim
+
+[mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [mergetool]
@@ -47,9 +50,6 @@
 
 [credential]
     helper = cache --timeout=43200
-
-[hub]
-    protocol = https
 
 [web]
     browser = google-chrome
