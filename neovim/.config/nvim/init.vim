@@ -18,7 +18,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    Plug 'rakr/vim-one'  " Colorscheme for light background.
+    Plug 'jandamm/vim-one'
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
@@ -28,6 +28,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'cohama/lexima.vim'
     Plug 'fidian/hexmode'  " Hex editor mode.
+    Plug 'chrisbra/Colorizer'
 
     " Version control
     Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
@@ -47,7 +48,6 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'liuchengxu/vista.vim'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-
     Plug 'elixir-editors/vim-elixir'
 
     " Enhancements for specific file types
@@ -230,9 +230,6 @@ let g:lsp_signs_error = {'text': '✘'}
 let g:lsp_signs_warning = {'text': ''}
 let g:lsp_signs_information = {'text': ''}
 let g:lsp_signs_hint = {'text': 'ﰲ'}
-
-" Avoid red highlighting on error which is too distracting.
-highlight link LspErrorText healthError
 
 nnoremap <leader>K :LspHover<CR>
 nnoremap <leader>ld :LspDefinition<CR>
