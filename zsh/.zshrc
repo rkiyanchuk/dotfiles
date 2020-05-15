@@ -140,4 +140,5 @@ fi
 if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias gvim="vimr"
+    alias kc="kubectl"
 fi
