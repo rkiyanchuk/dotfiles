@@ -21,7 +21,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'jandamm/vim-one'
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
-    Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle']}
+    Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
     Plug 'Shougo/denite.nvim'
 
     " Editing
@@ -106,6 +106,7 @@ let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
 
 inoremap <silent> <leader>1 :NERDTreeToggle<CR>
 nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>1f :NERDTreeFind<CR>
 
 function! NERDTreeToggleCursorcolumn()
     if (bufname("%") =~ "NERD_Tree_")
