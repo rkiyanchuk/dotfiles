@@ -106,7 +106,7 @@ let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
 
 inoremap <silent> <leader>1 :NERDTreeToggle<CR>
 nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>1f :NERDTreeFind<CR>
+nnoremap <silent> <Leader>! :NERDTreeFind<CR>
 
 function! NERDTreeToggleCursorcolumn()
     if (bufname("%") =~ "NERD_Tree_")
