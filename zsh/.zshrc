@@ -130,6 +130,7 @@ alias dud='du -hd1'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias jqr="jq --raw-input 'fromjson? | select(type == \"object\")'"
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='mimeo'
