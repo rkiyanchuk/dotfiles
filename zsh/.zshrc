@@ -153,6 +153,7 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias gvim="vimr"
     alias kc="kubectl"
+    alias brew-upd="brew update; brew upgrade; brew cask upgrade; brew cleanup"
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
