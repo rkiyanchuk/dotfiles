@@ -40,7 +40,7 @@
     tool = nvim
 
 [diff]
-	tool = nvim
+    tool = nvim
 
 [mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
@@ -53,6 +53,10 @@
 
 [web]
     browser = google-chrome
+
+[pull]
+    rebase = false
+    ff = only
 
 [push]
     default = simple
