@@ -32,6 +32,7 @@ call plug#begin($VIM_HOME . "/plugins")
 
     " Version control
     Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'mhinz/vim-signify'  " Show diff in signcolumn.
 
     " Completion
