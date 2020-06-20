@@ -8,21 +8,14 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
-# Set name of the theme to load
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
 HIST_STAMPS="yyyy-mm-dd"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
     colored-man-pages
 )
@@ -51,8 +44,6 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     export PATH="$HOME/Library/Python/3.7/bin:$PATH"  # Scripts installed by pip (Python) on macOS.
     export PATH="/usr/local/opt/llvm/bin:$PATH"  # LLVM and Clang binaries.
     export PATH="/usr/local/sbin:$PATH"
-
-    [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 fi
 
 # Aliases
