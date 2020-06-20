@@ -22,7 +22,6 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
-    Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'Shougo/denite.nvim'
 
     " Editing
