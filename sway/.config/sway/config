@@ -23,31 +23,30 @@
       -b "Yes!" "swaymsg exit" \
       -s "No"
 
+    $mod+Shift+r exec swaymsg reload
+
     # containers
-    $mod+h focus left
-    $mod+Down focus down
-    $mod+Up focus up
-    $mod+l focus right
+    $mod+j focus next
+    $mod+k focus prev
+    $mod+h focus up
+    $mod+l focus down
 
-    $mod+Shift+Left move left
-    $mod+Shift+Down move down
-    $mod+Shift+Up move up
-    $mod+Shift+Right move right
+    $mod+Shift+h move left
+    $mod+Shift+j move down
+    $mod+Shift+k move up
+    $mod+Shift+l move right
 
-    $mod+s layout stacking
+    $mod+s layout vsplit
     $mod+w layout tabbed
-    $mod+e layout toggle split
+    $mod+space layout toggle split
 
-    $mod+b splith
-    $mod+v splitv
+    $mod+backslash splith
+    $mod+minus splitv
 
     $mod+f fullscreen
-    $mod+Shift+space floating toggle
-    $mod+space focus mode_toggle
-    $mod+a focus parent
 
-    $mod+Shift+minus move scratchpad
-    $mod+minus scratchpad show
+    #$mod+Shift+minus move scratchpad
+    #$mod+minus scratchpad show
 
     # workspaces
     $mod+1 workspace 1
@@ -55,28 +54,18 @@
     $mod+3 workspace 3
     $mod+4 workspace 4
     $mod+5 workspace 5
-    $mod+6 workspace 6
-    $mod+7 workspace 7
-    $mod+8 workspace 8
-    $mod+9 workspace 9
-    $mod+0 workspace 10
     $mod+Tab workspace next
 
-    $mod+Ctrl+Up move workspace to output up
-    $mod+Ctrl+Left move workspace to output left
-    $mod+Ctrl+Right move workspace to output right
-    $mod+Ctrl+Down move workspace to output down
+    $mod+Ctrl+j move container to output down
+    $mod+Ctrl+k move container to output up
+    $mod+Ctrl+h move container to output left
+    $mod+Ctrl+l move container to output right
 
     $mod+Shift+1 move container to workspace 1
     $mod+Shift+2 move container to workspace 2
     $mod+Shift+3 move container to workspace 3
     $mod+Shift+4 move container to workspace 4
     $mod+Shift+5 move container to workspace 5
-    $mod+Shift+6 move container to workspace 6
-    $mod+Shift+7 move container to workspace 7
-    $mod+Shift+8 move container to workspace 8
-    $mod+Shift+9 move container to workspace 9
-    $mod+Shift+0 move container to workspace 10
 
     $mod+r mode "resize"
   }
@@ -113,8 +102,23 @@
   bindsym --release Shift+Alt+Print exec grimshot save win
 
 
+### Input ###
+
+  input type:keyboard {
+    xkb_layout us,ua,ru
+    xkb_options grp:caps_toggle
+  }
+
+  input type:touchpad {
+    dwt enabled                 # disable a touchpad while typing
+    tap enabled                 # tap to click
+    natural_scroll enabled      # natural, not reversed scroll
+  }
+
+
 ### Appearance ###
 
+  # Wallpaper
   output * bg #282c34 solid_color
 
   ## Base16 OneDark
@@ -151,7 +155,7 @@
   default_border pixel 1
   default_floating_border pixel 1
   titlebar_border_thickness 1
-  titlebar_padding 8
+  titlebar_padding 1
 
   for_window [app_id=".*"] border csd
   for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
@@ -163,21 +167,6 @@
   for_window [app_id="firefox" title="Picture-in-Picture"] inhibit_idle visible
   for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
   for_window [app_id="firefox"] inhibit_idle fullscreen
-
-
-### Input ###
-
-  input type:keyboard {
-    xkb_layout us,ru
-    xkb_options grp:caps_toggle
-  }
-
-  input type:touchpad {
-    dwt enabled                 # disable a touchpad while typing
-    tap enabled                 # tap to click
-    natural_scroll enabled      # natural, not reversed scroll
-  }
-
 
 
 ### Customization ###
