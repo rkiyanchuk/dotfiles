@@ -6,7 +6,7 @@
 
   set $lock loginctl lock-session
   set $appmenu wofi
-  set $term alacritty
+  set $term tilix
 
 
 ### Keybindings ###
@@ -19,12 +19,8 @@
     $mod+Shift+c kill
 
     # sway
-    $mod+Shift+e exec swaynag -t warning -m "Do you really want to exit Sway?" \
+    $mod+Shift+q exec swaynag -t warning -m "Do you really want to exit Sway?" \
       -b "Yes!" "swaymsg exit" \
-      -s "No"
-    $mod+Shift+p exec swaynag -t warning -m "Do you really want to power off?" \
-      -b "Poweroff" "systemctl poweroff" \
-      -b "Reboot" "systemctl reboot" \
       -s "No"
 
     # containers

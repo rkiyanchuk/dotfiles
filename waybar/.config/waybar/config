@@ -1,0 +1,89 @@
+{
+  "layer": "top",
+  "height": 35,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "pulseaudio#audio",
+    "pulseaudio#mic",
+    "idle_inhibitor",
+    "custom/keyboard",
+    "network",
+    "custom/vpn",
+    "battery",
+    "clock"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true
+  },
+  "sway/window": {
+    "max-length": 72
+  },
+  "pulseaudio#audio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon} ",
+    "format-muted": "ﱝ",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "gnome-control-center sound",
+    "max-length": 100
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "on-click": "gnome-control-center sound",
+    "max-length": 100
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "network": {
+    "format-wifi": "{essid} ",
+    "format-disconnected": "{ifname} "
+  },
+  "custom/vpn": {
+    "format": "VPN ",
+    "exec": "echo '{\"class\": \"connected\"}'",
+    "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+    "return-type": "json",
+    "interval": 5
+  },
+  "custom/keyboard": {
+    "format": "{} ",
+    "exec": "swaymsg -t get_inputs | jq '.[] | select(.identifier == \"4152:1559:SteelSeries_SteelSeries_Apex_M750_TKL\") | .xkb_active_layout_name' | head -n 1 | tr -d '\"' | cut -c -2",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{capacity}% {icon}",
+    "format-alt": "{time} {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "format": "{:%b %d, %H:%M} "
+  }
+}
+
+// vim: set ft=json:
