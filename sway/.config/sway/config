@@ -168,6 +168,19 @@
   for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
   for_window [app_id="firefox"] inhibit_idle fullscreen
 
+### GTK Configuration ###
+# Enforce dconf theme settings.
+# For details see https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
+
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Breeze'
+    gsettings set $gnome-schema icon-theme 'breeze'
+    gsettings set $gnome-schema cursor-theme 'Breeze_Snow'
+    gsettings set $gnome-schema font-name 'Dejavu Sans 14'
+}
+
 
 ### Customization ###
 
