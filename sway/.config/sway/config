@@ -168,6 +168,11 @@
   for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
   for_window [app_id="firefox"] inhibit_idle fullscreen
 
+### Layouts ###
+
+  # Simulate spiral layout
+  for_window [app_id=".*"] split toggle
+
 ### GTK Configuration ###
 # Enforce dconf theme settings.
 # For details see https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
