@@ -176,22 +176,12 @@
 ### GTK Configuration ###
 # Enforce dconf theme settings.
 # For details see https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
+exec_always ${HOME}/.config/sway/import-gsettings.sh \
+    gtk-theme:gtk-theme-name \
+    icon-theme:gtk-icon-theme-name \
+    cursor-theme:gtk-cursor-theme-name
 
-set $gnome-schema org.gnome.desktop.interface
-
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Breeze'
-    gsettings set $gnome-schema icon-theme 'breeze'
-    gsettings set $gnome-schema cursor-theme 'Breeze_Snow'
-    gsettings set $gnome-schema font-name 'Dejavu Sans 14'
-}
-
-#exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-
-exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY SWAYSOCK \
-  && systemctl --user start sway-session.target
-
-exec systemd-cat --identifier=sway sway
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
 ### Customization ###
 
