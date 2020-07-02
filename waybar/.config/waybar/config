@@ -1,6 +1,7 @@
 {
   "layer": "top",
-  "height": 35,
+  "position": "bottom",
+  "height": 30,
   "modules-left": [
     "sway/workspaces",
     "sway/mode"
@@ -9,9 +10,9 @@
     "sway/window"
   ],
   "modules-right": [
+    "tray",
     "pulseaudio#audio",
     "pulseaudio#mic",
-    "idle_inhibitor",
     "custom/keyboard",
     "network",
     "custom/vpn",

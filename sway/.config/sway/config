@@ -149,7 +149,7 @@
   client.placeholder      $base00 $base00 $base05 $base00 $base00
   client.background       $base07
 
-  font Iosevka Mono Regular 16
+  font pango:Iosevka Light 16
   gaps inner 0
   gaps outer 0
   default_border pixel 1
