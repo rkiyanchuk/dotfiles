@@ -25,6 +25,10 @@
   "sway/window": {
     "max-length": 72
   },
+  "tray": {
+      "icon-size": 24,
+      "spacing": 5
+  },
   "pulseaudio#audio": {
     "format": "{volume}% {icon}",
     "format-bluetooth": "{volume}% {icon} ",
