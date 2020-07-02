@@ -186,6 +186,12 @@ exec_always {
     gsettings set $gnome-schema font-name 'Dejavu Sans 14'
 }
 
+#exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY SWAYSOCK \
+  && systemctl --user start sway-session.target
+
+exec systemd-cat --identifier=sway sway
 
 ### Customization ###
 
