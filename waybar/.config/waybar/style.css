@@ -1,17 +1,14 @@
 window#waybar {
-  border: none;
+  background-color: rgba(46, 52, 64, 0.98);
   border-radius: 0;
+  border: none;
+  color: #d8dee9;
   font-family: "Iosevka";
   font-size: 18px;
 }
 
 #tray {
   font-family: "Dejavu Sans";
-}
-
-window#waybar {
-  background-color: rgba(46, 52, 64, 0.98);
-  color: #d8dee9;
 }
 
 #mode, #pulseaudio, #idle_inhibitor, #network, #custom-vpn, #custom-keyboard, #battery, #clock {
