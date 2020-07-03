@@ -18,8 +18,8 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    "Plug 'jandamm/vim-one'
-    "Plug 'joshdick/onedark.vim'
+    Plug 'jandamm/vim-one'
+    Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', {'rtp': 'vim/'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
@@ -73,7 +73,7 @@ if exists('+termguicolors')
 endif
 
 set background=dark
-colorscheme onehalfdark
+colorscheme onedark
 
 
 " vim-airline
