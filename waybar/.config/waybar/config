@@ -20,7 +20,15 @@
     "clock"
   ],
   "sway/workspaces": {
-    "disable-scroll": true
+    "disable-scroll": true,
+    "all-outputs": true,
+    "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    }
   },
   "sway/window": {
     "max-length": 72
