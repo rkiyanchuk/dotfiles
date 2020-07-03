@@ -1,10 +1,14 @@
+#window {
+  font-family: "Iosevka";
+  font-weight: 300;
+  font-size: 22;
+}
+
 window#waybar {
-  background-color: rgba(46, 52, 64, 0.98);
+  background-color: rgba(49, 54, 59, 0.8);
   border-radius: 0;
   border: none;
-  color: #d8dee9;
-  font-family: "Iosevka";
-  font-size: 18px;
+  color: #bdc3c7;
 }
 
 #tray {
@@ -17,9 +21,13 @@ window#waybar {
 }
 
 #workspaces button {
-  padding: 0 5px;
-  color: #eceff4;
-  border-bottom: 3px solid transparent;
+  padding: 0 10 0 10px;
+  color: #bdc3c7;
+  font-family: "Iosevka";
+  font-weight: 300;
+  font-size: 22;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
 }
 
 #workspaces button:hover {
@@ -27,12 +35,20 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  background-color: #2e3440;
-  border-bottom: 3px solid #81a1c1;
+  border-bottom: 2px solid;
+}
+#workspaces button.visible {
+  background-color: rgba(60, 65, 70, 0.8);
+}
+#workspaces button.persistent {
+  color: #4d4d4d;
+}
+#workspaces button.urgent {
+  color: #da4453;
 }
 
 #mode {
-  font-weight: bold;
+  color: #bdc3c7;
 }
 
 #pulseaudio {
