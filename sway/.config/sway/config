@@ -5,7 +5,7 @@
   set $mod Mod4
 
   set $lock loginctl lock-session
-  set $appmenu albert show
+  set $appmenu ulauncher-toggle
   set $term tilix
 
 
@@ -14,9 +14,9 @@
   bindsym --to-code {
     # general
     $mod+Return exec $term
-    Mod1+Space exec $appmenu
     $mod+Escape exec $lock
     $mod+Shift+c kill
+    Mod1+Space exec $appmenu
 
     # sway
     $mod+Shift+q exec swaynag -t warning -m "Do you really want to exit Sway?" \
@@ -167,6 +167,8 @@
   for_window [app_id="firefox" title="Picture-in-Picture"] inhibit_idle visible
   for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
   for_window [app_id="firefox"] inhibit_idle fullscreen
+
+  for_window [app_id="ulauncher"] floating enable, border none
 
 ### Layouts ###
 
