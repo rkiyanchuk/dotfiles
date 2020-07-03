@@ -1,11 +1,15 @@
-* {
+window#waybar {
   border: none;
   border-radius: 0;
   font-family: "Iosevka";
   font-size: 18px;
 }
 
-window {
+#tray {
+  font-family: "Dejavu Sans";
+}
+
+window#waybar {
   background-color: rgba(46, 52, 64, 0.98);
   color: #d8dee9;
 }
