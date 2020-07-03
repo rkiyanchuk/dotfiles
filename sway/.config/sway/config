@@ -183,7 +183,7 @@ exec_always ${HOME}/.config/sway/import-gsettings.sh \
 
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
-exec nm-applet --indicator
+exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
 
