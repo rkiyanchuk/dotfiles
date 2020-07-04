@@ -18,6 +18,7 @@
     ls = ls-files
     mt = mergetool
     st = status -sb
+    authors = shortlog -sne
 
     # Recursively fast-forward all branches in the repo.
     rffwd = "!bash ~/.git.d/git-ffwd-branches.sh"
@@ -31,9 +32,6 @@
 [core]
     editor = nvim
 
-[gitreview]
-    username = ruslan_kiyanchuk
-
 [help]
     autocorrect = 1
 
@@ -42,6 +40,7 @@
 
 [diff]
     tool = nvim
+    noprefix = true
 
 [mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
