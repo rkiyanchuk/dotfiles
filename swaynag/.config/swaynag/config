@@ -4,23 +4,22 @@ button-dismiss-gap=0
 button-border-size=0
 message-padding=10
 button-padding=10
-border-bottom-size=4
+border-bottom-size=2
 
 [info]
-background=#4d4d4dfa
 text=#eff0f1
+border-bottom=#3daee9
 button-background=#4d4d4d
+background=#31363b
 
 [error]
-background=#bf616afa
-text=#e5e9f0fa
-border-bottom=#b24852fa
-button-background=#b24852fa
-border=#c8767efa
+text=#eff0f1
+border-bottom=#da4453
+button-background=#4d4d4d
+background=#31363b
 
 [warning]
-background=#bdc3c7
-text=#2e3440fa
-border-bottom=#e7c176fa
-button-background=#e7c176fa
-border=#efd5a2fa
+text=#eff0f1
+border-bottom=#e7c176
+button-background=#4d4d4d
+background=#31363b
