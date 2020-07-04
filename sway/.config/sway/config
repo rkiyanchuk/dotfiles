@@ -173,6 +173,7 @@ exec_always ${HOME}/.config/sway/import-gsettings.sh \
 
 ### Commands ###
 
+exec ulauncher --hide-window
 exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
