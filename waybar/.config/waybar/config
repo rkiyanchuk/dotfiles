@@ -35,9 +35,9 @@
       "spacing": 5
   },
   "pulseaudio#audio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon} ",
-    "format-muted": "<span font_desc='Dejavu Sans Mono'>ﱝ</span> %{volume}",
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {volume}%",
+    "format-muted": "{volume}% <span font_desc='Dejavu Sans Mono'>ﱝ</span>",
     "format-icons": {
       "headphones": "<span font_desc='Dejavu Sans Mono'></span>",
       "handsfree": "<span font_desc='Dejavu Sans Mono'></span>",
@@ -67,10 +67,10 @@
       "warning": 20,
       "critical": 10
     },
-    "format": "{capacity}% {icon}",
-    "format-alt": "{time} {icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ﮣ",
+    "format": " {icon} {capacity}%",
+    "format-alt": "{icon} {time} ",
+    "format-charging": " {capacity}%",
+    "format-plugged": "ﮣ {capacity}%",
     "format-icons": ["", "", "", "", ""]
   },
   "clock": {
