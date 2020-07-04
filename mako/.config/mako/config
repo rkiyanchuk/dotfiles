@@ -1,10 +1,12 @@
 font=Dejavu Sans 16
-background-color=#5e81accc
-text-color=#d8dee9
-border-size=1
-border-color=#81a1c1ff
+width=500
+height=200
+background-color=#31363b
+text-color=#eff0f1
+border-size=0
+border-color=#31363b
 padding=10
 margin=5
 default-timeout=3000
-max-visible=3
+max-visible=5
 icon-path=/usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
