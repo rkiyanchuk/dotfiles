@@ -1,12 +1,23 @@
 # Read `man 5 sway` for a complete reference.
 
+
 ### Variables ###
 
   set $mod Mod4
 
   set $lock loginctl lock-session
   set $appmenu ulauncher-toggle
-  set $term tilix
+  set $term alacritty
+
+
+### Settings ###
+
+  floating_modifier $mod
+  hide_edge_borders smart
+  seat seat0 hide_cursor 5000
+
+  for_window [app_id=".*"] split v
+  for_window [app_id="ulauncher"] floating enable, border none
 
 
 ### Keybindings ###
@@ -17,6 +28,7 @@
     $mod+Escape exec $lock
     $mod+Shift+c kill
     Mod1+Space exec $appmenu
+    $mod+Space layout toggle split
 
     # sway
     $mod+Shift+q exec swaynag -t warning -m "Do you really want to exit Sway?" \
@@ -83,7 +95,6 @@
   bindsym --locked XF86AudioPrev exec playerctl previous
 
   # screenshot
-
   bindsym --release Print exec grimshot save screen
   bindsym --release Ctrl+Print exec grimshot save area
   bindsym --release Alt+Print exec grimshot save win
@@ -91,9 +102,6 @@
   bindsym --release Shift+Ctrl+Print exec grimshot copy area
   bindsym --release Shift+Alt+Print exec grimshot copy win
 
-  floating_modifier $mod
-  hide_edge_borders smart
-  seat seat0 hide_cursor 5000
 
 ### Input ###
 
@@ -150,25 +158,7 @@
   titlebar_border_thickness 1
   titlebar_padding 1
 
-  for_window [app_id=".*"] border csd
-  for_window [app_id="firefox" title="Picture-in-Picture"] floating enable, sticky enable, border none
-  for_window [app_id="firefox" title="Sharing Indicator"] floating enable, border none, move position 100 -100
-
-
-### Idle inhibitors ###
-
-  for_window [app_id="firefox" title="Picture-in-Picture"] inhibit_idle visible
-  for_window [app_id="firefox" title="Sharing Indicator"] inhibit_idle open
-  for_window [app_id="firefox"] inhibit_idle fullscreen
-
-  for_window [app_id="ulauncher"] floating enable, border none
-
-### Layouts ###
-
-  # Simulate spiral layout
-  for_window [app_id=".*"] split toggle
-
-### GTK Configuration ###
+# GTK Configuration
 # Enforce dconf theme settings.
 # For details see https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
 exec_always ${HOME}/.config/sway/import-gsettings.sh \
@@ -177,12 +167,9 @@ exec_always ${HOME}/.config/sway/import-gsettings.sh \
     cursor-theme:gtk-cursor-theme-name
 
 
+### Commands ###
+
 exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
-
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-### Customization ###
-
-#include "~/.config/sway/config.d/*"
-#include "~/.config/sway/config.`cat /proc/sys/kernel/hostname`"
