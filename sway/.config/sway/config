@@ -111,7 +111,7 @@
 ### Appearance ###
 
   # Wallpaper
-  output * bg #282c34 solid_color
+  output * bg #181c24 solid_color
 
   ## Base16 OneDark
   # Author: Lalit Magant (http://github.com/tilal6991)
