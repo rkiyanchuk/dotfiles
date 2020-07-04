@@ -176,12 +176,12 @@ exec_always ${HOME}/.config/sway/import-gsettings.sh \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
 
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
 exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
 
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 ### Customization ###
 
 #include "~/.config/sway/config.d/*"
