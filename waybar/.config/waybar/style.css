@@ -20,7 +20,7 @@ window#waybar {
   font-family: "Iosevka";
   font-weight: 300;
   font-size: 22px;
-  padding-left: 10px;
+  padding: 0 5px 0 5px;
   margin: 0 5px;
   color: #7f8c8d;
 }
@@ -71,12 +71,6 @@ window#waybar {
   color: #da4453;
 }
 
-@keyframes inhibitor-blink {
-  to {
-    background-color: #d08770;
-  }
-}
-
 #custom-keyboard {
 }
 
@@ -84,11 +78,13 @@ window#waybar {
 }
 
 #battery.warning:not(.charging) {
-  background-color: #d08770;
+  background-color: rgba(49, 54, 59, 1.0);
+  color: #f67400;
   animation-duration: 1s;
 }
 
 #battery.critical:not(.charging) {
-  background-color: #bf616a;
+  background-color: rgba(49, 54, 59, 1.0);
+  color: #da4453;
   animation-duration: 0.5s;
 }
