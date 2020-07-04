@@ -1,1 +1,24 @@
 show-keyboard-layout
+indicator-caps-lock
+show-failed-attempts
+indiecator-radius 85
+
+inside-color=#ffffff1c
+ring-color=#ffffff3e
+line-color=#ffffff00
+key-hl-color=#00000080
+ring-ver-color=#00000000
+separator-color=#22222260
+inside-ver-color=#ff99441c
+ring-clear-color=#ff994430
+inside-clear-color=#ff994400
+ring-wrong-color=#00000055
+inside-wrong-color=#0000001c
+text-ver-color=#00000000
+text-wrong-color=#00000000
+text-caps-lock-color=#00000000
+text-clear-color=#00000000
+line-clear-color=#00000000
+line-wrong-color=#00000000
+line-ver-color=#00000000
+text-color=#DB3300FF
