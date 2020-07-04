@@ -1,7 +1,7 @@
 #window {
   font-family: "Iosevka";
   font-weight: 300;
-  font-size: 22;
+  font-size: 22px;
 }
 
 window#waybar {
@@ -19,7 +19,7 @@ window#waybar {
 #mode, #pulseaudio, #network, #custom-vpn, #battery, #clock {
   font-family: "Iosevka";
   font-weight: 300;
-  font-size: 22;
+  font-size: 22px;
   padding-left: 10px;
   margin: 0 5px;
   color: #7f8c8d;
@@ -28,17 +28,17 @@ window#waybar {
  #custom-keyboard {
   font-family: "Iosevka";
   font-weight: 300;
-  font-size: 22;
+  font-size: 22px;
   padding-left: 10px;
   color: #3daee6;
  }
 
 #workspaces button {
-  padding: 0 10 0 10px;
+  padding: 0 10px 0 10px;
   color: #bdc3c7;
   font-family: "Iosevka";
   font-weight: 300;
-  font-size: 22;
+  font-size: 22px;
   border-bottom: 2px solid transparent;
   border-radius: 0;
 }

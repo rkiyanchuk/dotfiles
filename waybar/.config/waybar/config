@@ -59,7 +59,7 @@
   },
   "custom/keyboard": {
     "format": "{}",
-    "exec": "swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name' | head -n 1 | tr -d '\"' | cut -c -2",
+    "exec": "swaymsg -t get_inputs | jq '.[] | select(.identifier == \"1:1:AT_Translated_Set_2_keyboard\") | .xkb_active_layout_name' | head -n 1 | tr -d '\"' | cut -c -2",
     "interval": 1
   },
   "battery": {
