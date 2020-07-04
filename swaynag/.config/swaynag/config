@@ -1,0 +1,25 @@
+font=Dejavu Sans 14
+dismiss-button=❌
+button-dismiss-gap=0
+button-border-size=0
+message-padding=10
+button-padding=10
+border-bottom-size=2
+
+[info]
+text=#eff0f1
+border-bottom=#3daee9
+button-background=#4d4d4d
+background=#31363b
+
+[error]
+text=#eff0f1
+border-bottom=#da4453
+button-background=#4d4d4d
+background=#31363b
+
+[warning]
+text=#eff0f1
+border-bottom=#e7c176
+button-background=#4d4d4d
+background=#31363b

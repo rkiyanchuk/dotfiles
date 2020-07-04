@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-xmonad --restart
-
-# Set screen wallpaper.
-feh --bg-fill ${HOME}/.xmonad/images/wallpaper-breeze.png

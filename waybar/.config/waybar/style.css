@@ -1,0 +1,90 @@
+#window {
+  font-family: "Iosevka";
+  font-weight: 300;
+  font-size: 22px;
+}
+
+window#waybar {
+  background-color: rgba(49, 54, 59, 0.8);
+  border-radius: 0;
+  border: none;
+  color: #bdc3c7;
+  color: #7f8c8d;
+}
+
+#tray {
+  font-family: "Dejavu Sans";
+}
+
+#mode, #pulseaudio, #network, #custom-vpn, #battery, #clock {
+  font-family: "Iosevka";
+  font-weight: 300;
+  font-size: 22px;
+  margin: 0 5px;
+  color: #7f8c8d;
+}
+
+ #custom-keyboard {
+  font-family: "Iosevka";
+  padding: 0 10px 0 10px;
+  font-weight: 300;
+  font-size: 22px;
+  color: #3daee6;
+ }
+
+#workspaces button {
+  padding: 0 10px 0 10px;
+  color: #bdc3c7;
+  font-family: "Iosevka";
+  font-weight: 300;
+  font-size: 22px;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+
+#workspaces button:hover {
+  background-color: #434c5e;
+}
+
+#workspaces button.focused {
+  border-bottom: 2px solid;
+}
+#workspaces button.visible {
+  background-color: rgba(60, 65, 70, 0.8);
+}
+#workspaces button.persistent {
+  color: #4d4d4d;
+}
+#workspaces button.urgent {
+  color: #da4453;
+}
+
+#mode {
+  color: #bdc3c7;
+}
+
+#pulseaudio {
+    padding-left: 10px;
+}
+
+#pulseaudio.audio.muted {
+  color: #da4453;
+}
+
+#custom-keyboard {
+}
+
+#battery {
+}
+
+#battery.warning:not(.charging) {
+  background-color: rgba(49, 54, 59, 1.0);
+  color: #f67400;
+  animation-duration: 1s;
+}
+
+#battery.critical:not(.charging) {
+  background-color: rgba(49, 54, 59, 1.0);
+  color: #da4453;
+  animation-duration: 0.5s;
+}

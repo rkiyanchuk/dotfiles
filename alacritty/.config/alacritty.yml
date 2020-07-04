@@ -1,0 +1,129 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator
+
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty it self.
+env:
+  # TERM env customization. Default is xterm-256color
+  # Note: the default TERM value `xterm-256color` does not
+  # specify all features alacritty supports. This does pose
+  # a few issues with programs relying on terminfo and the
+  # `tput` command
+  TERM: xterm-256color
+  COLORTERM: truecolor
+
+window:
+  decorations: none
+  padding:
+    x: 10
+    y: 10
+
+# When true, bold text is drawn using the bright variant of colors.
+draw_bold_text_with_bright_colors: true
+
+# Font configuration (changes require restart)
+font:
+  # The normal (roman) font face to use.
+  normal:
+    family: Iosevka
+    # Style can be specified to pick a specific face.
+    style: Light
+
+  # The bold font face
+  bold:
+    family: Iosevka
+    # Style can be specified to pick a specific face.
+    style: Bold
+
+  # The italic font face
+  italic:
+    family: Iosevka
+    # Style can be specified to pick a specific face.
+    style: Italic
+
+  # Point size of the font
+  size: 16.0
+
+  # OS X only: use thin stroke font rendering. Thin strokes are suitable
+  # for retina displays, but for non-retina you probably want this set to
+  # false.
+  use_thin_strokes: true
+
+# Visual Bell
+#
+# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
+# rung, the terminal background will be set to white and transition back to the
+# default background color. You can control the rate of this transition by
+# setting the `duration` property (represented in milliseconds). You can also
+# configure the transition function by setting the `animation` property.
+#
+# Possible values for `animation`
+# `Ease`
+# `EaseOut`
+# `EaseOutSine`
+# `EaseOutQuad`
+# `EaseOutCubic`
+# `EaseOutQuart`
+# `EaseOutQuint`
+# `EaseOutExpo`
+# `EaseOutCirc`
+# `Linear`
+#
+# To completely disable the visual bell, set its duration to 0.
+#
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+
+# Mouse bindings
+#
+# Currently doesn't support modifiers. Both the `mouse` and `action` fields must
+# be specified.
+#
+# Values for `mouse`:
+# - Middle
+# - Left
+# - Right
+# - Numeric identifier such as `5`
+#
+# Values for `action`:
+# - Paste
+# - PasteSelection
+# - Copy (TODO)
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: true
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+# Colors (One Half Dark)
+colors:
+  primary:
+    background: '0x282c34'
+    foreground: '0xdcdfe4'
+
+  normal:
+    black:      '0x282c34'
+    red:        '0xe06c75'
+    green:      '0x98c379'
+    yellow:     '0xe5c07b'
+    blue:       '0x61afef'
+    magenta:    '0xc678dd'
+    cyan:       '0x56b6c2'
+    white:      '0xdcdfe4'
+
+  bright:
+    black:      '0x282c34'
+    red:        '0xe06c75'
+    green:      '0x98c379'
+    yellow:     '0xe5c07b'
+    blue:       '0x61afef'
+    magenta:    '0xc678dd'
+    cyan:       '0x56b6c2'
+    white:      '0xdcdfe4'

@@ -1,5 +1,5 @@
 {
-    "buildDir": "/home/zoresvit/.cache/yay",
+    "buildDir": "${HOME}/.cache/yay",
     "editor": "nvim",
     "editorflags": "",
     "makepkgbin": "makepkg",

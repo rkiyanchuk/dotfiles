@@ -1,0 +1,82 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 32,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio#audio",
+    "battery",
+    "custom/keyboard",
+    "clock"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "persistent_workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": []
+    }
+  },
+  "sway/window": {
+    "max-length": 72
+  },
+  "tray": {
+      "icon-size": 24,
+      "spacing": 5
+  },
+  "pulseaudio#audio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": " {volume}%",
+    "format-muted": "{volume}% <span font_desc='Dejavu Sans Mono'>ﱝ</span>",
+    "format-icons": {
+      "headphones": "<span font_desc='Dejavu Sans Mono'></span>",
+      "handsfree": "<span font_desc='Dejavu Sans Mono'></span>",
+      "headset": "<span font_desc='Dejavu Sans Mono'></span>",
+      "phone": "<span font_desc='Dejavu Sans Mono'></span>",
+      "portable": "<span font_desc='Dejavu Sans Mono'></span>",
+      "car": "<span font_desc='Dejavu Sans Mono'></span>",
+      "default": ["<span font_desc='Dejavu Sans Mono'></span>", "<span font_desc='Dejavu Sans Mono'></span>", "<span font_desc='Dejavu Sans Mono'></span>"]
+    },
+    "on-click": "pavucontrol",
+    "max-length": 100
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "pavucontrol",
+    "max-length": 100
+  },
+  "custom/keyboard": {
+    "format": "{}",
+    "exec": "swaymsg -t get_inputs | jq '.[] | select(.identifier == \"1:1:AT_Translated_Set_2_keyboard\") | .xkb_active_layout_name' | head -n 1 | tr -d '\"' | cut -c -2",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": " {icon} {capacity}%",
+    "format-alt": "{icon} {time} ",
+    "format-charging": " {capacity}%",
+    "format-plugged": "ﮣ {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %b %d %H:%M:%S}"
+  }
+}
+
+// vim: set ft=json:
