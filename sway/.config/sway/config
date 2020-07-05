@@ -119,6 +119,9 @@
     tap enabled
     natural_scroll enabled
   }
+  input type:pointer {
+    natural_scroll enabled
+  }
 
 
 ### Appearance ###
@@ -170,6 +173,9 @@ exec_always ${HOME}/.config/sway/import-gsettings.sh \
     icon-theme:gtk-icon-theme-name \
     cursor-theme:gtk-cursor-theme-name
 
+bar {
+    swaybar_command waybar
+}
 
 ### Commands ###
 
@@ -177,4 +183,3 @@ exec ulauncher --hide-window
 exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
