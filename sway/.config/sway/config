@@ -20,7 +20,6 @@
   bindswitch --reload --locked lid:on output $laptop disable
   bindswitch --reload --locked lid:off output $laptop enable
 
-  for_window [app_id=".*"] split v
   for_window [app_id="ulauncher"] floating enable, border none
 
 
