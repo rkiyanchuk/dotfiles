@@ -37,15 +37,15 @@
   "pulseaudio#audio": {
     "format": "{icon} {volume}%",
     "format-bluetooth": " {volume}%",
-    "format-muted": "{volume}% <span font_desc='Dejavu Sans Mono'>ﱝ</span>",
+    "format-muted": "{volume}% ﱝ",
     "format-icons": {
-      "headphones": "<span font_desc='Dejavu Sans Mono'></span>",
-      "handsfree": "<span font_desc='Dejavu Sans Mono'></span>",
-      "headset": "<span font_desc='Dejavu Sans Mono'></span>",
-      "phone": "<span font_desc='Dejavu Sans Mono'></span>",
-      "portable": "<span font_desc='Dejavu Sans Mono'></span>",
-      "car": "<span font_desc='Dejavu Sans Mono'></span>",
-      "default": ["<span font_desc='Dejavu Sans Mono'></span>", "<span font_desc='Dejavu Sans Mono'></span>", "<span font_desc='Dejavu Sans Mono'></span>"]
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
     },
     "on-click": "pavucontrol",
     "max-length": 100
