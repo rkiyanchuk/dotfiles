@@ -27,11 +27,16 @@
 
   bindsym --to-code {
     # general
+    Mod1+Space exec $appmenu
     $mod+Return exec $term
     $mod+Escape exec $lock
     $mod+Shift+c kill
-    Mod1+Space exec $appmenu
     $mod+Space layout toggle split
+    $mod+minus splitv
+    $mod+backslash splith
+    $mod+f fullscreen
+    $mod+t floating toggle
+    $mod+Shift+t focus mode_toggle
 
     # sway
     $mod+Shift+q exec swaynag -t warning -m "Do you really want to exit Sway?" \
@@ -50,8 +55,6 @@
     $mod+Shift+j move down
     $mod+Shift+k move up
     $mod+Shift+l move right
-
-    $mod+f fullscreen
 
     # workspaces
     $mod+1 workspace 1
