@@ -27,11 +27,11 @@
 
   bindsym --to-code {
     # general
-    Mod1+Space exec $appmenu
+    $mod+Space exec $appmenu
     $mod+Return exec $term
     $mod+Escape exec $lock
     $mod+Shift+c kill
-    $mod+Space layout toggle split
+    $mod+equal layout toggle split
     $mod+minus splitv
     $mod+backslash splith
     $mod+f fullscreen
