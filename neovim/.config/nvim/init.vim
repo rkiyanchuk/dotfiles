@@ -420,8 +420,8 @@ inoremap <expr> <CR> pumvisible() ? OnEnterPressed() : "\<CR>"
 command! Update :PlugUpdate | PlugUpgrade | source $MYVIMRC
 
 " Commands for merge conflict resolution.
-command! MergeLocal :diffget //2
-command! MergeRemote :diffget //3
+command! MergeLocal :diffget 1
+command! MergeRemote :diffget 2
 
 " Remove trailing spaces from file.
 function! TrimWhitespace()
