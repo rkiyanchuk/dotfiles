@@ -188,3 +188,8 @@ exec ulauncher --hide-window
 exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
+
+exec swayidle -w timeout 600 'swaymsg "output * dpms off"' \
+                 resume 'swaymsg "output * dpms on"' \
+                 before-sleep 'swaylock' \
+                 lock swaylock
