@@ -20,13 +20,13 @@ window#waybar {
   font-family: "Iosevka";
   font-weight: 300;
   font-size: 22px;
-  margin: 0 5px;
+  padding: 0 10px 0 10px;
   color: #7f8c8d;
 }
 
  #custom-keyboard {
   font-family: "Iosevka";
-  padding: 0 10px 0 10px;
+  padding: 0 0 0 10px;
   font-weight: 300;
   font-size: 22px;
   color: #3daee6;
@@ -64,14 +64,11 @@ window#waybar {
 }
 
 #pulseaudio {
-    padding-left: 10px;
+    padding: 0 10px 0 10px;
 }
 
 #pulseaudio.audio.muted {
   color: #da4453;
-}
-
-#custom-keyboard {
 }
 
 #battery {
