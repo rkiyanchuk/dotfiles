@@ -57,7 +57,7 @@ alias jqr="jq --raw-input 'fromjson? | select(type == \"object\")'"
 alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
 
 if [[ $OSTYPE == $LINUX ]]; then
-    alias open='mimeo'
+    alias open='xdg-open'
     alias gvim="nvim-qt"
     alias add-sink-2="pactl load-module module-jack-sink client_name=pulse_sink_2 connect=yes"
 fi
