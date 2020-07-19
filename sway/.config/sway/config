@@ -101,12 +101,12 @@
   bindsym --locked XF86AudioPrev exec playerctl previous
 
   # screenshot
-  bindsym --release Print exec grimshot save screen ~/Dropbox/Screenshots
-  bindsym --release Ctrl+Print exec grimshot save area ~/Dropbox/Screenshots
-  bindsym --release Alt+Print exec grimshot save win ~/Dropbox/Screenshots
-  bindsym --release Shift+Print exec grimshot copy screen ~/Dropbox/Screenshots
-  bindsym --release Shift+Ctrl+Print exec grimshot copy area ~/Dropbox/Screenshots
-  bindsym --release Shift+Alt+Print exec grimshot copy win ~/Dropbox/Screenshots
+  bindsym --release Print exec grimshot save screen
+  bindsym --release Ctrl+Print exec grimshot save area
+  bindsym --release Alt+Print exec grimshot save win
+  bindsym --release Shift+Print exec grimshot copy screen
+  bindsym --release Shift+Ctrl+Print exec grimshot copy area
+  bindsym --release Shift+Alt+Print exec grimshot copy win
 
 
 ### Input ###
@@ -189,7 +189,7 @@ exec nm-applet --indicator --no-agent
 exec blueman-applet
 exec dropbox
 
-exec swayidle -w timeout 600 'swaymsg "output * dpms off"' \
+exec swayidle -w timeout 300 'swaymsg "output * dpms off"' \
                  resume 'swaymsg "output * dpms on"' \
-                 before-sleep 'swaylock' \
-                 lock 'swaylock'
+                 before-sleep "swaylock" \
+                 lock "swaylock -c 000000"

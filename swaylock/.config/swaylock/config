@@ -1,7 +1,7 @@
 show-keyboard-layout
 indicator-caps-lock
 indicator-radius=85
-image=eDP-1:/home/ruslan/.config/swaylock/swaylock.png
+image=/home/ruslan/.config/swaylock/swaylock.png
 
 inside-color=#ffffff1c
 ring-color=#ffffff3e
