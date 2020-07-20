@@ -46,10 +46,8 @@
     $mod+Shift+r exec swaymsg reload
 
     # containers
-    $mod+h focus left
-    $mod+j focus down
-    $mod+k focus up
-    $mod+l focus right
+    $mod+j exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab t)] focus
+    $mod+k exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab f)] focus
 
     $mod+Shift+h move left
     $mod+Shift+j move down
