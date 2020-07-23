@@ -182,7 +182,7 @@ bar {
 
 ### Commands ###
 
-exec_always --no-startup-id "swaymgr && swaymgr -s 'set left'"
+exec_always --no-startup-id "rm -f /tmp/swaymgr.sock && swaymgr && swaymgr -s 'set left'"
 
 exec ulauncher --hide-window
 exec nm-applet --indicator --no-agent
