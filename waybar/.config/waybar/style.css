@@ -8,7 +8,6 @@ window#waybar {
   background-color: rgba(49, 54, 59, 0.8);
   border-radius: 0;
   border: none;
-  color: #bdc3c7;
   color: #7f8c8d;
 }
 
@@ -72,6 +71,7 @@ window#waybar {
 }
 
 #battery {
+  color: #7f8c8d;
 }
 
 #battery.warning:not(.charging) {
