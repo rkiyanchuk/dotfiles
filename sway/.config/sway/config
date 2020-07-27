@@ -22,6 +22,9 @@
 
   for_window [app_id="ulauncher"] floating enable, border none
 
+  for_window [app_id="chromium"] inhibit_idle fullscreen
+  for_window [app_id="firefox"] inhibit_idle fullscreen
+
 
 ### Keybindings ###
 
