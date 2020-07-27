@@ -8,10 +8,17 @@ direction=bool(sys.argv[1] == 't' or sys.argv[1] == 'T')
 swaymsg = subprocess.run(['swaymsg', '-t', 'get_tree'], stdout=subprocess.PIPE)
 data = json.loads(swaymsg.stdout)
 current = data["nodes"][1]["current_workspace"]
-workspace = int(data["nodes"][1]["current_workspace"])-1
-roi = data["nodes"][1]["nodes"][workspace]
+
+
+def getWorkspaceByName(name, nodes):
+    lookup = {i["name"]: i for i in nodes}
+    return lookup[name]
+
+
+roi = getWorkspaceByName(current, data["nodes"][1]["nodes"])
 temp = roi
 windows = list()
+
 
 def getNextWindow():
     if focus < len(windows) - 1:
@@ -32,7 +39,7 @@ def makelist(temp):
                makelist(temp[nodes][i])
             else:
                windows.append(temp[nodes][i])
-           
+
 def focused(temp_win):
     for i in range(len(temp_win)):
         if temp_win[i]["focused"] == True:
@@ -45,4 +52,3 @@ if str(sys.argv[1]) == 't' or str(sys.argv[1]) == 'T':
     print(windows[getNextWindow()]["id"])
 else:
     print(windows[getPrevWindow()]["id"])
-
