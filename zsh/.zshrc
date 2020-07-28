@@ -71,5 +71,26 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     alias brew-upd="brew update; brew upgrade; brew cask upgrade; brew cleanup"
 fi
 
+# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
+fzg() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch $1 \
+      --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  branch=$(awk '{print $2}' <<<"$target")
+  if [[ -n ${1} ]]; then
+      branch=${branch//origin\//}
+  fi
+  git checkout "${branch}"
+}
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
