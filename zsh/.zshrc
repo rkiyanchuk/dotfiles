@@ -23,6 +23,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+bindkey "^[F" emacs-forward-word
+bindkey "^[[1;5C" emacs-forward-word
+bindkey "^[f" emacs-forward-word
 
 # USER SETTINGS
 
