@@ -8,8 +8,6 @@
     bra = branch -avv
     cm = commit -S
     co = checkout
-    co-prev = checkout HEAD^1
-    co-next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
     dc = diff --cached
     ds = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cgreen%an%Creset\t%s %Cred%d%Creset \"
@@ -40,7 +38,6 @@
 
 [diff]
     tool = nvim
-    noprefix = true
 
 [mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
