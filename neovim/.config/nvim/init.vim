@@ -56,6 +56,7 @@ call plug#begin($VIM_HOME . "/plugins")
     " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
     Plug 'google/vim-jsonnet'
+    Plug 'mustache/vim-mustache-handlebars'
     Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
     Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
 call plug#end()
