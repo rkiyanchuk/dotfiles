@@ -453,6 +453,7 @@ augroup MISC
     autocmd FileType html,xml,yaml setlocal tabstop=2
     " Treat .conf files as .cfg.
     autocmd BufReadPost,BufNewFile *.conf setlocal filetype=cfg
+    autocmd BufWritePre elixir LspDocumentFormatSync
 augroup END
 " }}}
 " }}}
