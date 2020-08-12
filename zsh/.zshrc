@@ -19,6 +19,8 @@ plugins=(
     colored-man-pages
     # git clone https://github.com/qoomon/zsh-lazyload $ZSH_CUSTOM/plugins/zsh-lazyload
     zsh-lazyload
+    docker
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
