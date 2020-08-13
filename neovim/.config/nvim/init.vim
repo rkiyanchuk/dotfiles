@@ -301,7 +301,7 @@ augroup LSP
         \ })
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'elixir-ls',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, '~/workspace/misc/elixir-ls/release/language_server.sh']},
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'elixir-ls']},
         \ 'whitelist': ['elixir', 'eelixir'],
         \ })
     autocmd User lsp_setup call lsp#register_server({
