@@ -14,7 +14,7 @@
 
   floating_modifier $mod
   hide_edge_borders smart
-  seat seat0 hide_cursor 5000
+  seat * hide_cursor 5000
 
   set $laptop eDP-1
   bindswitch --reload --locked lid:on output $laptop disable
