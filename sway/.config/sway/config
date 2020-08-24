@@ -7,7 +7,7 @@
 
   set $lock loginctl lock-session
   set $appmenu ulauncher-toggle
-  set $term alacritty
+  set $term tilix
 
 
 ### Settings ###
