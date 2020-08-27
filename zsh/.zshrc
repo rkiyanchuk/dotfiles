@@ -58,8 +58,10 @@ alias dud='du -hd1'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias jqr="jq --raw-input 'fromjson? | select(type == \"object\")'"
 alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
+
+# Use `jq` with both JSON and non-JSON lines.
+function jqr { jq -R -r "${1:-.} as \$line | try fromjson catch \$line" }
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
