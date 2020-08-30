@@ -234,11 +234,9 @@ let g:lsp_signs_hint = {'text': 'ﰲ'}
 
 nnoremap <leader>K :LspHover<CR>
 nnoremap <leader>ld :LspDefinition<CR>
-nnoremap <leader>lD :LspPeekDefinition<CR>
+nnoremap <leader>lD :LspDeclaration<CR>
 nnoremap <leader>lr :LspReferences<CR>
-nnoremap <leader>ldd :LspDocumentDiagnostics<CR>
-nnoremap <leader>ls :LspDocumentSymbol<CR>
-nnoremap <leader>lw :LspWorkspaceSymbol<CR>
+nnoremap <leader>4 :LspDocumentDiagnostics<CR>
 nnoremap <leader>lf :LspDocumentFormat<CR>
 
 let g:vista_c_executive = "vim_lsp"
@@ -389,8 +387,9 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 nnoremap <silent> <leader>V :edit $MYVIMRC<CR>
 nnoremap <leader>R :source $MYVIMRC<CR>
-nnoremap <leader>s :set spell!<CR>
 nnoremap <leader>t :split term://zsh<CR>
+nnoremap <silent> ZD :bdelete<CR>
+nnoremap <silent> ZB :w<CR>:bdelete<CR>
 
 " Reset search highlighting by double pressing Esc in normal mode.
 nnoremap <Esc><Esc> :nohlsearch<CR>
