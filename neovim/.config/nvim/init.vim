@@ -166,12 +166,6 @@ command! UltiSnipsListSnippets :call UltiSnips#ListSnippets()
 " lexima.vim
 " ----------
 
-" Fix compatibiility with autoclosing completion window with pumvisible()
-" See https://github.com/cohama/lexima.vim/issues/65
-let g:lexima_no_default_rules = 1
-call lexima#set_default_rules()
-call lexima#insmode#map_hook('before', '<CR>', '')
-
 " Jump over auto-inserted characters.
 " See https://github.com/cohama/lexima.vim/issues/83
 inoremap <silent> <C-l> <C-r>=lexima#insmode#leave(1, "")<CR>
@@ -390,12 +384,6 @@ let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
-
-" Fix NERDTree curslorline in Neovim.
-" Must be after :set termguicolors
-" https://github.com/trevordmiller/nova-vim/issues/106
-" https://github.com/neovim/neovim/issues/9019
-"highlight NERDTreeFile ctermfg=251
 
 " {{{ MAPPINGS
 
