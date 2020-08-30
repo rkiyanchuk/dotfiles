@@ -21,8 +21,8 @@
   bindswitch --reload --locked lid:off output $laptop enable
 
   for_window [app_id="ulauncher"] floating enable, border none
-
   for_window [app_id=".*"] inhibit_idle fullscreen
+  for_window [class=".*"] inhibit_idle fullscreen
 
 
 ### Keybindings ###
