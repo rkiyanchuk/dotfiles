@@ -40,7 +40,7 @@ export PATH="$HOME/.local/bin:$PATH"  # Scripts installed by pip (Python).
 export PATH="$HOME/.poetry/bin:$PATH"  # Scripts installed by poetry (Python).
 export PATH="$HOME/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
 export PATH="$HOME/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
-export PATH="$HOME/.go/bin:$PATH"  # Binaries installed by Go (GoLang).
+export PATH="$GOPATH/bin:$PATH"  # Binaries installed by Go (GoLang).
 
 MACOS="darwin*"
 LINUX="linux-gnu"
