@@ -52,6 +52,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'elixir-editors/vim-elixir'
+    Plug 'sebdah/vim-delve'
 
     " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
