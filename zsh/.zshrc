@@ -35,6 +35,8 @@ export EDITOR="nvim"
 export GPG_TTY=$(tty)
 export GOPATH="$HOME/.go"
 
+export GLAMOUR_STYLE="dark"  # GitHub CLI Markdown rendering style.
+
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"  # Scripts installed by pip (Python).
 export PATH="$HOME/.poetry/bin:$PATH"  # Scripts installed by poetry (Python).
