@@ -304,6 +304,12 @@ augroup LSP
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
         \ 'whitelist': ['typescript', 'typescriptreact', 'javascript', 'javascript.jsx', 'javascriptreact'],
         \ })
+
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'kotlin-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'kotlin-language-server']},
+        \ 'whitelist': ['kotlin']
+        \ })
 augroup end
 " }}}
 
