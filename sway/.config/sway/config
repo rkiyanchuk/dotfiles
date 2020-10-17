@@ -101,12 +101,12 @@
   bindsym --locked XF86AudioPrev exec playerctl previous
 
   # screenshot
-  bindsym --release Print exec grimshot save screen
-  bindsym --release Ctrl+Print exec grimshot save area
-  bindsym --release Alt+Print exec grimshot save win
-  bindsym --release Shift+Print exec grimshot copy screen
-  bindsym --release Shift+Ctrl+Print exec grimshot copy area
-  bindsym --release Shift+Alt+Print exec grimshot copy win
+  bindsym --release Print exec grimshot --notify save output
+  bindsym --release Ctrl+Print exec grimshot --notify save area
+  bindsym --release Alt+Print exec grimshot --notify save window
+  bindsym --release Shift+Print exec grimshot --notify copy output
+  bindsym --release Shift+Ctrl+Print exec grimshot --notify copy area
+  bindsym --release Shift+Alt+Print exec grimshot --notify copy window
 
 
 ### Input ###
