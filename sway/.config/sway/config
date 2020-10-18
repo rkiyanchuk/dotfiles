@@ -48,8 +48,8 @@
     $mod+Shift+r exec swaymsg reload
 
     # containers
-    $mod+j exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab t)] focus
-    $mod+k exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab f)] focus
+    $mod+j exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab next)] focus
+    $mod+k exec swaymsg [con_id=$(swaymsg -t get_tree | ~/.config/sway/alttab prev)] focus
 
     $mod+Shift+h move left
     $mod+Shift+j move down

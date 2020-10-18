@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
 
+# TODO:
+# fix navigation
+# https://github.com/swaywm/sway/issues/5388
+# Use i3ipc lib instead of shell command:
+# https://i3ipc-python.readthedocs.io/en/latest/connection.html
+
 import sys
 import json
 import subprocess
-
-direction=bool(sys.argv[1] == 't' or sys.argv[1] == 'T')
-swaymsg = subprocess.run(['swaymsg', '-t', 'get_tree'], stdout=subprocess.PIPE)
-data = json.loads(swaymsg.stdout)
-current = data["nodes"][1]["current_workspace"]
 
 
 def getWorkspaceByName(name, nodes):
     lookup = {i["name"]: i for i in nodes}
     return lookup[name]
-
-
-roi = getWorkspaceByName(current, data["nodes"][1]["nodes"])
-temp = roi
-windows = list()
-
 
 def getNextWindow():
     if focus < len(windows) - 1:
@@ -45,16 +40,31 @@ def focused(temp_win):
         if temp_win[i]["focused"] == True:
            return i
 
-makelist(temp)
-# print(len(windows))
-focus = focused(windows)
-if str(sys.argv[1]) == 't' or str(sys.argv[1]) == 'T':
-    print(windows[getNextWindow()]["id"])
-else:
-    print(windows[getPrevWindow()]["id"])
+if __name__ == "__main__":
+    direction = sys.argv[1]
+    if direction not in ["next", "prev"]:
+        print("ERROR: Invalid direction arg")
+        sys.exit(-1)
 
-# TODO:
-# fix navigation
-# https://github.com/swaywm/sway/issues/5388
-# Use i3ipc lib instead of shell command:
-# https://i3ipc-python.readthedocs.io/en/latest/connection.html
+
+    swaymsg = subprocess.run(['swaymsg', '-t', 'get_tree'], stdout=subprocess.PIPE)
+    data = json.loads(swaymsg.stdout)
+
+    outputs = range(1, len(data["nodes"]) + 1)
+
+    for cur_output in outputs:
+        current = data["nodes"][cur_output]["current_workspace"]
+
+        workspace = getWorkspaceByName(current, data["nodes"][cur_output]["nodes"])
+        windows = list()
+
+        makelist(workspace)
+        focus = focused(windows)
+
+        win_switch_func = getNextWindow if direction == "next" else getPrevWindow
+        try:
+            print(windows[win_switch_func()]["id"])
+            break
+        except TypeError:
+            continue
+
