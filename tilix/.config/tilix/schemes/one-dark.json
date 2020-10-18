@@ -2,24 +2,24 @@
     "name": "One Dark",
     "comment": "Ported for Terminix Colour Scheme",
     "use-theme-colors": false,
-    "foreground-color": "#abb2bf",
-    "background-color": "#282c34",
+    "foreground-color": "#ABB2BF",
+    "background-color": "#282C34",
     "palette": [
       "#000000",
       "#E06C75",
       "#98C379",
       "#E5C07B",
-      "#61AEEE",
+      "#61AFEF",
       "#C678DD",
       "#56B6C2",
-      "#ABB2BF",
+      "#DCDFE4",
 
       "#5C6370",
       "#E06C75",
       "#98C379",
       "#E5C07B",
-      "#62AFEE",
+      "#01AFEF",
       "#C678DD",
       "#56B6C2",
-      "#FFFFFF"]
+      "#DCDFE4"]
 }

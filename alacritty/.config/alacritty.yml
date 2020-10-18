@@ -105,8 +105,8 @@ selection:
 # Colors (One Half Dark)
 colors:
   primary:
+    foreground: '0xABB2BF'
     background: '0x282C34'
-    foreground: '0xDCDFE4'
 
   normal:
     black:      '0x000000'
@@ -119,7 +119,7 @@ colors:
     white:      '0xDCDFE4'
 
   bright:
-    black:      '0x282C34'
+    black:      '0x5C6370'
     red:        '0xE06C75'
     green:      '0x98C379'
     yellow:     '0xE5C07B'
