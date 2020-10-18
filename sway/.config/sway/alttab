@@ -52,3 +52,9 @@ if str(sys.argv[1]) == 't' or str(sys.argv[1]) == 'T':
     print(windows[getNextWindow()]["id"])
 else:
     print(windows[getPrevWindow()]["id"])
+
+# TODO:
+# fix navigation
+# https://github.com/swaywm/sway/issues/5388
+# Use i3ipc lib instead of shell command:
+# https://i3ipc-python.readthedocs.io/en/latest/connection.html
