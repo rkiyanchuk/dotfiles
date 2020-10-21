@@ -29,6 +29,7 @@
 
 [core]
     editor = nvim
+    attributesfile = /Users/ruslan/.git.d/.gitattributes
 
 [help]
     autocorrect = 1
