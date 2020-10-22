@@ -65,6 +65,8 @@ alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
 # Use `jq` with both JSON and non-JSON lines.
 function jqr { jq -R -r "${1:-.} as \$line | try fromjson catch \$line" }
 
+function urldecode { python3 -c "import urllib.parse as url; print(url.unquote('$1'))" }
+
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
     alias gvim="nvim-qt"
