@@ -36,8 +36,3 @@ GNU [Stow](https://www.gnu.org/software/stow/) is used to install the packages.
     $ stow -t ~ {bundle}
     ```
     where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
-
-Demo
-====
-
-![Desktop screenshot](https://raw.githubusercontent.com/zoresvit/dotfiles/master/demo.png)
