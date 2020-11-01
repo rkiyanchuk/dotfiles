@@ -76,8 +76,7 @@ fi
 if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias gvim="vimr --cur-env"
-    alias brew-upd="brew update; brew upgrade; brew cleanup"
-
+    alias brew-update="brew update; brew upgrade; brew cleanup"
 fi
 
 # fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
