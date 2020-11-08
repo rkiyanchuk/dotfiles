@@ -29,6 +29,7 @@ call plug#begin($VIM_HOME . "/plugins")
     " Editing
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'cohama/lexima.vim'
+    Plug 'tpope/vim-commentary'
     Plug 'fidian/hexmode'  " Hex editor mode.
     Plug 'chrisbra/Colorizer'
 
