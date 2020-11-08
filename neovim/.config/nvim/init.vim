@@ -52,7 +52,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'elixir-editors/vim-elixir'
-    "Plug 'fatih/vim-go'
+    Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
     " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
@@ -218,6 +218,21 @@ endif
 
 autocmd FileType vista,vista_kind call DisableExtras()
 
+" vim-go
+" ------
+
+let g:go_fmt_command = "gopls"
+let g:go_gopls_options = ['-remote=auto']
+let g:go_list_type = "locationlist"
+let g:go_debug_breakpoint_sign_text = '●'
+let g:go_highlight_debug = 0
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+
 " vim-polyglot
 " ------------
 
@@ -227,7 +242,7 @@ let g:python_highlight_space_errors = 0
 " -------
 
 let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_cursor = 0
 let g:lsp_highlights_enabled = 0
 let g:lsp_peek_alignment = "top"
 let g:lsp_semantic_enabled = 1
@@ -284,7 +299,7 @@ augroup LSP
 
     autocmd User lsp_setup call lsp#register_server({
         \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio', '-remote', 'auto']},
         \ 'whitelist': ['go'],
         \ })
 
