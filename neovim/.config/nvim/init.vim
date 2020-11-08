@@ -369,7 +369,6 @@ set title
 set undofile
 set updatetime=1000
 set virtualedit=all
-set wildmenu
 set wildmode=longest:full
 
 " Search
