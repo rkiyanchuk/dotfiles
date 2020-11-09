@@ -365,6 +365,7 @@ set scrolloff=3
 set showbreak=↪
 set showfulltag  " Show arguments for a function when available, etc.
 set sidescrolloff=3
+set signcolumn=yes
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
