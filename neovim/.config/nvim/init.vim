@@ -222,11 +222,16 @@ autocmd FileType vista,vista_kind call DisableExtras()
 " vim-go
 " ------
 
-let g:go_fmt_command = "gopls"
+let g:go_fmt_command = "goimports"
 let g:go_gopls_options = ['-remote=auto']
 let g:go_list_type = "locationlist"
 let g:go_debug_breakpoint_sign_text = '●'
 let g:go_highlight_debug = 0
+let g:go_debug_windows = {
+    \ 'stack':      'rightbelow 10new',
+    \ 'vars':       'rightbelow 60vnew',
+    \ 'goroutines': 'botright 10new',
+\ }
 
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
