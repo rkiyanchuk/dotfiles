@@ -79,7 +79,7 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     alias brew-update="brew update; brew upgrade; brew cleanup"
 fi
 
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
+# checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
 fzg() {
   local tags branches target
   branches=$(
