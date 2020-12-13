@@ -28,20 +28,26 @@
     whitespace = warn
 
 [core]
-    editor = nvim
+    editor = code --wait
     attributesfile = /Users/ruslan/.git.d/.gitattributes
 
 [help]
     autocorrect = 1
 
 [merge]
-    tool = nvim
+    tool = vscode
 
 [diff]
-    tool = nvim
+    tool = vscode
 
 [mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
 
 [mergetool]
     keepBackup = false
