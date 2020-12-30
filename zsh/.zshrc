@@ -12,6 +12,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 HIST_STAMPS="yyyy-mm-dd"
 
+# Homebrew completion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  autoload -Uz compinit
+  compinit
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
