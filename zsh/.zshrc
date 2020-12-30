@@ -69,11 +69,6 @@ alias vim="nvim"
 alias vimdiff="nvim -d"
 alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
 
-# Use `jq` with both JSON and non-JSON lines.
-function jqr { jq -R -r "${1:-.} as \$line | try fromjson catch \$line" }
-
-function urldecode { python3 -c "import urllib.parse as url; print(url.unquote('$1'))" }
-
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
     alias gvim="nvim-qt"
@@ -85,6 +80,12 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     alias gvim="vimr --cur-env"
     alias brew-update="brew update; brew upgrade; brew cleanup"
 fi
+
+
+# Use `jq` with both JSON and non-JSON lines.
+function jqr { jq -R -r "${1:-.} as \$line | try fromjson catch \$line" }
+
+function urldecode { python3 -c "import urllib.parse as url; print(url.unquote('$1'))" }
 
 # checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
 fzg() {
@@ -105,7 +106,6 @@ fzg() {
   fi
   git checkout "${branch}"
 }
-
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
