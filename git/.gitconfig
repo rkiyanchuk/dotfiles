@@ -28,7 +28,7 @@
     whitespace = warn
 
 [core]
-    editor = code --wait
+    editor = nvim
     attributesfile = /Users/ruslan/.git.d/.gitattributes
 
 [help]
