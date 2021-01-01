@@ -18,7 +18,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    Plug 'zoresvit/vim-one'
+    Plug 'rakr/vim-one'
     Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', {'rtp': 'vim/'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
