@@ -63,7 +63,7 @@
     ff = only
 
 [push]
-    default = simple
+    default = current
 
 [includeIf "gitdir:~/workspace/brex/"]
     path = ~/workspace/brex/.gitconfig
