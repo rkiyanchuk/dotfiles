@@ -17,6 +17,7 @@
     mt = mergetool
     st = status -sb
     authors = shortlog -sne
+    prune-local = !bash -c 'git branch --format \"%(upstream:track)%(refname)\" | grep \"^\\[gone\\]\" | cut -c 18- | xargs git branch -D'
 
     # Recursively fast-forward all branches in the repo.
     rffwd = "!bash ~/.git.d/git-ffwd-branches.sh"
