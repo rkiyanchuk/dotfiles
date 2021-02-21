@@ -18,7 +18,6 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    Plug 'rakr/vim-one'
     Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', {'rtp': 'vim/'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -72,7 +71,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme one
+colorscheme onedark
 
 
 " vim-airline
@@ -226,18 +225,14 @@ let g:python_highlight_space_errors = 0
 " vim-lsp
 " -------
 
-let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_cursor = 0
 let g:lsp_diagnostics_float_cursor = 0
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_diagnostics_signs_enabled = 0
+let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_highlights_enabled = 0
 let g:lsp_peek_alignment = "top"
 let g:lsp_semantic_enabled = 1
-let g:lsp_virtual_text_enabled = 0
-
-let g:lsp_signs_priority = 9
-let g:lsp_signs_error = {'text': '✘'}
-let g:lsp_signs_hint = {'text': 'ﰲ'}
-let g:lsp_signs_information = {'text': ''}
-let g:lsp_signs_warning = {'text': ''}
 
 nnoremap <leader>K :LspHover<CR>
 nnoremap <leader>ld :LspDefinition<CR>
