@@ -26,21 +26,8 @@ tmux/.tmuxp/*.yml
 /vim/.vim/autoload/
 /vim/.vim/plugins/
 
-# XMonad
-*.swp
-vim_source/
-xmonad-x86_64-linux
-xmonad.errors
-xmonad.hi
-xmonad.o
-xmonad.state
-
 # GTK
 gtk/.config/gtk-3.0/bookmarks
-
-# Albert
-core.db
-last_used_version
 
 # GoldenDict
 goldendict/.goldendict/index/
@@ -48,3 +35,6 @@ goldendict/.goldendict/history
 
 # GnuPG
 gnupg/.gnupg/
+
+# Sage
+sage/.sage/cache  
