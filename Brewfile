@@ -11,6 +11,8 @@ cask "docker"
 cask "iterm2"
 cask "java"
 
+cask "kap"
+
 brew "elixir"
 brew "python"
 brew "golang"
