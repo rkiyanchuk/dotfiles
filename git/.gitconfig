@@ -29,8 +29,9 @@
     whitespace = warn
 
 [core]
-    editor = nvim
     attributesfile = /Users/ruslan/.git.d/.gitattributes
+    editor = nvim
+    pager = delta
 
 [help]
     autocorrect = 1
@@ -77,3 +78,11 @@
 
 [rerere]
     enabled = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    syntax-theme = none
+    line-numbers = true
+    navigate = true
