@@ -78,7 +78,6 @@ fi
 if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
     alias gvim="vimr --cur-env"
-    alias brew-update="brew update; brew upgrade; brew cleanup"
 fi
 
 
