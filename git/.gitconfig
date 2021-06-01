@@ -31,7 +31,6 @@
 [core]
     attributesfile = /Users/ruslan/.git.d/.gitattributes
     editor = nvim
-    pager = delta
 
 [help]
     autocorrect = 1
