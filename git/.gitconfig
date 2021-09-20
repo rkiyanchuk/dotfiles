@@ -77,11 +77,3 @@
 
 [rerere]
     enabled = true
-
-[interactive]
-    diffFilter = delta --color-only
-
-[delta]
-    syntax-theme = none
-    line-numbers = true
-    navigate = true
