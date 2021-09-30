@@ -10,7 +10,12 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-HIST_STAMPS="yyyy-mm-dd"
+export HISTFILESIZE=
+export HISTSIZE=
+export HIST_STAMPS="yyyy-mm-dd"
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY
 
 # Homebrew completion
 if type brew &>/dev/null; then
