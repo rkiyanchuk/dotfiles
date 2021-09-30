@@ -85,9 +85,10 @@ if [[ $OSTYPE =~ $MACOS ]]; then
     alias gvim="vimr --cur-env"
 fi
 
-
-# Use `jq` with both JSON and non-JSON lines.
-function jqr { jq -R -r "${1:-.} as \$line | try fromjson catch \$line" }
+# Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
+alias jqq="jq -R 'fromjson? | select(type == \"object\")'"
+# Use `jq` with both JSON and non-JSON lines, preserving non-JSON.
+alias jqr='jq -R -r ". as \$line | try fromjson catch \$line"'
 
 function urldecode { python3 -c "import urllib.parse as url; print(url.unquote('$1'))" }
 
