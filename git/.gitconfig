@@ -10,7 +10,7 @@
     co = checkout
     dc = diff --cached
     ds = diff --stat
-    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cgreen%an%Creset\t%s %Cred%d%Creset \"
+    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(25)%Cgreen%an%Creset\t%s %Cred%d%Creset \"
     hist-gpg = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cgreen%an%Creset\t%s %Cred%G?%Creset %Cblue%GK%Creset %Cred%d%Creset \"
     rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
     ls = ls-files
