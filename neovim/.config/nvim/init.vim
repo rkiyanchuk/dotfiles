@@ -326,6 +326,7 @@ set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
 set lazyredraw
+set synmaxcol=500
 set listchars=tab:→\ ,space:·,trail:·,extends:▶,precedes:◀,nbsp:␣,eol:¬
 set matchpairs+=<:>
 set mouse=a
