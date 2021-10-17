@@ -40,3 +40,7 @@ gnupg/.gnupg/
 sage/.sage/cache
 sage/.sage/R
 sage/.sage/ipython*
+
+# Systemd
+systemd/.config/systemd/user/default.target.wants/
+systemd/.config/systemd/user/sockets.target.wants/
