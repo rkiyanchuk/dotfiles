@@ -315,6 +315,7 @@ augroup end
 
 " {{{ SETTINGS
 
+"set termguicolors
 set autoread
 set backspace=indent,eol,start
 set backup
@@ -324,6 +325,7 @@ set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
+set lazyredraw
 set listchars=tab:→\ ,space:·,trail:·,extends:▶,precedes:◀,nbsp:␣,eol:¬
 set matchpairs+=<:>
 set mouse=a
@@ -343,7 +345,6 @@ set signcolumn=yes
 set spelllang=en_us,ru_yo,uk
 set splitbelow
 set splitright
-"set termguicolors
 set textwidth=79
 set title
 set undofile
