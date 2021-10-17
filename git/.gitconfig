@@ -54,7 +54,7 @@
     keepBackup = false
 
 [credential]
-    helper = cache --timeout=43200
+    helper = cache --timeout=2592000 # 30 days
 
 [web]
     browser = google-chrome
