@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto external display scaling
+
+[Service]
+Type=simple
+ExecStart=/home/ruslan/.config/systemd/user/display-scale.sh
+
+[Install]
+WantedBy=default.target
+
