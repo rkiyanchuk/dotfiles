@@ -37,4 +37,6 @@ goldendict/.goldendict/history
 gnupg/.gnupg/
 
 # Sage
-sage/.sage/cache  
+sage/.sage/cache
+sage/.sage/R
+sage/.sage/ipython*
