@@ -392,8 +392,13 @@ let g:tex_flavor = "latex"  " Consider .tex files as LaTeX instead of plainTeX.
 let g:python3_host_skip_check = 0
 let g:python_host_skip_check = 0
 if has("mac")
-    let g:python_host_prog  = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    if filereadable("/usr/local/bin/python3")
+        let g:python_host_prog  = '/usr/local/bin/python'
+        let g:python3_host_prog = '/usr/local/bin/python3'
+    else
+        let g:python_host_prog  = '/opt/homebrew/bin/python'
+        let g:python3_host_prog = '/opt/homebrew/bin/python3'
+    end
 else
     let g:python_host_prog  = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
