@@ -42,6 +42,7 @@ brew "wget"
 brew "ykman"
 
 cask "affinity-designer"
+cask "affinity-photo"
 cask "alfred"
 cask "contexts"
 cask "discord"
