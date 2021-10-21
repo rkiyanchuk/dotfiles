@@ -44,3 +44,6 @@ sage/.sage/ipython*
 # Systemd
 systemd/.config/systemd/user/default.target.wants/
 systemd/.config/systemd/user/sockets.target.wants/
+
+# Brewfile
+Brewfile.lock.json
