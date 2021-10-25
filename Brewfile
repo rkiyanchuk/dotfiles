@@ -75,6 +75,7 @@ tap "homebrew/cask-fonts"
 cask "font-computer-modern"
 cask "font-fira-code"
 cask "font-iosevka"
+cask "font-iosevka-nerd-font"
 
 tap "github/gh"
 brew "gh"
