@@ -67,7 +67,6 @@ cask "cursorcerer"
 cask "devdocs"
 cask "obs"
 cask "postman"
-cask "spotify"
 cask "wireshark"
 cask "zoom"
 
