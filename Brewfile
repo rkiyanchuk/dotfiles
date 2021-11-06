@@ -43,7 +43,6 @@ brew "wget"
 brew "ykman"
 brew "svn"
 
-cask "affinity-designer"
 cask "alfred"
 cask "contexts"
 cask "discord"
