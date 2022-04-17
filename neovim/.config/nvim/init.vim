@@ -322,7 +322,7 @@ set backspace=indent,eol,start
 set backup
 set clipboard+=unnamedplus
 set completeopt=menuone,noinsert,noselect
-set cursorcolumn
+"set cursorcolumn
 set cursorline
 set formatoptions+=r  " Auto-insert current comment leader on Enter.
 set hidden  " Hide current buffer when opening new file instead of closing it.
