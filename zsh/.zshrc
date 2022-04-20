@@ -44,7 +44,7 @@ bindkey "^[f" emacs-forward-word
 # USER SETTINGS
 
 export EDITOR="nvim"
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 export GOPATH="$HOME/.go"
 
 export GLAMOUR_STYLE="dark"  # GitHub CLI Markdown rendering style.
