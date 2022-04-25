@@ -66,8 +66,8 @@
 [push]
     default = current
 
-[includeIf "gitdir:~/workspace/brex/"]
-    path = ~/workspace/brex/.gitconfig
+[includeIf "gitdir:~/workspace/"]
+    path = ~/workspace/.gitconfig
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
