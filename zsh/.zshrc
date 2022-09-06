@@ -20,8 +20,6 @@ fi
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
     colored-man-pages
-    # git clone https://github.com/qoomon/zsh-lazyload $ZSH_CUSTOM/plugins/zsh-lazyload
-    zsh-lazyload
     docker
     docker-compose
 )
