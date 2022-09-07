@@ -31,6 +31,7 @@ style = "208"
 
 [cmd_duration]
 format = " [$duration]($style) "
+style = "yellow"
 
 [directory]
 read_only = " "
