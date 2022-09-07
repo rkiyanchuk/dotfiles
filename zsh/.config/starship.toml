@@ -1,3 +1,5 @@
+# Fonts: Iosevka Term, FiraCode Nerd Font Mono
+
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -7,123 +9,188 @@ add_newline = false
 [line_break]
 disabled = true
 
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[hg_branch]
+symbol = ""
+
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "fg:bright-purple"
 
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
 
 [package]
 format = "[$symbol$version]($style) "
-symbol = ""
+symbol = " "
+style = "208"
 
 [cmd_duration]
-format = "⏱  [$duration]($style) "
+format = " [$duration]($style) "
+
+[directory]
+read_only = " "
 
 
-# Languages
+[aws]
+symbol = "  "
 
 [bun]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
 
 [buf]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[c]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "149"
 
 [cmake]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
+style = "blue"
 
 [cobol]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
+style = "blue"
+
+[conda]
+symbol = " "
+style = "green"
 
 [crystal]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
 
 [daml]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
 
 [dart]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "blue"
 
 [deno]
-format = "[$symbol]($style)"
+format = "[$symbol($version )]($style)"
+
+[docker_context]
+symbol = " "
 
 [dotnet]
 format = "[$symbol(🎯 $tfm )]($style)"
 
 [elixir]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "purple"
 
 [elm]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
 
 [erlang]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [golang]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "cyan"
+
+[haskell]
+symbol = " "
+style = "purple"
 
 [helm]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "white"
 
 [java]
-format = "[(${version} )]($style)"
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "red"
 
 [julia]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "purple"
 
 [kotlin]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "blue"
 
 [lua]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [nim]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+
+[nix_shell]
+symbol = " "
 
 [nodejs]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "green"
 
 [ocaml]
 format = '[$symbol(\($switch_indicator$switch_name\) )]($style)'
 
 [perl]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "149"
 
 [php]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "147"
 
 [pulumi]
 format = '[$symbol$stack]($style)'
 
 [purescript]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [python]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "bright-yellow"
 
 [raku]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [red]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [rlang]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [ruby]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "red"
 
 [rust]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
+style = "red"
+
+[spack]
+format = '[$symbol($version )]($style)'
+symbol = "🅢 "
 
 [swift]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+style = "202"
 
 [vagrant]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [vlang]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
 
 [zig]
-format = '[$symbol]($style)'
+format = '[$symbol($version )]($style)'
+symbol = " "
