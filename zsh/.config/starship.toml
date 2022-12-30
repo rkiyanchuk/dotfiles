@@ -36,6 +36,8 @@ style = "yellow"
 [directory]
 read_only = " "
 
+[battery]
+disabled = true
 
 [aws]
 symbol = "  "
