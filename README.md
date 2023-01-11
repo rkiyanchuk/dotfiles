@@ -100,3 +100,8 @@ GNU [Stow](https://www.gnu.org/software/stow/) is used to install the packages.
         curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
         /usr/bin/tic -xe tmux-256color terminfo.src
         ```
+
+
+## Notes
+
+Ukrainian spelling in Ukrainian: https://github.com/brown-uk/dict_uk
