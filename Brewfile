@@ -21,6 +21,9 @@ brew "tldr"
 brew "tmux"
 brew "tree"
 
+brew "pipx"
+brew "rlwrap"
+
 brew "bat"
 brew "bcrypt"
 brew "bzip2"
@@ -44,6 +47,8 @@ brew "unzip"
 brew "wget"
 brew "ykman"
 brew "svn"
+
+brew "hunspell"
 
 cask "alfred"
 cask "contexts"
