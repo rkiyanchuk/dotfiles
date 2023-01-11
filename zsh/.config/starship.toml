@@ -7,7 +7,7 @@
 add_newline = false
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
 success_symbol = "[❯](green)"
@@ -35,6 +35,7 @@ style = "yellow"
 
 [directory]
 read_only = " "
+truncate_to_repo = false
 
 [battery]
 disabled = true
@@ -158,7 +159,7 @@ format = '[$symbol$stack]($style)'
 format = '[$symbol($version )]($style)'
 
 [python]
-format = '[$symbol($version )]($style)'
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 symbol = " "
 style = "bright-yellow"
 
