@@ -65,13 +65,10 @@ alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
-    alias gvim="nvim-qt"
-    alias add-sink-2="pactl load-module module-jack-sink client_name=pulse_sink_2 connect=yes"
 fi
 
 if [[ $OSTYPE =~ $MACOS ]]; then
     alias updatedb="sudo /usr/libexec/locate.updatedb"
-    alias gvim="vimr --cur-env"
 fi
 
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
