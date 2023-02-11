@@ -1,7 +1,7 @@
 [user]
     name = Ruslan Kiyanchuk
     email = ruslan.kiyanchuk@gmail.com
-    signingkey = ~/.ssh/id_ed25519
+    signingkey = ~/.ssh/id_ed25519_sk
 
 [gpg]
     format = ssh
