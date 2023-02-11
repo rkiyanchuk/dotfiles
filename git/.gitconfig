@@ -6,6 +6,9 @@
 [gpg]
     format = ssh
 
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+
 [commit]
 	gpgsign = true
 
@@ -74,7 +77,7 @@
     dc = diff --cached
     ds = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
-    hist-gpg = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(16)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
+    hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(16)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
     rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
     ls = ls-files
     mt = mergetool
@@ -93,6 +96,3 @@
 
 [includeIf "gitdir:~/workspace/"]
     path = ~/workspace/.gitconfig
-
-[gpg "ssh"]
-	allowedSignersFile = /Users/rkiyanchuk@tripactions.com/.ssh/allowed_signers
