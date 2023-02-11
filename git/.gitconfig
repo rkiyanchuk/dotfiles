@@ -1,7 +1,70 @@
 [user]
     name = Ruslan Kiyanchuk
     email = ruslan.kiyanchuk@gmail.com
-    signingkey = FAFCBE8AD9CD1CF9
+    signingkey = ~/.ssh/id_ed25519
+
+[gpg]
+    format = ssh
+
+[commit]
+	gpgsign = true
+
+[credential]
+    helper = cache --timeout=2592000
+
+[apply]
+    whitespace = warn
+
+[core]
+    attributesfile = /Users/ruslan/.git.d/.gitattributes
+    editor = nvim
+
+[help]
+    autocorrect = 1
+
+[diff]
+    tool = vscode
+
+[merge]
+    tool = vscode
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "nvim"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[difftool "intellij"]
+    cmd = idea diff $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\")
+
+[mergetool "intellij"]
+    cmd = idea merge $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\") $(cd $(dirname \"$BASE\") && pwd)/$(basename \"$BASE\") $(cd $(dirname \"$MERGED\") && pwd)/$(basename \"$MERGED\")
+    trustExitCode = true
+
+[web]
+    browser = google-chrome
+
+[pull]
+    rebase = false
+    ff = only
+
+[push]
+    default = current
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[rerere]
+    enabled = true
 
 [alias]
     br = branch -vv
@@ -28,55 +91,8 @@
     # Recursively pull and update all branches in all repos in current dir.
     rpull = "! ~/.git.d/git-rpull.sh"
 
-[apply]
-    whitespace = warn
-
-[core]
-    attributesfile = /Users/ruslan/.git.d/.gitattributes
-    editor = nvim
-
-[help]
-    autocorrect = 1
-
-[merge]
-    tool = vscode
-
-[diff]
-    tool = vscode
-
-[mergetool "nvim"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-
-[mergetool "vscode"]
-    cmd = code --wait $MERGED
-
-[difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
-
-[mergetool]
-    keepBackup = false
-
-[credential]
-    helper = cache --timeout=2592000
-
-[web]
-    browser = google-chrome
-
-[pull]
-    rebase = false
-    ff = only
-
-[push]
-    default = current
-
 [includeIf "gitdir:~/workspace/"]
     path = ~/workspace/.gitconfig
 
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-
-[rerere]
-    enabled = true
+[gpg "ssh"]
+	allowedSignersFile = /Users/rkiyanchuk@tripactions.com/.ssh/allowed_signers
