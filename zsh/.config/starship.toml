@@ -85,6 +85,7 @@ format = "[$symbol($version )]($style)"
 
 [docker_context]
 symbol = " "
+format = '[$symbol$context]($style) '
 
 [dotnet]
 format = "[$symbol(🎯 $tfm )]($style)"
