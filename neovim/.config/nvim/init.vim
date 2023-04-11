@@ -18,8 +18,8 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    "Plug 'joshdick/onedark.vim'
-    Plug 'projekt0n/github-nvim-theme'
+    "Plug 'olimorris/onedarkpro.nvim'
+    Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
@@ -31,6 +31,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'tpope/vim-commentary'
     Plug 'fidian/hexmode'  " Hex editor mode.
     Plug 'chrisbra/Colorizer'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Version control
     Plug 'gregsexton/gitv', {'on': ['Gitv']} | Plug 'tpope/vim-fugitive'
@@ -71,7 +72,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme github_dimmed
+colorscheme onedark
 
 
 " vim-airline
