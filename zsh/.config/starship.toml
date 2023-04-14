@@ -131,6 +131,7 @@ style = "blue"
 
 [lua]
 format = '[$symbol($version )]($style)'
+symbol = "\ue620 "
 
 [nim]
 format = '[$symbol($version )]($style)'
