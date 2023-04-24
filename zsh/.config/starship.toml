@@ -24,6 +24,7 @@ style = "fg:bright-purple"
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
 ignore_submodules = true
+deleted = '-'
 untracked = ""
 
 [package]
