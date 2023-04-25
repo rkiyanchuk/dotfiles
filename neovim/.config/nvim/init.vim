@@ -18,6 +18,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
+    Plug 'nordtheme/vim'
     Plug 'joshdick/onedark.vim'
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
@@ -73,7 +74,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme onedark
+colorscheme nord
 
 
 " vim-airline
