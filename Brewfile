@@ -21,6 +21,7 @@ brew "tectonic"
 brew "tldr"
 brew "tmux"
 brew "tree"
+brew "gotop"
 
 brew "pipx"
 brew "rlwrap"
