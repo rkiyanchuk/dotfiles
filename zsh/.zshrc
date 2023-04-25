@@ -62,7 +62,6 @@ alias dud='du -hd1'
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias tmuxp="DISABLE_AUTO_TITLE='true' tmuxp"
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
