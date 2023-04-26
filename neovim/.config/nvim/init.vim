@@ -62,6 +62,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'mustache/vim-mustache-handlebars'
     Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
     Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
+    Plug 'dag/vim-fish'
 call plug#end()
 " }}}
 
@@ -113,7 +114,7 @@ nnoremap <silent> <leader>3 :GundoToggle<CR>
 " --------
 
 let NERDTreeMinimalUI=1
-let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info']
+let NERDTreeIgnore = ['\~$', '\.pyc', '__pycache__', '\.o', '.*\.egg-info', '.DS_Store']
 
 nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>! :NERDTreeFind<CR>

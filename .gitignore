@@ -47,3 +47,6 @@ systemd/.config/systemd/user/sockets.target.wants/
 
 # Brewfile
 Brewfile.lock.json
+
+# macOS
+.DS_Store
