@@ -36,8 +36,6 @@ export EDITOR="nvim"
 export GPG_TTY=$TTY
 export GOPATH="$HOME/.go"
 
-export GLAMOUR_STYLE="dark"  # GitHub CLI Markdown rendering style.
-
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"  # Scripts installed by pip (Python).
 export PATH="$HOME/.poetry/bin:$PATH"  # Scripts installed by poetry (Python).
@@ -45,6 +43,8 @@ export PATH="$HOME/.cargo/bin:$PATH"  # Binaries installed by cargo (Rust).
 export PATH="$HOME/node_modules/.bin:$PATH"  # Scripts installed by NodeJS.
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"  # Add IntelliJ IDEA scripts.
 export PATH="$GOPATH/bin:$PATH"  # Binaries installed by Go (GoLang).
+
+export GLAMOUR_STYLE="dark"  # GitHub CLI Markdown rendering style.
 
 MACOS="darwin*"
 LINUX="linux-gnu"
@@ -65,10 +65,6 @@ alias vimdiff="nvim -d"
 
 if [[ $OSTYPE == $LINUX ]]; then
     alias open='xdg-open'
-fi
-
-if [[ $OSTYPE =~ $MACOS ]]; then
-    alias updatedb="sudo /usr/libexec/locate.updatedb"
 fi
 
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
