@@ -3,6 +3,10 @@ set fish_greeting  # Clear default greeting
 
 # ENVIRONMENT
 
+set fish_color_valid_path  # Disable underlining path
+
+set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
+
 set --export --global VISUAL nvim
 set --export --global EDITOR nvim
 set --export --global CLICOLOR 1  # Turn on colors for some BSD tools
@@ -21,7 +25,7 @@ end
 
 # ALIASES
 
-alias l="ll"
+alias l="ls -al"
 alias dud="du -hd1"
 alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
