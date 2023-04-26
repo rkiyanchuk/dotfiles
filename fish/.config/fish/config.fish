@@ -27,7 +27,6 @@ end
 
 alias l="ls -al"
 alias dud="du -hd1"
-alias pyclean="find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
@@ -46,7 +45,7 @@ function tree
   command tree --dirsfirst -C $argv
 end
 
-function http-serve --wraps='python3 -m http.server' --description 'alias runhttp=python3 -m http.server'
+function http-serve --wraps='python3 -m http.server' --description 'Run Python HTTP server in current dir'
   python3 -m http.server $argv;
 end
 
@@ -65,6 +64,18 @@ end
 
 function exa --wraps='exa --group-directories-first --group' --description 'alias exa=exa --group-directories-first --group'
   command exa --group-directories-first --group $argv;
+end
+
+function update-all --description 'Upgrade all cli tools'
+    vim +Update +qall!
+    brew update; brew upgrade; brew upgrade --cask
+    if type -q fisher
+        fisher update
+    end
+end
+
+function pyclean --description "Delete all temporary Python files"
+    find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
 end
 
 
