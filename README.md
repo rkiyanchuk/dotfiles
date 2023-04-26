@@ -62,23 +62,19 @@ GNU [Stow](https://www.gnu.org/software/stow/) is used to install the packages.
     stow -Svv zsh git gnupg goldendict neovim sage tmux
     ```
 
-5. Configure ZSH:
-    - Install `oh-my-zsh`:
+5. Configure shell:
+    - Install `fish`:
 
         ```sh
-        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        brew install fish
+        echo /usr/local/bin/fish | sudo tee -a /etc/shells
+        chsh -s $(which fish)
         ```
 
-    - Install ZSH theme:
-
+    - Install `fisher` plugin manager:
+    
         ```sh
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        ```
-
-    - Install `lazyload` plugin:
-
-        ```sh
-        git clone https://github.com/qoomon/zsh-lazyload $ZSH_CUSTOM/plugins/zsh-lazyload
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         ```
 
     - Install `pynvim` for neovim:
