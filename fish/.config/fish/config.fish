@@ -82,6 +82,14 @@ function pyclean --description "Delete all temporary Python files"
     find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
 end
 
+function gb
+  set branches (git branch --all | grep -v HEAD | sed 's/^..//' | sed 's/remotes\///g' | sed 's/[\* ]/ /g' )
+  set branch (echo "$branches" | string split " " | fzf --no-hscroll --no-multi -n 2 --ansi --preview="git log --pretty=oneline --abbrev-commit --color --graph -n 20 {}")
+  if test -n "$branch"
+    git checkout $branch
+  end
+end
+
 
 # PROMPT
 
