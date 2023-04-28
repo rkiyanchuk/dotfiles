@@ -23,7 +23,7 @@ fish_add_path --global ~/node_modules/.bin    # npm executables
 
 if test (uname) = "Darwin"
     fish_add_path --global /opt/homebrew/bin/     # Packages installed by Homebrew
-    fish_add_path /Applications/IntelliJ IDEA.app/Contents/MacOS # Add IntelliJ IDEA
+    fish_add_path "/Applications/IntelliJ IDEA.app/Contents/MacOS" # Add IntelliJ IDEA
 end
 
 
