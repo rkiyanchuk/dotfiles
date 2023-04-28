@@ -33,6 +33,7 @@ alias l="ls -al"
 alias dud="du -hd1"
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias fish_reload="source ~/.config/fish/config.fish"
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
 alias jqq="jq -R 'fromjson? | select(type == \"object\")'"
 # Use `jq` with both JSON and non-JSON lines, preserving non-JSON.
