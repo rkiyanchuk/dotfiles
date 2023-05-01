@@ -72,9 +72,12 @@ function exa --wraps='exa --group-directories-first --group' --description 'alia
 end
 
 function update-all --description 'Upgrade all cli tools'
+    echo "=> Updating Vim..."
     vim +Update +qall!
+    echo "=> Updating Brew..."
     brew update; brew upgrade; brew upgrade --cask
     if type -q fisher
+        echo "=> Updating fish plugins via fisher..."
         fisher update
     end
 end
