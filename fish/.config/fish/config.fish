@@ -80,6 +80,10 @@ function exa --wraps='exa --group-directories-first --group' --description 'alia
   command exa --group-directories-first --group $argv;
 end
 
+function chatgpt --wraps='chatblade' --description 'alias to chatblade'
+  command chatblade $argv;
+end
+
 function update-all --description 'Upgrade all cli tools'
     echo "=> Updating Vim..."
     vim +Update +qall!
