@@ -76,6 +76,7 @@ cask "obs"
 cask "postman"
 cask "wireshark"
 cask "zoom"
+cask "elmedia-player"
 
 tap "homebrew/cask-fonts"
 cask "font-computer-modern"
