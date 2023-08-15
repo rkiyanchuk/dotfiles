@@ -25,7 +25,8 @@ if test (uname) = "Darwin"
     if type -q brew
         eval "$(brew shellenv)"
     end
-    fish_add_path --global /opt/homebrew/bin/     # Packages installed by Homebrew
+    fish_add_path --global /opt/homebrew/bin/     # packages installed by homebrew
+    fish_add_path --global /opt/homebrew/sbin     # packages installed by homebrew
     fish_add_path "/Applications/IntelliJ IDEA.app/Contents/MacOS" # Add IntelliJ IDEA
 end
 
