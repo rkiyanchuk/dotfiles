@@ -67,6 +67,7 @@ cask "parallels"
 cask "sage"
 cask "utm"
 cask "visual-studio-code"
+cask "orbstack"
 
 cask "homebrew/cask-drivers/obinskit"
 cask "calibre"
