@@ -23,6 +23,7 @@ brew "tmux"
 brew "tree"
 brew "gotop"
 brew "exa"
+brew "nvm"
 
 brew "pipx"
 brew "rlwrap"
