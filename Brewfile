@@ -82,7 +82,7 @@ cask "postman"
 cask "sage"
 cask "visual-studio-code"
 cask "wireshark"
-cjsk "orbstack"
+cask "orbstack"
 
 # Media
 cask "calibre"
