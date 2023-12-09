@@ -1,4 +1,4 @@
-# Zoresvit's Dotfiles
+# Dotfiles
 
 [Dotfiles](https://wiki.archlinux.org/index.php/Dotfiles) are custom
 configuration files used to maintain user preferred settings across the
@@ -10,7 +10,6 @@ as well as share with others.
 Looking at someone else's *dotfiles* helps to discover new configurations and
 tweaks of commonly used software to increase productivity and comfort.
 
-## Usage
 
 The *dotfiles* repository contains directories with configuration files. Each
 directory corresponds to a *"package"* for convenience. For instance, all
@@ -22,82 +21,69 @@ GNU [Stow](https://www.gnu.org/software/stow/) is used to install the packages.
 > and/or data located in separate directories on the file system, and makes
 > them appear to be installed in the same place.
 
-1. Clone dotfiles repository.
+## Setup
 
-    ```bash
-    git clone http://github.com/zoresvit/dotfiles && cd dotfiles
-    ```
+Install Homebrew:
 
-2. Run `stow` with dotfiles bundle you want to use:
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-    ```bash
-    stow -t ~ {bundle}
-    ```
+Clone dotfiles repository:
 
-    where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
+```bash
+git clone http://github.com/rkiyanchuk/dotfiles && cd dotfiles
+```
 
-## Mac setup
+Install dependencies in Brewfile:
 
-1. Clone Dotfiles
+```sh
+brew bundle install
+```
 
-    ```sh
-    git clone https://github.com/rkiyanchuk/dotfiles
-    ```
+Run `stow` with dotfiles bundle you want to use:
 
-2. Install homebrew:
+```bash
+stow -t ~ {bundle}
+```
+where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
 
-    ```sh
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    ```
+Install dotfiles:
 
-3. In dotfiles run, to install packages:
+```sh
+stow -Svv fish git neovim gnupg tmux sage
+```
 
-    ```sh
-    brew bundle install
-    ```
+Configure Fish shell:
 
-4. Install dotfiles:
+```sh
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+chsh -s $(which fish)
+```
 
-    ```sh
-    stow -Svv zsh git gnupg goldendict neovim sage tmux
-    ```
-
-5. Configure shell:
-    - Install `fish`:
-
-        ```sh
-        brew install fish
-        echo /usr/local/bin/fish | sudo tee -a /etc/shells
-        chsh -s $(which fish)
-        ```
-
-    - Install `fisher` plugin manager:
+Install `fisher` plugin manager for Fish:
     
-        ```sh
-        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-        ```
+```sh
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+```
 
-    - Install `pynvim` for neovim:
+Install `pynvim` for neovim:
 
-        ```sh
-        pip3 install pynvim
-        ```
+```sh
+pip3 install pynvim
+```
 
-6. Configure tmux.
-    - Install tmux plugin manager:
+Configure tmux.
 
-        ```sh
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-        ```
+Install tmux plugin manager:
 
-    - Fix tmux terminfo.
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 
-        ```sh
-        curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
-        /usr/bin/tic -xe tmux-256color terminfo.src
-        ```
+Fix tmux terminfo.
 
-
-## Notes
-
-Ukrainian spelling in Ukrainian: https://github.com/brown-uk/dict_uk
+```sh
+curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
+/usr/bin/tic -xe tmux-256color terminfo.src
+```
