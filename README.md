@@ -87,3 +87,38 @@ Fix tmux terminfo.
 curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
 /usr/bin/tic -xe tmux-256color terminfo.src
 ```
+
+
+
+Enable key repeat:
+```
+defaults write -g ApplePressAndHoldEnabled -bool false
+```
+
+Additional software:
+
+* [Rectangle](https://rectangleapp.com/)
+* [Monitor Control](https://monitorcontrol.app)
+* [iState Menus](https://bjango.com/mac/istatmenus/)
+* [Bartender](https://www.macbartender.com/)
+* [CleanShot](https://cleanshot.com/)
+* [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
+
+TheIne
+Obinskit
+NoteBurner
+LogitTune
+LogiOoptions+
+Kindle
+Final Cut Pro
+
+Controller For HomeKit
+ClearVPN
+Affinity Photo
+Affinity Designer
+Affinity Publisher
+Adobe Acrobat
+
+
+Youlean Loudness meter
+XCode

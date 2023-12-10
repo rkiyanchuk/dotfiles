@@ -68,12 +68,15 @@ brew "ykman"
 # CASKS
 
 # System tools
+cask "iterm2"
 cask "alfred"
 cask "contexts"
 cask "cursorcerer"
 cask "istat-menus"
-cask "iterm2"
+cask "cleanshot"
+cask "bartender"
 cask "little-snitch"
+cask "rectangle-pro"
 
 cask "devdocs"
 cask "postman"
@@ -86,10 +89,15 @@ cask "orbstack"
 cask "calibre"
 cask "elmedia-player"
 cask "goldendict"
+cask "dictionaries"
 cask "obs"
+cask "shureplus-motiv"
 
 cask "zoom"
 cask "discord"
+cask "garmin-express"
+
+cask "burp-suite"
 
 tap "homebrew/cask-fonts"
 cask "font-computer-modern"
