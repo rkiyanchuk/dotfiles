@@ -77,6 +77,7 @@ cask "cleanshot"
 cask "bartender"
 cask "little-snitch"
 cask "rectangle-pro"
+cask "monitorcontrol"
 
 cask "devdocs"
 cask "postman"
@@ -86,6 +87,9 @@ cask "wireshark"
 cask "orbstack"
 
 # Media
+cask "affinity-designer"
+cask "affinity-photo"
+cask "affinity-publisher"
 cask "calibre"
 cask "elmedia-player"
 cask "goldendict"
