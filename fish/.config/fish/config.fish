@@ -6,7 +6,7 @@ set fish_greeting  # Clear default greeting
 set fish_color_valid_path  # Disable underlining path
 
 # Customize exa colors
-set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
+set -x EZA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
 
 # Configure fzf fuzzy finder to use Nord colors.
 set -x FZF_DEFAULT_OPTS "--color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1 --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
@@ -70,16 +70,16 @@ function ls --wraps='ls --color=auto --group-directories-first' --description 'a
     case "Linux"
       command ls --color=auto --group-directories-first $argv;
     case "Darwin"
-      if type -q exa
-        command exa --group-directories-first --group $argv;
+      if type -q eza
+        command eza --group-directories-first --group $argv;
       else
         command ls $argv;
       end
   end
 end
 
-function exa --wraps='exa --group-directories-first --group' --description 'alias exa=exa --group-directories-first --group'
-  command exa --group-directories-first --group $argv;
+function eza --wraps='eza --group-directories-first --group' --description 'alias eza=eza --group-directories-first --group'
+  command eza --group-directories-first --group $argv;
 end
 
 function chatgpt --wraps='chatblade' --description 'alias to chatblade'
