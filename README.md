@@ -57,7 +57,7 @@ stow -t ~ -Svv fish git neovim gnupg tmux sage
 Configure Fish shell:
 
 ```sh
-echo /usr/local/bin/fish | sudo tee -a /etc/shells
+echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 ```
 
@@ -95,6 +95,13 @@ Enable key repeat:
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
+
+Podman, fix to run x86 images: https://github.com/containers/podman/discussions/12899
+
+Font IOSEVKA
+
+
+
 Additional software:
 
 * [Rectangle](https://rectangleapp.com/)
@@ -118,6 +125,7 @@ Affinity Photo
 Affinity Designer
 Affinity Publisher
 Adobe Acrobat
+NoteBurner
 
 
 Youlean Loudness meter
