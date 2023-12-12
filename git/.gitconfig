@@ -1,16 +1,16 @@
 [user]
     name = Ruslan Kiyanchuk
     email = ruslan.kiyanchuk@gmail.com
-    signingkey = ~/.ssh/id_ed25519-git
+    signingkey = ~/.ssh/id_ed25519_sk_git
 
 [gpg]
     format = ssh
 
 [gpg "ssh"]
-	allowedSignersFile = ~/.ssh/allowed_signers
+    allowedSignersFile = ~/.ssh/allowed_signers
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [credential]
     helper = cache --timeout=2592000
