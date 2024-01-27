@@ -86,6 +86,7 @@ cask "visual-studio-code"
 cask "intellij-idea-ce"
 cask "wireshark"
 cask "orbstack"
+cask "utm"
 
 # Media
 cask "affinity-designer"
