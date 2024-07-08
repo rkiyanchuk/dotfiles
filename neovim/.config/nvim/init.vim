@@ -41,14 +41,14 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'mhinz/vim-signify'  " Show diff in signcolumn.
 
     " Completion
-    Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
-    Plug 'ncm2/ncm2-bufword'
-    Plug 'ncm2/ncm2-path'
-    Plug 'ncm2/ncm2-ultisnips'
-    Plug 'ncm2/ncm2-vim-lsp'
-    if exists('*nvim_open_win')
-        Plug 'ncm2/float-preview.nvim'
-    endif
+"   Plug 'ncm2/ncm2' | Plug 'roxma/nvim-yarp'
+"   Plug 'ncm2/ncm2-bufword'
+"   Plug 'ncm2/ncm2-path'
+"   Plug 'ncm2/ncm2-ultisnips'
+"   Plug 'ncm2/ncm2-vim-lsp'
+"   if exists('*nvim_open_win')
+"       Plug 'ncm2/float-preview.nvim'
+"   endif
 
     " Programming
     Plug 'liuchengxu/vista.vim'
@@ -191,10 +191,10 @@ let g:signify_sign_show_count = 0
 let g:float_preview#docked = 0
 let g:float_preview#max_width = 100
 
-augroup NCM2
-    autocmd!
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup end
+"augroup NCM2
+"    autocmd!
+"    autocmd BufEnter * call ncm2#enable_for_buffer()
+"augroup end
 
 function! DisableExtras()
   call nvim_win_set_option(g:float_preview#win, 'cursorcolumn', v:false)
@@ -257,65 +257,65 @@ let g:vista_elixir_executive = "vim_lsp"
 let g:vista_javascript_executive = "vim_lsp"
 let g:vista_typescript_executive = "vim_lsp"
 
-augroup LSP
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd', '-background-index']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true},
-        \                                           'pycodestyle': {'maxLineLength': 100}}
-        \     }
-        \   }
-        \ })
-
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-        \ 'whitelist': ['rust'],
-        \ })
-
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'gopls',
-        \ 'cmd': {server_info->['gopls', '-mode', 'stdio', '-remote', 'auto']},
-        \ 'whitelist': ['go'],
-        \ })
-
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'bash-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-        \ 'whitelist': ['sh'],
-        \ })
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'jdtls',
-        \ 'cmd': {server_info->['jdtls']},
-        \ 'whitelist': ['java'],
-        \ })
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'elixir-ls',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'elixir-ls']},
-        \ 'whitelist': ['elixir', 'eelixir'],
-        \ })
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
-        \ 'whitelist': ['typescript', 'typescriptreact', 'javascript', 'javascript.jsx', 'javascriptreact'],
-        \ })
-
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'kotlin-language-server',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'kotlin-language-server']},
-        \ 'whitelist': ['kotlin']
-        \ })
-augroup end
+"augroup LSP
+"    autocmd!
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'clangd',
+"        \ 'cmd': {server_info->['clangd', '-background-index']},
+"        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"        \ })
+"
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'pyls',
+"        \ 'cmd': {server_info->['pyls']},
+"        \ 'whitelist': ['python'],
+"        \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true},
+"        \                                           'pycodestyle': {'maxLineLength': 100}}
+"        \     }
+"        \   }
+"        \ })
+"
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'rls',
+"        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+"        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+"        \ 'whitelist': ['rust'],
+"        \ })
+"
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'gopls',
+"        \ 'cmd': {server_info->['gopls', '-mode', 'stdio', '-remote', 'auto']},
+"        \ 'whitelist': ['go'],
+"        \ })
+"
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'bash-language-server',
+"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+"        \ 'whitelist': ['sh'],
+"        \ })
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'jdtls',
+"        \ 'cmd': {server_info->['jdtls']},
+"        \ 'whitelist': ['java'],
+"        \ })
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'elixir-ls',
+"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'elixir-ls']},
+"        \ 'whitelist': ['elixir', 'eelixir'],
+"        \ })
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'typescript-language-server',
+"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+"        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'package.json'))},
+"        \ 'whitelist': ['typescript', 'typescriptreact', 'javascript', 'javascript.jsx', 'javascriptreact'],
+"        \ })
+"
+"    autocmd User lsp_setup call lsp#register_server({
+"        \ 'name': 'kotlin-language-server',
+"        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'kotlin-language-server']},
+"        \ 'whitelist': ['kotlin']
+"        \ })
+"augroup end
 " }}}
 
 " {{{ SETTINGS
