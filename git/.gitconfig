@@ -21,6 +21,7 @@
 [core]
     attributesfile = /Users/ruslan/.git.d/.gitattributes
     editor = nvim
+    #editor = code --wait --new-window --profile Default
 
 [help]
     autocorrect = 1
