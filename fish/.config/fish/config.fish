@@ -86,9 +86,7 @@ function chatgpt --wraps='chatblade' --description 'alias to chatblade'
   command chatblade $argv;
 end
 
-function update-all --description 'Upgrade all cli tools'
-    echo "=> Updating Vim..."
-    vim +Update +qall!
+function upgrade --description 'Upgrade all cli tools'
     echo "=> Updating Brew..."
     brew update; brew upgrade; brew upgrade --cask; brew autoremove
     if type -q fisher
