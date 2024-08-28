@@ -4,13 +4,13 @@
     signingkey = ~/.ssh/id_ed25519_sk_git
 
 [gpg]
-    format = ssh
+#    format = ssh
 
 [gpg "ssh"]
-    allowedSignersFile = ~/.ssh/allowed_signers
+#    allowedSignersFile = ~/.ssh/allowed_signers
 
 [commit]
-    gpgsign = true
+#    gpgsign = true
 
 [credential]
     helper = cache --timeout=2592000
