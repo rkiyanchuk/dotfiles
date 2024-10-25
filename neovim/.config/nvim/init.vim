@@ -28,7 +28,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'Shougo/denite.nvim'
 
     " Editing
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'cohama/lexima.vim'
     Plug 'tpope/vim-commentary'
     Plug 'fidian/hexmode'  " Hex editor mode.
