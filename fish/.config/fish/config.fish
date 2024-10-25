@@ -119,4 +119,6 @@ if status is-interactive
   end
 end
 
+set SSH_AUTH_SOCK /var/folders/01/xp__mh2x779ftkl86172p6_80000gn/T//ssh-nmz8YRNefM78/agent.12434
+
 source ~/.config/fish/.iterm2_shell_integration.fish
