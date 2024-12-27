@@ -29,7 +29,6 @@ brew "bzip2"
 brew "rlwrap"
 
 # Network
-
 brew "ldns"
 brew "mtr"
 brew "wget"
@@ -54,7 +53,6 @@ brew "svn"
 brew "tectonic"
 brew "deno"
 
-
 # Security
 brew "age"
 brew "bcrypt"
@@ -70,39 +68,55 @@ brew "ykman"
 # CASKS
 
 # System tools
-cask "iterm2"
 cask "alfred"
+cask "appcleaner"
+cask "bartender"
+cask "cleanshot"
 cask "contexts"
 cask "cursorcerer"
 cask "istat-menus"
-cask "cleanshot"
-cask "bartender"
+cask "iterm2"
 cask "little-snitch"
-cask "rectangle-pro"
+cask "logi-options+"
 cask "monitorcontrol"
+cask "rectangle-pro"
 
+# Dev
 cask "dash"
+cask "gitkraken"
+cask "intellij-idea-ce"
+cask "orbstack"
 cask "postman"
 cask "sage"
-cask "visual-studio-code"
-cask "intellij-idea-ce"
-cask "wireshark"
-cask "orbstack"
 cask "utm"
+cask "visual-studio-code"
+cask "wireshark"
+cask "yaak"
 
 # Media
 cask "affinity-designer"
 cask "affinity-photo"
 cask "affinity-publisher"
 cask "calibre"
+cask "dictionaries"
 cask "elmedia-player"
 cask "firefox"
-cask "dictionaries"
+cask "font-computer-modern"
+cask "font-jetbrains-mono"
 cask "obs"
 cask "shureplus-motiv"
+cask "the-unarchiver"
 
-cask "zoom"
+# Misc
+cask "anki"
+cask "burp-suite"
 cask "discord"
 cask "garmin-express"
-
-cask "burp-suite"
+cask "keepassxc"
+cask "key-codes"
+cask "obsidian"
+cask "slack"
+cask "spotify"
+cask "steam"
+cask "yubico-yubikey-manager"
+cask "zoom"
