@@ -88,7 +88,7 @@ end
 
 function upgrade --description 'Upgrade all cli tools'
     echo "=> Updating Brew..."
-    brew update; brew upgrade; brew upgrade --cask; brew autoremove
+    brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove
     if type -q fisher
         echo "=> Updating fish plugins via fisher..."
         fisher update
