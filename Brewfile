@@ -1,6 +1,9 @@
 # Install command:
 # brew bundle install --file=Brewfile
 
+tap "homebrew-ffmpeg/ffmpeg"
+tap "cloudflare/cloudflare"
+
 # Core CLI tools
 brew "fish"
 brew "starship"
@@ -15,7 +18,6 @@ brew "jq"
 brew "gotop"
 brew "ripgrep"
 brew "sd"
-
 brew "neovim"
 brew "openssh"
 
@@ -37,6 +39,7 @@ brew "cmake"
 brew "cloc"
 brew "cookiecutter"
 brew "eslint"
+brew "gh"
 brew "ghz"
 brew "git"
 brew "golang"
@@ -49,9 +52,8 @@ brew "nvm"
 brew "pipx"
 brew "svn"
 brew "tectonic"
+brew "deno"
 
-tap "github/gh"
-brew "gh"
 
 # Security
 brew "age"
@@ -104,7 +106,3 @@ cask "discord"
 cask "garmin-express"
 
 cask "burp-suite"
-
-tap "homebrew/cask-fonts"
-cask "font-computer-modern"
-cask "font-jetbrains-mono"
