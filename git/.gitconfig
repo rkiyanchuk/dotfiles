@@ -78,7 +78,7 @@
     dc = diff --cached
     ds = diff --stat
     hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
-    hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(16)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
+    hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(50)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
     rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
     ls = ls-files
     mt = mergetool
