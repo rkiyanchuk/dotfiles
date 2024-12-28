@@ -83,9 +83,13 @@ function chatgpt --wraps='chatblade' --description 'alias to chatblade'
 end
 
 function upgrade --description 'Upgrade all cli tools'
-    echo "=> Updating Brew..."
-    brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove
+  switch (uname)
+    case "Darwin"
+      echo "=> Updating Brew..."
+      brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove
+    end
     if type -q fisher
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         echo "=> Updating fish plugins via fisher..."
         fisher update
     end
