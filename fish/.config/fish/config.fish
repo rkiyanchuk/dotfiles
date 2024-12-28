@@ -8,8 +8,8 @@ set fish_color_valid_path  # Disable underlining path
 # Customize exa colors
 set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
 
-# Configure fzf fuzzy finder to use Nord colors.
-set -x FZF_DEFAULT_OPTS "--color=fg:#e5e9f0,bg:#3b4252,hl:#81a1c1 --color=fg+:#e5e9f0,bg+:#3b4252,hl+:#81a1c1 --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b"
+# Configure fzf fuzzy finder to use GitHub Dimmed colors.
+set -x FZF_DEFAULT_OPTS "--color=fg:#c9d1d9,bg:#23272d,hl:#58a6ff --color=fg+:#c9d1d9,bg+:#23272d,hl+:#58a6ff --color=info:#79c0ff,prompt:#f85149,pointer:#d2a8ff --color=marker:#3fb950,spinner:#d2a8ff,header:#3fb950"
 
 set --export --global VISUAL nvim
 set --export --global EDITOR nvim
@@ -39,7 +39,8 @@ end
 
 # ALIASES
 
-alias l="ls -al"
+alias l="ls -l"
+alias ll="ls -al"
 alias dud="du -hd1"
 alias vim="nvim"
 alias vimdiff="nvim -d"
@@ -109,7 +110,6 @@ function fzg
   end
 end
 
-
 # Source per-host configurations as well as localhost overrides.
 if status is-interactive
   for name in config.{$hostname,local}.fish
@@ -118,7 +118,5 @@ if status is-interactive
     end
   end
 end
-
-set SSH_AUTH_SOCK /var/folders/01/xp__mh2x779ftkl86172p6_80000gn/T//ssh-nmz8YRNefM78/agent.12434
 
 source ~/.config/fish/.iterm2_shell_integration.fish
