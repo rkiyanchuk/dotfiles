@@ -13,6 +13,17 @@ disabled = false
 # success_symbol = "[❯](green)"
 # error_symbol = "[❯](red)"
 
+[username]
+format = '[$user]($style)'
+
+[hostname]
+format = '$ssh_symbol[$hostname]($style) '
+ssh_symbol = "@"
+style = 'bold green'
+
+[container]
+symbol = "󰆧"
+
 [hg_branch]
 symbol = " "
 
@@ -29,7 +40,7 @@ untracked = ""
 
 [package]
 format = "[$symbol$version]($style) "
-symbol = " "
+symbol = " "
 style = "208"
 
 [cmd_duration]
