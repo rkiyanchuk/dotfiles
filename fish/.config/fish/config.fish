@@ -67,16 +67,11 @@ function http-serve --wraps='python3 -m http.server' --description 'Run Python H
 end
 
 function ls --wraps='ls --color=auto --group-directories-first' --description 'alias ls=ls --color=auto --group-directories-first'
-  switch (uname)
-    case "Linux"
+    if type -q eza
+      command eza --group-directories-first --group $argv;
+    else
       command ls --color=auto --group-directories-first $argv;
-    case "Darwin"
-      if type -q eza
-        command eza --group-directories-first --group $argv;
-      else
-        command ls $argv;
-      end
-  end
+    end
 end
 
 function eza --wraps='eza --group-directories-first --group' --description 'alias eza=eza --group-directories-first --group'
