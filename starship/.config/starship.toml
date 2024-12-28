@@ -10,15 +10,15 @@ add_newline = false
 disabled = false
 
 [character]
-success_symbol = "[❯](green)"
-error_symbol = "[❯](red)"
+# success_symbol = "[❯](green)"
+# error_symbol = "[❯](red)"
 
 [hg_branch]
-symbol = ""
+symbol = " "
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
-symbol = " "
+symbol = " "
 style = "fg:bright-purple"
 
 [git_status]
@@ -33,18 +33,18 @@ symbol = " "
 style = "208"
 
 [cmd_duration]
-format = " [$duration]($style) "
+format = " [$duration]($style) "
 style = "yellow"
 
 [directory]
-read_only = " "
-truncate_to_repo = false
+read_only = "󰌾 "
+format = '[$read_only]($read_only_style)[$path]($style) '
 
 [battery]
 disabled = true
 
 [aws]
-symbol = "  "
+symbol = "  "
 
 [bun]
 format = "[$symbol($version )]($style)"
@@ -78,7 +78,7 @@ format = "[$symbol($version )]($style)"
 
 [dart]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 style = "blue"
 
 [deno]
@@ -89,7 +89,7 @@ symbol = " "
 format = '[$symbol$context]($style) '
 
 [dotnet]
-format = "[$symbol(🎯 $tfm )]($style)"
+format = "[$symbol(󰓾 $tfm )]($style)"
 
 [elixir]
 format = '[$symbol($version )]($style)'
@@ -132,18 +132,18 @@ style = "blue"
 
 [lua]
 format = '[$symbol($version )]($style)'
-symbol = "\ue620 "
+symbol = " "
 
 [nim]
 format = '[$symbol($version )]($style)'
-symbol = " "
+symbol = " "
 
 [nix_shell]
-symbol = " "
+symbol = "󱄅 "
 
 [nodejs]
 format = '[$symbol($version )]($style)'
-symbol = " "
+symbol = " "
 style = "green"
 
 [ocaml]
@@ -183,12 +183,12 @@ style = "red"
 
 [rust]
 format = '[$symbol($version )]($style)'
-symbol = " "
+symbol = " "
 style = "red"
 
 [spack]
 format = '[$symbol($version )]($style)'
-symbol = "🅢 "
+symbol = " "
 
 [swift]
 format = '[$symbol($version )]($style)'
@@ -202,4 +202,4 @@ format = '[$symbol($version )]($style)'
 
 [zig]
 format = '[$symbol($version )]($style)'
-symbol = " "
+symbol = " "
