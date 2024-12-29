@@ -62,7 +62,7 @@ chsh -s $(which fish)
 ```
 
 Install `fisher` plugin manager for Fish:
-    
+
 ```sh
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 ```
