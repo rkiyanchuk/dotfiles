@@ -18,9 +18,7 @@ call plug#begin($VIM_HOME . "/plugins")
     Plug 'junegunn/vim-plug'  " Generate :help for vim-plug itself.
 
     " Basics
-    Plug 'nordtheme/vim'
-    Plug 'joshdick/onedark.vim'
-    Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'projekt0n/github-nvim-theme'
 
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}  " Browse change history tree.
@@ -51,17 +49,15 @@ call plug#begin($VIM_HOME . "/plugins")
 "   endif
 
     " Programming
-    Plug 'liuchengxu/vista.vim'
+"    Plug 'liuchengxu/vista.vim'
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'elixir-editors/vim-elixir'
+"    Plug 'elixir-editors/vim-elixir'
 
     " Enhancements for specific file types
     Plug 'sheerun/vim-polyglot'
     Plug 'google/vim-jsonnet'
     Plug 'mustache/vim-mustache-handlebars'
-    Plug 'smancill/conky-syntax.vim'  " Syntax for .conkyrc.
-    Plug 'hashivim/vim-vagrant', {'for': 'Vagrantfile'}
     Plug 'dag/vim-fish'
 call plug#end()
 " }}}
@@ -75,7 +71,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 set background=dark
-colorscheme nord
+colorscheme github_dark_dimmed
 
 
 " vim-airline
@@ -208,19 +204,19 @@ autocmd User FloatPreviewWinOpen call DisableExtras()
 " vista.vim
 " ---------
 
-let g:vista_icon_indent = ["▸ ", ""]
-let g:vista_blink = [0, 0]
-let g:vista_top_level_blink = [0, 0]
-
-inoremap <silent> <leader>2 :Vista!!<CR>
-nnoremap <silent> <leader>2 :Vista!!<CR>
-
-if exists('*nvim_open_win')
-    let g:vista_echo_cursor = 1
-    let g:vista_echo_cursor_strategy = "floating_win"
-endif
-
-autocmd FileType vista,vista_kind call DisableExtras()
+"let g:vista_icon_indent = ["▸ ", ""]
+"let g:vista_blink = [0, 0]
+"let g:vista_top_level_blink = [0, 0]
+"
+"inoremap <silent> <leader>2 :Vista!!<CR>
+"nnoremap <silent> <leader>2 :Vista!!<CR>
+"
+"if exists('*nvim_open_win')
+"    let g:vista_echo_cursor = 1
+"    let g:vista_echo_cursor_strategy = "floating_win"
+"endif
+"
+"autocmd FileType vista,vista_kind call DisableExtras()
 
 " vim-polyglot
 " ------------
