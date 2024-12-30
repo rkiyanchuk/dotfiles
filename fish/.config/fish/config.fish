@@ -95,6 +95,10 @@ function upgrade --description 'Upgrade all cli tools'
     end
 end
 
+function recent-installs --description 'Upgrade all cli tools'
+  eza -l --sort time --time modified $(brew --cellar)
+end
+
 function pyclean --description "Delete all temporary Python files"
     find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
 end
