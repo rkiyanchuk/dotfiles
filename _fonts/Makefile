@@ -1,9 +1,9 @@
 # Iosevka customizer: https://typeof.net/Iosevka/customizer
 # Nerd fonts cheat sheet: https://www.nerdfonts.com/cheat-sheet
 
-.PHONY: clone docker iosevka
+.PHONY: clone docker iosevka nerd-font-patch
 
-all: clone docker iosevka nerd-font
+all: clone docker iosevka nerd-font-patch
 
 clone:
 # Clone Iosevka font or fetch latest if previously cloned.
@@ -28,6 +28,6 @@ docker:
 iosevka:
 	docker run -it --rm -v ${PWD}:/work fontcc contents::iosevka-custom contents::iosevka-custom-term 
 
-nerd-font:
+nerd-font-patch:
 	docker run --rm -v ./dist/iosevka-custom-term/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete
 	docker run --rm -v ./dist/iosevka-custom/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete

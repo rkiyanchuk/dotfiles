@@ -60,3 +60,4 @@ fish/.config/fish/conf.d/
 # Font build files
 _fonts/Iosevka/
 _fonts/nerd-fonts
+_fonts/dist
