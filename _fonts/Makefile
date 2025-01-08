@@ -3,7 +3,11 @@
 
 .PHONY: clone docker iosevka nerd-font-patch
 
-all: clone docker iosevka nerd-font-patch
+# Use Symbols Nerd Font as a fallback font instead of patching Iosevka.
+all: clone docker iosevka
+
+# Patch Iosevka with Nerd Font glyphs
+iosevka-patched: clone docker iosevka nerd-font-patch
 
 clone:
 # Clone Iosevka font or fetch latest if previously cloned.
