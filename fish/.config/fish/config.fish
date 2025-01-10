@@ -86,7 +86,7 @@ function upgrade --description 'Upgrade all cli tools'
   switch (uname)
     case "Darwin"
       echo "=> Updating Brew..."
-      brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove
+      brew update; brew upgrade; brew upgrade --cask; brew autoremove
     end
     if type -q fisher
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
