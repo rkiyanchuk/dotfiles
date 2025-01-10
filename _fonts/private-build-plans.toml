@@ -7,7 +7,6 @@ spacing = "normal"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = false
-webfont-formats = ['ttf']
 
   [buildPlans.iosevka-custom.variants]
   inherits = "ss14"
@@ -24,7 +23,7 @@ webfont-formats = ['ttf']
     t = "flat-hook-short-neck"
     w = "straight-serifless"
     lower-upsilon = "casual-serifed"
-    cyrl-ef = "serifless"
+    # cyrl-ef = "serifless"
     punctuation-dot = "round"
     tilde = "low"
     asterisk = "hex-low"
@@ -78,7 +77,6 @@ webfont-formats = ['ttf']
     t = "flat-hook-short-neck"
     w = "straight-serifless"
     lower-upsilon = "casual-serifed"
-    cyrl-ef = "serifless"
     punctuation-dot = "round"
     tilde = "low"
     asterisk = "hex-low"
