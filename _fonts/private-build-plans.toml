@@ -1,55 +1,131 @@
 ### See https://github.com/be5invis/Iosevka/blob/master/doc/custom-build.md for comprehensive
 ### documentation of the options in this file
 
-[buildPlans.iosevka-custom]
-family = "Iosevka Custom"
+[buildPlans.iosevka]
+family = "Iosevka"
 spacing = "normal"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = false
 
-  [buildPlans.iosevka-custom.variants]
-  inherits = "ss14"
+[buildPlans.iosevka.variants]
+inherits = "ss14"
 
-    [buildPlans.iosevka-custom.variants.design]
-    two = "curly-neck-serifless"
-    four = "closed-serifless"
-    seven = "bend-serifless"
-    eight = "crossing"
-    zero = "tall-slashed"
-    capital-w = "straight-serifless"
-    f = "flat-hook-serifless-crossbar-at-x-height"
-    g = "double-storey"
-    t = "flat-hook-short-neck"
-    # w = "straight-serifless"
-    lower-upsilon = "casual-serifed"
-    asterisk = "hex-low"
-    brace = "straight"
-    at = "fourfold"
+[buildPlans.iosevka.variants.design]
+two = "curly-neck-serifless"
+four = "closed-serifless"
+seven = "bend-serifless"
+eight = "crossing"
+zero = "tall-slashed"
+f = "flat-hook-serifless-crossbar-at-x-height"
+g = "double-storey"
+t = "flat-hook-short-neck"
+# capital-w = "straight-serifless"
+capital-w = "straight-flat-top-serifless"
+# w = "straight-serifless"
+w = "straight-flat-top-serifless"
+lower-upsilon = "casual-serifed"
+asterisk = "hex-low"
+brace = "straight"
+at = "fourfold"
 
-[buildPlans.iosevka-custom-term]
-family = "Iosevka Custom Term"
+[buildPlans.iosevka.weights.Thin]
+shape = 100
+menu = 100
+css = 100
+
+[buildPlans.iosevka.weights.ExtraLight]
+shape = 200
+menu = 200
+css = 200
+
+[buildPlans.iosevka.weights.Light]
+shape = 300
+menu = 300
+css = 300
+
+[buildPlans.iosevka.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka.weights.Medium]
+shape = 500
+menu = 500
+css = 500
+
+[buildPlans.iosevka.weights.SemiBold]
+shape = 600
+menu = 600
+css = 600
+
+[buildPlans.iosevka.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+
+
+[buildPlans.iosevka-term]
+family = "Iosevka Term"
 spacing = "term"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = false
 webfont-formats = ['ttf']
 
-  [buildPlans.iosevka-custom-term.variants]
-  inherits = "ss14"
+[buildPlans.iosevka-term.variants]
+inherits = "ss14"
 
-    [buildPlans.iosevka-custom-term.variants.design]
-    two = "curly-neck-serifless"
-    four = "closed-serifless"
-    seven = "bend-serifless"
-    eight = "crossing"
-    zero = "tall-slashed"
-    capital-w = "straight-serifless"
-    f = "flat-hook-serifless-crossbar-at-x-height"
-    g = "double-storey"
-    t = "flat-hook-short-neck"
-    # w = "straight-serifless"
-    lower-upsilon = "casual-serifed"
-    asterisk = "hex-low"
-    brace = "straight"
-    at = "fourfold"
+[buildPlans.iosevka-term.variants.design]
+two = "curly-neck-serifless"
+four = "closed-serifless"
+seven = "bend-serifless"
+eight = "crossing"
+zero = "tall-slashed"
+f = "flat-hook-serifless-crossbar-at-x-height"
+g = "double-storey"
+t = "flat-hook-short-neck"
+# capital-w = "straight-serifless"
+capital-w = "straight-flat-top-serifless"
+# w = "straight-serifless"
+w = "straight-flat-top-serifless"
+lower-upsilon = "casual-serifed"
+asterisk = "hex-low"
+brace = "straight"
+at = "fourfold"
+
+[buildPlans.iosevka-term.weights.Thin]
+shape = 100
+menu = 100
+css = 100
+
+[buildPlans.iosevka-term.weights.ExtraLight]
+shape = 200
+menu = 200
+css = 200
+
+[buildPlans.iosevka-term.weights.Light]
+shape = 300
+menu = 300
+css = 300
+
+[buildPlans.iosevka-term.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.iosevka-term.weights.Medium]
+shape = 500
+menu = 500
+css = 500
+
+[buildPlans.iosevka-term.weights.SemiBold]
+shape = 600
+menu = 600
+css = 600
+
+[buildPlans.iosevka-term.weights.Bold]
+shape = 700
+menu = 700
+css = 700

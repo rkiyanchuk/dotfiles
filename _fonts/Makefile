@@ -26,8 +26,8 @@ docker:
 
 # Build Iosevka distribution
 iosevka:
-	docker run -it --rm -v ${PWD}:/work fontcc ttf-unhinted::iosevka-custom ttf-unhinted::iosevka-custom-term
+	docker run -it --rm -v ${PWD}:/work fontcc ttf-unhinted::iosevka ttf-unhinted::iosevka-term
 
 nerd-font-patch:
-	docker run --rm -v ./dist/iosevka-custom-term/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete
-	docker run --rm -v ./dist/iosevka-custom/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete
+	docker run --rm -v ./dist/iosevka-term/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete
+	docker run --rm -v ./dist/iosevka/TTF-Unhinted/:/in:Z -v ./dist:/out:Z nerdfonts/patcher --careful --complete
