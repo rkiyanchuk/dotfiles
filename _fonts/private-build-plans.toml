@@ -15,7 +15,7 @@ exportGlyphNames = false
     two = "curly-neck-serifless"
     four = "closed-serifless"
     seven = "bend-serifless"
-    eight = "crossing-asymmetric"
+    eight = "crossing"
     zero = "tall-slashed"
     capital-w = "straight-serifless"
     f = "flat-hook-serifless-crossbar-at-x-height"
@@ -23,36 +23,9 @@ exportGlyphNames = false
     t = "flat-hook-short-neck"
     w = "straight-serifless"
     lower-upsilon = "casual-serifed"
-    # cyrl-ef = "serifless"
-    punctuation-dot = "round"
-    tilde = "low"
     asterisk = "hex-low"
     brace = "straight"
-    number-sign = "slanted"
-    ampersand = "upper-open"
     at = "fourfold"
-
-[buildPlans.iosevka-custom.weights.ExtraLight]
-shape = 200
-menu = 200
-css = 200
-
-[buildPlans.iosevka-custom.weights.Light]
-shape = 300
-menu = 300
-css = 300
-
-[buildPlans.iosevka-custom.weights.Regular]
-shape = 400
-menu = 400
-css = 400
-
-[buildPlans.iosevka-custom.weights.Bold]
-shape = 700
-menu = 700
-css = 700
-
-
 
 [buildPlans.iosevka-custom-term]
 family = "Iosevka Custom Term"
@@ -69,7 +42,7 @@ webfont-formats = ['ttf']
     two = "curly-neck-serifless"
     four = "closed-serifless"
     seven = "bend-serifless"
-    eight = "crossing-asymmetric"
+    eight = "crossing"
     zero = "tall-slashed"
     capital-w = "straight-serifless"
     f = "flat-hook-serifless-crossbar-at-x-height"
@@ -77,30 +50,6 @@ webfont-formats = ['ttf']
     t = "flat-hook-short-neck"
     w = "straight-serifless"
     lower-upsilon = "casual-serifed"
-    punctuation-dot = "round"
-    tilde = "low"
     asterisk = "hex-low"
     brace = "straight"
-    number-sign = "slanted"
-    ampersand = "upper-open"
     at = "fourfold"
-
-[buildPlans.iosevka-custom-term.weights.ExtraLight]
-shape = 200
-menu = 200
-css = 200
-
-[buildPlans.iosevka-custom-term.weights.Light]
-shape = 300
-menu = 300
-css = 300
-
-[buildPlans.iosevka-custom-term.weights.Regular]
-shape = 400
-menu = 400
-css = 400
-
-[buildPlans.iosevka-custom-term.weights.Bold]
-shape = 700
-menu = 700
-css = 700
