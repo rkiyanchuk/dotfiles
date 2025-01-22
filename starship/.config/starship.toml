@@ -51,6 +51,7 @@ style = "yellow"
 [directory]
 read_only = "󰌾 "
 format = '[$read_only]($read_only_style)[$path]($style) '
+truncation_symbol = "…/"
 
 [battery]
 disabled = true
