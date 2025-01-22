@@ -6,6 +6,10 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+[character]
+success_symbol = "[❱](green)"
+error_symbol = "[❱](red)"
+
 [line_break]
 disabled = false
 
