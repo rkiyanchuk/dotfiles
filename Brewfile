@@ -107,6 +107,16 @@ cask "obs"
 cask "shureplus-motiv"
 cask "the-unarchiver"
 
+# Security
+# Shows a files cryptographic signing information.
+cask "whatsyoursign"
+# Supercharged Activity monitor
+cask "taskexplorer"
+# KnockKnock uncovers persistently installed software in order to generically reveal such malware
+cask "taskexplorer"
+# a network monitor that lets you explore all sockets and connections through an interactive UI or the command line
+cask "netiquette"
+
 # Misc
 cask "anki"
 cask "burp-suite"
