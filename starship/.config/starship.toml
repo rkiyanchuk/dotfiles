@@ -41,7 +41,6 @@ untracked = ""
 [package]
 format = "[$symbol$version]($style) "
 symbol = "󰏗 "
-# symbol = " "
 style = "208"
 
 [cmd_duration]
