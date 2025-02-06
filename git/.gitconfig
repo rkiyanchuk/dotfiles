@@ -95,5 +95,5 @@
     # Recursively pull and update all branches in all repos in current dir.
     rpull = "! ~/.git.d/git-rpull.sh"
 
-[includeIf "gitdir:~/workspace/"]
-    path = ~/workspace/.gitconfig
+[includeIf "gitdir:~/src/"]
+    path = ~/src/.gitconfig
