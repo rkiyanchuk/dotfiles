@@ -122,4 +122,5 @@ if status is-interactive
   end
 end
 
-source ~/.config/fish/.iterm2_shell_integration.fish
+# Disabled due to rendering artifacts during typing.
+# source ~/.config/fish/.iterm2_shell_integration.fish
