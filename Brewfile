@@ -79,6 +79,7 @@ cask "iterm2"
 cask "little-snitch"
 cask "logi-options+"
 cask "monitorcontrol"
+# cask "betterdisplay" # For non-HiDPI monitors
 cask "rectangle-pro"
 
 # Dev
