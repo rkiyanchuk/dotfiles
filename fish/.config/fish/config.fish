@@ -52,6 +52,8 @@ alias jqq="jq -R 'fromjson? | select(type == \"object\")'"
 # Use `jq` with both JSON and non-JSON lines, preserving non-JSON.
 alias jqr="jq -R -r '. as \$line | try fromjson catch \$line'"
 
+alias code="code --profile Minimal"
+
 
 # FUNCTIONS
 
