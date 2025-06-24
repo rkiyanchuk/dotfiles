@@ -10,7 +10,6 @@ as well as share with others.
 Looking at someone else's *dotfiles* helps to discover new configurations and
 tweaks of commonly used software to increase productivity and comfort.
 
-
 The *dotfiles* repository contains directories with configuration files. Each
 directory corresponds to a *"package"* for convenience. For instance, all
 Neovim related configuration files are stored in `neovim` *"package"* (directory).
@@ -46,6 +45,7 @@ Run `stow` with dotfiles bundle you want to use:
 ```bash
 stow -t ~ {bundle}
 ```
+
 where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
 
 Install dotfiles:
@@ -88,45 +88,35 @@ curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzi
 /usr/bin/tic -xe tmux-256color terminfo.src
 ```
 
-
-
 Enable key repeat:
-```
+
+```sh
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
+### Caveats
 
-Podman, fix to run x86 images: https://github.com/containers/podman/discussions/12899
+* Podman, fix to run x86 images: https://github.com/containers/podman/discussions/12899
 
-Font IOSEVKA
+### Additional software
 
-
-
-Additional software:
-
-* [Rectangle](https://rectangleapp.com/)
+* [Rectangle Pro](https://rectangleapp.com/)
 * [Monitor Control](https://monitorcontrol.app)
 * [iState Menus](https://bjango.com/mac/istatmenus/)
 * [Bartender](https://www.macbartender.com/)
 * [CleanShot](https://cleanshot.com/)
 * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
 
-TheIne
-Obinskit
-NoteBurner
-LogitTune
-LogiOoptions+
-Kindle
-Final Cut Pro
+* TheIne
+* Obinskit
+* NoteBurner
+* LogiOoptions+
+* Kindle
+* Final Cut Pro
 
-Controller For HomeKit
-ClearVPN
-Affinity Photo
-Affinity Designer
-Affinity Publisher
-Adobe Acrobat
-NoteBurner
-
-
-Youlean Loudness meter
-XCode
+* Affinity Photo
+* Affinity Designer
+* Affinity Publisher
+* Adobe Acrobat
+* NoteBurner
+* XCode
