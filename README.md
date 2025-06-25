@@ -51,7 +51,7 @@ where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
 Install dotfiles:
 
 ```sh
-stow -t ~ -Svv fish git neovim gnupg tmux sage
+stow --dotfiles -t ~ -Svv fish git neovim gnupg tmux sage
 ```
 
 Configure Fish shell:
