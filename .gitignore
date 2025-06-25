@@ -15,6 +15,7 @@ tmux/.tmuxp/*.yml
 /neovim/.config/nvim/spell/
 /neovim/.config/nvim/autoload/
 /neovim/.config/nvim/plugins/
+/neovim/.config/nvim/lazy-lock.json
 
 # Vim
 /vim/.vim/.netrwhist
