@@ -44,7 +44,7 @@ require("lazy").setup({
       vim.g.airline_left_alt_sep = ''
       vim.g.airline_right_alt_sep = ''
       vim.g.airline_skip_empty_sections = 1
-      
+
       vim.g['airline#extensions#tabline#enabled'] = 1
       vim.g['airline#extensions#tabline#show_buffers'] = 0
       vim.g['airline#extensions#tabline#show_splits'] = 0
@@ -53,7 +53,7 @@ require("lazy").setup({
       vim.g['airline#extensions#tabline#tab_min_count'] = 2
       vim.g['airline#extensions#tabline#tab_nr_type'] = 1
       vim.g['airline#extensions#wordcount#enabled'] = 0
-      
+
       vim.g.airline_section_y = vim.fn['airline#section#create_right']({'%{&fenc!=#""?&fenc:&enc}', '%{&ff}', '%2Bₕ'})
       vim.g.airline_section_z = vim.fn['airline#section#create_right']({'☰ %2l:%-2v', '%p%%'})
     end,
