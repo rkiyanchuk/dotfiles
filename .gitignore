@@ -62,3 +62,6 @@ fish/.config/fish/conf.d/
 _fonts/Iosevka/
 _fonts/nerd-fonts
 _fonts/dist
+
+# AI Assistants
+.claude/
