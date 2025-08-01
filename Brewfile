@@ -1,9 +1,6 @@
 # Install command:
 # brew bundle install --file=Brewfile
 
-tap "homebrew-ffmpeg/ffmpeg"
-tap "cloudflare/cloudflare"
-
 # Core CLI tools
 brew "fish"
 brew "starship"
@@ -128,5 +125,4 @@ cask "key-codes"
 cask "obsidian"
 cask "slack"
 cask "steam"
-cask "yubico-yubikey-manager"
 cask "zoom"
