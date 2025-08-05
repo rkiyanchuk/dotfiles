@@ -46,7 +46,6 @@ brew "httpie"
 brew "iperf"
 brew "nvm"
 brew "pipx"
-brew "svn"
 brew "tectonic"
 brew "deno"
 
@@ -98,9 +97,7 @@ cask "affinity-publisher"
 cask "calibre"
 cask "dictionaries"
 cask "elmedia-player"
-cask "firefox"
 cask "font-computer-modern"
-cask "font-jetbrains-mono"
 cask "obs"
 cask "shureplus-motiv"
 cask "the-unarchiver"
@@ -111,7 +108,7 @@ cask "whatsyoursign"
 # Supercharged Activity monitor
 cask "taskexplorer"
 # KnockKnock uncovers persistently installed software in order to generically reveal such malware
-cask "taskexplorer"
+cask "knockknock"
 # a network monitor that lets you explore all sockets and connections through an interactive UI or the command line
 cask "netiquette"
 
