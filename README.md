@@ -120,3 +120,16 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 * Adobe Acrobat
 * NoteBurner
 * XCode
+
+## Setup in container
+
+```sh
+sudo pacman -Syu
+sudo pacman -Syu neovim git stow fish starship eza
+#sudo apt install git fish neovim stow starship
+git clone https://github.com/rkiyanchuk/dotfiles
+cd dotfiles
+stow -Svv neovim starship git fish bat
+sudo chsh <username>
+# /usr/bin/fish
+```
