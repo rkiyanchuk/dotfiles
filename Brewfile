@@ -45,7 +45,7 @@ brew "graphviz"
 brew "httpie"
 brew "iperf"
 brew "nvm"
-brew "pipx"
+brew "uv"
 brew "tectonic"
 brew "deno"
 
