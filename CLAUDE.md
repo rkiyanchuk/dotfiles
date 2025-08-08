@@ -25,6 +25,15 @@ This is a personal dotfiles repository that manages configuration files for macO
 
 ## Common Commands
 
+### Testing and Validation
+```bash
+# Test stow configuration (dry run)
+stow -t ~ -n {package_name}
+
+# Validate Fish configuration
+fish -n ~/.config/fish/config.fish
+```
+
 ### Initial Setup
 ```bash
 # Install Homebrew
@@ -37,19 +46,22 @@ git clone http://github.com/rkiyanchuk/dotfiles && cd dotfiles
 brew bundle install
 
 # Install dotfiles packages
-stow -t ~ -Svv fish git neovim gnupg tmux sage
+stow --dotfiles -t ~ -Svv fish git neovim gnupg tmux sage
 ```
 
 ### Package Management
 ```bash
 # Install specific package
-stow -t ~ {package_name}
+stow --dotfiles -t ~ {package_name}
 
 # Remove package
-stow -t ~ -D {package_name}
+stow --dotfiles -t ~ -D {package_name}
 
 # Reinstall package (useful after config changes)
-stow -t ~ -R {package_name}
+stow --dotfiles -t ~ -R {package_name}
+
+# Test package installation (dry run)
+stow --dotfiles -t ~ -n {package_name}
 ```
 
 ### Shell Setup
@@ -131,9 +143,28 @@ upgrade
 ### Sync Configuration Changes
 After modifying configurations, use Stow to update symlinks:
 ```bash
-stow -t ~ -R {modified_package}
+stow --dotfiles -t ~ -R {modified_package}
+```
+
+### Troubleshooting
+```bash
+# Check for conflicts before installing
+stow --dotfiles -t ~ -n -v {package_name}
+
+# Force overwrite existing files (use with caution)
+stow --dotfiles -t ~ --adopt {package_name}
+
+# List currently installed stow packages
+ls -la ~ | grep "\->"
 ```
 
 ## Host-Specific Configurations
 - Fish: `config.{hostname}.fish` and `config.local.fish` files for host-specific overrides
 - Neovim: `init.{hostname}.lua` and `init.local.lua` files for host-specific configurations
+
+## Important File Locations
+- Brewfile: `/Users/rkiyanchuk.epam/dotfiles/Brewfile` - Package dependencies
+- Fish config: `fish/.config/fish/config.fish` - Main Fish shell configuration  
+- Neovim config: `neovim/.config/nvim/` - Neovim configuration directory
+- Git config: `git/.gitconfig` - Global Git configuration
+- Font building: `_fonts/Makefile` - Custom Iosevka font compilation
