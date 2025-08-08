@@ -20,7 +20,7 @@ fish_add_path --global ~/.cargo/bin           # Cargo executables
 fish_add_path --global ~/.go           	      # Golang executables
 fish_add_path --global ~/.local/bin           # pip/pipx executables for Python
 fish_add_path --global ~/node_modules/.bin    # npm executables
-fish_add_path --global ~/.claude/local
+fish_add_path --global ~/.claude/local        # Claude code
 
 if test (uname) = "Darwin"
     if type -q brew
