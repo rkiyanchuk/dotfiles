@@ -98,7 +98,7 @@ function update --description 'Update all cli tools'
     end
 end
 
-function recent-installs --description 'Upgrade all cli tools'
+function brew-recent-installs --description 'List all manual installed CLI tools'
   eza -l --sort time --time modified $(brew --cellar)
 end
 
