@@ -85,7 +85,7 @@ function chatgpt --wraps='chatblade' --description 'alias to chatblade'
   command chatblade $argv;
 end
 
-function upgrade --description 'Upgrade all cli tools'
+function update --description 'Update all cli tools'
   switch (uname)
     case "Darwin"
       echo "=> Updating Brew..."
