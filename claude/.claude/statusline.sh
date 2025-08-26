@@ -58,14 +58,12 @@ lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
 
 # Get Claude Code usage from `ccusage`
 ccusage=$(echo "$input" | npx ccusage statusline --cost-source cc)
-# 🤖 Opus | 💰 $0.23 session / $1.23 today / $0.45 block (2h 45m left) | 🔥 $0.12/hr | 🧠 25,000
-# (12%)
+# 🤖 Opus | 💰 $0.23 session / $1.23 today / $0.45 block (2h 45m left) | 🔥 $0.12/hr | 🧠 25,000 (12%)
 
-cost_session=$(echo "$ccusage" | cut -d' '  -f6)
-cost_today=$(echo "$ccusage" | cut -d' '  -f9)
-context_tokens=$(echo "$ccusage" | cut -d' '  -f22)
-context_percent=$(echo "$ccusage" | cut -d' '  -f23 | tr -d '()')
-
+cost_session=$(echo "$ccusage" | cut -d '|' -f 2 | cut -d '/' -f 1 | tr -d '💰session ')
+cost_today=$(echo "$ccusage" | cut -d '|' -f 2 | cut -d '/' -f 2 | tr -d 'today ')
+context_tokens=$(echo "$ccusage" | cut -d '|' -f 4 | cut -d' ' -f 3)
+context_percent=$(echo "$ccusage" | cut -d '|' -f 4 | cut -d' ' -f 4 | tr -d '()')
 
 # Directory
 if [[ "$project_dir" == "$HOME" ]]; then
