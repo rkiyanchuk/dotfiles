@@ -1,0 +1,32 @@
+# Appearance
+theme = github-dark-dimmed
+
+background = #1C2128
+selection-background = #284E78
+selection-foreground = #ACBAC7
+split-divider-color = #3D4249
+
+font-family = IosevkaTerm Nerd Font Light
+font-size = 16
+
+adjust-cell-height = 4
+cursor-style = block
+window-subtitle = working-directory
+window-theme = system
+
+# Behavior
+auto-update = check
+macos-auto-secure-input = true
+macos-option-as-alt = true 
+macos-secure-input-indication = true
+macos-titlebar-style = tabs
+maximize = true
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+quit-after-last-window-closed = true
+shell-integration-features = no-cursor
+window-height = 300
+window-padding-x = 10
+window-save-state = always
+window-vsync = true
+window-width = 300
