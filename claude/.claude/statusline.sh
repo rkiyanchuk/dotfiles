@@ -62,7 +62,8 @@ today=$(date +%Y%m%d)
 session_data=$(echo "$input" | npx ccusage session --json --id $session_id  --cost-source cc)
 cost_session=$(printf "%.2f" $(echo "$session_data" | jq .totalCost))
 cost_today=$(printf "%.2f" $(echo "$input" | npx ccusage daily --json --since $today --cost-source cc | jq '.daily[].totalCost'))
-context_tokens=$(echo "$session_data" | jq .totalTokens)
+
+context_info=$(echo "$input" | npx ccusage statusline --cost-source cc | cut -d'🧠' -f 2)
 
 # Directory
 if [[ "$project_dir" == "$HOME" ]]; then
@@ -83,19 +84,19 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
 fi
 
 # Output style
-if [ "$output_style" = "default" ]; then
+if [ "$output_style" == "default" ]; then
     output_style=""
 else
     output_style=" : ${GREEN}${output_style}${RESET}"
 fi
 
-
-if [[ "$context_tokens" == 0 || "$context_tokens" == "null" ]]; then
-    context_display=" ${BLUE}${DIM}󰳿  0${RESET}"
+if [[ "$context_info" == *"N/A"* ]]; then
+    context_display=" ${BLUE}${DIM}󰳿 0${RESET}"
 else
+    context_tokens=$(echo $context_info | cut -d' ' -f 1 | tr -d ',')
     context_tokens_kilo=$(echo "scale=1; $context_tokens / 1000" | bc | sed 's/\.0$//')K
-    context_percent=$(( context_tokens * 100 / $claude_context_tokens_limit ))
-    context_display=" ${BLUE}${DIM}󰳿 ${context_percent}% · ${context_tokens_kilo}${RESET}"
+    context_percent=$(echo $context_info | cut -d' ' -f 2 | tr -d '()')
+    context_display=" ${BLUE}${DIM}󰳿 ${context_percent} · ${context_tokens_kilo}${RESET}"
 fi
 
 # Build the complete status line similar to original
@@ -109,3 +110,6 @@ status_line="${status_line}  ${WHITE}${DIM} \$${cost_session}${RESET}"
 status_line="${status_line} ${WHITE}${DIM}󰃭 \$${cost_today}${RESET}"
 
 echo -e "$status_line"
+
+# Debug:
+# echo -e "| ccusage statusline: $(echo $input | npx ccusage statusline --cost-source cc)"
