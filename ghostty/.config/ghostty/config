@@ -27,5 +27,6 @@ shell-integration-features = no-cursor
 window-height = 300
 window-width = 300
 window-padding-x = 10
+window-padding-y = 5,0
 window-save-state = always
 window-vsync = true
