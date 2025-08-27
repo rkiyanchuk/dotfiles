@@ -100,7 +100,7 @@ else
 fi
 
 # Build the complete status line similar to original
-status_line="${RESET}• ${BRIGHT_CYAN}${dir_display}${RESET}"
+status_line="${RESET}${BRIGHT_CYAN}${dir_display}${RESET}"
 status_line="${status_line}${BRIGHT_MAGENTA}${git_info}${RESET}"
 status_line="${status_line} · ${YELLOW}${model}${RESET}"
 status_line="${status_line}${output_style}"
