@@ -57,6 +57,7 @@ truncation_symbol = "…/"
 disabled = true
 
 [aws]
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 symbol = "  "
 style = "yellow"
 expiration_symbol = "❌"
