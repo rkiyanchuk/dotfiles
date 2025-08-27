@@ -12,7 +12,6 @@ font-size = 16
 adjust-cell-height = 4
 cursor-style = block
 window-subtitle = working-directory
-window-theme = system
 
 # Behavior
 auto-update = check
@@ -26,7 +25,7 @@ mouse-scroll-multiplier = 2
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor
 window-height = 300
+window-width = 300
 window-padding-x = 10
 window-save-state = always
 window-vsync = true
-window-width = 300
