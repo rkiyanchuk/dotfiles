@@ -57,6 +57,8 @@ disabled = true
 
 [aws]
 symbol = "  "
+style = "yellow"
+expiration_symbol = "❌"
 
 [bun]
 format = "[$symbol($version )]($style)"
