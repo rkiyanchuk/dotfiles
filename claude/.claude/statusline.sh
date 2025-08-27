@@ -43,6 +43,7 @@ STRIKETHROUGH="\033[9m"
 # Reset
 RESET="\033[0m"
 
+claude_context_tokens_limit=200000
 
 # Read JSON input from stdin
 input=$(cat)
@@ -56,14 +57,12 @@ output_style=$(echo "$input" | jq -r '.output_style.name')
 lines_added=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
 lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
 
-# Get Claude Code usage from `ccusage`
-ccusage=$(echo "$input" | npx ccusage statusline --cost-source cc)
-# 🤖 Opus | 💰 $0.23 session / $1.23 today / $0.45 block (2h 45m left) | 🔥 $0.12/hr | 🧠 25,000 (12%)
+today=$(date +%Y%m%d)
 
-cost_session=$(echo "$ccusage" | cut -d '|' -f 2 | cut -d '/' -f 1 | tr -d '💰session ')
-cost_today=$(echo "$ccusage" | cut -d '|' -f 2 | cut -d '/' -f 2 | tr -d 'today ')
-context_tokens=$(echo "$ccusage" | cut -d '|' -f 4 | cut -d' ' -f 3)
-context_percent=$(echo "$ccusage" | cut -d '|' -f 4 | cut -d' ' -f 4 | tr -d '()')
+session_data=$(echo "$input" | npx ccusage session --json --id $session_id  --cost-source cc)
+cost_session=$(printf "%.2f" $(echo "$session_data" | jq .totalCost))
+cost_today=$(printf "%.2f" $(echo "$input" | npx ccusage daily --json --since $today --cost-source cc | jq '.daily[].totalCost'))
+context_tokens=$(echo "$session_data" | jq .totalTokens)
 
 # Directory
 if [[ "$project_dir" == "$HOME" ]]; then
@@ -90,16 +89,13 @@ else
     output_style=" : ${GREEN}${output_style}${RESET}"
 fi
 
-# Context tokens
-if [[ "$context_tokens" == "N/A" ]]; then
-    context=" ${BLUE}${DIM}󰳿  0${RESET}"
+
+if [[ "$context_tokens" == 0 || "$context_tokens" == "null" ]]; then
+    context_display=" ${BLUE}${DIM}󰳿  0${RESET}"
 else
-    # Format tokens with K suffix if comma-separated
-    if [[ "$context_tokens" == *","* ]]; then
-        num=${context_tokens//,/}
-        context_tokens=$(echo "scale=1; $num / 1000" | bc | sed 's/\.0$//')K
-    fi
-    context=" ${BLUE}${DIM}󰳿 ${context_percent} · ${context_tokens}${RESET}"
+    context_tokens_kilo=$(echo "scale=1; $context_tokens / 1000" | bc | sed 's/\.0$//')K
+    context_percent=$(( context_tokens * 100 / $claude_context_tokens_limit ))
+    context_display=" ${BLUE}${DIM}󰳿 ${context_percent}% · ${context_tokens_kilo}${RESET}"
 fi
 
 # Build the complete status line similar to original
@@ -108,8 +104,8 @@ status_line="${status_line}${BRIGHT_MAGENTA}${git_info}${RESET}"
 status_line="${status_line} · ${YELLOW}${model}${RESET}"
 status_line="${status_line}${output_style}"
 status_line="${status_line}  ${DIM} ${GREEN}${lines_added}+${WHITE}/${RED}${lines_removed}-${RESET}"
-status_line="${status_line}${context}"
-status_line="${status_line}  ${WHITE}${DIM} ${cost_session}${RESET}"
-status_line="${status_line} ${WHITE}${DIM}󰃭 ${cost_today}${RESET}"
+status_line="${status_line}${context_display}"
+status_line="${status_line}  ${WHITE}${DIM} \$${cost_session}${RESET}"
+status_line="${status_line} ${WHITE}${DIM}󰃭 \$${cost_today}${RESET}"
 
 echo -e "$status_line"
