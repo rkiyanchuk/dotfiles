@@ -27,17 +27,20 @@ style = "purple dimmed"
 [hg_branch]
 symbol = " "
 
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "red"
+deleted = "❌"
+modified = "󰦒"
+untracked = "  "
+
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
 style = "fg:bright-purple"
 
-[git_status]
-format = "([$all_status$ahead_behind]($style) )"
-style = "red"
-deleted = "-"
-modified = "±"
-untracked = "·"
+[git_commit]
+tag_symbol = '  '
 
 [package]
 format = "[$symbol$version]($style) "
@@ -234,9 +237,6 @@ symbol = " "
 
 [fossil_branch]
 symbol = " "
-
-[git_commit]
-tag_symbol = '  '
 
 [guix_shell]
 symbol = " "
