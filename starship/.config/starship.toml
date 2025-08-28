@@ -23,6 +23,7 @@ style = 'bold green'
 
 [container]
 symbol = "󰆧"
+style = "red dimmed"
 
 [hg_branch]
 symbol = " "
