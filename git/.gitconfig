@@ -10,6 +10,9 @@
     allowedSignersFile = ~/.ssh/allowed_signers
 	program = ssh-keygen
 
+[init]
+	defaultBranch = main
+
 [commit]
     gpgsign = true
 
