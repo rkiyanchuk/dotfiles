@@ -28,11 +28,11 @@ style = "purple dimmed"
 symbol = " "
 
 [git_status]
-format = "[$all_status$ahead_behind]($style) "
+format = '([$all_status$ahead_behind]($style) )'
 style = "red"
 deleted = "❌"
 modified = "󰦒"
-untracked = "  "
+untracked = "?"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
@@ -53,7 +53,7 @@ style = "yellow"
 
 [directory]
 read_only = "󰌾 "
-format = '[$read_only]($read_only_style)[$path]($style) '
+format = "[$read_only]($read_only_style)[$path]($style) "
 truncation_symbol = "…/"
 
 [battery]
@@ -258,6 +258,9 @@ symbol = " "
 
 [gradle]
 symbol = " "
+
+[quarto]
+format = '[$symbol($version )]($style)'
 
 [os.symbols]
 Alpaquita = " "
