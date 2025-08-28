@@ -1,5 +1,3 @@
-# Fonts: Iosevka Term, FiraCode Nerd Font Mono
-
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -15,15 +13,16 @@ disabled = false
 
 [username]
 format = '[$user]($style)'
+style_user = 'bold green'
 
 [hostname]
-format = '$ssh_symbol[$hostname]($style) '
+format = '[$ssh_symbol](dimmed)[$hostname]($style) '
 ssh_symbol = "@"
-style = 'bold green'
+style = 'bold yellow'
 
 [container]
 symbol = "󰆧"
-style = "red dimmed"
+style = "purple dimmed"
 
 [hg_branch]
 symbol = " "
