@@ -30,6 +30,7 @@
     whitespace = warn
 
 [core]
+    precomposeUnicode = true
     attributesfile = /Users/ruslan/.git.d/.gitattributes
     editor = nvim
     # editor = code --wait --new-window --profile Minimal
@@ -63,8 +64,8 @@
     cmd = idea merge $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\") $(cd $(dirname \"$BASE\") && pwd)/$(basename \"$BASE\") $(cd $(dirname \"$MERGED\") && pwd)/$(basename \"$MERGED\")
     trustExitCode = true
 
-[web]
-    browser = google-chrome
+[log]
+    date = iso
 
 [pull]
     rebase = false
