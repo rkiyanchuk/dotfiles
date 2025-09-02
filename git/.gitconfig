@@ -92,17 +92,19 @@
     co = checkout
     dc = diff --cached
     ds = diff --stat
-    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
-    hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(50)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
-    rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
     ls = ls-files
     mt = mergetool
     st = status -sb
     authors = shortlog -sne
-    prune-local = !bash -c 'git branch --format \"%(upstream:track)%(refname)\" | grep \"^\\[gone\\]\" | cut -c 18- | xargs git branch -D'
 
     # Rank authors by numbers of commits (don't do it!)
     contributors = shortlog -sne --group=author --group=trailer:co-authored-by
+
+    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
+    hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %Cred%G?%Creset %<(50)%Cblue%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
+    rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
+
+    prune-local = !bash -c 'git branch --format \"%(upstream:track)%(refname)\" | grep \"^\\[gone\\]\" | cut -c 18- | xargs git branch -D'
 
     # Recursively fast-forward all branches in the repo.
     rffwd = "!bash ~/.git.d/git-ffwd-branches.sh"
