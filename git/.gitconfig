@@ -95,6 +95,7 @@
     ls = ls-files
     mt = mergetool
     st = status -sb
+    uncommit = reset --soft HEAD^
     authors = shortlog -sne
 
     # Rank authors by numbers of commits (don't do it!)
