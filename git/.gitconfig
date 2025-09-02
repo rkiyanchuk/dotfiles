@@ -40,10 +40,12 @@
     autocorrect = 1
 
 [diff]
-    tool = vscode
+    tool = nvimdiff
+    guitool = vscode
 
 [merge]
-    tool = vscode
+    tool = nvimdiff
+    guitool = vscode
 
 [mergetool]
     keepBackup = false
