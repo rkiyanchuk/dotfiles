@@ -59,11 +59,11 @@ lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
 
 today=$(date +%Y%m%d)
 
-session_data=$(echo "$input" | npx ccusage session --json --id $session_id  --cost-source cc)
+session_data=$(echo "$input" | npx ccusage@latest session --json --id $session_id  --cost-source cc)
 cost_session=$(printf "%.2f" $(echo "$session_data" | jq .totalCost))
-cost_today=$(printf "%.2f" $(echo "$input" | npx ccusage daily --json --since $today --cost-source cc | jq '.daily[].totalCost'))
+cost_today=$(printf "%.2f" $(echo "$input" | npx ccusage@latest daily --json --since $today --cost-source cc | jq '.daily[].totalCost'))
 
-context_info=$(echo "$input" | npx ccusage statusline --cost-source cc | cut -d'🧠' -f 2)
+context_info=$(echo "$input" | npx ccusage@latest statusline --cost-source cc | cut -d'🧠' -f 2)
 
 # Directory
 if [[ "$project_dir" == "$HOME" ]]; then
@@ -112,4 +112,4 @@ status_line="${status_line} ${WHITE}${DIM}󰃭 \$${cost_today}${RESET}"
 echo -e "$status_line"
 
 # Debug:
-# echo -e "| ccusage statusline: $(echo $input | npx ccusage statusline --cost-source cc)"
+# echo -e "| ccusage statusline: $(echo $input | npx ccusage@latest statusline --cost-source cc)"
