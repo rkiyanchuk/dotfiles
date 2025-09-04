@@ -33,6 +33,7 @@ style = "red"
 deleted = "×"
 modified = "±"
 untracked = "?"
+stashed = "·"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
