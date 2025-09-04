@@ -28,6 +28,24 @@ require("lazy").setup({
         vim.opt.termguicolors = true
       end
       vim.opt.background = "dark"
+      require('github-theme').setup({
+        options = {
+          transparent = false,
+        },
+        palettes = {
+          github_dark_dimmed = {
+            canvas = {
+              default = '#1C2128',
+            },
+          },
+        },
+        groups = {
+          github_dark_dimmed = {
+            Normal = { bg = '#1C2128' },
+            NormalFloat = { bg = '#1C2128' },
+          },
+        },
+      })
       vim.cmd.colorscheme("github_dark_dimmed")
     end,
   },
