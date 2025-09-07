@@ -101,7 +101,7 @@
     # Rank authors by numbers of commits (don't do it!)
     contributors = shortlog -sne --group=author --group=trailer:co-authored-by
 
-    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(dim white)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
+    hist = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(dim white)%ad%Creset %Cgreen%an%Creset %s %Cred%d%Creset \"
     hist-signed = log --graph --decorate --date=short --pretty=format:\"%Cblue%h%Creset %C(dim white)%ad%Creset %Cred%G?%Creset %<(50)%C(yellow)%GK%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \"
     rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
 

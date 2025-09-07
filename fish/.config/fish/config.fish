@@ -9,7 +9,7 @@ set fish_color_valid_path  # Disable underlining path
 set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
 
 # Configure fzf fuzzy finder to use GitHub Dimmed colors.
-set -x FZF_DEFAULT_OPTS "--color=fg:#c9d1d9,bg:#23272d,hl:#58a6ff --color=fg+:#c9d1d9,bg+:#23272d,hl+:#58a6ff --color=info:#79c0ff,prompt:#f85149,pointer:#d2a8ff --color=marker:#3fb950,spinner:#d2a8ff,header:#3fb950"
+set -x FZF_DEFAULT_OPTS "--color=fg:#C9D1D9,bg:#1C2128,hl:#58A6FF --color=fg+:#C9D1D9,bg+:#1C2128,hl+:#58A6FF --color=info:#79C0FF,prompt:#F85149,pointer:#D2A8FF --color=marker:#3FB950,spinner:#D2A8FF,header:#3FB950"
 
 set --export --global VISUAL nvim
 set --export --global EDITOR nvim
@@ -109,7 +109,7 @@ function fzg
   set tags (git --no-pager tag --format="%1B[0;35;1mtag%09%1B[m%(refname:short)")
   set branches (git --no-pager branch $argv[1] --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" | sed '/^\*/d')
   set target (string join " " $branches $tags)
-  set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git log -n 20 --color --graph --decorate --abbrev-commit --date=short --pretty=format:\"%Cblue%h%Creset %C(yellow)%ad%Creset %<(16)%Cgreen%an%Creset %s %Cred%d%Creset \" {2}")
+  set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
   if test -n "$branch"
     git checkout  (string split \t -f2 $branch | string replace "origin/" "")
   end
