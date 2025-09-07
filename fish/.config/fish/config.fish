@@ -1,9 +1,7 @@
 set fish_greeting  # Clear default greeting
-
+set fish_color_valid_path  # Disable underlining path
 
 # ENVIRONMENT
-
-set fish_color_valid_path  # Disable underlining path
 
 # Customize exa colors
 set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
@@ -15,11 +13,12 @@ set --export --global VISUAL nvim
 set --export --global EDITOR nvim
 set --export --global CLICOLOR 1  # Turn on colors for some BSD tools
 set --export --global GPG_TTY (tty)  # Setup TTY for GPG pinetry
+set --export --global LESS "FRX"
 
+fish_add_path --global ~/.local/bin           # User executables
 fish_add_path --global ~/.cargo/bin           # Cargo executables
 fish_add_path --global ~/.go           	      # Golang executables
-fish_add_path --global ~/.local/bin           # pip/pipx executables for Python
-fish_add_path --global ~/node_modules/.bin    # npm executables
+fish_add_path --global ~/node_modules/.bin    # NPM executables
 fish_add_path --global ~/.claude/local        # Claude code
 
 if test (uname) = "Darwin"
@@ -33,10 +32,8 @@ if test (uname) = "Darwin"
 end
 
 # Starship is the minimal, fast, and  customizable prompt for any shell.
-if status is-interactive;
-    if type -q starship
-        starship init fish | source
-    end
+if status is-interactive; and type -q starship
+    starship init fish | source
 end
 
 # ALIASES
@@ -45,7 +42,6 @@ alias l="ls -l"
 alias ll="ls -al"
 alias dud="du -hd1"
 alias vim="nvim"
-alias vimdiff="nvim -d"
 alias java_home="/usr/libexec/java_home"
 alias fish_reload="source ~/.config/fish/config.fish"
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
@@ -55,65 +51,81 @@ alias jqr="jq -R -r '. as \$line | try fromjson catch \$line'"
 
 
 # FUNCTIONS
-
-function urldecode
-  python -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
-end
-
-function tree
-  command tree --dirsfirst -C $argv
-end
-
-function http-serve --wraps='python -m http.server' --description 'Run Python HTTP server in current dir'
-  python -m http.server $argv;
-end
-
-function ls --wraps='ls --color=auto --group-directories-first' --description 'alias ls=ls --color=auto --group-directories-first'
-    if type -q eza
-      command eza --group-directories-first --group $argv;
-    else
-      command ls --color=auto --group-directories-first $argv;
-    end
-end
-
-function eza --wraps='eza --group-directories-first --group' --description 'alias eza=eza --group-directories-first --group'
-  command eza --group-directories-first --group $argv;
-end
-
-function chatgpt --wraps='chatblade' --description 'alias to chatblade'
-  command chatblade $argv;
-end
-
-function update --description 'Update all cli tools'
-  switch (uname)
-    case "Darwin"
-      echo "=> Updating Brew..."
-      brew update; brew upgrade; brew upgrade --cask; brew autoremove
-    end
-    if type -q fisher
-        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-        echo "=> Updating fish plugins via fisher..."
-        fisher update
-    end
-end
-
-function brew-recent-installs --description 'List all manual installed CLI tools'
-  eza -l --sort time --time modified $(brew --cellar)
-end
-
-function pyclean --description "Delete all temporary Python files"
-    find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
-end
-
-function fzg
-  set tags (git --no-pager tag --format="%1B[0;35;1mtag%09%1B[m%(refname:short)")
-  set branches (git --no-pager branch $argv[1] --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" | sed '/^\*/d')
-  set target (string join " " $branches $tags)
-  set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
-  if test -n "$branch"
-    git checkout  (string split \t -f2 $branch | string replace "origin/" "")
+if status is-interactive; and type -q python
+  function urldecode --description "Decode URL string"
+    python -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
   end
 end
+
+if status is-interactive; and type -q tree
+  function tree --wraps='tree --dirsfirst -C' --description 'alias tree=tree --dirsfirst -C'
+    command tree --dirsfirst -C $argv
+  end
+end
+
+if status is-interactive; and type -q python
+  function http-serve --wraps='python -m http.server' --description 'Run Python HTTP server in current dir'
+    python -m http.server $argv;
+  end
+end
+
+
+if status is-interactive
+  function ls --wraps='ls --color=auto --group-directories-first' --description 'alias ls=ls --color=auto --group-directories-first'
+      if type -q eza
+        command eza --group-directories-first --group $argv;
+      else
+        command ls --color=auto --group-directories-first $argv;
+      end
+  end
+end
+
+if status is-interactive; and type -q eza
+  function eza --wraps='eza --group-directories-first --group' --description 'alias eza=eza --group-directories-first --group'
+    command eza --group-directories-first --group $argv;
+  end
+end
+
+if status is-interactive
+  function update --description 'Update all CLI tools'
+    switch (uname)
+      case "Darwin"
+        echo "=> Updating Brew..."
+        brew update; brew upgrade; brew upgrade --cask; brew autoremove
+      end
+      # Update Fish plugins via Fisher plugin manager
+      if type -q fisher
+          curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+          echo "=> Updating fish plugins via fisher..."
+          fisher update
+      end
+  end
+end
+
+if status is-interactive; and type -q brew
+  function brew-recent-installs --description 'List all manual installed CLI tools'
+    ls -l --sort time --time modified $(brew --cellar)
+  end
+end
+
+if status is-interactive; and type -q find
+  function pyclean --description "Delete all temporary Python files"
+      find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
+  end
+end
+
+if status is-interactive; and type -q fzf; and type -q git
+  function fzg
+    set tags (git --no-pager tag --format="%1B[0;35;1mtag%09%1B[m%(refname:short)")
+    set branches (git --no-pager branch $argv[1] --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" | sed '/^\*/d')
+    set target (string join " " $branches $tags)
+    set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
+    if test -n "$branch"
+      git checkout  (string split \t -f2 $branch | string replace "origin/" "")
+    end
+  end
+end
+
 
 # Source per-host configurations as well as localhost overrides.
 if status is-interactive
