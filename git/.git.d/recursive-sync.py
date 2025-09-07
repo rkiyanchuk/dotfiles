@@ -280,7 +280,7 @@ class GitRepoPuller:
             for repo in updated_repos:
                 print(f"\n{self.GREEN} {repo.path} ({repo.branch}){self.RESET}")
                 for commit in repo.commits_pulled:
-                    print(f"   {self.BLUE}{commit.hash}{self.RESET} {self.YELLOW}{commit.date}{self.RESET} {commit.title}")
+                    print(f"   {self.BLUE}{commit.hash}{self.RESET} {self.GRAY}{commit.date}{self.RESET} {commit.title}")
 
         if diverged_repos:
             print(f"\n{self.ORANGE}  DIVERGED REPOSITORIES ({len(diverged_repos)}){self.RESET}")
