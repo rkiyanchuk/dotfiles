@@ -26,6 +26,7 @@ if test (uname) = "Darwin"
     if type -q brew
         eval "$(brew shellenv)"
     end
+    alias python="python3"
     fish_add_path --global /opt/homebrew/bin/     # packages installed by homebrew
     fish_add_path --global /opt/homebrew/sbin     # packages installed by homebrew
     fish_add_path "/Applications/IntelliJ IDEA.app/Contents/MacOS" # Add IntelliJ IDEA
@@ -56,15 +57,15 @@ alias jqr="jq -R -r '. as \$line | try fromjson catch \$line'"
 # FUNCTIONS
 
 function urldecode
-  python3 -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
+  python -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
 end
 
 function tree
   command tree --dirsfirst -C $argv
 end
 
-function http-serve --wraps='python3 -m http.server' --description 'Run Python HTTP server in current dir'
-  python3 -m http.server $argv;
+function http-serve --wraps='python -m http.server' --description 'Run Python HTTP server in current dir'
+  python -m http.server $argv;
 end
 
 function ls --wraps='ls --color=auto --group-directories-first' --description 'alias ls=ls --color=auto --group-directories-first'

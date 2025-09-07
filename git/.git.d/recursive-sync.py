@@ -2,6 +2,10 @@
 """
 Recursively pull all git repositories in current and nested directories.
 Provides detailed reporting of updates, commits, and any issues encountered.
+
+Requirements:
+- Python 3.7+
+- Nerd Fonts for icons (optional)
 """
 
 import argparse
