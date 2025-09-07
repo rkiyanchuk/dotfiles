@@ -14,6 +14,16 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 
 
+# Color codes for status icons
+BLUE = '\033[34m'
+GRAY = '\033[90m'
+GREEN = '\033[32m'
+ORANGE = '\033[91m'
+RED = '\033[31m'
+YELLOW = '\033[33m'
+RESET = '\033[0m'
+
+
 @dataclass
 class CommitInfo:
     hash: str
@@ -37,14 +47,6 @@ class GitRepoPuller:
         self.verbose = verbose
         self.results: List[RepoResult] = []
         
-        # Color codes for status icons
-        self.BLUE = '\033[34m'
-        self.GRAY = '\033[90m'
-        self.GREEN = '\033[32m'
-        self.ORANGE = '\033[91m'
-        self.RED = '\033[31m'
-        self.YELLOW = '\033[33m'
-        self.RESET = '\033[0m'
         
     def find_git_repos(self, root_path: Path) -> List[Path]:
         """Find all git repositories recursively."""
@@ -257,13 +259,13 @@ class GitRepoPuller:
             
             # Print immediate feedback
             if result.status == "updated":
-                print(f"{self.YELLOW}󰓦 {self.RESET} {result.path} ({len(result.commits_pulled)} commits)")
+                print(f"{YELLOW}󰓦 {RESET} {result.path} ({len(result.commits_pulled)} commits)")
             elif result.status == "up_to_date":
-                print(f"{self.GREEN} {self.RESET} {result.path} (up to date)")
+                print(f"{GREEN} {RESET} {result.path} (up to date)")
             elif result.status == "diverged":
-                print(f"{self.ORANGE} {self.RESET} {result.path} (diverged)")
+                print(f"{ORANGE} {RESET} {result.path} (diverged)")
             elif result.status == "error":
-                print(f"{self.RED} {self.RESET} {result.path} (error)")
+                print(f"{RED} {RESET} {result.path} (error)")
 
     def print_summary(self):
         """Print a detailed summary of all operations."""
@@ -278,15 +280,15 @@ class GitRepoPuller:
             print(f"\n󰓦 UPDATED REPOSITORIES ({len(updated_repos)})")
             print("-" * 40)
             for repo in updated_repos:
-                print(f"\n{self.GREEN} {repo.path} ({repo.branch}){self.RESET}")
+                print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
                 for commit in repo.commits_pulled:
-                    print(f"   {self.BLUE}{commit.hash}{self.RESET} {self.GRAY}{commit.date}{self.RESET} {commit.title}")
+                    print(f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title}")
 
         if diverged_repos:
-            print(f"\n{self.ORANGE}  DIVERGED REPOSITORIES ({len(diverged_repos)}){self.RESET}")
+            print(f"\n{ORANGE}  DIVERGED REPOSITORIES ({len(diverged_repos)}){RESET}")
             print("-" * 40)
             for repo in diverged_repos:
-                print(f" {repo.path} ({repo.branch})")
+                print(f"\n {repo.path} ({repo.branch})")
                 print(f"  {repo.commits_ahead} commits ahead, {repo.commits_behind} commits behind")
                 if repo.error_message:
                     print(f"  {repo.error_message}")
@@ -296,7 +298,7 @@ class GitRepoPuller:
             print("-" * 40)
             for repo in error_repos:
                 err_msg = textwrap.indent(repo.error_message, '    ') if repo.error_message else "Unknown error"
-                print(f"{self.RED} {repo.path} ({repo.branch}) {self.RESET}")
+                print(f"\n{RED} {repo.path} ({repo.branch}) {RESET}")
                 print(f"{err_msg}")
 
         if up_to_date_repos and self.verbose:
@@ -307,7 +309,7 @@ class GitRepoPuller:
                 print(f" {repo.path} ({repo.branch}){ahead_info}")
 
         print("\nGIT PULL SUMMARY")
-        print("=" * 40)
+        print("-" * 40)
         print(f"Total repositories: {len(self.results)}")
         print(f"Up to date: {len(up_to_date_repos)}")
         print(f"Updated: {len(updated_repos)}")
@@ -344,7 +346,7 @@ def main():
         puller.pull_all_repos(root_path)
         puller.print_summary()
     except KeyboardInterrupt:
-        print("\n\nOperation cancelled by user.")
+        print(f"\n\n{YELLOW}  Operation cancelled by user{RESET}")
         if puller.results:
             puller.print_summary()
         sys.exit(1)
