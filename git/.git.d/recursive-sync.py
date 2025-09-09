@@ -79,7 +79,7 @@ class GitRepoPuller:
                 
                 # Recurse into subdirectories
                 for item in current_path.iterdir():
-                    if item.is_dir() and not item.name.startswith('.'):
+                    if item.is_dir() and not item.name.startswith('.') and item.name != 'node_modules':
                         _find_repos_recursive(item, current_depth + 1, current_submodules)
                         
             except (PermissionError, OSError):
