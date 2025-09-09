@@ -9,6 +9,8 @@ Requirements:
 """
 
 import argparse
+import logging
+import os
 import subprocess
 import sys
 import textwrap
@@ -19,13 +21,16 @@ from typing import List, Optional, Tuple
 
 
 # Color codes for status icons
-BLUE = '\033[34m'
-GRAY = '\033[90m'
-GREEN = '\033[32m'
-ORANGE = '\033[91m'
-RED = '\033[31m'
-YELLOW = '\033[33m'
-RESET = '\033[0m'
+BLUE = "\033[34m"
+GRAY = "\033[90m"
+GREEN = "\033[32m"
+ORANGE = "\033[91m"
+RED = "\033[31m"
+YELLOW = "\033[33m"
+RESET = "\033[0m"
+
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -47,156 +52,185 @@ class RepoResult:
 
 
 class GitRepoPuller:
-    def __init__(self, verbose: bool = False):
-        self.verbose = verbose
+    def __init__(self):
         self.results: List[RepoResult] = []
-        
-        
+
     def find_git_repos(self, root_path: Path) -> List[Path]:
         """Find all git repositories recursively with depth limit and submodule handling."""
         repos = []
         max_depth = 5
-        
-        def _find_repos_recursive(current_path: Path, current_depth: int, parent_submodules: set) -> None:
+
+        def _find_repos_recursive(
+            current_path: Path, current_depth: int, parent_submodules: set
+        ) -> None:
             if current_depth > max_depth:
                 return
-            print("==>", current_path)
-                
+            logger.debug(f"Checking directory at depth {current_depth}: {current_path}")
+
             try:
                 # Check if current path is a git repository
-                git_dir = current_path / '.git'
+                git_dir = current_path / ".git"
                 if git_dir.exists() and git_dir.is_dir():
                     # Skip if this is a submodule of a parent repository
                     relative_path = str(current_path.relative_to(root_path))
                     if relative_path not in parent_submodules:
                         repos.append(current_path)
-                
+                        logger.debug(f"Found git repo: {current_path}")
+                    else:
+                        logger.debug(f"Skipping submodule: {current_path}")
+
                 # Get submodules in current directory if it's a git repo
                 current_submodules = parent_submodules.copy()
-                gitmodules_file = current_path / '.gitmodules'
+                gitmodules_file = current_path / ".gitmodules"
                 if gitmodules_file.exists():
-                    current_submodules.update(self._parse_submodules(gitmodules_file, current_path, root_path))
-                
+                    submodules = self._parse_submodules(
+                        gitmodules_file, current_path, root_path
+                    )
+                    current_submodules.update(submodules)
+                    if submodules:
+                        logger.debug(
+                            f"Found submodules in {current_path}: {submodules}"
+                        )
+
                 # Recurse into subdirectories
                 for item in current_path.iterdir():
-                    if item.is_dir() and not item.name.startswith('.') and item.name != 'node_modules':
-                        _find_repos_recursive(item, current_depth + 1, current_submodules)
-                        
+                    if (
+                        item.is_dir()
+                        and not item.name.startswith(".")
+                        and item.name != "node_modules"
+                    ):
+                        _find_repos_recursive(
+                            item, current_depth + 1, current_submodules
+                        )
+
             except (PermissionError, OSError):
                 # Skip directories we can't access
                 pass
-        
+
         _find_repos_recursive(root_path, 0, set())
         return sorted(repos)
-    
-    def _parse_submodules(self, gitmodules_file: Path, repo_root: Path, root_path: Path) -> set:
+
+    def _parse_submodules(
+        self, gitmodules_file: Path, repo_root: Path, root_path: Path
+    ) -> set:
         """Parse .gitmodules file and return set of submodule paths relative to root_path."""
         submodules = set()
         try:
-            with open(gitmodules_file, 'r') as f:
-                current_submodule_path = None
+            with open(gitmodules_file, "r") as f:
                 for line in f:
                     line = line.strip()
-                    if line.startswith('path = '):
+                    if line.startswith("path = "):
                         submodule_path = line[7:].strip()
                         # Convert to absolute path then back to relative from root_path
                         abs_submodule_path = (repo_root / submodule_path).resolve()
                         try:
-                            relative_to_root = str(abs_submodule_path.relative_to(root_path.resolve()))
+                            relative_to_root = str(
+                                abs_submodule_path.relative_to(root_path.resolve())
+                            )
                             submodules.add(relative_to_root)
                         except ValueError:
                             # Submodule is outside root_path, skip it
-                            pass
-        except (IOError, OSError):
-            pass
+                            logger.debug(
+                                f"Submodule outside root_path: {abs_submodule_path}"
+                            )
+        except (IOError, OSError) as e:
+            logger.debug(f"Error reading .gitmodules file {gitmodules_file}: {e}")
         return submodules
-    
-    def run_git_command(self, repo_path: Path, command: List[str]) -> Tuple[bool, str, str]:
+
+    def run_git_command(
+        self, repo_path: Path, command: List[str]
+    ) -> Tuple[bool, str, str]:
         """Run a git command in the specified repository."""
         try:
             result = subprocess.run(
-                ['git'] + command,
+                ["git"] + command,
                 cwd=repo_path,
                 capture_output=True,
                 text=True,
-                timeout=30
+                timeout=30,
             )
             return result.returncode == 0, result.stdout.strip(), result.stderr.strip()
         except subprocess.TimeoutExpired:
             return False, "", "Command timed out"
         except Exception as e:
             return False, "", str(e)
-    
+
     def get_current_branch(self, repo_path: Path) -> Optional[str]:
         """Get the current branch name."""
-        success, stdout, _ = self.run_git_command(repo_path, ['branch', '--show-current'])
+        success, stdout, _ = self.run_git_command(
+            repo_path, ["branch", "--show-current"]
+        )
         return stdout if success else None
-    
+
     def get_main_branch(self, repo_path: Path) -> Optional[str]:
         """Get the main/master branch name."""
         # Check if main exists
-        success, _, _ = self.run_git_command(repo_path, ['show-ref', '--verify', '--quiet', 'refs/heads/main'])
+        success, _, _ = self.run_git_command(
+            repo_path, ["show-ref", "--verify", "--quiet", "refs/heads/main"]
+        )
         if success:
-            return 'main'
-        
+            return "main"
+
         # Check if master exists
-        success, _, _ = self.run_git_command(repo_path, ['show-ref', '--verify', '--quiet', 'refs/heads/master'])
+        success, _, _ = self.run_git_command(
+            repo_path, ["show-ref", "--verify", "--quiet", "refs/heads/master"]
+        )
         if success:
-            return 'master'
-        
+            return "master"
+
         return None
-    
+
     def get_remote_tracking_branch(self, repo_path: Path, branch: str) -> Optional[str]:
         """Get the remote tracking branch for a local branch."""
         success, stdout, _ = self.run_git_command(
-            repo_path, ['rev-parse', '--abbrev-ref', f'{branch}@{{upstream}}']
+            repo_path, ["rev-parse", "--abbrev-ref", f"{branch}@{{upstream}}"]
         )
         return stdout if success else None
-    
-    def get_commit_range_info(self, repo_path: Path, local_ref: str, remote_ref: str) -> Tuple[int, int]:
+
+    def get_commit_range_info(
+        self, repo_path: Path, local_ref: str, remote_ref: str
+    ) -> Tuple[int, int]:
         """Get number of commits ahead and behind between local and remote."""
         # Commits behind (remote has but local doesn't)
         success, stdout, _ = self.run_git_command(
-            repo_path, ['rev-list', '--count', f'{local_ref}..{remote_ref}']
+            repo_path, ["rev-list", "--count", f"{local_ref}..{remote_ref}"]
         )
         behind = int(stdout) if success and stdout.isdigit() else 0
-        
+
         # Commits ahead (local has but remote doesn't)
         success, stdout, _ = self.run_git_command(
-            repo_path, ['rev-list', '--count', f'{remote_ref}..{local_ref}']
+            repo_path, ["rev-list", "--count", f"{remote_ref}..{local_ref}"]
         )
         ahead = int(stdout) if success and stdout.isdigit() else 0
-        
+
         return ahead, behind
-    
-    def get_commits_in_range(self, repo_path: Path, commit_range: str) -> List[CommitInfo]:
+
+    def get_commits_in_range(
+        self, repo_path: Path, commit_range: str
+    ) -> List[CommitInfo]:
         """Get commit information for a range."""
         success, stdout, _ = self.run_git_command(
-            repo_path, ['log', '--pretty=format:%H|%s|%an|%ad', '--date=short', commit_range]
+            repo_path,
+            ["log", "--pretty=format:%H|%s|%an|%ad", "--date=short", commit_range],
         )
-        
+
         if not success or not stdout:
             return []
-        
+
         commits = []
-        for line in stdout.split('\n'):
-            if '|' in line:
-                parts = line.split('|', 3)
+        for line in stdout.split("\n"):
+            if "|" in line:
+                parts = line.split("|", 3)
                 if len(parts) >= 4:
-                    commits.append(CommitInfo(
-                        hash=parts[0][:8],
-                        title=parts[1],
-                        date=parts[3]
-                    ))
+                    commits.append(
+                        CommitInfo(hash=parts[0][:8], title=parts[1], date=parts[3])
+                    )
         return commits
-    
+
     def update_repo(self, repo_path: Path) -> RepoResult:
         """Update a single repository."""
         repo_name = str(repo_path.relative_to(Path.cwd()))
-        
-        if self.verbose:
-            print(f"\n {repo_name}")
-        
+
         # Get current branch
         current_branch = self.get_current_branch(repo_path)
         if not current_branch:
@@ -204,9 +238,9 @@ class GitRepoPuller:
                 path=repo_name,
                 branch="unknown",
                 status="error",
-                error_message="Could not determine current branch"
+                error_message="Could not determine current branch",
             )
-        
+
         # Find main/master branch
         main_branch = self.get_main_branch(repo_path)
         if not main_branch:
@@ -214,21 +248,23 @@ class GitRepoPuller:
                 path=repo_name,
                 branch=current_branch,
                 status="error",
-                error_message="No main or master branch found"
+                error_message="No main or master branch found",
             )
-        
+
         # Switch to main/master if not already there
         if current_branch != main_branch:
-            success, _, stderr = self.run_git_command(repo_path, ['checkout', main_branch])
+            success, _, stderr = self.run_git_command(
+                repo_path, ["checkout", main_branch]
+            )
             if not success:
                 return RepoResult(
                     path=repo_name,
                     branch=current_branch,
                     status="error",
-                    error_message=f"Could not switch to {main_branch}: {stderr}"
+                    error_message=f"Could not switch to {main_branch}: {stderr}",
                 )
             current_branch = main_branch
-        
+
         # Get remote tracking branch
         remote_branch = self.get_remote_tracking_branch(repo_path, main_branch)
         if not remote_branch:
@@ -236,22 +272,24 @@ class GitRepoPuller:
                 path=repo_name,
                 branch=current_branch,
                 status="error",
-                error_message=f"No remote tracking branch for {main_branch}"
+                error_message=f"No remote tracking branch for {main_branch}",
             )
-        
+
         # Fetch latest changes
-        success, _, stderr = self.run_git_command(repo_path, ['fetch'])
+        success, _, stderr = self.run_git_command(repo_path, ["fetch"])
         if not success:
             return RepoResult(
                 path=repo_name,
                 branch=current_branch,
                 status="error",
-                error_message=f"Failed to fetch: {stderr}"
+                error_message=f"Failed to fetch: {stderr}",
             )
-        
+
         # Check commits ahead/behind
-        ahead, behind = self.get_commit_range_info(repo_path, main_branch, remote_branch)
-        
+        ahead, behind = self.get_commit_range_info(
+            repo_path, main_branch, remote_branch
+        )
+
         if behind == 0:
             status = "up_to_date" if ahead == 0 else "up_to_date"
             return RepoResult(
@@ -259,9 +297,9 @@ class GitRepoPuller:
                 branch=current_branch,
                 status=status,
                 commits_ahead=ahead,
-                commits_behind=behind
+                commits_behind=behind,
             )
-        
+
         if ahead > 0:
             return RepoResult(
                 path=repo_name,
@@ -269,14 +307,18 @@ class GitRepoPuller:
                 status="diverged",
                 commits_ahead=ahead,
                 commits_behind=behind,
-                error_message=f"Branch has diverged: {ahead} ahead, {behind} behind"
+                error_message=f"Branch has diverged: {ahead} ahead, {behind} behind",
             )
-        
+
         # Get commits that will be pulled
-        commits_to_pull = self.get_commits_in_range(repo_path, f'{main_branch}..{remote_branch}')
-        
+        commits_to_pull = self.get_commits_in_range(
+            repo_path, f"{main_branch}..{remote_branch}"
+        )
+
         # Perform the pull (fast-forward merge)
-        success, _, stderr = self.run_git_command(repo_path, ['merge', '--ff-only', remote_branch])
+        success, _, stderr = self.run_git_command(
+            repo_path, ["merge", "--ff-only", remote_branch]
+        )
         if not success:
             return RepoResult(
                 path=repo_name,
@@ -284,83 +326,85 @@ class GitRepoPuller:
                 status="error",
                 commits_ahead=ahead,
                 commits_behind=behind,
-                error_message=f"Failed to merge: {stderr}"
+                error_message=f"Failed to merge: {stderr}",
             )
-        
+
         return RepoResult(
             path=repo_name,
             branch=current_branch,
             status="updated",
             commits_pulled=commits_to_pull,
             commits_ahead=ahead,
-            commits_behind=behind
+            commits_behind=behind,
         )
-    
+
     def pull_all_repos(self, root_path: Path = Path.cwd()):
         """Pull all repositories in the given path."""
-        
+
         repos = self.find_git_repos(root_path)
-        
+
         if not repos:
             print("No git repositories found.")
             return
-        
+
         print(f"Found {len(repos)} git repositories:")
-        
+
         for repo in repos:
             result = self.update_repo(repo)
             self.results.append(result)
-            
+
             # Print immediate feedback
             if result.status == "updated":
-                print(f"{YELLOW}󰓦 {RESET} {result.path} ({len(result.commits_pulled)} commits)")
+                print(
+                    f"{YELLOW}󰓦 {RESET} {result.path} {GRAY}({len(result.commits_pulled)} commits){RESET}"
+                )
             elif result.status == "up_to_date":
-                print(f"{GREEN} {RESET} {result.path} (up to date)")
+                print(f"{GREEN} {RESET} {result.path} {GRAY}(up to date){RESET}")
             elif result.status == "diverged":
-                print(f"{ORANGE} {RESET} {result.path} (diverged)")
+                print(f"{ORANGE} {RESET} {result.path} {GRAY}(diverged){RESET}")
             elif result.status == "error":
-                print(f"{RED} {RESET} {result.path} (error)")
+                print(f"{RED} {RESET} {result.path} {GRAY}(error){RESET}")
 
     def print_summary(self):
         """Print a detailed summary of all operations."""
-        
+
         updated_repos = [r for r in self.results if r.status == "updated"]
         up_to_date_repos = [r for r in self.results if r.status == "up_to_date"]
         diverged_repos = [r for r in self.results if r.status == "diverged"]
         error_repos = [r for r in self.results if r.status == "error"]
-        
-        
+
         if updated_repos:
             print(f"\n󰓦 UPDATED REPOSITORIES ({len(updated_repos)})")
             print("-" * 40)
             for repo in updated_repos:
                 print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
                 for commit in repo.commits_pulled:
-                    print(f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title}")
+                    print(
+                        f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title}"
+                    )
 
         if diverged_repos:
             print(f"\n{ORANGE}  DIVERGED REPOSITORIES ({len(diverged_repos)}){RESET}")
             print("-" * 40)
             for repo in diverged_repos:
                 print(f"\n {repo.path} ({repo.branch})")
-                print(f"  {repo.commits_ahead} commits ahead, {repo.commits_behind} commits behind")
+                print(
+                    f"  {repo.commits_ahead} commits ahead, {repo.commits_behind} commits behind"
+                )
                 if repo.error_message:
                     print(f"  {repo.error_message}")
-        
+
         if error_repos:
             print(f"\n❌ REPOSITORIES WITH ERRORS ({len(error_repos)})")
             print("-" * 40)
             for repo in error_repos:
-                err_msg = textwrap.indent(repo.error_message, '    ') if repo.error_message else "Unknown error"
+                err_msg = (
+                    textwrap.indent(repo.error_message, "    ")
+                    if repo.error_message
+                    else "Unknown error"
+                )
                 print(f"\n{RED} {repo.path} ({repo.branch}) {RESET}")
                 print(f"{err_msg}")
-
-        if up_to_date_repos and self.verbose:
-            print(f"\n  UP TO DATE REPOSITORIES ({len(up_to_date_repos)})")
-            print("-" * 40)
-            for repo in up_to_date_repos:
-                ahead_info = f" ({repo.commits_ahead} ahead)" if repo.commits_ahead > 0 else ""
-                print(f" {repo.path} ({repo.branch}){ahead_info}")
 
         print("\nGIT PULL SUMMARY")
         print("-" * 40)
@@ -376,26 +420,25 @@ def main():
         description="Recursively pull all git repositories in current and nested directories"
     )
     parser.add_argument(
-        "-v", "--verbose",
-        action="store_true",
-        help="Enable verbose output"
-    )
-    parser.add_argument(
         "path",
         nargs="?",
         default=".",
-        help="Root path to search for repositories (default: current directory)"
+        help="Root path to search for repositories (default: current directory)",
     )
-    
+
     args = parser.parse_args()
-    
+    logging.basicConfig(
+        level=logging.DEBUG if os.environ.get("DEBUG") else logging.INFO,
+        format="%(levelname)s: %(message)s",
+    )
+
     root_path = Path(args.path).resolve()
     if not root_path.exists():
         print(f"Error: Path '{root_path}' does not exist")
         sys.exit(1)
-    
-    puller = GitRepoPuller(verbose=args.verbose)
-    
+
+    puller = GitRepoPuller()
+
     try:
         puller.pull_all_repos(root_path)
         puller.print_summary()
