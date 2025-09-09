@@ -53,13 +53,63 @@ class GitRepoPuller:
         
         
     def find_git_repos(self, root_path: Path) -> List[Path]:
-        """Find all git repositories recursively."""
+        """Find all git repositories recursively with depth limit and submodule handling."""
         repos = []
-        for item in root_path.rglob('.git'):
-            if item.is_dir():
-                repo_path = item.parent
-                repos.append(repo_path)
+        max_depth = 5
+        
+        def _find_repos_recursive(current_path: Path, current_depth: int, parent_submodules: set) -> None:
+            if current_depth > max_depth:
+                return
+            print("==>", current_path)
+                
+            try:
+                # Check if current path is a git repository
+                git_dir = current_path / '.git'
+                if git_dir.exists() and git_dir.is_dir():
+                    # Skip if this is a submodule of a parent repository
+                    relative_path = str(current_path.relative_to(root_path))
+                    if relative_path not in parent_submodules:
+                        repos.append(current_path)
+                
+                # Get submodules in current directory if it's a git repo
+                current_submodules = parent_submodules.copy()
+                gitmodules_file = current_path / '.gitmodules'
+                if gitmodules_file.exists():
+                    current_submodules.update(self._parse_submodules(gitmodules_file, current_path, root_path))
+                
+                # Recurse into subdirectories
+                for item in current_path.iterdir():
+                    if item.is_dir() and not item.name.startswith('.'):
+                        _find_repos_recursive(item, current_depth + 1, current_submodules)
+                        
+            except (PermissionError, OSError):
+                # Skip directories we can't access
+                pass
+        
+        _find_repos_recursive(root_path, 0, set())
         return sorted(repos)
+    
+    def _parse_submodules(self, gitmodules_file: Path, repo_root: Path, root_path: Path) -> set:
+        """Parse .gitmodules file and return set of submodule paths relative to root_path."""
+        submodules = set()
+        try:
+            with open(gitmodules_file, 'r') as f:
+                current_submodule_path = None
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('path = '):
+                        submodule_path = line[7:].strip()
+                        # Convert to absolute path then back to relative from root_path
+                        abs_submodule_path = (repo_root / submodule_path).resolve()
+                        try:
+                            relative_to_root = str(abs_submodule_path.relative_to(root_path.resolve()))
+                            submodules.add(relative_to_root)
+                        except ValueError:
+                            # Submodule is outside root_path, skip it
+                            pass
+        except (IOError, OSError):
+            pass
+        return submodules
     
     def run_git_command(self, repo_path: Path, command: List[str]) -> Tuple[bool, str, str]:
         """Run a git command in the specified repository."""
