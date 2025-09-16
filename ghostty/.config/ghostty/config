@@ -1,5 +1,5 @@
 # Appearance
-theme = github-dark-dimmed
+theme = GitHub Dark Dimmed
 
 background = #1C2128
 selection-background = #284E78
@@ -29,6 +29,6 @@ shell-integration-features = no-cursor
 window-position-x = 20
 window-position-y = 20
 window-padding-x = 10
-window-padding-y = 5,0
+window-padding-y = 0,5
 window-save-state = always
 window-vsync = true
