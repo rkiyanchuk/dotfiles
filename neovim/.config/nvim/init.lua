@@ -93,9 +93,6 @@ require("lazy").setup({
   -- Commenting
   "tpope/vim-commentary",
 
-  -- Hex mode
-  "fidian/hexmode",
-
   -- Color highlighting
   "chrisbra/Colorizer",
 
@@ -147,6 +144,14 @@ require("lazy").setup({
   "google/vim-jsonnet",
   "mustache/vim-mustache-handlebars",
   "dag/vim-fish",
+
+  -- Hex editor
+  {
+    "RaafatTurki/hex.nvim",
+    config = function()
+      require('hex').setup()
+    end,
+  },
 })
 
 -- General settings
