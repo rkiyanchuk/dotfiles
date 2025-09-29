@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 class CommitInfo:
     hash: str
     title: str
+    author: str
     date: str
 
 
@@ -223,7 +224,7 @@ class GitRepoPuller:
                 parts = line.split("|", 3)
                 if len(parts) >= 4:
                     commits.append(
-                        CommitInfo(hash=parts[0][:8], title=parts[1], date=parts[3])
+                        CommitInfo(hash=parts[0][:8], title=parts[1], author=parts[2], date=parts[3])
                     )
         return commits
 
@@ -380,7 +381,7 @@ class GitRepoPuller:
                 print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
                 for commit in repo.commits_pulled:
                     print(
-                        f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title}"
+                        f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date} {GREEN}{commit.author}{RESET} {commit.title}"
                     )
 
         if diverged_repos:
