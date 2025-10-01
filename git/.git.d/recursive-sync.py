@@ -28,7 +28,8 @@ ORANGE = "\033[91m"
 RED = "\033[31m"
 YELLOW = "\033[33m"
 RESET = "\033[0m"
-
+BOLD = "\033[1m"
+DIM = "\033[2m"
 
 logger = logging.getLogger(__name__)
 
@@ -381,7 +382,7 @@ class GitRepoPuller:
                 print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
                 for commit in repo.commits_pulled:
                     print(
-                        f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date} {GREEN}{commit.author}{RESET} {commit.title}"
+                        f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title} {GREEN}{DIM}{commit.author}{RESET}"
                     )
 
         if diverged_repos:
