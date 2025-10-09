@@ -64,4 +64,5 @@ _fonts/nerd-fonts
 _fonts/dist
 
 # AI Assistants
+/.claude/
 **/CLAUDE.local.md
