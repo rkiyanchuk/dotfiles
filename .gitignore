@@ -1,14 +1,9 @@
-# Mutt
-mutt/.mutt/secret.yaml
-mutt/.mutt/temp/
-mutt/.mutt/cache/
-
 # Python
 *.pyc
 
 # Tmux
-tmux/.tmux/plugins/
-tmux/.tmuxp/*.yml
+**/tmux/plugins/
+**/tmux/.tmuxp/*.yml
 
 # Neovim
 .netrwhist
@@ -27,13 +22,6 @@ tmux/.tmuxp/*.yml
 /vim/.vim/autoload/
 /vim/.vim/plugins/
 
-# GTK
-gtk/.config/gtk-3.0/bookmarks
-
-# GoldenDict
-goldendict/.goldendict/index/
-goldendict/.goldendict/history
-
 # GnuPG
 gnupg/.gnupg/
 
@@ -48,9 +36,6 @@ systemd/.config/systemd/user/sockets.target.wants/
 
 # Brewfile
 Brewfile.lock.json
-
-# macOS
-.DS_Store
 
 # Fish
 fish/.config/fish/completions/
