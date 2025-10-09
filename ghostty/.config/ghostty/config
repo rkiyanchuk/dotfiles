@@ -32,3 +32,4 @@ window-padding-x = 10
 window-padding-y = 0,5
 window-save-state = always
 window-vsync = true
+keybind = shift+enter=text:\x1b\r
