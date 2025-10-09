@@ -24,6 +24,7 @@ brew "tree"
 brew "unzip"
 brew "bzip2"
 brew "rlwrap"
+brew "poppler"
 
 # Network
 brew "ldns"
