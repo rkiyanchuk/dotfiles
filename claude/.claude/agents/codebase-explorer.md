@@ -1,7 +1,9 @@
 ---
 name: codebase-explorer
-description: Explore and analyse codebase
+description: Codebase analysis
 tools: Read, Grep, Glob, LS
+model: sonnet
+color: green
 ---
 
 # Codebase Explorer Agent

@@ -2,6 +2,8 @@
 name: frontend-engineer
 description: Frontend design and development
 tools: Read, Write, MultiEdit, Bash, magic, context7, playwright
+model: sonnet
+color: cyan
 ---
 
 # Frontend Engineer Agent

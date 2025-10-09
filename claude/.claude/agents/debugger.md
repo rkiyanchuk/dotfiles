@@ -2,6 +2,8 @@
 name: debugger
 description: Debugging and root cause analysis
 tools: Read, Grep, Glob, gdb, lldb, chrome-devtools, vscode-debugger, strace, tcpdump
+model: opus
+color: purple
 ---
 
 # Debugger Agent

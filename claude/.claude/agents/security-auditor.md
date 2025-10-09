@@ -1,7 +1,9 @@
 ---
 name: security-auditor
-description: 
+description: Security audit
 tools: Read, Grep, nessus, qualys, openvas, prowler, scout suite, compliance checker
+model: opus
+color: blue
 ---
 
 # Security Auditor Agent
