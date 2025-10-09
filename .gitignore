@@ -63,6 +63,9 @@ _fonts/Iosevka/
 _fonts/nerd-fonts
 _fonts/dist
 
+# SSH
+**/.ssh/id_*
+
 # AI Assistants
 /.claude/
 **/CLAUDE.local.md
