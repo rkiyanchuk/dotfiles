@@ -113,3 +113,6 @@
 
 [includeIf "gitdir:~/src/"]
     path = ~/src/.gitconfig
+
+[includeIf "gitdir:~/"]
+    path = ~/.gitconfig.local
