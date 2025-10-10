@@ -50,6 +50,7 @@ _fonts/dist
 
 # SSH
 **/.ssh/id_*
+**/.ssh/environment
 
 # AI Assistants
 /.claude/
