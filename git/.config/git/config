@@ -107,8 +107,8 @@
     # Recursively pull and update all branches in all repos in current dir.
     rpull = "! ~/.config/git/recursive-sync.py"
 
-[includeIf "gitdir:~/src/"]
-    path = ~/src/.gitconfig
-
 [includeIf "gitdir:~/"]
     path = ~/.config/git/config.local
+
+[includeIf "gitdir:~/src/"]
+    path = ~/src/.gitconfig
