@@ -105,6 +105,7 @@ style = "blue"
 
 [deno]
 format = "[$symbol($version )]($style)"
+style = "green"
 
 [docker_context]
 symbol = " "
