@@ -261,6 +261,7 @@ symbol = " "
 
 [gradle]
 symbol = " "
+format = '[$symbol($version )]($style)'
 
 [quarto]
 format = '[$symbol($version )]($style)'
