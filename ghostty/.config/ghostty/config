@@ -1,10 +1,6 @@
 # Appearance
-theme = GitHub Dark Dimmed
 
-background = #1C2128
-selection-background = #284E78
-selection-foreground = #ACBAC7
-split-divider-color = #3D4249
+theme = catppuccin-mocha.conf
 
 font-family = IosevkaTerm Nerd Font Light
 font-size = 16
@@ -14,6 +10,7 @@ cursor-style = block
 window-subtitle = working-directory
 
 # Behavior
+
 auto-update = check
 macos-auto-secure-input = true
 macos-option-as-alt = true
@@ -24,8 +21,6 @@ mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor
-#window-height = 200
-#window-width = 200
 window-position-x = 20
 window-position-y = 20
 window-padding-x = 10
