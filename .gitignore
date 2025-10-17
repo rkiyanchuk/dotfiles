@@ -52,6 +52,9 @@ _fonts/dist
 **/.ssh/id_*
 **/.ssh/environment
 
+# Git
+gh/.config/gh/hosts.yml
+
 # AI Assistants
 /.claude/
 **/CLAUDE.local.md
