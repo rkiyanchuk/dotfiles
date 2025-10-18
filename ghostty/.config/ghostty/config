@@ -13,6 +13,7 @@ window-subtitle = working-directory
 # Behavior
 
 auto-update = check
+keybind = shift+enter=text:\x1b\r
 macos-auto-secure-input = true
 macos-option-as-alt = true
 macos-secure-input-indication = true
@@ -22,11 +23,10 @@ mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
 quit-after-last-window-closed = true
 shell-integration-features = no-cursor, sudo, ssh-env, ssh-terminfo
-window-position-x = 20
-window-position-y = 20
+window-padding-balance = true
 window-padding-x = 5
 window-padding-y = 5
-window-padding-balance = true
+window-position-x = 20
+window-position-y = 20
 window-save-state = always
 window-vsync = true
-keybind = shift+enter=text:\x1b\r
