@@ -18,16 +18,41 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugin setup
 require("lazy").setup({
-  -- Theme
+  -- Themes
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       if vim.fn.has('termguicolors') == 1 then
         vim.opt.termguicolors = true
       end
+      require("tokyonight").setup({
+        style = "storm", -- storm, night, moon, day
+        transparent = false,
+        terminal_colors = true,
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = false },
+          functions = {},
+          variables = {},
+          sidebars = "dark",
+          floats = "dark",
+        },
+        sidebars = { "qf", "help", "nerdtree" },
+        hide_inactive_statusline = false,
+        dim_inactive = false,
+        lualine_bold = false,
+      })
+      vim.cmd.colorscheme("tokyonight-storm")
+    end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = true,
+    priority = 900,
+    config = function()
       require("catppuccin").setup({
         flavour = "mocha", -- latte, frappe, macchiato, mocha
         transparent_background = false,
@@ -167,7 +192,6 @@ require("lazy").setup({
   },
 
       })
-      vim.cmd.colorscheme("catppuccin")
     end,
   },
 
