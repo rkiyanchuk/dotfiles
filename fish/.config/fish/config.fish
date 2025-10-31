@@ -121,7 +121,18 @@ if status is-interactive; and type -q find
 end
 
 if status is-interactive; and type -q fzf; and type -q git
-  function fzg
+  function fzg --description "Choose Git branch"
+    set branches (git --no-pager branch $argv[1] --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" | sed '/^\*/d')
+    set target (string join " " $branches)
+    set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
+    if test -n "$branch"
+      git checkout  (string split \t -f2 $branch | string replace "origin/" "")
+    end
+  end
+end
+
+if status is-interactive; and type -q fzf; and type -q git
+  function fzgt --description "Choose Git branch or tag"
     set tags (git --no-pager tag --format="%1B[0;35;1mtag%09%1B[m%(refname:short)")
     set branches (git --no-pager branch $argv[1] --format="%1B[0;34;1mbranch%09%1B[m%(refname:short)" | sed '/^\*/d')
     set target (string join " " $branches $tags)
