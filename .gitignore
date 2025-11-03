@@ -58,3 +58,7 @@ gh/.config/gh/hosts.yml
 # AI Assistants
 /.claude/
 **/CLAUDE.local.md
+claude/.claude/projects/
+claude/.claude/shell-snapshots/
+claude/.claude/todos/
+claude/.claude/debug/

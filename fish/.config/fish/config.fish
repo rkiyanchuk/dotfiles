@@ -27,7 +27,6 @@ if test (uname) = "Darwin"
     end
 
     alias python="python3"
-    alias claude="~/.claude/local/claude"
 
     fish_add_path --global /opt/homebrew/bin/     # packages installed by homebrew
     fish_add_path --global /opt/homebrew/sbin     # packages installed by homebrew
