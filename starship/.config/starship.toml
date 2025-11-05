@@ -66,6 +66,11 @@ symbol = "  "
 style = "yellow"
 expiration_symbol = "❌"
 
+[gcloud]
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+detect_env_vars = ['GOOGLE_APPLICATION_CREDENTIALS']
+symbol = "  "
+
 [bun]
 format = "[$symbol($version )]($style)"
 
