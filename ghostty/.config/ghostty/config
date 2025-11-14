@@ -15,7 +15,6 @@ window-subtitle = working-directory
 # Behavior
 
 auto-update = check
-keybind = shift+enter=text:\x1b\r
 macos-auto-secure-input = true
 macos-option-as-alt = true
 macos-secure-input-indication = true
@@ -32,3 +31,5 @@ window-position-x = 20
 window-position-y = 20
 window-save-state = always
 window-vsync = true
+
+keybind = shift+enter=text:\x1b\r
