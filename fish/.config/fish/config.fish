@@ -142,6 +142,16 @@ if status is-interactive; and type -q fzf; and type -q git
   end
 end
 
+if status is-interactive; and type -q yazi
+    function y --description "Yazi CLI file manager"
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
+end
 
 # Source per-host configurations as well as localhost overrides.
 if status is-interactive
