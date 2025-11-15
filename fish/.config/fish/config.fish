@@ -57,7 +57,7 @@ alias jqr="jq -R -r '. as \$line | try fromjson catch \$line'"
 
 # FUNCTIONS
 if status is-interactive; and type -q python
-  function urldecode --description "Decode URL string"
+  function urldecode --description "decode URL string"
     python -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
   end
 end
@@ -69,7 +69,7 @@ if status is-interactive; and type -q tree
 end
 
 if status is-interactive; and type -q python
-  function http-serve --wraps='python -m http.server' --description 'Run Python HTTP server in current dir'
+  function http-serve --wraps='python -m http.server' --description 'run Python HTTP server in current dir'
     python -m http.server $argv;
   end
 end
@@ -92,7 +92,7 @@ if status is-interactive; and type -q eza
 end
 
 if status is-interactive
-  function update --description 'Update all CLI tools'
+  function update --description 'update all CLI tools'
     switch (uname)
       case "Darwin"
         echo "=> Updating Brew..."
@@ -108,19 +108,19 @@ if status is-interactive
 end
 
 if status is-interactive; and type -q brew
-  function brew-recent-installs --description 'List all manual installed CLI tools'
+  function brew-recent-installs --description 'list all manually installed Brew packages'
     ls -l --sort time --time modified $(brew --cellar)
   end
 end
 
 if status is-interactive; and type -q find
-  function pyclean --description "Delete all temporary Python files"
+  function pyclean --description "delete all temporary Python files"
       find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
   end
 end
 
 if status is-interactive; and type -q fzf; and type -q git
-  function g --description "Choose Git branch"
+  function g --description "choose git branch"
     set branches (git --no-pager branch $argv[1] --format="%(color:blue bold)branch%09%(color:reset)%(refname:short)" | sed '/^\*/d')
     set target (string join " " $branches)
     set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
@@ -131,7 +131,7 @@ if status is-interactive; and type -q fzf; and type -q git
 end
 
 if status is-interactive; and type -q fzf; and type -q git
-  function gt --description "Choose Git branch or tag"
+  function gt --description "choose git branch or tag"
     set tags (git --no-pager tag --format="%(color:magenta bold)tag%09%(color:reset)%(refname:short)")
     set branches (git --no-pager branch $argv[1] --format="%(color:blue bold)branch%09%(color:reset)%(refname:short)" | sed '/^\*/d')
     set target (string join " " $branches $tags)
@@ -143,13 +143,13 @@ if status is-interactive; and type -q fzf; and type -q git
 end
 
 if status is-interactive; and type -q lazygit
-    function gg --description "Launch lazygit"
+    function gg --description "lazygit"
         lazygit
     end
 end
 
 if status is-interactive; and type -q yazi
-    function y --description "Yazi CLI file manager"
+    function y --description "yazi file manager"
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
         if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
