@@ -8,22 +8,22 @@ Describe either the PR from current branch, or this one: #$ARGUMENTS
 
 1. Analyze the changes in the PR.
 
-You can few the diff by using `gh` command:
+    You can few the diff by using `gh` command:
 
--  `gh pr diff` - to view current PR diff
--  `gh pr diff #123` - to view diff for a PR with particular number (#$ARGUMENTS).
+    - `gh pr diff` - to view current PR diff
+    - `gh pr diff #123` - to view diff for a PR with particular number (#$ARGUMENTS).
 
 2. Document the changes
 
-- Purpose and context of the changes
-- Key modifications made
+    - Purpose and context of the changes
+    - Key modifications made
 
-- Technical implementation details
-- Impact on the system
-- Any breaking changes or migration notes
+    - Technical implementation details
+    - Impact on the system
+    - Any breaking changes or migration notes
 
-- Related issues or follow-up tasks
-- Tests created for the change
+    - Related issues or follow-up tasks
+    - Tests created for the change
 
 3. Ask for additional information if needed.
 
