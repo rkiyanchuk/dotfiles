@@ -111,4 +111,16 @@
     path = ~/.config/git/config.local
 
 [includeIf "gitdir:~/src/"]
-    path = ~/src/.gitconfig
+    path = ~/.config/git/config.src.local
+
+[includeIf "hasconfig:remote.*.url:https://github.com/navancorp/**"]
+    path = ~/.config/git/config.src.local
+
+[includeIf "hasconfig:remote.*.url:*@github.com:navancorp/**"]
+    path = ~/.config/git/config.src.local
+
+[includeIf "hasconfig:remote.*.url:https://github.com/navan-iac/**"]
+    path = ~/.config/git/config.src.local
+
+[includeIf "hasconfig:remote.*.url:*@github.com:navan-iac/**"]
+    path = ~/.config/git/config.src.local
