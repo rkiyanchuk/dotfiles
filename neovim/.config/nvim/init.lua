@@ -313,8 +313,8 @@ require("lazy").setup({
             {
               'tabs',
               mode = 1,
-              separator = { left = '', right = '' },
-              right_padding = 2,
+              separator = { left = '', right = '' },
+              -- right_padding = 2,
             }
           },
           lualine_b = {},
