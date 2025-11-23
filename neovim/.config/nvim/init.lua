@@ -407,6 +407,7 @@ require("lazy").setup({
 
 -- General settings
 vim.opt.showtabline = 1  -- Show tabline only when there are multiple tabs
+vim.opt.cmdheight = 0  -- Remove command-line space below statusline
 vim.opt.autoread = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.backup = true
