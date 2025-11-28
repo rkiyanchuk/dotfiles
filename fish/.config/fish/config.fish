@@ -129,7 +129,7 @@ if status is-interactive; and type -q find
 end
 
 if status is-interactive; and type -q fzf; and type -q git
-  function g --description "choose git branch"
+  function __git_branch --description "choose git branch"
     set branches (git --no-pager branch $argv[1] --format="%(color:blue bold)branch%09%(color:reset)%(refname:short)" | sed '/^\*/d')
     set target (string join " " $branches)
     set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
@@ -140,7 +140,7 @@ if status is-interactive; and type -q fzf; and type -q git
 end
 
 if status is-interactive; and type -q fzf; and type -q git
-  function gt --description "choose git branch or tag"
+  function __git_branch_or_tag --description "choose git branch or tag"
     set tags (git --no-pager tag --format="%(color:magenta bold)tag%09%(color:reset)%(refname:short)")
     set branches (git --no-pager branch $argv[1] --format="%(color:blue bold)branch%09%(color:reset)%(refname:short)" | sed '/^\*/d')
     set target (string join " " $branches $tags)
@@ -149,6 +149,8 @@ if status is-interactive; and type -q fzf; and type -q git
       git checkout  (string split \t -f2 $branch | string replace "origin/" "")
     end
   end
+
+  bind \cb __git_branch_or_tag
 end
 
 if status is-interactive; and type -q lazygit
