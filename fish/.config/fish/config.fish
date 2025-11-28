@@ -41,6 +41,15 @@ if status is-interactive; and type -q starship
     starship init fish | source
 end
 
+if status is-interactive; and type -q fzf
+  fzf --fish | FZF_CTRL_R_COMMAND= source
+  set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --marker='▸' --pointer='•' --color=bg+:#292E42,pointer:#F7768E"
+end
+
+if status is-interactive; and type -q zoxide
+  zoxide init fish | source
+end
+
 # ALIASES
 
 alias l="ls -l"
