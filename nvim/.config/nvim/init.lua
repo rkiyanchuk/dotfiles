@@ -353,6 +353,17 @@ require("lazy").setup({
         build = ":TSUpdate",
     },
 
+    -- Smart and powerful comment plugin with support for multiple filetypes
+    {
+        "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup()
+            -- Map CMD+/ to toggle comment (works in normal and visual mode)
+            vim.keymap.set("n", "<D-/>", "<Plug>(comment_toggle_linewise_current)", { desc = "Toggle comment" })
+            vim.keymap.set("v", "<D-/>", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment" })
+        end,
+    },
+
     -- Non default colorschemes and their configurations.
     --    {
     --       "gbprod/nord.nvim",
