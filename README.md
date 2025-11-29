@@ -51,7 +51,11 @@ where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
 Install dotfiles:
 
 ```sh
-stow --dotfiles -t ~ -Svv fish git neovim gnupg tmux sage
+# CLI-only
+stow --dotfiles -t ~ -Svv bat fish git grc nvim shells ssh starship tmux yazi
+
+# Desktop
+stow -t ~ --no-folding -Svv ghostty claude gh
 ```
 
 Configure Fish shell:
@@ -61,16 +65,16 @@ echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 ```
 
-Install `fisher` plugin manager for Fish:
+Update Fish shell:
 
 ```sh
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+❯ update
 ```
 
 Install `pynvim` for neovim:
 
 ```sh
-pip3 install pynvim
+uv tool install --upgrade pynvim
 ```
 
 Configure tmux.
@@ -81,7 +85,7 @@ Install tmux plugin manager:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-Fix tmux terminfo.
+Fix tmux terminfo (still necessary?).
 
 ```sh
 curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
@@ -100,23 +104,18 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 ### Additional software
 
-* [Rectangle Pro](https://rectangleapp.com/)
 * [Monitor Control](https://monitorcontrol.app)
 * [iState Menus](https://bjango.com/mac/istatmenus/)
-* [Bartender](https://www.macbartender.com/)
+* [Ice](https://github.com/jordanbaird/Ice)
 * [CleanShot](https://cleanshot.com/)
 * [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
 
 * TheIne
-* Obinskit
-* NoteBurner
-* LogiOoptions+
+* LogiOptions+
 * Kindle
 * Final Cut Pro
 
-* Affinity Photo
-* Affinity Designer
-* Affinity Publisher
+* Affinity
 * Adobe Acrobat
 * NoteBurner
 * XCode
