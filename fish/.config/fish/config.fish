@@ -67,7 +67,6 @@ if status is-interactive
   function update --description 'update all CLI tools'
     switch (uname)
       case "Darwin"
-        echo "=> Updating Brew..."
         brew update; brew upgrade; brew upgrade --cask; brew autoremove
       end
 
