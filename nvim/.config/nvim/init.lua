@@ -624,7 +624,16 @@ require("lazy").setup({
             require('hex').setup()
         end,
     },
-    { "cohama/lexima.vim" },
+    {
+        "cohama/lexima.vim",
+        config = function()
+            -- Disable lexima's default <Tab> mapping to let tabout handle it
+            vim.g.lexima_no_default_rules = 0
+            vim.g.lexima_enable_basic_rules = 1
+            vim.g.lexima_enable_newline_rules = 1
+            vim.g.lexima_enable_endwise_rules = 1
+        end,
+    },
     {
         'abecodes/tabout.nvim',
         lazy = false,
@@ -646,8 +655,11 @@ require("lazy").setup({
                     { open = '{', close = '}' },
                     { open = '<', close = '>' }
                 },
+                opt = true,  -- Set this to true if the plugin is optional
+                event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
                 ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-                exclude = {} -- tabout will ignore these filetypes
+                enable_backwards = true,
+                exclude = {}, -- tabout will ignore these filetypes
             }
         end,
         dependencies = { -- These are optional
