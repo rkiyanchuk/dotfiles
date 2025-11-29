@@ -28,6 +28,7 @@ brew "glances"
 brew "neovim"
 brew "tmux"
 brew "tree"
+brew "grc"
 
 brew "bzip2"
 brew "openssh"
