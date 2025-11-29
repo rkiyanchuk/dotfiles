@@ -40,7 +40,7 @@ Brewfile.lock.json
 # Fish
 fish/.config/fish/completions/
 fish/.config/fish/fish_variables
-fish/.config/fish/functions/
+fish/.config/fish/functions/_*
 fish/.config/fish/conf.d/
 
 # Font build files
