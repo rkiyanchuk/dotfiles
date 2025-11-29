@@ -15,7 +15,6 @@ set --export --global LESS "FRX"
 fish_add_path --global ~/.local/bin           # User executables
 fish_add_path --global ~/.cargo/bin           # Cargo executables
 fish_add_path --global ~/.go           	      # Golang executables
-fish_add_path --global ~/node_modules/.bin    # NPM executables
 fish_add_path --global ~/.claude/local        # Claude code
 
 if test (uname) = "Darwin"
@@ -38,16 +37,16 @@ if status is-interactive; and type -q starship
     starship init fish | source
 end
 
+if status is-interactive; and type -q zoxide
+  zoxide init fish | source
+end
+
 if status is-interactive; and type -q fzf
   # Configure fzf fuzzy finder to use terminal colors.
   set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --color=bg+:#292E42,fg+:7,hl+:4 --color=info:6,prompt:6,pointer:5"
 
   # Disable default Ctrl-R binding of fzf to avoid conflict with fish's own Ctrl-R history search.
   fzf --fish | FZF_CTRL_R_COMMAND= source
-end
-
-if status is-interactive; and type -q zoxide
-  zoxide init fish | source
 end
 
 # ALIASES
@@ -57,48 +56,12 @@ alias ll="ls -al"
 alias dud="du -hd1"
 alias vim="nvim"
 alias java_home="/usr/libexec/java_home"
-alias fish_reload="source ~/.config/fish/config.fish"
+alias fish-reload="source ~/.config/fish/config.fish"
+alias brew-recent="brew list -tr --installed-on-request"
 # Use `jq` with both JSON and non-JSON lines, dropping non-JSON.
 alias jqq="jq -R 'fromjson? | select(type == \"object\")'"
 # Use `jq` with both JSON and non-JSON lines, preserving non-JSON.
 alias jqr="jq -R -r '. as \$line | try fromjson catch \$line'"
-
-
-# FUNCTIONS
-if status is-interactive; and type -q python
-  function urldecode --description "decode URL string"
-    python -c "import urllib.parse as url; print(url.unquote('$argv[1]'))"
-  end
-end
-
-if status is-interactive; and type -q tree
-  function tree --wraps='tree --dirsfirst -C' --description 'alias tree=tree --dirsfirst -C'
-    command tree --dirsfirst -C $argv
-  end
-end
-
-if status is-interactive; and type -q python
-  function http-serve --wraps='python -m http.server' --description 'run Python HTTP server in current dir'
-    python -m http.server $argv;
-  end
-end
-
-
-if status is-interactive
-  function ls --wraps='ls --color=auto --group-directories-first' --description 'alias ls=ls --color=auto --group-directories-first'
-      if type -q eza
-        command eza --group-directories-first --group $argv;
-      else
-        command ls --color=auto --group-directories-first $argv;
-      end
-  end
-end
-
-if status is-interactive; and type -q eza
-  function eza --wraps='eza --group-directories-first --group' --description 'alias eza=eza --group-directories-first --group'
-    command eza --group-directories-first --group $argv;
-  end
-end
 
 if status is-interactive
   function update --description 'update all CLI tools'
@@ -107,60 +70,23 @@ if status is-interactive
         echo "=> Updating Brew..."
         brew update; brew upgrade; brew upgrade --cask; brew autoremove
       end
-      # Update Fish plugins via Fisher plugin manager
-      if type -q fisher
-          curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-          echo "=> Updating fish plugins via fisher..."
-          fisher update
+
+      # Ensure Fisher plugin manager is installed
+      if not type -q fisher
+        echo "=> Fisher plugin manager not found!"
+        echo "=> Installing Fisher..."
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
       end
+
+      # Update Fish plugins via Fisher plugin manager
+      echo "=> Updating fish plugins..."
+      fisher update
   end
-end
-
-if status is-interactive; and type -q brew
-  function brew-recent-installs --description 'list all manually installed Brew packages'
-    ls -l --sort time --time modified $(brew --cellar)
-  end
-end
-
-if status is-interactive; and type -q find
-  function pyclean --description "delete all temporary Python files"
-      find . \( -name \*.pyc -o -name \*.pyo -o -name __pycache__ \) -delete
-  end
-end
-
-if status is-interactive; and type -q fzf; and type -q git
-  function __git_branch --description "choose git branch"
-    set branches (git --no-pager branch $argv[1] --format="%(color:blue bold)branch%09%(color:reset)%(refname:short)" | sed '/^\*/d')
-    set target (string join " " $branches)
-    set branch (echo $target | string split " " | fzf --no-hscroll --no-multi --ansi --preview="git hist -n 20 --color --graph {2}")
-    if test -n "$branch"
-      git checkout  (string split \t -f2 $branch | string replace "origin/" "")
-    end
-  end
-end
-
-
-if status is-interactive; and type -q lazygit
-    function gg --description "lazygit"
-        lazygit
-    end
-end
-
-if status is-interactive; and type -q yazi
-    function y --description "yazi file manager"
-        set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
-        if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-            builtin cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
-    end
 end
 
 # BINDINGS
 
-# Select git branch or tag
-bind ctrl-alt-b __git_select_ref_widget
+source $__fish_config_dir/bindings.fish
 
 # Source per-host configurations as well as localhost overrides.
 if status is-interactive
