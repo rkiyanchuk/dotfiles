@@ -200,6 +200,9 @@ require("lazy").setup({
                 sources = {
                     explorer = {
                         diagnostics = true,
+                        layout = {
+                            auto_hide = { "input" },
+                        },
                     },
                     treesitter = {
                         filter = {
