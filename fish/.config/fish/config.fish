@@ -42,8 +42,11 @@ if status is-interactive; and type -q starship
 end
 
 if status is-interactive; and type -q fzf
+  # Configure fzf fuzzy finder to use terminal colors.
+  set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --color=bg+:#292E42,fg+:#C9D1D9,hl+:#58A6FF --color=info:#79C0FF,prompt:#F85149,pointer:#F7768E --color=marker:#3FB950,spinner:#D2A8FF,header:#3FB950"
+
+  # Disable default Ctrl-R binding of fzf to avoid conflict with fish's own Ctrl-R history search.
   fzf --fish | FZF_CTRL_R_COMMAND= source
-  set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --marker='▸' --pointer='•' --color=bg+:#292E42,pointer:#F7768E"
 end
 
 if status is-interactive; and type -q zoxide
