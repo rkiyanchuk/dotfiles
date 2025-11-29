@@ -635,6 +635,7 @@ require("lazy").setup({
         end,
     },
     {
+        -- Tab out of brackets with treesitter.
         'abecodes/tabout.nvim',
         lazy = false,
         config = function()
@@ -667,6 +668,14 @@ require("lazy").setup({
         },
         priority = 1000,
     },
+    {
+        -- tabout of brackets without treesitter.
+        "kawre/neotab.nvim",
+        event = "InsertEnter",
+        opts = {
+            -- configuration goes here
+        },
+    }
 
 }, {
     lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
