@@ -199,15 +199,7 @@ require("lazy").setup({
             picker = {
                 sources = {
                     explorer = {
-                        auto_close = true,
-                        diagnostics = false,
-                        win = {
-                            list = {
-                                keys = {
-                                    ["<C-t>"] = { "tab", mode = { "n", "i" } },
-                                }
-                            }
-                        },
+                        diagnostics = true,
                     },
                     treesitter = {
                         filter = {
@@ -383,22 +375,6 @@ require("lazy").setup({
             vim.keymap.set("v", "<D-/>", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment" })
         end,
     },
-
-    -- Non default colorschemes and their configurations.
-    --    {
-    --       "gbprod/nord.nvim",
-    --       priority = 200,
-    --       opts = {
-    --          diff = { mode = "fg" },
-    --          styles = {
-    --             comments = { italic = false },
-    --          }
-    --       },
-    --       config = function(_, opts)
-    --          require("nord").setup(opts)
-    --          vim.cmd.colorscheme("nord")
-    --       end,
-    --    },
     {
         "folke/tokyonight.nvim",
         lazy = false,
