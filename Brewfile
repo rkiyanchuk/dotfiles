@@ -81,7 +81,6 @@ cask "hoppscotch"
 cask "sage"
 cask "utm"
 cask "visual-studio-code"
-cask "wireshark-app"
 
 # Security
 brew "age"
