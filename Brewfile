@@ -1,11 +1,9 @@
 # Install command:
 # brew bundle install --file=Brewfile
 
-# For im-select
-tap "daipeihust/tap"
-
-# For quarkdown
+tap "daipeihust/tap" # im-select
 tap "quarkdown-labs/quarkdown"
+tap "oven-sh/bun" # fast JavaScript all-in-one toolkit.
 
 # Core CLI tools
 brew "fish"
@@ -55,6 +53,7 @@ cask "key-codes"
 # cask "betterdisplay" # For non-HiDPI monitors
 
 # Dev
+brew "bun"
 brew "cloc"
 brew "cmake"
 brew "cookiecutter"
