@@ -10,6 +10,10 @@
     allowedSignersFile = ~/.ssh/allowed_signers
     program = ssh-keygen
 
+[core]
+    precomposeUnicode = true
+    editor = nvim
+
 [init]
     defaultBranch = main
 
@@ -23,15 +27,10 @@
     helper = !/opt/homebrew/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-    helper =
     helper = !/opt/homebrew/bin/gh auth git-credential
 
 [apply]
     whitespace = warn
-
-[core]
-    precomposeUnicode = true
-    editor = nvim
 
 [help]
     autocorrect = 1
@@ -67,7 +66,6 @@
     date = iso
 
 [pull]
-    rebase = false
     ff = only
 
 [push]
@@ -83,15 +81,16 @@
     enabled = true
 
 [alias]
+    st = status -sb
     br = branch -vv
     bra = branch -avv
     cm = commit -S
     co = checkout
+    sw = switch
     dc = diff --cached
     ds = diff --stat
     ls = ls-files
     mt = mergetool
-    st = status -sb
     uncommit = reset --soft HEAD^
     authors = shortlog -sne
 
@@ -111,16 +110,4 @@
     path = ~/.config/git/config.local
 
 [includeIf "gitdir:~/src/"]
-    path = ~/.config/git/config.src.local
-
-[includeIf "hasconfig:remote.*.url:https://github.com/navancorp/**"]
-    path = ~/.config/git/config.src.local
-
-[includeIf "hasconfig:remote.*.url:*@github.com:navancorp/**"]
-    path = ~/.config/git/config.src.local
-
-[includeIf "hasconfig:remote.*.url:https://github.com/navan-iac/**"]
-    path = ~/.config/git/config.src.local
-
-[includeIf "hasconfig:remote.*.url:*@github.com:navan-iac/**"]
     path = ~/.config/git/config.src.local
