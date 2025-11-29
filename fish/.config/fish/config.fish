@@ -6,9 +6,6 @@ set fish_color_valid_path  # Disable underlining path
 # Customize exa colors
 set -x EXA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
 
-# Configure fzf fuzzy finder to use terminal colors.
-set -x FZF_DEFAULT_OPTS "--color=fg:#C9D1D9,hl:#58A6FF --color=fg+:#C9D1D9,hl+:#58A6FF --color=info:#79C0FF,prompt:#F85149,pointer:#D2A8FF --color=marker:#3FB950,spinner:#D2A8FF,header:#3FB950"
-
 set --export --global VISUAL nvim
 set --export --global EDITOR nvim
 set --export --global CLICOLOR 1  # Turn on colors for some BSD tools
@@ -43,7 +40,7 @@ end
 
 if status is-interactive; and type -q fzf
   # Configure fzf fuzzy finder to use terminal colors.
-  set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --color=bg+:#292E42,fg+:#C9D1D9,hl+:#58A6FF --color=info:#79C0FF,prompt:#F85149,pointer:#F7768E --color=marker:#3FB950,spinner:#D2A8FF,header:#3FB950"
+  set -xg FZF_DEFAULT_OPTS "--style full --height ~80% --tmux 80% --prompt='❯ ' --color=bg+:#292E42,fg+:7,hl+:4 --color=info:6,prompt:6,pointer:5"
 
   # Disable default Ctrl-R binding of fzf to avoid conflict with fish's own Ctrl-R history search.
   fzf --fish | FZF_CTRL_R_COMMAND= source
