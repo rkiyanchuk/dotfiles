@@ -14,6 +14,7 @@ set --export --global LESS "FRX"
 
 fish_add_path --global ~/.local/bin           # User executables
 fish_add_path --global ~/.cargo/bin           # Cargo executables
+fish_add_path --global ~/.bun/bin             # bun (node) executables
 fish_add_path --global ~/.go           	      # Golang executables
 fish_add_path --global ~/.claude/local        # Claude code
 
