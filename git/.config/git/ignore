@@ -1,2 +1,15 @@
+# The Git ignore rules that DO NOT belong to per project '.gitignore'
+
+# operating system/environment
+.DS_Store
+
+# text editors
+.vscode/
+
+# Python
+__pycache__/
+.venv/
+
+# Claud Code
 **/.claude/settings.local.json
 **/CLAUDE.local.md
