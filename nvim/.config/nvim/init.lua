@@ -127,6 +127,7 @@ require("lazy").setup({
                 documentation = { auto_show = true },
                 list = { selection = { preselect = false, auto_insert = false } },
                 menu = {
+                    auto_show = false, -- Don't show menu automatically
                     draw = {
                         columns = {
                             { "kind_icon", "label", "label_description", gap = 1 },
@@ -143,9 +144,13 @@ require("lazy").setup({
                         snippet_indicator = "~",
                     },
                 },
+                trigger = {
+                    show_on_insert_on_trigger_character = false, -- Don't trigger on typing characters
+                },
             },
             keymap = {
                 preset = "default",
+                ["<C-Space>"] = { "show", "fallback" }, -- Trigger completion with CTRL+Space
                 ["<Cr>"] = { "accept", "fallback" },
                 ["<Tab>"] = {
                     function(cmp)
