@@ -91,12 +91,12 @@ else
 fi
 
 if [[ "$context_info" == *"N/A"* ]]; then
-    context_display=" ${BLUE}${DIM}󰳿 0${RESET}"
+    context_display=" ${BLUE}󰳿 0${RESET}"
 else
     context_tokens=$(echo $context_info | cut -d' ' -f 1 | tr -d ',')
     context_tokens_kilo=$(echo "scale=1; $context_tokens / 1000" | bc | sed 's/\.0$//')K
     context_percent=$(echo $context_info | cut -d' ' -f 2 | tr -d '()')
-    context_display=" ${BLUE}${DIM}󰳿 ${context_percent} · ${context_tokens_kilo}${RESET}"
+    context_display=" ${BLUE}󰳿 ${context_percent} · ${context_tokens_kilo}${RESET}"
 fi
 
 # Build the complete status line similar to original
@@ -104,8 +104,8 @@ status_line="${RESET}${BRIGHT_CYAN}${dir_display}${RESET}"
 status_line="${status_line}${BRIGHT_MAGENTA}${git_info}${RESET}"
 status_line="${status_line} · ${YELLOW}${model}${RESET}"
 status_line="${status_line}${output_style}"
+status_line="${status_line}  ${context_display}"
 status_line="${status_line}  ${DIM} ${GREEN}${lines_added}+${WHITE}/${RED}${lines_removed}-${RESET}"
-status_line="${status_line}${context_display}"
 status_line="${status_line}  ${WHITE}${DIM} \$${cost_session}${RESET}"
 status_line="${status_line} ${WHITE}${DIM}󰃭 \$${cost_today}${RESET}"
 
