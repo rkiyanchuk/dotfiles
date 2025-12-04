@@ -3,6 +3,5 @@
     "type": "command",
     "command": "bash ~/.claude/statusline.sh"
   },
-  "alwaysThinkingEnabled": false,
-  "model": "sonnet"
+  "alwaysThinkingEnabled": false
 }
