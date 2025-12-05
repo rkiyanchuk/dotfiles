@@ -235,6 +235,7 @@ require("lazy").setup({
             { "<Leader>G", function() Snacks.gitbrowse() end,                                desc = "Open git browser",                  mode = { "n", "v" } },
             { "'",         function() Snacks.picker.marks() end,                             desc = "Open marks picker" },
             { "<Leader>f", function() Snacks.picker.git_files({ untracked = true }) end,     desc = "Open file picker" },
+            { "<Leader>F", function() Snacks.picker.files() end,                            desc = "Open file picker (all files)" },
             { "<Leader>/", function() Snacks.picker.grep() end,                              desc = "Open search in workspace directory" },
             { "<Leader>b", function() Snacks.picker.buffers() end,                           desc = "Open buffer picker" },
             { "<Leader>.", function() Snacks.picker.grep_word() end,                         desc = "Open search of selection",          mode = { "n", "x" } },
