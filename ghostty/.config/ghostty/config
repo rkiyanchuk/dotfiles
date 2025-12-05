@@ -1,9 +1,8 @@
 # Appearance
 
-#theme = catppuccin-mocha.conf
 theme = TokyoNight Storm
 
-#cursor-color = 74c7ec
+# background = #1e2a3b
 
 font-family = IosevkaTerm Nerd Font Light
 font-size = 16
