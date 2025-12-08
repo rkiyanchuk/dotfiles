@@ -73,6 +73,7 @@ symbol = "  "
 
 [bun]
 format = "[$symbol($version )]($style)"
+symbol = " "
 
 [buf]
 format = "[$symbol($version )]($style)"
