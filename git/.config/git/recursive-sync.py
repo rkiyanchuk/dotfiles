@@ -15,6 +15,7 @@ import subprocess
 import sys
 import textwrap
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Optional, Tuple
@@ -340,8 +341,21 @@ class GitRepoPuller:
             commits_behind=behind,
         )
 
-    def pull_all_repos(self, root_path: Path = Path.cwd()):
-        """Pull all repositories in the given path."""
+    def _print_result(self, result: RepoResult):
+        """Print immediate feedback for a repository result."""
+        if result.status == "updated":
+            print(
+                f"{YELLOW}󰓦 {RESET} {result.path} {GRAY}({len(result.commits_pulled)} commits){RESET}"
+            )
+        elif result.status == "up_to_date":
+            print(f"{GREEN} {RESET} {result.path} {GRAY}(up to date){RESET}")
+        elif result.status == "diverged":
+            print(f"{ORANGE} {RESET} {result.path} {GRAY}(diverged){RESET}")
+        elif result.status == "error":
+            print(f"{RED} {RESET} {result.path} {GRAY}(error){RESET}")
+
+    def pull_all_repos(self, root_path: Path = Path.cwd(), max_workers: Optional[int] = None):
+        """Pull all repositories in the given path concurrently."""
 
         repos = self.find_git_repos(root_path)
 
@@ -349,23 +363,19 @@ class GitRepoPuller:
             print("No git repositories found.")
             return
 
-        print(f"Found {len(repos)} git repositories:")
+        # Use as many workers as repos by default
+        workers = max_workers if max_workers else len(repos)
+        print(f"Found {len(repos)} git repositories...")
 
-        for repo in repos:
-            result = self.update_repo(repo)
-            self.results.append(result)
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            future_to_repo = {
+                executor.submit(self.update_repo, repo): repo for repo in repos
+            }
 
-            # Print immediate feedback
-            if result.status == "updated":
-                print(
-                    f"{YELLOW}󰓦 {RESET} {result.path} {GRAY}({len(result.commits_pulled)} commits){RESET}"
-                )
-            elif result.status == "up_to_date":
-                print(f"{GREEN} {RESET} {result.path} {GRAY}(up to date){RESET}")
-            elif result.status == "diverged":
-                print(f"{ORANGE} {RESET} {result.path} {GRAY}(diverged){RESET}")
-            elif result.status == "error":
-                print(f"{RED} {RESET} {result.path} {GRAY}(error){RESET}")
+            for future in as_completed(future_to_repo):
+                result = future.result()
+                self.results.append(result)
+                self._print_result(result)
 
     def print_summary(self):
         """Print a detailed summary of all operations."""
@@ -442,7 +452,7 @@ def main():
     puller = GitRepoPuller()
 
     try:
-        puller.pull_all_repos(root_path)
+        puller.pull_all_repos(root_path, max_workers=50)
         puller.print_summary()
     except KeyboardInterrupt:
         print(f"\n\n{YELLOW}  Operation cancelled by user{RESET}")
