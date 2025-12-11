@@ -15,7 +15,7 @@ window-subtitle = working-directory
 
 auto-update = check
 macos-auto-secure-input = true
-macos-option-as-alt = true
+macos-option-as-alt = right
 macos-secure-input-indication = true
 macos-titlebar-style = tabs
 maximize = true
