@@ -29,7 +29,6 @@ brew "tree"
 brew "grc"
 
 brew "bzip2"
-brew "openssh"
 brew "poppler"
 brew "rlwrap"
 brew "unzip"
