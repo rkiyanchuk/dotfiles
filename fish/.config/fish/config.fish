@@ -68,7 +68,7 @@ if status is-interactive
   function update --description 'update all CLI tools'
     switch (uname)
       case "Darwin"
-        brew update; brew upgrade; brew upgrade --cask; brew autoremove
+        brew update; brew upgrade; brew upgrade --cask --greedy; brew autoremove
       end
 
       # Ensure Fisher plugin manager is installed
