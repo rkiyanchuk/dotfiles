@@ -96,3 +96,6 @@ if status is-interactive
     end
   end
 end
+
+# Load SSH key autoload function to register event handler
+source $__fish_config_dir/functions/__ssh_agent_load_keys.fish

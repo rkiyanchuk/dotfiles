@@ -132,3 +132,10 @@ stow -Svv neovim starship git fish bat
 sudo chsh <username>
 # /usr/bin/fish
 ```
+
+TODO:
+
+```
+sudo scutil --set HostName "your-new-name"
+sudo scutil --set LocalHostName "your-new-name"
+```

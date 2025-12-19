@@ -41,7 +41,8 @@ Brewfile.lock.json
 fish/.config/fish/completions/
 fish/.config/fish/fish_variables
 fish/.config/fish/functions/_*
-fish/.config/fish/conf.d/
+fish/.config/fish/conf.d/__*
+fish/.config/fish/conf.d/fish-ssh-agent.fish
 
 # Font build files
 _fonts/Iosevka/
@@ -51,6 +52,7 @@ _fonts/dist
 # SSH
 **/.ssh/id_*
 **/.ssh/environment
+**/.ssh/known_hosts
 
 # Git
 gh/.config/gh/hosts.yml
