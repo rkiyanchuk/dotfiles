@@ -345,7 +345,7 @@ class GitRepoPuller:
         """Print immediate feedback for a repository result."""
         if result.status == "updated":
             print(
-                f"{YELLOW}󰓦 {RESET} {result.path} {GRAY}({len(result.commits_pulled)} commits){RESET}"
+                f"{YELLOW} {RESET} {result.path} {GRAY}({len(result.commits_pulled)} commits){RESET}"
             )
         elif result.status == "up_to_date":
             print(f"{GREEN} {RESET} {result.path} {GRAY}(up to date){RESET}")
@@ -386,7 +386,7 @@ class GitRepoPuller:
         error_repos = [r for r in self.results if r.status == "error"]
 
         if updated_repos:
-            print(f"\n󰓦 UPDATED REPOSITORIES ({len(updated_repos)})")
+            print(f"\n UPDATED REPOSITORIES ({len(updated_repos)})")
             print("-" * 40)
             for repo in updated_repos:
                 print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
