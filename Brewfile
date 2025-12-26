@@ -47,9 +47,8 @@ cask "istat-menus"
 cask "ghostty"
 cask "little-snitch"
 cask "logi-options+"
-cask "monitorcontrol"
 cask "key-codes"
-# cask "betterdisplay" # For non-HiDPI monitors
+cask "betterdisplay"
 
 # Dev
 brew "bun"
