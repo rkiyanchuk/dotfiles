@@ -65,13 +65,11 @@ brew "golangci-lint"
 brew "gosec"
 brew "httpie"
 brew "iperf"
-brew "nvm"
 brew "ruff"
 brew "tectonic"
 brew "uv"
 
 cask "dash"
-cask "intellij-idea-ce"
 cask "orbstack"
 cask "hoppscotch"
 cask "sage"
@@ -107,7 +105,6 @@ cask "dictionaries"
 cask "elmedia-player"
 cask "obs"
 cask "the-unarchiver"
-
 
 # Misc
 cask "discord"
