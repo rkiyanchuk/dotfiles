@@ -54,9 +54,11 @@ cd dotfiles
 just
 ```
 
-### Additional macOS Setup
+### Additional Setup
 
-Set custom hostname with:
+Install custom Iosevka font build from repo: [rkiyanchuk/font-iosevka-custom](https://github.com/rkiyanchuk/font-iosevka-custom).
+
+Set custom hostname on macOS with:
 
 ```sh
 just set-hostname ${hostname}
