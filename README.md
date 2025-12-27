@@ -22,120 +22,42 @@ GNU [Stow](https://www.gnu.org/software/stow/) is used to install the packages.
 
 ## Setup
 
-Install Homebrew:
+Go to `$HOME` dir.
+
+On APT based systems (Ubuntu, Debian, Kali):
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Clone dotfiles repository:
-
-```bash
-git clone http://github.com/rkiyanchuk/dotfiles && cd dotfiles
-```
-
-Install dependencies in Brewfile:
-
-```sh
-brew bundle install
-```
-
-Run `stow` with dotfiles bundle you want to use:
-
-```bash
-stow -t ~ {bundle}
-```
-
-where `{bundle}` is a bundle to install (e.g. `bash` or `vim`).
-
-Install dotfiles:
-
-```sh
-# CLI-only
-stow --dotfiles -t ~ -Svv bat fish git grc nvim shells ssh starship tmux yazi
-
-# Desktop
-stow -t ~ --no-folding -Svv ghostty claude gh
-```
-
-Configure Fish shell:
-
-```sh
-echo $(which fish) | sudo tee -a /etc/shells
-chsh -s $(which fish)
-```
-
-Update Fish shell:
-
-```sh
-❯ update
-```
-
-Install `pynvim` for neovim:
-
-```sh
-uv tool install --upgrade pynvim
-```
-
-Configure tmux.
-
-Install tmux plugin manager:
-
-```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-Fix tmux terminfo (still necessary?).
-
-```sh
-curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
-/usr/bin/tic -xe tmux-256color terminfo.src
-```
-
-Enable key repeat:
-
-```sh
-defaults write -g ApplePressAndHoldEnabled -bool false
-```
-
-### Caveats
-
-* Podman, fix to run x86 images: https://github.com/containers/podman/discussions/12899
-
-### Additional software
-
-* [Monitor Control](https://monitorcontrol.app)
-* [iState Menus](https://bjango.com/mac/istatmenus/)
-* [Ice](https://github.com/jordanbaird/Ice)
-* [CleanShot](https://cleanshot.com/)
-* [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
-
-* TheIne
-* LogiOptions+
-* Kindle
-* Final Cut Pro
-
-* Affinity
-* Adobe Acrobat
-* NoteBurner
-* XCode
-
-## Setup in container
-
-```sh
-sudo pacman -Syu
-sudo pacman -Syu neovim git stow fish starship eza
-#sudo apt install git fish neovim stow starship
+sudo apt install just git
 git clone https://github.com/rkiyanchuk/dotfiles
 cd dotfiles
-stow -Svv neovim starship git fish bat
-sudo chsh <username>
-# /usr/bin/fish
+just
 ```
 
-TODO:
+On ArchLinux:
 
+```sh
+sudo pacman -S just git
+git clone https://github.com/rkiyanchuk/dotfiles
+cd dotfiles
+just
 ```
-sudo scutil --set HostName "your-new-name"
-sudo scutil --set LocalHostName "your-new-name"
+
+On macOS:
+
+```sh
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install just
+git clone https://github.com/rkiyanchuk/dotfiles
+cd dotfiles
+just
+```
+
+### Additional macOS Setup
+
+Set custom hostname with:
+
+```sh
+just set-hostname ${hostname}
 ```
