@@ -8,12 +8,17 @@ orange := '\033[0;33m'
 green := '\033[0;32m'
 reset := '\033[0m'
 
+deps_arch := "bat eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
+deps_ubuntu := "bat eza fd-find fish fzf git grc neovim ripgrep snapd starship stow tmux"
+
+
+# Detect the current OS
+os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") == "true" { "arch" } else { "ubuntu" }
+
 # Default recipe: run full setup for current OS
 default: setup
     @echo -e "{{ green }}==> Dotfiles installed!{{ reset }}"
 
-# Detect the current OS
-os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") == "true" { "arch" } else { "ubuntu" }
 
 # CLI packages to install via stow
 cli_packages := "bat fish git gh grc nvim ssh starship tmux yazi"
@@ -46,15 +51,15 @@ install-deps:
         arch)
             echo -e "{{ orange }}==> Installing packages via pacman...{{ reset }}"
             sudo pacman -Syu --noconfirm
-            sudo pacman -S --needed --noconfirm neovim git stow fish starship eza bat fd ripgrep fzf tmux yazi grc
+            sudo pacman -S --needed --noconfirm {{ deps_arch }}
             ;;
         ubuntu)
             echo -e "{{ orange }}==> Installing packages via apt...{{ reset }}"
-            sudo apt update && sudo apt upgrade -y
-            sudo apt install -y neovim git stow fish bat fd-find ripgrep fzf tmux grc
+            sudo apt update && sudo apt upgrade -y {{ deps_ubuntu }}
+            sudo apt install -y {{ deps_ubuntu }}
             # Starship needs to be installed separately on Ubuntu
             if ! command -v starship &> /dev/null; then
-                curl -sS https://starship.rs/install.sh | sh -s -- -y
+                sudo snap install --edge starship
             fi
             ;;
     esac
@@ -84,7 +89,7 @@ configure-shell:
     fi
     if [[ "$SHELL" != "$FISH_PATH" ]]; then
         echo -e "{{ orange }}==> Setting Fish as default shell...{{ reset }}"
-        chsh -s "$FISH_PATH"
+        sudo chsh -s "$FISH_PATH"
     fi
 
 # Install pynvim for Neovim Python support
