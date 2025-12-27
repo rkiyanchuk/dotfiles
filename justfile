@@ -21,7 +21,7 @@ default: setup
 
 
 # CLI packages to install via stow
-cli_packages := "bat fish git gh grc nvim ssh starship tmux yazi"
+cli_packages := "bat fish git gh grc nvim starship tmux yazi"
 
 # Desktop packages to install via stow (macOS only)
 desktop_packages := "ghostty claude"
@@ -31,6 +31,7 @@ setup: install-deps install-cli configure-shell install-nvim-deps install-tmux
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
+        stow --dotfiles -t ~ --no-folding -Svv ssh
         just install-desktop
         just enable-key-repeat
     fi
