@@ -31,9 +31,8 @@ symbol = " "
 format = '([$all_status$ahead_behind]($style) )'
 style = "red"
 deleted = "×"
-modified = "±"
-untracked = "?"
-stashed = "·"
+modified = " "
+stashed = "⚪︎"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
