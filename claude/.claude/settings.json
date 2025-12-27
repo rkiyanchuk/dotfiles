@@ -1,6 +1,22 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__voicemode__converse"
+    ]
+  },
   "model": "opus",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__voicemode__converse",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "voice-mode whisper start; voice-mode kokoro start"
+          }
+        ]
+      }
+    ],
     "SessionEnd": [
       {
         "matcher": "*",
@@ -11,23 +27,7 @@
           }
         ]
       }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "mcp__voicemode__converse",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "voice-mode kokoro start; voice-mode whisper start"
-          }
-        ]
-      }
     ]
-  },
-  "permissions": {
-    "allow": [
-      "mcp__voicemode__converse"
-      ]
   },
   "statusLine": {
     "type": "command",
