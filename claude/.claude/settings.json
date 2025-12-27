@@ -1,8 +1,37 @@
 {
+  "model": "opus",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "voice-mode whisper stop; voice-mode kokoro stop"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "mcp__voicemode__converse",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "voice-mode kokoro start; voice-mode whisper start"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "mcp__voicemode__converse"
+      ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline.sh"
   },
-  "alwaysThinkingEnabled": false,
-  "model": "opus"
+  "alwaysThinkingEnabled": false
 }
