@@ -41,12 +41,6 @@ Brewfile.lock.json
 fish/.config/fish/completions/
 fish/.config/fish/fish_variables
 fish/.config/fish/functions/_*
-<<<<<<< HEAD
-fish/.config/fish/conf.d/*
-=======
-fish/.config/fish/conf.d/__*
-fish/.config/fish/conf.d/fish-ssh-agent.fish
->>>>>>> de209e4 (fish: auto-load SSH keys into agent)
 
 # Font build files
 _fonts/Iosevka/
