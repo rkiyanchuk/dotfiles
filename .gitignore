@@ -41,6 +41,8 @@ Brewfile.lock.json
 fish/.config/fish/completions/
 fish/.config/fish/fish_variables
 fish/.config/fish/functions/_*
+fish/.config/fish/conf.d/nvm.fish
+fish/.config/fish/conf.d/sdk.fish
 
 # Font build files
 _fonts/Iosevka/
