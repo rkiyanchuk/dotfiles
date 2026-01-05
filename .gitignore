@@ -43,6 +43,7 @@ fish/.config/fish/fish_variables
 fish/.config/fish/functions/_*
 fish/.config/fish/conf.d/nvm.fish
 fish/.config/fish/conf.d/sdk.fish
+fish/.config/fish/config.NVN*.fish
 
 # Font build files
 _fonts/Iosevka/
