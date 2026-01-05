@@ -32,7 +32,7 @@ format = '([$all_status$ahead_behind]($style) )'
 style = "red"
 deleted = "×"
 modified = " "
-stashed = "⚪︎"
+stashed = "⋅"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
