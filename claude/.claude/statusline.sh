@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Status line command for Claude Code
+# Displays:
+# dotfiles/subdir  work  · model-id  󰳿 0%   +3/-2   $0.46
+
 # Color variables
 BLACK="\033[30m"
 RED="\033[31m"
@@ -43,73 +47,67 @@ STRIKETHROUGH="\033[9m"
 # Reset
 RESET="\033[0m"
 
-claude_context_tokens_limit=200000
+# Constants
+DEFAULT_CONTEXT_WINDOW_SIZE=200000
+TOKENS_PER_MILLION=1000000
 
-# Read JSON input from stdin
+set -euo pipefail
+
 input=$(cat)
 
-# Get Claude Code session info
-session_id=$(echo "$input" | jq -r '.session_id // "unknown"')
-model=$(echo "$input" | jq -r '.model.display_name')
-cwd=$(echo "$input" | jq -r '.cwd')
-project_dir=$(echo "$input" | jq -r '.workspace.project_dir')
-output_style=$(echo "$input" | jq -r '.output_style.name')
-lines_added=$(echo "$input" | jq -r '.cost.total_lines_added // 0')
-lines_removed=$(echo "$input" | jq -r '.cost.total_lines_removed // 0')
+# Extract workspace information
+current_dir=$(jq -r '.workspace.current_dir // .cwd' <<< "$input")
+model_id=$(jq -r '.model.id' <<< "$input")
 
-today=$(date +%Y%m%d)
+# Initialize context variables
+context_pct=0
 
-session_data=$(echo "$input" | bun x ccusage@latest session --json --id $session_id  --cost-source cc)
-cost_session=$(printf "%.2f" $(echo "$session_data" | jq .totalCost))
-cost_today=$(printf "%.2f" $(echo "$input" | bun x ccusage@latest daily --json --since $today --cost-source cc | jq '.daily[].totalCost'))
-
-context_info=$(echo "$input" | bun x ccusage@latest statusline --cost-source cc | cut -d'🧠' -f 2)
-
-# Directory
-if [[ "$project_dir" == "$HOME" ]]; then
-    dir_display="~"
-elif [[ "$project_dir" == "$HOME"/* ]]; then
-    dir_display="~/${project_dir#$HOME/}"
-else
-    dir_display="$project_dir"
+# Calculate context usage
+usage=$(jq '.context_window.current_usage' <<< "$input")
+if [[ "$usage" != "null" && -n "$usage" ]]; then
+    # Sum all input tokens for current context
+    current_tokens=$(jq '(.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0)' <<< "$usage")
+    window_size=$(jq ".context_window.context_window_size // $DEFAULT_CONTEXT_WINDOW_SIZE" <<< "$input")
+    context_pct=$((current_tokens * 100 / window_size))
 fi
 
-# Git
-if git rev-parse --git-dir >/dev/null 2>&1; then
-    branch=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-    if [[ -n "$branch" ]]; then
-        git_info=$' '" ${branch}"
-        dir_display=$(basename "$project_dir")
-    fi
+# Get session cost from Claude Code's pre-calculated value
+session_cost_usd=$(jq '.cost.total_cost_usd // 0' <<< "$input")
+session_cost=$(printf "%.2f" "$session_cost_usd")
+
+# Get git info if in a git repository
+git_branch=""
+lines_added=0
+lines_removed=0
+if git -C "$current_dir" rev-parse --git-dir >/dev/null 2>&1; then
+    # Get current branch name
+    git_branch=$(git -C "$current_dir" branch --show-current 2>/dev/null || echo "")
+
+    # Count lines added and removed (unstaged changes only)
+    while IFS=$'\t' read -r added removed _file; do
+        [[ "$added" =~ ^[0-9]+$ ]] && ((lines_added += added))
+        [[ "$removed" =~ ^[0-9]+$ ]] && ((lines_removed += removed))
+    done < <(git -C "$current_dir" diff --numstat 2>/dev/null)
 fi
 
-# Output style
-if [ "$output_style" == "default" ]; then
-    output_style=""
-else
-    output_style=" : ${GREEN}${output_style}${RESET}"
+# Shorten home directory to ~ and show only last 2 directory levels
+temp_dir="${current_dir/#$HOME/~}"
+# Extract last 2 directory levels
+display_dir=$(echo "$temp_dir" | awk -F'/' '{
+    if (NF <= 2) print $0
+    else print $(NF-1) "/" $NF
+}')
+
+# Build status line string
+status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
+[[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
+status_line+=" · ${YELLOW}${model_id}${RESET}  ${BLUE}󰳿 ${context_pct}%${RESET}"
+
+if ((lines_added > 0 || lines_removed > 0)); then
+    status_line+="  ${DIM}${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
 fi
 
-if [[ "$context_info" == *"N/A"* ]]; then
-    context_display=" ${BLUE}󰳿 0${RESET}"
-else
-    context_tokens=$(echo $context_info | cut -d' ' -f 1 | tr -d ',')
-    context_tokens_kilo=$(echo "scale=1; $context_tokens / 1000" | bc | sed 's/\.0$//')K
-    context_percent=$(echo $context_info | cut -d' ' -f 2 | tr -d '()')
-    context_display=" ${BLUE}󰳿 ${context_percent} · ${context_tokens_kilo}${RESET}"
-fi
+status_line+="  ${WHITE}${DIM}\$${session_cost}${RESET}"
 
-# Build the complete status line similar to original
-status_line="${RESET}${BRIGHT_CYAN}${dir_display}${RESET}"
-status_line="${status_line}${BRIGHT_MAGENTA}${git_info}${RESET}"
-status_line="${status_line} · ${YELLOW}${model}${RESET}"
-status_line="${status_line}${output_style}"
-status_line="${status_line}  ${context_display}"
-status_line="${status_line}  ${DIM} ${GREEN}${lines_added}+${WHITE}/${RED}${lines_removed}-${RESET}"
-status_line="${status_line}  ${WHITE}${DIM} \$${cost_session}${RESET}"
-status_line="${status_line} ${WHITE}${DIM}󰃭 \$${cost_today}${RESET}"
-
-echo -e "$status_line"
-
-# Debug:
-# echo -e "| ccusage statusline: $(echo $input | bun x ccusage@latest statusline --cost-source cc)"
+# Output status line
+printf "%b" "$status_line"
