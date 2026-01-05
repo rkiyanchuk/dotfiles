@@ -59,6 +59,17 @@ input=$(cat)
 current_dir=$(jq -r '.workspace.current_dir // .cwd' <<< "$input")
 model_id=$(jq -r '.model.id' <<< "$input")
 
+# Convert model ID to friendly display name
+# claude-sonnet-4-5-20250929 → Sonnet 4.5
+# claude-opus-4-5-20251101 → Opus 4.5
+if [[ "$model_id" =~ ^claude-([a-z]+)-([0-9]+-[0-9]+) ]]; then
+    model_name="${BASH_REMATCH[1]^}"  # Capitalize first letter
+    model_version="${BASH_REMATCH[2]//-/.}"  # Replace dash with dot
+    model_display="$model_name $model_version"
+else
+    model_display="$model_id"
+fi
+
 # Initialize context variables
 context_pct=0
 
@@ -101,7 +112,7 @@ display_dir=$(echo "$temp_dir" | awk -F'/' '{
 # Build status line string
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 [[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
-status_line+=" · ${YELLOW}${model_id}${RESET}  ${BLUE}󰳿 ${context_pct}%${RESET}"
+status_line+=" ${DIM}·${RESET} ${YELLOW}${model_display}${RESET}  ${BLUE}󰳿 ${context_pct}%${RESET}"
 
 if ((lines_added > 0 || lines_removed > 0)); then
     status_line+="  ${DIM}${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
