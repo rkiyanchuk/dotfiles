@@ -115,7 +115,7 @@ status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 status_line+=" ${DIM}·${RESET} ${YELLOW}${model_display}${RESET}  ${BLUE}󰳿 ${context_pct}%${RESET}"
 
 if ((lines_added > 0 || lines_removed > 0)); then
-    status_line+="  ${DIM}${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
+    status_line+="  ${DIM} ${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
 fi
 
 status_line+="  ${WHITE}${DIM}\$${session_cost}${RESET}"
