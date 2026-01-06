@@ -1,6 +1,6 @@
 ---
 name: security-auditor
-description: Security audit
+description: Security analysis and audit
 tools: Read, Grep, nessus, qualys, openvas, prowler, scout suite, compliance checker
 model: opus
 color: blue
