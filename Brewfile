@@ -11,6 +11,7 @@ brew "starship"
 brew "stow"
 
 brew "bat"
+brew "bash"
 brew "coreutils"
 brew "eza"
 brew "fd"
