@@ -28,6 +28,7 @@ if test (uname) = "Darwin"
     fish_add_path --global /opt/homebrew/bin/     # packages installed by homebrew
     fish_add_path --global /opt/homebrew/sbin     # packages installed by homebrew
     fish_add_path "/Applications/IntelliJ IDEA.app/Contents/MacOS" # Add IntelliJ IDEA
+    fish_add_path --prepend --move (brew --prefix uutils-coreutils)/libexec/uubin # Add uutils coreutils to PATH, ensuring it takes precedence over macOS built-ins
 
     # Added by OrbStack: command-line tools and integration
     source ~/.orbstack/shell/init2.fish 2>/dev/null || :

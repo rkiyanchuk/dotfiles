@@ -12,7 +12,7 @@ brew "stow"
 
 brew "bat"
 brew "bash"
-brew "coreutils"
+brew "uutils-coreutils"
 brew "eza"
 brew "fd"
 brew "fzf"
