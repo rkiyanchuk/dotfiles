@@ -58,7 +58,6 @@ install-deps:
             sudo apt install -y {{ deps_ubuntu }}
             # Install uv via Astral
             curl -LsSf https://astral.sh/uv/install.sh | sh
-            source ~/.local/bin/env
             # Starship needs to be installed separately on Ubuntu
             if ! command -v starship &> /dev/null; then
                 curl -sS https://starship.rs/install.sh | sh -s -- -y -b ~/.local/bin
