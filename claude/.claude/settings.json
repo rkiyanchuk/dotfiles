@@ -1,5 +1,9 @@
 {
-  "permissions": {},
+  "permissions": {
+    "allow": [
+      "WebSearch"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
