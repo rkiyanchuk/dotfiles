@@ -34,8 +34,5 @@
     "learning-output-style@claude-plugins-official": false,
     "playwright@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true
-  },
-  "syntaxHighlightingDisabled": false,
-  "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": false
+  }
 }
