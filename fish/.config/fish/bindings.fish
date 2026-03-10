@@ -6,5 +6,5 @@ if status is-interactive; and type -q fzf; and type -q git
     end
 
     # Select git branch or tag
-    bind ctrl-alt-b __git_select_ref_widget
+    bind ctrl-g __git_select_ref_widget
 end
