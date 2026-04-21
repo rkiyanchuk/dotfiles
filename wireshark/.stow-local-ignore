@@ -1,0 +1,4 @@
+^\.config/wireshark/recent$
+^\.config/wireshark/recent_common$
+^\.config/wireshark/language$
+^\.config/wireshark/profiles
