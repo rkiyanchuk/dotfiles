@@ -31,7 +31,6 @@
     "command": "bash ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "clangd-lsp@claude-plugins-official": false,
     "context7@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": false,

@@ -139,7 +139,6 @@ plugins-claude:
     #!/usr/bin/env bash
     set -euo pipefail
     echo -e "{{ orange }}==> Installing Claude Code plugins...{{ reset }}"
-    claude plugin install clangd-lsp@claude-plugins-official
     claude plugin install context7@claude-plugins-official
     claude plugin install firecrawl@claude-plugins-official
     claude plugin install gopls-lsp@claude-plugins-official
