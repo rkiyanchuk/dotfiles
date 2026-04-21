@@ -98,7 +98,6 @@ cask "taskexplorer" # Supercharged Activity monitor
 cask "knockknock" # KnockKnock uncovers persistently installed software in order to generically reveal such malware
 
 # Media
-brew "qrencode"
 brew "imagemagick"
 cask "calibre"
 cask "dictionaries"
