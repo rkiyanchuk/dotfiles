@@ -600,6 +600,36 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 })
 
 
+-- INPUT METHOD
+
+-- Restore the non-ASCII input method on InsertEnter, switch back to ASCII on
+-- InsertLeave, so normal-mode commands always work regardless of system layout.
+do
+    local default_im = "com.apple.keylayout.PolishPro"
+    local im_select = "/opt/homebrew/bin/im-select"
+    local im_current = default_im
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        callback = function()
+            vim.fn.jobstart({ im_select }, {
+                stdout_buffered = true,
+                on_stdout = function(_, data)
+                    local im = vim.trim(table.concat(data))
+                    if im ~= "" then im_current = im end
+                    vim.fn.jobstart({ im_select, default_im })
+                end,
+            })
+        end,
+    })
+    vim.api.nvim_create_autocmd("InsertEnter", {
+        callback = function()
+            if im_current ~= default_im then
+                vim.fn.jobstart({ im_select, im_current })
+            end
+        end,
+    })
+end
+
+
 -- CLIPBOARD
 
 -- When running NeoVim over SSH or in a Linux container, system clipboard
