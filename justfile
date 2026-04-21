@@ -64,7 +64,7 @@ deps:
     esac
 
 # Stow all dotfiles packages
-config: config-cli config-gui
+config: config-cli config-gui plugins
 
 # Stow CLI dotfiles
 config-cli:
