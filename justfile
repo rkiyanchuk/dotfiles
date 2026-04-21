@@ -119,7 +119,7 @@ plugins: plugins-tmux plugins-yazi plugins-claude plugins-nvim
 plugins-tmux:
     #!/usr/bin/env bash
     set -euo pipefail
-    TPM_DIR="$HOME/.tmux/plugins/tpm"
+    TPM_DIR="$HOME/.config/tmux/plugins/tpm"
     if [[ ! -d "$TPM_DIR" ]]; then
         echo -e "{{ orange }}==> Installing tmux plugin manager...{{ reset }}"
         git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
