@@ -39,6 +39,7 @@ brew "unzip"
 brew "ldns"
 brew "mtr"
 brew "wget"
+cask "wireshark"
 
 # System tools
 brew "im-select"
