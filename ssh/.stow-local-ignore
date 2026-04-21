@@ -1,0 +1,4 @@
+^\.ssh/id_
+^\.ssh/known_hosts
+^\.ssh/environment
+^\.ssh/agent

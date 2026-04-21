@@ -1,0 +1,96 @@
+{
+  "env": {
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "WebFetch",
+      "WebSearch",
+      "WebFetch(domain:api.github.com)",
+      "mcp__github__get_file_contents",
+      "mcp__github__get_me",
+      "mcp__github__get_pull_request",
+      "mcp__github__get_repo",
+      "mcp__github__search_code",
+      "mcp__github__search_pull_requests",
+      "WebFetch(domain:just.systems)"
+    ],
+    "defaultMode": "default",
+    "additionalDirectories": [
+      "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
+    ]
+  },
+  "model": "opusplan",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/rename-plan.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": false,
+    "context7@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
+    "lua-lsp@claude-plugins-official": false,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": false,
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "swift-lsp@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": false,
+    "obsidian@obsidian-skills": true,
+    "firecrawl@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": false
+  },
+  "extraKnownMarketplaces": {
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "kepano/obsidian-skills"
+      }
+    },
+    "trailofbits": {
+      "source": {
+        "source": "github",
+        "repo": "trailofbits/skills"
+      }
+    }
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "allowWrite": [
+        "//tmp/build",
+        "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
+      ]
+    }
+  },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Processing"
+    ]
+  },
+  "autoUpdatesChannel": "latest",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "voiceEnabled": true
+}

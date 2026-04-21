@@ -1,0 +1,82 @@
+# Python
+*.pyc
+
+# Tmux
+**/tmux/plugins/
+**/tmux/.tmuxp/*.yml
+
+# Neovim
+.netrwhist
+/nvim/.config/nvim/nvim.log
+/nvim/.config/nvim/spell/
+/nvim/.config/nvim/autoload/
+/nvim/.config/nvim/plugins/
+/nvim/.config/nvim/lazy-lock.json
+
+# yazi
+yazi/.config/yazi/flavors/**
+
+# Vim
+vim/.vim/.netrwhist
+vim/.vim/backups/
+vim/.vim/bundle/
+vim/.vim/session.vim
+vim/.vim/spell/
+vim/.vim/swap/
+vim/.vim/autoload/
+vim/.vim/plugins/
+
+# GnuPG
+gnupg/.gnupg/
+
+# Sage
+sage/.sage/cache
+sage/.sage/R
+sage/.sage/ipython*
+
+# Systemd
+systemd/.config/systemd/user/default.target.wants/
+systemd/.config/systemd/user/sockets.target.wants/
+
+# Brewfile
+Brewfile.lock.json
+
+# Fish
+fish/.config/fish/completions/
+fish/.config/fish/fish_variables
+fish/.config/fish/functions/_*
+fish/.config/fish/functions/fisher.fish
+fish/.config/fish/conf.d/nvm.fish
+fish/.config/fish/conf.d/sdk.fish
+fish/.config/fish/config.NVN*.fish
+
+# Font build files
+_fonts/Iosevka/
+_fonts/nerd-fonts
+_fonts/dist
+
+# SSH
+**/.ssh/id_*
+**/.ssh/environment
+**/.ssh/known_hosts
+
+# Git
+gh/.config/gh/hosts.yml
+
+# AI Assistants
+/.claude/
+**/CLAUDE.local.md
+claude/.claude/debug/
+claude/.claude/file-history/
+claude/.claude/history.jsonl
+claude/.claude/projects/
+claude/.claude/shell-snapshots/
+claude/.claude/todos/
+claude/.claude/statsig/
+claude/.claude/ide/
+claude/.claude/plans/
+.rewrite-mcp/
+
+.DS_Store
+**/.idea/
+**/.vscode/

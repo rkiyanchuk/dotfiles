@@ -1,0 +1,16 @@
+^\.claude/skills
+^\.claude/projects
+^\.claude/sessions
+^\.claude/plugins
+^\.claude/plans
+^\.claude/backups
+^\.claude/cache
+^\.claude/file-history
+^\.claude/image-cache
+^\.claude/paste-cache
+^\.claude/session-env
+^\.claude/shell-snapshots
+^\.claude/statsig
+^\.claude/telemetry
+^\.claude/ide
+^\.claude/history\.jsonl$

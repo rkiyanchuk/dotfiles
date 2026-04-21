@@ -1,0 +1,129 @@
+[user]
+    name = Ruslan Kiyanchuk
+    email = ruslan.kiyanchuk@gmail.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINWqqaPCUVViJ7OEvy5MF6P/lPl9+metJ8WlVlnp7pl2
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
+    program = ssh-keygen
+
+[core]
+    precomposeUnicode = true
+    editor = nvim
+
+[init]
+    defaultBranch = main
+
+[commit]
+    gpgsign = true
+
+[credential "https://github.com"]
+    helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !/opt/homebrew/bin/gh auth git-credential
+
+[apply]
+    whitespace = warn
+
+[help]
+    autocorrect = prompt
+
+[diff]
+    tool = nvimdiff
+    guitool = vscode
+    algorithm = histogram
+    colorMoved = default
+
+[merge]
+    tool = nvimdiff
+    guitool = vscode
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "nvim"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[log]
+    date = iso
+
+[fetch]
+    prune = true
+
+[pull]
+    ff = only
+
+[push]
+    default = current
+    autoSetupRemote = true
+    followTags = true
+
+[rebase]
+    autoStash = true
+    updateRefs = true
+
+[column]
+    ui = auto
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[rerere]
+    enabled = true
+
+[alias]
+    st = status -sb
+    br = branch -vv
+    bra = branch -avv
+    cm = commit
+    co = checkout
+    sw = switch
+    dc = diff --cached
+    ds = diff --stat
+    ls = ls-files
+    mt = mergetool
+    uncommit = reset --soft HEAD^
+    authors = shortlog -sne
+
+    # Rank authors by numbers of commits (don't do it!)
+    contributors = shortlog -sne --group=author --group=trailer:co-authored-by
+
+    hist = log --graph --decorate --date=short --pretty=format:\"%C(blue)%h%Creset %C(dim white)%ad%Creset %s  %C(green)%an%Creset %C(cyan)%d%Creset\"
+    hist-signed = log --graph --decorate --date=short --pretty=format:\"%C(blue)%h%Creset %C(dim white)%ad%Creset %C(red)%G?%Creset %s  %C(green)%an%Creset %C(yellow)%GK%Creset %C(cyan)%d%Creset\"
+    rebase-sign = rebase --exec 'git commit --amend --no-edit -n -S'
+
+    prune-local = !bash -c 'git branch --format \"%(upstream:track)%(refname)\" | grep \"^\\[gone\\]\" | cut -c 18- | xargs git branch -D'
+
+    # Top 20 most-changed files in the last year (high churn = potential risk).
+    stats-hotfiles = !git log --format=format: --name-only --since='1 year ago' | sort | uniq -c | sort -nr | head -20
+
+    # Commit activity grouped by month.
+    stats-activity = !git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+
+    # Reverts, hotfixes, and emergency patches in the last year.
+    stats-hotfixes = !git log --graph --decorate --date=short --pretty=format:\"%C(blue)%h%Creset %C(dim white)%ad%Creset %s  %C(green)%an%Creset %C(cyan)%d%Creset\" --since='1 year ago' --grep='revert' --grep='hotfix' --grep='emergency' --grep='rollback' -i
+
+    # Top 20 files most frequently appearing in bug-fix commits.
+    stats-bugs = !git log -i --grep='fix' --grep='bug' --grep='broken' --name-only --format='' | sort | uniq -c | sort -nr | head -20
+
+    # Recursively pull and update all branches in all repos in current dir.
+    rpull = "! ~/.config/git/recursive-sync.py"
+
+[includeIf "gitdir:~/"]
+    path = ~/.config/git/config.local
+
+[includeIf "gitdir:~/src/"]
+    path = ~/.config/git/config.src.local
