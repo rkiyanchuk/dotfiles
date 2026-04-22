@@ -125,5 +125,5 @@
 [includeIf "gitdir:~/"]
     path = ~/.config/git/config.local
 
-[includeIf "gitdir:~/src/"]
-    path = ~/.config/git/config.src.local
+[includeIf "gitdir:~/workspace/"]
+    path = ~/.config/git/config.workspace.local
