@@ -78,5 +78,7 @@
     "enabled": true,
     "mode": "hold"
   },
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true
 }
