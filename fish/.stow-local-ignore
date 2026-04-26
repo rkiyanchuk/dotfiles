@@ -1,5 +1,6 @@
 ^\.DS_Store$
 ^fish_variables$
+^functions/fisher\.fish$
 ^completions/docker\.fish$
 ^completions/kubectl\.fish$
 ^completions/orbctl\.fish$

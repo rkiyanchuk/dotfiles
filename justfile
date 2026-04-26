@@ -113,7 +113,7 @@ shell:
     fi
 
 # Install all third-party plugins and runtime deps
-plugins: plugins-tmux plugins-yazi plugins-claude plugins-nvim
+plugins: plugins-tmux plugins-yazi plugins-claude plugins-nvim plugins-fish
 
 # Install tmux plugin manager
 plugins-tmux:
@@ -150,6 +150,13 @@ plugins-claude:
     claude plugin install swift-lsp@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
     claude plugin install obsidian@obsidian-skills
+
+# Install Fisher and Fish plugins declared in fish_plugins
+plugins-fish:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo -e "{{ orange }}==> Installing Fisher and Fish plugins...{{ reset }}"
+    fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher update'
 
 # Install pynvim for Neovim Python support
 plugins-nvim:
