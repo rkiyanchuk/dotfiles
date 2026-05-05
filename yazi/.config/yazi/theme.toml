@@ -1,3 +1,7 @@
+[flavor]
+dark  = "onedark"
+light = "onedark"
+
 [icon]
 globs = []
 dirs  = [

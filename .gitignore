@@ -16,6 +16,9 @@
 
 # yazi
 yazi/.config/yazi/flavors/**
+!yazi/.config/yazi/flavors/onedark.yazi/
+!yazi/.config/yazi/flavors/onedark.yazi/flavor.toml
+!yazi/.config/yazi/flavors/onedark.yazi/tmtheme.xml
 
 # Brewfile
 Brewfile.lock.json
