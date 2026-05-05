@@ -737,6 +737,3 @@ conds = [
 ]
 
 # : }}}
-
-[flavor]
-dark = "tokyo-night"

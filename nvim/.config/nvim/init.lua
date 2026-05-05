@@ -95,7 +95,7 @@ vim.keymap.set("v", "<D-/>", "gc",  { remap = true, desc = "Toggle comment" })
 -- PLUGINS
 
 vim.pack.add({
-    { src = 'https://github.com/folke/tokyonight.nvim',              name = 'tokyonight.nvim' },
+    { src = 'https://github.com/navarasu/onedark.nvim',              name = 'onedark.nvim' },
     { src = 'https://github.com/echasnovski/mini.icons',             name = 'mini.icons' },
     { src = 'https://github.com/b0o/SchemaStore.nvim',              name = 'SchemaStore.nvim' },
 
@@ -129,27 +129,22 @@ vim.api.nvim_create_user_command("Update", function()
 end, {})
 
 -- Colorscheme first so subsequent plugins inherit correct colors.
-vim.cmd.packadd("tokyonight.nvim")
+vim.cmd.packadd("onedark.nvim")
 vim.opt.termguicolors = true
 local ok = pcall(function()
-    require("tokyonight").setup({
-        style = "storm", -- storm, night, moon, day
-        transparent = false,
-        terminal_colors = true,
-        styles = {
-            comments = { italic = true },
-            keywords = { italic = false },
-            functions = {},
-            variables = {},
-            sidebars = "dark",
-            floats = "dark",
+    require("onedark").setup({
+        style = "dark",
+        transparent = true,
+        term_colors = true,
+        code_style = {
+            comments = 'italic',
+            keywords = 'none',
+            functions = 'none',
+            variables = 'none',
         },
-        sidebars = { "qf", "help" },
-        hide_inactive_statusline = false,
-        dim_inactive = false,
-        lualine_bold = false,
+        lualine = { transparent = false },
     })
-    vim.cmd.colorscheme("tokyonight-storm")
+    require("onedark").load()
 end)
 if not ok then
     vim.cmd.colorscheme("habamax") -- built-in fallback on first install
@@ -378,31 +373,21 @@ require("aerial").setup({
     show_guides = true,
 })
 
--- Statusline — after aerial and tokyonight.
+-- Statusline — after aerial and onedark.
 vim.cmd.packadd("lualine.nvim")
 local breadcrump_sep = " ⟩ "
 local format_hl = require("lualine.highlight").component_format_highlight
 
-local function get_colors()
-    local colors = {}
-    local ok_tn, tokyonight = pcall(require, 'tokyonight.colors')
-    if ok_tn then
-        local c = tokyonight.setup()
-        colors = {
-            blue   = c.blue,
-            cyan   = c.cyan,
-            black  = c.bg_dark,
-            white  = c.fg,
-            red    = c.red,
-            violet = c.purple,
-            grey   = c.bg_highlight,
-            bg     = c.bg,
-        }
-    end
-    return colors
-end
-
-local colors = get_colors()
+local colors = {
+    blue   = '#61afef',
+    cyan   = '#56b6c2',
+    black  = '#1e2127',
+    white  = '#abb2bf',
+    red    = '#e06c75',
+    violet = '#c678dd',
+    grey   = '#3e4451',
+    bg     = '#282c34',
+}
 
 -- Custom bubbles theme with pill-shaped sections
 local bubbles_theme = {

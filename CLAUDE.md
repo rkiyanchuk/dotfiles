@@ -40,7 +40,7 @@ just shell       # Set Fish as default shell
 
 ### Neovim (`nvim/`)
 
-Single-file config at `nvim/.config/nvim/init.lua` using Neovim's built-in package manager. Theme: Tokyo Night storm. LSP via mason + nvim-lspconfig; completion via blink.cmp.
+Single-file config at `nvim/.config/nvim/init.lua` using Neovim's built-in package manager. Theme: One Dark. LSP via mason + nvim-lspconfig; completion via blink.cmp.
 
 ### Fish shell (`fish/`)
 
