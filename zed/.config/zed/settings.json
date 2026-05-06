@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "buffer_line_height": {
+    "custom": 1.4
+  },
   "collaboration_panel": {
     "dock": "left"
   },
@@ -32,7 +35,7 @@
   "title_bar": {
     "show_menus": false,
     "show_user_picture": false,
-    "show_sign_in": true,
+    "show_sign_in": false,
     "show_onboarding_banner": true,
     "show_project_items": true,
     "show_branch_status_icon": true
@@ -159,7 +162,7 @@
     "button": true,
     "dock": "left",
   },
-  "buffer_font_weight": 300.0,
+  "buffer_font_weight": 250.0,
   "buffer_font_family": "Iosevka Nerd Font",
   "terminal": {
     "toolbar": {
