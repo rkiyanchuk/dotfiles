@@ -16,7 +16,7 @@ deps_ubuntu := "bat eza fd-find fish fzf git grc neovim ripgrep snapd stow tmux"
 packages_cli := "bat fish git gh grc glances nvim starship tmux yazi claude"
 
 # Desktop packages to install via stow (macOS only)
-packages_gui := "ghostty wireshark ssh"
+packages_gui := "ghostty wireshark ssh zed"
 
 # Detect the current OS
 os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") == "true" { "arch" } else { "ubuntu" }

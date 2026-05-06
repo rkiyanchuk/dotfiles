@@ -1,0 +1,185 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent_buffer_font_size": 15.0,
+  "agent_ui_font_size": 17.0,
+  "git": {
+    "inline_blame": {
+      "enabled": false,
+      "min_column": 8,
+      "delay_ms": 0,
+      "show_commit_summary": false
+    }
+  },
+  "proxy": "",
+  "active_pane_modifiers": {
+    "inactive_opacity": 1.0,
+    "border_size": 0.0
+  },
+  "centered_layout": {
+    "left_padding": null
+  },
+  "bottom_dock_layout": "contained",
+  "title_bar": {
+    "show_menus": false,
+    "show_user_picture": false,
+    "show_sign_in": true,
+    "show_onboarding_banner": true,
+    "show_project_items": true,
+    "show_branch_status_icon": true
+  },
+  "status_bar": {
+    "show_active_file": false,
+    "cursor_position_button": true,
+    "active_encoding_button": "non_utf8",
+    "active_language_button": true
+  },
+  "close_on_file_delete": true,
+  "search": {
+    "center_on_match": true,
+    "case_sensitive": false
+  },
+  "diagnostics": {
+    "inline": {
+      "min_column": 8
+    }
+  },
+  "completions": {
+    "lsp_fetch_timeout_ms": 800
+  },
+  "document_folding_ranges": "off",
+  "semantic_tokens": "off",
+  "modeline_lines": 3,
+  "colorize_brackets": true,
+  "middle_click_paste": false,
+  "inlay_hints": {
+    "show_background": true
+  },
+  "use_smartcase_search": true,
+  "indent_guides": {
+    "enabled": true,
+    "background_coloring": "disabled",
+    "coloring": "fixed"
+  },
+  "show_wrap_guides": true,
+  "preferred_line_length": 100,
+  "soft_wrap": "editor_width",
+  "hard_tabs": true,
+  "tab_size": 4,
+  "vim": {
+    "cursor_shape": {
+      "visual": "hollow"
+    },
+    "gdefault": false,
+    "use_smartcase_find": true
+  },
+  "toolbar": {
+    "code_actions": true,
+    "selections_menu": true,
+    "quick_actions": true
+  },
+  "inline_code_actions": false,
+  "show_signature_help_after_edits": false,
+  "auto_signature_help": false,
+  "sticky_scroll": {
+    "enabled": false
+  },
+  "fast_scroll_sensitivity": 3.0,
+  "mouse_wheel_zoom": false,
+  "vertical_scroll_margin": 3.0,
+  "scroll_beyond_last_line": "vertical_scroll_margin",
+  "which_key": {
+    "delay_ms": 500,
+    "enabled": true
+  },
+  "current_line_highlight": "all",
+  "cursor_shape": "bar",
+  "ui_font_weight": 400.0,
+  "icon_theme": "Zed (Default)",
+  "restore_on_startup": "launchpad",
+  "redact_private_values": true,
+  "minimap": {
+    "thumb": "always",
+    "show": "never",
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_tab_bar_buttons": false,
+    "show": true,
+    "show_nav_history_buttons": false,
+  },
+  "tabs": {
+    "show_diagnostics": "off",
+    "file_icons": false,
+    "git_status": true,
+  },
+  "agent": {
+    "thinking_display": "always_collapsed",
+    "play_sound_when_agent_done": "when_hidden",
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry",
+    },
+    "gemini": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "edit_predictions": {
+    "ollama": {
+      "model": "qwen3.5:27b",
+    },
+    "provider": "zed",
+  },
+  "scrollbar": {
+    "show": "system",
+    "axes": {
+      "vertical": true,
+      "horizontal": true
+    },
+    "cursors": false
+  },
+  "project_panel": {
+    "git_status_indicator": false,
+    "button": true,
+    "dock": "left",
+  },
+  "buffer_font_weight": 300.0,
+  "buffer_font_family": "Iosevka Nerd Font",
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false
+    },
+    "font_weight": 300.0,
+    "button": true,
+    "scrollbar": {
+      "show": "auto",
+    },
+    "font_size": 16.0,
+    "font_family": "IosevkaTerm Nerd Font",
+  },
+  "ui_font_family": ".ZedSans",
+  "vim_mode": true,
+  "ui_font_size": 16.0,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+}

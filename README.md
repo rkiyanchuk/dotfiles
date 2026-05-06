@@ -19,6 +19,7 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 | `starship` | Shell prompt |
 | `tmux` | Terminal multiplexer |
 | `yazi` | File manager |
+| `zed` | Editor (macOS) |
 
 ## Setup
 
