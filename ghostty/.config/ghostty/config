@@ -5,7 +5,7 @@ theme = Atom One Dark
 font-family = IosevkaTerm NF Light
 font-size = 16
 
-adjust-cell-height = 4
+adjust-cell-height = 15%
 cursor-style = block
 window-subtitle = working-directory
 
