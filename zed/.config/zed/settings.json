@@ -126,6 +126,9 @@
     "git_status": true,
   },
   "agent": {
+    "message_editor_min_lines": 3,
+    "show_turn_stats": true,
+    "single_file_review": true,
     "thinking_display": "always_collapsed",
     "play_sound_when_agent_done": "when_hidden",
     "dock": "right",
