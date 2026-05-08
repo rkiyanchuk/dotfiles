@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "languages": {
+    "Python": {
+      "show_edit_predictions": true
+    }
+  },
+  "show_edit_predictions": true,
   "buffer_line_height": {
     "custom": 1.4
   },
@@ -147,6 +153,7 @@
     },
   },
   "edit_predictions": {
+    "mode": "subtle",
     "ollama": {
       "model": "qwen3.5:27b",
     },

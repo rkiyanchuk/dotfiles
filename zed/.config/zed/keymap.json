@@ -6,40 +6,52 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    },
-  },
-  {
-    "context": "Editor",
-    "unbind": {
-      "ctrl-alt-right": "editor::MoveToNextSubwordEnd"
-    }
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
-      "ctrl-alt-right": "pane::SplitRight"
-    }
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
-      "ctrl-alt-left": "pane::SplitLeft"
-    }
-  },
-  {
-    "context": "Editor",
-    "unbind": {
-      "ctrl-alt-left": "editor::MoveToPreviousSubwordStart"
-    }
-  }
+	{
+		"context": "Workspace",
+		"bindings": {
+			// "shift shift": "file_finder::Toggle"
+		},
+	},
+	{
+		"context": "Editor && vim_mode == insert",
+		"bindings": {
+			// "j k": "vim::NormalBefore"
+		},
+	},
+	{
+		"context": "Editor",
+		"unbind": {
+			"ctrl-alt-right": "editor::MoveToNextSubwordEnd",
+		},
+	},
+	{
+		"context": "Terminal",
+		"unbind": {
+			"ctrl-alt-right": "pane::SplitRight",
+		},
+	},
+	{
+		"context": "Terminal",
+		"unbind": {
+			"ctrl-alt-left": "pane::SplitLeft",
+		},
+	},
+	{
+		"context": "Editor",
+		"unbind": {
+			"ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
+		},
+	},
+	{
+		"context": "Editor && edit_prediction",
+		"unbind": {
+			"alt-tab": "editor::AcceptEditPrediction",
+			// Add this as well on Windows/Linux
+			// "alt-l": "editor::AcceptEditPrediction",
+			"tab": "editor::AcceptEditPrediction",
+		},
+		"bindings": {
+			"alt-1": "editor::AcceptEditPrediction",
+		},
+	},
 ]
