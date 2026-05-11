@@ -106,6 +106,7 @@ vim.pack.add({
     { src = 'https://github.com/neovim/nvim-lspconfig',             name = 'nvim-lspconfig' },
     { src = 'https://github.com/folke/which-key.nvim',              name = 'which-key.nvim' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim',           name = 'gitsigns.nvim' },
+    { src = 'https://github.com/akinsho/git-conflict.nvim',         name = 'git-conflict.nvim' },
     { src = 'https://github.com/brenoprata10/nvim-highlight-colors', name = 'nvim-highlight-colors' },
     { src = 'https://github.com/tpope/vim-sleuth',                  name = 'vim-sleuth' },
     { src = 'https://github.com/williamboman/mason.nvim',           name = 'mason.nvim' },
@@ -533,6 +534,10 @@ require("gitsigns").setup({
     end,
 })
 
+
+-- Merge-conflict resolution: co/ct/cb/c0 to pick ours/theirs/both/none, ]x/[x to navigate.
+vim.cmd.packadd("git-conflict.nvim")
+require("git-conflict").setup({})
 
 -- Inline color highlighting for CSS/hex color values.
 vim.cmd.packadd("nvim-highlight-colors")
