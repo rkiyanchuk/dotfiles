@@ -10,15 +10,20 @@
     "allow": [
       "Read",
       "WebFetch",
-      "WebSearch",
       "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:just.systems)",
+      "WebSearch",
       "mcp__github__get_file_contents",
       "mcp__github__get_me",
       "mcp__github__get_pull_request",
       "mcp__github__get_repo",
       "mcp__github__search_code",
       "mcp__github__search_pull_requests",
-      "WebFetch(domain:just.systems)"
+      "mcp__new-relic__list_dashboards",
+      "mcp__new-relic__nrql_query",
+      "mcp__new-relic__search_entities",
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__plugin_context7_context7__resolve-library-id"
     ],
     "defaultMode": "default",
     "additionalDirectories": [
