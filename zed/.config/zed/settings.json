@@ -155,9 +155,9 @@
   "edit_predictions": {
     "mode": "subtle",
     "ollama": {
-      "model": "qwen3.5:27b",
+      "model": "DeepSeek-Coder-V2:16b",
     },
-    "provider": "zed",
+    "provider": "copilot",
   },
   "scrollbar": {
     "show": "system",
