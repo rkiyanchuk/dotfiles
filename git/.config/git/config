@@ -34,13 +34,13 @@
 
 [diff]
     tool = nvimdiff
-    guitool = vscode
+    guitool = zed
     algorithm = histogram
     colorMoved = default
 
 [merge]
     tool = nvimdiff
-    guitool = vscode
+    guitool = zed
 
 [mergetool]
     keepBackup = false
@@ -51,8 +51,14 @@
 [mergetool "vscode"]
     cmd = code --wait $MERGED
 
+[mergetool "zed"]
+    cmd = zed --wait $MERGED
+
 [difftool "vscode"]
     cmd = code --wait --diff $LOCAL $REMOTE
+
+[difftool "zed"]
+    cmd = zed --wait --diff $LOCAL $REMOTE
 
 [log]
     date = iso
