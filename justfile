@@ -24,7 +24,7 @@ os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") ==
 export PATH := if os() == "macos" { env("PATH") } else { env("HOME") + "/.local/bin:" + env("PATH") }
 
 # Default recipe: run full setup for current OS
-default: install
+default: config
     @echo -e "{{ green }}==> Dotfiles installed!{{ reset }}"
 
 # Full setup from scratch
