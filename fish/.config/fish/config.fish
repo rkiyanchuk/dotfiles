@@ -53,6 +53,10 @@ if status is-interactive; and type -q fzf
   fzf --fish | FZF_CTRL_R_COMMAND= source
 end
 
+if status is-interactive; and type -q direnv
+  direnv hook fish | source
+end
+
 # ALIASES
 
 alias l="ls -l"

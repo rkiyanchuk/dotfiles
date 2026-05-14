@@ -58,6 +58,17 @@ truncation_length = 2
 truncation_symbol = "…/"
 truncate_to_repo = false
 
+[direnv]
+disabled = false
+symbol = "󰋙 "
+format = '[$symbol$loaded$allowed]($style) '
+style = "purple"
+loaded_msg = "󰔡 "
+unloaded_msg = "󰨙 "
+denied_msg = ""
+allowed_msg = ""
+not_allowed_msg = ""
+
 [battery]
 disabled = true
 
