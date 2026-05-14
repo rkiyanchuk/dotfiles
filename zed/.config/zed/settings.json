@@ -137,7 +137,7 @@
     "single_file_review": true,
     "thinking_display": "always_collapsed",
     "play_sound_when_agent_done": "when_hidden",
-    "dock": "right",
+    "dock": "left",
     "favorite_models": [],
     "model_parameters": [],
   },
