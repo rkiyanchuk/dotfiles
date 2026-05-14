@@ -51,3 +51,23 @@ claude/.claude/ide/
 claude/.claude/plans/
 .rewrite-mcp/
 
+# Obsidian
+obsidian/.obsidian/plugins/text-extractor/cache/**
+obsidian/.obsidian/workspace.json
+obsidian/.obsidian/workspace-mobile.json
+obsidian/.obsidian/graph.json
+obsidian/.obsidian/plugins/recent-files-obsidian/data.json
+obsidian/.obsidian/plugins/omnisearch/data.json
+obsidian/.obsidian/plugins/obsidian-auto-link-title/
+obsidian/.obsidian/plugins/*/main.js
+obsidian/.obsidian/plugins/*/styles.css
+
+# Obsidian mobile
+obsidian/.obsidian-mobile/plugins/text-extractor/cache/**
+obsidian/.obsidian-mobile/workspace.json
+obsidian/.obsidian-mobile/workspace-mobile.json
+obsidian/.obsidian-mobile/graph.json
+obsidian/.obsidian-mobile/plugins/recent-files-obsidian/data.json
+obsidian/.obsidian-mobile/plugins/omnisearch/data.json
+obsidian/.obsidian-mobile/plugins/*/main.js
+obsidian/.obsidian-mobile/plugins/*/styles.css

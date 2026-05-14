@@ -1,0 +1,18 @@
+{
+  "defaultViewMode": "preview",
+  "foldIndent": false,
+  "showLineNumber": false,
+  "showInlineTitle": false,
+  "readableLineLength": true,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "_media",
+  "trashOption": "local",
+  "useMarkdownLinks": true,
+  "vimMode": false,
+  "userIgnoreFilters": [
+    "CLAUDE.md",
+    "archive/"
+  ],
+  "openBehavior": "daily"
+}

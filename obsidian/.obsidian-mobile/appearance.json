@@ -1,0 +1,14 @@
+{
+  "theme": "system",
+  "accentColor": "#429ede",
+  "showRibbon": false,
+  "baseFontSize": 18,
+  "cssTheme": "Baseline",
+  "floatingNavigation": true,
+  "enabledCssSnippets": [],
+  "autoFullScreen": true,
+  "showViewHeader": false,
+  "textFontFamily": "IBM Plex Sans",
+  "monospaceFontFamily": "Iosevka Nerd Font",
+  "translucency": false
+}

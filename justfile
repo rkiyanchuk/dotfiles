@@ -178,3 +178,27 @@ enable-key-repeat:
 set-hostname name:
     sudo scutil --set HostName "{{ name }}"
     sudo scutil --set LocalHostName "{{ name }}"
+
+# Sync Obsidian config between dotfiles and a vault
+# Usage: just obsidian-config push|pull <vault-path>
+obsidian-config direction vault:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    EXCLUDES="--exclude=workspace.json --exclude=workspace-mobile.json"
+    DOTFILES_OBS="$HOME/dotfiles/obsidian"
+    case "{{ direction }}" in
+        push)
+            echo -e "{{ orange }}==> Pushing Obsidian config to {{ vault }}...{{ reset }}"
+            rsync -av $EXCLUDES "$DOTFILES_OBS/.obsidian/" "{{ vault }}/.obsidian/"
+            rsync -av $EXCLUDES "$DOTFILES_OBS/.obsidian-mobile/" "{{ vault }}/.obsidian-mobile/"
+            ;;
+        pull)
+            echo -e "{{ orange }}==> Pulling Obsidian config from {{ vault }}...{{ reset }}"
+            rsync -av $EXCLUDES "{{ vault }}/.obsidian/" "$DOTFILES_OBS/.obsidian/"
+            rsync -av $EXCLUDES "{{ vault }}/.obsidian-mobile/" "$DOTFILES_OBS/.obsidian-mobile/"
+            ;;
+        *)
+            echo "Usage: just obsidian-sync [push|pull] <vault-path>"
+            exit 1
+            ;;
+    esac
