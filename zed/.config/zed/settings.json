@@ -9,6 +9,10 @@
 {
   "cli_default_open_behavior": "new_window",
   "languages": {
+    "Markdown": {
+      "formatter": "language_server",
+      "format_on_save": "on"
+    },
     "Python": {
       "show_edit_predictions": true
     }
