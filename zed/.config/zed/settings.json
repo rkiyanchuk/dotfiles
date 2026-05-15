@@ -1,5 +1,6 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
+    "ui_font_family": ".SystemUIFont",
     "active_pane_modifiers": {
         "border_size": 0.0,
         "inactive_opacity": 1.0,
@@ -128,7 +129,6 @@
     },
     "modeline_lines": 3,
     "mouse_wheel_zoom": false,
-    "multi_cursor_modifier": "cmd_or_ctrl",
     "outline_panel": {
         "dock": "right",
     },
@@ -216,7 +216,7 @@
         "selections_menu": true,
     },
     "ui_font_size": 16.0,
-    "ui_font_weight": 400.0,
+    "ui_font_weight": 250.0,
     "use_smartcase_search": true,
     "vertical_scroll_margin": 3.0,
     "vim": {
