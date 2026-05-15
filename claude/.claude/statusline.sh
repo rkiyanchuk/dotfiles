@@ -189,7 +189,7 @@ fi
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 [[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
-[[ -n "$provider_label" ]] && status_line+=": ${DIM}${provider_label}${RESET}"
+[[ -n "$provider_label" ]] && status_line+=" ${DIM}: ${provider_label}${RESET}"
 [[ -n "$output_style_color" ]] && status_line+=" ${DIM}:${RESET} ${output_style_color}${output_style}${RESET}"
 
 status_line+=" ${DIM}· ${BLUE}󰳿${RESET} $(pct_color "$context_pct")${context_pct}%${RESET}"
