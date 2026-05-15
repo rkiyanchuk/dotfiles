@@ -198,11 +198,11 @@ status_line+=" ${DIM}· ${BLUE}󰳿${RESET} $(pct_color "$context_pct")${context
 if [[ -n "$usage_pct" ]]; then
     usage_int=${usage_pct%.*}
     usage_int=${usage_int:-0}
-    status_line+="  ${DIM}${BLUE} $(pct_color "$usage_int")${usage_int}%${RESET} "
+    status_line+="  ${DIM}${BLUE} $(pct_color "$usage_int")${usage_int}%${RESET}"
 fi
 
 if ((lines_added > 0 || lines_removed > 0)); then
-    status_line+=" ${DIM} ${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
+    status_line+="  ${DIM} ${GREEN}+${lines_added}/${RED}-${lines_removed}${RESET}"
 fi
 
 status_line+="  ${WHITE}${DIM}\$${session_cost}${RESET}"
