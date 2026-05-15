@@ -162,11 +162,35 @@ pct_color() {
     fi
 }
 
+# Output style — last writer wins (project local overrides user)
+output_style=""
+for f in \
+    "$HOME/.claude/settings.json" \
+    "$HOME/.claude/settings.local.json" \
+    "$current_dir/.claude/settings.json" \
+    "$current_dir/.claude/settings.local.json"; do
+    [[ -f "$f" ]] || continue
+    v=$(jq -r '.outputStyle // empty' "$f" 2>/dev/null) || continue
+    [[ -n "$v" ]] && output_style="$v"
+done
+
+# Color by output style value (skipped when default/empty)
+output_style_color=""
+if [[ -n "$output_style" && "$output_style" != "default" ]]; then
+    case "${output_style,,}" in
+        proactive)   output_style_color="\033[38;5;208m" ;;  # orange
+        explanatory) output_style_color="${GREEN}" ;;        # green
+        learning)    output_style_color="${BLUE}" ;;         # blue
+        *)           output_style_color="\033[90m" ;;        # grey
+    esac
+fi
+
 # --- Build line 1 ---
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 [[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
-[[ -n "$provider_label" ]] && status_line+=" ${DIM}${provider_label}${RESET}"
+[[ -n "$provider_label" ]] && status_line+=": ${DIM}${provider_label}${RESET}"
+[[ -n "$output_style_color" ]] && status_line+=" ${DIM}:${RESET} ${output_style_color}${output_style}${RESET}"
 
 status_line+=" ${DIM}· ${BLUE}󰳿${RESET} $(pct_color "$context_pct")${context_pct}%${RESET}"
 
@@ -254,21 +278,7 @@ if [[ "$project_dir/.claude" != "$user_claude_dir" ]]; then
 fi
 claudemd_count=${#claudemd_paths[@]}
 
-# Output style — last writer wins (project local overrides user)
-output_style=""
-for f in \
-    "$HOME/.claude/settings.json" \
-    "$HOME/.claude/settings.local.json" \
-    "$project_dir/.claude/settings.json" \
-    "$project_dir/.claude/settings.local.json"; do
-    [[ -f "$f" ]] || continue
-    v=$(jq -r '.outputStyle // empty' "$f" 2>/dev/null) || continue
-    [[ -n "$v" ]] && output_style="$v"
-done
-
-env_line="${DIM}${claudemd_count} mems ·${rules_count} rules · ${hooks_count} hooks · ${mcp_count} mcps · ${skills_count} skills · ${plugins_count} plugins"
-[[ -n "$output_style" ]] && env_line+=" · style: ${output_style}"
-env_line+="${RESET}"
+env_line="${DIM}${claudemd_count} mems ·${rules_count} rules · ${hooks_count} hooks · ${mcp_count} mcps · ${skills_count} skills · ${plugins_count} plugins${RESET}"
 
 # Output both lines
 printf "%b\n%b" "$status_line" "$env_line"
