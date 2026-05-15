@@ -14,5 +14,5 @@
     "CLAUDE.md",
     "archive/"
   ],
-  "openBehavior": "daily"
+  "openBehavior": "file:"
 }
