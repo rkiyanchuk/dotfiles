@@ -87,7 +87,6 @@
   "show_wrap_guides": true,
   "preferred_line_length": 100,
   "soft_wrap": "editor_width",
-  "hard_tabs": true,
   "tab_size": 4,
   "vim": {
     "cursor_shape": {
