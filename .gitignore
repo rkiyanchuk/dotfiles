@@ -27,7 +27,6 @@ Brewfile.lock.json
 fish/.config/fish/completions/
 fish/.config/fish/conf.d/*
 fish/.config/fish/fish_variables
-fish/.config/fish/functions/*
 
 # SSH
 **/.ssh/id_*
