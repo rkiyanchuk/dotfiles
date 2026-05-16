@@ -184,6 +184,7 @@
         "show_diagnostics": "off",
     },
     "terminal": {
+        "dock": "right",
         "button": true,
         "font_family": "IosevkaTerm Nerd Font",
         "font_size": 16.0,
