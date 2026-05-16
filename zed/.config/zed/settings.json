@@ -53,7 +53,7 @@
     "buffer_font_size": 16.0,
     "buffer_font_weight": 250.0,
     "buffer_line_height": {
-        "custom": 1.4,
+        "custom": 1.55,
     },
     "centered_layout": {
         "left_padding": null,
