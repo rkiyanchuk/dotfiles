@@ -79,6 +79,7 @@
     "command": "bash ~/.claude/statusline.sh",
     "type": "command"
   },
+  "theme": "auto",
   "voice": {
     "enabled": true,
     "mode": "hold"
