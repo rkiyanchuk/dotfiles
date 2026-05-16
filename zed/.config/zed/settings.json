@@ -6,6 +6,7 @@
         "inactive_opacity": 1.0,
     },
     "agent": {
+        "message_editor_min_lines": 3,
         "default_model": {
             "effort": "medium",
             "enable_thinking": true,
