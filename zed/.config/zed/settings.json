@@ -87,7 +87,6 @@
         },
         "provider": "copilot",
     },
-    "family": ".ZedSans",
     "fast_scroll_sensitivity": 3.0,
     "git": {
         "inline_blame": {
