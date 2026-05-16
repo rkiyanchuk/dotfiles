@@ -624,10 +624,10 @@ end
 
 -- COMMIT MESSAGE GENERATION
 
--- In a gitcommit buffer, <Leader>c inserts a Claude-generated commit message
--- at the top of the buffer based on the currently staged diff. The call runs
--- asynchronously so the editor stays responsive; a Braille spinner is shown
--- as virtual text at line 1 to indicate progress.
+-- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a Claude-generated
+-- commit message at the top of the buffer based on the currently staged diff.
+-- The call runs asynchronously so the editor stays responsive; a Braille
+-- spinner is shown as virtual text at line 1 to indicate progress.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
@@ -635,7 +635,7 @@ vim.api.nvim_create_autocmd("FileType", {
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
         local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only."
 
-        vim.keymap.set("n", "<Leader>c", function()
+        local function generate()
             local diff = vim.fn.system("git diff --staged")
             if diff == "" then
                 vim.notify("No staged changes", vim.log.levels.WARN)
@@ -679,7 +679,12 @@ vim.api.nvim_create_autocmd("FileType", {
                     end
                 end)
             end)
-        end, { buffer = args.buf, desc = "Generate commit message with Claude" })
+        end
+
+        vim.keymap.set("n", "<Leader>c", generate,
+            { buffer = args.buf, desc = "Generate commit message with Claude" })
+        vim.api.nvim_buf_create_user_command(args.buf, "CommitMsg", generate,
+            { desc = "Generate commit message with Claude" })
     end,
 })
 
