@@ -622,6 +622,31 @@ do
 end
 
 
+-- COMMIT MESSAGE GENERATION
+
+-- In a gitcommit buffer, <Leader>c inserts a Claude-generated commit message
+-- at the top of the buffer based on the currently staged diff.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "gitcommit",
+    callback = function(args)
+        vim.keymap.set("n", "<Leader>c", function()
+            local diff = vim.fn.system("git diff --staged")
+            if diff == "" then
+                vim.notify("No staged changes", vim.log.levels.WARN)
+                return
+            end
+            local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only."
+            local msg = vim.trim(vim.fn.system({ "claude", "-p", prompt }, diff))
+            if vim.v.shell_error ~= 0 or msg == "" then
+                vim.notify("claude failed to generate commit message", vim.log.levels.ERROR)
+                return
+            end
+            vim.api.nvim_buf_set_lines(0, 0, 0, false, vim.split(msg, "\n"))
+        end, { buffer = args.buf, desc = "Generate commit message with Claude" })
+    end,
+})
+
+
 -- CLIPBOARD
 
 -- When running NeoVim over SSH or in a Linux container, system clipboard
