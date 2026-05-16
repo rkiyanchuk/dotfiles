@@ -1,6 +1,6 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
-    "code_lens": "on",
+    "code_lens": "menu",
     "ui_font_family": ".SystemUIFont",
     "active_pane_modifiers": {
         "border_size": 0.0,
@@ -68,7 +68,7 @@
     "completions": {
         "lsp_fetch_timeout_ms": 800,
     },
-    "current_line_highlight": "all",
+    "current_line_highlight": "line",
     "cursor_shape": "bar",
     "debugger": {
         "dock": "bottom",
