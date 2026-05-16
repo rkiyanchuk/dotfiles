@@ -37,7 +37,7 @@
         "play_sound_when_agent_done": "when_hidden",
         "show_turn_stats": true,
     },
-    "agent_buffer_font_size": 15.0,
+    "agent_buffer_font_size": 16.0,
     "agent_servers": {
         "claude-acp": {
             "type": "registry",
@@ -49,14 +49,12 @@
             "type": "registry",
         },
     },
-    "agent_ui_font_size": 17.0,
+    "agent_ui_font_size": 16.0,
     "auto_signature_help": false,
     "buffer_font_family": "Iosevka Nerd Font",
     "buffer_font_size": 16.0,
-    "buffer_font_weight": 250.0,
-    "buffer_line_height": {
-        "custom": 1.55,
-    },
+    "buffer_font_weight": 200.0,
+    "buffer_line_height": { "custom": 1.55 },
     "centered_layout": {
         "left_padding": null,
     },
@@ -183,11 +181,12 @@
         "show_diagnostics": "off",
     },
     "terminal": {
-        "dock": "right",
         "button": true,
+        "dock": "right",
         "font_family": "IosevkaTerm Nerd Font",
         "font_size": 16.0,
         "font_weight": 250.0,
+        "line_height": { "custom": 1.55 },
         "scrollbar": {
             "show": "auto",
         },
@@ -215,7 +214,7 @@
         "selections_menu": true,
     },
     "ui_font_size": 16.0,
-    "ui_font_weight": 250.0,
+    "ui_font_weight": 300.0,
     "use_smartcase_search": true,
     "vertical_scroll_margin": 3.0,
     "vim": {

@@ -2,7 +2,8 @@
 
 theme = Atom One Dark
 
-font-family = IosevkaTerm NF Light
+font-family = IosevkaTerm Nerd Font
+font-style = Light
 font-size = 16
 
 adjust-cell-height = 25%
