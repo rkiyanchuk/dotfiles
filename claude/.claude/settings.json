@@ -1,13 +1,46 @@
 {
-  "cleanupPeriodDays": 90,
-  "env": {
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
-  },
+  "agentPushNotifEnabled": true,
   "attribution": {
     "commit": "",
     "pr": ""
   },
+  "autoUpdatesChannel": "latest",
+  "cleanupPeriodDays": 90,
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
+    "lua-lsp@claude-plugins-official": false,
+    "obsidian@obsidian-skills": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": false,
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": false,
+    "swift-lsp@claude-plugins-official": false,
+    "typescript-lsp@claude-plugins-official": false
+  },
+  "env": {
+    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
+  },
+  "extraKnownMarketplaces": {
+    "obsidian-skills": {
+      "source": {
+        "repo": "kepano/obsidian-skills",
+        "source": "github"
+      }
+    },
+    "trailofbits": {
+      "source": {
+        "repo": "trailofbits/skills",
+        "source": "github"
+      }
+    }
+  },
+  "model": "opusplan",
   "permissions": {
+    "additionalDirectories": [
+      "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
+      "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
+    ],
     "allow": [
       "Read",
       "WebFetch",
@@ -21,47 +54,12 @@
       "mcp__github__search_pull_requests",
       "WebFetch(domain:just.systems)"
     ],
-    "defaultMode": "default",
-    "additionalDirectories": [
-      "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
-      "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
-    ]
+    "defaultMode": "default"
   },
-  "model": "opusplan",
-  "statusLine": {
-    "type": "command",
-    "command": "bash ~/.claude/statusline.sh"
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": false,
-    "lua-lsp@claude-plugins-official": false,
-    "obsidian@obsidian-skills": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": false,
-    "rust-analyzer-lsp@claude-plugins-official": false,
-    "skill-creator@claude-plugins-official": false,
-    "swift-lsp@claude-plugins-official": false,
-    "typescript-lsp@claude-plugins-official": false,
-    "firecrawl@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "obsidian-skills": {
-      "source": {
-        "source": "github",
-        "repo": "kepano/obsidian-skills"
-      }
-    },
-    "trailofbits": {
-      "source": {
-        "source": "github",
-        "repo": "trailofbits/skills"
-      }
-    }
-  },
+  "remoteControlAtStartup": false,
   "sandbox": {
-    "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "enabled": true,
     "filesystem": {
       "allowWrite": [
         "//tmp/build",
@@ -70,19 +68,20 @@
       ]
     }
   },
+  "skillListingBudgetFraction": 0.02,
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
       "Processing"
     ]
   },
-  "autoUpdatesChannel": "latest",
+  "statusLine": {
+    "command": "bash ~/.claude/statusline.sh",
+    "type": "command"
+  },
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
-  "remoteControlAtStartup": false,
-  "agentPushNotifEnabled": true,
-  "voiceEnabled": true,
-  "skillListingBudgetFraction": 0.02
+  "voiceEnabled": true
 }
