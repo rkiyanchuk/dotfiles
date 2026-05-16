@@ -1,5 +1,6 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
+    "code_lens": "on",
     "ui_font_family": ".SystemUIFont",
     "active_pane_modifiers": {
         "border_size": 0.0,
@@ -99,9 +100,6 @@
     },
     "git_panel": {
         "dock": "left",
-    },
-    "gutter": {
-        "min_line_number_digits": 3,
     },
     "icon_theme": "Zed (Default)",
     "indent_guides": {
