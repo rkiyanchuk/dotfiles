@@ -625,23 +625,60 @@ end
 -- COMMIT MESSAGE GENERATION
 
 -- In a gitcommit buffer, <Leader>c inserts a Claude-generated commit message
--- at the top of the buffer based on the currently staged diff.
+-- at the top of the buffer based on the currently staged diff. The call runs
+-- asynchronously so the editor stays responsive; a Braille spinner is shown
+-- as virtual text at line 1 to indicate progress.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
+        local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
+        local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+        local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only."
+
         vim.keymap.set("n", "<Leader>c", function()
             local diff = vim.fn.system("git diff --staged")
             if diff == "" then
                 vim.notify("No staged changes", vim.log.levels.WARN)
                 return
             end
-            local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only."
-            local msg = vim.trim(vim.fn.system({ "claude", "-p", prompt }, diff))
-            if vim.v.shell_error ~= 0 or msg == "" then
-                vim.notify("claude failed to generate commit message", vim.log.levels.ERROR)
-                return
+
+            local bufnr = vim.api.nvim_get_current_buf()
+            local idx = 1
+            local function spinner_extmark(id)
+                return vim.api.nvim_buf_set_extmark(bufnr, ns, 0, 0, {
+                    id = id,
+                    virt_text = { { frames[idx] .. " Generating commit message…", "Comment" } },
+                    virt_text_pos = "eol",
+                })
             end
-            vim.api.nvim_buf_set_lines(0, 0, 0, false, vim.split(msg, "\n"))
+            local mark_id = spinner_extmark(nil)
+            local timer = vim.uv.new_timer()
+            timer:start(100, 100, vim.schedule_wrap(function()
+                idx = (idx % #frames) + 1
+                if vim.api.nvim_buf_is_valid(bufnr) then spinner_extmark(mark_id) end
+            end))
+
+            vim.system({ "claude", "-p", prompt }, { stdin = diff }, function(result)
+                vim.schedule(function()
+                    timer:stop()
+                    timer:close()
+                    if vim.api.nvim_buf_is_valid(bufnr) then
+                        vim.api.nvim_buf_del_extmark(bufnr, ns, mark_id)
+                    end
+                    if result.code ~= 0 then
+                        vim.notify("claude failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
+                        return
+                    end
+                    local msg = vim.trim(result.stdout or "")
+                    if msg == "" then
+                        vim.notify("claude returned empty message", vim.log.levels.ERROR)
+                        return
+                    end
+                    if vim.api.nvim_buf_is_valid(bufnr) then
+                        vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, vim.split(msg, "\n"))
+                    end
+                end)
+            end)
         end, { buffer = args.buf, desc = "Generate commit message with Claude" })
     end,
 })
