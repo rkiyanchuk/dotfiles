@@ -35,7 +35,18 @@
       }
     }
   },
-  "model": "opusplan",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "command": "bash ~/.claude/hooks/normalize-settings.sh",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "additionalDirectories": [
       "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
