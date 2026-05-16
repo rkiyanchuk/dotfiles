@@ -192,13 +192,13 @@ status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
 [[ -n "$provider_label" ]] && status_line+=" ${DIM}: ${provider_label}${RESET}"
 [[ -n "$output_style_color" ]] && status_line+=" ${DIM}:${RESET} ${output_style_color}${output_style}${RESET}"
 
-status_line+=" ${DIM}· ${BLUE}󰳿${RESET} $(pct_color "$context_pct")${context_pct}%${RESET}"
+status_line+=" ${DIM}· ${BLUE} ${RESET}$(pct_color "$context_pct")${context_pct}%${RESET}"
 
 # Usage percentage (omitted when stdin has no rate_limits)
 if [[ -n "$usage_pct" ]]; then
     usage_int=${usage_pct%.*}
     usage_int=${usage_int:-0}
-    status_line+="  ${DIM}${BLUE} $(pct_color "$usage_int")${usage_int}%${RESET}"
+    status_line+="  ${DIM}${BLUE}󰊚 $(pct_color "$usage_int")${usage_int}%${RESET}"
 fi
 
 if ((lines_added > 0 || lines_removed > 0)); then
