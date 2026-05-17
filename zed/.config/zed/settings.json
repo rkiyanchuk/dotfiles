@@ -27,7 +27,7 @@
       "type": "registry",
     },
   },
-  "agent_ui_font_size": 16.0,
+  "agent_ui_font_size": 17.0,
   "auto_signature_help": false,
   "buffer_font_family": "Iosevka Nerd Font",
   "buffer_font_size": 16.0,
