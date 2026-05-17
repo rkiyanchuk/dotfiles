@@ -136,7 +136,6 @@
     "active_encoding_button": "non_utf8",
     "active_language_button": true,
     "cursor_position_button": true,
-    "line_endings_button": true,
     "show_active_file": false,
   },
   "sticky_scroll": {
