@@ -32,8 +32,14 @@ if test (uname) = "Darwin"
     # Added by OrbStack: command-line tools and integration
     source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 
-    # Load all Keychain-stored SSH keys into agent (needed for git commit signing)
-    ssh-add --apple-load-keychain 2>/dev/null
+    # Load Keychain-stored SSH keys into agent only if the agent has none yet —
+    # otherwise --apple-load-keychain walks the macOS Security Server and adds ~1s
+    # to every shell startup. Backgrounded so the prompt doesn't wait.
+    ssh-add -l >/dev/null 2>&1
+    if test $status -eq 1
+        ssh-add --apple-load-keychain 2>/dev/null &
+        disown
+    end
 end
 
 # Starship is the minimal, fast, and  customizable prompt for any shell.
@@ -103,4 +109,3 @@ if status is-interactive
     end
   end
 end
-
