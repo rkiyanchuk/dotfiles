@@ -111,6 +111,9 @@
     "inline_code_actions": false,
     "languages": {
         "Markdown": {
+            "preferred_line_length": 100,
+            "soft_wrap": "bounded",
+            "remove_trailing_whitespace_on_save": true,
             "format_on_save": "on",
             "formatter": "language_server",
         },
