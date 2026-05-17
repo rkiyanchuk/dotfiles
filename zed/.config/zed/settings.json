@@ -196,7 +196,7 @@
     },
     "theme": {
         "dark": "One Dark",
-        "light": "One Light",
+        "light": "Catppuccin Latte",
         "mode": "dark",
     },
     "theme_overrides": {
@@ -229,7 +229,7 @@
             "ghost_element.hover": "#2f353dff",
             "ghost_element.active": "#3d424cff",
             "ghost_element.selected": "#3d424cff",
-            "border.selected": "#223451ff",
+            "border.selected": "#2c313aff",
         },
     },
     "title_bar": {
