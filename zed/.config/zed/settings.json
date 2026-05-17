@@ -182,7 +182,7 @@
     },
     "terminal": {
         "button": true,
-        "dock": "right",
+        "dock": "bottom",
         "font_family": "IosevkaTerm Nerd Font",
         "font_size": 16.0,
         "font_weight": 250.0,
@@ -196,7 +196,7 @@
     },
     "theme": {
         "dark": "One Dark",
-        "light": "Catppuccin Latte",
+        "light": "One Light",
         "mode": "dark",
     },
     "theme_overrides": {
@@ -213,8 +213,8 @@
             "surface.background": "#282d35ff",
             "background": "#282d35ff",
             "element.background": "#272d35ff",
-            "status_bar.background": "#282d35ff",
-            "title_bar.background": "#282d35ff",
+            "status_bar.background": "#2c313aff",
+            "title_bar.background": "#2c313aff",
             "title_bar.inactive_background": "#272d35ff",
             "tab_bar.background": "#282d35ff",
             "tab.inactive_background": "#282d35ff",
