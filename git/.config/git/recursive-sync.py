@@ -144,6 +144,14 @@ class GitRepoPuller:
         self, repo_path: Path, command: List[str]
     ) -> Tuple[bool, str, str]:
         """Run a git command in the specified repository."""
+        # Disable any interactive credential prompting so a single repo that
+        # needs auth (e.g. an HTTPS GitLab remote without a stored credential)
+        # cannot grab the shared TTY and block the parallel workers. The
+        # affected repo fails fast with a clear error instead of hanging.
+        env = os.environ.copy()
+        env["GIT_TERMINAL_PROMPT"] = "0"
+        env.pop("GIT_ASKPASS", None)
+        env.pop("SSH_ASKPASS", None)
         try:
             result = subprocess.run(
                 ["git"] + command,
@@ -151,6 +159,8 @@ class GitRepoPuller:
                 capture_output=True,
                 text=True,
                 timeout=30,
+                stdin=subprocess.DEVNULL,
+                env=env,
             )
             return result.returncode == 0, result.stdout.strip(), result.stderr.strip()
         except subprocess.TimeoutExpired:
