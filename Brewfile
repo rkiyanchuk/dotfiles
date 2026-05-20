@@ -74,6 +74,7 @@ brew "httpie"
 brew "iperf"
 brew "just-lsp", tap: "terror/tap"
 brew "ruff"
+brew "rustup"
 brew "tectonic"
 brew "uv"
 
