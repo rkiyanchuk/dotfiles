@@ -111,7 +111,7 @@
     "git_status_indicator": false,
     "hide_root": true,
   },
-  "redact_private_values": true,
+  "redact_private_values": false,
   "restore_on_startup": "launchpad",
   "scroll_beyond_last_line": "vertical_scroll_margin",
   "scrollbar": {
