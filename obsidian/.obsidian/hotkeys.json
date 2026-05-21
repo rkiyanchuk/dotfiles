@@ -70,15 +70,6 @@
       "key": "N"
     }
   ],
-  "file-explorer:reveal-active-file": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "O"
-    }
-  ],
   "file-explorer:open": [
     {
       "modifiers": [
@@ -104,16 +95,6 @@
         "Shift"
       ],
       "key": "R"
-    }
-  ],
-  "omnisearch:show-modal": [
-    {
-      "modifiers": [
-        "Ctrl",
-        "Mod",
-        "Shift"
-      ],
-      "key": "F"
     }
   ],
   "app:delete-file": [
@@ -192,15 +173,6 @@
       "key": "R"
     }
   ],
-  "workspace:open-in-new-window": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod"
-      ],
-      "key": "O"
-    }
-  ],
   "window:reset-zoom": [
     {
       "modifiers": [
@@ -216,6 +188,48 @@
         "Shift"
       ],
       "key": "P"
+    }
+  ],
+  "workspace:open-in-new-window": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "O"
+    }
+  ],
+  "file-explorer:reveal-active-file": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "O"
+    }
+  ],
+  "switcher:open": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "P"
+    }
+  ],
+  "app:go-back": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "["
+    }
+  ],
+  "app:go-forward": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "]"
     }
   ]
 }

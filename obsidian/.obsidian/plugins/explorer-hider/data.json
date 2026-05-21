@@ -1,0 +1,17 @@
+{
+  "useSnippets": false,
+  "compatSpf": false,
+  "showAll": false,
+  "snippets": [
+    {
+      "path": "_assets",
+      "type": "string",
+      "selector": "$",
+      "hiddenInNav": true,
+      "hiddenInBookmarks": true
+    }
+  ],
+  "alwaysHideInBookmarks": false,
+  "buttonInContextBookmark": false,
+  "obsidianExclude": false
+}

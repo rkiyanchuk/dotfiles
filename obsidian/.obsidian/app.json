@@ -6,13 +6,13 @@
   "readableLineLength": true,
   "alwaysUpdateLinks": true,
   "newFileLocation": "current",
-  "attachmentFolderPath": "_media",
+  "attachmentFolderPath": "./_assets",
   "trashOption": "local",
   "useMarkdownLinks": true,
   "vimMode": false,
   "userIgnoreFilters": [
     "CLAUDE.md",
-    "archive/"
+    "Archieve/"
   ],
   "livePreview": false,
   "openBehavior": "file:",
