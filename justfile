@@ -151,6 +151,11 @@ plugins-claude:
     claude plugin install typescript-lsp@claude-plugins-official
     claude plugin install obsidian@obsidian-skills
 
+# Register Claude Code MCP servers in user scope (reads secrets from claude/.env)
+claude-mcp:
+    @echo -e "{{ orange }}==> Registering Claude Code MCP servers...{{ reset }}"
+    bash claude/mcp-setup.sh
+
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
     #!/usr/bin/env bash

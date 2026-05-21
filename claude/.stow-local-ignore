@@ -1,3 +1,6 @@
+^mcp-setup\.sh$
+^\.env$
+^\.env\.example$
 ^\.claude/skills
 ^\.claude/projects
 ^\.claude/sessions

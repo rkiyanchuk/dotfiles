@@ -48,6 +48,7 @@ claude/.claude/todos/
 claude/.claude/statsig/
 claude/.claude/ide/
 claude/.claude/plans/
+claude/.env
 .rewrite-mcp/
 
 # Obsidian

@@ -80,6 +80,7 @@
     }
   },
   "skillListingBudgetFraction": 0.02,
+  "skipAutoPermissionPrompt": true,
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
