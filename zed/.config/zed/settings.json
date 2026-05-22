@@ -4,12 +4,16 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
-    "default_model": {
-      "effort": "high",
-      "enable_thinking": true,
-      "model": "gpt-5.5",
+    "inline_assistant_model": {
       "provider": "zed.dev",
+      "model": "claude-sonnet-4-6",
     },
+    // "default_model": {
+    //   "effort": "high",
+    //   "enable_thinking": true,
+    //   "model": "claude-sonnet-4-6",
+    //   "provider": "zed.dev",
+    // },
     "dock": "right",
     "message_editor_min_lines": 3,
     "play_sound_when_agent_done": "when_hidden",
@@ -178,14 +182,20 @@
     "One Dark": {
       // Backgrounds anchored to Ghostty's #21252A and shifted in OkLab so
       // each surface preserves its original One Dark contrast against the
-      // editor base (#282c33 -> #21252a).
-
+      // editor base (#282c33 -> #21252a). Foreground tokens (borders, text,
+      // icons, line numbers) are shifted by the same dL (-0.030) as the
+      // editor base so each preserves its original contrast against it.
       "background": "#282d35ff",
+      "border": "#3e434fff",
+      "border.disabled": "#393f4cff",
       "border.selected": "#2c313aff",
+      "border.variant": "#2e343eff",
       "editor.active_line.background": "#282d35bf",
+      "editor.active_line_number": "#c6cad0ff",
       "editor.background": "#21252aff",
       "editor.gutter.background": "#21252aff",
       "editor.highlighted_line.background": "#282d35ff",
+      "editor.line_number": "#465257ff",
       "editor.subheader.background": "#282d35ff",
       "element.active": "#3d424cff",
       "element.background": "#272d35ff",
@@ -195,14 +205,24 @@
       "ghost_element.active": "#3d424cff",
       "ghost_element.hover": "#2f353dff",
       "ghost_element.selected": "#3d424cff",
+      "icon": "#d2d6dbff",
+      "icon.disabled": "#7e818fff",
+      "icon.muted": "#a0a6b3ff",
       "panel.background": "#282d35ff",
+      "scrollbar.thumb.background": "#bec2ca4c",
+      "scrollbar.thumb.border": "#2e343eff",
       "scrollbar.thumb.hover_background": "#2f353dff",
+      "scrollbar.track.border": "#272b34ff",
       "status_bar.background": "#2c313aff",
       "surface.background": "#282d35ff",
       "tab.active_background": "#21252aff",
       "tab.inactive_background": "#282d35ff",
       "tab_bar.background": "#282d35ff",
       "terminal.background": "#21252aff",
+      "text": "#d2d6dbff",
+      "text.disabled": "#7e818fff",
+      "text.muted": "#a0a6b3ff",
+      "text.placeholder": "#7e818fff",
       "title_bar.background": "#2c313aff",
       "title_bar.inactive_background": "#272d35ff",
       "toolbar.background": "#21252aff",
