@@ -7,6 +7,7 @@
   "autoUpdatesChannel": "latest",
   "cleanupPeriodDays": 90,
   "enabledPlugins": {
+    "andrej-karpathy-skills@karpathy-skills": true,
     "context7@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": false,
@@ -22,6 +23,12 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
   },
   "extraKnownMarketplaces": {
+    "karpathy-skills": {
+      "source": {
+        "repo": "forrestchang/andrej-karpathy-skills",
+        "source": "github"
+      }
+    },
     "obsidian-skills": {
       "source": {
         "repo": "kepano/obsidian-skills",
