@@ -18,5 +18,7 @@
   "openBehavior": "file:",
   "strictLineBreaks": true,
   "propertiesInDocument": "visible",
-  "showIndentGuide": false
+  "showIndentGuide": false,
+  "showUnsupportedFiles": false,
+  "newLinkFormat": "relative"
 }
