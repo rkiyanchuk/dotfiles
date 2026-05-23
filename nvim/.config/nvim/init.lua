@@ -633,7 +633,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-        local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only."
+        local prompt = "Write a concise git commit message. Subject under 72 chars, blank line then body if needed. Plain text only — do not wrap the message in code fences or backticks."
 
         local function generate()
             local diff = vim.fn.system("git diff --staged")
