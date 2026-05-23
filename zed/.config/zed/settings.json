@@ -80,6 +80,9 @@
   },
   "inline_code_actions": false,
   "languages": {
+    "YAML": {
+      "tab_size": 2
+    },
     "JSONC": {
       "tab_size": 2,
     },
