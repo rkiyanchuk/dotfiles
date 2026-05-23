@@ -16,7 +16,7 @@ write files in the appropriate vault — not the memory system.
 
 ## Markdown formatting
 
-Wrap markdown files at 100 columns. Applies to every project — never write
+Wrap markdown files at 80 columns. Applies to every project — never write
 long unwrapped lines in `.md` files (CLAUDE.md, READMEs, docs, plans, notes).
 Break at sentence/clause boundaries where possible. This rule does not apply
 to fenced code blocks, tables, or lines containing a single URL that would be
