@@ -5,8 +5,8 @@
   "showInlineTitle": false,
   "readableLineLength": true,
   "alwaysUpdateLinks": true,
-  "newFileLocation": "current",
-  "attachmentFolderPath": "_media",
+  "newFileLocation": "folder",
+  "attachmentFolderPath": "./_assets",
   "trashOption": "local",
   "useMarkdownLinks": true,
   "vimMode": false,
@@ -14,5 +14,7 @@
     "CLAUDE.md",
     "archive/"
   ],
-  "openBehavior": "file:"
+  "openBehavior": "",
+  "newLinkFormat": "relative",
+  "newFileFolderPath": "@Inbox"
 }
