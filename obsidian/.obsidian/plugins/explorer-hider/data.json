@@ -7,8 +7,14 @@
       "path": "_assets",
       "type": "string",
       "selector": "$",
-      "hiddenInNav": true,
+      "hiddenInNav": false,
       "hiddenInBookmarks": true
+    },
+    {
+      "path": "@Projects/Polish 🇵🇱/_assets/Чек-лист граматичних термінів.pdf",
+      "type": "file",
+      "hiddenInNav": false,
+      "hiddenInBookmarks": false
     }
   ],
   "alwaysHideInBookmarks": false,
