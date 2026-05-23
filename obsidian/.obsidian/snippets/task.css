@@ -1,0 +1,5 @@
+   /* Larger task checkboxes */
+  .markdown-rendered,
+  .markdown-source-view.mod-cm6 {
+      --checkbox-size: 1.5em;
+  }

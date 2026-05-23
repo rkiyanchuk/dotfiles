@@ -31,5 +31,6 @@
   "baseline-style@@nav-indentation-guide-width": 0,
   "baseline-style@@mobile-left-sidebar-width": "340px",
   "baseline-style@@mobile-right-sidebar-width": "340px",
-  "baseline-style@@line-width": "950px"
+  "baseline-style@@line-width": "950px",
+  "baseline-style@@strike-lists-off": true
 }

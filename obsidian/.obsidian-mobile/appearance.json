@@ -5,7 +5,9 @@
   "baseFontSize": 18,
   "cssTheme": "Baseline",
   "floatingNavigation": true,
-  "enabledCssSnippets": [],
+  "enabledCssSnippets": [
+    "task"
+  ],
   "autoFullScreen": true,
   "showViewHeader": false,
   "textFontFamily": "IBM Plex Sans",
