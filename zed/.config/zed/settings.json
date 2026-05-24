@@ -161,6 +161,7 @@
     "show_diagnostics": "off",
   },
   "terminal": {
+    "bell": "system",
     "button": true,
     "dock": "bottom",
     "font_family": "IosevkaTerm Nerd Font",
