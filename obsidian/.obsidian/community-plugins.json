@@ -7,5 +7,8 @@
   "obsidian-importer",
   "open-in-terminal",
   "consistent-attachments-and-links",
-  "simple-archiver"
+  "simple-archiver",
+  "obsidian-tikzjax",
+  "obsidian-graphviz",
+  "heic-viewer"
 ]
