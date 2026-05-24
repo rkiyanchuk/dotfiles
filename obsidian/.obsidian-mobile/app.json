@@ -16,5 +16,6 @@
   ],
   "openBehavior": "",
   "newLinkFormat": "relative",
-  "newFileFolderPath": "@Inbox"
+  "newFileFolderPath": "@Inbox",
+  "mobilePullAction": "switcher:open"
 }
