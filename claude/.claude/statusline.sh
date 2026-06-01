@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Status line command for Claude Code
-# Line 1: dir  branch · model  󰳿 <context-bar> N% ·  <usage-bar> N%  +/-diff  $cost
+# Line 1: dir  branch · model · effort  󰳿 <context-bar> N% ·  <usage-bar> N%  +/-diff  $cost
 # Line 2: N rules │ N MCPs │ N hooks │ N skills │ N plugins │ N allowed [│ style: X]
 
 # Color variables
@@ -59,6 +59,7 @@ input=$(cat)
 current_dir=$(jq -r '.workspace.current_dir // .cwd' <<< "$input")
 model_id=$(jq -r '.model.id // ""' <<< "$input")
 model_display_name=$(jq -r '.model.display_name // ""' <<< "$input")
+model_effort=$(jq -r '.effort.level // ""' <<< "$input")
 
 # Detect provider via env vars
 provider_label=""
@@ -189,6 +190,14 @@ fi
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 [[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
+if [[ -n "$model_effort" ]]; then
+    case "${model_effort,,}" in
+        xhigh)     effort_color="${MAGENTA}" ;;  # purple
+        max)       effort_color="${YELLOW}" ;;   # yellow
+        *)         effort_color="${DIM}" ;;
+    esac
+    status_line+="${DIM} · ${RESET}${effort_color}${model_effort}${RESET}"
+fi
 [[ -n "$provider_label" ]] && status_line+=" ${DIM}: ${provider_label}${RESET}"
 [[ -n "$output_style_color" ]] && status_line+=" ${DIM}:${RESET} ${output_style_color}${output_style}${RESET}"
 
