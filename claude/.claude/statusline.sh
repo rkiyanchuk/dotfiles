@@ -196,7 +196,7 @@ if [[ -n "$model_effort" ]]; then
         max)       effort_color="${YELLOW}" ;;   # yellow
         *)         effort_color="${DIM}" ;;
     esac
-    status_line+="${DIM} · ${RESET}${effort_color}${model_effort}${RESET}"
+    status_line+="${DIM} : ${RESET}${effort_color}${model_effort}${RESET}"
 fi
 [[ -n "$provider_label" ]] && status_line+=" ${DIM}: ${provider_label}${RESET}"
 [[ -n "$output_style_color" ]] && status_line+=" ${DIM}:${RESET} ${output_style_color}${output_style}${RESET}"
@@ -287,7 +287,7 @@ if [[ "$project_dir/.claude" != "$user_claude_dir" ]]; then
 fi
 claudemd_count=${#claudemd_paths[@]}
 
-env_line="${DIM}${claudemd_count} mems ·${rules_count} rules · ${hooks_count} hooks · ${mcp_count} mcps · ${skills_count} skills · ${plugins_count} plugins${RESET}"
+env_line="${DIM}${claudemd_count} mems · ${rules_count} rules · ${hooks_count} hooks · ${mcp_count} mcps · ${skills_count} skills · ${plugins_count} plugins${RESET}"
 
 # Output both lines
 printf "%b\n%b" "$status_line" "$env_line"
