@@ -89,7 +89,6 @@
     }
   },
   "skillListingBudgetFraction": 0.02,
-  "skipAutoPermissionPrompt": true,
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -104,6 +103,5 @@
   "voice": {
     "enabled": true,
     "mode": "hold"
-  },
-  "voiceEnabled": true
+  }
 }
