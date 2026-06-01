@@ -133,6 +133,3 @@
 
 [includeIf "gitdir:~/workspace/"]
     path = ~/.config/git/config.workspace.local
-
-[includeIf "gitdir:~/workspace/ncd/"]
-    path = ~/workspace/ncd/.gitconfig
