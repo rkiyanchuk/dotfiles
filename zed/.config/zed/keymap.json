@@ -61,4 +61,9 @@
             "g e": "vim::PreviousSubwordEnd",
         },
     },
+    {
+        "bindings": {
+            "cmd-shift-enter": "workspace::ToggleZoom"
+        }
+    },
 ]
