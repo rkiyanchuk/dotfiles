@@ -81,7 +81,7 @@
   "inline_code_actions": false,
   "languages": {
     "JSON": {
-      "tab_size": 2
+      "tab_size": 2,
     },
     "YAML": {
       "tab_size": 2,

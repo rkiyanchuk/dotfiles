@@ -6,64 +6,64 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-    {
-        "context": "Workspace",
-        "bindings": {
-            // "shift shift": "file_finder::Toggle"
-        },
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
     },
-    {
-        "context": "Editor && vim_mode == insert",
-        "bindings": {
-            // "j k": "vim::NormalBefore"
-        },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
     },
-    {
-        "context": "Editor",
-        "unbind": {
-            "ctrl-alt-right": "editor::MoveToNextSubwordEnd",
-        },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-alt-right": "editor::MoveToNextSubwordEnd",
     },
-    {
-        "context": "Terminal",
-        "unbind": {
-            "ctrl-alt-right": "pane::SplitRight",
-        },
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-alt-right": "pane::SplitRight",
     },
-    {
-        "context": "Terminal",
-        "unbind": {
-            "ctrl-alt-left": "pane::SplitLeft",
-        },
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-alt-left": "pane::SplitLeft",
     },
-    {
-        "context": "Editor",
-        "unbind": {
-            "ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
-        },
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
     },
-    {
-        "context": "Editor && edit_prediction",
-        "unbind": {
-            "alt-tab": "editor::AcceptEditPrediction",
-            // "tab": "editor::AcceptEditPrediction",
-        },
-        "bindings": {
-            "alt-space": "editor::AcceptEditPrediction",
-        },
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "unbind": {
+      "alt-tab": "editor::AcceptEditPrediction",
+      // "tab": "editor::AcceptEditPrediction",
     },
-    {
-        "context": "VimControl && !menu && vim_mode != operator",
-        "bindings": {
-            "w": "vim::NextSubwordStart",
-            "b": "vim::PreviousSubwordStart",
-            "e": "vim::NextSubwordEnd",
-            "g e": "vim::PreviousSubwordEnd",
-        },
+    "bindings": {
+      "alt-space": "editor::AcceptEditPrediction",
     },
-    {
-        "bindings": {
-            "cmd-shift-enter": "workspace::ToggleZoom"
-        }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode != operator",
+    "bindings": {
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "g e": "vim::PreviousSubwordEnd",
     },
+  },
+  {
+    "bindings": {
+      "cmd-shift-enter": "workspace::ToggleZoom",
+    },
+  },
 ]
