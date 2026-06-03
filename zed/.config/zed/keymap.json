@@ -66,4 +66,11 @@
       "cmd-shift-enter": "workspace::ToggleZoom",
     },
   },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-alt-g o": "editor::OpenPermalinkToLine",
+      "cmd-alt-g c": "editor::CopyPermalinkToLine",
+    },
+  },
 ]
