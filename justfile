@@ -23,12 +23,12 @@ os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") ==
 
 export PATH := if os() == "macos" { env("PATH") } else { env("HOME") + "/.local/bin:" + env("PATH") }
 
-# Default recipe: run full setup for current OS
+# Setup dotfiles
 default: config
     @echo -e "{{ green }}==> Dotfiles installed!{{ reset }}"
 
 # Full setup from scratch
-install: deps config shell plugins
+install: install-deps config set-shell plugins
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
@@ -36,7 +36,7 @@ install: deps config shell plugins
     fi
 
 # Install system dependencies based on OS
-deps:
+install-deps:
     #!/usr/bin/env bash
     set -euo pipefail
     echo -e "{{ orange }}==> Installing dotfiles for {{ os }}...{{ reset }}"
@@ -99,7 +99,7 @@ config-check:
     stow --dotfiles --no-folding -t ~ -nvv {{ packages_gui }}
 
 # Configure Fish shell as default
-shell:
+set-shell:
     #!/usr/bin/env bash
     set -euo pipefail
     FISH_PATH=$(which fish)
@@ -150,11 +150,9 @@ plugins-claude:
     claude plugin install swift-lsp@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
     claude plugin install obsidian@obsidian-skills
-
-# Register Claude Code MCP servers in user scope (reads secrets from claude/.env)
-claude-mcp:
-    @echo -e "{{ orange }}==> Registering Claude Code MCP servers...{{ reset }}"
-    bash claude/mcp-setup.sh
+    # `plugin install` enables every plugin; restore the desired enabled
+    # flags from version control (plugins stay on disk, just disabled).
+    git -C {{ justfile_directory() }} checkout -- claude/.claude/settings.json
 
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
