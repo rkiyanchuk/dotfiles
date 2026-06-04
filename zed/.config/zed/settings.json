@@ -120,6 +120,15 @@
     "dock": "right",
   },
   "preferred_line_length": 100,
+  "profiles": {
+    "Presenting": {
+      "settings": {
+        "agent_buffer_font_size": 18.0,
+        "buffer_font_size": 18.0,
+        "ui_font_size": 18.0,
+      },
+    },
+  },
   "project_panel": {
     "button": true,
     "default_width": 300.0,
