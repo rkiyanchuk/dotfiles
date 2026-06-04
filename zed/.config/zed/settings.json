@@ -4,6 +4,10 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "commit_message_model": {
+      "provider": "anthropic",
+      "model": "sonnet-4.6",
+    },
     "inline_assistant_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
