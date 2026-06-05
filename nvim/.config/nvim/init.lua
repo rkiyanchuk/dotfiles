@@ -152,6 +152,7 @@ if not ok then
 end
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#3e434f" })
 
 -- Icons early — blink.cmp's menu draw function calls require('mini.icons') synchronously.
 vim.cmd.packadd("mini.icons")
