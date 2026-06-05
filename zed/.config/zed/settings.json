@@ -248,6 +248,9 @@
       "title_bar.background": "#2c313aff",
       "title_bar.inactive_background": "#272d35ff",
       "toolbar.background": "#21252aff",
+      "syntax": {
+        "comment": { "font_style": "italic" },
+      },
     },
   },
   "title_bar": {
