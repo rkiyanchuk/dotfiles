@@ -128,6 +128,9 @@
     # Recursively pull and update all branches in all repos in current dir.
     rpull = "! ~/.config/git/recursive-sync.py"
 
+    # Recursively show commits since a date (default: yesterday) in all repos.
+    rhist = "! ~/.config/git/recursive-hist.py"
+
 [includeIf "gitdir:~/"]
     path = ~/.config/git/config.local
 
