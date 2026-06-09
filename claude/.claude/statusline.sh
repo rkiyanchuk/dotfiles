@@ -192,8 +192,8 @@ status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
 if [[ -n "$model_effort" ]]; then
     case "${model_effort,,}" in
-        xhigh)     effort_color="${MAGENTA}" ;;  # purple
-        max)       effort_color="${YELLOW}" ;;   # yellow
+        xhigh)     effort_color="${MAGENTA}" ;;
+        max)       effort_color="${RED}" ;;
         *)         effort_color="${DIM}" ;;
     esac
     status_line+="${DIM} : ${RESET}${effort_color}${model_effort}${RESET}"
