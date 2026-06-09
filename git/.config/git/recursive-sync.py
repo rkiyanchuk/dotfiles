@@ -264,6 +264,10 @@ class GitRepoPuller:
                 error_message="No main or master branch found",
             )
 
+        # Remember the branch we started on so we can return to it once
+        # main/master has been updated.
+        original_branch = current_branch
+
         # Switch to main/master if not already there
         if current_branch != main_branch:
             success, _, stderr = self.run_git_command(
@@ -278,78 +282,82 @@ class GitRepoPuller:
                 )
             current_branch = main_branch
 
-        # Get remote tracking branch
-        remote_branch = self.get_remote_tracking_branch(repo_path, main_branch)
-        if not remote_branch:
-            return RepoResult(
-                path=repo_name,
-                branch=current_branch,
-                status="error",
-                error_message=f"No remote tracking branch for {main_branch}",
+        try:
+            # Get remote tracking branch
+            remote_branch = self.get_remote_tracking_branch(repo_path, main_branch)
+            if not remote_branch:
+                return RepoResult(
+                    path=repo_name,
+                    branch=original_branch,
+                    status="error",
+                    error_message=f"No remote tracking branch for {main_branch}",
+                )
+
+            # Fetch latest changes
+            success, _, stderr = self.run_git_command(repo_path, ["fetch"])
+            if not success:
+                return RepoResult(
+                    path=repo_name,
+                    branch=original_branch,
+                    status="error",
+                    error_message=f"Failed to fetch: {stderr}",
+                )
+
+            # Check commits ahead/behind
+            ahead, behind = self.get_commit_range_info(
+                repo_path, main_branch, remote_branch
             )
 
-        # Fetch latest changes
-        success, _, stderr = self.run_git_command(repo_path, ["fetch"])
-        if not success:
-            return RepoResult(
-                path=repo_name,
-                branch=current_branch,
-                status="error",
-                error_message=f"Failed to fetch: {stderr}",
+            if behind == 0:
+                return RepoResult(
+                    path=repo_name,
+                    branch=original_branch,
+                    status="up_to_date",
+                    commits_ahead=ahead,
+                    commits_behind=behind,
+                )
+
+            if ahead > 0:
+                return RepoResult(
+                    path=repo_name,
+                    branch=original_branch,
+                    status="diverged",
+                    commits_ahead=ahead,
+                    commits_behind=behind,
+                    error_message=f"Branch has diverged: {ahead} ahead, {behind} behind",
+                )
+
+            # Get commits that will be pulled
+            commits_to_pull = self.get_commits_in_range(
+                repo_path, f"{main_branch}..{remote_branch}"
             )
 
-        # Check commits ahead/behind
-        ahead, behind = self.get_commit_range_info(
-            repo_path, main_branch, remote_branch
-        )
+            # Perform the pull (fast-forward merge)
+            success, _, stderr = self.run_git_command(
+                repo_path, ["merge", "--ff-only", remote_branch]
+            )
+            if not success:
+                return RepoResult(
+                    path=repo_name,
+                    branch=original_branch,
+                    status="error",
+                    commits_ahead=ahead,
+                    commits_behind=behind,
+                    error_message=f"Failed to merge: {stderr}",
+                )
 
-        if behind == 0:
-            status = "up_to_date" if ahead == 0 else "up_to_date"
             return RepoResult(
                 path=repo_name,
-                branch=current_branch,
-                status=status,
+                branch=original_branch,
+                status="updated",
+                commits_pulled=commits_to_pull,
                 commits_ahead=ahead,
                 commits_behind=behind,
             )
-
-        if ahead > 0:
-            return RepoResult(
-                path=repo_name,
-                branch=current_branch,
-                status="diverged",
-                commits_ahead=ahead,
-                commits_behind=behind,
-                error_message=f"Branch has diverged: {ahead} ahead, {behind} behind",
-            )
-
-        # Get commits that will be pulled
-        commits_to_pull = self.get_commits_in_range(
-            repo_path, f"{main_branch}..{remote_branch}"
-        )
-
-        # Perform the pull (fast-forward merge)
-        success, _, stderr = self.run_git_command(
-            repo_path, ["merge", "--ff-only", remote_branch]
-        )
-        if not success:
-            return RepoResult(
-                path=repo_name,
-                branch=current_branch,
-                status="error",
-                commits_ahead=ahead,
-                commits_behind=behind,
-                error_message=f"Failed to merge: {stderr}",
-            )
-
-        return RepoResult(
-            path=repo_name,
-            branch=current_branch,
-            status="updated",
-            commits_pulled=commits_to_pull,
-            commits_ahead=ahead,
-            commits_behind=behind,
-        )
+        finally:
+            # Restore the branch we started on, regardless of outcome.
+            if current_branch != original_branch:
+                self.run_git_command(repo_path, ["checkout", original_branch])
 
     def _print_result(self, result: RepoResult):
         """Print immediate feedback for a repository result."""
