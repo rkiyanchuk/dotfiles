@@ -73,4 +73,13 @@
       "cmd-alt-g c": "editor::CopyPermalinkToLine",
     },
   },
+  {
+    // Surround a custom visual selection (vim-surround). Normal-mode `ys`
+    // already works via the built-in `vim_operator == y` binding; this adds
+    // the visual-mode path. `shift-s` keeps visual substitute on plain `s`.
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
+    },
+  },
 ]
