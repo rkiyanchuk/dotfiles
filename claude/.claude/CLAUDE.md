@@ -21,3 +21,7 @@ long unwrapped lines in `.md` files (CLAUDE.md, READMEs, docs, plans, notes).
 Break at sentence/clause boundaries where possible. This rule does not apply
 to fenced code blocks, tables, or lines containing a single URL that would be
 broken by wrapping.
+
+## graphify
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
