@@ -14,14 +14,6 @@ Notes are stored in two Obsidian vaults:
 When notes need to be created or updated, use the `obsidian` skills to read and
 write files in the appropriate vault — not the memory system.
 
-## Markdown formatting
-
-Wrap markdown files at 80 columns. Applies to every project — never write
-long unwrapped lines in `.md` files (CLAUDE.md, READMEs, docs, plans, notes).
-Break at sentence/clause boundaries where possible. This rule does not apply
-to fenced code blocks, tables, or lines containing a single URL that would be
-broken by wrapping.
-
 ## Graphify
 
 - **graphify** (`~/.claude/skills/graphify/SKILL.md`) –
