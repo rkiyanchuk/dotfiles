@@ -51,6 +51,7 @@
     "dock": "left",
   },
   "colorize_brackets": true,
+  "confirm_quit": true,
   "current_line_highlight": "line",
   "cursor_shape": "bar",
   "debugger": {
