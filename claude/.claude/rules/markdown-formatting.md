@@ -1,7 +1,14 @@
+---
+paths:
+  - "**/*.md"
+  - "**/*.markdown"
+---
+
 # Markdown formatting
 
 Applies to every project — every `.md` file (CLAUDE.md, READMEs, docs,
-plans, notes).
+plans, notes). This rule is path-scoped, so it loads only when a markdown
+file is in play.
 
 ## Line wrapping
 
