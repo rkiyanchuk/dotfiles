@@ -113,6 +113,19 @@
 
     prune-local = !bash -c 'git branch --format \"%(upstream:track)%(refname)\" | grep \"^\\[gone\\]\" | cut -c 18- | xargs git branch -D'
 
+    # Delete a branch locally and on origin in one go.
+    delete-branch = "!f() { git branch -D \"$1\" && git push origin --delete \"$1\"; }; f"
+
+    # Repo overview: project, age, commits, files, ranked authors with %.
+    summary = "!f() { \
+        echo \"project : $(basename \"$(git rev-parse --show-toplevel)\")\"; \
+        echo \"age     : $(git log --reverse --format=%cr | sed -n 1p)\"; \
+        echo \"commits : $(git rev-list --count HEAD)\"; \
+        echo \"files   : $(git ls-files | wc -l | tr -d ' ')\"; \
+        echo \"authors :\"; \
+        git shortlog -sne HEAD | awk '{n=$1; sub(/^[ ]*[0-9]+[ \\t]+/, \"\"); a[NR]=$0; v[NR]=n; t+=n} END {for (i=1; i<=NR; i++) printf \"  %5.1f%%  %s\\n\", v[i]/t*100, a[i]}'; \
+    }; f"
+
     # Top 20 most-changed files in the last year (high churn = potential risk).
     stats-hotfiles = !git log --format=format: --name-only --since='1 year ago' | sort | uniq -c | sort -nr | head -20
 
