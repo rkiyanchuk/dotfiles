@@ -139,16 +139,17 @@ plugins-claude:
     #!/usr/bin/env bash
     set -euo pipefail
     echo -e "{{ orange }}==> Installing Claude Code plugins...{{ reset }}"
+    claude plugin install chrome-devtools-mcp@claude-plugins-official
     claude plugin install context7@claude-plugins-official
-    claude plugin install firecrawl@claude-plugins-official
     claude plugin install gopls-lsp@claude-plugins-official
-    claude plugin install lua-lsp@claude-plugins-official
     claude plugin install pr-review-toolkit@claude-plugins-official
     claude plugin install pyright-lsp@claude-plugins-official
     claude plugin install rust-analyzer-lsp@claude-plugins-official
+    claude plugin install security-guidance@claude-plugins-official
     claude plugin install skill-creator@claude-plugins-official
-    claude plugin install swift-lsp@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
+    claude plugin install andrej-karpathy-skills@karpathy-skills
+    claude plugin install claude-mem@thedotmack
     claude plugin install obsidian@obsidian-skills
     # `plugin install` enables every plugin; restore the desired enabled
     # flags from version control (plugins stay on disk, just disabled).
