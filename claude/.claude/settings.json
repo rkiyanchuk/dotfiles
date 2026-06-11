@@ -11,14 +11,12 @@
     "chrome-devtools-mcp@claude-plugins-official": false,
     "context7@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": false,
-    "lua-lsp@claude-plugins-official": false,
     "obsidian@obsidian-skills": true,
     "pr-review-toolkit@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": false,
-    "swift-lsp@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false
   },
   "env": {
@@ -53,35 +51,27 @@
       "Read",
       "WebFetch",
       "WebSearch",
-      "WebFetch(domain:api.github.com)",
       "mcp__github__get_file_contents",
       "mcp__github__get_me",
       "mcp__github__get_pull_request",
       "mcp__github__get_repo",
       "mcp__github__search_code",
-      "mcp__github__search_pull_requests",
-      "WebFetch(domain:just.systems)"
+      "mcp__github__search_pull_requests"
     ],
     "defaultMode": "default"
   },
   "remoteControlAtStartup": false,
   "sandbox": {
     "autoAllowBashIfSandboxed": true,
-    "enabled": true,
+    "enabled": false,
     "filesystem": {
-      "allowWrite": [
-        "//tmp/build",
-        "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
-        "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
-      ]
+      "allowWrite": ["//tmp/build"]
     }
   },
   "skillListingBudgetFraction": 0.02,
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": [
-      "Processing"
-    ]
+    "verbs": ["Processing"]
   },
   "statusLine": {
     "command": "bash ~/.claude/statusline.sh",

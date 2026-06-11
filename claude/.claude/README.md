@@ -21,7 +21,7 @@ graphify install            # register with Claude Code
 
 From the project root inside Claude Code:
 
-```
+```sh
 /graphify .                       # build graph
 /graphify query "auth flow"       # ask questions against it
 ```
