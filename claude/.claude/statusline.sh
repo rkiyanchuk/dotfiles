@@ -290,4 +290,4 @@ claudemd_count=${#claudemd_paths[@]}
 env_line="${DIM}${claudemd_count} mems · ${rules_count} rules · ${hooks_count} hooks · ${mcp_count} mcps · ${skills_count} skills · ${plugins_count} plugins${RESET}"
 
 # Output both lines
-printf "%b\n%b" "$status_line" "$env_line"
+printf "%b\n%b" "$status_line" # "$env_line"
