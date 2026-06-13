@@ -38,7 +38,7 @@ just
 **Arch Linux**
 
 ```sh
-sudo pacman -S just git
+sudo pacman -S just git stow
 git clone https://github.com/rkiyanchuk/dotfiles
 cd dotfiles
 just
@@ -47,7 +47,7 @@ just
 **Ubuntu / Debian**
 
 ```sh
-sudo apt install just git
+sudo apt install just git stow
 git clone https://github.com/rkiyanchuk/dotfiles
 cd dotfiles
 just
