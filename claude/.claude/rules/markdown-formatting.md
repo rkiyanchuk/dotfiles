@@ -23,7 +23,8 @@ This rule does **not** apply to:
 
 ## Tables
 
-Always format tables with **columns aligned**: pad every cell with trailing
+When table width is less than 80 characters, format tables with
+**columns aligned**: pad every cell with trailing
 spaces to the width of the widest cell in its column, and size the separator
 row's dashes to match, so the `|` delimiters line up vertically in the
 source. For example:
