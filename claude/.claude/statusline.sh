@@ -192,6 +192,9 @@ status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
 if [[ -n "$model_effort" ]]; then
     case "${model_effort,,}" in
+        low)       effort_color="${YELLOW}" ;;
+        medium)    effort_color="${GREEN}" ;;
+        high)      effort_color="${DIM}${BLUE}" ;;
         xhigh)     effort_color="${MAGENTA}" ;;
         max)       effort_color="${RED}" ;;
         *)         effort_color="${DIM}" ;;
