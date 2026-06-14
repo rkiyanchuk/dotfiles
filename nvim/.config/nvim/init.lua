@@ -634,7 +634,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-        local prompt = "Write git commit message for the changes. Do not wrap the message in code fences or backticks. Return body of the commit message *only*."
+        local prompt = "Write git commit message for staged changes. Return *only* the body of the commit message, do not wrap in code fences or backticks"
 
         local function generate()
             local diff = vim.fn.system("git diff --staged")
