@@ -55,7 +55,9 @@
       "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
     ],
     "allow": [
+      "Bash(gh api *)",
       "Read",
+      "Skill(update-config)",
       "WebFetch",
       "WebSearch",
       "mcp__github__get_file_contents",
@@ -63,9 +65,11 @@
       "mcp__github__get_pull_request",
       "mcp__github__get_repo",
       "mcp__github__search_code",
-      "mcp__github__search_pull_requests"
+      "mcp__github__search_pull_requests",
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__plugin_context7_context7__resolve-library-id"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "remoteControlAtStartup": false,
   "sandbox": {
