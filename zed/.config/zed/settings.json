@@ -99,10 +99,14 @@
     },
     "Markdown": {
       "format_on_save": "on",
-      "formatter": "language_server",
+      "formatter": "prettier",
       "preferred_line_length": 80,
       "remove_trailing_whitespace_on_save": true,
       "soft_wrap": "bounded",
+      "prettier": {
+        "proseWrap": "always",
+        "printWidth": 80,
+      },
     },
     "Python": {
       "show_edit_predictions": true,
