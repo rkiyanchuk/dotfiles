@@ -70,10 +70,7 @@
   "remoteControlAtStartup": false,
   "sandbox": {
     "autoAllowBashIfSandboxed": true,
-    "enabled": false,
-    "filesystem": {
-      "allowWrite": ["//tmp/build"]
-    }
+    "enabled": false
   },
   "skillListingBudgetFraction": 0.02,
   "spinnerVerbs": {
