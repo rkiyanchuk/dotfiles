@@ -71,6 +71,7 @@
     "bindings": {
       "cmd-alt-g o": "editor::OpenPermalinkToLine",
       "cmd-alt-g c": "editor::CopyPermalinkToLine",
+      "cmd-alt-r": "editor::ReloadFile",
     },
   },
   {
