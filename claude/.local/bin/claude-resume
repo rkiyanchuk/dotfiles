@@ -1,0 +1,208 @@
+#!/usr/bin/env bash
+# claude-resume — resume any Claude Code session in the CURRENT directory.
+#
+# Claude keys resumable sessions by cwd: transcripts live at
+#   ~/.claude/projects/<encoded-cwd>/<session-id>.jsonl
+# and `claude --resume <id>` only scans the project dir for the current cwd,
+# with no flag to point it elsewhere. This wrapper copies the chosen session's
+# transcript into the project dir for the dir you're standing in (rewriting the
+# recorded `cwd` so the "from a different directory" banner doesn't fire), then
+# resumes it in place. No `cd`, no worktree hop. The original is never touched.
+
+set -euo pipefail
+
+PROJECTS_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/projects"
+
+die() { printf 'claude-resume: %s\n' "$1" >&2; exit 1; }
+
+# Hidden subcommand: render the fzf preview for one transcript. Invoked by fzf
+# itself (`claude-resume --preview-file <path>`) so it always runs under this
+# bash script, never the user's interactive shell (e.g. fish).
+if [ "${1-}" = "--preview-file" ]; then
+  p="${2-}"
+  [ -f "$p" ] || exit 0
+  python3 - "$p" <<'PY'
+import json, sys
+path = sys.argv[1]
+cwd = first = None
+for line in open(path, errors="replace"):
+    try:
+        obj = json.loads(line)
+    except ValueError:
+        continue
+    if not isinstance(obj, dict):
+        continue
+    if cwd is None and obj.get("cwd"):
+        cwd = obj["cwd"]
+    if first is None:
+        msg = obj.get("message")
+        if isinstance(msg, dict) and msg.get("role") == "user":
+            c = msg.get("content")
+            if isinstance(c, str):
+                first = c
+            elif isinstance(c, list):
+                for part in c:
+                    if isinstance(part, dict) and part.get("type") == "text":
+                        first = part.get("text"); break
+    if cwd and first:
+        break
+print("cwd:  " + (cwd or "?"))
+print("file: " + path)
+print()
+print("--- first user prompt ---")
+print((first or "(none)").strip()[:1000])
+PY
+  exit 0
+fi
+
+[ -d "$PROJECTS_DIR" ] || die "no projects dir at $PROJECTS_DIR"
+
+# encode a path the way Claude names project dirs: non-alphanumerics -> '-'
+encode_cwd() { printf '%s' "$1" | sed 's/[^a-zA-Z0-9]/-/g'; }
+
+session_id="${1-}"
+# strip the id off the arg list; remaining args pass through to `claude`.
+[ "$#" -gt 0 ] && shift || true
+
+# --- pick a session interactively when no id was given --------------------
+if [ -z "$session_id" ]; then
+  command -v fzf >/dev/null 2>&1 || die "no session id given and fzf not found"
+
+  # Build NUL-delimited, two-line records in Python (newest first). Each record
+  # is:  <display>\t<id>\t<path>  where <display> is two lines (AI title +
+  # a dim metadata line: relative time · branch · size · cwd), matching the
+  # built-in `claude --resume` picker. Searchable text is the AI title.
+  # Python is used for the whole scan so it works regardless of the system
+  # `stat` flavor (macOS BSD vs. uutils/GNU coreutils differ on -f/-c).
+  self="$0"
+  pick="$(
+    python3 - "$PROJECTS_DIR" <<'PY' | fzf --read0 --gap --ansi \
+        --layout=reverse \
+        --delimiter='\t' --with-nth=1 --accept-nth=2,3 \
+        --prompt='Resume session > ' \
+        --preview-window='down,45%,wrap' \
+        --preview "'$self' --preview-file {3}"
+import glob, json, os, sys, time
+
+root = sys.argv[1]
+DIM, RESET = "\033[2m", "\033[0m"
+
+def rel_time(secs):
+    d = max(0, time.time() - secs)
+    for n, unit in ((86400*365,"year"),(86400*30,"month"),(86400*7,"week"),
+                    (86400,"day"),(3600,"hour"),(60,"minute")):
+        if d >= n:
+            v = int(d // n)
+            return "%d %s%s ago" % (v, unit, "" if v == 1 else "s")
+    return "just now"
+
+def human_size(n):
+    for unit in ("B","KB","MB","GB"):
+        if n < 1024 or unit == "GB":
+            return ("%d %s" % (n, unit)) if unit == "B" else ("%.1f%s" % (n, unit))
+        n /= 1024.0
+
+rows = []
+for path in glob.glob(os.path.join(root, "*", "*.jsonl")):
+    try:
+        st = os.stat(path)
+    except OSError:
+        continue
+    sid = os.path.basename(path)[:-6]  # strip .jsonl
+    title = cwd = branch = ""
+    try:
+        with open(path, errors="replace") as fh:
+            for line in fh:
+                try:
+                    obj = json.loads(line)
+                except ValueError:
+                    continue
+                if not isinstance(obj, dict):
+                    continue
+                if not title and obj.get("aiTitle"):
+                    title = obj["aiTitle"]
+                if not cwd and obj.get("cwd"):
+                    cwd = obj["cwd"]
+                if not branch and obj.get("gitBranch"):
+                    branch = obj["gitBranch"]
+                if title and cwd and branch:
+                    break
+    except OSError:
+        pass
+    rows.append((st.st_mtime, sid, path, title, cwd, branch, st.st_size))
+
+rows.sort(reverse=True)
+for mtime, sid, path, title, cwd, branch, size in rows:
+    meta = [rel_time(mtime)]
+    if branch:
+        meta.append(branch)
+    meta.append(human_size(size))
+    if cwd:
+        meta.append(cwd)
+    display = "%s\n%s%s%s" % (title or "(untitled session)",
+                              DIM, "  ·  ".join(meta), RESET)
+    sys.stdout.write("\t".join((display, sid, path)) + "\0")
+PY
+  )" || die "no session selected"
+
+  # --accept-nth=2,3 returns: <id><TAB><path>
+  session_id="$(printf '%s' "$pick" | cut -f1)"
+  src="$(printf '%s' "$pick" | cut -f2)"
+fi
+
+[ -n "$session_id" ] || die "empty session id"
+
+# --- locate the source transcript anywhere under projects ----------------
+if [ -z "${src-}" ]; then
+  src=""
+  for d in "$PROJECTS_DIR"/*/; do
+    if [ -f "$d$session_id.jsonl" ]; then src="$d$session_id.jsonl"; break; fi
+  done
+fi
+[ -n "$src" ] && [ -f "$src" ] || die "session not found: $session_id"
+
+# --- compute target project dir for the CURRENT cwd ----------------------
+target="$PROJECTS_DIR/$(encode_cwd "$PWD")"
+mkdir -p "$target"
+dst="$target/$session_id.jsonl"
+
+# --- relocate transcript into current dir's project dir ------------------
+copy_with_cwd_rewrite() {
+  # rewrite the recorded cwd on every line so the banner stays quiet.
+  if command -v jq >/dev/null 2>&1 \
+     && jq -e . "$src" >/dev/null 2>&1; then
+    jq -c --arg d "$PWD" 'if has("cwd") then .cwd=$d else . end' \
+      "$src" >"$dst.tmp"
+  else
+    python3 - "$src" "$dst.tmp" "$PWD" <<'PY'
+import json, sys
+src, dst, cwd = sys.argv[1], sys.argv[2], sys.argv[3]
+with open(src) as fh, open(dst, "w") as out:
+    for line in fh:
+        s = line.strip()
+        if not s:
+            continue
+        try:
+            obj = json.loads(s)
+        except ValueError:
+            out.write(line if line.endswith("\n") else line + "\n")
+            continue
+        if isinstance(obj, dict) and "cwd" in obj:
+            obj["cwd"] = cwd
+        out.write(json.dumps(obj) + "\n")
+PY
+  fi
+  mv "$dst.tmp" "$dst"
+}
+
+if [ "$src" = "$dst" ]; then
+  : # already lives here; resume as-is
+elif [ -f "$dst" ] && [ "$dst" -nt "$src" ]; then
+  printf 'claude-resume: local copy is newer, resuming it as-is\n' >&2
+else
+  copy_with_cwd_rewrite
+  printf 'claude-resume: copied session %s into %s\n' "$session_id" "$PWD" >&2
+fi
+
+# --- resume in place ------------------------------------------------------
+exec claude --resume "$session_id" "$@"
