@@ -39,6 +39,11 @@ RESET = "\033[0m"
 BOLD = "\033[1m"
 DIM = "\033[2m"
 
+# Nerd Font status icons for the scanned-repo list.
+ICON_OK = " "  # check-circle: no changes
+ICON_CHANGED = " "  # refresh arrows: files changed
+ICON_ERROR = " "  # times-circle: error
+
 logger = logging.getLogger(__name__)
 
 
@@ -239,12 +244,12 @@ class GitRepoHistory:
         """Print immediate feedback for a repository result."""
         if result.status == "changes":
             print(
-                f"{YELLOW} {RESET} {result.path} {GRAY}({len(result.commits)} commits){RESET}"
+                f"{YELLOW}{ICON_CHANGED}{RESET} {result.path} {GRAY}({len(result.commits)} commits){RESET}"
             )
         elif result.status == "no_changes":
-            print(f"{GREEN} {RESET} {result.path} {GRAY}(no changes){RESET}")
+            print(f"{GREEN}{ICON_OK}{RESET} {result.path} {GRAY}(no changes){RESET}")
         elif result.status == "error":
-            print(f"{RED} {RESET} {result.path} {GRAY}(error){RESET}")
+            print(f"{RED}{ICON_ERROR}{RESET} {result.path} {GRAY}(error){RESET}")
 
     def inspect_all_repos(
         self, root_path: Path = Path.cwd(), max_workers: Optional[int] = None
