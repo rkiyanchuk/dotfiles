@@ -144,6 +144,9 @@
     # Recursively show commits since a date (default: yesterday) in all repos.
     rhist = "! ~/.config/git/recursive-hist.py"
 
+    # Recursively show code touched (git --stat style) since a date in all repos.
+    rhist-stat = "! ~/.config/git/recursive-hist-stat.py"
+
 [includeIf "gitdir:~/"]
     path = ~/.config/git/config.local
 
