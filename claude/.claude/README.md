@@ -7,7 +7,7 @@
 | `settings.json`          | Main config  |
 | `CLAUDE.md`              | Global instructions for all projects. |
 | `rules/`                 | Topic rules auto-loaded at launch (e.g. commit-message style). |
-| `output-styles/terse.md` | Custom **Terse** output style. |
+| `output-styles/brief.md` | Custom **Brief** output style. |
 | `statusline.sh`          | Two-line status line: dir, branch, model, context %, cost, counts. |
 
 ## settings.json
@@ -16,7 +16,7 @@
   them.
 - **Permissions** — `Read`/`WebFetch`/`WebSearch` and read-only GitHub MCP
   tools auto-allowed; two Obsidian vaults added as additional directories.
-- **Output style** — `Terse`.
+- **Output style** — `Brief`.
 
 ## Enabled plugins
 

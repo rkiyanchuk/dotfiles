@@ -48,7 +48,7 @@
       }
     }
   },
-  "outputStyle": "Terse",
+  "outputStyle": "Brief",
   "permissions": {
     "additionalDirectories": [
       "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
