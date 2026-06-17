@@ -205,6 +205,21 @@ class GitRepoPuller:
         if success:
             return "master"
 
+        # Fall back to the remote's default branch (e.g. develop).
+        success, out, _ = self.run_git_command(
+            repo_path,
+            ["symbolic-ref", "--short", "refs/remotes/origin/HEAD"],
+        )
+        if success and out.strip():
+            # out is like "origin/develop"; strip the remote prefix.
+            default = out.strip().split("/", 1)[-1]
+            exists, _, _ = self.run_git_command(
+                repo_path,
+                ["show-ref", "--verify", "--quiet", f"refs/heads/{default}"],
+            )
+            if exists:
+                return default
+
         return None
 
     def get_remote_tracking_branch(self, repo_path: Path, branch: str) -> Optional[str]:
