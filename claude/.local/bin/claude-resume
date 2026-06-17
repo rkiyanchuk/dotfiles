@@ -55,33 +55,17 @@ PY
   exit 0
 fi
 
-[ -d "$PROJECTS_DIR" ] || die "no projects dir at $PROJECTS_DIR"
+# Hidden subcommand: delete a transcript file (bound to ctrl-x in the picker).
+if [ "${1-}" = "--delete-file" ]; then
+  p="${2-}"
+  [ -n "$p" ] && [ -f "$p" ] && rm -f "$p"
+  exit 0
+fi
 
-# encode a path the way Claude names project dirs: non-alphanumerics -> '-'
-encode_cwd() { printf '%s' "$1" | sed 's/[^a-zA-Z0-9]/-/g'; }
-
-session_id="${1-}"
-# strip the id off the arg list; remaining args pass through to `claude`.
-[ "$#" -gt 0 ] && shift || true
-
-# --- pick a session interactively when no id was given --------------------
-if [ -z "$session_id" ]; then
-  command -v fzf >/dev/null 2>&1 || die "no session id given and fzf not found"
-
-  # Build NUL-delimited, two-line records in Python (newest first). Each record
-  # is:  <display>\t<id>\t<path>  where <display> is two lines (AI title +
-  # a dim metadata line: relative time · branch · size · cwd), matching the
-  # built-in `claude --resume` picker. Searchable text is the AI title.
-  # Python is used for the whole scan so it works regardless of the system
-  # `stat` flavor (macOS BSD vs. uutils/GNU coreutils differ on -f/-c).
-  self="$0"
-  pick="$(
-    python3 - "$PROJECTS_DIR" <<'PY' | fzf --read0 --gap --ansi \
-        --layout=reverse \
-        --delimiter='\t' --with-nth=1 --accept-nth=2,3 \
-        --prompt='Resume session > ' \
-        --preview-window='down,45%,wrap' \
-        --preview "'$self' --preview-file {3}"
+# Hidden subcommand: emit the NUL-delimited fzf records. Split out so the
+# picker can re-run it via fzf's reload() after a delete.
+if [ "${1-}" = "--list" ]; then
+  python3 - "${2-}" <<'PY'
 import glob, json, os, sys, time
 
 root = sys.argv[1]
@@ -143,6 +127,40 @@ for mtime, sid, path, title, cwd, branch, size in rows:
                               DIM, "  ·  ".join(meta), RESET)
     sys.stdout.write("\t".join((display, sid, path)) + "\0")
 PY
+  exit 0
+fi
+
+[ -d "$PROJECTS_DIR" ] || die "no projects dir at $PROJECTS_DIR"
+
+# encode a path the way Claude names project dirs: non-alphanumerics -> '-'
+encode_cwd() { printf '%s' "$1" | sed 's/[^a-zA-Z0-9]/-/g'; }
+
+session_id="${1-}"
+# strip the id off the arg list; remaining args pass through to `claude`.
+[ "$#" -gt 0 ] && shift || true
+
+# --- pick a session interactively when no id was given --------------------
+if [ -z "$session_id" ]; then
+  command -v fzf >/dev/null 2>&1 || die "no session id given and fzf not found"
+
+  # Records are built by the hidden `--list` subcommand: NUL-delimited,
+  # two-line entries  <display>\t<id>\t<path>  where <display> is the AI title
+  # plus a dim metadata line (relative time · branch · size · cwd), matching
+  # the built-in `claude --resume` picker. ctrl-x deletes the highlighted
+  # transcript and reloads the list.
+  self="$0"
+  pick="$(
+    "$self" --list "$PROJECTS_DIR" | fzf --read0 --gap --ansi \
+        --layout=reverse \
+        --delimiter='\t' --with-nth=1 --accept-nth=2,3 \
+        --prompt='Resume session > ' \
+        --list-border=rounded \
+        --list-label=' ctrl-x: delete session ' \
+        --list-label-pos='-3:bottom' \
+        --color='list-label:dim' \
+        --preview-window='down,45%,wrap' \
+        --preview "'$self' --preview-file {3}" \
+        --bind "ctrl-x:execute-silent('$self' --delete-file {3})+reload('$self' --list '$PROJECTS_DIR')"
   )" || die "no session selected"
 
   # --accept-nth=2,3 returns: <id><TAB><path>
