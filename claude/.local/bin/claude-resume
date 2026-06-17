@@ -22,9 +22,21 @@ if [ "${1-}" = "--preview-file" ]; then
   p="${2-}"
   [ -f "$p" ] || exit 0
   python3 - "$p" <<'PY'
-import json, sys
+import json, os, sys, time
+
 path = sys.argv[1]
-cwd = first = None
+title = cwd = branch = model = first = first_ts = last_ts = None
+user_msgs = asst_msgs = 0
+
+def text_of(content):
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        for part in content:
+            if isinstance(part, dict) and part.get("type") == "text":
+                return part.get("text")
+    return None
+
 for line in open(path, errors="replace"):
     try:
         obj = json.loads(line)
@@ -32,24 +44,64 @@ for line in open(path, errors="replace"):
         continue
     if not isinstance(obj, dict):
         continue
+    if title is None and obj.get("aiTitle"):
+        title = obj["aiTitle"]
     if cwd is None and obj.get("cwd"):
         cwd = obj["cwd"]
-    if first is None:
-        msg = obj.get("message")
-        if isinstance(msg, dict) and msg.get("role") == "user":
-            c = msg.get("content")
-            if isinstance(c, str):
-                first = c
-            elif isinstance(c, list):
-                for part in c:
-                    if isinstance(part, dict) and part.get("type") == "text":
-                        first = part.get("text"); break
-    if cwd and first:
-        break
-print("cwd:  " + (cwd or "?"))
-print("file: " + path)
+    if branch is None and obj.get("gitBranch"):
+        branch = obj["gitBranch"]
+    ts = obj.get("timestamp")
+    if ts:
+        first_ts = first_ts or ts
+        last_ts = ts
+    msg = obj.get("message")
+    if isinstance(msg, dict):
+        role = msg.get("role")
+        if role == "user":
+            user_msgs += 1
+            if first is None:
+                first = text_of(msg.get("content"))
+        elif role == "assistant":
+            asst_msgs += 1
+            if model is None and msg.get("model"):
+                model = msg["model"]
+
+# ANSI palette
+B   = "\033[1m"        # bold
+DIM = "\033[2m"        # dim
+R   = "\033[0m"        # reset
+CYA = "\033[36m"       # labels
+GRN = "\033[32m"
+YEL = "\033[33m"
+MAG = "\033[35m"
+BLU = "\033[34m"
+
+def parse_ts(s):
+    if not s:
+        return None
+    try:
+        return time.strptime(s[:19], "%Y-%m-%dT%H:%M:%S")
+    except (ValueError, TypeError):
+        return None
+
+def fmt_ts(s):
+    t = parse_ts(s)
+    return time.strftime("%Y-%m-%d %H:%M", t) if t else "?"
+
+def label(name, value, color=GRN):
+    print("%s%-9s%s %s%s%s" % (CYA, name, R, color, value, R))
+
+print("%s%s%s" % (B, (title or "(untitled session)"), R))
+print("%s%s%s" % (DIM, "─" * 56, R))
+if model:
+    label("model", model, MAG)
+label("started", fmt_ts(first_ts), BLU)
+label("updated", fmt_ts(last_ts), BLU)
+label("messages", "%d user · %d assistant" % (user_msgs, asst_msgs), GRN)
+label("file", os.path.basename(path), DIM)
 print()
-print("--- first user prompt ---")
+print("%sFirst user prompt%s" % (DIM, R))
+print("%s%s%s" % (DIM, "─" * 56, R))
 print((first or "(none)").strip()[:1000])
 PY
   exit 0
@@ -70,6 +122,14 @@ import glob, json, os, sys, time
 
 root = sys.argv[1]
 DIM, RESET = "\033[2m", "\033[0m"
+HOME = os.path.expanduser("~")
+
+def tilde(p):
+    if p == HOME:
+        return "~"
+    if p.startswith(HOME + os.sep):
+        return "~" + p[len(HOME):]
+    return p
 
 def rel_time(secs):
     d = max(0, time.time() - secs)
@@ -122,7 +182,7 @@ for mtime, sid, path, title, cwd, branch, size in rows:
         meta.append(branch)
     meta.append(human_size(size))
     if cwd:
-        meta.append(cwd)
+        meta.append(tilde(cwd))
     display = "%s\n%s%s%s" % (title or "(untitled session)",
                               DIM, "  ·  ".join(meta), RESET)
     sys.stdout.write("\t".join((display, sid, path)) + "\0")
@@ -147,15 +207,17 @@ if [ -z "$session_id" ]; then
   # two-line entries  <display>\t<id>\t<path>  where <display> is the AI title
   # plus a dim metadata line (relative time · branch · size · cwd), matching
   # the built-in `claude --resume` picker. ctrl-x deletes the highlighted
-  # transcript and reloads the list.
+  # transcript and reloads the list. Enter resumes in the current dir (copy);
+  # ctrl-o resumes in the session's original dir (no copy) — surfaced via
+  # --expect, which prints the pressed key as the first output line.
   self="$0"
   pick="$(
     "$self" --list "$PROJECTS_DIR" | fzf --read0 --gap --ansi \
         --layout=reverse \
         --delimiter='\t' --with-nth=1 --accept-nth=2,3 \
-        --prompt='Resume session > ' \
+        --expect=ctrl-o \
         --list-border=rounded \
-        --list-label=' ctrl-x: delete session ' \
+        --list-label=' ctrl-x: delete  ·  ctrl-o: resume in original dir ' \
         --list-label-pos='-3:bottom' \
         --color='list-label:dim' \
         --preview-window='down,45%,wrap' \
@@ -163,9 +225,13 @@ if [ -z "$session_id" ]; then
         --bind "ctrl-x:execute-silent('$self' --delete-file {3})+reload('$self' --list '$PROJECTS_DIR')"
   )" || die "no session selected"
 
-  # --accept-nth=2,3 returns: <id><TAB><path>
-  session_id="$(printf '%s' "$pick" | cut -f1)"
-  src="$(printf '%s' "$pick" | cut -f2)"
+  # --expect prints the key on line 1 (empty for Enter); --accept-nth=2,3
+  # prints the selection as <id><TAB><path> on line 2.
+  key="$(printf '%s' "$pick" | sed -n 1p)"
+  sel="$(printf '%s' "$pick" | sed -n 2p)"
+  session_id="$(printf '%s' "$sel" | cut -f1)"
+  src="$(printf '%s' "$sel" | cut -f2)"
+  [ "$key" = "ctrl-o" ] && resume_original=1
 fi
 
 [ -n "$session_id" ] || die "empty session id"
@@ -178,6 +244,26 @@ if [ -z "${src-}" ]; then
   done
 fi
 [ -n "$src" ] && [ -f "$src" ] || die "session not found: $session_id"
+
+# --- resume in the session's original dir (no copy) ----------------------
+# The transcript already lives in its own project dir keyed to its original
+# cwd, so `claude --resume` finds it natively once we cd there.
+if [ -n "${resume_original-}" ]; then
+  orig="$(python3 - "$src" <<'PY'
+import json, sys
+for line in open(sys.argv[1], errors="replace"):
+    try:
+        obj = json.loads(line)
+    except ValueError:
+        continue
+    if isinstance(obj, dict) and obj.get("cwd"):
+        print(obj["cwd"]); break
+PY
+)"
+  [ -n "$orig" ] && [ -d "$orig" ] || die "original dir not found for $session_id"
+  cd "$orig" || die "cannot cd to $orig"
+  exec claude --resume "$session_id" "$@"
+fi
 
 # --- compute target project dir for the CURRENT cwd ----------------------
 target="$PROJECTS_DIR/$(encode_cwd "$PWD")"
