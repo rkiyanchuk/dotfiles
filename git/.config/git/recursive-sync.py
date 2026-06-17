@@ -52,12 +52,20 @@ class CommitInfo:
 @dataclass
 class RepoResult:
     path: str
-    branch: str
+    branch: str  # branch that updates are fetched from (main/master)
     status: str  # 'updated', 'up_to_date', 'error', 'diverged'
+    checkout_branch: Optional[str] = None  # locally checked-out branch, if different from `branch`
     commits_pulled: List[CommitInfo] = field(default_factory=list)
     error_message: Optional[str] = None
     commits_ahead: int = 0
     commits_behind: int = 0
+
+    def branch_label(self) -> str:
+        """Branch shown in output: the fetched-from branch, plus the
+        checked-out branch dimmed when it differs."""
+        if self.checkout_branch and self.checkout_branch != self.branch:
+            return f"{self.branch} {DIM}{self.checkout_branch}{RESET}"
+        return self.branch
 
 
 class GitRepoPuller:
@@ -294,7 +302,8 @@ class GitRepoPuller:
             if not remote_branch:
                 return RepoResult(
                     path=repo_name,
-                    branch=original_branch,
+                    branch=main_branch,
+                    checkout_branch=original_branch,
                     status="error",
                     error_message=f"No remote tracking branch for {main_branch}",
                 )
@@ -304,7 +313,8 @@ class GitRepoPuller:
             if not success:
                 return RepoResult(
                     path=repo_name,
-                    branch=original_branch,
+                    branch=main_branch,
+                    checkout_branch=original_branch,
                     status="error",
                     error_message=f"Failed to fetch: {stderr}",
                 )
@@ -317,7 +327,8 @@ class GitRepoPuller:
             if behind == 0:
                 return RepoResult(
                     path=repo_name,
-                    branch=original_branch,
+                    branch=main_branch,
+                    checkout_branch=original_branch,
                     status="up_to_date",
                     commits_ahead=ahead,
                     commits_behind=behind,
@@ -326,7 +337,8 @@ class GitRepoPuller:
             if ahead > 0:
                 return RepoResult(
                     path=repo_name,
-                    branch=original_branch,
+                    branch=main_branch,
+                    checkout_branch=original_branch,
                     status="diverged",
                     commits_ahead=ahead,
                     commits_behind=behind,
@@ -345,7 +357,8 @@ class GitRepoPuller:
             if not success:
                 return RepoResult(
                     path=repo_name,
-                    branch=original_branch,
+                    branch=main_branch,
+                    checkout_branch=original_branch,
                     status="error",
                     commits_ahead=ahead,
                     commits_behind=behind,
@@ -354,7 +367,8 @@ class GitRepoPuller:
 
             return RepoResult(
                 path=repo_name,
-                branch=original_branch,
+                branch=main_branch,
+                checkout_branch=original_branch,
                 status="updated",
                 commits_pulled=commits_to_pull,
                 commits_ahead=ahead,
@@ -412,7 +426,7 @@ class GitRepoPuller:
         if updated_repos:
             print(f"\n{YELLOW}  UPDATED REPOSITORIES{RESET} ({len(updated_repos)})")
             for repo in updated_repos:
-                print(f"\n{YELLOW} {repo.path} ({repo.branch}){RESET}")
+                print(f"\n{YELLOW} {repo.path} ({repo.branch_label()}){RESET}")
                 for commit in repo.commits_pulled:
                     print(
                         f"   {BLUE}{commit.hash}{RESET} {GRAY}{commit.date}{RESET} {commit.title} {GREEN}{DIM}{commit.author}{RESET}"
@@ -422,7 +436,7 @@ class GitRepoPuller:
             print(f"\n{ORANGE}  DIVERGED REPOSITORIES ({len(diverged_repos)}){RESET}")
             print("-" * 40)
             for repo in diverged_repos:
-                print(f"\n {repo.path} ({repo.branch})")
+                print(f"\n {repo.path} ({repo.branch_label()})")
                 print(
                     f"  {repo.commits_ahead} commits ahead, {repo.commits_behind} commits behind"
                 )
@@ -437,7 +451,7 @@ class GitRepoPuller:
                     if repo.error_message
                     else "Unknown error"
                 )
-                print(f"\n{RED} {repo.path} ({repo.branch}) {RESET}")
+                print(f"\n{RED} {repo.path} ({repo.branch_label()}) {RESET}")
                 print(f"{err_msg}")
 
         print(f"\n{BLUE}󰈙  GIT PULL SUMMARY{RESET}\n")
