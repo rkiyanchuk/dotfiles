@@ -634,7 +634,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-        local prompt = "Write git commit message for staged changes. Return *only* the body of the commit message, do not wrap in code fences or backticks"
 
         local function generate()
             local diff = vim.fn.system("git diff --staged")
@@ -659,7 +658,16 @@ vim.api.nvim_create_autocmd("FileType", {
                 if vim.api.nvim_buf_is_valid(bufnr) then spinner_extmark(mark_id) end
             end))
 
-            vim.system({ "claude", "-p", prompt }, { stdin = diff }, function(result)
+            local schema = '{"type":"object","properties":{"commit_message":'
+                .. '{"type":"string"}},"required":["commit_message"]}'
+            vim.system(
+                {
+                    "claude", "-p", "--no-session-persistence",
+                    "--json-schema", schema, "--output-format", "json",
+                    "/commit-message",
+                },
+                { env = { CLAUDE_MEM_INTERNAL = "1" } },
+                function(result)
                 vim.schedule(function()
                     timer:stop()
                     timer:close()
@@ -667,12 +675,14 @@ vim.api.nvim_create_autocmd("FileType", {
                         vim.api.nvim_buf_del_extmark(bufnr, ns, mark_id)
                     end
                     if result.code ~= 0 then
-                        vim.notify("claude failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
+                        vim.notify("commit-message failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
                         return
                     end
-                    local msg = vim.trim(result.stdout or "")
+                    local ok, data = pcall(vim.json.decode, result.stdout or "")
+                    local msg = ok and data.structured_output and data.structured_output.commit_message
+                    msg = vim.trim(msg or "")
                     if msg == "" then
-                        vim.notify("claude returned empty message", vim.log.levels.ERROR)
+                        vim.notify("commit-message returned empty message", vim.log.levels.ERROR)
                         return
                     end
                     if vim.api.nvim_buf_is_valid(bufnr) then
