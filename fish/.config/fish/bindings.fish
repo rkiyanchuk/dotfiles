@@ -7,4 +7,13 @@ if status is-interactive; and type -q fzf; and type -q git
 
     # Select git branch or tag
     bind ctrl-g __git_select_ref_widget
+
+    function __git_select_worktree_widget --description "wrapper for git_select_worktree key binding"
+        git rev-parse --git-dir >/dev/null 2>&1
+        and git-select-worktree
+        commandline -f repaint
+    end
+
+    # Select git worktree
+    bind ctrl-alt-w __git_select_worktree_widget
 end
