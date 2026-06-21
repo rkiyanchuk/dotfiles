@@ -211,6 +211,18 @@ if [[ -n "$usage_pct" ]]; then
     usage_int=${usage_pct%.*}
     usage_int=${usage_int:-0}
     status_line+="  ${DIM}${BLUE}󰊚 $(pct_color "$usage_int")${usage_int}%${RESET}"
+
+    # Show reset time once usage exceeds 80%
+    if ((usage_int > 80)); then
+        resets_at=$(jq -r '.rate_limits.five_hour.resets_at // empty' <<< "$input")
+        if [[ -n "$resets_at" ]]; then
+            # GNU date (coreutils) first, BSD date fallback
+            reset_time=$(date -d "$resets_at" +"%H:%M" 2>/dev/null \
+                || date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$resets_at" +"%H:%M" 2>/dev/null \
+                || echo "")
+            [[ -n "$reset_time" ]] && status_line+="  ${DIM}${BLUE}󰦖 ${reset_time}${RESET}"
+        fi
+    fi
 fi
 
 if ((lines_added > 0 || lines_removed > 0)); then
