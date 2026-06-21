@@ -133,11 +133,27 @@ session_cost=$(printf "%.2f" "$session_cost_usd")
 
 # Get git info if in a git repository
 git_branch=""
+git_worktree=""
 lines_added=0
 lines_removed=0
 if git -C "$current_dir" rev-parse --git-dir >/dev/null 2>&1; then
     # Get current branch name
     git_branch=$(git -C "$current_dir" branch --show-current 2>/dev/null || echo "")
+
+    # Linked worktree: git-dir differs from the shared git-common-dir
+    git_dir=$(git -C "$current_dir" rev-parse --absolute-git-dir 2>/dev/null || echo "")
+    git_common_dir=$(git -C "$current_dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null || echo "")
+    if [[ -n "$git_dir" && "$git_dir" != "$git_common_dir" ]]; then
+        worktree_top=$(git -C "$current_dir" rev-parse --show-toplevel 2>/dev/null || echo "")
+        git_worktree="${worktree_top##*/}"
+        # Zed nests as .../worktrees/<repo>/<name>/<repo>; when the leaf dir is
+        # the repo name (the main worktree's basename), the real name is one up.
+        main_top="${git_common_dir%/.git}"
+        if [[ "$git_worktree" == "${main_top##*/}" ]]; then
+            parent="${worktree_top%/*}"
+            git_worktree="${parent##*/}"
+        fi
+    fi
 
     # Count lines added and removed vs HEAD (staged + unstaged)
     while IFS=$'\t' read -r added removed _file; do
@@ -146,13 +162,17 @@ if git -C "$current_dir" rev-parse --git-dir >/dev/null 2>&1; then
     done < <(git -C "$current_dir" -c core.quotePath=false diff --numstat HEAD 2>/dev/null)
 fi
 
-# Shorten home directory to ~ and show only last 2 directory levels
+# Shorten home directory to ~. Show last 2 directory levels, or just 1 in a
+# worktree (the worktree name is already shown separately).
 temp_dir="${current_dir/#$HOME/~}"
-# Extract last 2 directory levels
-display_dir=$(echo "$temp_dir" | awk -F'/' '{
-    if (NF <= 2) print $0
-    else print $(NF-1) "/" $NF
-}')
+if [[ -n "$git_worktree" ]]; then
+    display_dir="${temp_dir##*/}"
+else
+    display_dir=$(echo "$temp_dir" | awk -F'/' '{
+        if (NF <= 2) print $0
+        else print $(NF-1) "/" $NF
+    }')
+fi
 
 pct_color() {
     if   (($1 < 25));  then printf "%b" "\033[2;37m"             # dim grey
@@ -188,6 +208,7 @@ fi
 
 # --- Build line 1 ---
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
+[[ -n "$git_worktree" ]] && status_line+=" ${DIM}${MAGENTA}󰙅 ${git_worktree}${RESET}"
 [[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
 status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
 if [[ -n "$model_effort" ]]; then
