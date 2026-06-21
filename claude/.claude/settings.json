@@ -48,6 +48,7 @@
       }
     }
   },
+  "model": "opus",
   "outputStyle": "Brief",
   "permissions": {
     "additionalDirectories": [
