@@ -11,7 +11,7 @@ function __git_worktree_records --description "emit NUL-delimited git worktree r
     if test -z "$ref"  # no branch -> bare or detached
       string match -qr '(?m)^bare' -- $block; and set ref '(bare)'; or set ref '(detached)'
     end
-    set -l meta $ref $sha
+    set -l meta $sha $ref
     string match -qr '(?m)^locked' -- $block; and set -a meta locked
     string match -qr '(?m)^prunable' -- $block; and set -a meta prunable
     # Field 1 = display (bold path + dim meta line), field 2 = real path (hidden,
