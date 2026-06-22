@@ -83,4 +83,18 @@
       "shift-s": "vim::PushAddSurrounds",
     },
   },
+
+  // Open files in project from diff.
+  {
+    "context": "CommitDiff",
+    "bindings": {
+      "shift-g space": "git::OpenFileAtHead",
+    },
+  },
+  {
+    "context": "CommitDiff > Editor && vim_mode == insert",
+    "bindings": {
+      "alt-shift-enter": "git::OpenFileAtHead",
+    },
+  },
 ]
