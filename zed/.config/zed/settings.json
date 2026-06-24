@@ -8,6 +8,7 @@
       "provider": "anthropic",
       "model": "sonnet-4.6",
     },
+    "commit_message_instructions": "Use scope-prefixed subjects (Linux/Git/Go style), NEVER Conventional Commits (no feat:/fix:/chore:). Format: `scope: imperative description`, where scope is the natural area touched (subsystem, package, module, dir); omit scope only for genuinely cross-cutting changes. Subject must be <= 50 chars, imperative mood, capitalized, no trailing period. For non-trivial changes add one blank line then a body wrapped at 72 columns that explains what and why, not how.",
     "default_view": "text_thread",
     "inline_assistant_model": {
       "provider": "zed.dev",
