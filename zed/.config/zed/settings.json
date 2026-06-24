@@ -182,6 +182,10 @@
     "bell": "system",
     "button": true,
     "dock": "bottom",
+    "env": {
+      "EDITOR": "zed --wait",
+      "VISUAL": "zed --wait",
+    },
     "font_family": "IosevkaTerm Nerd Font",
     "font_size": 16.0,
     "font_weight": 250.0,

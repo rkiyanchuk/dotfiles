@@ -6,8 +6,8 @@ set fish_color_valid_path  # Disable underlining path
 # Customize eza colors
 set -x EZA_COLORS "gu=32:uu=32:sn=35:sb=35:da=33"
 
-set --export --global VISUAL nvim
-set --export --global EDITOR nvim
+set --query VISUAL; or set --export --global VISUAL nvim
+set --query EDITOR; or set --export --global EDITOR nvim
 set --export --global CLICOLOR 1  # Turn on colors for some BSD tools
 set --export --global GPG_TTY (tty)  # Setup TTY for GPG pinetry
 set --export --global LESS "FRX"

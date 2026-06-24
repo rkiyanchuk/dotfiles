@@ -12,7 +12,7 @@
 
 [core]
     precomposeUnicode = true
-    editor = nvim
+    editor = $EDITOR
 
 [init]
     defaultBranch = main
