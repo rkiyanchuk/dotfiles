@@ -67,6 +67,7 @@
       "show_commit_summary": false,
     },
   },
+  "git_commit_buffer_font_size": 14.0,
   "git_panel": {
     "dock": "left",
   },
