@@ -4,16 +4,16 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.5",
+    },
     "commit_message_model": {
-      "provider": "anthropic",
-      "model": "sonnet-4.6",
+      "provider": "copilot_chat",
+      "model": "gpt-5.5",
     },
     "commit_message_instructions": "Use scope-prefixed subjects (Linux/Git/Go style), NEVER Conventional Commits (no feat:/fix:/chore:). Format: `scope: imperative description`, where scope is the natural area touched (subsystem, package, module, dir); omit scope only for genuinely cross-cutting changes. Subject must be <= 50 chars, imperative mood, capitalized, no trailing period. For non-trivial changes add one blank line then a body wrapped at 72 columns that explains what and why, not how.",
     "default_view": "text_thread",
-    "inline_assistant_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
-    },
     "dock": "left",
     "message_editor_min_lines": 3,
     "play_sound_when_agent_done": "when_hidden",
@@ -22,10 +22,19 @@
   },
   "agent_buffer_font_size": 16.0,
   "agent_servers": {
+    "github-copilot-cli": {
+      "default_config_options": {
+        "allow_all": "on",
+      },
+      "type": "registry",
+    },
     "claude-acp": {
       "type": "registry",
     },
     "codex-acp": {
+      "favorite_config_option_values": {
+        "model": ["gpt-5.5"],
+      },
       "type": "registry",
     },
     "gemini": {
@@ -57,6 +66,9 @@
   "diff_view_style": "unified",
   "document_folding_ranges": "off",
   "edit_predictions": {
+    "ollama": {
+      "model": "qwen2.5-coder:7b-base",
+    },
     "allow_data_collection": "yes",
     "provider": "copilot",
   },
