@@ -87,6 +87,7 @@
     "type": "command"
   },
   "theme": "auto",
+  "tui": "fullscreen",
   "voice": {
     "enabled": true,
     "mode": "hold"
