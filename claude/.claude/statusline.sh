@@ -13,6 +13,7 @@ BLUE="\033[34m"
 MAGENTA="\033[35m"
 CYAN="\033[36m"
 WHITE="\033[37m"
+ORANGE="\033[38;5;208m"
 
 # Bright colors
 BRIGHT_BLACK="\033[90m"
@@ -236,12 +237,12 @@ if [[ -n "$usage_pct" ]]; then
     # Show reset time once usage exceeds 80%
     if ((usage_int > 80)); then
         resets_at=$(jq -r '.rate_limits.five_hour.resets_at // empty' <<< "$input")
-        if [[ -n "$resets_at" ]]; then
-            # GNU date (coreutils) first, BSD date fallback
-            reset_time=$(date -d "$resets_at" +"%H:%M" 2>/dev/null \
-                || date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$resets_at" +"%H:%M" 2>/dev/null \
+        if [[ -n "$resets_at" && "$resets_at" != "0" ]]; then
+            # resets_at is a Unix epoch: GNU/uutils date first, BSD date fallback
+            reset_time=$(date -d "@$resets_at" +"%H:%M" 2>/dev/null \
+                || date -r "$resets_at" +"%H:%M" 2>/dev/null \
                 || echo "")
-            [[ -n "$reset_time" ]] && status_line+="  ${DIM}${BLUE}󰦖 ${reset_time}${RESET}"
+            [[ -n "$reset_time" ]] && status_line+="  ${DIM}${ORANGE}󰦖 ${reset_time}${RESET}"
         fi
     fi
 fi
