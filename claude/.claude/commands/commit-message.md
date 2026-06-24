@@ -16,6 +16,9 @@ Hard output rules (a wrapper pipes your reply straight into the commit, unedited
 
 Follow this project's commit-message convention:
 
-## Staged diff
+## Diff
 
-!`git diff --staged`
+The diff below is the staged changes if any are staged, otherwise all tracked
+changes (the `git commit -a` case). Summarize whatever is shown.
+
+!`git diff --staged --quiet && git diff HEAD || git diff --staged`
