@@ -97,4 +97,40 @@
       "alt-shift-enter": "git::OpenFileAtHead",
     },
   },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-<": "agent::AddSelectionToThread"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "cmd->": "agent::AddSelectionToThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "bindings": {
+      "cmd-<": "agent::AddSelectionToThread"
+    }
+  },
+  {
+    "context": "AcpThread",
+    "unbind": {
+      "cmd->": "agent::AddSelectionToThread"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-<": "agent::AddSelectionToThread"
+    }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "cmd->": "agent::AddSelectionToThread"
+    }
+  }
 ]

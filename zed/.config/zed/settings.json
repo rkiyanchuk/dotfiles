@@ -14,10 +14,11 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4-6",
     },
-    "dock": "right",
+    "dock": "left",
     "message_editor_min_lines": 3,
     "play_sound_when_agent_done": "when_hidden",
     "show_turn_stats": true,
+    "terminal_init_command": "claude",
   },
   "agent_buffer_font_size": 16.0,
   "agent_servers": {
@@ -44,7 +45,7 @@
   "code_lens": "menu",
   "collaboration_panel": {
     "default_width": 300.0,
-    "dock": "left",
+    "dock": "right",
   },
   "colorize_brackets": true,
   "confirm_quit": true,
