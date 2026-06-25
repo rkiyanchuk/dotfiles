@@ -147,7 +147,7 @@
   "project_panel": {
     "button": true,
     "default_width": 300.0,
-    "dock": "left",
+    "dock": "right",
     "git_status_indicator": false,
     "hide_root": true,
   },
