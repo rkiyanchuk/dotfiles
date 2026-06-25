@@ -663,6 +663,7 @@ vim.api.nvim_create_autocmd("FileType", {
             vim.system(
                 {
                     "claude", "-p", "--no-session-persistence",
+                    "--model", "claude-haiku-4-5",
                     "--json-schema", schema, "--output-format", "json",
                     "/commit-message",
                 },
