@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
-# claude-resume — resume any Claude Code session in the CURRENT directory.
+# claude-resume — resume any Claude Code session.
 #
 # Claude keys resumable sessions by cwd: transcripts live at
 #   ~/.claude/projects/<encoded-cwd>/<session-id>.jsonl
 # and `claude --resume <id>` only scans the project dir for the current cwd,
-# with no flag to point it elsewhere. This wrapper copies the chosen session's
-# transcript into the project dir for the dir you're standing in (rewriting the
-# recorded `cwd` so the "from a different directory" banner doesn't fire), then
-# resumes it in place. No `cd`, no worktree hop. The original is never touched.
+# with no flag to point it elsewhere.
+#
+# Default: cd into the session's original directory and resume it there — the
+# transcript already lives in the project dir keyed to that cwd, so no copy or
+# rewrite is needed.
+#
+# ctrl-o: *move* the session into the dir you're standing in (relocate the
+# transcript into the current cwd's project dir, rewriting the recorded `cwd`
+# so the "from a different directory" banner stays quiet, and delete the
+# original), then resume it in place.
 
 set -euo pipefail
 
@@ -207,9 +213,9 @@ if [ -z "$session_id" ]; then
   # two-line entries  <display>\t<id>\t<path>  where <display> is the AI title
   # plus a dim metadata line (relative time · branch · size · cwd), matching
   # the built-in `claude --resume` picker. ctrl-x deletes the highlighted
-  # transcript and reloads the list. Enter resumes in the current dir (copy);
-  # ctrl-o resumes in the session's original dir (no copy) — surfaced via
-  # --expect, which prints the pressed key as the first output line.
+  # transcript and reloads the list. Enter resumes in the session's original
+  # dir (cd, no copy); ctrl-o *moves* the session into the current dir — both
+  # surfaced via --expect, which prints the pressed key as the first output line.
   self="$0"
   pick="$(
     "$self" --list "$PROJECTS_DIR" | fzf --read0 --gap --ansi \
@@ -217,7 +223,7 @@ if [ -z "$session_id" ]; then
         --delimiter='\t' --with-nth=1 --accept-nth=2,3 \
         --expect=ctrl-o \
         --list-border=rounded \
-        --list-label=' ctrl-x: delete  ·  ctrl-o: resume in original dir ' \
+        --list-label=' ctrl-x: delete  ·  ctrl-o: open in current dir ' \
         --list-label-pos='-3:bottom' \
         --color='list-label:dim' \
         --preview-window='down,45%,wrap' \
@@ -231,7 +237,7 @@ if [ -z "$session_id" ]; then
   sel="$(printf '%s' "$pick" | sed -n 2p)"
   session_id="$(printf '%s' "$sel" | cut -f1)"
   src="$(printf '%s' "$sel" | cut -f2)"
-  [ "$key" = "ctrl-o" ] && resume_original=1
+  [ "$key" = "ctrl-o" ] && move_to_current=1
 fi
 
 [ -n "$session_id" ] || die "empty session id"
@@ -245,40 +251,23 @@ if [ -z "${src-}" ]; then
 fi
 [ -n "$src" ] && [ -f "$src" ] || die "session not found: $session_id"
 
-# --- resume in the session's original dir (no copy) ----------------------
-# The transcript already lives in its own project dir keyed to its original
-# cwd, so `claude --resume` finds it natively once we cd there.
-if [ -n "${resume_original-}" ]; then
-  orig="$(python3 - "$src" <<'PY'
-import json, sys
-for line in open(sys.argv[1], errors="replace"):
-    try:
-        obj = json.loads(line)
-    except ValueError:
-        continue
-    if isinstance(obj, dict) and obj.get("cwd"):
-        print(obj["cwd"]); break
-PY
-)"
-  [ -n "$orig" ] && [ -d "$orig" ] || die "original dir not found for $session_id"
-  cd "$orig" || die "cannot cd to $orig"
-  exec claude --resume "$session_id" "$@"
-fi
+# --- ctrl-o: move the session into the CURRENT cwd's project dir ---------
+# Relocate the transcript into the project dir keyed to the dir we're standing
+# in (rewriting the recorded cwd so the "from a different directory" banner
+# stays quiet), delete the original, then resume in place.
+if [ -n "${move_to_current-}" ]; then
+  target="$PROJECTS_DIR/$(encode_cwd "$PWD")"
+  mkdir -p "$target"
+  dst="$target/$session_id.jsonl"
 
-# --- compute target project dir for the CURRENT cwd ----------------------
-target="$PROJECTS_DIR/$(encode_cwd "$PWD")"
-mkdir -p "$target"
-dst="$target/$session_id.jsonl"
-
-# --- relocate transcript into current dir's project dir ------------------
-copy_with_cwd_rewrite() {
-  # rewrite the recorded cwd on every line so the banner stays quiet.
-  if command -v jq >/dev/null 2>&1 \
-     && jq -e . "$src" >/dev/null 2>&1; then
-    jq -c --arg d "$PWD" 'if has("cwd") then .cwd=$d else . end' \
-      "$src" >"$dst.tmp"
-  else
-    python3 - "$src" "$dst.tmp" "$PWD" <<'PY'
+  relocate_with_cwd_rewrite() {
+    # rewrite the recorded cwd on every line so the banner stays quiet.
+    if command -v jq >/dev/null 2>&1 \
+       && jq -e . "$src" >/dev/null 2>&1; then
+      jq -c --arg d "$PWD" 'if has("cwd") then .cwd=$d else . end' \
+        "$src" >"$dst.tmp"
+    else
+      python3 - "$src" "$dst.tmp" "$PWD" <<'PY'
 import json, sys
 src, dst, cwd = sys.argv[1], sys.argv[2], sys.argv[3]
 with open(src) as fh, open(dst, "w") as out:
@@ -295,18 +284,35 @@ with open(src) as fh, open(dst, "w") as out:
             obj["cwd"] = cwd
         out.write(json.dumps(obj) + "\n")
 PY
-  fi
-  mv "$dst.tmp" "$dst"
-}
+    fi
+    mv "$dst.tmp" "$dst"
+  }
 
-if [ "$src" = "$dst" ]; then
-  : # already lives here; resume as-is
-elif [ -f "$dst" ] && [ "$dst" -nt "$src" ]; then
-  printf 'claude-resume: local copy is newer, resuming it as-is\n' >&2
-else
-  copy_with_cwd_rewrite
-  printf 'claude-resume: copied session %s into %s\n' "$session_id" "$PWD" >&2
+  if [ "$src" = "$dst" ]; then
+    : # already lives here; resume as-is
+  else
+    relocate_with_cwd_rewrite
+    rm -f "$src"
+    printf 'claude-resume: moved session %s into %s\n' "$session_id" "$PWD" >&2
+  fi
+
+  exec claude --resume "$session_id" "$@"
 fi
 
-# --- resume in place ------------------------------------------------------
+# --- default: cd into the session's original dir and resume there --------
+# The transcript already lives in its own project dir keyed to its original
+# cwd, so `claude --resume` finds it natively once we cd there.
+orig="$(python3 - "$src" <<'PY'
+import json, sys
+for line in open(sys.argv[1], errors="replace"):
+    try:
+        obj = json.loads(line)
+    except ValueError:
+        continue
+    if isinstance(obj, dict) and obj.get("cwd"):
+        print(obj["cwd"]); break
+PY
+)"
+[ -n "$orig" ] && [ -d "$orig" ] || die "original dir not found for $session_id"
+cd "$orig" || die "cannot cd to $orig"
 exec claude --resume "$session_id" "$@"
