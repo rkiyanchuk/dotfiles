@@ -625,10 +625,12 @@ end
 
 -- COMMIT MESSAGE GENERATION
 
--- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a Claude-generated
+-- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a Gemini-generated
 -- commit message at the top of the buffer based on the currently staged diff.
 -- The call runs asynchronously so the editor stays responsive; a Braille
 -- spinner is shown as virtual text at line 1 to indicate progress.
+-- The Gemini API key is read from $GEMINI_API_KEY (a fish universal variable,
+-- never committed to the dotfiles repo).
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
@@ -636,6 +638,12 @@ vim.api.nvim_create_autocmd("FileType", {
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
         local function generate()
+            local api_key = vim.env.GEMINI_API_KEY
+            if not api_key or api_key == "" then
+                vim.notify("GEMINI_API_KEY is not set", vim.log.levels.ERROR)
+                return
+            end
+
             local diff = vim.fn.system("git diff --staged")
             if diff == "" then
                 vim.notify("No staged changes", vim.log.levels.WARN)
@@ -658,16 +666,46 @@ vim.api.nvim_create_autocmd("FileType", {
                 if vim.api.nvim_buf_is_valid(bufnr) then spinner_extmark(mark_id) end
             end))
 
-            local schema = '{"type":"object","properties":{"commit_message":'
-                .. '{"type":"string"}},"required":["commit_message"]}'
+            local prompt = table.concat({
+                "Write a git commit message for the staged diff below.",
+                "",
+                "Rules:",
+                "- Use a scope-prefixed subject (Linux/Git/Go style): "
+                    .. "`scope: imperative description`. Never Conventional Commits "
+                    .. "(no feat:/fix:/chore:). Scope is the subsystem/package/dir touched.",
+                "- Subject <= 50 chars, imperative mood, capitalized, no trailing period.",
+                "- For non-trivial changes add a body: one blank line, then wrap at 72 chars.",
+                "  The body explains what and why, not how.",
+                "- Output only the commit message text, no code fences or commentary.",
+                "",
+                "Staged diff:",
+                diff,
+            }, "\n")
+
+            local body = vim.json.encode({
+                contents = { { parts = { { text = prompt } } } },
+                generationConfig = {
+                    responseMimeType = "application/json",
+                    responseSchema = {
+                        type = "OBJECT",
+                        properties = { commit_message = { type = "STRING" } },
+                        required = { "commit_message" },
+                    },
+                    -- Skip "thinking" tokens to keep generation fast.
+                    thinkingConfig = { thinkingBudget = 0 },
+                },
+            })
+
+            local url = "https://generativelanguage.googleapis.com/v1beta/"
+                .. "models/gemini-2.5-flash:generateContent"
             vim.system(
                 {
-                    "claude", "-p", "--no-session-persistence",
-                    "--model", "claude-haiku-4-5",
-                    "--json-schema", schema, "--output-format", "json",
-                    "/commit-message",
+                    "curl", "-sS", "-X", "POST", url,
+                    "-H", "x-goog-api-key: " .. api_key,
+                    "-H", "Content-Type: application/json",
+                    "--data-binary", "@-",
                 },
-                { env = { CLAUDE_MEM_INTERNAL = "1" } },
+                { stdin = body },
                 function(result)
                 vim.schedule(function()
                     timer:stop()
@@ -680,8 +718,20 @@ vim.api.nvim_create_autocmd("FileType", {
                         return
                     end
                     local ok, data = pcall(vim.json.decode, result.stdout or "")
-                    local msg = ok and data.structured_output and data.structured_output.commit_message
-                    msg = vim.trim(msg or "")
+                    local text = ok and data
+                        and data.candidates and data.candidates[1]
+                        and data.candidates[1].content
+                        and data.candidates[1].content.parts
+                        and data.candidates[1].content.parts[1]
+                        and data.candidates[1].content.parts[1].text
+                    if not text then
+                        vim.notify("commit-message: unexpected API response: "
+                            .. (result.stdout or ""), vim.log.levels.ERROR)
+                        return
+                    end
+                    local pok, parsed = pcall(vim.json.decode, text)
+                    local msg = pok and parsed and parsed.commit_message or ""
+                    msg = vim.trim(msg)
                     if msg == "" then
                         vim.notify("commit-message returned empty message", vim.log.levels.ERROR)
                         return
@@ -694,9 +744,9 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         vim.keymap.set("n", "<Leader>c", generate,
-            { buffer = args.buf, desc = "Generate commit message with Claude" })
+            { buffer = args.buf, desc = "Generate commit message with Gemini" })
         vim.api.nvim_buf_create_user_command(args.buf, "CommitMsg", generate,
-            { desc = "Generate commit message with Claude" })
+            { desc = "Generate commit message with Gemini" })
     end,
 })
 
