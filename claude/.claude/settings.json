@@ -23,6 +23,12 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
   },
   "extraKnownMarketplaces": {
+    "cc-plugins": {
+      "source": {
+        "repo": "rkiyanchuk/cc-plugins",
+        "source": "github"
+      }
+    },
     "karpathy-skills": {
       "source": {
         "repo": "forrestchang/andrej-karpathy-skills",
