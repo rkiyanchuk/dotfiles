@@ -14,7 +14,7 @@
     "CLAUDE.md",
     "archive/"
   ],
-  "openBehavior": "file:Areas/Goals/✱ Start",
+  "openBehavior": "",
   "newLinkFormat": "relative",
   "newFileFolderPath": "@Inbox",
   "mobilePullAction": "switcher:open"
