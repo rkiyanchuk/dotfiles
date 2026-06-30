@@ -1,9 +1,14 @@
 [
-  "text-extractor",
-  "recent-files-obsidian",
+  "obsidian-auto-link-title",
   "obsidian-style-settings",
   "omnisearch",
+  "text-extractor",
+  "recent-files-obsidian",
+  "obsidian-importer",
   "consistent-attachments-and-links",
+  "simple-archiver",
   "obsidian-tikzjax",
-  "heic-viewer"
+  "heic-viewer",
+  "obsidian-map-view",
+  "realclaudian"
 ]

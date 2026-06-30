@@ -7,10 +7,11 @@
       "path": "_assets",
       "type": "string",
       "selector": "$",
-      "hiddenInNav": true,
+      "hiddenInNav": false,
       "hiddenInBookmarks": true
     }
   ],
   "alwaysHideInBookmarks": false,
-  "buttonInContextBookmark": false
+  "buttonInContextBookmark": false,
+  "obsidianExclude": false
 }

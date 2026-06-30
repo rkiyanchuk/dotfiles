@@ -1,0 +1,6 @@
+{
+  "archiveFolder": "Archive",
+  "autoArchiveRules": [],
+  "autoArchiveFrequency": 60,
+  "autoArchiveStartupDelaySeconds": 30
+}
