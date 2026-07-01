@@ -5,7 +5,7 @@
   "showInlineTitle": false,
   "readableLineLength": true,
   "alwaysUpdateLinks": true,
-  "newFileLocation": "folder",
+  "newFileLocation": "current",
   "attachmentFolderPath": "./_assets",
   "trashOption": "local",
   "useMarkdownLinks": true,
