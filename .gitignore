@@ -60,6 +60,7 @@ obsidian/.obsidian/plugins/recent-files-obsidian/data.json
 obsidian/.obsidian/plugins/omnisearch/data.json
 obsidian/.obsidian/plugins/obsidian-auto-link-title/
 obsidian/.obsidian/plugins/simple-archiver/autoarchive_data.json
+obsidian/.obsidian/plugins/realclaudian/data.json
 obsidian/.obsidian/plugins/*/main.js
 obsidian/.obsidian/plugins/*/styles.css
 
@@ -70,5 +71,6 @@ obsidian/.obsidian-mobile/workspace-mobile.json
 obsidian/.obsidian-mobile/graph.json
 obsidian/.obsidian-mobile/plugins/recent-files-obsidian/data.json
 obsidian/.obsidian-mobile/plugins/omnisearch/data.json
+obsidian/.obsidian-mobile/plugins/realclaudian/data.json
 obsidian/.obsidian-mobile/plugins/*/main.js
 obsidian/.obsidian-mobile/plugins/*/styles.css
