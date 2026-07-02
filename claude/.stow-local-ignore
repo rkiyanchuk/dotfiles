@@ -1,3 +1,4 @@
+\.DS_Store
 ^mcp-setup\.sh$
 ^\.env$
 ^\.env\.example$
