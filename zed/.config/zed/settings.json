@@ -82,7 +82,7 @@
   },
   "git_commit_buffer_font_size": 14.0,
   "git_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   "icon_theme": "Zed (Default)",
   "indent_guides": {
@@ -147,7 +147,7 @@
   "project_panel": {
     "button": true,
     "default_width": 300.0,
-    "dock": "right",
+    "dock": "left",
     "git_status_indicator": false,
     "hide_root": true,
   },

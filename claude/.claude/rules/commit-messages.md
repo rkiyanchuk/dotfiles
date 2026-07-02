@@ -1,7 +1,7 @@
 # Commit messages
 
-Use **scope-prefixed** subjects (Linux/Git/Go style), never Conventional
-Commits (`feat:`/`fix:`/`chore:`):
+Use **scope-prefixed** subjects (Linux/Git/Go style), never Conventional Commits
+(`feat:`/`fix:`/`chore:`):
 
 ```sh
 scope: imperative description
