@@ -26,6 +26,7 @@
 | `obsidian`          | Skills for reading and writing the Obsidian vaults.     |
 | `security-guidance` | Guardrails for security-sensitive requests.             |
 | `context7`          | Fetches up-to-date library/framework docs on demand.    |
+| `skill-creator`     | Author, edit, and benchmark Claude Code skills.         |
 
-LSP and review plugins (`*-lsp`, `pr-review-toolkit`, `chrome-devtools-mcp`,
-`skill-creator`) are installed but disabled; flip them on per project as needed.
+LSP and review plugins (`*-lsp`, `pr-review-toolkit`, `chrome-devtools-mcp`) are
+installed but disabled; flip them on per project as needed.

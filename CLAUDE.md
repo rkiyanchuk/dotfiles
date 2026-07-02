@@ -27,9 +27,15 @@ just shell       # Set Fish as default shell
 
 ### Claude Code package (`claude/`)
 
-- `settings.json` — permissions, sandbox, enabled plugins, model config
-- `hooks/rename-plan.sh` — PostToolUse hook on Write; auto-renames plan files to `_<repo>_<feature>.md` and creates a symlink in `~/.claude/plans/`
-- `hooks/statusline.sh` — renders the Claude Code status line with: directory, git branch, model name, context %, git diff stats, session cost
+Stow target is `~/.claude/`. `statusline.sh`, `rules/`, `commands/`, and `output-styles/` are stow symlinks. `settings.json` and `CLAUDE.md` are **real files, not symlinks**: Claude Code rewrites `settings.json` on `/model`, `/plugin`, and `/config` (which replaces a symlink with a plain file), so the committed copy is a snapshot — reconcile it toward the live `~/.claude/` version periodically.
+
+- `settings.json` — permissions, sandbox, marketplaces, enabled plugins, model, effort level, output style
+- `CLAUDE.md` — global instructions for all projects (Obsidian vaults)
+- `rules/` — path-scoped rules auto-loaded per file type: `commit-messages.md`, `markdown-formatting.md`
+- `output-styles/brief.md` — the custom **Brief** output style
+- `commands/commit-message.md` — `/commit-message` slash command for the staged diff
+- `statusline.sh` — two-line status line: directory, worktree, branch, model, context %, git diff stats, session cost
+- `.local/bin/claude-resume` — fzf picker to resume any past session by its cwd, or relocate it into the current dir (ctrl-o)
 - `.stow-local-ignore` — excludes runtime paths (skills, projects, sessions, plugins, plans, cache, history) from Stow management
 
 ### Git package (`git/`)

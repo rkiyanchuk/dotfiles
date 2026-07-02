@@ -18,9 +18,6 @@
     "skill-creator@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false
   },
-  "env": {
-    "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1"
-  },
   "extraKnownMarketplaces": {
     "cc-plugins": {
       "source": {
@@ -60,12 +57,7 @@
       "Skill(update-config)",
       "WebFetch",
       "WebSearch",
-      "mcp__github__get_file_contents",
-      "mcp__github__get_me",
-      "mcp__github__get_pull_request",
-      "mcp__github__get_repo",
-      "mcp__github__search_code",
-      "mcp__github__search_pull_requests",
+      "mcp__codegraph__*",
       "mcp__plugin_context7_context7__query-docs",
       "mcp__plugin_context7_context7__resolve-library-id"
     ],
