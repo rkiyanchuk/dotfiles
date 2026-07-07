@@ -97,6 +97,15 @@ def fmt_ts(s):
 def label(name, value, color=GRN):
     print("%s%-9s%s %s%s%s" % (CYA, name, R, color, value, R))
 
+HOME = os.path.expanduser("~")
+
+def tilde(p):
+    if p == HOME:
+        return "~"
+    if p.startswith(HOME + os.sep):
+        return "~" + p[len(HOME):]
+    return p
+
 print("%s%s%s" % (B, (title or "(untitled session)"), R))
 print("%s%s%s" % (DIM, "─" * 56, R))
 if model:
@@ -104,6 +113,8 @@ if model:
 label("started", fmt_ts(first_ts), BLU)
 label("updated", fmt_ts(last_ts), BLU)
 label("messages", "%d user · %d assistant" % (user_msgs, asst_msgs), GRN)
+if cwd:
+    label("directory", tilde(cwd), YEL)
 label("file", os.path.basename(path), DIM)
 print()
 print("%sFirst user prompt%s" % (DIM, R))
@@ -235,7 +246,7 @@ if [ -z "$session_id" ]; then
         --list-label=' ctrl-x: delete  ·  ctrl-o: open in current dir ' \
         --list-label-pos='-3:bottom' \
         --color='list-label:dim' \
-        --preview-window='down,45%,wrap' \
+        --preview-window='right,50%,wrap' \
         --preview "'$self' --preview-file {3}" \
         --bind "ctrl-x:execute-silent('$self' --delete-file {3})+reload('$self' --list '$PROJECTS_DIR')"
   )" || die "no session selected"
