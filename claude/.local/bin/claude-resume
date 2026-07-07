@@ -123,10 +123,17 @@ fi
 # Hidden subcommand: emit the NUL-delimited fzf records. Split out so the
 # picker can re-run it via fzf's reload() after a delete.
 if [ "${1-}" = "--list" ]; then
-  python3 - "${2-}" <<'PY'
+  # claude-mem's background "observer" sessions live in one fixed project dir
+  # (keyed to ~/.claude-mem/observer-sessions) and are never meant to be
+  # resumed by a human — exclude that whole dir rather than trying to
+  # detect them by title or message count (both are inconsistent: most have
+  # real turns logged, and many even get an aiTitle).
+  exclude_dir="$(printf '%s' "$HOME/.claude-mem/observer-sessions" | sed 's/[^a-zA-Z0-9]/-/g')"
+  python3 - "${2-}" "$exclude_dir" <<'PY'
 import glob, json, os, sys, time
 
 root = sys.argv[1]
+exclude_dir = sys.argv[2]
 DIM, RESET = "\033[2m", "\033[0m"
 HOME = os.path.expanduser("~")
 
@@ -154,6 +161,8 @@ def human_size(n):
 
 rows = []
 for path in glob.glob(os.path.join(root, "*", "*.jsonl")):
+    if os.path.basename(os.path.dirname(path)) == exclude_dir:
+        continue
     try:
         st = os.stat(path)
     except OSError:
