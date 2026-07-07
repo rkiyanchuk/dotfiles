@@ -1,6 +1,7 @@
 # APPEARANCE
 
 theme = Atom One Dark
+#theme = dark:Aton One Dark,light:One Double Light
 
 font-family = IosevkaTerm Nerd Font
 font-style = Light
