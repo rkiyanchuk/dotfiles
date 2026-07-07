@@ -7,19 +7,18 @@
   "cleanupPeriodDays": 90,
   "effortLevel": "xhigh",
   "enabledPlugins": {
+    "chrome-devtools-mcp@claude-plugins-official": false,
     "claude-mem@thedotmack": true,
     "context7@claude-plugins-official": true,
-
-    "chrome-devtools-mcp@claude-plugins-official": false,
-    "playwright@claude-plugins-official": false,
-    "obsidian@obsidian-skills": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-
     "gopls-lsp@claude-plugins-official": false,
+    "init-project@cc-plugins": true,
+    "obsidian@obsidian-skills": true,
+    "playwright@claude-plugins-official": false,
+    "pr-review-toolkit@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": false,
+    "security-guidance@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
