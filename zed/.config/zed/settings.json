@@ -77,6 +77,7 @@
     "inline_blame": {
       "delay_ms": 0,
       "enabled": false,
+      "location":"status_bar",
       "show_commit_summary": false,
     },
   },
@@ -124,6 +125,7 @@
   },
   "markdown_preview_code_font_family": "Iosevka Nerd Font",
   "markdown_preview_font_family": "IBM Plex Sans Light",
+  "markdown_preview_font_size": 17,
   "middle_click_paste": false,
   "minimap": {
     "show": "never",
