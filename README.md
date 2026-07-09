@@ -4,22 +4,25 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 
 ## Packages
 
-| Package | Description |
-|---------|-------------|
-| `bat` | Syntax-highlighted cat |
-| `claude` | Claude Code settings and hooks |
-| `fish` | Shell configuration |
-| `gh` | GitHub CLI |
-| `ghostty` | Terminal emulator (macOS) |
-| `git` | Git config and utilities |
-| `glances` | System monitor |
-| `grc` | CLI output colorizer |
-| `nvim` | Neovim editor |
-| `ssh` | SSH config (macOS) |
-| `starship` | Shell prompt |
-| `tmux` | Terminal multiplexer |
-| `yazi` | File manager |
-| `zed` | Editor (macOS) |
+| Package     | Description                               |
+| ----------- | ----------------------------------------- |
+| `bat`       | Syntax-highlighted cat                    |
+| `claude`    | Claude Code settings, status line & rules |
+| `direnv`    | Per-directory environment variables       |
+| `fish`      | Shell configuration                       |
+| `gh`        | GitHub CLI                                |
+| `ghostty`   | Terminal emulator (macOS)                 |
+| `git`       | Git config and utilities                  |
+| `glances`   | System monitor                            |
+| `grc`       | CLI output colorizer                      |
+| `nvim`      | Neovim editor                             |
+| `obsidian`  | Obsidian vault config                     |
+| `ssh`       | SSH config (macOS)                        |
+| `starship`  | Shell prompt                              |
+| `tmux`      | Terminal multiplexer                      |
+| `wireshark` | Network protocol analyzer (macOS)         |
+| `yazi`      | File manager                              |
+| `zed`       | Editor (macOS)                            |
 
 ## Setup
 
