@@ -13,3 +13,4 @@ __pycache__/
 # Claud Code
 **/.claude/settings.local.json
 **/CLAUDE.local.md
+**/.claude/.cc-writes/
