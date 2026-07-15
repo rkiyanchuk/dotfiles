@@ -10,20 +10,18 @@ brew "fish"
 brew "starship"
 brew "stow"
 
-brew "bat"
 brew "bash"
-brew "uutils-coreutils"
+brew "bat"
 brew "eza"
 brew "fd"
 brew "fzf"
-brew "gotop"
 brew "jq"
 brew "ripgrep"
 brew "sd" # Intuitive find and replace CLI command
+brew "uutils-coreutils"
 brew "yazi"
 brew "zoxide"
 
-brew "glances"
 brew "neovim"
 brew "tree-sitter-cli"
 brew "tmux"
@@ -43,7 +41,6 @@ cask "wireshark"
 
 # System tools
 brew "im-select"
-cask "appcleaner"
 cask "cleanshot"
 cask "cursorcerer"
 cask "istat-menus"
@@ -56,7 +53,6 @@ cask "betterdisplay"
 
 # Dev
 brew "bun"
-brew "cloc"
 brew "cmake"
 brew "cookiecutter"
 brew "deno"
@@ -73,9 +69,11 @@ brew "gosec"
 brew "httpie"
 brew "iperf"
 brew "just-lsp", tap: "terror/tap"
+brew "make"
 brew "ruff"
 brew "rustup"
 brew "tectonic"
+brew "tokei"
 brew "uv"
 
 cask "dash"
@@ -99,9 +97,9 @@ brew "sslscan"
 
 cask "burp-suite"
 cask "proxyman"
-cask "whatsyoursign" # Shows a files cryptographic signing information.
-cask "taskexplorer" # Supercharged Activity monitor
-cask "knockknock" # KnockKnock uncovers persistently installed software in order to generically reveal such malware
+# cask "whatsyoursign" # Shows a files cryptographic signing information.
+# cask "taskexplorer" # Supercharged Activity monitor
+# cask "knockknock" # KnockKnock uncovers persistently installed software in order to generically reveal such malware
 
 # Media
 brew "imagemagick"
