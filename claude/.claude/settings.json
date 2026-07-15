@@ -38,7 +38,8 @@
     "rust-analyzer-lsp@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": false
+    "typescript-lsp@claude-plugins-official": false,
+    "apple-events-mcp@cc-plugins": true
   },
   "extraKnownMarketplaces": {
     "cc-plugins": {
