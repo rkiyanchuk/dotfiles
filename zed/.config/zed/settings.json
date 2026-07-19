@@ -22,12 +22,6 @@
   },
   "agent_buffer_font_size": 16.0,
   "agent_servers": {
-    "github-copilot-cli": {
-      "default_config_options": {
-        "allow_all": "on",
-      },
-      "type": "registry",
-    },
     "claude-acp": {
       "type": "registry",
     },
@@ -37,9 +31,15 @@
       },
       "type": "registry",
     },
-    "gemini": {
-      "type": "registry",
+    "pi-acp": {
+      "type": "registry"
     },
+    "Oh My Pi": {
+      "type": "custom",
+      "command": "/opt/homebrew/bin/omp",
+      "args": ["acp"],
+      "env": {}
+    }
   },
   "agent_ui_font_size": 17.0,
   "auto_signature_help": false,
