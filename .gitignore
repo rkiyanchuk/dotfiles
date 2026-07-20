@@ -50,11 +50,6 @@ claude/.claude/ide/
 claude/.claude/plans/
 claude/.env
 
-# OhMyPi (only track config.yml — agent.db holds credentials, sessions/blobs/*.db are runtime state)
-omp/.omp/agent/*
-!omp/.omp/agent/config.yml
-.rewrite-mcp/
-
 # Obsidian
 obsidian/.obsidian/plugins/text-extractor/cache/**
 obsidian/.obsidian/workspace.json
