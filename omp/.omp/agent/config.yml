@@ -1,0 +1,13 @@
+symbolPreset: nerd
+theme:
+  dark: titanium
+  light: light-one
+setupVersion: 1
+modelRoles:
+  {}
+statusLine:
+  separator: none
+  transparent: true
+  compactThinkingLevel: true
+terminal:
+  showProgress: true

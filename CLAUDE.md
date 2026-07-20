@@ -23,7 +23,7 @@ just shell       # Set Fish as default shell
 
 **Task runner**: `just` (Justfile at repo root). OS detection at runtime via `path_exists("/etc/arch-release")` for Arch vs. macOS fallback.
 
-**Packages**: `bat`, `claude`, `direnv`, `fish`, `gh`, `ghostty`, `git`, `glances`, `grc`, `nvim`, `ssh`, `starship`, `tmux`, `yazi`.
+**Packages**: `bat`, `claude`, `direnv`, `fish`, `gh`, `ghostty`, `git`, `glances`, `grc`, `nvim`, `omp`, `ssh`, `starship`, `tmux`, `yazi`.
 
 ### Claude Code package (`claude/`)
 
@@ -37,6 +37,16 @@ Stow target is `~/.claude/`. `statusline.sh`, `rules/`, `commands/`, and `output
 - `statusline.sh` — two-line status line: directory, worktree, branch, model, context %, git diff stats, session cost
 - `.local/bin/claude-resume` — fzf picker to resume any past session by its cwd, or relocate it into the current dir (ctrl-o)
 - `.stow-local-ignore` — excludes runtime paths (skills, projects, sessions, plugins, plans, cache, history) from Stow management
+
+### OhMyPi package (`omp/`)
+
+Stow target is `~/.omp/agent/`. Only `config.yml` is tracked — display/UX preferences (theme, symbol preset, status line, thinking level). Everything else under `~/.omp/agent/` is local runtime state and is gitignored via an allowlist (`omp/.omp/agent/*` + `!omp/.omp/agent/config.yml`), not enumerated per-file, so new state files a future `omp` version creates are excluded automatically:
+
+- `agent.db` (+ `-wal`/`-shm`) — **credentials** (OAuth tokens, API keys), chmod `0600` by omp itself. Never commit.
+- `history.db`, `models.db` — local caches
+- `sessions/`, `terminal-sessions/`, `blobs/` — session transcripts and artifacts
+- `models.yml`, `mcp.json`, `secrets.yml` — not tracked; these commonly hold provider API keys, MCP server credentials, or literal secret values and are excluded on principle even though this machine doesn't currently have them
+
 
 ### Git package (`git/`)
 

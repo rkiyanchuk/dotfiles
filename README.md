@@ -17,6 +17,7 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 | `grc`       | CLI output colorizer                      |
 | `nvim`      | Neovim editor                             |
 | `obsidian`  | Obsidian vault config                     |
+| `omp`       | Oh My Pi coding agent config              |
 | `ssh`       | SSH config (macOS)                        |
 | `starship`  | Shell prompt                              |
 | `tmux`      | Terminal multiplexer                      |

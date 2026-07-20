@@ -13,7 +13,7 @@ deps_arch := "bat eza fd fish fzf git grc neovim python-uv ripgrep starship stow
 deps_ubuntu := "bat eza fd-find fish fzf git grc neovim ripgrep snapd stow tmux"
 
 # CLI packages to install via stow
-packages_cli := "bat fish git gh grc glances nvim starship tmux yazi claude"
+packages_cli := "bat fish git gh grc glances nvim starship tmux yazi claude omp"
 
 # Desktop packages to install via stow (macOS only)
 packages_gui := "ghostty wireshark ssh zed"
