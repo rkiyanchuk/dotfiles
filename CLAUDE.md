@@ -40,12 +40,13 @@ Stow target is `~/.claude/`. `statusline.sh`, `rules/`, `commands/`, and `output
 
 ### OhMyPi package (`omp/`)
 
-Stow target is `~/.omp/agent/`. Only `config.yml` is tracked — display/UX preferences (theme, symbol preset, status line, thinking level). Everything else under `~/.omp/agent/` is local runtime state and is gitignored via an allowlist (`omp/.omp/agent/*` + `!omp/.omp/agent/config.yml`), not enumerated per-file, so new state files a future `omp` version creates are excluded automatically:
+Stow target is `~/.omp/agent/`. `config.yml` (display/UX preferences: theme, symbol preset, status line, thinking level) and `mcp.json` (MCP denylist, see below) are tracked. Everything else under `~/.omp/agent/` is local runtime state and is gitignored via an allowlist (`omp/.omp/agent/*` with `!config.yml` and `!mcp.json` exceptions), not enumerated per-file, so new state files a future `omp` version creates are excluded automatically:
 
 - `agent.db` (+ `-wal`/`-shm`) — **credentials** (OAuth tokens, API keys), chmod `0600` by omp itself. Never commit.
 - `history.db`, `models.db` — local caches
 - `sessions/`, `terminal-sessions/`, `blobs/` — session transcripts and artifacts
-- `models.yml`, `mcp.json`, `secrets.yml` — not tracked; these commonly hold provider API keys, MCP server credentials, or literal secret values and are excluded on principle even though this machine doesn't currently have them
+- `models.yml`, `secrets.yml` — not tracked; these commonly hold provider API keys or literal secret values and are excluded on principle even though this machine doesn't currently have them
+- `mcp.json` — **tracked**; currently holds only the `disabledServers` denylist (disables the `nano-banana`, `node_repl`, and `claude-mem` MCP servers), no secrets. Keep it secret-free: never add literal tokens in `auth`/`oauth`/`headers`/`env` — use `${VAR}` references, since the allowlist exception means this file is no longer caught by the runtime-state ignore.
 
 
 ### Git package (`git/`)
