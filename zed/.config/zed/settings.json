@@ -35,9 +35,6 @@
       },
       "type": "registry",
     },
-    "pi-acp": {
-      "type": "registry"
-    },
     "Oh My Pi": {
       "favorite_config_option_values": {
         "model": [
