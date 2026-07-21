@@ -60,9 +60,13 @@ power:
 memory:
   backend: mnemopi
 mnemopi:
-  scoping: per-project-tagged
+  scoping: global
   embeddingVariant: multilingual
 hideThinkingBlock: true
 defaultThinkingLevel: auto
 disabledProviders:
   - codex
+providers:
+  memoryModel: online
+autolearn:
+  enabled: true
