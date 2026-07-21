@@ -4,7 +4,6 @@ theme:
   light: light-one
 setupVersion: 1
 modelRoles:
-  default: claude-opus-4-8:medium
   slow: claude-opus-4-8:max
   plan: claude-opus-4-8:xhigh
   task: claude-sonnet-5:medium
@@ -66,3 +65,5 @@ mnemopi:
   scoping: per-project-tagged
   embeddingVariant: multilingual
 hideThinkingBlock: true
+disabledProviders:
+  - codex
