@@ -1,6 +1,6 @@
 symbolPreset: nerd
 theme:
-  dark: dark-one
+  dark: dark-one-hl
   light: light-one
 setupVersion: 1
 modelRoles:
@@ -10,7 +10,6 @@ modelRoles:
   task: claude-sonnet-5:high
   commit: claude-haiku-4-5
   smol: claude-haiku-4-5
-  # advisor: claude-fable-5
 statusLine:
   separator: none
   transparent: true
