@@ -17,6 +17,35 @@ statusLine:
   separator: none
   transparent: true
   compactThinkingLevel: true
+  preset: custom
+  leftSegments:
+    - path
+    - git
+    - pr
+    - model
+    - mode
+    - context_pct
+    - cost
+  rightSegments:
+    - subagents
+    - session_name
+    - time_spent
+    - hostname
+  segmentOptions:
+    model:
+      showThinkingLevel: true
+    path:
+      abbreviate: true
+      maxLength: 30
+    git:
+      showBranch: true
+      showStaged: true
+      showUnstaged: true
+      showUntracked: true
+    time:
+      format: 24h
+      showSeconds: false
+  sessionAccent: false
 terminal:
   showProgress: true
 personality: pragmatic
