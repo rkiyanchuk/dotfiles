@@ -12,6 +12,7 @@
     "claude-mem:mcp-search",
     "context7:context7",
     "nano-banana",
-    "node_repl"
+    "node_repl",
+    "telegram-mcp:telegram"
   ]
 }
