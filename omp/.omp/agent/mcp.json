@@ -1,9 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json",
   "disabledServers": [
-    "nano-banana",
-    "node_repl",
+    "claude-mem",
     "claude-mem:mcp-search",
-    "claude-mem"
+    "context7",
+    "nano-banana",
+    "node_repl"
   ]
 }
