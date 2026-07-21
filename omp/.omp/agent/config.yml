@@ -4,11 +4,11 @@ theme:
   light: light-one
 setupVersion: 1
 modelRoles:
+  default: "@task"
   slow: claude-opus-4-8:max
-  plan: claude-opus-4-8:xhigh
-  task: claude-sonnet-5:medium
+  plan: "@slow:xhigh"
+  task: claude-sonnet-5:high
   vision: claude-sonnet-5
-  designer: claude-opus-4-8:high
   advisor: claude-haiku-4-5
   commit: claude-haiku-4-5
   smol: claude-haiku-4-5
