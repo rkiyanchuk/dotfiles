@@ -1,0 +1,4 @@
+# omp keybinding remaps. See omp://keybindings.md
+# Values are a chord string or an array of chord strings.
+
+app.stt.toggle: Alt+S
