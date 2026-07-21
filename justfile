@@ -113,7 +113,7 @@ set-shell:
     fi
 
 # Install all third-party plugins and runtime deps
-plugins: plugins-tmux plugins-yazi plugins-claude plugins-nvim plugins-fish
+plugins: plugins-tmux plugins-yazi plugins-claude plugins-omp plugins-nvim plugins-fish
 
 # Install tmux plugin manager
 plugins-tmux:
@@ -154,6 +154,20 @@ plugins-claude:
     # `plugin install` enables every plugin; restore the desired enabled
     # flags from version control (plugins stay on disk, just disabled).
     git -C {{ justfile_directory() }} checkout -- claude/.claude/settings.json
+
+# Install omp plugins natively (selective; skips claude-mem/context7/LSP)
+plugins-omp:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo -e "{{ orange }}==> Adding omp marketplaces...{{ reset }}"
+    omp plugin marketplace add anthropics/claude-plugins-official
+    omp plugin marketplace add kepano/obsidian-skills
+    omp plugin marketplace add rkiyanchuk/cc-plugins
+    echo -e "{{ orange }}==> Installing omp plugins...{{ reset }}"
+    omp plugin install obsidian@obsidian-skills
+    omp plugin install security-guidance@claude-plugins-official
+    omp plugin install skill-creator@claude-plugins-official
+    omp plugin install apple-events-mcp@cc-plugins
 
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
