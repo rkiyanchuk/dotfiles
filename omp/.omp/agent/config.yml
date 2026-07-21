@@ -25,11 +25,11 @@ statusLine:
     - model
     - mode
     - context_pct
-    - cost
   rightSegments:
     - subagents
     - session_name
     - time_spent
+    - cost
     - hostname
   segmentOptions:
     model:
@@ -54,7 +54,6 @@ retry:
 stt:
   enabled: true
   modelName: parakeet
-  submitTrigger: never
 startup:
   quiet: false
 marketplace:
@@ -63,3 +62,4 @@ power:
   sleepPrevention: idle
 memory:
   backend: "off"
+hideThinkingBlock: true
