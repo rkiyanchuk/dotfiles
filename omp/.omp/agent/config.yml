@@ -19,3 +19,18 @@ statusLine:
   compactThinkingLevel: true
 terminal:
   showProgress: true
+personality: pragmatic
+retry:
+  maxRetries: 5
+stt:
+  enabled: true
+  modelName: parakeet
+  submitTrigger: never
+startup:
+  quiet: false
+marketplace:
+  autoUpdate: auto
+power:
+  sleepPrevention: idle
+memory:
+  backend: "off"
