@@ -21,6 +21,7 @@
       "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
     ]
   },
+  "model": "haiku",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline.sh"
