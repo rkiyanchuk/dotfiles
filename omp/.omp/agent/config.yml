@@ -61,5 +61,8 @@ marketplace:
 power:
   sleepPrevention: idle
 memory:
-  backend: "off"
+  backend: mnemopi
+mnemopi:
+  scoping: per-project-tagged
+  embeddingVariant: multilingual
 hideThinkingBlock: true
