@@ -4,12 +4,12 @@ theme:
   light: light-one
 setupVersion: 1
 modelRoles:
-  default: claude-opus-4-8:auto
-  slow: claude-fable-5:xhigh
-  plan: claude-opus-4-8:max
-  task: claude-sonnet-5:xhigh
-  commit: claude-haiku-4-5
-  smol: claude-haiku-4-5
+  default: anthropic/claude-opus-5
+  slow: anthropic/claude-fable-5
+  plan: anthropic/claude-opus-5:max
+  task: anthropic/claude-sonnet-5:xhigh
+  commit: anthropic/claude-haiku-4-5
+  smol: anthropic/claude-haiku-4-5
 cycleOrder:
   - smol
   - task
