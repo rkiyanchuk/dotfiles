@@ -75,3 +75,8 @@ providers:
   memoryModel: online
 autolearn:
   enabled: true
+display:
+  showTokenUsage: true
+  cacheMissMarker: true
+tui:
+  tight: false
