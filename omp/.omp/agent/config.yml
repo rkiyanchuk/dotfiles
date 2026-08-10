@@ -1,79 +1,81 @@
 symbolPreset: nerd
-theme:
+theme: 
   dark: dark-one-hl
   light: light-one
 setupVersion: 1
-modelRoles:
+modelRoles: 
   default: anthropic/claude-opus-5
   slow: anthropic/claude-fable-5
   plan: anthropic/claude-opus-5:max
   task: anthropic/claude-sonnet-5:xhigh
   commit: anthropic/claude-haiku-4-5
   smol: anthropic/claude-haiku-4-5
-cycleOrder:
+cycleOrder: 
   - smol
   - task
   - default
   - slow
-statusLine:
+statusLine: 
   separator: none
   transparent: true
   compactThinkingLevel: true
   preset: custom
-  leftSegments:
+  leftSegments: 
     - path
     - git
     - pr
     - model
     - mode
     - context_pct
-  rightSegments:
+  rightSegments: 
     - subagents
     - session_name
     - time_spent
     - cost
     - hostname
-  segmentOptions:
-    model:
+  segmentOptions: 
+    model: 
       showThinkingLevel: true
-    path:
+    path: 
       abbreviate: true
       maxLength: 30
-    git:
+    git: 
       showBranch: true
       showStaged: true
       showUnstaged: true
       showUntracked: true
-    time:
+    time: 
       format: 24h
       showSeconds: false
   sessionAccent: false
-terminal:
+terminal: 
   showProgress: true
 personality: pragmatic
-retry:
+retry: 
   maxRetries: 5
-stt:
+stt: 
   enabled: true
   modelName: parakeet
-startup:
+startup: 
   quiet: false
-marketplace:
+marketplace: 
   autoUpdate: auto
-power:
+power: 
   sleepPrevention: idle
-memory:
+memory: 
   backend: mnemopi
-mnemopi:
+mnemopi: 
   scoping: global
   embeddingVariant: multilingual
 hideThinkingBlock: true
 defaultThinkingLevel: auto
-disabledProviders:
+disabledProviders: 
   - codex
-providers:
+providers: 
   memoryModel: online
-autolearn:
+autolearn: 
   enabled: true
-task:
+task: 
   showResolvedModelBadge: true
+dev: 
+  autoqaConsent: granted
