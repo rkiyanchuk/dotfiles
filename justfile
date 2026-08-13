@@ -6,6 +6,8 @@ set shell := ["bash", "-cu"]
 # Colors for status messages
 orange := '\033[0;33m'
 green := '\033[0;32m'
+cyan := '\033[36m'
+bold := '\033[1m'
 reset := '\033[0m'
 
 username := env("USER")
@@ -158,15 +160,74 @@ plugins-claude:
 plugins-omp:
     #!/usr/bin/env bash
     set -euo pipefail
-    echo -e "{{ orange }}==> Adding omp marketplaces...{{ reset }}"
-    omp plugin marketplace add anthropics/claude-plugins-official
-    omp plugin marketplace add kepano/obsidian-skills
-    omp plugin marketplace add rkiyanchuk/cc-plugins
-    echo -e "{{ orange }}==> Installing omp plugins...{{ reset }}"
-    omp plugin install obsidian@obsidian-skills
-    omp plugin install security-guidance@claude-plugins-official
-    omp plugin install skill-creator@claude-plugins-official
-    omp plugin install apple-events-mcp@cc-plugins
+
+    # Marketplaces to register, as `owner/repo` GitHub shorthand.
+    marketplaces=(
+        anthropics/claude-plugins-official  # official Anthropic catalog
+        kepano/obsidian-skills              # Obsidian authoring skills
+        rkiyanchuk/agent-plugins            # personal plugins
+    )
+
+    # Plugins to install at user scope, as `name@marketplace`. LSP plugins are
+    # omitted because omp configures language servers itself; claude-mem and
+    # context7 stay Claude Code-only.
+    plugins=(
+        apple-events-mcp@agent-plugins         # macOS Calendar/Reminders
+        obsidian@obsidian-skills               # Obsidian vault tooling
+        skill-creator@claude-plugins-official  # skill authoring
+    )
+
+    # `marketplace add` and `plugin install` exit 1 when the target is already
+    # present, so tolerate exactly that error to keep re-runs idempotent.
+    omp_plugin() {
+        local expected="$1" out
+        shift
+        out=$(omp plugin "$@" 2>&1) && return 0
+        grep -qF "$expected" <<< "$out" && return 0
+        echo "$out" >&2
+        return 1
+    }
+
+    # Read one entry's fields back out of omp's own listing, so the reported
+    # marketplace names, versions, and scopes are omp's and not guesses.
+    omp_field() {
+        local entry="$1" found
+        shift
+        found=$("$@" 2>/dev/null) || return 1
+        [[ -n $found ]] || { echo "$entry missing from omp state" >&2; return 1; }
+        echo "$found"
+    }
+
+    # Rows are filtered through a pipe, where omp drops its cyan names and dim
+    # versions/scopes; ask for them back unless the caller wants plain output.
+    cyan='' green='' off=''
+    if [[ -z ${NO_COLOR:-} ]]; then
+        export FORCE_COLOR=1
+        cyan=$(printf '{{ cyan }}')
+        green=$(printf '{{ green }}')
+        off=$(printf '{{ reset }}')
+    fi
+
+    echo -e "{{ bold }}Configured Marketplaces:{{ reset }}\n"
+    for market in "${marketplaces[@]}"; do
+        omp_plugin "already exists" marketplace add "$market"
+        omp_field "$market" grep -F "$market" <(omp plugin marketplace list)
+    done
+    sed 's/^/  /' <<< "$(omp plugin marketplace update 2>&1)"
+
+    echo -e "\n{{ bold }}Marketplace Plugins:{{ reset }}\n"
+    upgraded=$(omp plugin upgrade 2>&1)
+    for plugin in "${plugins[@]}"; do
+        omp_plugin "already installed" install "$plugin"
+        # omp leaves plugin ids uncolored; paint them cyan like marketplaces.
+        row=$(omp_field "$plugin" grep -F "$plugin" <(omp plugin list))
+        echo "${row/#"  $plugin"/  $cyan$plugin$off}"
+    done
+    if [[ $upgraded == *"up to date"* ]]; then
+        echo "  ${green}✔ ${upgraded}${off}"
+    else
+        sed 's/^/  /' <<< "$upgraded"
+    fi
 
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
