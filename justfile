@@ -145,7 +145,6 @@ plugins-claude:
     claude plugin install pr-review-toolkit@claude-plugins-official
     claude plugin install pyright-lsp@claude-plugins-official
     claude plugin install rust-analyzer-lsp@claude-plugins-official
-    claude plugin install security-guidance@claude-plugins-official
     claude plugin install skill-creator@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
     claude plugin install andrej-karpathy-skills@karpathy-skills

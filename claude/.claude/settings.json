@@ -35,7 +35,6 @@
     "pr-review-toolkit@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": false,
     "rust-analyzer-lsp@claude-plugins-official": false,
-    "security-guidance@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
     "apple-events-mcp@rkiyanchuk-agent-plugins": true
