@@ -73,3 +73,6 @@ obsidian/.obsidian-mobile/plugins/omnisearch/data.json
 obsidian/.obsidian-mobile/plugins/realclaudian/data.json
 obsidian/.obsidian-mobile/plugins/*/main.js
 obsidian/.obsidian-mobile/plugins/*/styles.css
+
+# OhMyPi
+omp/.omp/agent/config.yml.lock
