@@ -13,7 +13,6 @@ modelRoles:
   plan: anthropic/claude-opus-5:max
 cycleOrder: 
   - smol
-  - task
   - default
   - slow
 statusLine: 
