@@ -210,8 +210,8 @@ fi
 # --- Build line 1 ---
 status_line="${RESET}${BRIGHT_CYAN}${display_dir}${RESET}"
 [[ -n "$git_worktree" ]] && status_line+=" ${DIM}${MAGENTA}󰙅 ${git_worktree}${RESET}"
-[[ -n "$git_branch" ]] && status_line+=" ${BRIGHT_MAGENTA} ${git_branch}${RESET}"
-status_line+=" ${DIM}·${RESET} ${GREEN}${model_display}${RESET}"
+[[ -n "$git_branch" ]] && status_line+=" ${GREEN} ${git_branch}${RESET}"
+status_line+=" ${DIM}·${RESET} ${BRIGHT_MAGENTA}${model_display}${RESET}"
 if [[ -n "$model_effort" ]]; then
     case "${model_effort,,}" in
         low)       effort_color="${YELLOW}" ;;
