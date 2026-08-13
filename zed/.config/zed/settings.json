@@ -65,7 +65,7 @@
       },
       "type": "custom",
       "command": "/opt/homebrew/bin/omp",
-      "args": ["acp"],
+      "args": ["acp", "--yolo"],
       "env": {}
     }
   },
