@@ -4,6 +4,24 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "thinking_display": "auto",
+    "single_file_review": true,
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
+        "delete_path": {
+          "default": "confirm"
+        }
+      }
+    },
+    "sandbox_permissions": {
+      "write_paths": [
+        "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes",
+        "/Users/ruslan/Library/Mobile Documents/iCloud~md~obsidian/Documents/Profession",
+        "/tmp"
+      ],
+      "allow_all_hosts": true
+    },
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-5.5",
