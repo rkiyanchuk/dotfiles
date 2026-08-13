@@ -11,6 +11,7 @@
     "hue4": "#98c379",
     "hue5": "#e06c75",
     "hue52": "#be5046",
+    "hue5Dim": "#924e56",
     "hue6": "#d19a66",
     "hue62": "#e5c07b",
     "syntaxBg": "#282c34",
@@ -89,7 +90,7 @@
     "statusLineDirty": "hue6",
     "statusLineUntracked": "hue2",
     "statusLineOutput": "hue3",
-    "statusLineCost": "hue5",
+    "statusLineCost": "hue5Dim",
     "statusLineSubagents": "hue62",
     "pythonMode": "#f0c040"
   },
