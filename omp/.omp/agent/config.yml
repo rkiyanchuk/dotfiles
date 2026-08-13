@@ -6,7 +6,7 @@ setupVersion: 1
 modelRoles: 
   default: anthropic/claude-opus-5
   slow: anthropic/claude-fable-5
-  task: anthropic/claude-sonnet-5:xhigh
+  task: anthropic/claude-opus-5:xhigh
   commit: anthropic/claude-haiku-4-5
   smol: anthropic/claude-sonnet-5
   vision: openai-codex/gpt-5.6-terra
