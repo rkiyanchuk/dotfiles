@@ -93,6 +93,11 @@
     "statusLineSubagents": "hue62",
     "pythonMode": "#f0c040"
   },
+  "symbols": {
+    "overrides": {
+      "icon.context": "\u001b[38;2;82;139;255m\uf472\u001b[39m"
+    }
+  },
   "export": {
     "pageBg": "#1e2227",
     "cardBg": "#282c34",
