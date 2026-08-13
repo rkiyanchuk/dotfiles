@@ -94,4 +94,3 @@ github:
 vault: 
   enabled: true
 checkpoint: 
-  enabled: true
