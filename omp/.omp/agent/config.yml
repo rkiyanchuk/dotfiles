@@ -87,3 +87,12 @@ task:
   showResolvedModelBadge: true
 dev: 
   autoqaConsent: granted
+error: 
+  notify: "on"
+readLineNumbers: true
+github: 
+  enabled: true
+vault: 
+  enabled: true
+checkpoint: 
+  enabled: true
