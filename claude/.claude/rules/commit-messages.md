@@ -1,6 +1,6 @@
 # Commit messages
 
-Use **scope-prefixed** subjects (Linux/Git/Go style), never Conventional Commits
+Use **scope-prefixed** subjects (Linux/Git/Go style), not Conventional Commits
 (`feat:`/`fix:`/`chore:`):
 
 ```sh

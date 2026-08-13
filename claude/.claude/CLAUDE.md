@@ -5,8 +5,8 @@
 Notes are stored in Obsidian vaults:
 
 - **Profession** (`~/Documents/.notes-profession`): information security,
-  cybersecurity, software engineering, cryptography, and all work-related
-  topics.
+  cybersecurity, software engineering, cryptography, and all work- and
+  profession-related topics.
 
 - **Notes** (`~/Documents/.notes`): general knowledge, personal notes, and
   everyday life.
