@@ -97,7 +97,10 @@
     "overrides": {
       "icon.context": "\u001b[38;2;82;139;255m\uf472\u001b[39m",
       "icon.time": "\u001b[38;2;92;99;112m\uf017",
-      "icon.host": "\u001b[38;2;92;99;112m\uf109"
+      "icon.host": "\u001b[38;2;92;99;112m\uf109",
+      "status.enabled": "\u2022",
+      "format.bullet": "\u2022",
+      "md.bullet": "\u2022"
     }
   },
   "export": {
