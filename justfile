@@ -151,6 +151,7 @@ plugins-claude:
     claude plugin install skill-creator@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
     claude plugin install obsidian@obsidian-skills
+    claude plugin install apple-events-mcp@agent-plugins
     # `plugin install` enables every plugin; restore the desired enabled
     # flags from version control (plugins stay on disk, just disabled).
     git -C {{ justfile_directory() }} checkout -- claude/.claude/settings.json

@@ -36,10 +36,10 @@
     "rust-analyzer-lsp@claude-plugins-official": false,
     "skill-creator@claude-plugins-official": false,
     "typescript-lsp@claude-plugins-official": false,
-    "apple-events-mcp@rkiyanchuk-agent-plugins": true
+    "apple-events-mcp@agent-plugins": true
   },
   "extraKnownMarketplaces": {
-    "rkiyanchuk-agent-plugins": {
+    "agent-plugins": {
       "source": {
         "source": "github",
         "repo": "rkiyanchuk/agent-plugins"
