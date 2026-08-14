@@ -3,12 +3,13 @@
 
 set shell := ["bash", "-cu"]
 
-# Colors for status messages
-orange := '\033[0;33m'
-green := '\033[0;32m'
-cyan := '\033[36m'
-bold := '\033[1m'
-reset := '\033[0m'
+# Colors for status messages; `\u{1b}` is a real escape byte,
+# so plain `echo` renders them without `-e`.
+orange := "\u{1b}[0;33m"
+green := "\u{1b}[0;32m"
+cyan := "\u{1b}[36m"
+bold := "\u{1b}[1m"
+reset := "\u{1b}[0m"
 
 username := env("USER")
 deps_arch := "bat eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
@@ -27,10 +28,10 @@ export PATH := if os() == "macos" { env("PATH") } else { env("HOME") + "/.local/
 
 # Setup dotfiles
 default: config
-    @echo -e "{{ green }}==> Dotfiles installed!{{ reset }}"
+    @echo "{{ green }}==> Dotfiles installed!{{ reset }}"
 
 # Full setup from scratch
-install: install-deps config set-shell plugins
+install: install-deps config set-shell
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
@@ -41,19 +42,19 @@ install: install-deps config set-shell plugins
 install-deps:
     #!/usr/bin/env bash
     set -euo pipefail
-    echo -e "{{ orange }}==> Installing dotfiles for {{ os }}...{{ reset }}"
+    echo "{{ orange }}==> Installing dotfiles for {{ os }}...{{ reset }}"
     case "{{ os }}" in
         macos)
-            echo -e "{{ orange }}==> Installing Homebrew packages from Brewfile...{{ reset }}"
+            echo "{{ orange }}==> Installing Homebrew packages from Brewfile...{{ reset }}"
             brew bundle install
             ;;
         arch)
-            echo -e "{{ orange }}==> Installing packages via pacman...{{ reset }}"
+            echo "{{ orange }}==> Installing packages via pacman...{{ reset }}"
             sudo pacman -Syu --noconfirm
             sudo pacman -S --needed --noconfirm {{ deps_arch }}
             ;;
         ubuntu)
-            echo -e "{{ orange }}==> Installing packages via apt...{{ reset }}"
+            echo "{{ orange }}==> Installing packages via apt...{{ reset }}"
             sudo apt update && sudo apt upgrade -y {{ deps_ubuntu }}
             sudo apt install -y {{ deps_ubuntu }}
             # Install uv via Astral
@@ -70,35 +71,35 @@ config: config-cli config-gui plugins
 
 # Stow CLI dotfiles
 config-cli:
-    @echo -e "{{ orange }}==> Installing CLI dotfiles...{{ reset }}"
-    stow --dotfiles --no-folding -t ~ -Svv {{ packages_cli }}
+    @echo "{{ orange }}==> Installing CLI dotfiles...{{ reset }}"
+    stow -Svv {{ packages_cli }}
 
 # Stow GUI dotfiles (macOS only)
 config-gui:
     #!/usr/bin/env bash
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
-        echo -e "{{ orange }}==> Installing desktop dotfiles...{{ reset }}"
-        stow --dotfiles -t ~ --no-folding -Svv {{ packages_gui }}
+        echo "{{ orange }}==> Installing desktop dotfiles...{{ reset }}"
+        stow -Svv {{ packages_gui }}
     fi
 
 # Restow dotfiles after config changes
 reconfig:
     @echo "==> Restowing dotfiles..."
-    stow --no-folding --dotfiles -t ~ -Rvv {{ packages_cli }}
-    stow --dotfiles --no-folding -t ~ -Rvv {{ packages_gui }}
+    stow -Rvv {{ packages_cli }}
+    stow -Rvv {{ packages_gui }}
 
 # Remove all stowed dotfiles
 unconfig:
     @echo "==> Removing dotfiles..."
-    stow --dotfiles -t ~ -Dvv {{ packages_cli }}
-    stow --dotfiles -t ~ -Dvv {{ packages_gui }}
+    stow -Dvv {{ packages_cli }}
+    stow -Dvv {{ packages_gui }}
 
 # Dry-run stow to check for conflicts
 config-check:
     @echo "Testing stow installation (dry run)..."
-    stow --no-folding --dotfiles -t ~ -nvv {{ packages_cli }}
-    stow --dotfiles --no-folding -t ~ -nvv {{ packages_gui }}
+    stow -nvv {{ packages_cli }}
+    stow -nvv {{ packages_gui }}
 
 # Configure Fish shell as default
 set-shell:
@@ -106,11 +107,11 @@ set-shell:
     set -euo pipefail
     FISH_PATH=$(which fish)
     if ! grep -q "$FISH_PATH" /etc/shells; then
-        echo -e "{{ orange }}==> Adding Fish to /etc/shells...{{ reset }}"
+        echo "{{ orange }}==> Adding Fish to /etc/shells...{{ reset }}"
         echo "$FISH_PATH" | sudo tee -a /etc/shells
     fi
     if [[ "$SHELL" != "$FISH_PATH" ]]; then
-        echo -e "{{ orange }}==> Setting Fish as default shell...{{ reset }}"
+        echo "{{ orange }}==> Setting Fish as default shell...{{ reset }}"
         sudo chsh -s "$FISH_PATH" {{ username }}
     fi
 
@@ -123,7 +124,7 @@ plugins-tmux:
     set -euo pipefail
     TPM_DIR="$HOME/.config/tmux/plugins/tpm"
     if [[ ! -d "$TPM_DIR" ]]; then
-        echo -e "{{ orange }}==> Installing tmux plugin manager...{{ reset }}"
+        echo "{{ orange }}==> Installing tmux plugin manager...{{ reset }}"
         git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
     fi
 
@@ -132,7 +133,7 @@ plugins-yazi:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v ya &> /dev/null; then
-        echo -e "{{ orange }}==> Installing yazi packages...{{ reset }}"
+        echo "{{ orange }}==> Installing yazi packages...{{ reset }}"
         ya pkg install
     fi
 
@@ -140,7 +141,7 @@ plugins-yazi:
 plugins-claude:
     #!/usr/bin/env bash
     set -euo pipefail
-    echo -e "{{ orange }}==> Installing Claude Code plugins...{{ reset }}"
+    echo "{{ orange }}==> Installing Claude Code plugins...{{ reset }}"
     claude plugin install chrome-devtools-mcp@claude-plugins-official
     claude plugin install context7@claude-plugins-official
     claude plugin install gopls-lsp@claude-plugins-official
@@ -188,14 +189,12 @@ plugins-omp:
         return 1
     }
 
-    # Read one entry's fields back out of omp's own listing, so the reported
-    # marketplace names, versions, and scopes are omp's and not guesses.
-    omp_field() {
-        local entry="$1" found
-        shift
-        found=$("$@" 2>/dev/null) || return 1
-        [[ -n $found ]] || { echo "$entry missing from omp state" >&2; return 1; }
-        echo "$found"
+    # Report an entry's row from omp's own listing
+    omp_row() {
+        local entry="$1" listing="$2" row
+        row=$(grep -F "$entry" <<< "$listing") \
+            || { echo "$entry missing from omp state" >&2; return 1; }
+        echo "$row"
     }
 
     # Rows are filtered through a pipe, where omp drops its cyan names and dim
@@ -211,7 +210,7 @@ plugins-omp:
     echo -e "{{ bold }}Configured Marketplaces:{{ reset }}\n"
     for market in "${marketplaces[@]}"; do
         omp_plugin "already exists" marketplace add "$market"
-        omp_field "$market" grep -F "$market" <(omp plugin marketplace list)
+        omp_row "$market" "$(omp plugin marketplace list 2>/dev/null)"
     done
     sed 's/^/  /' <<< "$(omp plugin marketplace update 2>&1)"
 
@@ -220,7 +219,7 @@ plugins-omp:
     for plugin in "${plugins[@]}"; do
         omp_plugin "already installed" install "$plugin"
         # omp leaves plugin ids uncolored; paint them cyan like marketplaces.
-        row=$(omp_field "$plugin" grep -F "$plugin" <(omp plugin list))
+        row=$(omp_row "$plugin" "$(omp plugin list 2>/dev/null)")
         echo "${row/#"  $plugin"/  $cyan$plugin$off}"
     done
     if [[ $upgraded == *"up to date"* ]]; then
@@ -233,25 +232,21 @@ plugins-omp:
 plugins-fish:
     #!/usr/bin/env bash
     set -euo pipefail
-    echo -e "{{ orange }}==> Installing Fisher and Fish plugins...{{ reset }}"
+    echo "{{ orange }}==> Installing Fisher and Fish plugins...{{ reset }}"
     fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher update'
 
 # Install pynvim for Neovim Python support
 plugins-nvim:
-    @echo -e "{{ orange }}==> Installing pynvim for Neovim...{{ reset }}"
+    @echo "{{ orange }}==> Installing pynvim for Neovim...{{ reset }}"
     uv tool install --upgrade pynvim
 
-# Enable key repeat on macOS (disables press-and-hold)
+# MacOS: enable key repeat (disables press-and-hold)
 [macos]
 enable-key-repeat:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    if [[ "{{ os }}" == "macos" ]]; then
-        echo -e "{{ orange }}==> Enable key repeat...{{ reset }}"
-        defaults write -g ApplePressAndHoldEnabled -bool false
-    fi
+    @echo "{{ orange }}==> Enable key repeat...{{ reset }}"
+    @defaults write -g ApplePressAndHoldEnabled -bool false
 
-# Set hostname on macOS
+# MacOS: set hostname
 [macos]
 set-hostname name:
     sudo scutil --set HostName "{{ name }}"
@@ -262,21 +257,22 @@ set-hostname name:
 obsidian-config direction vault:
     #!/usr/bin/env bash
     set -euo pipefail
-    EXCLUDES="--exclude=workspace.json --exclude=workspace-mobile.json"
-    DOTFILES_OBS="$HOME/dotfiles/obsidian"
+    excludes=(--exclude=workspace.json --exclude=workspace-mobile.json)
+    dotfiles_obs="{{ justfile_directory() }}/obsidian"
     case "{{ direction }}" in
         push)
-            echo -e "{{ orange }}==> Pushing Obsidian config to {{ vault }}...{{ reset }}"
-            rsync -av $EXCLUDES "$DOTFILES_OBS/.obsidian/" "{{ vault }}/.obsidian/"
-            rsync -av $EXCLUDES "$DOTFILES_OBS/.obsidian-mobile/" "{{ vault }}/.obsidian-mobile/"
+            echo "{{ orange }}==> Pushing Obsidian config to {{ vault }}...{{ reset }}"
+            src="$dotfiles_obs" dst="{{ vault }}"
             ;;
         pull)
-            echo -e "{{ orange }}==> Pulling Obsidian config from {{ vault }}...{{ reset }}"
-            rsync -av $EXCLUDES "{{ vault }}/.obsidian/" "$DOTFILES_OBS/.obsidian/"
-            rsync -av $EXCLUDES "{{ vault }}/.obsidian-mobile/" "$DOTFILES_OBS/.obsidian-mobile/"
+            echo "{{ orange }}==> Pulling Obsidian config from {{ vault }}...{{ reset }}"
+            src="{{ vault }}" dst="$dotfiles_obs"
             ;;
         *)
-            echo "Usage: just obsidian-sync [push|pull] <vault-path>"
+            echo "Usage: just obsidian-config [push|pull] <vault-path>"
             exit 1
             ;;
     esac
+    for dir in .obsidian .obsidian-mobile; do
+        rsync -av "${excludes[@]}" "$src/$dir/" "$dst/$dir/"
+    done
