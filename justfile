@@ -150,7 +150,6 @@ plugins-claude:
     claude plugin install rust-analyzer-lsp@claude-plugins-official
     claude plugin install skill-creator@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
-    claude plugin install andrej-karpathy-skills@karpathy-skills
     claude plugin install claude-mem@thedotmack
     claude plugin install obsidian@obsidian-skills
     # `plugin install` enables every plugin; restore the desired enabled
