@@ -29,8 +29,8 @@ stowed.
 **Task runner**: `just` (Justfile at repo root). OS detection at runtime via
 `path_exists("/etc/arch-release")` for Arch vs. macOS fallback.
 
-**Packages**: `bat`, `claude`, `direnv`, `fish`, `gh`, `ghostty`, `git`,
-`glances`, `grc`, `nvim`, `omp`, `ssh`, `starship`, `tmux`, `yazi`.
+**Packages**: `bat`, `claude`, `direnv`, `fish`, `gh`, `ghostty`, `git`, `grc`,
+`nvim`, `omp`, `ssh`, `starship`, `tmux`, `yazi`.
 
 ### Claude Code package (`claude/`)
 

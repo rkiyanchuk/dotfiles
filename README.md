@@ -1,6 +1,8 @@
 # Dotfiles
 
-Personal configuration files managed with [GNU Stow](https://www.gnu.org/software/stow/) and automated with [Just](https://just.systems/).
+Personal configuration files managed with
+[GNU Stow](https://www.gnu.org/software/stow/) and automated with
+[Just](https://just.systems/).
 
 ## Packages
 
@@ -13,7 +15,6 @@ Personal configuration files managed with [GNU Stow](https://www.gnu.org/softwar
 | `gh`        | GitHub CLI                                |
 | `ghostty`   | Terminal emulator (macOS)                 |
 | `git`       | Git config and utilities                  |
-| `glances`   | System monitor                            |
 | `grc`       | CLI output colorizer                      |
 | `nvim`      | Neovim editor                             |
 | `obsidian`  | Obsidian vault config                     |
@@ -59,7 +60,8 @@ just
 
 ## Additional Setup
 
-Install custom Iosevka font: [rkiyanchuk/font-iosevka-custom](https://github.com/rkiyanchuk/font-iosevka-custom).
+Install custom Iosevka font:
+[rkiyanchuk/font-iosevka-custom](https://github.com/rkiyanchuk/font-iosevka-custom).
 
 Set hostname on macOS:
 
@@ -69,7 +71,10 @@ just set-hostname <name>
 
 ### Default apps (duti)
 
-[duti](https://github.com/moretension/duti) sets default applications for file types and URL schemes on macOS using bundle IDs and Apple [Uniform Type Identifiers](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_intro/understand_utis_intro.html) (UTI).
+[duti](https://github.com/moretension/duti) sets default applications for file
+types and URL schemes on macOS using bundle IDs and Apple
+[Uniform Type Identifiers](https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/understanding_utis/understand_utis_intro/understand_utis_intro.html)
+(UTI).
 
 ```sh
 brew install duti
