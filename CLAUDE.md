@@ -74,10 +74,10 @@ and is gitignored via an allowlist (`omp/.omp/agent/*` with `!config.yml` and
   keys or literal secret values and are excluded on principle even though this
   machine doesn't currently have them
 - `mcp.json` — **tracked**; currently holds only the `disabledServers` denylist
-  (disables the `nano-banana`, `node_repl`, and `claude-mem` MCP servers), no
-  secrets. Keep it secret-free: never add literal tokens in
-  `auth`/`oauth`/`headers`/`env` — use `${VAR}` references, since the allowlist
-  exception means this file is no longer caught by the runtime-state ignore.
+  (disables the `nano-banana` and `node_repl` MCP servers), no secrets. Keep
+  it secret-free: never add literal tokens in `auth`/`oauth`/`headers`/`env` —
+  use `${VAR}` references, since the allowlist exception means this file is no
+  longer caught by the runtime-state ignore.
 
 ### Git package (`git/`)
 

@@ -150,13 +150,12 @@ plugins-claude:
     claude plugin install rust-analyzer-lsp@claude-plugins-official
     claude plugin install skill-creator@claude-plugins-official
     claude plugin install typescript-lsp@claude-plugins-official
-    claude plugin install claude-mem@thedotmack
     claude plugin install obsidian@obsidian-skills
     # `plugin install` enables every plugin; restore the desired enabled
     # flags from version control (plugins stay on disk, just disabled).
     git -C {{ justfile_directory() }} checkout -- claude/.claude/settings.json
 
-# Install omp plugins natively (selective; skips claude-mem/context7/LSP)
+# Install omp plugins.
 plugins-omp:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -168,9 +167,7 @@ plugins-omp:
         rkiyanchuk/agent-plugins            # personal plugins
     )
 
-    # Plugins to install at user scope, as `name@marketplace`. LSP plugins are
-    # omitted because omp configures language servers itself; claude-mem and
-    # context7 stay Claude Code-only.
+    # Plugins to install at user scope, as `name@marketplace`.
     plugins=(
         apple-events-mcp@agent-plugins         # macOS Calendar/Reminders
         obsidian@obsidian-skills               # Obsidian vault tooling

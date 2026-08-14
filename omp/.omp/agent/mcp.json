@@ -2,8 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json",
   "disabledServers": [
     "chrome-devtools-mcp:chrome-devtools",
-    "claude-mem",
-    "claude-mem:mcp-search",
     "context7:context7",
     "nano-banana",
     "node_repl"
