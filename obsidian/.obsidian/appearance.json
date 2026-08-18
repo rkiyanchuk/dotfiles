@@ -2,7 +2,7 @@
   "theme": "system",
   "accentColor": "#429ede",
   "showRibbon": false,
-  "baseFontSize": 16,
+  "baseFontSize": 17,
   "cssTheme": "Baseline",
   "floatingNavigation": true,
   "enabledCssSnippets": [

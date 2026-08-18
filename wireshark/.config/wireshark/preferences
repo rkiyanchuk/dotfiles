@@ -325,7 +325,7 @@ gui.color_filter_bg.deprecated: ebcb8b
 
 # Font name for packet list, protocol tree, and hex dump panes. (Qt)
 # A string
-gui.qt.font_name: Iosevka Nerd Font,16,-1,5,300,0,0,0,0,0,0,0,0,0,0,1,Light
+gui.qt.font_name: Iosevka Nerd Font,17,-1,5,300,0,0,0,0,0,0,0,0,0,0,1,Light
 
 ####### User Interface: Layout ########
 
