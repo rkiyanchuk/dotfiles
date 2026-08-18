@@ -37,11 +37,13 @@
     "message_editor_min_lines": 3,
     "play_sound_when_agent_done": "when_hidden",
     "show_turn_stats": true,
-    "terminal_init_command": "omp --continue || omp",
   },
   "agent_buffer_font_size": 16.0,
   "agent_servers": {
     "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
       "type": "registry",
     },
     "codex-acp": {
@@ -75,7 +77,7 @@
   "buffer_font_size": 16.0,
   "buffer_font_weight": 200.0,
   "buffer_line_height": {
-    "custom": 1.55,
+    "custom": 1.5
   },
   "cli_default_open_behavior": "new_window",
   "close_on_file_delete": true,

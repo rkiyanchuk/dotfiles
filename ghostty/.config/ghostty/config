@@ -7,7 +7,7 @@ font-family = IosevkaTerm Nerd Font
 font-style = Light
 font-size = 16
 
-adjust-cell-height = 25%
+adjust-cell-height = 20%
 cursor-style = block
 window-subtitle = working-directory
 
