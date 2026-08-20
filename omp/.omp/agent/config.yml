@@ -2,7 +2,7 @@ symbolPreset: nerd
 theme: 
   dark: dark-one-hl
   light: light-one
-setupVersion: 1
+setupVersion: 2
 modelRoles: 
   default: anthropic/claude-opus-5
   slow: anthropic/claude-fable-5
@@ -93,3 +93,5 @@ github:
   enabled: true
 vault: 
   enabled: true
+composer: 
+  shape: rail
