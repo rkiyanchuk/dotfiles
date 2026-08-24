@@ -234,7 +234,7 @@
       "VISUAL": "zed --wait",
     },
     "font_family": "IosevkaTerm Nerd Font",
-    "font_size": 18.0,
+    "font_size": 17.0,
     "font_weight": 250.0,
     "line_height": {
       "custom": 1.55,
