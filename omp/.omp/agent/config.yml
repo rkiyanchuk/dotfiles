@@ -93,5 +93,7 @@ github:
   enabled: true
 vault: 
   enabled: true
-composer: 
+composer:
   shape: rail
+security:
+  enabled: true
