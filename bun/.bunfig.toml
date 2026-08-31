@@ -1,0 +1,5 @@
+[install]
+# Delay installing newly published packages by 7 days (in seconds) so registries
+# can detect and pull compromised releases first.
+# https://paretosecurity.com/mac/checks/package-manager-release-age
+minimumReleaseAge = 604800

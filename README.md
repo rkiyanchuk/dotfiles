@@ -9,6 +9,7 @@ Personal configuration files managed with
 | Package     | Description                               |
 | ----------- | ----------------------------------------- |
 | `bat`       | Syntax-highlighted cat                    |
+| `bun`       | Bun runtime install policy                |
 | `claude`    | Claude Code settings, status line & rules |
 | `direnv`    | Per-directory environment variables       |
 | `fish`      | Shell configuration                       |
@@ -16,12 +17,14 @@ Personal configuration files managed with
 | `ghostty`   | Terminal emulator (macOS)                 |
 | `git`       | Git config and utilities                  |
 | `grc`       | CLI output colorizer                      |
+| `npm`       | npm/pnpm/Yarn install policy              |
 | `nvim`      | Neovim editor                             |
 | `obsidian`  | Obsidian vault config                     |
 | `omp`       | Oh My Pi coding agent config              |
 | `ssh`       | SSH config (macOS)                        |
 | `starship`  | Shell prompt                              |
 | `tmux`      | Terminal multiplexer                      |
+| `uv`        | Python package manager install policy     |
 | `wireshark` | Network protocol analyzer (macOS)         |
 | `yazi`      | File manager                              |
 | `zed`       | Editor (macOS)                            |
@@ -68,6 +71,25 @@ Set hostname on macOS:
 ```sh
 just set-hostname <name>
 ```
+
+### Package release age
+
+The `npm`, `bun`, and `uv` packages delay newly published releases by 7 days
+([Pareto Security check](https://paretosecurity.com/mac/checks/package-manager-release-age))
+so registries can pull compromised versions first. To pull a security patch
+immediately, override per invocation:
+
+```sh
+npm  i   pkg --min-release-age=0
+pnpm add pkg --minimum-release-age=0
+bun  add pkg --minimum-release-age=0
+uv pip install pkg --exclude-newer-package pkg=$(date -u +%Y-%m-%d)
+```
+
+For a package that needs it routinely, prefer a per-package exemption
+(`minimumReleaseAgeExcludes` in `.bunfig.toml`, `--exclude-newer-package` for
+uv) over disabling the gate globally.
+
 
 ### Default apps (duti)
 

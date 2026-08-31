@@ -1,0 +1,5 @@
+[pip]
+# Ignore distributions published within the last 7 days so PyPI can detect and
+# pull compromised releases first.
+# https://paretosecurity.com/mac/checks/package-manager-release-age
+exclude-newer = "7d"
