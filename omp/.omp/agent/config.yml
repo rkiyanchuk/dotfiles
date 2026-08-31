@@ -60,6 +60,7 @@ retry:
       - anthropic/claude-sonnet-4-6
     anthropic/claude-fable-5: 
       - anthropic/claude-opus-5
+  maxDelayMs: 0
 stt: 
   enabled: true
   modelName: parakeet
