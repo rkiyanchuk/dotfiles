@@ -2,3 +2,8 @@
 # Values are a chord string or an array of chord strings.
 
 app.stt.toggle: Alt+S
+
+# Ctrl+N/Ctrl+P are rewritten to Down/Up by the emacs-nav-keys extension,
+# so model cycling moves off Ctrl+P and backward cycling is disabled.
+app.model.cycleForward: Alt+Shift+M
+app.model.cycleBackward: []
