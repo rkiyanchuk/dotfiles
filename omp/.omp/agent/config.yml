@@ -12,8 +12,9 @@ modelRoles:
   vision: openai-codex/gpt-5.6-terra
   plan: anthropic/claude-opus-5:max
 cycleOrder: 
-  - smol
   - default
+  - smol
+  - task
   - slow
 statusLine: 
   separator: none
