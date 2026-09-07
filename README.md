@@ -131,3 +131,14 @@ duti -x md
 # /Applications/Zed.app
 # dev.zed.Zed
 ```
+
+### Browser routing (Velja)
+
+[Velja](https://sindresorhus.com/velja) is set as the default browser on macOS
+to route links to a specific Chrome profile based on the app the link was
+clicked from. Rules are configured in the app's GUI (no text config; settings
+live in its sandboxed container and are not tracked here).
+
+Chrome profiles are targeted with `--profile-directory=<dir>`, where `<dir>` is
+the on-disk profile name (`Default`, `Profile 1`, …) shown as "Profile Path" in
+`chrome://version`.
