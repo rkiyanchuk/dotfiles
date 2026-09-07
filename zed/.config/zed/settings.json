@@ -6,6 +6,7 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "terminal_init_command": "omp --continue",
     "thinking_display": "auto",
     "single_file_review": true,
     "tool_permissions": {
