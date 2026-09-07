@@ -11,6 +11,7 @@ modelRoles:
   smol: anthropic/claude-sonnet-5
   vision: openai-codex/gpt-5.6-terra
   plan: anthropic/claude-opus-5:max
+  advisor: openai-codex/gpt-5.6-terra:medium
 cycleOrder: 
   - default
   - smol
