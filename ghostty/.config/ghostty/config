@@ -36,3 +36,5 @@ window-vsync = true
 # KEY BINDINGS
 
 keybind = shift+enter=text:\x1b\r
+keybind = cmd+n=unbind
+keybind = cmd+shift+n=new_window
