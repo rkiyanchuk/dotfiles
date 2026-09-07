@@ -30,7 +30,7 @@
     },
     "commit_message_model": {
       "provider": "anthropic",
-      "model": "claude-haiku-4-5-20251001",
+      "model": "claude-sonnet-5",
     },
     "commit_message_instructions": "Use scope-prefixed subjects (Linux/Git/Go style), NEVER Conventional Commits (no feat:/fix:/chore:). Format: `scope: imperative description`, where scope is the natural area touched (subsystem, package, module, dir); omit scope only for genuinely cross-cutting changes. Subject must be <= 50 chars, imperative mood, capitalized, no trailing period. For non-trivial changes add one blank line then a body wrapped at 72 columns that explains what and why, not how.",
     "commit_message_include_project_rules": true,
