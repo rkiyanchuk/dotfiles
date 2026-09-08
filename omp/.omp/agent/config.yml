@@ -1,100 +1,100 @@
 symbolPreset: nerd
-theme: 
+theme:
   dark: dark-one-hl
   light: light-one
 setupVersion: 2
-modelRoles: 
+modelRoles:
   default: anthropic/claude-opus-5
   slow: anthropic/claude-fable-5
   task: anthropic/claude-opus-5:xhigh
-  commit: anthropic/claude-sonnet-5
+  commit: google/gemini-3.8-flash:auto
   smol: anthropic/claude-sonnet-5
   vision: openai-codex/gpt-5.6-terra
   plan: anthropic/claude-opus-5:max
   advisor: openai-codex/gpt-5.6-terra:medium
-cycleOrder: 
+cycleOrder:
   - default
   - smol
   - task
   - slow
-statusLine: 
+statusLine:
   separator: none
   transparent: true
   compactThinkingLevel: true
   preset: custom
-  leftSegments: 
+  leftSegments:
     - path
     - git
     - pr
     - model
     - mode
     - context_pct
-  rightSegments: 
+  rightSegments:
     - subagents
     - session_name
     - time_spent
     - cost
     - hostname
-  segmentOptions: 
-    model: 
+  segmentOptions:
+    model:
       showThinkingLevel: true
-    path: 
+    path:
       abbreviate: true
       maxLength: 30
-    git: 
+    git:
       showBranch: true
       showStaged: true
       showUnstaged: true
       showUntracked: true
-    time: 
+    time:
       format: 24h
       showSeconds: false
   sessionAccent: false
-terminal: 
+terminal:
   showProgress: true
 personality: default
-retry: 
+retry:
   maxRetries: 5
-  fallbackChains: 
-    anthropic/claude-opus-5: 
+  fallbackChains:
+    anthropic/claude-opus-5:
       - anthropic/claude-opus-4-8
-    anthropic/claude-sonnet-5: 
+    anthropic/claude-sonnet-5:
       - anthropic/claude-sonnet-4-6
-    anthropic/claude-fable-5: 
+    anthropic/claude-fable-5:
       - anthropic/claude-opus-5
   maxDelayMs: 0
-stt: 
+stt:
   enabled: true
   modelName: parakeet
-startup: 
+startup:
   quiet: false
-marketplace: 
+marketplace:
   autoUpdate: auto
-power: 
+power:
   sleepPrevention: idle
-memory: 
+memory:
   backend: mnemopi
-mnemopi: 
+mnemopi:
   scoping: global
   embeddingVariant: multilingual
 hideThinkingBlock: true
 defaultThinkingLevel: auto
-disabledProviders: 
+disabledProviders:
   - codex
-providers: 
+providers:
   memoryModel: online
-autolearn: 
+autolearn:
   enabled: true
-task: 
+task:
   showResolvedModelBadge: true
-dev: 
+dev:
   autoqaConsent: granted
-error: 
+error:
   notify: "on"
 readLineNumbers: true
-github: 
+github:
   enabled: true
-vault: 
+vault:
   enabled: true
 composer:
   shape: rail

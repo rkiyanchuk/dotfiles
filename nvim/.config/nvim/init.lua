@@ -625,25 +625,24 @@ end
 
 -- COMMIT MESSAGE GENERATION
 
--- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a Gemini-generated
+-- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a locally generated
 -- commit message at the top of the buffer based on the currently staged diff.
 -- The call runs asynchronously so the editor stays responsive; a Braille
 -- spinner is shown as virtual text at line 1 to indicate progress.
--- The Gemini API key is read from $GEMINI_API_KEY (a fish universal variable,
--- never committed to the dotfiles repo).
+-- Generation is delegated to the omp harness in print mode, using whatever
+-- model the `commit` role resolves to in ~/.omp/agent/config.yml, so there is
+-- no API key, endpoint, or payload shape here.
+-- The message conventions come from the harness rules (rules/commit-messages.md
+-- plus any repo-local AGENTS.md), so they are deliberately not restated here.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
         local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
-        local function generate()
-            local api_key = vim.env.GEMINI_API_KEY
-            if not api_key or api_key == "" then
-                vim.notify("GEMINI_API_KEY is not set", vim.log.levels.ERROR)
-                return
-            end
+        local role = "commit"
 
+        local function generate()
             local diff = vim.fn.system("git diff --staged")
             if diff == "" then
                 vim.notify("No staged changes", vim.log.levels.WARN)
@@ -667,45 +666,26 @@ vim.api.nvim_create_autocmd("FileType", {
             end))
 
             local prompt = table.concat({
-                "Write a git commit message for the staged diff below.",
-                "",
-                "Rules:",
-                "- Use a scope-prefixed subject (Linux/Git/Go style): "
-                    .. "`scope: imperative description`. Never Conventional Commits "
-                    .. "(no feat:/fix:/chore:). Scope is the subsystem/package/dir touched.",
-                "- Subject <= 50 chars, imperative mood, capitalized, no trailing period.",
-                "- For non-trivial changes add a body: one blank line, then wrap at 72 chars.",
-                "  The body explains what and why, not how.",
-                "- Output only the commit message text, no code fences or commentary.",
+                "Write a git commit message for the staged diff below, "
+                    .. "following the commit message conventions in your rules.",
+                "Output only the commit message text, no code fences or commentary.",
                 "",
                 "Staged diff:",
                 diff,
             }, "\n")
 
-            local body = vim.json.encode({
-                contents = { { parts = { { text = prompt } } } },
-                generationConfig = {
-                    responseMimeType = "application/json",
-                    responseSchema = {
-                        type = "OBJECT",
-                        properties = { commit_message = { type = "STRING" } },
-                        required = { "commit_message" },
-                    },
-                    -- Skip "thinking" tokens to keep generation fast.
-                    thinkingConfig = { thinkingBudget = 0 },
-                },
-            })
-
-            local url = "https://generativelanguage.googleapis.com/v1beta/"
-                .. "models/gemini-2.5-flash:generateContent"
+            -- The diff is piped on stdin rather than passed as an argument to
+            -- stay clear of ARG_MAX on large changesets.
             vim.system(
                 {
-                    "curl", "-sS", "-X", "POST", url,
-                    "-H", "x-goog-api-key: " .. api_key,
-                    "-H", "Content-Type: application/json",
-                    "--data-binary", "@-",
+                    "omp", "-p",
+                    "--model", role,
+                    "--no-tools",
+                    "--no-session",
+                    "--no-skills",
+                    "--no-title",
                 },
-                { stdin = body },
+                { stdin = prompt, text = true },
                 function(result)
                 vim.schedule(function()
                     timer:stop()
@@ -714,23 +694,14 @@ vim.api.nvim_create_autocmd("FileType", {
                         vim.api.nvim_buf_del_extmark(bufnr, ns, mark_id)
                     end
                     if result.code ~= 0 then
-                        vim.notify("commit-message failed: " .. (result.stderr or ""), vim.log.levels.ERROR)
+                        vim.notify("commit-message failed: "
+                            .. vim.trim((result.stderr or "") .. (result.stdout or "")),
+                            vim.log.levels.ERROR)
                         return
                     end
-                    local ok, data = pcall(vim.json.decode, result.stdout or "")
-                    local text = ok and data
-                        and data.candidates and data.candidates[1]
-                        and data.candidates[1].content
-                        and data.candidates[1].content.parts
-                        and data.candidates[1].content.parts[1]
-                        and data.candidates[1].content.parts[1].text
-                    if not text then
-                        vim.notify("commit-message: unexpected API response: "
-                            .. (result.stdout or ""), vim.log.levels.ERROR)
-                        return
-                    end
-                    local pok, parsed = pcall(vim.json.decode, text)
-                    local msg = pok and parsed and parsed.commit_message or ""
+                    local msg = vim.trim(result.stdout or "")
+                    -- Strip fences in case the model ignores the instruction.
+                    msg = msg:gsub("^```%w*\n", ""):gsub("\n?```$", "")
                     msg = vim.trim(msg)
                     if msg == "" then
                         vim.notify("commit-message returned empty message", vim.log.levels.ERROR)
@@ -744,9 +715,9 @@ vim.api.nvim_create_autocmd("FileType", {
         end
 
         vim.keymap.set("n", "<Leader>c", generate,
-            { buffer = args.buf, desc = "Generate commit message with Gemini" })
+            { buffer = args.buf, desc = "Generate commit message with omp" })
         vim.api.nvim_buf_create_user_command(args.buf, "CommitMsg", generate,
-            { desc = "Generate commit message with Gemini" })
+            { desc = "Generate commit message with omp" })
     end,
 })
 
