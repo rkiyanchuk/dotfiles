@@ -9,6 +9,7 @@
 ^/\.claude/plans.*
 ^/\.claude/backups.*
 ^/\.claude/cache.*
+^/\.claude/debug.*
 ^/\.claude/file-history.*
 ^/\.claude/image-cache.*
 ^/\.claude/paste-cache.*
@@ -16,5 +17,6 @@
 ^/\.claude/shell-snapshots.*
 ^/\.claude/statsig.*
 ^/\.claude/telemetry.*
+^/\.claude/todos.*
 ^/\.claude/ide.*
 ^/\.claude/history\.jsonl$
