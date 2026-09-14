@@ -1,4 +1,3 @@
-^\.DS_Store$
 ^fish_variables$
 ^/\.config/fish/functions/fisher\.fish$
 ^/\.config/fish/completions/docker\.fish$
