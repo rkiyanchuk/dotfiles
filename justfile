@@ -12,11 +12,11 @@ bold := "\u{1b}[1m"
 reset := "\u{1b}[0m"
 
 username := env("USER")
-deps_arch := "bat eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
-deps_ubuntu := "bat eza fd-find fish fzf git grc neovim ripgrep snapd stow tmux"
+deps_arch := "bat direnv eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
+deps_ubuntu := "bat direnv eza fd-find fish fzf git grc neovim ripgrep snapd stow tmux"
 
 # CLI packages to install via stow
-packages_cli := "bat bun fish git gh grc npm nvim starship tmux uv yazi claude omp"
+packages_cli := "bat bun direnv fish git gh grc npm nvim starship tmux uv yazi claude omp"
 
 # Desktop packages to install via stow (macOS only)
 packages_gui := "ghostty wireshark ssh zed"
