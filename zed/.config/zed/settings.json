@@ -241,7 +241,7 @@
       "custom": 1.55,
     },
     "scrollbar": {
-      "show": "auto",
+      "show": "system",
     },
     "toolbar": {
       "breadcrumbs": false,
