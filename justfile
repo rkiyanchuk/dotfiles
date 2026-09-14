@@ -115,8 +115,10 @@ set-shell:
         sudo chsh -s "$FISH_PATH" {{ username }}
     fi
 
-# Install all third-party plugins and runtime deps
-plugins: plugins-tmux plugins-yazi plugins-claude plugins-omp plugins-nvim plugins-fish
+# Install all third-party plugins and runtime deps. `plugins-claude` is
+# deliberately excluded: the `claude` package still deploys its config, but
+# installing Claude Code's plugins is opt-in via `just plugins-claude`.
+plugins: plugins-tmux plugins-yazi plugins-omp plugins-nvim plugins-fish
 
 # Install tmux plugin manager
 plugins-tmux:
@@ -137,7 +139,8 @@ plugins-yazi:
         ya pkg install
     fi
 
-# Install Claude Code plugins declared in settings.json
+# Install Claude Code plugins declared in settings.json.
+# Not part of `plugins`; run explicitly when Claude Code is wanted.
 plugins-claude:
     #!/usr/bin/env bash
     set -euo pipefail
