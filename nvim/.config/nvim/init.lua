@@ -559,15 +559,18 @@ require('hex').setup()
 vim.cmd.packadd("mini.pairs")
 require("mini.pairs").setup()
 
--- Syntax highlighting, indentation, and code-aware text objects.
--- Run :Update then :TSUpdate after first install to download parsers.
-pcall(function()
-    vim.cmd.packadd("nvim-treesitter")
-    require("nvim-treesitter.configs").setup({
-        highlight = { enable = true },
-        indent = { enable = true },
-    })
-end)
+-- Syntax highlighting and indentation. The `main` branch dropped the global
+-- `nvim-treesitter.configs` setup in favour of Neovim's own treesitter API,
+-- so enable it per buffer for whichever parsers are actually installed.
+-- Run :Update then :TSInstall <lang> to download parsers.
+vim.cmd.packadd("nvim-treesitter")
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Start treesitter highlighting and indentation when a parser exists",
+    callback = function(args)
+        if not pcall(vim.treesitter.start, args.buf) then return end
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+})
 
 -- Lets you navigate your code with search labels and enhanced character motions.
 vim.api.nvim_create_autocmd("VimEnter", {
