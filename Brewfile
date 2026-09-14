@@ -1,6 +1,7 @@
 # Install command:
 # brew bundle install --file=Brewfile
 
+tap "can1357/tap" # omp
 tap "daipeihust/tap" # im-select
 tap "terror/tap" # just-lsp
 
@@ -69,6 +70,7 @@ brew "httpie"
 brew "iperf"
 brew "just-lsp", tap: "terror/tap"
 brew "make"
+brew "omp", tap: "can1357/tap"
 brew "ruff"
 brew "rustup"
 brew "tectonic"
