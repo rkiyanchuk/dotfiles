@@ -1,7 +1,5 @@
-[[plugin.deps]]
-use = "rkiyanchuk/bookmarks"
-rev = "391955d"
-hash = "1eaeb7f84aa3e28295ea5814fb9ea45c"
+[plugin]
+deps = []
 
 [flavor]
 deps = []
