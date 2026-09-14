@@ -170,13 +170,15 @@ plugins-omp:
         anthropics/claude-plugins-official  # official Anthropic catalog
         kepano/obsidian-skills              # Obsidian authoring skills
         rkiyanchuk/agent-plugins            # personal plugins
+        trailofbits/skills                  # security review skills
     )
 
     # Plugins to install at user scope, as `name@marketplace`.
     plugins=(
-        apple-events-mcp@agent-plugins         # macOS Calendar/Reminders
-        obsidian@obsidian-skills               # Obsidian vault tooling
-        skill-creator@claude-plugins-official  # skill authoring
+        apple-events-mcp@agent-plugins           # macOS Calendar/Reminders
+        obsidian@obsidian-skills                 # Obsidian vault tooling
+        skill-creator@claude-plugins-official    # skill authoring
+        agentic-actions-auditor@trailofbits      # CI/CD agent auditing
     )
 
     # `marketplace add` and `plugin install` exit 1 when the target is already
