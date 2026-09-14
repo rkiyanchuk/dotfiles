@@ -212,40 +212,29 @@ plugins-omp:
         off=$(printf '{{ reset }}')
     fi
 
-    # "a, b and c", the way `brew` enumerates its targets.
-    hb_list() {
-        local out="" i
-        for (( i = 1; i <= $#; i++ )); do
-            if   (( i == 1  )); then out="${!i}"
-            elif (( i == $# )); then out="$out and ${!i}"
-            else                     out="$out, ${!i}"
-            fi
-        done
-        printf '%s' "$out"
-    }
+    # `==> Doing something...`
+    hb_head() { echo "${orange}==>${off} ${bold}$1${off}"; }
 
-    # `==> Doing something for: a, b and c`
-    hb_head() { echo "${orange}==>${off} ${bold}$1${off} ${cyan}$2${off}"; }
+    # Prefix a row with a green check; the rows omp emits are unmarked.
+    hb_row() { sed -E "s/^[[:space:]]*/${green}✔${off} /"; }
 
-    # Normalise a row to `✔ <text>`, replacing any mark omp printed itself.
-    hb_row() { sed -E "s/^[[:space:]]*(✔|✓)?[[:space:]]*/${green}✔${off} /"; }
-
-    hb_head "Registering marketplaces for:" "$(hb_list "${marketplaces[@]}")"
+    hb_head "Installing marketplaces..."
     for market in "${marketplaces[@]}"; do
         omp_plugin "already exists" marketplace add "$market"
         omp_row "$market" "$(omp plugin marketplace list 2>/dev/null)" | hb_row
     done
-    omp plugin marketplace update 2>&1 | hb_row
+    # Refresh and upgrade quietly: the per-row listings above already report
+    # the resulting state, so the summary lines are just noise.
+    omp plugin marketplace update >/dev/null 2>&1
 
-    hb_head "Installing plugins for:" "$(hb_list "${plugins[@]}")"
-    upgraded=$(omp plugin upgrade 2>&1)
+    hb_head "Installing plugins..."
+    omp plugin upgrade >/dev/null 2>&1
     for plugin in "${plugins[@]}"; do
         omp_plugin "already installed" install "$plugin"
         # omp leaves plugin ids uncolored; paint them cyan like marketplaces.
         omp_row "$plugin" "$(omp plugin list 2>/dev/null)" \
             | sed "s|$plugin|$cyan$plugin$off|" | hb_row
     done
-    printf '%s\n' "$upgraded" | hb_row
 
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
