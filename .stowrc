@@ -1,3 +1,4 @@
 --no-folding
 --dotfiles
 --target=~
+--ignore=\.DS_Store

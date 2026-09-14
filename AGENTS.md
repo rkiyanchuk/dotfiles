@@ -13,13 +13,18 @@ Supported targets: macOS (primary, Homebrew), Arch Linux (pacman), Debian/Ubuntu
 
 - `.stowrc` supplies global flags to every `stow` invocation: `--no-folding`
   (link individual files, never fold whole dirs — target dirs are shared with
-  tool-generated files), `--dotfiles`, `--target=~`.
+  tool-generated files), `--dotfiles`, `--target=~`, `--ignore=\.DS_Store`.
 - Package membership is an explicit space-separated string in `justfile`
   (`packages_cli`, `packages_gui`). **There is no auto-discovery** — a new
   package dir is inert until added to one of those variables.
 - Per-package `.stow-local-ignore` (regex per line) keeps Stow away from runtime
   state and secrets that live in the same tree: `fish/`, `ssh/`, `wireshark/`,
-  `yazi/`, `claude/`.
+  `yazi/`, `claude/`. **Patterns are matched against the package-relative path
+  prefixed with `/`, anchored at both ends.** So a path rule must read
+  `^/\.claude/statsig.*` — spelled from the package root, not the config dir,
+  and with an explicit `.*` when a directory prefix is meant. A pattern with no
+  `/` is matched against the basename instead. Getting this wrong fails
+  silently: stow just links the file.
 - `obsidian/` is **not** a Stow package. It is rsync-synced with a vault via
   `just obsidian-config push|pull <vault-path>` (excludes `workspace*.json`).
 - Third-party plugins are never vendored; each ecosystem has its own idempotent

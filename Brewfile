@@ -1,8 +1,8 @@
 # Install command:
 # brew bundle install --file=Brewfile
 
+tap "can1357/tap" # omp
 tap "daipeihust/tap" # im-select
-tap "oven-sh/bun" # fast JavaScript all-in-one toolkit.
 tap "terror/tap" # just-lsp
 
 # Core CLI tools
@@ -37,7 +37,7 @@ brew "unzip"
 brew "ldns"
 brew "mtr"
 brew "wget"
-cask "wireshark"
+cask "wireshark-app"
 
 # System tools
 brew "im-select"
@@ -70,6 +70,7 @@ brew "httpie"
 brew "iperf"
 brew "just-lsp", tap: "terror/tap"
 brew "make"
+brew "omp", tap: "can1357/tap"
 brew "ruff"
 brew "rustup"
 brew "tectonic"
