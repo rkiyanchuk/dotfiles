@@ -145,6 +145,7 @@ plugins-claude:
     claude plugin install chrome-devtools-mcp@claude-plugins-official
     claude plugin install context7@claude-plugins-official
     claude plugin install gopls-lsp@claude-plugins-official
+    claude plugin install playwright@claude-plugins-official
     claude plugin install pr-review-toolkit@claude-plugins-official
     claude plugin install pyright-lsp@claude-plugins-official
     claude plugin install rust-analyzer-lsp@claude-plugins-official
