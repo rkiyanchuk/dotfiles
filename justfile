@@ -202,34 +202,50 @@ plugins-omp:
 
     # Rows are filtered through a pipe, where omp drops its cyan names and dim
     # versions/scopes; ask for them back unless the caller wants plain output.
-    cyan='' green='' off=''
+    cyan='' green='' orange='' bold='' off=''
     if [[ -z ${NO_COLOR:-} ]]; then
         export FORCE_COLOR=1
         cyan=$(printf '{{ cyan }}')
         green=$(printf '{{ green }}')
+        orange=$(printf '{{ orange }}')
+        bold=$(printf '{{ bold }}')
         off=$(printf '{{ reset }}')
     fi
 
-    echo -e "{{ bold }}Configured Marketplaces:{{ reset }}\n"
+    # "a, b and c", the way `brew` enumerates its targets.
+    hb_list() {
+        local out="" i
+        for (( i = 1; i <= $#; i++ )); do
+            if   (( i == 1  )); then out="${!i}"
+            elif (( i == $# )); then out="$out and ${!i}"
+            else                     out="$out, ${!i}"
+            fi
+        done
+        printf '%s' "$out"
+    }
+
+    # `==> Doing something for: a, b and c`
+    hb_head() { echo "${orange}==>${off} ${bold}$1${off} ${cyan}$2${off}"; }
+
+    # Normalise a row to `✔ <text>`, replacing any mark omp printed itself.
+    hb_row() { sed -E "s/^[[:space:]]*(✔|✓)?[[:space:]]*/${green}✔${off} /"; }
+
+    hb_head "Registering marketplaces for:" "$(hb_list "${marketplaces[@]}")"
     for market in "${marketplaces[@]}"; do
         omp_plugin "already exists" marketplace add "$market"
-        omp_row "$market" "$(omp plugin marketplace list 2>/dev/null)"
+        omp_row "$market" "$(omp plugin marketplace list 2>/dev/null)" | hb_row
     done
-    sed 's/^/  /' <<< "$(omp plugin marketplace update 2>&1)"
+    omp plugin marketplace update 2>&1 | hb_row
 
-    echo -e "\n{{ bold }}Marketplace Plugins:{{ reset }}\n"
+    hb_head "Installing plugins for:" "$(hb_list "${plugins[@]}")"
     upgraded=$(omp plugin upgrade 2>&1)
     for plugin in "${plugins[@]}"; do
         omp_plugin "already installed" install "$plugin"
         # omp leaves plugin ids uncolored; paint them cyan like marketplaces.
-        row=$(omp_row "$plugin" "$(omp plugin list 2>/dev/null)")
-        echo "${row/#"  $plugin"/  $cyan$plugin$off}"
+        omp_row "$plugin" "$(omp plugin list 2>/dev/null)" \
+            | sed "s|$plugin|$cyan$plugin$off|" | hb_row
     done
-    if [[ $upgraded == *"up to date"* ]]; then
-        echo "  ${green}✔ ${upgraded}${off}"
-    else
-        sed 's/^/  /' <<< "$upgraded"
-    fi
+    printf '%s\n' "$upgraded" | hb_row
 
 # Install Fisher and Fish plugins declared in fish_plugins
 plugins-fish:
