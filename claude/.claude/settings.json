@@ -48,6 +48,12 @@
         "source": "github",
         "repo": "kepano/obsidian-skills"
       }
+    },
+    "trailofbits": {
+      "source": {
+        "source": "github",
+        "repo": "trailofbits/skills"
+      }
     }
   },
   "outputStyle": "Concise",
