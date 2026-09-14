@@ -2,7 +2,6 @@
 # brew bundle install --file=Brewfile
 
 tap "daipeihust/tap" # im-select
-tap "oven-sh/bun" # fast JavaScript all-in-one toolkit.
 tap "terror/tap" # just-lsp
 
 # Core CLI tools
