@@ -109,7 +109,7 @@ vim.pack.add({
     { src = 'https://github.com/akinsho/git-conflict.nvim',         name = 'git-conflict.nvim' },
     { src = 'https://github.com/brenoprata10/nvim-highlight-colors', name = 'nvim-highlight-colors' },
     { src = 'https://github.com/tpope/vim-sleuth',                  name = 'vim-sleuth' },
-    { src = 'https://github.com/williamboman/mason.nvim',           name = 'mason.nvim' },
+    { src = 'https://github.com/mason-org/mason.nvim',              name = 'mason.nvim' },
     { src = 'https://github.com/RaafatTurki/hex.nvim',             name = 'hex.nvim' },
     { src = 'https://github.com/echasnovski/mini.pairs',            name = 'mini.pairs' },
 
