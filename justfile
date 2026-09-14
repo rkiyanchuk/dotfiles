@@ -218,7 +218,7 @@ plugins-omp:
     # Prefix a row with a green check; the rows omp emits are unmarked.
     hb_row() { sed -E "s/^[[:space:]]*/${green}✔${off} /"; }
 
-    hb_head "Installing marketplaces..."
+    hb_head "Installing omp marketplaces..."
     for market in "${marketplaces[@]}"; do
         omp_plugin "already exists" marketplace add "$market"
         omp_row "$market" "$(omp plugin marketplace list 2>/dev/null)" | hb_row
@@ -227,7 +227,7 @@ plugins-omp:
     # the resulting state, so the summary lines are just noise.
     omp plugin marketplace update >/dev/null 2>&1
 
-    hb_head "Installing plugins..."
+    hb_head "Installing omp plugins..."
     omp plugin upgrade >/dev/null 2>&1
     for plugin in "${plugins[@]}"; do
         omp_plugin "already installed" install "$plugin"
