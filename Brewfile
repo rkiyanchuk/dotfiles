@@ -36,7 +36,7 @@ brew "unzip"
 brew "ldns"
 brew "mtr"
 brew "wget"
-cask "wireshark"
+cask "wireshark-app"
 
 # System tools
 brew "im-select"
