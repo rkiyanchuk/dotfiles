@@ -51,6 +51,7 @@ claude/.env
 
 # Obsidian
 obsidian/.obsidian/plugins/text-extractor/cache/**
+obsidian/.obsidian/bookmarks.json
 obsidian/.obsidian/workspace.json
 obsidian/.obsidian/workspace-mobile.json
 obsidian/.obsidian/graph.json
@@ -68,6 +69,7 @@ obsidian/.obsidian-mobile/workspace.json
 obsidian/.obsidian-mobile/workspace-mobile.json
 obsidian/.obsidian-mobile/graph.json
 obsidian/.obsidian-mobile/plugins/recent-files-obsidian/data.json
+obsidian/.obsidian-mobile/plugins/simple-archiver/autoarchive_data.json
 obsidian/.obsidian-mobile/plugins/omnisearch/data.json
 obsidian/.obsidian-mobile/plugins/realclaudian/data.json
 obsidian/.obsidian-mobile/plugins/*/main.js
