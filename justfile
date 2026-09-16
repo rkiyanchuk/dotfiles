@@ -284,3 +284,7 @@ obsidian-config direction vault:
     for dir in .obsidian .obsidian-mobile; do
         rsync -av "${excludes[@]}" "$src/$dir/" "$dst/$dir/"
     done
+    # Claudian stores settings outside `.obsidian`; conversation history
+    # (`sessions/`) and agent CLI metadata (`opencode/`) are runtime state.
+    rsync -av --include=claudian-settings.json --exclude='*' \
+        "$src/.claudian/" "$dst/.claudian/"
