@@ -2,13 +2,13 @@
   "terminalApp": {
     "macos": "Ghostty"
   },
-  "enableClaude": true,
+  "enableClaude": false,
   "enableCodex": false,
   "enableCursor": false,
   "enableGemini": false,
   "enableOpencode": false,
   "enableWslOnWindows": false,
-  "enableGitCommitPush": false,
+  "enableGitCommitPush": true,
   "enableGitPull": false,
   "defaultCommitMessage": "Update notes"
 }

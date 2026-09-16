@@ -5,7 +5,7 @@
   "showInlineTitle": false,
   "readableLineLength": true,
   "alwaysUpdateLinks": true,
-  "newFileLocation": "folder",
+  "newFileLocation": "current",
   "attachmentFolderPath": "./_assets",
   "trashOption": "local",
   "useMarkdownLinks": true,
@@ -18,5 +18,8 @@
   "newLinkFormat": "relative",
   "newFileFolderPath": "@Inbox",
   "mobilePullAction": "switcher:open",
-  "livePreview": false
+  "livePreview": false,
+  "propertiesInDocument": "source",
+  "showIndentGuide": false,
+  "showUnsupportedFiles": true
 }

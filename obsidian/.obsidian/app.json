@@ -12,14 +12,14 @@
   "vimMode": false,
   "userIgnoreFilters": [
     "CLAUDE.md",
-    "Archieve/"
+    "Archive/"
   ],
   "livePreview": false,
   "openBehavior": "",
-  "strictLineBreaks": true,
-  "propertiesInDocument": "visible",
+  "strictLineBreaks": false,
+  "propertiesInDocument": "source",
   "showIndentGuide": false,
-  "showUnsupportedFiles": false,
+  "showUnsupportedFiles": true,
   "newLinkFormat": "relative",
   "newFileFolderPath": "@Inbox"
 }

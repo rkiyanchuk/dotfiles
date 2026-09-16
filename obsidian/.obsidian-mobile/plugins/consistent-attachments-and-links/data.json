@@ -1,7 +1,7 @@
 {
   "collectAttachmentUsedByMultipleNotesMode": "Skip",
   "consistencyReportFile": "consistency-report.md",
-  "emptyFolderBehavior": "Keep",
+  "emptyFolderBehavior": "Delete",
   "excludePaths": [],
   "excludePathsFromAttachmentCollecting": [],
   "includePaths": [],
