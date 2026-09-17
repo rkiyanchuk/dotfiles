@@ -16,7 +16,7 @@
   ],
   "livePreview": false,
   "openBehavior": "",
-  "strictLineBreaks": false,
+  "strictLineBreaks": true,
   "propertiesInDocument": "source",
   "showIndentGuide": false,
   "showUnsupportedFiles": true,
