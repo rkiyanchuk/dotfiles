@@ -52,7 +52,7 @@ statusLine:
   sessionAccent: false
 terminal:
   showProgress: true
-personality: default
+personality: pragmatic
 retry:
   maxRetries: 5
   fallbackChains:
