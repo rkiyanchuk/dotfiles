@@ -6,7 +6,7 @@ if status is-interactive; and type -q fzf; and type -q git
     # Tags (kind "tag") and remote branches (kind "remote") can't be deleted, so
     # ctrl-x is a no-op for those (column 1 check).
     set branch (__git_ref_records $argv[1] | fzf --no-hscroll --no-multi --ansi \
-      --delimiter=\t \
+      --delimiter=\t --layout=reverse \
       --list-label=' ctrl-x: delete branch | ctrl-a: include remotes ' \
       --list-label-pos='-3:bottom' \
       --color='list-label:dim' \
