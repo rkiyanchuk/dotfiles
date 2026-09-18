@@ -6,5 +6,6 @@
   "consistent-attachments-and-links",
   "simple-archiver",
   "obsidian-tikzjax",
-  "heic-viewer"
+  "heic-viewer",
+  "advanced-rename-and-delete-handler"
 ]

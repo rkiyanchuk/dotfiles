@@ -50,7 +50,6 @@ claude/.claude/plans/
 claude/.env
 
 # Obsidian
-obsidian/.obsidian/plugins/text-extractor/cache/**
 obsidian/.obsidian/bookmarks.json
 obsidian/.obsidian/workspace.json
 obsidian/.obsidian/workspace-mobile.json
@@ -64,7 +63,6 @@ obsidian/.obsidian/plugins/*/main.js
 obsidian/.obsidian/plugins/*/styles.css
 
 # Obsidian mobile
-obsidian/.obsidian-mobile/plugins/text-extractor/cache/**
 obsidian/.obsidian-mobile/workspace.json
 obsidian/.obsidian-mobile/workspace-mobile.json
 obsidian/.obsidian-mobile/graph.json

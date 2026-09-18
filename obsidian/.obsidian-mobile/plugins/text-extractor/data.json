@@ -1,9 +1,0 @@
-{
-  "ocrLanguages": [
-    "eng",
-    "ukr",
-    "pol"
-  ],
-  "rightClickMenu": true,
-  "useSystemOCR": true
-}
