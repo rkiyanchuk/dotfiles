@@ -2,7 +2,6 @@
   "obsidian-auto-link-title",
   "obsidian-style-settings",
   "omnisearch",
-  "text-extractor",
   "recent-files-obsidian",
   "open-in-terminal",
   "consistent-attachments-and-links",
@@ -10,5 +9,6 @@
   "obsidian-tikzjax",
   "obsidian-graphviz",
   "heic-viewer",
-  "realclaudian"
+  "realclaudian",
+  "advanced-rename-and-delete-handler"
 ]

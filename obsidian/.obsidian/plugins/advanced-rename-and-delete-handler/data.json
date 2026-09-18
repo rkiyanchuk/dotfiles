@@ -1,0 +1,17 @@
+{
+  "emptyFolderBehavior": "Delete",
+  "excludePaths": [],
+  "includePaths": [],
+  "notePriorities": [],
+  "rescueAttachmentUsedByMultipleNotesMode": "prompt",
+  "shouldDeleteConflictingAttachments": false,
+  "shouldHandleDeletions": true,
+  "shouldHandleRenames": true,
+  "shouldRenameAttachmentFiles": false,
+  "shouldRenameAttachmentFolder": true,
+  "shouldRescueSharedAttachments": false,
+  "shouldUpdateFileNameAliases": true,
+  "treatAsAttachmentExtensions": [
+    ".excalidraw.md"
+  ]
+}
