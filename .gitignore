@@ -5,9 +5,6 @@
 # Python
 *.pyc
 
-# Tmux
-**/tmux/plugins/
-
 # Neovim
 .netrwhist
 /nvim/.config/nvim/nvim.log

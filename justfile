@@ -118,17 +118,7 @@ set-shell:
 # Install all third-party plugins and runtime deps. `plugins-claude` is
 # deliberately excluded: the `claude` package still deploys its config, but
 # installing Claude Code's plugins is opt-in via `just plugins-claude`.
-plugins: plugins-tmux plugins-yazi plugins-omp plugins-nvim plugins-fish
-
-# Install tmux plugin manager
-plugins-tmux:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    TPM_DIR="$HOME/.config/tmux/plugins/tpm"
-    if [[ ! -d "$TPM_DIR" ]]; then
-        echo "{{ orange }}==> Installing tmux plugin manager...{{ reset }}"
-        git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
-    fi
+plugins: plugins-yazi plugins-omp plugins-nvim plugins-fish
 
 # Install yazi packages (flavors/plugins) declared in package.toml
 plugins-yazi:

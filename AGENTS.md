@@ -68,14 +68,14 @@ Recipe graph: `default → config`; `config → config-cli, config-gui, plugins`
   `# ENVIRONMENT`, `# ALIASES`, `# BINDINGS` (fish), `# APPEARANCE`,
   `# KEY BINDINGS` (ghostty), `-- VIM OPTIONS`, `-- PLUGINS` (lua).
 - **Minimal/native plugin managers**: nvim uses built-in `vim.pack.add` (Neovim
-  0.12+), not lazy.nvim; fish uses Fisher; tmux uses TPM.
+  0.12+), not lazy.nvim; fish uses Fisher; tmux has no plugin manager (settings
+  are inlined in `tmux.conf`).
 - **Shared "One Dark" theme** threaded across ghostty, tmux (hardcoded hex),
   nvim (`onedark.nvim`), zed (`theme_overrides`), yazi (`flavors/onedark.yazi`),
   bat, starship. Color changes must be applied across all of them.
 - **Idempotent installers.** `plugins-omp` wraps `omp plugin` in a helper that
-  swallows "already exists"/"already installed"; `plugins-tmux` tests for the
-  TPM dir; `plugins-yazi` tests `command -v ya`. New `plugins-*` recipes must be
-  re-runnable.
+  swallows "already exists"/"already installed"; `plugins-yazi` tests
+  `command -v ya`. New `plugins-*` recipes must be re-runnable.
 - **Installation never mutates tracked config.** `plugins-claude` finishes with
   `git checkout -- claude/.claude/settings.json` because `plugin install`
   force-enables every plugin; the curated enabled/disabled map lives in VCS.
