@@ -33,6 +33,11 @@ window-padding-y = 5
 window-save-state = always
 window-vsync = true
 
+# QUICK TERMINAL
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-space-behavior = move
+
 # KEY BINDINGS
 
 keybind = shift+enter=text:\x1b\r
