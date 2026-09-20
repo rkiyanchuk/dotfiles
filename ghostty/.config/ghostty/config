@@ -14,6 +14,7 @@ window-subtitle = working-directory
 # BEHAVIOR
 
 auto-update = off
+bell-features = attention,title,border
 macos-applescript = false
 macos-auto-secure-input = true
 macos-option-as-alt = left
