@@ -1,6 +1,7 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
   "markdown_preview": {
+    "open_markdown_files_in_preview": true,
     "font_size": 17.0,
     "font_family": "IBM Plex Sans Light",
     "code_font_family": "Iosevka Nerd Font",
