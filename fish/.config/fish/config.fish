@@ -12,6 +12,15 @@ set --export --global CLICOLOR 1  # Turn on colors for some BSD tools
 set --export --global GPG_TTY (tty)  # Setup TTY for GPG pinetry
 set --export --global LESS "FRX"
 
+# tmux draws `_` instead of wide/Nerd Font glyphs when its client locale isn't
+# UTF-8, and SSH clients like Echo (iOS) or PuTTY forward no LANG at all. Unset
+# variables expand to zero elements, so $ctype[1] is whichever of LC_ALL /
+# LC_CTYPE / LANG actually governs ctype.
+set --local ctype $LC_ALL $LC_CTYPE $LANG
+if not string match --quiet --ignore-case --regex 'utf-?8' -- "$ctype[1]"
+    set --export --global LC_ALL en_US.UTF-8
+end
+
 fish_add_path --global ~/.local/bin           # User executables
 fish_add_path --global ~/.cargo/bin           # Cargo executables
 fish_add_path --global ~/.bun/bin             # bun (node) executables
