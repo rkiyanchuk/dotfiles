@@ -1,0 +1,28 @@
+# ChatGPT-primary model roles (OpenAI Codex OAuth provider).
+#
+# Applied as a read-only config overlay on top of ~/.omp/agent/config.yml:
+#   omp --config ~/.omp/agent/profiles/chatgpt.yml
+#
+# Everything else (auth, sessions, skills, rules, MCP, keybindings) stays
+# shared with the base config — only model selection changes.
+#
+# Requires a live ChatGPT subscription login: `omp` -> /login -> OpenAI Codex.
+modelRoles:
+  default: openai-codex/gpt-6-astra
+  smol: openai-codex/gpt-5.5
+  task: openai-codex/gpt-6-astra:xhigh
+  # 1M-context model for the long-haul reasoning role.
+  slow: openai-codex/gpt-5.6-terra:max
+  plan: openai-codex/gpt-6-astra:max
+  vision: openai-codex/gpt-5.6-terra
+  # Cross-vendor on purpose: the advisor reviews ChatGPT output.
+  advisor: anthropic/claude-sonnet-5:medium
+  commit: anthropic/claude-haiku-4-5
+retry:
+  fallbackChains:
+    openai-codex/gpt-6-astra:
+      - openai-codex/gpt-5.6-terra
+    openai-codex/gpt-5.6-terra:
+      - openai-codex/gpt-5.6-luna
+    openai-codex/gpt-5.5:
+      - openai-codex/gpt-5.6-luna

@@ -1,0 +1,25 @@
+# Anthropic-primary model roles.
+#
+# Applied as a read-only config overlay on top of ~/.omp/agent/config.yml:
+#   omp --config ~/.omp/agent/profiles/anthropic.yml
+#
+# Everything else (auth, sessions, skills, rules, MCP, keybindings) stays
+# shared with the base config — only model selection changes.
+modelRoles:
+  default: anthropic/claude-opus-5
+  smol: anthropic/claude-sonnet-5
+  task: anthropic/claude-opus-5:xhigh
+  slow: anthropic/claude-fable-5
+  plan: anthropic/claude-opus-5:max
+  # Cross-vendor on purpose: vision and advisor review Anthropic output.
+  vision: openai-codex/gpt-5.6-terra
+  advisor: openai-codex/gpt-5.6-terra:medium
+  commit: anthropic/claude-haiku-4-5
+retry:
+  fallbackChains:
+    anthropic/claude-opus-5:
+      - anthropic/claude-opus-4-8
+    anthropic/claude-sonnet-5:
+      - anthropic/claude-sonnet-4-6
+    anthropic/claude-fable-5:
+      - anthropic/claude-opus-5
