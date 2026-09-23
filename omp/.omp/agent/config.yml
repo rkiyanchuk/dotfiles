@@ -4,14 +4,14 @@ theme:
   light: light-one
 setupVersion: 2
 modelRoles:
-  default: anthropic/claude-opus-5
-  slow: anthropic/claude-fable-5
-  task: anthropic/claude-opus-5:xhigh
+  default: anthropic/claude-opus-5-5
+  slow: anthropic/claude-fable-5-1
+  task: anthropic/claude-opus-5-5:xhigh
   commit: google/gemini-3.8-flash:auto
   smol: anthropic/claude-sonnet-5
-  vision: openai-codex/gpt-5.6-terra
-  plan: anthropic/claude-opus-5:max
-  advisor: openai-codex/gpt-5.6-terra:medium
+  vision: openai-codex/gpt-6-sol
+  plan: anthropic/claude-opus-5-5:max
+  advisor: openai-codex/gpt-6-sol:medium
 cycleOrder:
   - default
   - smol
@@ -56,12 +56,12 @@ personality: pragmatic
 retry:
   maxRetries: 5
   fallbackChains:
-    anthropic/claude-opus-5:
-      - anthropic/claude-opus-4-8
+    anthropic/claude-opus-5-5:
+      - anthropic/claude-opus-5
     anthropic/claude-sonnet-5:
       - anthropic/claude-sonnet-4-6
-    anthropic/claude-fable-5:
-      - anthropic/claude-opus-5
+    anthropic/claude-fable-5-1:
+      - anthropic/claude-opus-5-5
   maxDelayMs: 0
 stt:
   enabled: true

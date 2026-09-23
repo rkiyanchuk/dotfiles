@@ -9,20 +9,20 @@
 # Requires a live ChatGPT subscription login: `omp` -> /login -> OpenAI Codex.
 modelRoles:
   default: openai-codex/gpt-6-astra
-  smol: openai-codex/gpt-5.5
+  smol: openai-codex/gpt-6-luna
   task: openai-codex/gpt-6-astra:xhigh
-  # 1M-context model for the long-haul reasoning role.
-  slow: openai-codex/gpt-5.6-terra:max
+  # Cheaper mid-tier at max thinking for the long-haul reasoning role.
+  slow: openai-codex/gpt-6-sol:max
   plan: openai-codex/gpt-6-astra:max
-  vision: openai-codex/gpt-5.6-terra
+  vision: openai-codex/gpt-6-sol
   # Cross-vendor on purpose: the advisor reviews ChatGPT output.
   advisor: anthropic/claude-sonnet-5:medium
   commit: anthropic/claude-haiku-4-5
 retry:
   fallbackChains:
     openai-codex/gpt-6-astra:
+      - openai-codex/gpt-6-sol
+    openai-codex/gpt-6-sol:
       - openai-codex/gpt-5.6-terra
-    openai-codex/gpt-5.6-terra:
-      - openai-codex/gpt-5.6-luna
-    openai-codex/gpt-5.5:
+    openai-codex/gpt-6-luna:
       - openai-codex/gpt-5.6-luna
