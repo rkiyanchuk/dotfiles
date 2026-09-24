@@ -125,30 +125,9 @@ plugins-yazi:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v ya &> /dev/null; then
-        echo "{{ orange }}==> Installing yazi packages...{{ reset }}"
+        echo "{{ orange }}==> Installing yazi plugins...{{ reset }}"
         ya pkg install
     fi
-
-# Install Claude Code plugins declared in settings.json.
-# Not part of `plugins`; run explicitly when Claude Code is wanted.
-plugins-claude:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "{{ orange }}==> Installing Claude Code plugins...{{ reset }}"
-    claude plugin install chrome-devtools-mcp@claude-plugins-official
-    claude plugin install context7@claude-plugins-official
-    claude plugin install gopls-lsp@claude-plugins-official
-    claude plugin install playwright@claude-plugins-official
-    claude plugin install pr-review-toolkit@claude-plugins-official
-    claude plugin install pyright-lsp@claude-plugins-official
-    claude plugin install rust-analyzer-lsp@claude-plugins-official
-    claude plugin install skill-creator@claude-plugins-official
-    claude plugin install typescript-lsp@claude-plugins-official
-    claude plugin install obsidian@obsidian-skills
-    claude plugin install apple-events-mcp@agent-plugins
-    # `plugin install` enables every plugin; restore the desired enabled
-    # flags from version control (plugins stay on disk, just disabled).
-    git -C {{ justfile_directory() }} checkout -- claude/.claude/settings.json
 
 # Install omp plugins.
 plugins-omp:
