@@ -1,6 +1,6 @@
 function __git_worktree_transform --description "emit fzf actions for git-select-worktree, per key and mode"
   # git-select-worktree has two modes in one fzf instance: browse (pick a
-  # worktree) and create (type a slug). A nested fzf or fish `read` was the
+  # worktree) and create (type a feature name). A nested fzf or fish `read` was the
   # obvious alternative, but a child inherits the parent fzf's termios, so
   # fzf's lone-escape detection -- which relies on a read timeout -- never
   # fires and escape is swallowed. Staying in one process keeps escape native.
@@ -19,7 +19,7 @@ function __git_worktree_transform --description "emit fzf actions for git-select
     case ctrl-a
       test $mode = browse; and echo $create; or echo ignore
     case enter
-      # In create mode the slug is $FZF_QUERY, read by __git_worktree_create
+      # In create mode the feature name is $FZF_QUERY, read by __git_worktree_create
       # itself. execute (not execute-silent) so git's output and any error
       # pause are visible.
       test $mode = create

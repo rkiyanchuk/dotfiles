@@ -1,7 +1,7 @@
 if status is-interactive; and type -q fzf; and type -q git
   function git-select-worktree --description "cd to a git worktree"
     # Two modes in one fzf: browse (enter cd's, ctrl-x removes) and create
-    # (ctrl-a switches in, type a slug, enter creates, esc backs out). Every
+    # (ctrl-a switches in, type a feature, enter creates, esc backs out). Every
     # mode-sensitive key routes through __git_worktree_transform, which prints
     # the actions to run; see that function for why this isn't a nested prompt.
     # Records come from __git_worktree_records so reload can re-run it via
