@@ -3,13 +3,13 @@
 
 set shell := ["bash", "-cu"]
 
-# Colors for status messages; `\u{1b}` is a real escape byte,
-# so plain `echo` renders them without `-e`.
-orange := "\u{1b}[0;33m"
-green := "\u{1b}[0;32m"
-cyan := "\u{1b}[36m"
-bold := "\u{1b}[1m"
-reset := "\u{1b}[0m"
+# Colors for status messages, built from just's ANSI constants. Each holds a
+# real escape byte, so plain `echo` renders them without `-e`.
+orange := NORMAL + YELLOW
+green := NORMAL + GREEN
+cyan := CYAN
+bold := BOLD
+reset := NORMAL
 
 username := env("USER")
 deps_arch := "bat direnv eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
