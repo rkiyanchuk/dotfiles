@@ -14,11 +14,13 @@
   "shouldCreateNoteToPreserveOriginalName": false,
   "shouldEnsurePathCompatibilityOnAndroid": false,
   "shouldEnsurePathCompatibilityOnEveryPlatform": false,
-  "shouldEnsurePathCompatibilityOnIos": false,
+  "shouldEnsurePathCompatibilityOnIos": true,
   "shouldEnsurePathCompatibilityOnLinux": false,
-  "shouldEnsurePathCompatibilityOnMacOs": true,
+  "shouldEnsurePathCompatibilityOnMacOs": false,
   "shouldEnsurePathCompatibilityOnWindows": false,
   "shouldShowBackupWarning": false,
   "sidecarNoteNamePattern": "{{fileName}}.md",
-  "treatAsAttachmentExtensions": []
+  "treatAsAttachmentExtensions": [
+    ".excalidraw.md"
+  ]
 }

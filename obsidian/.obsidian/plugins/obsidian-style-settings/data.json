@@ -26,5 +26,6 @@
   "baseline-style@@translucent-light-opacity": 0,
   "baseline-style@@translucent-dark-opacity": 0,
   "baseline-style@@color-scheme-accent": true,
-  "baseline-style@@hide-vault-switcher-off": true
+  "baseline-style@@hide-vault-switcher-off": true,
+  "baseline-style@@strike-lists-off": true
 }

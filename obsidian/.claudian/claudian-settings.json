@@ -1,7 +1,7 @@
 {
   "userName": "Ruslan",
   "permissionMode": "yolo",
-  "model": "pi:anthropic/claude-opus-5",
+  "model": "pi:anthropic/claude-sonnet-5",
   "thinkingBudget": "off",
   "effortLevel": "high",
   "serviceTier": "default",
@@ -11,7 +11,6 @@
   "excludedTags": [],
   "mediaFolder": "_assets",
   "systemPrompt": "",
-  "persistentExternalContextPaths": [],
   "sharedEnvironmentVariables": "",
   "envSnippets": [],
   "customContextLimits": {},
@@ -26,14 +25,14 @@
   "providerConfigs": {
     "claude": {
       "enabled": false,
+      "responseStyle": "Default",
       "safeMode": "auto",
       "cliPath": "",
       "cliPathsByHost": {},
       "loadUserSettings": true,
       "enableChrome": false,
-      "enableBangBash": false,
       "customModels": "",
-      "defaultModel": "sonnet",
+      "defaultModel": "opus",
       "lastModel": "sonnet",
       "modelEnvironmentType": "",
       "titleModelEnvironmentType": "",
@@ -56,7 +55,8 @@
       "visibleModels": null,
       "enableUltraEffort": false,
       "catalogTimestamp": 0,
-      "catalogFingerprint": ""
+      "catalogFingerprint": "",
+      "responseStyle": "pragmatic"
     },
     "opencode": {
       "cliPath": "",
@@ -73,7 +73,7 @@
     "pi": {
       "cliPath": "",
       "cliPathsByHost": {
-        "device:ba212907-d519-4ed1-b20b-2ca084b81e3d": "/opt/homebrew/bin/omp"
+        "device-c31bbee96c6d33b2e0a1e61f3753fa0435d371510b2eda5b36a3b88e3e08962b": "/opt/homebrew/bin/omp"
       },
       "discoveredModels": [
         {
@@ -763,9 +763,10 @@
       "preferredThinkingByModel": {},
       "toolMode": "all",
       "visibleModels": [
-        "pi:anthropic/claude-opus-5",
         "pi:anthropic/claude-sonnet-5",
-        "pi:anthropic/claude-haiku-4-5"
+        "pi:anthropic/claude-opus-5",
+        "pi:anthropic/claude-fable-5",
+        "pi:anthropic/claude-haiku-4-5-20251001"
       ]
     },
     "grok": {
@@ -776,7 +777,6 @@
       "environmentHash": "",
       "environmentVariables": "",
       "modelAliases": {},
-      "planBasePermissionMode": "normal",
       "preferredReasoningByModel": {},
       "visibleModels": null
     }
@@ -788,7 +788,7 @@
   },
   "savedProviderModel": {
     "claude": "sonnet",
-    "pi": "pi:anthropic/claude-opus-5"
+    "pi": "pi:anthropic/claude-sonnet-5"
   },
   "savedProviderEffort": {
     "claude": "high",
@@ -804,15 +804,19 @@
   "lastCustomModel": "",
   "maxWarmAgentProcesses": 5,
   "enableAutoScroll": true,
+  "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
   "enableDualPane": false,
-  "enableFilePane": true,
   "dualPaneSide": "right",
+  "restoreTabsOnStartup": true,
+  "collabEnabled": false,
+  "collabProjectsFolder": "workspace",
+  "collabGitPath": "",
   "sessionManagerOrganization": "list",
   "sessionManagerSort": "last-updated",
-  "pinnedLinkedNotePaths": [],
+  "pinnedLinkedContentPaths": [],
   "hiddenProviderCommands": {},
   "maxTabs": 3
 }
