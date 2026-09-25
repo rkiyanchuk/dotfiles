@@ -11,7 +11,7 @@ modelRoles:
   smol: anthropic/claude-sonnet-5
   vision: openai-codex/gpt-6-sol
   plan: anthropic/claude-opus-5-5:max
-  advisor: openai-codex/gpt-6-sol:medium
+  advisor: openai-codex/gpt-6-sol:auto
 cycleOrder:
   - default
   - smol
@@ -65,7 +65,6 @@ retry:
   maxDelayMs: 0
 stt:
   enabled: true
-  modelName: parakeet
 startup:
   quiet: false
 marketplace:
@@ -81,8 +80,6 @@ hideThinkingBlock: true
 defaultThinkingLevel: auto
 disabledProviders:
   - codex
-providers:
-  memoryModel: online
 autolearn:
   enabled: true
 task:
