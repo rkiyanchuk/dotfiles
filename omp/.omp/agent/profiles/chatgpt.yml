@@ -16,7 +16,7 @@ modelRoles:
   plan: openai-codex/gpt-6-astra:max
   vision: openai-codex/gpt-6-sol
   # Cross-vendor on purpose: the advisor reviews ChatGPT output.
-  advisor: anthropic/claude-sonnet-5:medium
+  advisor: anthropic/claude-sonnet-5-5:medium
   commit: anthropic/claude-haiku-4-5
 retry:
   fallbackChains:

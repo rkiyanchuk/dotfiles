@@ -8,7 +8,7 @@ modelRoles:
   slow: anthropic/claude-fable-5-1
   task: anthropic/claude-opus-5-5:xhigh
   commit: google/gemini-3.8-flash:auto
-  smol: anthropic/claude-sonnet-5
+  smol: anthropic/claude-sonnet-5-5
   vision: openai-codex/gpt-6-sol
   plan: anthropic/claude-opus-5-5:max
   advisor: openai-codex/gpt-6-sol:auto
@@ -58,8 +58,8 @@ retry:
   fallbackChains:
     anthropic/claude-opus-5-5:
       - anthropic/claude-opus-5
-    anthropic/claude-sonnet-5:
-      - anthropic/claude-sonnet-4-6
+    anthropic/claude-sonnet-5-5:
+      - anthropic/claude-sonnet-5
     anthropic/claude-fable-5-1:
       - anthropic/claude-opus-5-5
   maxDelayMs: 0
