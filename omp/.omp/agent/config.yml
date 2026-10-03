@@ -9,9 +9,9 @@ modelRoles:
   task: anthropic/claude-opus-5-5:xhigh
   commit: google/gemini-3.8-flash:auto
   smol: anthropic/claude-sonnet-5-5
-  vision: openai-codex/gpt-6-sol
+  vision: openai-codex/gpt-6.1-sol
   plan: anthropic/claude-opus-5-5:max
-  advisor: openai-codex/gpt-6-sol:auto
+  advisor: openai-codex/gpt-6.1-sol:auto
 cycleOrder:
   - default
   - smol
@@ -62,6 +62,8 @@ retry:
       - anthropic/claude-sonnet-5
     anthropic/claude-fable-5-1:
       - anthropic/claude-opus-5-5
+    openai-codex/gpt-6.1-sol:
+      - openai-codex/gpt-6-sol
   maxDelayMs: 0
 stt:
   enabled: true

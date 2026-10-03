@@ -12,15 +12,17 @@ modelRoles:
   smol: openai-codex/gpt-6-luna
   task: openai-codex/gpt-6-astra:xhigh
   # Cheaper mid-tier at max thinking for the long-haul reasoning role.
-  slow: openai-codex/gpt-6-sol:max
+  slow: openai-codex/gpt-6.1-sol:max
   plan: openai-codex/gpt-6-astra:max
-  vision: openai-codex/gpt-6-sol
+  vision: openai-codex/gpt-6.1-sol
   # Cross-vendor on purpose: the advisor reviews ChatGPT output.
   advisor: anthropic/claude-sonnet-5-5:medium
   commit: anthropic/claude-haiku-4-5
 retry:
   fallbackChains:
     openai-codex/gpt-6-astra:
+      - openai-codex/gpt-6.1-sol
+    openai-codex/gpt-6.1-sol:
       - openai-codex/gpt-6-sol
     openai-codex/gpt-6-sol:
       - openai-codex/gpt-5.6-terra

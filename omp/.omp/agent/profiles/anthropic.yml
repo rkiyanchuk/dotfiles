@@ -12,8 +12,8 @@ modelRoles:
   slow: anthropic/claude-fable-5-1
   plan: anthropic/claude-opus-5-5:max
   # Cross-vendor on purpose: vision and advisor review Anthropic output.
-  vision: openai-codex/gpt-6-sol
-  advisor: openai-codex/gpt-6-sol:medium
+  vision: openai-codex/gpt-6.1-sol
+  advisor: openai-codex/gpt-6.1-sol:medium
   commit: anthropic/claude-haiku-4-5
 retry:
   fallbackChains:
@@ -23,3 +23,5 @@ retry:
       - anthropic/claude-sonnet-5
     anthropic/claude-fable-5-1:
       - anthropic/claude-opus-5-5
+    openai-codex/gpt-6.1-sol:
+      - openai-codex/gpt-6-sol
