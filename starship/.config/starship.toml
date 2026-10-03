@@ -4,6 +4,9 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+# zmx session first; $all renders every other module in default order
+format = '${env_var.ZMX_SESSION}$all'
+
 [character]
 success_symbol = "[❯](green)"
 error_symbol = "[❯](red)"
@@ -19,6 +22,12 @@ style_user = 'bold green'
 format = '[$ssh_symbol](dimmed)[$hostname]($style) '
 ssh_symbol = "@"
 style = 'bold blue'
+
+[env_var.ZMX_SESSION]
+description = "zmx session name"
+symbol = " "
+format = '[$symbol$env_value]($style) '
+style = "green"
 
 [container]
 symbol = "󰆧"
