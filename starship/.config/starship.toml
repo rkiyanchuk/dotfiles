@@ -26,7 +26,7 @@ style = 'bold blue'
 [env_var.ZMX_SESSION]
 description = "zmx session name"
 symbol = " "
-format = '[$symbol$env_value]($style) '
+format = '[$symbol $env_value]($style) '
 style = "green"
 
 [container]
