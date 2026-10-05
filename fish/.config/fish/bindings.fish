@@ -38,8 +38,6 @@ if status is-interactive; and type -q fzf; and type -q zmx
         commandline -f repaint
     end
 
-    # Pick or create a session. Kitty keyboard protocol reports ctrl-shift-\
-    # either as shift+\ or as the shifted character.
-    bind ctrl-shift-\\ __zmx_select_widget
-    bind ctrl-\| __zmx_select_widget
+    # Pick or create a session
+    bind ctrl-\] __zmx_select_widget
 end

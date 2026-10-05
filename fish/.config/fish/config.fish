@@ -29,6 +29,10 @@ fish_add_path --global ~/.go/bin               # Golang executables
 fish_add_path --global ~/.claude/local        # Claude code
 
 if test (uname) = "Darwin"
+    # launchd gives GUI apps a per-user TMPDIR but SSH logins get none, so tools
+    # keying state off it (zmx sockets) would see /tmp instead and split in two.
+    set --query TMPDIR; or set --export --global TMPDIR (getconf DARWIN_USER_TEMP_DIR)
+
     if type -q brew
         eval "$(brew shellenv)"
     end
