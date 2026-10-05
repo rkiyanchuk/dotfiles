@@ -5,12 +5,12 @@ theme:
 setupVersion: 2
 modelRoles:
   default: anthropic/claude-opus-5-5
-  slow: anthropic/claude-fable-5-1
+  slow: anthropic/claude-fable-5-1:auto
   task: anthropic/claude-opus-5-5:xhigh
-  commit: google/gemini-3.8-flash:auto
+  commit: anthropic/claude-sonnet-5-5:auto
   smol: anthropic/claude-sonnet-5-5
   vision: openai-codex/gpt-6.1-sol
-  plan: anthropic/claude-opus-5-5:max
+  plan: anthropic/claude-opus-5-5:auto
   advisor: openai-codex/gpt-6.1-sol:auto
 cycleOrder:
   - default
