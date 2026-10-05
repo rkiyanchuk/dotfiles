@@ -99,6 +99,7 @@
       "icon.time": "\u001b[38;2;92;99;112m\uf017",
       "icon.host": "\u001b[38;2;92;99;112m\uf109",
       "icon.worktree": "\udb81\ude45",
+      "key.esc": "\u238b",
       "status.enabled": "\u2022",
       "format.bullet": "\u2022",
       "md.bullet": "\u2022"
