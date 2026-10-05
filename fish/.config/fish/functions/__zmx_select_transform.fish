@@ -1,8 +1,6 @@
 function __zmx_select_transform --description "emit fzf actions for zmx-select, per key and mode"
-  # Same two-mode design as __git_worktree_transform (see there for why this is
-  # one fzf instance rather than a nested prompt): browse picks a session,
-  # create takes a new session name. The mode flag is the ANSI-stripped prompt
-  # fzf exports as FZF_PROMPT.
+  # Mode is read from the ANSI-stripped prompt fzf exports as FZF_PROMPT; see
+  # __git_worktree_transform for why this is one fzf rather than two.
   set -l browse 'transform-prompt(printf "session ❯ ")+change-list-label( ctrl-a: new · ctrl-x: kill )+clear-query'
   set -l create 'transform-prompt(printf "\033[1;31mnew session ❯ \033[0m")+change-list-label( enter: create · esc: cancel )+clear-query'
 
@@ -11,16 +9,17 @@ function __zmx_select_transform --description "emit fzf actions for zmx-select, 
 
   switch "$argv[1]"
     case ctrl-a
-      test $mode = browse; and echo $create; or echo ignore
+      # fzf runs this in the caller's cwd.
+      test $mode = browse
+      and echo "$create+transform-query(fish -c __zmx_default_name)"
+      or echo ignore
     case ctrl-x
       test $mode = browse
-      and echo 'execute-silent(zmx kill {})+reload(zmx ls --short 2>/dev/null)'
+      and echo 'execute-silent(zmx kill {1})+reload(fish -c __zmx_sessions)'
       or echo ignore
     case enter
-      # The new name is printed from $FZF_QUERY, which fzf exports to become()
-      # children, rather than interpolated into the action string where a paren
-      # in the name would break parsing. printf works in fish and POSIX shells,
-      # whichever $SHELL fzf runs it with.
+      # Print the name from $FZF_QUERY, not by interpolating it into the action,
+      # where a paren in the name would break parsing.
       if test $mode = browse
         echo accept
       else if test -n "$(string trim -- "$FZF_QUERY")"

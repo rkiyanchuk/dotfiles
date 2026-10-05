@@ -24,9 +24,9 @@ ssh_symbol = "@"
 style = 'bold blue'
 
 [env_var.ZMX_SESSION]
-description = "zmx session name"
+description = "zmx session indicator (icon only, no name)"
 symbol = " "
-format = '[$symbol $env_value]($style) '
+format = '[$symbol]($style) '
 style = "green"
 
 [container]

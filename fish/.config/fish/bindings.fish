@@ -18,16 +18,28 @@ if status is-interactive; and type -q fzf; and type -q git
     bind ctrl-alt-w __git_select_worktree_widget
 end
 
+if status is-interactive; and type -q zmx
+    function __zmx_attach_widget --description "wrapper for zmx attach key binding"
+        # Only reachable with ZMX_NO_DETACH_KEY; zmx otherwise eats ctrl-\.
+        set -q ZMX_SESSION; and return
+        zmx attach (__zmx_default_name)
+        commandline -f repaint
+    end
+
+    # New session named after the git root or current dir (detach inside one)
+    bind ctrl-\\ __zmx_attach_widget
+end
+
 if status is-interactive; and type -q fzf; and type -q zmx
     function __zmx_select_widget --description "wrapper for zmx-select key binding"
-        # Inside a session the zmx client consumes ctrl-\ as detach before fish
-        # sees it; the guard only matters with ZMX_NO_DETACH_KEY set, where a
-        # picker here would attach a nested session.
+        # Picking a session from inside one would switch or nest it.
         set -q ZMX_SESSION; and return
         zmx-select
         commandline -f repaint
     end
 
-    # Select or create zmx session (detach when inside one)
-    bind ctrl-\\ __zmx_select_widget
+    # Pick or create a session. Kitty keyboard protocol reports ctrl-shift-\
+    # either as shift+\ or as the shifted character.
+    bind ctrl-shift-\\ __zmx_select_widget
+    bind ctrl-\| __zmx_select_widget
 end
