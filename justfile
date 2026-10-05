@@ -19,7 +19,7 @@ deps_ubuntu := "bat direnv eza fd-find fish fzf git grc neovim ripgrep snapd sto
 packages_cli := "bat bun direnv fish git gh grc npm nvim starship tmux uv yazi claude omp"
 
 # Desktop packages to install via stow (macOS only)
-packages_gui := "ghostty wireshark ssh zed"
+packages_gui := "ghostty wireshark ssh zed macos"
 
 # Detect the current OS
 os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") == "true" { "arch" } else { "ubuntu" }
@@ -36,6 +36,7 @@ install: install-deps config set-shell
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
         just enable-key-repeat
+        just display-dock-reset
     fi
 
 # Install system dependencies based on OS
@@ -222,6 +223,28 @@ plugins-nvim:
 enable-key-repeat:
     @echo "{{ orange }}==> Enable key repeat...{{ reset }}"
     @defaults write -g ApplePressAndHoldEnabled -bool false
+
+# MacOS: build and load the display-dock-reset agent. Restarts the Dock when an
+# external display is connected or disconnected, clearing the macOS 27 bug that
+# leaves Mission Control and Spaces broken after a display change.
+[macos]
+display-dock-reset:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "{{ orange }}==> Building display-dock-reset...{{ reset }}"
+    mkdir -p "$HOME/.local/bin"
+    swiftc -O -o "$HOME/.local/bin/display-dock-reset" \
+        "$HOME/.local/src/display-dock-reset/main.swift"
+    agent="$HOME/Library/LaunchAgents/local.display-dock-reset.plist"
+    # `bootout` returns before launchd has finished tearing the job down, and
+    # bootstrapping into a half-removed service fails with EIO.
+    launchctl bootout "gui/$UID/local.display-dock-reset" 2>/dev/null || true
+    for _ in $(seq 20); do
+        launchctl print "gui/$UID/local.display-dock-reset" &>/dev/null || break
+        sleep 0.2
+    done
+    launchctl bootstrap "gui/$UID" "$agent"
+    echo "{{ green }}==> display-dock-reset loaded{{ reset }}"
 
 # MacOS: set hostname
 [macos]

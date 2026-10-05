@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>local.display-dock-reset</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/ruslan/.local/bin/display-dock-reset</string>
+		<string>--verbose</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>StandardOutPath</key>
+	<string>/Users/ruslan/Library/Logs/display-dock-reset.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/ruslan/Library/Logs/display-dock-reset.log</string>
+</dict>
+</plist>

@@ -17,6 +17,7 @@ Personal configuration files managed with
 | `ghostty`   | Terminal emulator (macOS)                 |
 | `git`       | Git config and utilities                  |
 | `grc`       | CLI output colorizer                      |
+| `macos`     | macOS launch agents (display/Spaces fix)  |
 | `npm`       | npm/pnpm/Yarn install policy              |
 | `nvim`      | Neovim editor                             |
 | `obsidian`  | Obsidian vault config                     |
@@ -142,3 +143,46 @@ live in its sandboxed container and are not tracked here).
 Chrome profiles are targeted with `--profile-directory=<dir>`, where `<dir>` is
 the on-disk profile name (`Default`, `Profile 1`, …) shown as "Profile Path" in
 `chrome://version`.
+
+### Spaces fix on display connect (macOS 27)
+
+macOS 27 leaves Mission Control / Spaces in a broken state after an external
+display is connected or disconnected (dead desktops, wrong Space switching).
+Restarting the Dock clears it, since Mission Control and Spaces live in the
+Dock process:
+
+```sh
+killall Dock
+```
+
+A launch agent in the `macos` package automates this:
+
+| Path                                                        | Role         |
+| ----------------------------------------------------------- | ------------ |
+| `macos/.local/src/display-dock-reset/main.swift`             | Source       |
+| `macos/Library/LaunchAgents/local.display-dock-reset.plist`  | Launch agent |
+| `~/.local/bin/display-dock-reset`                            | Built binary |
+| `~/Library/Logs/display-dock-reset.log`                      | Log          |
+
+It subscribes to AppKit's `didChangeScreenParameters` notification and runs
+`killall Dock` 5s after the set of attached displays changes. Resolution,
+arrangement and mirroring changes also post the notification but are ignored,
+since only the display set is compared.
+
+The agent runs a real `NSApplication` (activation policy `.prohibited`, so no
+Dock tile or menu bar). That is required: a bare CoreGraphics binary
+registering `CGDisplayRegisterReconfigurationCallback` holds no window-server
+connection and never receives a single callback, failing silently.
+
+`just install` compiles and loads it on macOS. To rebuild after editing the
+source, or to load it on its own:
+
+```sh
+just display-dock-reset
+```
+
+The binary is built rather than committed, so `swiftc` (Xcode command line
+tools) is required. The agent plist uses absolute paths under `/Users/ruslan`.
+
+Disable with `launchctl bootout gui/$UID/local.display-dock-reset`. Remove once
+Apple fixes the underlying Spaces bug.
