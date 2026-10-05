@@ -99,3 +99,5 @@ composer:
   shape: rail
 security:
   enabled: true
+collab:
+  displayName: rkiyanchuk
