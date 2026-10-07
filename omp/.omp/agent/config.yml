@@ -65,14 +65,14 @@ retry:
     openai-codex/gpt-6.1-sol:
       - openai-codex/gpt-6-sol
   maxDelayMs: 0
+  waitForUsageReset: true
 stt:
   enabled: true
 startup:
   quiet: false
-marketplace:
-  autoUpdate: auto
+  checkUpdate: false
 power:
-  sleepPrevention: idle
+  sleepPrevention: system
 memory:
   backend: mnemopi
 mnemopi:
@@ -86,6 +86,7 @@ autolearn:
   enabled: true
 task:
   showResolvedModelBadge: true
+  enableLsp: true
 dev:
   autoqaConsent: granted
 error:
@@ -99,5 +100,13 @@ composer:
   shape: rail
 security:
   enabled: true
+tui:
+  reactions: false
+  titleSpinner: dots
+  imeSafeCursor: true
+astGrep:
+  enabled: true
+plan:
+  autosave: true
 collab:
   displayName: rkiyanchuk
