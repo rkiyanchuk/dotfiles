@@ -6,6 +6,8 @@ theme = Atom One Dark
 font-family = IosevkaTerm Nerd Font
 font-style = Light
 font-size = 17
+# ⎋ (U+238B) is missing from Iosevka; the fallback renders it tiny
+font-codepoint-map = U+238B=SF Pro
 
 adjust-cell-height = 20%
 cursor-style = block
