@@ -1,5 +1,10 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
+  "diagnostics": {
+    "inline": {
+      "enabled": false
+    }
+  },
   "markdown_preview": {
     "open_markdown_files_in_preview": true,
     "font_size": 17.0,
@@ -48,21 +53,11 @@
   },
   "agent_buffer_font_size": 17.0,
   "agent_servers": {
-    "claude-acp": {
-      "default_config_options": {
-        "mode": "auto"
-      },
-      "type": "registry",
-    },
     "codex-acp": {
-      "favorite_config_option_values": {
-        "model": [
-          "gpt-5.6-luna",
-          "gpt-5.6-terra",
-          "gpt-5.6-sol"
-        ]
-      },
-      "type": "registry",
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
     },
     "Oh My Pi": {
       "favorite_config_option_values": {
@@ -181,6 +176,7 @@
     },
   },
   "project_panel": {
+    "diagnostic_badges": false,
     "button": true,
     "default_width": 300.0,
     "dock": "left",
