@@ -22,7 +22,7 @@ body.theme-light:not(.is-mobile) {
 }
 
 body.theme-dark:not(.is-mobile) {
-    --macos27-sidebar-bg: #25252b;
+    --macos27-sidebar-bg: #2a2a2a;
     --macos27-item-selected: rgba(255, 255, 255, 0.09);
     --macos27-item-hover: rgba(255, 255, 255, 0.05);
 }
