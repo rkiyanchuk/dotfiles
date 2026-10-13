@@ -1,5 +1,6 @@
 // Zed documentation: https://zed.dev/docs/configuring-zed
 {
+  "base_keymap": "Zed",
   "diagnostics": {
     "inline": {
       "enabled": false
@@ -8,7 +9,7 @@
   "markdown_preview": {
     "open_markdown_files_in_preview": true,
     "font_size": 17.0,
-    "font_family": "IBM Plex Sans Light",
+    "font_family": ".SystemUIFont",
     "code_font_family": "Iosevka Nerd Font",
   },
   "agent_ui_font_size": 18.0,
@@ -46,7 +47,7 @@
     "commit_message_instructions": "Use scope-prefixed subjects (Linux/Git/Go style), NEVER Conventional Commits (no feat:/fix:/chore:). Format: `scope: imperative description`, where scope is the natural area touched (subsystem, package, module, dir); omit scope only for genuinely cross-cutting changes. Subject must be <= 50 chars, imperative mood, capitalized, no trailing period. For non-trivial changes add one blank line then a body wrapped at 72 columns that explains what and why, not how.",
     "commit_message_include_project_rules": true,
     "default_view": "text_thread",
-    "dock": "left",
+    "dock": "right",
     "message_editor_min_lines": 3,
     "play_sound_when_agent_done": "when_hidden",
     "show_turn_stats": true,
@@ -77,7 +78,7 @@
   "auto_signature_help": false,
   "buffer_font_family": "Iosevka Nerd Font",
   "buffer_font_size": 17.0,
-  "buffer_font_weight": 200.0,
+  "buffer_font_weight": 300.0,
   "buffer_line_height": {
     "custom": 1.5
   },
@@ -115,7 +116,7 @@
   },
   "git_commit_buffer_font_size": 14.0,
   "git_panel": {
-    "dock": "right",
+    "dock": "left",
   },
   "icon_theme": "Zed (Default)",
   "indent_guides": {
@@ -234,10 +235,10 @@
       "VISUAL": "zed --wait",
     },
     "font_family": "IosevkaTerm Nerd Font",
-    "font_size": 16.0,
-    "font_weight": 250.0,
+    "font_size": 17.0,
+    "font_weight": 300.0,
     "line_height": {
-      "custom": 1.55,
+      "custom": 1.5,
     },
     "scrollbar": {
       "show": "system",
@@ -319,7 +320,7 @@
     "selections_menu": true,
   },
   "ui_font_family": ".SystemUIFont",
-  "ui_font_size": 17.0,
+  "ui_font_size": 16.0,
   "ui_font_weight": 300.0,
   "use_smartcase_search": true,
   "vertical_scroll_margin": 3.0,

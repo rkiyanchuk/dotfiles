@@ -99,39 +99,9 @@
     },
   },
   {
-    "context": "Editor && mode == full",
+    "context": "MessageEditor > Editor && vim_mode == insert",
     "bindings": {
-      "cmd-<": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Editor && mode == full",
-    "unbind": {
-      "cmd->": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "AcpThread",
-    "bindings": {
-      "cmd-<": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "AcpThread",
-    "unbind": {
-      "cmd->": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Terminal",
-    "bindings": {
-      "cmd-<": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
-      "cmd->": "agent::AddSelectionToThread",
+      "escape": "editor::Cancel",
     },
   },
   {
