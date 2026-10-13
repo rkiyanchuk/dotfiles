@@ -107,7 +107,7 @@ security:
   enabled: true
 tui:
   reactions: false
-  titleSpinner: dots
+  titleSpinner: braille
   imeSafeCursor: true
 astGrep:
   enabled: true
@@ -115,3 +115,7 @@ plan:
   autosave: true
 collab:
   displayName: rkiyanchuk
+display:
+  showTurnTime: true
+title:
+  icons: nf+emoji
