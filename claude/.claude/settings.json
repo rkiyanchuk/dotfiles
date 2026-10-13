@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 90,
+  "disableDeepLinkRegistration": "disable",
   "skillListingBudgetFraction": 0.02,
   "attribution": {
     "pr": ""
