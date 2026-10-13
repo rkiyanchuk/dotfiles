@@ -278,5 +278,10 @@ obsidian-config direction vault:
     done
     # Claudian stores settings outside `.obsidian`; conversation history
     # (`sessions/`) and agent CLI metadata (`opencode/`) are runtime state.
-    rsync -av --include=claudian-settings.json --exclude='*' \
-        "$src/.claudian/" "$dst/.claudian/"
+    # Vaults may share one settings file via symlink: resolve it on both ends
+    # so rsync copies content and never replaces the link with a plain file.
+    settings=.claudian/claudian-settings.json
+    mkdir -p "$dst/.claudian"
+    dst_settings="$dst/$settings"
+    [[ -L "$dst_settings" ]] && dst_settings="$(realpath "$dst_settings")"
+    rsync -av "$(realpath "$src/$settings")" "$dst_settings"
