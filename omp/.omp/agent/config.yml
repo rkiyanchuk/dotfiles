@@ -119,5 +119,6 @@ collab:
   displayName: rkiyanchuk
 display:
   showTurnTime: true
+  hideToolActivity: true
 title:
   icons: nf+emoji
