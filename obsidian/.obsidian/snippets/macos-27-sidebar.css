@@ -1,0 +1,76 @@
+/*
+ * macOS 27 (Golden Gate) sidebar, modelled on Finder.
+ * Pair with Baseline's "Minimal" workspace layout, which gives the
+ * edge-to-edge, full-height sidebar. This snippet adds the surface colours,
+ * neutral selection pill, primary-colour labels and accent-tinted icons.
+ */
+
+/* SURFACE */
+body.theme-light {
+    --macos27-sidebar-bg: #ededee;
+    --macos27-item-selected: rgba(0, 0, 0, 0.055);
+    --macos27-item-hover: rgba(0, 0, 0, 0.035);
+}
+
+body.theme-dark {
+    --macos27-sidebar-bg: #25252b;
+    --macos27-item-selected: rgba(255, 255, 255, 0.09);
+    --macos27-item-hover: rgba(255, 255, 255, 0.05);
+}
+
+.workspace-split.mod-sidedock {
+    --background-secondary: var(--macos27-sidebar-bg);
+    background-color: var(--macos27-sidebar-bg);
+}
+
+/* No divider line: the shade change separates sidebar from content. */
+body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-handle:not(:hover) {
+    border-color: transparent;
+}
+
+/* ITEMS */
+.nav-files-container {
+    --nav-item-color: var(--text-normal);
+    --nav-item-color-hover: var(--text-normal);
+    --nav-item-color-active: var(--text-normal);
+    --nav-item-background-hover: var(--macos27-item-hover);
+    --nav-item-background-active: var(--macos27-item-selected);
+    --nav-item-weight-active: var(--font-semibold);
+}
+
+.nav-files-container .tree-item-self {
+    min-height: 28px;
+    align-items: center;
+    padding-block: 4px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* Hang wrapped names past the icon instead of under it. */
+.nav-files-container .nav-folder-title-content,
+.nav-files-container .nav-file-title-content {
+    padding-inline-start: 23px;
+    text-indent: -23px;
+}
+
+/* ICONS */
+.nav-files-container .nav-folder-title-content::before,
+.nav-files-container .nav-file-title-content::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-inline-end: 7px;
+    vertical-align: -3px;
+    background-color: var(--color-accent);
+    -webkit-mask: var(--macos27-icon) center / contain no-repeat;
+}
+
+.nav-files-container .nav-folder-title-content::before {
+    --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
+}
+
+.nav-files-container .nav-file-title-content::before {
+    --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
+}

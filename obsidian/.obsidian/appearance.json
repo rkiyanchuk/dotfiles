@@ -6,7 +6,8 @@
   "cssTheme": "Baseline",
   "floatingNavigation": true,
   "enabledCssSnippets": [
-    "task"
+    "task",
+    "macos-27-sidebar"
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
