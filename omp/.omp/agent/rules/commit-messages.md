@@ -4,6 +4,14 @@ description: Commit message conventions — scope-prefixed subjects, body wrappi
 
 # Commit messages
 
+## Writing a message
+
+Describe the staged changes. If nothing is staged, describe the unstaged
+changes instead. Inspect the repository yourself: the diff, the files it
+touches, and recent history when it helps to pick the scope.
+
+## Format
+
 Use **scope-prefixed** subjects (Linux/Git/Go style), never Conventional Commits
 (`feat:`/`fix:`/`chore:`):
 
@@ -11,12 +19,30 @@ Use **scope-prefixed** subjects (Linux/Git/Go style), never Conventional Commits
 scope: imperative description
 ```
 
-Scope = the natural area touched (subsystem, package, module, dir). Omit only
-when a change is genuinely cross-cutting.
+Scope = the natural area touched (subsystem, package, module, dir). Join
+several areas changed for one reason: `nvim, omp: ...`. Omit only when a
+change is genuinely cross-cutting.
 
 - Subject ≤ **50 chars**, imperative, capitalized, no trailing period.
 - One blank line, then body (for non-trivial changes); wrap body at **72**.
-- Body explains **what** and **why**, not how.
+- Body explains **what** and **why**, not how. Don't enumerate files.
+- Trivial changes (typo, version bump, lockfile) → subject only, no body.
+
+Pick the body shape by the change:
+
+- **Several small, independent changes** → an itemized list, one line per
+  change:
+
+  ```text
+  nvim, omp: Generate commit messages via omp command
+
+  - Add /commit-msg command that reads the commit rule
+  - Move commit conventions into the omp rule
+  - Call the command from nvim without passing the diff
+  ```
+
+- **Large or complicated changes** → full prose paragraphs explaining what
+  changed and why. Lists may supplement the prose, never replace it.
 
 ## Trailers
 

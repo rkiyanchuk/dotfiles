@@ -628,14 +628,8 @@ end
 
 -- COMMIT MESSAGE GENERATION
 
--- In a gitcommit buffer, <Leader>c (or :CommitMsg) inserts a locally generated
--- commit message at the top of the buffer based on the currently staged diff.
--- The call runs asynchronously so the editor stays responsive; a Braille
--- spinner is shown as virtual text at line 1 to indicate progress.
--- Generation is delegated to `omp commit --dry-run --no-changelog` (the same
--- command the zed task runs), which inspects the staged changes with its own
--- commit agent and prints the result after a "Generated commit message:"
--- marker without committing. Model and conventions come from the harness.
+-- In a gitcommit buffer, <Leader>c or :CommitMsg inserts a message for the
+-- changes, written by omp's /commit-msg command.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
@@ -643,12 +637,6 @@ vim.api.nvim_create_autocmd("FileType", {
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
         local function generate()
-            local diff = vim.fn.system("git diff --staged")
-            if diff == "" then
-                vim.notify("No staged changes", vim.log.levels.WARN)
-                return
-            end
-
             local bufnr = vim.api.nvim_get_current_buf()
             local idx = 1
             local function spinner_extmark(id)
@@ -665,10 +653,8 @@ vim.api.nvim_create_autocmd("FileType", {
                 if vim.api.nvim_buf_is_valid(bufnr) then spinner_extmark(mark_id) end
             end))
 
-            -- Guarded above: with nothing staged, `omp commit` would stage
-            -- everything itself.
             vim.system(
-                { "omp", "commit", "--dry-run", "--no-changelog" },
+                { "omp", "-p", "--model", "commit", "--no-session", "/commit-msg" },
                 { text = true },
                 function(result)
                 vim.schedule(function()
@@ -683,8 +669,9 @@ vim.api.nvim_create_autocmd("FileType", {
                             vim.log.levels.ERROR)
                         return
                     end
-                    local out = (result.stdout or ""):gsub("\27%[[%d;]*m", "")
-                    local msg = vim.trim(out:match("Generated commit message:\n(.*)$") or "")
+                    local msg = vim.trim(result.stdout or "")
+                    -- Strip fences in case the model ignores the command.
+                    msg = vim.trim((msg:gsub("^```%w*\n", ""):gsub("\n?```$", "")))
                     if msg == "" then
                         vim.notify("commit-message returned empty message", vim.log.levels.ERROR)
                         return
