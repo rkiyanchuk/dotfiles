@@ -218,3 +218,15 @@ body.is-mobile .workspace-drawer .nav-files-container .nav-file-title-content::b
 body.is-mobile .mobile-navbar .mobile-navbar-action-menu {
     display: none;
 }
+
+/* ==== MENUS ==== */
+
+/* Obsidian mobile draws context menus, prompts (command palette, quick
+   switcher) and suggestion popovers at 90% opacity over a blur, so the
+   note shows through. Make them solid. */
+body.is-mobile {
+    --blur-opacity-m: 100%;
+    --menu-backdrop-filter: none;
+    --prompt-backdrop-filter: none;
+    --suggestion-backdrop-filter: none;
+}
