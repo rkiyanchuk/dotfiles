@@ -197,3 +197,82 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .w
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-new-tab .clickable-icon {
     border-radius: 999px;
 }
+
+/* ==== TOOLBAR BUTTONS ==== */
+
+/*
+ * Sidebar view switcher and sidebar toggles as macOS 27 toolbar glass:
+ * related buttons share one capsule, a standalone button is a circle.
+ */
+
+/* SURFACE */
+body.theme-light {
+    --macos27-glass-bg: rgba(255, 255, 255, 0.85);
+    --macos27-glass-border: rgba(0, 0, 0, 0.08);
+    --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    --macos27-glass-icon: #1d1d1f;
+    --macos27-glass-icon-muted: rgba(0, 0, 0, 0.42);
+}
+
+body.theme-dark {
+    --macos27-glass-bg: rgba(255, 255, 255, 0.08);
+    --macos27-glass-border: rgba(255, 255, 255, 0.1);
+    --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    --macos27-glass-icon: #f5f5f7;
+    --macos27-glass-icon-muted: rgba(255, 255, 255, 0.45);
+}
+
+/* CAPSULE: sidebar view switcher */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-container-inner {
+    flex: 0 0 auto;
+    align-self: center;
+    gap: 0;
+    height: 34px;
+    padding: 0 4px;
+    border: 0.5px solid var(--macos27-glass-border);
+    border-radius: 999px;
+    background-color: var(--macos27-glass-bg);
+    /* Baseline clips this to content-box, which leaves a ring at the ends. */
+    background-clip: padding-box;
+    box-shadow: var(--macos27-glass-shadow);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header,
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner {
+    height: 32px;
+    border-radius: 999px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header {
+    width: 36px;
+    color: var(--macos27-glass-icon-muted);
+    --icon-color: var(--macos27-glass-icon-muted);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:hover,
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active {
+    color: var(--macos27-glass-icon);
+    --icon-color: var(--macos27-glass-icon);
+}
+
+/* CIRCLE: sidebar toggles */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .sidebar-toggle-button {
+    align-self: center;
+    margin-inline: 8px;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .sidebar-toggle-button > .clickable-icon {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+    border: 0.5px solid var(--macos27-glass-border);
+    border-radius: 999px;
+    background-color: var(--macos27-glass-bg);
+    box-shadow: var(--macos27-glass-shadow);
+    color: var(--macos27-glass-icon);
+    --icon-color: var(--macos27-glass-icon);
+}
