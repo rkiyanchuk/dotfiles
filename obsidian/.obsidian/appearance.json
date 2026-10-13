@@ -12,7 +12,7 @@
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
-  "textFontFamily": "IBM Plex Sans,IBM Plex Sans Light",
+  "textFontFamily": "IBM Plex Sans",
   "monospaceFontFamily": "Iosevka NF",
   "translucency": false
 }

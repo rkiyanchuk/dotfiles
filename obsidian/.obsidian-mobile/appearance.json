@@ -11,7 +11,7 @@
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
-  "textFontFamily": "IBM Plex Sans Light",
-  "monospaceFontFamily": "Iosevka NF Light",
+  "textFontFamily": "IBM Plex Sans",
+  "monospaceFontFamily": "Iosevka Nerd Font",
   "translucency": false
 }
