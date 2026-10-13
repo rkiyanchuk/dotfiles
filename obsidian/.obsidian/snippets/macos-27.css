@@ -213,7 +213,6 @@ body.theme-light:not(.is-mobile) {
     --macos27-glass-border: rgba(0, 0, 0, 0.08);
     --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
     --macos27-glass-icon: #1d1d1f;
-    --macos27-glass-icon-muted: rgba(0, 0, 0, 0.42);
 }
 
 body.theme-dark:not(.is-mobile) {
@@ -221,13 +220,13 @@ body.theme-dark:not(.is-mobile) {
     --macos27-glass-border: rgba(255, 255, 255, 0.1);
     --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     --macos27-glass-icon: #f5f5f7;
-    --macos27-glass-icon-muted: rgba(255, 255, 255, 0.45);
 }
 
 /* CAPSULE: sidebar view switcher */
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-container-inner {
     flex: 0 0 auto;
     align-self: center;
+    align-items: center;
     gap: 0;
     height: 34px;
     padding: 0 4px;
@@ -241,7 +240,7 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .w
 
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header,
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner {
-    height: 32px;
+    height: 28px;
     border-radius: 999px;
     background-color: transparent;
     box-shadow: none;
@@ -249,14 +248,29 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .w
 
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header {
     width: 36px;
-    color: var(--macos27-glass-icon-muted);
-    --icon-color: var(--macos27-glass-icon-muted);
-}
-
-body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:hover,
-body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active {
     color: var(--macos27-glass-icon);
     --icon-color: var(--macos27-glass-icon);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover {
+    background-color: var(--macos27-item-hover);
+}
+
+/* The current view is a filled accent pill, like Mail's active filter. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active {
+    background-color: var(--color-accent);
+    color: var(--text-on-accent);
+    --icon-color: var(--text-on-accent);
+    --icon-color-active: var(--text-on-accent);
+}
+
+/* Revealing a view by command flashes its tab with Obsidian's yellow
+   highlight; app.css forces that with !important, so only !important
+   can keep the accent pill steady. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-flashing {
+    background-color: var(--color-accent) !important;
+    color: var(--text-on-accent);
+    mix-blend-mode: normal;
 }
 
 /* CIRCLE: sidebar toggles */
@@ -277,49 +291,4 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .s
     box-shadow: var(--macos27-glass-shadow);
     color: var(--macos27-glass-icon);
     --icon-color: var(--macos27-glass-icon);
-}
-
-/* CAPSULE: file explorer actions, hairline-separated like Mail's toolbar */
-body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-buttons-container {
-    flex: 0 0 auto;
-    width: fit-content;
-    margin-inline: auto;
-    gap: 0;
-    height: 34px;
-    padding: 0 4px;
-    border: 0.5px solid var(--macos27-glass-border);
-    border-radius: 999px;
-    background-color: var(--macos27-glass-bg);
-    background-clip: padding-box;
-    box-shadow: var(--macos27-glass-shadow);
-}
-
-body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button {
-    position: relative;
-    width: 36px;
-    height: 32px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 999px;
-    background-color: transparent;
-    color: var(--macos27-glass-icon);
-    --icon-color: var(--macos27-glass-icon);
-}
-
-body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button:hover {
-    background-color: var(--macos27-item-hover);
-}
-
-/* Toggles that are on take the accent colour, like Mail's flag. */
-body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button.is-active {
-    color: var(--color-accent);
-    --icon-color: var(--color-accent);
-}
-
-body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button + .nav-action-button::before {
-    content: "";
-    position: absolute;
-    inset: 9px auto 9px 0;
-    width: 1px;
-    background-color: var(--macos27-glass-border);
 }
