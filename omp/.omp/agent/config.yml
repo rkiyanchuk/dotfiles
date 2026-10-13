@@ -85,6 +85,8 @@ hideThinkingBlock: true
 defaultThinkingLevel: auto
 disabledProviders:
   - codex
+  - claude
+  - claude-plugins
 autolearn:
   enabled: true
 task:
