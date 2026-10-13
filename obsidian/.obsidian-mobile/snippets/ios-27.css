@@ -209,3 +209,12 @@ body.is-mobile .workspace-drawer .nav-files-container .nav-folder-title-content:
 body.is-mobile .workspace-drawer .nav-files-container .nav-file-title-content::before {
     --ios27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
 }
+
+/* ==== NAVIGATION BAR ==== */
+
+/* The bar's menu button only opens the ribbon commands; the command palette
+   has its own button in the file explorer row (explorer-command-palette
+   plugin), so the menu is redundant. */
+body.is-mobile .mobile-navbar .mobile-navbar-action-menu {
+    display: none;
+}

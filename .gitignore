@@ -58,6 +58,8 @@ obsidian/.obsidian/plugins/simple-archiver/autoarchive_data.json
 obsidian/.obsidian/plugins/realclaudian/data.json
 obsidian/.obsidian/plugins/*/main.js
 obsidian/.obsidian/plugins/*/styles.css
+# Own plugin, not downloaded: track its code.
+!obsidian/.obsidian/plugins/explorer-command-palette/main.js
 
 # Obsidian mobile
 obsidian/.obsidian-mobile/workspace.json
@@ -69,6 +71,7 @@ obsidian/.obsidian-mobile/plugins/omnisearch/data.json
 obsidian/.obsidian-mobile/plugins/realclaudian/data.json
 obsidian/.obsidian-mobile/plugins/*/main.js
 obsidian/.obsidian-mobile/plugins/*/styles.css
+!obsidian/.obsidian-mobile/plugins/explorer-command-palette/main.js
 
 # OhMyPi
 omp/.omp/agent/config.yml.lock

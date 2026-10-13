@@ -1,0 +1,9 @@
+{
+  "id": "explorer-command-palette",
+  "name": "Explorer Command Palette",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Adds an Open command palette button to the file explorer's action row on mobile.",
+  "author": "ruslan",
+  "isDesktopOnly": false
+}

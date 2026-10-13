@@ -7,5 +7,6 @@
   "obsidian-tikzjax",
   "heic-viewer",
   "consistent-attachments-and-links",
-  "advanced-rename-and-delete-handler"
+  "advanced-rename-and-delete-handler",
+  "explorer-command-palette"
 ]
