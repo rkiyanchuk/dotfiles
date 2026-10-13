@@ -1,0 +1,294 @@
+/*
+ * macOS 27 (Golden Gate) look, modelled on Finder. Desktop only: every rule
+ * is gated on body:not(.is-mobile), so phones and tablets are untouched even
+ * when they read this config folder.
+ *
+ * Sidebar: pair with Baseline's "Minimal" workspace layout, which gives the
+ * edge-to-edge, full-height sidebar; this adds the surface colours, neutral
+ * selection pill, primary-colour labels and accent-tinted icons.
+ *
+ * Tabs: one full-width capsule track, equal-width tabs, the active tab a
+ * raised white pill. Tab selectors are long on purpose: they must outrank
+ * Baseline's floating-tab rules without resorting to !important.
+ */
+
+/* ==== SIDEBAR ==== */
+
+/* SURFACE */
+body.theme-light:not(.is-mobile) {
+    --macos27-sidebar-bg: #ededee;
+    --macos27-item-selected: rgba(0, 0, 0, 0.055);
+    --macos27-item-hover: rgba(0, 0, 0, 0.035);
+}
+
+body.theme-dark:not(.is-mobile) {
+    --macos27-sidebar-bg: #25252b;
+    --macos27-item-selected: rgba(255, 255, 255, 0.09);
+    --macos27-item-hover: rgba(255, 255, 255, 0.05);
+}
+
+body:not(.is-mobile) .workspace-split.mod-sidedock {
+    --background-secondary: var(--macos27-sidebar-bg);
+    background-color: var(--macos27-sidebar-bg);
+}
+
+/* No divider line: the shade change separates sidebar from content. */
+body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-handle:not(:hover) {
+    border-color: transparent;
+}
+
+/* ITEMS */
+body:not(.is-mobile) .nav-files-container {
+    --nav-item-color: var(--text-normal);
+    --nav-item-color-hover: var(--text-normal);
+    --nav-item-color-active: var(--text-normal);
+    --nav-item-background-hover: var(--macos27-item-hover);
+    --nav-item-background-active: var(--macos27-item-selected);
+    --nav-item-weight-active: var(--font-semibold);
+}
+
+body:not(.is-mobile) .nav-files-container .tree-item-self {
+    min-height: 32px;
+    align-items: center;
+    padding-block: 6px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* Hang wrapped names past the icon instead of under it. */
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content,
+body:not(.is-mobile) .nav-files-container .nav-file-title-content {
+    padding-inline-start: 23px;
+    text-indent: -23px;
+}
+
+/* ICONS */
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content::before,
+body:not(.is-mobile) .nav-files-container .nav-file-title-content::before {
+    content: "";
+    display: inline-block;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-inline-end: 7px;
+    vertical-align: -3px;
+    background-color: var(--color-accent);
+    -webkit-mask: var(--macos27-icon) center / contain no-repeat;
+}
+
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content::before {
+    --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
+}
+
+body:not(.is-mobile) .nav-files-container .nav-file-title-content::before {
+    --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
+}
+
+/* ==== TABS ==== */
+
+/* SURFACE */
+body.theme-light:not(.is-mobile) {
+    --macos27-tab-track: #e8e8e8;
+    --macos27-tab-active: #ffffff;
+    --macos27-tab-hover: rgba(0, 0, 0, 0.04);
+    --macos27-tab-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.18);
+}
+
+body.theme-dark:not(.is-mobile) {
+    --macos27-tab-track: rgba(255, 255, 255, 0.07);
+    --macos27-tab-active: rgba(255, 255, 255, 0.14);
+    --macos27-tab-hover: rgba(255, 255, 255, 0.04);
+    --macos27-tab-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.5);
+}
+
+/* TRACK */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-container-inner {
+    flex: 1 1 auto;
+    align-self: center;
+    justify-content: stretch;
+    gap: 0;
+    height: 28px;
+    margin: 0 4px 0 8px;
+    padding: 2px;
+    border-radius: 999px;
+    background-color: var(--macos27-tab-track);
+}
+
+/* TABS */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    height: 24px;
+    padding: 0;
+    border-radius: 999px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header::before,
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header::after {
+    display: none;
+}
+
+/* Hairline between two adjacent inactive tabs; hidden next to the pill. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:not(.is-active) + .workspace-tab-header:not(.is-active)::before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 6px auto 6px 0;
+    width: 1px;
+    height: auto;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: var(--background-modifier-border);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover {
+    background-color: var(--macos27-tab-hover);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active {
+    background-color: var(--macos27-tab-active);
+    box-shadow: var(--macos27-tab-shadow);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner {
+    position: relative;
+    justify-content: center;
+    height: 100%;
+    padding: 0 24px;
+    border-radius: inherit;
+    background: none;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner-icon {
+    display: none;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner-title {
+    flex: 0 1 auto;
+    font-size: 11px;
+    font-weight: var(--font-normal);
+    color: var(--text-muted);
+    text-align: center;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+    color: var(--text-normal);
+}
+
+/* Close button sits at the leading edge and only appears on hover. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner-close-button {
+    position: absolute;
+    inset-inline-start: 4px;
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+    border-radius: 999px;
+    opacity: 0;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:hover .workspace-tab-header-inner-close-button {
+    opacity: 1;
+}
+
+/* New tab: a separate round button after the track. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-new-tab .clickable-icon {
+    border-radius: 999px;
+}
+
+/* ==== TOOLBAR BUTTONS ==== */
+
+/*
+ * Sidebar view switcher and sidebar toggles as macOS 27 toolbar glass:
+ * related buttons share one capsule, a standalone button is a circle.
+ */
+
+/* SURFACE */
+body.theme-light:not(.is-mobile) {
+    --macos27-glass-bg: rgba(255, 255, 255, 0.85);
+    --macos27-glass-border: rgba(0, 0, 0, 0.08);
+    --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    --macos27-glass-icon: #1d1d1f;
+}
+
+body.theme-dark:not(.is-mobile) {
+    --macos27-glass-bg: rgba(255, 255, 255, 0.08);
+    --macos27-glass-border: rgba(255, 255, 255, 0.1);
+    --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    --macos27-glass-icon: #f5f5f7;
+}
+
+/* CAPSULE: sidebar view switcher */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-container-inner {
+    flex: 0 0 auto;
+    align-self: center;
+    align-items: center;
+    gap: 0;
+    height: 34px;
+    padding: 0 4px;
+    border: 0.5px solid var(--macos27-glass-border);
+    border-radius: 999px;
+    background-color: var(--macos27-glass-bg);
+    /* Baseline clips this to content-box, which leaves a ring at the ends. */
+    background-clip: padding-box;
+    box-shadow: var(--macos27-glass-shadow);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header,
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-inner {
+    height: 28px;
+    border-radius: 999px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header {
+    width: 36px;
+    color: var(--macos27-glass-icon);
+    --icon-color: var(--macos27-glass-icon);
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover {
+    background-color: var(--macos27-item-hover);
+}
+
+/* The current view is a filled accent pill, like Mail's active filter. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active {
+    background-color: var(--color-accent);
+    color: var(--text-on-accent);
+    --icon-color: var(--text-on-accent);
+    --icon-color-active: var(--text-on-accent);
+}
+
+/* Revealing a view by command flashes its tab with Obsidian's yellow
+   highlight; app.css forces that with !important, so only !important
+   can keep the accent pill steady. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-flashing {
+    background-color: var(--color-accent) !important;
+    color: var(--text-on-accent);
+    mix-blend-mode: normal;
+}
+
+/* CIRCLE: sidebar toggles */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .sidebar-toggle-button {
+    align-self: center;
+    margin-inline: 8px;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .sidebar-toggle-button > .clickable-icon {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+    border: 0.5px solid var(--macos27-glass-border);
+    border-radius: 999px;
+    background-color: var(--macos27-glass-bg);
+    box-shadow: var(--macos27-glass-shadow);
+    color: var(--macos27-glass-icon);
+    --icon-color: var(--macos27-glass-icon);
+}
