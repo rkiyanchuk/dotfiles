@@ -278,3 +278,48 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .s
     color: var(--macos27-glass-icon);
     --icon-color: var(--macos27-glass-icon);
 }
+
+/* CAPSULE: file explorer actions, hairline-separated like Mail's toolbar */
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-buttons-container {
+    flex: 0 0 auto;
+    width: fit-content;
+    margin-inline: auto;
+    gap: 0;
+    height: 34px;
+    padding: 0 4px;
+    border: 0.5px solid var(--macos27-glass-border);
+    border-radius: 999px;
+    background-color: var(--macos27-glass-bg);
+    background-clip: padding-box;
+    box-shadow: var(--macos27-glass-shadow);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button {
+    position: relative;
+    width: 36px;
+    height: 32px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: transparent;
+    color: var(--macos27-glass-icon);
+    --icon-color: var(--macos27-glass-icon);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button:hover {
+    background-color: var(--macos27-item-hover);
+}
+
+/* Toggles that are on take the accent colour, like Mail's flag. */
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button.is-active {
+    color: var(--color-accent);
+    --icon-color: var(--color-accent);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button + .nav-action-button::before {
+    content: "";
+    position: absolute;
+    inset: 9px auto 9px 0;
+    width: 1px;
+    background-color: var(--macos27-glass-border);
+}
