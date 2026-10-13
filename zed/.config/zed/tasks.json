@@ -1,0 +1,8 @@
+[
+  {
+    "label": "omp commit",
+    "command": "omp commit",
+    "use_new_terminal": false,
+    "reveal": "always"
+  }
+]
