@@ -9,7 +9,6 @@
   "baseline-style@@anim-motion-baseline": "cubic-bezier(0.32, 0.72, 0, 1)",
   "baseline-style@@header-height": "52px",
   "baseline-style@@tab-style": "tab-floating-center",
-  "baseline-style@@tab-top-left-style": "tab-top-left-icon",
   "baseline-style@@file-header-visibility": "view-header-title-always",
   "baseline-style@@nav-item-active-style": "nav-item-subtle",
   "baseline-style@@font-text-override": "'SF Pro', 'system-ui'",
@@ -27,5 +26,7 @@
   "baseline-style@@translucent-dark-opacity": 0,
   "baseline-style@@color-scheme-accent": true,
   "baseline-style@@hide-vault-switcher-off": true,
-  "baseline-style@@strike-lists-off": true
+  "baseline-style@@strike-lists-off": true,
+  "baseline-style@@nav-action": "nav-action-center",
+  "baseline-style@@tab-top-left-style": "tab-top-left-icon"
 }

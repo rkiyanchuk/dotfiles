@@ -33,5 +33,6 @@
   "baseline-style@@mobile-right-sidebar-width": "340px",
   "baseline-style@@line-width": "950px",
   "baseline-style@@strike-lists-off": false,
-  "baseline-style@@hide-vault-switcher-off": false
+  "baseline-style@@hide-vault-switcher-off": true,
+  "baseline-style@@nav-action": "nav-action-center"
 }
