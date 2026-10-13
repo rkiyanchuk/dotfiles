@@ -36,6 +36,7 @@ install: install-deps config set-shell
     set -euo pipefail
     if [[ "{{ os }}" == "macos" ]]; then
         just enable-key-repeat
+        just disable-font-smoothing
         just display-dock-reset
     fi
 
@@ -223,6 +224,14 @@ plugins-nvim:
 enable-key-repeat:
     @echo "{{ orange }}==> Enable key repeat...{{ reset }}"
     @defaults write -g ApplePressAndHoldEnabled -bool false
+
+# MacOS: disable font smoothing (stroke thickening) globally. Text renders at
+# the font's true weight on Retina displays, matching Ghostty's default.
+# Apps pick it up on relaunch; log out to apply everywhere.
+[macos]
+disable-font-smoothing:
+    @echo "{{ orange }}==> Disable font smoothing...{{ reset }}"
+    @defaults -currentHost write -g AppleFontSmoothing -int 0
 
 # MacOS: build and load the display-dock-reset agent. Restarts the Dock when an
 # external display is connected or disconnected, clearing the macOS 27 bug that
