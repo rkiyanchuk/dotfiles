@@ -292,3 +292,24 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .s
     color: var(--macos27-glass-icon);
     --icon-color: var(--macos27-glass-icon);
 }
+
+/* ==== PLUGINS ==== */
+
+/* Claudian hard-codes a 30% black user bubble, which is heavy on the light
+   sidebar; use the same neutral fill as the sidebar selection instead. */
+body.theme-light:not(.is-mobile) .claudian-message-user > .claudian-message-content {
+    background: rgba(0, 0, 0, 0.055);
+}
+
+body.theme-dark:not(.is-mobile) .claudian-message-user > .claudian-message-content {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+/* Lift Claudian's chat input slightly off the sidebar surface. */
+body.theme-light:not(.is-mobile) .claudian-input-wrapper {
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+body.theme-dark:not(.is-mobile) .claudian-input-wrapper {
+    background-color: rgba(255, 255, 255, 0.04);
+}
