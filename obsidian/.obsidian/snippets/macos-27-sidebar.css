@@ -39,9 +39,9 @@ body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-hand
 }
 
 .nav-files-container .tree-item-self {
-    min-height: 28px;
+    min-height: 32px;
     align-items: center;
-    padding-block: 4px;
+    padding-block: 6px;
     border-radius: 8px;
     font-size: 13px;
 }
