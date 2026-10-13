@@ -7,7 +7,7 @@
   "floatingNavigation": true,
   "enabledCssSnippets": [
     "task",
-    "macos-27-sidebar"
+    "macos-27"
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
