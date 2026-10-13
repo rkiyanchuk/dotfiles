@@ -257,7 +257,13 @@ set-hostname name:
 obsidian-config direction vault:
     #!/usr/bin/env bash
     set -euo pipefail
-    excludes=(--exclude=workspace.json --exclude=workspace-mobile.json)
+    # Per-vault runtime state: never carry it between vaults.
+    excludes=(
+        --exclude=workspace.json
+        --exclude=workspace-mobile.json
+        --exclude=/plugins/recent-files-obsidian/data.json
+        --exclude=/bookmarks.json
+    )
     dotfiles_obs="{{ justfile_directory() }}/obsidian"
     case "{{ direction }}" in
         push)
