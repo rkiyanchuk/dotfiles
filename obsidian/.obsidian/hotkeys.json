@@ -250,22 +250,13 @@
       "key": "W"
     }
   ],
-  "realclaudian:new-tab": [
-    {
-      "modifiers": [
-        "Alt",
-        "Mod"
-      ],
-      "key": "`"
-    }
-  ],
   "realclaudian:open-view": [
     {
       "modifiers": [
-        "Alt",
-        "Mod"
+        "Mod",
+        "Shift"
       ],
-      "key": "`"
+      "key": "/"
     }
   ]
 }
