@@ -1,0 +1,211 @@
+/*
+ * iOS 27 look for Obsidian mobile. Mobile only: every rule is gated on
+ * body.is-mobile, so the desktop app is untouched.
+ *
+ * Drawer view switcher: Obsidian shows the sidebar views (Files, Search,
+ * Bookmarks, ...) behind a single dropdown. This hides the dropdown trigger
+ * and lays the full list of views (already in the DOM under it) out as an
+ * iOS 27 bottom bar: a floating Liquid Glass capsule as tall as the round
+ * button beside it, the current view on a soft pill with a tinted icon, as
+ * in Safari's and Music's bottom bars. The glass reuses Obsidian's own
+ * --raised-* material, so it matches the settings button exactly.
+ */
+
+/* SURFACE */
+body.is-mobile.theme-light {
+    --ios27-bar-selected: rgba(118, 118, 128, 0.14);
+    --ios27-bar-icon: #000000;
+}
+
+body.is-mobile.theme-dark {
+    --ios27-bar-selected: rgba(255, 255, 255, 0.14);
+    --ios27-bar-icon: #ffffff;
+}
+
+/* ==== DRAWER VIEW SWITCHER ==== */
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options .workspace-drawer-tab-select {
+    display: none;
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options .workspace-drawer-tab-options-list {
+    position: static;
+    flex-direction: row;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 0;
+    /* Keep clear of the round settings button beside it. */
+    width: calc(100% - 8px);
+    height: 44px;
+    max-height: none;
+    padding: 4px;
+    overflow: visible;
+    opacity: 1;
+    pointer-events: auto;
+    border: none;
+    border-radius: 999px;
+    background: var(--raised-background);
+    backdrop-filter: var(--raised-blur);
+    box-shadow: var(--raised-shadow);
+    background-clip: padding-box;
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options-list .workspace-tab-header {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    border-radius: 999px;
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--ios27-bar-icon);
+    --icon-color: var(--ios27-bar-icon);
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options-list .workspace-tab-header.is-active {
+    background-color: var(--ios27-bar-selected);
+    color: var(--color-accent);
+    --icon-color: var(--color-accent);
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options-list .workspace-tab-header-inner {
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    background: none;
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options-list .workspace-tab-header-inner-title {
+    display: none;
+}
+
+body.is-mobile .workspace-drawer .workspace-drawer-tab-options-list .workspace-tab-header-inner-icon {
+    margin: 0;
+}
+
+/* Round side button, like Safari's back and tabs buttons. */
+body.is-mobile .workspace-drawer .workspace-drawer-header-icon.mod-settings {
+    border-radius: 999px;
+}
+
+/* ==== SIDEBAR ==== */
+
+/*
+ * Modelled on the iPadOS 27 Files sidebar: a frosted, edge-to-edge panel;
+ * plain 44pt rows with no card or separators; an accent-tinted outline icon
+ * before each label; the disclosure chevron on the trailing edge; the
+ * selection a grey capsule with a bold label.
+ */
+
+/* SURFACE */
+body.is-mobile.theme-light {
+    --ios27-sidebar-bg: rgba(242, 242, 247, 0.78);
+    --ios27-sidebar-selected: rgba(0, 0, 0, 0.1);
+    --ios27-sidebar-section: rgba(60, 60, 67, 0.6);
+    --ios27-sidebar-label: #000000;
+}
+
+body.is-mobile.theme-dark {
+    --ios27-sidebar-bg: rgba(28, 28, 30, 0.78);
+    --ios27-sidebar-selected: rgba(255, 255, 255, 0.12);
+    --ios27-sidebar-section: rgba(235, 235, 245, 0.6);
+    --ios27-sidebar-label: #ffffff;
+}
+
+/* Frosted glass on iPad, where content sits beside the sidebar. */
+body.is-mobile.is-tablet .workspace-drawer {
+    background-color: var(--ios27-sidebar-bg);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    backdrop-filter: blur(40px) saturate(1.8);
+}
+
+/* On iPhone the drawer covers the screen: one opaque surface, the same
+   colour Obsidian paints the list in, so header, list and bottom bar area
+   don't show different layers. */
+body.is-mobile.is-phone .workspace-drawer {
+    background-color: var(--mobile-sidebar-background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+/* On iPad the sidebar runs edge to edge, not as a floating card. */
+body.is-mobile.is-tablet .workspace-drawer {
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
+}
+
+body.is-mobile.is-tablet .workspace-drawer-inner {
+    padding-top: var(--safe-area-inset-top);
+}
+
+/* ROWS */
+body.is-mobile .workspace-drawer .nav-files-container {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Baseline's Cupertino phone style draws the tree as an inset grouped card
+   with hairline separators and square selection; a sidebar has none. */
+body.is-mobile.is-phone .workspace-drawer .nav-files-container > div,
+body.is-mobile .workspace-drawer .nav-files-container > div {
+    background-color: transparent;
+    border-radius: 0;
+}
+
+body.is-mobile .workspace-drawer .nav-files-container > div .tree-item::before {
+    display: none;
+}
+
+body.is-mobile .workspace-drawer .nav-files-container > div .tree-item > .tree-item-self {
+    position: relative;
+    align-items: center;
+    min-height: 44px;
+    border: none;
+    border-radius: 999px;
+    box-shadow: none;
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: var(--font-normal);
+    color: var(--ios27-sidebar-label);
+}
+
+body.is-mobile .workspace-drawer .nav-files-container .tree-item-self .tree-item-inner {
+    border: none;
+    box-shadow: none;
+}
+
+body.is-mobile .workspace-drawer .nav-files-container > div .tree-item > .tree-item-self.is-active {
+    background-color: var(--ios27-sidebar-selected);
+    font-weight: var(--font-semibold);
+}
+
+/* Disclosure chevron on the trailing edge, as in iOS sidebars. */
+body.is-mobile .workspace-drawer .nav-files-container .nav-folder-title .collapse-icon {
+    position: absolute;
+    inset-inline: auto 12px;
+    margin: 0;
+    color: var(--ios27-sidebar-section);
+}
+
+/* ICONS */
+body.is-mobile .workspace-drawer .nav-files-container .nav-folder-title-content::before,
+body.is-mobile .workspace-drawer .nav-files-container .nav-file-title-content::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-inline-end: 12px;
+    vertical-align: -5px;
+    background-color: var(--color-accent);
+    -webkit-mask: var(--ios27-icon) center / contain no-repeat;
+}
+
+body.is-mobile .workspace-drawer .nav-files-container .nav-folder-title-content::before {
+    --ios27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
+}
+
+body.is-mobile .workspace-drawer .nav-files-container .nav-file-title-content::before {
+    --ios27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
+}

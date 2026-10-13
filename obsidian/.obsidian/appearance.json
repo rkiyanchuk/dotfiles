@@ -7,7 +7,8 @@
   "floatingNavigation": true,
   "enabledCssSnippets": [
     "task",
-    "macos-27"
+    "macos-27",
+    "ios-27"
   ],
   "autoFullScreen": true,
   "showViewHeader": false,

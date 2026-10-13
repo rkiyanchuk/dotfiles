@@ -6,7 +6,8 @@
   "cssTheme": "Baseline",
   "floatingNavigation": true,
   "enabledCssSnippets": [
-    "task"
+    "task",
+    "ios-27"
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
