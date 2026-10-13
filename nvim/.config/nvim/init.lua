@@ -632,18 +632,15 @@ end
 -- commit message at the top of the buffer based on the currently staged diff.
 -- The call runs asynchronously so the editor stays responsive; a Braille
 -- spinner is shown as virtual text at line 1 to indicate progress.
--- Generation is delegated to the omp harness in print mode, using whatever
--- model the `commit` role resolves to in ~/.omp/agent/config.yml, so there is
--- no API key, endpoint, or payload shape here.
--- The message conventions come from the harness rules (rules/commit-messages.md
--- plus any repo-local AGENTS.md), so they are deliberately not restated here.
+-- Generation is delegated to `omp commit --dry-run --no-changelog` (the same
+-- command the zed task runs), which inspects the staged changes with its own
+-- commit agent and prints the result after a "Generated commit message:"
+-- marker without committing. Model and conventions come from the harness.
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "gitcommit",
     callback = function(args)
         local ns = vim.api.nvim_create_namespace("claude_commit_spinner")
         local frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-
-        local role = "commit"
 
         local function generate()
             local diff = vim.fn.system("git diff --staged")
@@ -668,27 +665,11 @@ vim.api.nvim_create_autocmd("FileType", {
                 if vim.api.nvim_buf_is_valid(bufnr) then spinner_extmark(mark_id) end
             end))
 
-            local prompt = table.concat({
-                "Write a git commit message for the staged diff below, "
-                    .. "following the commit message conventions in your rules.",
-                "Output only the commit message text, no code fences or commentary.",
-                "",
-                "Staged diff:",
-                diff,
-            }, "\n")
-
-            -- The diff is piped on stdin rather than passed as an argument to
-            -- stay clear of ARG_MAX on large changesets.
+            -- Guarded above: with nothing staged, `omp commit` would stage
+            -- everything itself.
             vim.system(
-                {
-                    "omp", "-p",
-                    "--model", role,
-                    "--no-tools",
-                    "--no-session",
-                    "--no-skills",
-                    "--no-title",
-                },
-                { stdin = prompt, text = true },
+                { "omp", "commit", "--dry-run", "--no-changelog" },
+                { text = true },
                 function(result)
                 vim.schedule(function()
                     timer:stop()
@@ -702,10 +683,8 @@ vim.api.nvim_create_autocmd("FileType", {
                             vim.log.levels.ERROR)
                         return
                     end
-                    local msg = vim.trim(result.stdout or "")
-                    -- Strip fences in case the model ignores the instruction.
-                    msg = msg:gsub("^```%w*\n", ""):gsub("\n?```$", "")
-                    msg = vim.trim(msg)
+                    local out = (result.stdout or ""):gsub("\27%[[%d;]*m", "")
+                    local msg = vim.trim(out:match("Generated commit message:\n(.*)$") or "")
                     if msg == "" then
                         vim.notify("commit-message returned empty message", vim.log.levels.ERROR)
                         return
