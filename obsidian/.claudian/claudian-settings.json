@@ -1,8 +1,8 @@
 {
   "userName": "Ruslan",
   "permissionMode": "yolo",
-  "model": "pi:anthropic/claude-opus-5-5",
-  "effortLevel": "medium",
+  "model": "pi:anthropic/claude-sonnet-5",
+  "effortLevel": "high",
   "serviceTier": "default",
   "enableAutoTitleGeneration": true,
   "titleGenerationLocale": "",
@@ -23,7 +23,6 @@
   "providerConfigs": {
     "claude": {
       "enabled": false,
-      "responseStyle": "Default",
       "safeMode": "auto",
       "cliPath": "",
       "cliPathsByHost": {},
@@ -42,7 +41,10 @@
         "opus",
         "fable"
       ],
-      "selectedModels": []
+      "selectedModels": [],
+      "outputStyle": null,
+      "promptSuggestions": false,
+      "discoveredOutputStyles": []
     },
     "codex": {
       "enabled": false,
@@ -58,7 +60,8 @@
       "visibleModels": [],
       "enableUltraEffort": false,
       "responseStyle": "pragmatic",
-      "selectedModels": []
+      "selectedModels": [],
+      "responseVerbosity": "default"
     },
     "opencode": {
       "cliPath": "",
@@ -81,12 +84,10 @@
       "environmentHash": "runtime-input:v1:c739d3e87736d6b7287c2fdddb7f1dfeeba91fe92f57adac81a39f2e036cb5e1",
       "environmentVariables": "",
       "modelAliases": {},
-      "preferredThinkingByModel": {
-        "pi:anthropic/claude-opus-5-5": "medium"
-      },
+      "preferredThinkingByModel": {},
       "visibleModels": [
-        "pi:anthropic/claude-opus-5-5",
-        "pi:anthropic/claude-sonnet-5-5"
+        "pi:anthropic/claude-sonnet-5-5",
+        "pi:anthropic/claude-opus-5-5"
       ],
       "selectedModels": [
         {
@@ -143,20 +144,31 @@
       "preferredReasoningByModel": {},
       "visibleModels": [],
       "selectedModelsByHost": {}
+    },
+    "deepseek": {
+      "enabled": false,
+      "codeMode": false,
+      "presetPlugins": "",
+      "cliPath": "",
+      "cliPathsByHost": {},
+      "environmentVariables": "",
+      "environmentHash": "",
+      "visibleModels": [],
+      "modelAliases": {},
+      "preferredReasoningByModel": {},
+      "selectedModels": []
     }
   },
   "settingsProvider": "pi",
   "lastSelectedChatModel": {
-    "providerId": "pi",
-    "model": "pi:anthropic/claude-opus-5-5"
+    "providerId": "claude",
+    "model": "sonnet"
   },
   "savedProviderModel": {
-    "claude": "sonnet",
-    "pi": "pi:anthropic/claude-opus-5-5"
+    "claude": "sonnet"
   },
   "savedProviderEffort": {
-    "claude": "high",
-    "pi": "medium"
+    "claude": "high"
   },
   "savedProviderServiceTier": {},
   "savedProviderPermissionMode": {
@@ -164,13 +176,13 @@
     "pi": "yolo"
   },
   "pendingProviderSessionInvalidations": {},
-  "maxWarmAgentProcesses": 5,
   "enableAutoScroll": true,
   "showMessageTimestamps": false,
   "deferMathRenderingDuringStreaming": true,
   "expandFileEditsByDefault": false,
   "chatViewPlacement": "right-sidebar",
-  "enableZenMode": true,
+  "enableZenMode": false,
+  "zenModePosition": null,
   "enableDualPane": false,
   "dualPaneSide": "right",
   "restoreTabsOnStartup": true,
