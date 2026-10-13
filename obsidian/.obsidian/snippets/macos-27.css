@@ -1,5 +1,7 @@
 /*
- * macOS 27 (Golden Gate) look, modelled on Finder.
+ * macOS 27 (Golden Gate) look, modelled on Finder. Desktop only: every rule
+ * is gated on body:not(.is-mobile), so phones and tablets are untouched even
+ * when they read this config folder.
  *
  * Sidebar: pair with Baseline's "Minimal" workspace layout, which gives the
  * edge-to-edge, full-height sidebar; this adds the surface colours, neutral
@@ -13,19 +15,19 @@
 /* ==== SIDEBAR ==== */
 
 /* SURFACE */
-body.theme-light {
+body.theme-light:not(.is-mobile) {
     --macos27-sidebar-bg: #ededee;
     --macos27-item-selected: rgba(0, 0, 0, 0.055);
     --macos27-item-hover: rgba(0, 0, 0, 0.035);
 }
 
-body.theme-dark {
+body.theme-dark:not(.is-mobile) {
     --macos27-sidebar-bg: #25252b;
     --macos27-item-selected: rgba(255, 255, 255, 0.09);
     --macos27-item-hover: rgba(255, 255, 255, 0.05);
 }
 
-.workspace-split.mod-sidedock {
+body:not(.is-mobile) .workspace-split.mod-sidedock {
     --background-secondary: var(--macos27-sidebar-bg);
     background-color: var(--macos27-sidebar-bg);
 }
@@ -36,7 +38,7 @@ body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-hand
 }
 
 /* ITEMS */
-.nav-files-container {
+body:not(.is-mobile) .nav-files-container {
     --nav-item-color: var(--text-normal);
     --nav-item-color-hover: var(--text-normal);
     --nav-item-color-active: var(--text-normal);
@@ -45,7 +47,7 @@ body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-hand
     --nav-item-weight-active: var(--font-semibold);
 }
 
-.nav-files-container .tree-item-self {
+body:not(.is-mobile) .nav-files-container .tree-item-self {
     min-height: 32px;
     align-items: center;
     padding-block: 6px;
@@ -54,15 +56,15 @@ body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-hand
 }
 
 /* Hang wrapped names past the icon instead of under it. */
-.nav-files-container .nav-folder-title-content,
-.nav-files-container .nav-file-title-content {
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content,
+body:not(.is-mobile) .nav-files-container .nav-file-title-content {
     padding-inline-start: 23px;
     text-indent: -23px;
 }
 
 /* ICONS */
-.nav-files-container .nav-folder-title-content::before,
-.nav-files-container .nav-file-title-content::before {
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content::before,
+body:not(.is-mobile) .nav-files-container .nav-file-title-content::before {
     content: "";
     display: inline-block;
     flex-shrink: 0;
@@ -74,25 +76,25 @@ body:not(.is-mobile) .workspace-split.mod-sidedock > .workspace-leaf-resize-hand
     -webkit-mask: var(--macos27-icon) center / contain no-repeat;
 }
 
-.nav-files-container .nav-folder-title-content::before {
+body:not(.is-mobile) .nav-files-container .nav-folder-title-content::before {
     --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
 }
 
-.nav-files-container .nav-file-title-content::before {
+body:not(.is-mobile) .nav-files-container .nav-file-title-content::before {
     --macos27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
 }
 
 /* ==== TABS ==== */
 
 /* SURFACE */
-body.theme-light {
+body.theme-light:not(.is-mobile) {
     --macos27-tab-track: #e8e8e8;
     --macos27-tab-active: #ffffff;
     --macos27-tab-hover: rgba(0, 0, 0, 0.04);
     --macos27-tab-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.18);
 }
 
-body.theme-dark {
+body.theme-dark:not(.is-mobile) {
     --macos27-tab-track: rgba(255, 255, 255, 0.07);
     --macos27-tab-active: rgba(255, 255, 255, 0.14);
     --macos27-tab-hover: rgba(255, 255, 255, 0.04);
@@ -206,7 +208,7 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .w
  */
 
 /* SURFACE */
-body.theme-light {
+body.theme-light:not(.is-mobile) {
     --macos27-glass-bg: rgba(255, 255, 255, 0.85);
     --macos27-glass-border: rgba(0, 0, 0, 0.08);
     --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
@@ -214,7 +216,7 @@ body.theme-light {
     --macos27-glass-icon-muted: rgba(0, 0, 0, 0.42);
 }
 
-body.theme-dark {
+body.theme-dark:not(.is-mobile) {
     --macos27-glass-bg: rgba(255, 255, 255, 0.08);
     --macos27-glass-border: rgba(255, 255, 255, 0.1);
     --macos27-glass-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
