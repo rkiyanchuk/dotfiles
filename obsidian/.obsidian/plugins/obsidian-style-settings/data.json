@@ -11,7 +11,7 @@
   "baseline-style@@tab-style": "tab-floating-center",
   "baseline-style@@file-header-visibility": "view-header-title-always",
   "baseline-style@@nav-item-active-style": "nav-item-subtle",
-  "baseline-style@@font-text-override": "'IBM Plex Sans Light', 'system-ui'",
+  "baseline-style@@font-text-override": "'IBM Plex Sans', 'system-ui'",
   "baseline-style@@metadata-style": "metadata-cupertino",
   "baseline-style@@h1-size": "1.5em",
   "baseline-style@@h2-size": "1.25em",
