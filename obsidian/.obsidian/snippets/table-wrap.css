@@ -1,0 +1,7 @@
+/* Baseline sets `word-break: break-word` on tables, which lets Obsidian split
+   short header words mid-word when one column has long text. Only break a word
+   if it cannot fit otherwise (e.g. a long URL). */
+table {
+  word-break: normal;
+  overflow-wrap: break-word;
+}

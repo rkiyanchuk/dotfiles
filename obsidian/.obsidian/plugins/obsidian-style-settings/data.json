@@ -28,7 +28,7 @@
   "baseline-style@@color-scheme-accent": true,
   "baseline-style@@hide-vault-switcher-off": true,
   "baseline-style@@strike-lists-off": true,
-  "baseline-style@@nav-action": "nav-action-center",
+  "baseline-style@@nav-action": "nav-action-dot",
   "baseline-style@@tab-top-left-style": "tab-top-left-icon",
   "baseline-style@@focus-view": false
 }

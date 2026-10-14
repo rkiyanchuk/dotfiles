@@ -1,5 +1,5 @@
 {
-  "userName": "Ruslan",
+  "userName": "",
   "permissionMode": "yolo",
   "model": "pi:anthropic/claude-sonnet-5",
   "effortLevel": "high",
@@ -161,8 +161,8 @@
   },
   "settingsProvider": "pi",
   "lastSelectedChatModel": {
-    "providerId": "claude",
-    "model": "sonnet"
+    "providerId": "pi",
+    "model": "pi:anthropic/claude-opus-5-5"
   },
   "savedProviderModel": {
     "claude": "sonnet"

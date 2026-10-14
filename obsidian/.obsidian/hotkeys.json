@@ -257,5 +257,14 @@
       ],
       "key": "B"
     }
+  ],
+  "realclaudian:new-tab": [
+    {
+      "modifiers": [
+        "Alt",
+        "Mod"
+      ],
+      "key": "`"
+    }
   ]
 }

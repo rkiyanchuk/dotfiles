@@ -8,7 +8,8 @@
   "enabledCssSnippets": [
     "task",
     "macos-27",
-    "ios-27"
+    "ios-27",
+    "table-wrap"
   ],
   "autoFullScreen": true,
   "showViewHeader": false,
