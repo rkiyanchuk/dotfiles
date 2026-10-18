@@ -139,6 +139,7 @@ plugins-omp:
     # Marketplaces to register, as `owner/repo` GitHub shorthand.
     marketplaces=(
         anthropics/claude-plugins-official  # official Anthropic catalog
+        cathrynlavery/diagram-design        # editorial HTML/SVG diagrams
         kepano/obsidian-skills              # Obsidian authoring skills
         rkiyanchuk/agent-plugins            # personal plugins
         trailofbits/skills                  # security review skills
@@ -150,6 +151,7 @@ plugins-omp:
         obsidian@obsidian-skills                 # Obsidian vault tooling
         skill-creator@claude-plugins-official    # skill authoring
         agentic-actions-auditor@trailofbits      # CI/CD agent auditing
+        diagram-design@diagram-design            # editorial diagrams
     )
 
     # `marketplace add` and `plugin install` exit 1 when the target is already
