@@ -151,6 +151,21 @@ plugins-omp:
         obsidian@obsidian-skills                 # Obsidian vault tooling
         skill-creator@claude-plugins-official    # skill authoring
         agentic-actions-auditor@trailofbits      # CI/CD agent auditing
+        audit-context-building@trailofbits       # deep code context
+        constant-time-analysis@trailofbits       # timing side channels
+        devcontainer-setup@trailofbits           # devcontainer bootstrap
+        differential-review@trailofbits          # security diff review
+        dwarf-expert@trailofbits                 # DWARF debug info
+        static-analysis@trailofbits              # CodeQL/Semgrep/SARIF
+        testing-handbook-skills@trailofbits      # testing handbook
+        rust-review@trailofbits                  # Rust security review
+        modern-python@trailofbits                # modern Python tooling
+        insecure-defaults@trailofbits            # insecure config detection
+        review-walkthrough@trailofbits           # guided code review
+        git-cleanup@trailofbits                  # branch/worktree cleanup
+        goal-prompt@trailofbits                  # goal-oriented prompting
+        supply-chain-risk-auditor@trailofbits    # dependency risk audit
+        open-sourcing@trailofbits                # open-source readiness
         diagram-design@diagram-design            # editorial diagrams
     )
 

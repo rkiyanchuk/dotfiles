@@ -10,9 +10,7 @@
     "allow": [
       "Bash(gh api *)",
       "WebFetch",
-      "WebSearch",
-      "mcp__plugin_context7_context7__query-docs",
-      "mcp__plugin_context7_context7__resolve-library-id"
+      "WebSearch"
     ],
     "defaultMode": "auto",
     "additionalDirectories": [
@@ -26,7 +24,6 @@
   },
   "enabledPlugins": {
     "chrome-devtools-mcp@claude-plugins-official": false,
-    "context7@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": false,
     "obsidian@obsidian-skills": true,
     "playwright@claude-plugins-official": false,

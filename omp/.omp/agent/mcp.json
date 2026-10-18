@@ -8,7 +8,6 @@
   },
   "disabledServers": [
     "chrome-devtools-mcp:chrome-devtools",
-    "context7:context7",
     "nano-banana",
     "node_repl"
   ]

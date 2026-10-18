@@ -86,7 +86,6 @@ defaultThinkingLevel: auto
 disabledProviders:
   - codex
   - claude
-  - claude-plugins
 autolearn:
   enabled: true
 task:
@@ -122,3 +121,31 @@ display:
   hideToolActivity: true
 title:
   icons: boring
+disabledExtensions:
+  - skill:skill-creator
+  - skill:agentic-actions-auditor
+  - skill:audit-context-building
+  - skill:constant-time-analysis
+  - skill:devcontainer-setup
+  - skill:differential-review
+  - skill:dwarf-expert
+  - skill:codeql
+  - skill:sarif-parsing
+  - skill:semgrep
+  - skill:address-sanitizer
+  - skill:aflpp
+  - skill:atheris
+  - skill:cargo-fuzz
+  - skill:open-sourcing
+  - skill:supply-chain-risk-auditor
+  - skill:wycheproof
+  - skill:testing-handbook-generator
+  - skill:ruzzy
+  - skill:ossfuzz
+  - skill:libfuzzer
+  - skill:libafl
+  - skill:harness-writing
+  - skill:fuzzing-obstacles
+  - skill:fuzzing-dictionary
+  - skill:coverage-analysis
+  - skill:constant-time-testing
