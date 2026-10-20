@@ -42,7 +42,7 @@
     },
     "commit_message_model": {
       "provider": "anthropic",
-      "model": "claude-sonnet-5-5",
+      "model": "claude-sonnet-5",
     },
     "commit_message_instructions": "Use scope-prefixed subjects (Linux/Git/Go style), never Conventional Commits (`feat:`/`fix:`/`chore:`). Format: `scope: imperative description`. Scope is the natural area touched (subsystem, package, module, dir). Join several areas changed for one reason: `nvim, omp: ...`. Omit scope only when a change is genuinely cross-cutting. Subject must be ≤ 50 chars, imperative, capitalized, no trailing period. For non-trivial changes add one blank line, then a body wrapped at 72 columns. Body explains what and why, not how. Don't enumerate files. Trivial changes (typo, version bump, lockfile) get a subject only, no body. Pick the body shape by the change. Several small, independent changes get an itemized list, one line per change. Large or complicated changes get full prose paragraphs explaining what changed and why. Lists may supplement the prose, never replace it. Trailers are `Key: value` lines at the end, after a blank line (`git interpret-trailers`): `Signed-off-by`, `Co-authored-by`, `Reviewed-by`, `Tested-by`, `Reported-by`, `Fixes:`/`Closes: #123`, `Link:`. Add no AI attribution trailer, since you only write the message, not the code.",
     "commit_message_include_project_rules": true,
