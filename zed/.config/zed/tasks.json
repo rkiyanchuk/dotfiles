@@ -1,7 +1,7 @@
 [
   {
-    "label": "omp commit",
-    "command": "omp commit",
+    "label": "Git Commit",
+    "command": "set -l msg (omp -p --model commit --no-session /commit-msg | string collect); and git commit -e -m \"$msg\"",
     "use_new_terminal": false,
     "reveal": "always"
   }
