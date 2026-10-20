@@ -153,9 +153,6 @@
         "printWidth": 80,
       },
     },
-    "Python": {
-      "show_edit_predictions": true,
-    },
   },
   "middle_click_paste": false,
   "minimap": {

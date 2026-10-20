@@ -23,24 +23,15 @@
     "context": "Editor",
     "unbind": {
       "ctrl-alt-right": "editor::MoveToNextSubwordEnd",
+      "ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
+      "cmd-;": "editor::ToggleLineNumbers",
     },
   },
   {
     "context": "Terminal",
     "unbind": {
       "ctrl-alt-right": "pane::SplitRight",
-    },
-  },
-  {
-    "context": "Terminal",
-    "unbind": {
       "ctrl-alt-left": "pane::SplitLeft",
-    },
-  },
-  {
-    "context": "Editor",
-    "unbind": {
-      "ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
     },
   },
   {
@@ -102,12 +93,6 @@
     "context": "MessageEditor > Editor && vim_mode == insert",
     "bindings": {
       "escape": "editor::Cancel",
-    },
-  },
-  {
-    "context": "Editor",
-    "unbind": {
-      "cmd-;": "editor::ToggleLineNumbers",
     },
   },
 ]
