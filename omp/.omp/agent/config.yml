@@ -149,3 +149,4 @@ disabledExtensions:
   - skill:fuzzing-dictionary
   - skill:coverage-analysis
   - skill:constant-time-testing
+emojiAutocomplete: false
