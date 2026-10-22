@@ -57,7 +57,10 @@
   "outputStyle": "Concise",
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": ["api.anthropic.com"]
+    }
   },
   "spinnerVerbs": {
     "mode": "replace",
