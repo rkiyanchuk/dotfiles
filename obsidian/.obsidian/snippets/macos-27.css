@@ -264,13 +264,27 @@ body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .w
     --icon-color-active: var(--text-on-accent);
 }
 
+/* Baseline animates every sidedock tab header and its divs over 320ms with
+   an overshooting curve, so the old pill fades out while the new one fills
+   in. Switch instantly, like a native segmented control. */
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header,
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header div {
+    transition: none;
+}
+
 /* Revealing a view by command flashes its tab with Obsidian's yellow
-   highlight; app.css forces that with !important, so only !important
-   can keep the accent pill steady. */
+   highlight for about a second; app.css forces that with !important, so only
+   !important can override it. The class outlives a switch to another view,
+   so a flashing tab keeps whatever fill its active state dictates. */
 body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-flashing {
+    background-color: transparent !important;
+    color: var(--macos27-glass-icon);
+    mix-blend-mode: normal;
+}
+
+body:not(.is-mobile):not(.is-phone) .app-container .horizontal-main-container .workspace .mod-sidedock .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header.is-active.is-flashing {
     background-color: var(--color-accent) !important;
     color: var(--text-on-accent);
-    mix-blend-mode: normal;
 }
 
 /* CIRCLE: sidebar toggles */
