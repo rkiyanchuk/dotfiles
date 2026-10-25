@@ -12,8 +12,8 @@ bold := BOLD
 reset := NORMAL
 
 username := env("USER")
-deps_arch := "bat direnv eza fd fish fzf git grc neovim python-uv ripgrep starship stow tmux yazi"
-deps_ubuntu := "bat direnv eza fd-find fish fzf git grc neovim ripgrep snapd stow tmux"
+deps_arch := "bat direnv eza fd fish fzf git grc mosh neovim python-uv ripgrep starship stow tmux yazi"
+deps_ubuntu := "bat direnv eza fd-find fish fzf git grc mosh neovim ripgrep snapd stow tmux"
 
 # CLI packages to install via stow
 packages_cli := "bat bun direnv fish git gh grc npm nvim starship tmux uv yazi claude omp"

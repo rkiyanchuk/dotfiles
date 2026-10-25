@@ -27,6 +27,7 @@ brew "tree-sitter-cli"
 brew "tmux"
 brew "tree"
 brew "grc"
+brew "mosh"
 
 brew "bzip2"
 brew "poppler"
