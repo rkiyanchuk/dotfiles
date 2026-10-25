@@ -210,6 +210,23 @@ body.is-mobile .workspace-drawer .nav-files-container .nav-file-title-content::b
     --ios27-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8M16 13H8M16 17H8'/%3E%3C/svg%3E");
 }
 
+/* ==== GLASS ==== */
+
+/*
+ * iOS Liquid Glass with the system "Tinted" setting at maximum: near-opaque
+ * grey glass. Baseline's Cupertino controls paint the floating toolbars, the
+ * round header buttons and menu sheets with --blur-background at 7.5% white
+ * (dark) / 50% white (light), so the note shows through almost unobstructed.
+ * The dark value matches the tinted back button over black (#202020).
+ */
+body.is-mobile.theme-light {
+    --blur-background: rgba(255, 255, 255, 0.88);
+}
+
+body.is-mobile.theme-dark {
+    --blur-background: rgba(36, 36, 36, 0.88);
+}
+
 /* ==== NAVIGATION BAR ==== */
 
 /* The bar's menu button only opens the ribbon commands; the command palette
