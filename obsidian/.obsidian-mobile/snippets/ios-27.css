@@ -248,6 +248,25 @@ body.is-mobile {
     --suggestion-backdrop-filter: none;
 }
 
+/*
+ * Phone menu sheet as one plain glass panel, like Safari's and Notes' menus:
+ * no rounded card behind each group and no hairline between items, only a
+ * divider between groups. Obsidian paints the cards and draws one set of
+ * item separators; Baseline's Cupertino style draws another under titles.
+ */
+body.is-mobile.is-phone .menu .menu-item:not(.is-label) {
+    background-color: transparent;
+}
+
+body.is-mobile.is-phone .menu .menu-group .menu-item:not(.is-label)::after,
+body.input-cupertino.is-phone .menu .menu-item:not(:last-child) .menu-item-title::after {
+    display: none;
+}
+
+body.is-mobile.is-phone .menu .menu-separator {
+    border-top: var(--border-width) solid hsl(from var(--mono-100) h s l / 0.1);
+}
+
 /* ==== NOTE ==== */
 
 /* List bullets and numbers in the text colour, as in Notes. */
