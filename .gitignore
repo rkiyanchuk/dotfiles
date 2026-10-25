@@ -72,6 +72,7 @@ obsidian/.obsidian-mobile/plugins/realclaudian/data.json
 obsidian/.obsidian-mobile/plugins/*/main.js
 obsidian/.obsidian-mobile/plugins/*/styles.css
 !obsidian/.obsidian-mobile/plugins/explorer-command-palette/main.js
+!obsidian/.obsidian-mobile/plugins/navbar-find-in-note/main.js
 
 # OhMyPi
 omp/.omp/agent/config.yml.lock

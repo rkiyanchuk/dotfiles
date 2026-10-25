@@ -8,5 +8,6 @@
   "heic-viewer",
   "consistent-attachments-and-links",
   "advanced-rename-and-delete-handler",
-  "explorer-command-palette"
+  "explorer-command-palette",
+  "navbar-find-in-note"
 ]

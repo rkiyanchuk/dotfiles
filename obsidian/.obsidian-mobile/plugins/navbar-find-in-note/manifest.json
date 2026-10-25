@@ -1,0 +1,9 @@
+{
+  "id": "navbar-find-in-note",
+  "name": "Navbar Find in Note",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "Makes the mobile navigation bar's search button find in the open note; without a note it still opens the quick switcher.",
+  "author": "ruslan",
+  "isDesktopOnly": false
+}
