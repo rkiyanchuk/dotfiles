@@ -236,6 +236,18 @@ body.is-mobile .mobile-navbar .mobile-navbar-action-menu {
     display: none;
 }
 
+/* No pencil button in reading view: a double tap on the note enters edit
+   mode. While editing, the button stays to switch back to reading. */
+body.is-mobile .workspace-leaf-content[data-mode="preview"] .view-actions .view-action:has(> svg.lucide-edit-3) {
+    display: none;
+}
+
+/* With the button gone, let the bar take its space: Baseline keeps a gap
+   for it on the right, except when the active tab isn't a note. */
+body.is-phone.is-floating-nav > .app-container > .horizontal-main-container:has(.workspace > .mod-root > .workspace-tabs.mod-visible > .workspace-tab-container > .workspace-leaf.mod-active > .workspace-leaf-content[data-mode="preview"]) ~ .mobile-navbar {
+    margin-right: var(--navbar-side-offset);
+}
+
 /* ==== MENUS ==== */
 
 /* Obsidian mobile draws context menus, prompts (command palette, quick
