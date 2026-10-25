@@ -230,3 +230,10 @@ body.is-mobile {
     --prompt-backdrop-filter: none;
     --suggestion-backdrop-filter: none;
 }
+
+/* ==== NOTE ==== */
+
+/* List bullets and numbers in the text colour, as in Notes. */
+body.is-mobile {
+    --list-marker-color: var(--text-normal);
+}
