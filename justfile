@@ -19,7 +19,7 @@ deps_ubuntu := "bat direnv eza fd-find fish fzf git grc mosh neovim ripgrep snap
 packages_cli := "bat bun direnv fish git gh grc npm nvim starship tmux uv yazi claude omp"
 
 # Desktop packages to install via stow (macOS only)
-packages_gui := "ghostty wireshark ssh zed macos"
+packages_gui := "ghostty wireshark ssh zed"
 
 # Detect the current OS
 os := if os() == "macos" { "macos" } else if path_exists("/etc/arch-release") == "true" { "arch" } else { "ubuntu" }
@@ -37,7 +37,6 @@ install: install-deps config set-shell
     if [[ "{{ os }}" == "macos" ]]; then
         just enable-key-repeat
         just disable-font-smoothing
-        just display-dock-reset
     fi
 
 # Install system dependencies based on OS
@@ -252,28 +251,6 @@ disable-font-smoothing:
     @defaults -currentHost write -g AppleFontSmoothing -int 0
     @defaults write com.apple.ActivityMonitor AppleFontSmoothing -int 2
     @defaults write com.apple.Console AppleFontSmoothing -int 2
-
-# MacOS: build and load the display-dock-reset agent. Restarts the Dock when an
-# external display is connected or disconnected, clearing the macOS 27 bug that
-# leaves Mission Control and Spaces broken after a display change.
-[macos]
-display-dock-reset:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "{{ orange }}==> Building display-dock-reset...{{ reset }}"
-    mkdir -p "$HOME/.local/bin"
-    swiftc -O -o "$HOME/.local/bin/display-dock-reset" \
-        "$HOME/.local/src/display-dock-reset/main.swift"
-    agent="$HOME/Library/LaunchAgents/local.display-dock-reset.plist"
-    # `bootout` returns before launchd has finished tearing the job down, and
-    # bootstrapping into a half-removed service fails with EIO.
-    launchctl bootout "gui/$UID/local.display-dock-reset" 2>/dev/null || true
-    for _ in $(seq 20); do
-        launchctl print "gui/$UID/local.display-dock-reset" &>/dev/null || break
-        sleep 0.2
-    done
-    launchctl bootstrap "gui/$UID" "$agent"
-    echo "{{ green }}==> display-dock-reset loaded{{ reset }}"
 
 # MacOS: set hostname
 [macos]
