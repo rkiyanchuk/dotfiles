@@ -93,6 +93,7 @@ task:
   enableLsp: true
   agentModelOverrides:
     security-reviewer: "@security"
+  eager: preferred
 dev:
   autoqaConsent: granted
 error:
