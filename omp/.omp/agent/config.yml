@@ -119,7 +119,7 @@ collab:
   displayName: rkiyanchuk
 display:
   showTurnTime: true
-  hideToolActivity: true
+  hideToolActivity: false
 title:
   icons: boring
 disabledExtensions:
