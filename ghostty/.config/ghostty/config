@@ -6,8 +6,6 @@ theme = Atom One Dark
 font-family = IosevkaTerm Nerd Font
 font-style = Light
 font-size = 17
-# Iosevka's own ⎋ (U+238B) is tiny (~0.4em); force the SF Pro glyph instead
-# font-codepoint-map = U+238B=System Font
 
 adjust-cell-height = 20%
 cursor-style = block
