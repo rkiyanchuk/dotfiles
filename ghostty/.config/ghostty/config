@@ -5,7 +5,7 @@ theme = Atom One Dark
 
 font-family = IosevkaTerm Nerd Font
 font-style = Light
-font-size = 17
+font-size = 18
 
 adjust-cell-height = 20%
 cursor-style = block
