@@ -179,6 +179,7 @@
   },
   "modeline_lines": 3,
   "mouse_wheel_zoom": false,
+  "on_new_window": "readme",
   "outline_panel": {
     "dock": "right",
   },
