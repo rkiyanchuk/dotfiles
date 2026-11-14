@@ -2,7 +2,7 @@ symbolPreset: nerd
 theme:
   dark: dark-one-hl
   light: light-one
-setupVersion: 2
+setupVersion: 3
 modelRoles:
   default: anthropic/claude-opus-5-5
   slow: anthropic/claude-fable-5-1:auto
@@ -151,3 +151,5 @@ disabledExtensions:
   - skill:coverage-analysis
   - skill:constant-time-testing
 emojiAutocomplete: false
+update:
+  auto: true
