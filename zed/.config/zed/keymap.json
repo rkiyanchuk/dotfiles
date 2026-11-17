@@ -60,6 +60,14 @@
     },
   },
   {
+    // Vim binds `ctrl-r` to redo, shadowing the workspace-level recent
+    // projects picker. Reclaim it; redo stays on `cmd-shift-z`.
+    "context": "VimControl && !menu",
+    "bindings": {
+      "ctrl-r": ["projects::OpenRecent", { "create_new_window": false }],
+    },
+  },
+  {
     "context": "Editor",
     "bindings": {
       "cmd-alt-g o": "editor::OpenPermalinkToLine",
