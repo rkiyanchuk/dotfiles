@@ -91,7 +91,8 @@
     "statusLineOutput": "hue3",
     "statusLineCost": "mono3",
     "statusLineSubagents": "hue62",
-    "pythonMode": "#f0c040"
+    "pythonMode": "#f0c040",
+    "btwMode": "hue3"
   },
   "symbols": {
     "overrides": {
