@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "067b472f6dbc04520982acc9ab14f27c68195c70",
+      "rev": "abc95e13502ff3acbed151de97667174b2e4132d",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "aerial.nvim": {
@@ -9,7 +9,7 @@
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "blink.cmp": {
-      "rev": "5d77bcf21043ebbc7533260869e0fc8078c37e41",
+      "rev": "e0d51adba95174760e2e1454fe39543d96194118",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'v1'"
     },
@@ -22,7 +22,7 @@
       "src": "https://github.com/akinsho/git-conflict.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "d4854fa9a94b5c8b37dd209fb4a19e98e764186f",
+      "rev": "c0862d382a35b7b45757d8d151a6a634c09bf3ce",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "hex.nvim": {
@@ -38,11 +38,11 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.icons": {
-      "rev": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3",
+      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
       "src": "https://github.com/echasnovski/mini.icons"
     },
     "mini.pairs": {
-      "rev": "03eb1f0062a2cee5314d1ac3939246e4bb21352e",
+      "rev": "eea81afc1b4de898de9bb310c2225f9225fd42b9",
       "src": "https://github.com/echasnovski/mini.pairs"
     },
     "neotab.nvim": {
@@ -54,11 +54,11 @@
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
     },
     "nvim-lspconfig": {
-      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
+      "rev": "4648fd8ba5c678d7e2db75ae44ffac269bb589d8",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "a2f694478be07f89c2d03cc17858a8745a400c4b",
+      "rev": "37e52c733ada9d8d544d53a763140ef1ba404353",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "onedark.nvim": {
